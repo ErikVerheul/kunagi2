@@ -15,11 +15,11 @@
     <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
 
     <!-- Other module inherits                                      -->
-    <inherits name="de.hpfsc.shared"/>
-    <inherits name="de.hpfsc.server"/>
+    <inherits name="nl.verheulconsultants.kunagi2.shared"/>
+    <inherits name="nl.verheulconsultants.kunagi2.server"/>
 
     <!-- Specify the app entry point class.                         -->
-    <entry-point class='de.hpfsc.web.parent'/>
+    <entry-point class='nl.verheulconsultants.kunagi2.web.parent'/>
 
     <!-- Specify the paths for translatable code                    -->
     <source path='web'/>

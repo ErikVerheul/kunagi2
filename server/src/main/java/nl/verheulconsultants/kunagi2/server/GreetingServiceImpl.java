@@ -1,7 +1,7 @@
-package de.hpfsc.server;
+package nl.verheulconsultants.kunagi2.server;
 
-import de.hpfsc.web.GreetingService;
-import de.hpfsc.shared.FieldVerifier;
+import nl.verheulconsultants.kunagi2.web.GreetingService;
+import nl.verheulconsultants.kunagi2.shared.FieldVerifier;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 /**

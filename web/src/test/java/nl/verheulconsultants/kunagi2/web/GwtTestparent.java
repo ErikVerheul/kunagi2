@@ -1,10 +1,12 @@
-package de.hpfsc.web;
+package nl.verheulconsultants.kunagi2.web;
 
-import de.hpfsc.shared.FieldVerifier;
+import nl.verheulconsultants.kunagi2.shared.FieldVerifier;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.junit.client.GWTTestCase;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
+import nl.verheulconsultants.kunagi2.web.GreetingService;
+import nl.verheulconsultants.kunagi2.web.GreetingServiceAsync;
 
 /**
  * GWT JUnit <b>integration</b> tests must extend GWTTestCase.
@@ -22,7 +24,7 @@ public class GwtTestparent extends GWTTestCase {
    * Must refer to a valid module that sources this class.
    */
   public String getModuleName() {
-    return "de.hpfsc.parentJUnit";
+    return "nl.verheulconsultants.kunagi2.parentJUnit";
   }
 
   /**

@@ -1,6 +1,6 @@
-package de.hpfsc.web;
+package nl.verheulconsultants.kunagi2.web;
 
-import de.hpfsc.shared.FieldVerifier;
+import nl.verheulconsultants.kunagi2.shared.FieldVerifier;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -16,6 +16,8 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import nl.verheulconsultants.kunagi2.web.GreetingService;
+import nl.verheulconsultants.kunagi2.web.GreetingServiceAsync;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.

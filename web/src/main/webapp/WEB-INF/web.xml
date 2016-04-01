@@ -8,7 +8,7 @@
   <!-- Servlets -->
   <servlet>
     <servlet-name>greetServlet</servlet-name>
-    <servlet-class>de.hpfsc.server.GreetingServiceImpl</servlet-class>
+    <servlet-class>nl.verheulconsultants.kunagi2.server.GreetingServiceImpl</servlet-class>
   </servlet>
 
   <servlet-mapping>

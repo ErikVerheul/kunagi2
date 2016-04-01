@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>de.hpfsc</groupId>
+        <groupId>nl.verheulconsultants.kunagi2</groupId>
         <artifactId>parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
@@ -15,12 +15,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>de.hpfsc</groupId>
+            <groupId>nl.verheulconsultants.kunagi2</groupId>
             <artifactId>shared</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>de.hpfsc</groupId>
+            <groupId>nl.verheulconsultants.kunagi2</groupId>
             <artifactId>server</artifactId>
             <version>${project.version}</version>
         </dependency>

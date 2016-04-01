@@ -1,4 +1,4 @@
-package de.hpfsc.web;
+package nl.verheulconsultants.kunagi2.web;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;

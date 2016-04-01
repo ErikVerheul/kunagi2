@@ -1,4 +1,4 @@
-package de.hpfsc.shared;
+package nl.verheulconsultants.kunagi2.shared;
 
 /**
  * <p>

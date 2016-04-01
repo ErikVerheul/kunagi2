@@ -2,7 +2,7 @@
 <module rename-to='server'>
     <inherits name="com.google.gwt.user.User"/>
 
-    <inherits name="de.hpfsc.shared"/>
+    <inherits name="nl.verheulconsultants.kunagi2.shared"/>
 
     <source path="server"/>
 </module>

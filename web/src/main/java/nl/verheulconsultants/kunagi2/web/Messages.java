@@ -1,4 +1,4 @@
-package de.hpfsc.web;
+package nl.verheulconsultants.kunagi2.web;
 
 /**
  * Interface to represent the messages contained in resource bundle:
