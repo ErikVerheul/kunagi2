@@ -91,6 +91,7 @@ import static javax.swing.UIManager.getInstalledLookAndFeels;
 import static javax.swing.UIManager.getSystemLookAndFeelClassName;
 import static javax.swing.UIManager.setLookAndFeel;
 import static javax.swing.UIManager.setLookAndFeel;
+import javax.swing.UnsupportedLookAndFeelException;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 import static javax.swing.WindowConstants.HIDE_ON_CLOSE;
@@ -113,7 +114,7 @@ public class Swing {
 	public static void setSystemLookAndFeel() {
 		try {
 			setLookAndFeel(getSystemLookAndFeelClassName());
-		} catch (Throwable ex) {
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
 			throw new RuntimeException(ex);
 		}
 	}

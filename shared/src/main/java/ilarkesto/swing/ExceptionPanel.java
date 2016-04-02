@@ -83,6 +83,7 @@ public class ExceptionPanel extends JPanel {
         // expandButton.setFont(new Font(font.getFamily(), Font.PLAIN, font.getSize() - 5));
         expandButton.addActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent e) {
                 expand();
             }

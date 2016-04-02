@@ -112,6 +112,7 @@ public abstract class SwingWorker {
 	public SwingWorker() {
 		final Runnable doFinished = new Runnable() {
 
+                        @Override
 			public void run() {
 				finished();
 			}
@@ -119,6 +120,7 @@ public abstract class SwingWorker {
 
 		Runnable doConstruct = new Runnable() {
 
+                        @Override
 			public void run() {
 				try {
 					setValue(construct());
@@ -147,6 +149,7 @@ public abstract class SwingWorker {
 	public static void start(final Runnable service, final Runnable swing) {
 		new SwingWorker() {
 
+                        @Override
 			public Object construct() {
 				service.run();
 				// try {
@@ -157,6 +160,7 @@ public abstract class SwingWorker {
 				return service;
 			}
 
+                        @Override
 			public void finished() {
 				if (swing != null) {
                                         swing.run();

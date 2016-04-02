@@ -174,7 +174,7 @@ public class BeanMap<T> extends AbstractMap<String, Object> implements Cloneable
 		try {
 			beanClass = bean.getClass();
 			newBean = beanClass.newInstance();
-		} catch (Exception e) {
+		} catch (InstantiationException | IllegalAccessException e) {
 			// unable to instantiate
 			throw new CloneNotSupportedException("Unable to instantiate the underlying bean \"" + beanClass.getName()
 					+ "\": " + e);
@@ -197,7 +197,7 @@ public class BeanMap<T> extends AbstractMap<String, Object> implements Cloneable
 					newMap.put(key, get(key));
 				}
 			}
-		} catch (Exception exception) {
+		} catch (IllegalArgumentException | ClassCastException exception) {
 			throw new CloneNotSupportedException("Unable to copy bean values to cloned bean map: " + exception);
 		}
 
@@ -270,7 +270,7 @@ public class BeanMap<T> extends AbstractMap<String, Object> implements Cloneable
 			if (method != null) {
 				try {
 					return method.invoke(bean, NULL_ARGUMENTS);
-				} catch (Exception e) {
+				} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 					throw new RuntimeException("Invoking " + bean.getClass().getSimpleName() + "." + method.getName()
 							+ "() failed", e);
 				}

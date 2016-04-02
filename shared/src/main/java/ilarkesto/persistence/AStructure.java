@@ -14,6 +14,8 @@
  */
 package ilarkesto.persistence;
 
+import java.lang.reflect.InvocationTargetException;
+
 public abstract class AStructure extends ADatob {
 
 	private transient ADatob.StructureManager manager;
@@ -35,7 +37,7 @@ public abstract class AStructure extends ADatob {
 			result = getClass().getConstructor(new Class[] { getClass() }).newInstance(new Object[] { this });
 		} catch (NoSuchMethodException ex) {
 			throw new RuntimeException("Missing copy constructor in " + getClass(), ex);
-		} catch (Throwable ex) {
+		} catch (SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
 			throw new RuntimeException(ex);
 		}
 		result.manager = manager;

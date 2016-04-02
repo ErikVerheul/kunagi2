@@ -33,6 +33,7 @@ public class EndlessList<T> implements Iterator<T>, Iterable<T> {
 		list = new ArrayList<>();
 	}
 
+        @Override
 	public boolean hasNext() {
 		if (reset) {
 			reset = false;
@@ -49,6 +50,7 @@ public class EndlessList<T> implements Iterator<T>, Iterable<T> {
 		return true;
 	}
 
+        @Override
 	public T next() {
 		reset = false;
 		idx++;
@@ -64,6 +66,7 @@ public class EndlessList<T> implements Iterator<T>, Iterable<T> {
 		list.add(value);
 	}
 
+        @Override
 	public void remove() {
 		throw new UnsupportedOperationException();
 	}
@@ -71,6 +74,7 @@ public class EndlessList<T> implements Iterator<T>, Iterable<T> {
 	/**
 	 * Needed to work with for-each-loop.
 	 */
+        @Override
 	public Iterator iterator() {
 		return this;
 	}

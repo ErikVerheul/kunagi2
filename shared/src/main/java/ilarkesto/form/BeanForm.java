@@ -336,7 +336,7 @@ public class BeanForm<O> extends Form {
 			} else if (field instanceof MultiComplexFormField) {
 				try {
 					beanMap.put(field.getName(), ((MultiComplexFormField) field).getValue());
-				} catch (Throwable ex) {
+				} catch (IllegalArgumentException | ClassCastException ex) {
 					LOG.debug(ex);
 					field.setErrorMessage("Auswahl ung\u00FCltig: " + format(ex));
 					throw new ValidationException(ERROR_MSG);

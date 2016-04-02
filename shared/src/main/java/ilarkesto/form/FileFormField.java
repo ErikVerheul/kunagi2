@@ -45,15 +45,18 @@ public class FileFormField extends AFormField {
         return folder;
     }
 
+    @Override
     public String getValueAsString() {
         return value == null ? null : value.getPath();
     }
 
+    @Override
     public void update(Map<String, String> data, Collection<FileItem> uploadedFiles) {
         String path = data.get(getName());
         value = path == null ? null : new File(path);
     }
 
+    @Override
     public void validate() throws ValidationException {
         if (value == null) {
             if (isRequired()) {

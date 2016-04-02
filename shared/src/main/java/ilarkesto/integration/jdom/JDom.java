@@ -127,7 +127,7 @@ public abstract class JDom {
 		SAXBuilder builder = createSaxBuilder();
 		try {
 			return builder.build(in);
-		} catch (Exception ex) {
+		} catch (JDOMException | IOException ex) {
 			throw new RuntimeException("Loading XML from InputStream failed.", ex);
 		}
 	}
@@ -137,7 +137,7 @@ public abstract class JDom {
 		SAXBuilder builder = createSaxBuilder();
 		try {
 			return builder.build(new URL(url));
-		} catch (Exception ex) {
+		} catch (JDOMException | IOException ex) {
 			throw new RuntimeException("Loading XML from URL failed: " + url, ex);
 		}
 	}
@@ -158,7 +158,7 @@ public abstract class JDom {
 			Document doc = builder.build(is);
 			closeQuiet(is);
 			return doc;
-		} catch (Exception ex) {
+		} catch (JDOMException | IOException ex) {
 			throw new RuntimeException("Loading XML from URL failed: " + url, ex);
 		}
 	}

@@ -96,6 +96,7 @@ public class CheckedInputStream extends FilterInputStream
    * Reads one byte, updates the checksum and returns the read byte
    * (or -1 when the end of file was reached).
    */
+  @Override
   public int read () throws IOException
   {
     int x = in.read();
@@ -110,6 +111,7 @@ public class CheckedInputStream extends FilterInputStream
    * with it. Returns the number of bytes actually read or -1 when the end
    * of file was reached.
    */
+  @Override
   public int read (byte[] buf, int off, int len) throws IOException
   {
     int r = in.read(buf, off, len);
@@ -124,6 +126,7 @@ public class CheckedInputStream extends FilterInputStream
    * the checksum with that buffer. Returns the actual number of bytes skiped
    * which can be less then requested when the end of file is reached.
    */
+  @Override
   public long skip (long n) throws IOException
   {
     if (n == 0) {

@@ -36,14 +36,17 @@ public class CheckboxFormField extends AFormField {
         return checked;
     }
 
+    @Override
     public String getValueAsString() {
         return  valueOf(checked);
     }
 
+    @Override
     public void update(Map<String, String> data, Collection<FileItem> uploadedFiles) {
         checked = data.containsKey(getName());
     }
 
+    @Override
     public void validate() {}
 
 }

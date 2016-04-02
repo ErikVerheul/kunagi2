@@ -111,6 +111,7 @@ public class FullScreenDockWidget extends AWidget {
 
 	private class DockResizeHandler implements ResizeHandler {
 
+                @Override
 		public void onResize(ResizeEvent event) {
 			if (dock == null) {
                                 return;

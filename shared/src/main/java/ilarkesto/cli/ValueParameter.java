@@ -23,6 +23,7 @@ public class ValueParameter extends AParameter {
 		super(name, description);
 	}
 
+        @Override
 	public void setValue(String value) {
 		this.value = value;
 	}

@@ -93,6 +93,7 @@ public class CheckedOutputStream extends FilterOutputStream
   /**
    * Writes one byte to the OutputStream and updates the Checksum.
    */
+  @Override
   public void write (int bval) throws IOException
   {
     out.write(bval);
@@ -102,6 +103,7 @@ public class CheckedOutputStream extends FilterOutputStream
   /**
    * Writes the byte array to the OutputStream and updates the Checksum.
    */
+  @Override
   public void write (byte[] buf, int off, int len) throws IOException
   {
     out.write(buf, off, len);

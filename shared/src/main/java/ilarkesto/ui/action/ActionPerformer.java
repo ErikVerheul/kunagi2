@@ -99,7 +99,7 @@ public final class ActionPerformer {
 		actionClass = getActionClass(actionId);
 		try {
 			return actionClass.newInstance();
-		} catch (Exception ex) {
+		} catch (InstantiationException | IllegalAccessException ex) {
 			throw new RuntimeException(ex);
 		}
 	}

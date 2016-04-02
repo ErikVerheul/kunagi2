@@ -34,6 +34,7 @@ public class And<E> implements Predicate<E> {
 		predicates.add(predicate);
 	}
 
+        @Override
 	public boolean test(E parameter) {
 		for (Predicate<E> predicate : predicates) {
 			if (!predicate.test(parameter)){

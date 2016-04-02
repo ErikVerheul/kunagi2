@@ -41,14 +41,17 @@ public class OutputFormField extends AFormField {
 		return html;
 	}
 
+        @Override
 	public String getValueAsString() {
 		return text;
 	}
 
+        @Override
 	public void update(Map<String, String> data, Collection<FileItem> uploadedFiles) {
 	// nop
 	}
 
+        @Override
 	public void validate() {}
 
 }

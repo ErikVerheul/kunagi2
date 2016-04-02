@@ -39,6 +39,7 @@ public class SuffixValidator implements Validator {
 		this.failureMessage = failureMessage;
 	}
 
+        @Override
 	public String validate(String text) throws ValidationException {
 		if (ignoreCase) {
 			if (!text.toLowerCase().endsWith(suffix)) {

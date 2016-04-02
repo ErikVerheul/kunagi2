@@ -23,6 +23,7 @@ public class BooleanOption extends AOption {
 		super(name, usageText);
 	}
 
+        @Override
 	public String getUsageSyntax() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("-");
@@ -30,6 +31,7 @@ public class BooleanOption extends AOption {
 		return sb.toString();
 	}
 
+        @Override
 	public void setValue(String value) {
 		set = true;
 	}

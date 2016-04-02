@@ -153,7 +153,7 @@ public class Autowire {
 	private static void invokeSetter(Object bean, Method method, Object value, ObjectStringMapper objectStringMapper) {
 		try {
 			method.invoke(bean, createWriteMethodArguments(method, value, objectStringMapper));
-		} catch (Throwable ex) {
+		} catch (IllegalAccessException | ClassCastException | IllegalArgumentException | InvocationTargetException ex) {
 			throw new RuntimeException("Invoking setter '" + method.getDeclaringClass().getSimpleName() + "."
 					+ method.getName() + "' on '" + bean + "' with '" + value + "' failed.", ex);
 		}

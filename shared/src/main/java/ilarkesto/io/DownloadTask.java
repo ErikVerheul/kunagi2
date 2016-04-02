@@ -67,14 +67,17 @@ public class DownloadTask extends ATask {
 
 	class Observer implements IO.CopyObserver {
 
+                @Override
 		public void totalSizeDetermined(long bytes) {
 			totalBytes = bytes;
 		}
 
+                @Override
 		public void dataCopied(long bytes) {
 			bytesDownloaded = new Bytes(bytesDownloaded.toLong() + bytes);
 		}
 
+                @Override
 		public boolean isAbortRequested() {
 			return DownloadTask.this.isAbortRequested();
 		}

@@ -91,6 +91,7 @@ public final class DateExtend extends ilarkesto.core.time.Date {
 		return new GregorianCalendar(year, month - 1, day);
 	}
 
+        @Override
 	public DateExtend getMondayOfWeek() {
 		if (getWeekday() == MONDAY) {
                         return this;
@@ -98,6 +99,7 @@ public final class DateExtend extends ilarkesto.core.time.Date {
 		return addDays(-1).getMondayOfWeek();
 	}
 
+        @Override
 	public DateExtend getFirstDateOfMonth() {
 		GregorianCalendar c = new GregorianCalendar();
 		c.setTime(toJavaDate());
@@ -105,6 +107,7 @@ public final class DateExtend extends ilarkesto.core.time.Date {
 		return new DateExtend(c);
 	}
 
+        @Override
 	public DateExtend getLastDateOfMonth() {
 		GregorianCalendar c = new GregorianCalendar();
 		c.setTime(toJavaDate());
@@ -112,6 +115,7 @@ public final class DateExtend extends ilarkesto.core.time.Date {
 		return new DateExtend(c);
 	}
 
+        @Override
 	public DateExtend addMonths(int count) {
 		GregorianCalendar c = new GregorianCalendar();
 		c.setTime(toJavaDate());
@@ -119,6 +123,7 @@ public final class DateExtend extends ilarkesto.core.time.Date {
 		return new DateExtend(c);
 	}
 
+        @Override
 	public DateExtend addYears(int count) {
 		GregorianCalendar c = new GregorianCalendar();
 		c.setTime(toJavaDate());
@@ -126,6 +131,7 @@ public final class DateExtend extends ilarkesto.core.time.Date {
 		return new DateExtend(c);
 	}
 
+        @Override
 	public int getDaysInMonth() {
 		return getGregorianCalendar().getActualMaximum(DAY_OF_MONTH);
 	}

@@ -58,7 +58,7 @@ public class Jdbc {
 			forName(driver).newInstance();
 		} catch (ClassNotFoundException ex) {
 			throw new RuntimeException("Loading JDBC driver failed: " + driver, ex);
-		} catch (Exception ex) {
+		} catch (InstantiationException | IllegalAccessException ex) {
 			throw new RuntimeException("Instantiating JDBC driver failed: " + driver, ex);
 		}
 	}

@@ -63,7 +63,7 @@ public abstract class Reflect {
                 }
                 try {
                         return method.invoke(o);
-                } catch (Exception ex) {
+                } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
                         throw new RuntimeException("Failed to invoke getter method: " + o.getClass().getSimpleName() + "."
                                 + method.getName() + "()", ex);
                 }
@@ -242,7 +242,7 @@ public abstract class Reflect {
                 try {
                         Constructor<T> constructor = type.getConstructor(getClasses(constructorParameters));
                         return constructor.newInstance(constructorParameters);
-                } catch (Exception ex) {
+                } catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
                         throw new RuntimeException(ex);
                 }
         }
@@ -265,7 +265,7 @@ public abstract class Reflect {
                 method.setAccessible(true);
                 try {
                         return method.invoke(object, parameters);
-                } catch (Exception ex) {
+                } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
                         throw new RuntimeException(ex);
                 }
         }

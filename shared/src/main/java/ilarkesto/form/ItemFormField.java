@@ -89,12 +89,15 @@ public class ItemFormField<T> extends AFormField {
         return value;
     }
 
+    @Override
     public String getValueAsString() {
         return value == null ? null : value.toString();
     }
 
+    @Override
     public void update(Map<String, String> data, Collection<FileItem> uploadedFiles) {}
 
+    @Override
     public void validate() throws ValidationException {
         if (isRequired() && value == null) {
                 throw new ValidationException("Hier ist eine Auswahl erforderlich.");

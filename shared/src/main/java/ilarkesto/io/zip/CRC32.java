@@ -102,6 +102,7 @@ public class CRC32 implements Checksum
   /**
    * Returns the CRC32 data checksum computed so far.
    */
+  @Override
   public long getValue ()
   {
     return (long) crc & 0xffffffffL;
@@ -110,6 +111,7 @@ public class CRC32 implements Checksum
   /**
    * Resets the CRC32 data checksum as if no update was ever called.
    */
+  @Override
   public void reset () { crc = 0; }
 
   /**
@@ -118,6 +120,7 @@ public class CRC32 implements Checksum
    * @param bval (the byte is taken as the lower 8 bits of bval)
    */
 
+  @Override
   public void update (int bval)
   {
     int c = ~crc;
@@ -132,6 +135,7 @@ public class CRC32 implements Checksum
    * @param off the offset in the buffer where the data starts
    * @param len the length of the data
    */
+  @Override
   public void update (byte[] buf, int off, int len)
   {
     int c = ~crc;

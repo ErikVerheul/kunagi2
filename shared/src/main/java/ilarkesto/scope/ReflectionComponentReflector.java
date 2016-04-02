@@ -133,7 +133,7 @@ public class ReflectionComponentReflector implements ComponentReflector {
                                 }
 				log.debug("Injecting component field:", component.getClass().getSimpleName() + "." + field.getName());
 				field.set(component, dependency);
-			} catch (Throwable ex) {
+			} catch (SecurityException | IllegalArgumentException | IllegalAccessException ex) {
 				throw new DependencyInjectionFailedException(component, dependencyName, dependency, ex);
 			}
 		}

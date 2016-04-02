@@ -27,14 +27,17 @@ public final class BeanContainer extends ABeanProvider implements BeanStorage<Ob
 
 	private Map<String, Object>	beans;
 
+        @Override
 	public Set<String> beanNames() {
 		return beans.keySet();
 	}
 
+        @Override
 	public Object getBean(String beanName) {
 		return beans.get(beanName);
 	}
 
+        @Override
 	public Class getBeanType(String beanName) {
 		Object bean = beans.get(beanName);
 		if (bean == null) {
@@ -43,11 +46,13 @@ public final class BeanContainer extends ABeanProvider implements BeanStorage<Ob
 		return bean.getClass();
 	}
 
+        @Override
 	public BeanContainer put(String name, Object bean) {
 		beans.put(name, bean);
 		return this;
 	}
 
+        @Override
 	public BeanContainer putAll(Map<String, ? extends Object> map) {
 		beans.putAll(map);
 		return this;

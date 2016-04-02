@@ -63,10 +63,12 @@ public final class RadioSelectFormField<T> extends AFormField {
 		return value;
 	}
 
+        @Override
 	public String getValueAsString() {
 		return value == null ? null : value.toString();
 	}
 
+        @Override
 	public void update(Map<String, String> data, Collection<FileItem> uploadedFiles) {
 		String indexAsString = data.get(getName());
 		if (indexAsString == null) {
@@ -76,6 +78,7 @@ public final class RadioSelectFormField<T> extends AFormField {
 		}
 	}
 
+        @Override
 	public void validate() throws ValidationException {
 		if (value == null && required) {
                         throw new ValidationException("Eingabe erforderlich");

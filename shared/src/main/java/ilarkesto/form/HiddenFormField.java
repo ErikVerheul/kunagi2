@@ -25,19 +25,23 @@ public class HiddenFormField implements FormField {
     private Form form;
     private boolean required;
 
+    @Override
     public FormField addFormFieldChangeListener(FormFieldChangeListener listener) {
         throw new RuntimeException("Not implemented yet!");
     }
 
+    @Override
     public boolean isRequired() {
         return required;
     }
 
+    @Override
     public HiddenFormField setRequired(boolean required) {
         this.required = required;
         return this;
     }
 
+    @Override
     public Form getForm() {
         return form;
     }
@@ -50,11 +54,13 @@ public class HiddenFormField implements FormField {
         this.name = name;
     }
 
+    @Override
     public FormField setLabel(String value) {
         // nop;
         return this;
     }
 
+    @Override
     public FormField setHintText(String value) {
         // nop;
         return this;
@@ -64,34 +70,42 @@ public class HiddenFormField implements FormField {
         this.value = value;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public String getLabel() {
         return name;
     }
 
+    @Override
     public String getHintText() {
         return null;
     }
 
+    @Override
     public String getErrorMessage() {
         return null;
     }
 
+    @Override
     public String getValueAsString() {
         return value;
     }
 
+    @Override
     public void setErrorMessage(String value) {
     // nop
     }
 
+    @Override
     public void update(Map<String, String> data, Collection<FileItem> uploadedFiles) {
         value = data.get(name);
     }
 
+    @Override
     public void validate() {}
 
 }

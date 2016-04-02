@@ -47,6 +47,7 @@ public class FullscreenPanel extends SimplePanel {
 
 	private class Autoresizer implements ResizeHandler {
 
+                @Override
 		public void onResize(ResizeEvent event) {
 			updateHeight();
 		}

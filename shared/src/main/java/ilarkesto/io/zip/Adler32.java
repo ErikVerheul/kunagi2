@@ -133,6 +133,7 @@ public class Adler32 implements Checksum
   /**
    * Resets the Adler32 checksum to the initial value.
    */
+  @Override
   public void reset () 
   {
     checksum = 1; //Initialize to 1    
@@ -143,6 +144,7 @@ public class Adler32 implements Checksum
    *
    * @param bval the data value to add. The high byte of the int is ignored.
    */
+  @Override
   public void update (int bval)
   {
     //We could make a length 1 byte array and call update again, but I
@@ -173,6 +175,7 @@ public class Adler32 implements Checksum
    * @param off the start of the data used for this update
    * @param len the number of bytes to use for this update
    */
+  @Override
   public void update (byte[] buf, int off, int len)
   {
     //(By Per Bothner)
@@ -213,6 +216,7 @@ public class Adler32 implements Checksum
   /**
    * Returns the Adler32 data checksum computed so far.
    */
+  @Override
   public long getValue()
   {
     return (long) checksum & 0xffffffffL;

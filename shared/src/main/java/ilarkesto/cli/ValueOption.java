@@ -25,6 +25,7 @@ public class ValueOption extends AOption {
 		this.valueLabel = valueLabel;
 	}
 
+        @Override
 	public String getUsageSyntax() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("-");
@@ -41,6 +42,7 @@ public class ValueOption extends AOption {
 		return value;
 	}
 
+        @Override
 	public void setValue(String value) {
 		this.value = value;
 	}

@@ -273,6 +273,7 @@ public class Deflater {
          * Finalizes this object.
          */
         @SuppressWarnings("FI_EMPTY")
+        @Override
         protected void finalize() throws Throwable {
                 super.finalize();
                 /* Exists solely for compatibility.  We don't have any native state. */

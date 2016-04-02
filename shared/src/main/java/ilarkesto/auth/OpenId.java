@@ -23,6 +23,8 @@ import java.util.Iterator;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.openid4java.association.AssociationException;
+import org.openid4java.consumer.ConsumerException;
 import org.openid4java.consumer.ConsumerManager;
 import org.openid4java.consumer.VerificationResult;
 import org.openid4java.discovery.DiscoveryException;
@@ -195,7 +197,7 @@ public class OpenId {
 		AuthRequest authReq;
 		try {
 			authReq = manager.authenticate(discovered, returnUrl);
-		} catch (Exception ex) {
+		} catch (MessageException | ConsumerException ex) {
 			throw new RuntimeException("OpenID Authentication with the provider failed: "
 					+ discovered.getDelegateIdentifier(), ex);
 		}
@@ -234,7 +236,7 @@ public class OpenId {
 		VerificationResult verification;
 		try {
 			verification = getConsumerManager(session).verify(receivingURL.toString(), openidResp, discovered);
-		} catch (Exception ex) {
+		} catch (MessageException | DiscoveryException | AssociationException ex) {
 			throw new RuntimeException("Reading OpenID response data failed.", ex);
 		}
 		return verification;

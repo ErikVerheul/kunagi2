@@ -29,6 +29,7 @@ import com.meterware.httpunit.WebResponse;
 import com.meterware.httpunit.WebTable;
 import static ilarkesto.base.Sys.getHttpProxyHost;
 import static ilarkesto.base.Sys.getHttpProxyPort;
+import java.io.IOException;
 import org.xml.sax.SAXException;
 
 public class HttpUnit {
@@ -70,7 +71,7 @@ public class HttpUnit {
 	public static WebResponse loadPage(String url, String proxyHost, Integer proxyPort) {
 		try {
 			return createWebConversation(false, proxyHost, proxyPort).getResponse(url);
-		} catch (Exception ex) {
+		} catch (IOException | SAXException ex) {
 			throw new RuntimeException("Loading URL failed: " + url, ex);
 		}
 	}

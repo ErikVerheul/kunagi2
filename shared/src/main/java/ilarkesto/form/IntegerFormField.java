@@ -55,6 +55,7 @@ public class IntegerFormField extends AFormField  {
         return width;
     }
 
+    @Override
     public void update(Map<String, String> data, Collection<FileItem> uploadedFiles) {
         value = data.get(getName());
         if (value != null) {
@@ -65,6 +66,7 @@ public class IntegerFormField extends AFormField  {
         }
     }
 
+    @Override
     public void validate() throws ValidationException {
         if (value == null) {
             if (isRequired()) {
@@ -79,6 +81,7 @@ public class IntegerFormField extends AFormField  {
         }
     }
 
+    @Override
     public String getValueAsString() {
         return value;
     }

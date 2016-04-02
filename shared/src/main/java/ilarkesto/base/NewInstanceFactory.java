@@ -25,6 +25,7 @@ public class NewInstanceFactory<E> implements Factory<E> {
 		this.type = type;
 	}
 
+        @Override
 	public E getBean() {
 		try {
 			return type.newInstance();

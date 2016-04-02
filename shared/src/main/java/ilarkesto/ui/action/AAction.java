@@ -159,7 +159,7 @@ public abstract class AAction extends ATask {
 	protected final <A extends AAction> A createAction(Class<A> actionClass) {
 		try {
 			return beanProvider.autowire(actionClass.newInstance());
-		} catch (Throwable ex) {
+		} catch (InstantiationException | IllegalAccessException ex) {
 			throw new RuntimeException(ex);
 		}
 	}

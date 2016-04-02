@@ -23,6 +23,7 @@ public class SelectAllListener implements FocusListener {
 
     public static final SelectAllListener INSTANCE = new SelectAllListener();
 
+    @Override
     public void focusGained(FocusEvent e) {
         Component c = e.getComponent();
         if (c == null) {
@@ -33,6 +34,7 @@ public class SelectAllListener implements FocusListener {
         }
     }
 
+    @Override
     public void focusLost(FocusEvent e) {}
 
 }

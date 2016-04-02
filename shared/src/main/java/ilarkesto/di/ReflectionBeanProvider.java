@@ -36,6 +36,7 @@ public class ReflectionBeanProvider<T> extends ABeanProvider {
 		return beanMap.getBean();
 	}
 
+        @Override
 	public final Set<String> beanNames() {
 		Set<String> result = new HashSet<>(beanMap.keySet());
 		result.remove("class");
@@ -46,10 +47,12 @@ public class ReflectionBeanProvider<T> extends ABeanProvider {
 		return beanMap.containsKey(beanName);
 	}
 
+        @Override
 	public final Object getBean(String beanName) {
 		return beanMap.get(beanName);
 	}
 
+        @Override
 	public final Class getBeanType(String beanName) {
 		return beanMap.getType(beanName);
 	}

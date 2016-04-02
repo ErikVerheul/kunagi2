@@ -153,6 +153,7 @@ public class DeflaterOutputStream extends FilterOutputStream
    * flushed.  This function doesn't work in Sun's JDK, but only in
    * jazzlib.
    */
+  @Override
   public void flush() throws IOException
   {
     def.flush();
@@ -185,6 +186,7 @@ public class DeflaterOutputStream extends FilterOutputStream
   /**
    * Calls finish () and closes the stream. 
    */
+  @Override
   public void close() throws IOException
   {
     finish();
@@ -195,6 +197,7 @@ public class DeflaterOutputStream extends FilterOutputStream
    * Writes a single byte to the compressed output stream.
    * @param bval the byte value.
    */
+  @Override
   public void write(int bval) throws IOException
   {
     byte[] b = new byte[1];
@@ -208,6 +211,7 @@ public class DeflaterOutputStream extends FilterOutputStream
    * @param off the offset into the byte array where to start.
    * @param len the number of bytes to write.
    */
+  @Override
   public void write(byte[] buf, int off, int len) throws IOException
   {
     def.setInput(buf, off, len);

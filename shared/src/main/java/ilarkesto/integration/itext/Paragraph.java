@@ -15,6 +15,7 @@
 package ilarkesto.integration.itext;
 
 import com.itextpdf.text.Chunk;
+import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import static com.itextpdf.text.Element.ALIGN_CENTER;
 import static com.itextpdf.text.Element.ALIGN_LEFT;
@@ -42,6 +43,7 @@ import ilarkesto.pdf.APdfElement;
 import ilarkesto.pdf.FontStyle;
 import ilarkesto.pdf.TextChunk;
 import java.io.File;
+import java.io.IOException;
 
 public class Paragraph extends AParagraph implements ItextElement {
 
@@ -150,7 +152,7 @@ public class Paragraph extends AParagraph implements ItextElement {
 		Font font;
 		try {
 			font = new Font(BaseFont.createFont(name, IDENTITY_H, EMBEDDED));
-		} catch (Exception ex) {
+		} catch (DocumentException | IOException ex) {
 			throw new RuntimeException("Loading font failed: " + name, ex);
 		}
 

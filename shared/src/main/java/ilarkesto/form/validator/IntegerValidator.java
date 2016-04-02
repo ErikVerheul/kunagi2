@@ -32,6 +32,7 @@ public class IntegerValidator implements Validator {
     }
 
     // overriding
+    @Override
     public String validate(String text) throws ValidationException {
         text = text.trim();
         int i;
