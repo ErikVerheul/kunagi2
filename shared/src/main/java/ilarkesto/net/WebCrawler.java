@@ -158,7 +158,7 @@ public class WebCrawler {
 		return emptySet();
 	}
 
-	static boolean isProbablyHtml(String url) {
+	public static boolean isProbablyHtml(String url) {
 		String s;
 		try {
 			s = new URL(url).getPath();
@@ -185,7 +185,7 @@ public class WebCrawler {
 		return s.endsWith(".php");
 	}
 
-	static String normalizeUrl(String url) {
+	public static String normalizeUrl(String url) {
 		int idx = url.indexOf('#');
 		if (idx >= 0) {
                         url = url.substring(0, idx);
@@ -229,7 +229,7 @@ public class WebCrawler {
 		return baseUrl + relativeUrl;
 	}
 
-	static String getBaseUrl(String url) {
+	public static String getBaseUrl(String url) {
 		int fromIdx = 7;
 		if (url.startsWith("https://")) {
                         fromIdx++;
