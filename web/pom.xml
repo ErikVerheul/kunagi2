@@ -16,12 +16,12 @@
     <dependencies>
         <dependency>
             <groupId>nl.verheulconsultants.kunagi2</groupId>
-            <artifactId>shared</artifactId>
+            <artifactId>ilarkesto2</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>nl.verheulconsultants.kunagi2</groupId>
-            <artifactId>server</artifactId>
+            <artifactId>kunagi2</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
