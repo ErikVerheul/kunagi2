@@ -1,0 +1,24 @@
+<module>
+
+    <inherits name="com.google.gwt.user.User" />
+    <inherits name="com.google.gwt.user.theme.standard.Standard" />
+
+    <inherits name="com.allen_sauer.gwt.dnd.gwt-dnd" />
+
+    <inherits name="gwtupload.GWTUpload" />
+    <stylesheet src="Upload.css" />
+
+    <inherits name="ilarkesto.Ilarkesto" />
+
+    <stylesheet src="screen.css" />
+
+    <entry-point class="scrum.client.ScrumGwtApplication" />
+
+    <replace-with class="com.google.gwt.user.client.impl.HistoryImplTimer">
+        <when-type-is class="com.google.gwt.user.client.impl.HistoryImpl" />
+        <any>
+            <when-property-is name="user.agent" value="opera" />
+        </any>
+    </replace-with>
+
+</module>
