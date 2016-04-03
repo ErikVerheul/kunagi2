@@ -2152,7 +2152,7 @@ public abstract class GProject
     // - dependencies
     // -----------------------------------------------------------
 
-    static scrum.server.sprint.SprintDao sprintDao;
+    public static scrum.server.sprint.SprintDao sprintDao;
 
     @edu.umd.cs.findbugs.annotations.SuppressWarnings("URF_UNREAD_FIELD")
     public static final void setSprintDao(scrum.server.sprint.SprintDao sprintDao) {
@@ -2166,63 +2166,63 @@ public abstract class GProject
         GProject.projectDao = projectDao;
     }
 
-    static scrum.server.admin.ProjectUserConfigDao projectUserConfigDao;
+    public static scrum.server.admin.ProjectUserConfigDao projectUserConfigDao;
 
     @edu.umd.cs.findbugs.annotations.SuppressWarnings("URF_UNREAD_FIELD")
     public static final void setProjectUserConfigDao(scrum.server.admin.ProjectUserConfigDao projectUserConfigDao) {
         GProject.projectUserConfigDao = projectUserConfigDao;
     }
 
-    static scrum.server.project.QualityDao qualityDao;
+    public static scrum.server.project.QualityDao qualityDao;
 
     @edu.umd.cs.findbugs.annotations.SuppressWarnings("URF_UNREAD_FIELD")
     public static final void setQualityDao(scrum.server.project.QualityDao qualityDao) {
         GProject.qualityDao = qualityDao;
     }
 
-    static scrum.server.impediments.ImpedimentDao impedimentDao;
+    public static scrum.server.impediments.ImpedimentDao impedimentDao;
 
     @edu.umd.cs.findbugs.annotations.SuppressWarnings("URF_UNREAD_FIELD")
     public static final void setImpedimentDao(scrum.server.impediments.ImpedimentDao impedimentDao) {
         GProject.impedimentDao = impedimentDao;
     }
 
-    static scrum.server.project.RequirementDao requirementDao;
+    public static scrum.server.project.RequirementDao requirementDao;
 
     @edu.umd.cs.findbugs.annotations.SuppressWarnings("URF_UNREAD_FIELD")
     public static final void setRequirementDao(scrum.server.project.RequirementDao requirementDao) {
         GProject.requirementDao = requirementDao;
     }
 
-    static scrum.server.issues.IssueDao issueDao;
+    public static scrum.server.issues.IssueDao issueDao;
 
     @edu.umd.cs.findbugs.annotations.SuppressWarnings("URF_UNREAD_FIELD")
     public static final void setIssueDao(scrum.server.issues.IssueDao issueDao) {
         GProject.issueDao = issueDao;
     }
 
-    static scrum.server.release.ReleaseDao releaseDao;
+    public static scrum.server.release.ReleaseDao releaseDao;
 
     @edu.umd.cs.findbugs.annotations.SuppressWarnings("URF_UNREAD_FIELD")
     public static final void setReleaseDao(scrum.server.release.ReleaseDao releaseDao) {
         GProject.releaseDao = releaseDao;
     }
 
-    static scrum.server.journal.ProjectEventDao projectEventDao;
+    public static scrum.server.journal.ProjectEventDao projectEventDao;
 
     @edu.umd.cs.findbugs.annotations.SuppressWarnings("URF_UNREAD_FIELD")
     public static final void setProjectEventDao(scrum.server.journal.ProjectEventDao projectEventDao) {
         GProject.projectEventDao = projectEventDao;
     }
 
-    static scrum.server.calendar.SimpleEventDao simpleEventDao;
+    public static scrum.server.calendar.SimpleEventDao simpleEventDao;
 
     @edu.umd.cs.findbugs.annotations.SuppressWarnings("URF_UNREAD_FIELD")
     public static final void setSimpleEventDao(scrum.server.calendar.SimpleEventDao simpleEventDao) {
         GProject.simpleEventDao = simpleEventDao;
     }
 
-    static scrum.server.collaboration.SubjectDao subjectDao;
+    public static scrum.server.collaboration.SubjectDao subjectDao;
 
     @edu.umd.cs.findbugs.annotations.SuppressWarnings("URF_UNREAD_FIELD")
     public static final void setSubjectDao(scrum.server.collaboration.SubjectDao subjectDao) {
@@ -2236,28 +2236,28 @@ public abstract class GProject
         GProject.chatMessageDao = chatMessageDao;
     }
 
-    static scrum.server.pr.BlogEntryDao blogEntryDao;
+    public static scrum.server.pr.BlogEntryDao blogEntryDao;
 
     @edu.umd.cs.findbugs.annotations.SuppressWarnings("URF_UNREAD_FIELD")
     public static final void setBlogEntryDao(scrum.server.pr.BlogEntryDao blogEntryDao) {
         GProject.blogEntryDao = blogEntryDao;
     }
 
-    static scrum.server.risks.RiskDao riskDao;
+    public static scrum.server.risks.RiskDao riskDao;
 
     @edu.umd.cs.findbugs.annotations.SuppressWarnings("URF_UNREAD_FIELD")
     public static final void setRiskDao(scrum.server.risks.RiskDao riskDao) {
         GProject.riskDao = riskDao;
     }
 
-    static scrum.server.collaboration.WikipageDao wikipageDao;
+    public static scrum.server.collaboration.WikipageDao wikipageDao;
 
     @edu.umd.cs.findbugs.annotations.SuppressWarnings("URF_UNREAD_FIELD")
     public static final void setWikipageDao(scrum.server.collaboration.WikipageDao wikipageDao) {
         GProject.wikipageDao = wikipageDao;
     }
 
-    static scrum.server.files.FileDao fileDao;
+    public static scrum.server.files.FileDao fileDao;
 
     @edu.umd.cs.findbugs.annotations.SuppressWarnings("URF_UNREAD_FIELD")
     public static final void setFileDao(scrum.server.files.FileDao fileDao) {

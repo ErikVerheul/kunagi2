@@ -940,6 +940,7 @@ public abstract class GSprint
         }
     }
 
+    @Override
     protected void repairDeadReferences(String entityId) {
         super.repairDeadReferences(entityId);
         repairDeadProjectReference(entityId);
@@ -954,6 +955,7 @@ public abstract class GSprint
 
     // --- ensure integrity ---
 
+    @Override
     public void ensureIntegrity() {
         super.ensureIntegrity();
         if (!isProjectSet()) {
@@ -1004,56 +1006,56 @@ public abstract class GSprint
     // - dependencies
     // -----------------------------------------------------------
 
-    static scrum.server.project.ProjectDao projectDao;
+    public static scrum.server.project.ProjectDao projectDao;
 
     @edu.umd.cs.findbugs.annotations.SuppressWarnings("URF_UNREAD_FIELD")
     public static final void setProjectDao(scrum.server.project.ProjectDao projectDao) {
         GSprint.projectDao = projectDao;
     }
 
-    static scrum.server.sprint.SprintDao sprintDao;
+    public static scrum.server.sprint.SprintDao sprintDao;
 
     @edu.umd.cs.findbugs.annotations.SuppressWarnings("URF_UNREAD_FIELD")
     public static final void setSprintDao(scrum.server.sprint.SprintDao sprintDao) {
         GSprint.sprintDao = sprintDao;
     }
 
-    static scrum.server.sprint.SprintDaySnapshotDao sprintDaySnapshotDao;
+    public static scrum.server.sprint.SprintDaySnapshotDao sprintDaySnapshotDao;
 
     @edu.umd.cs.findbugs.annotations.SuppressWarnings("URF_UNREAD_FIELD")
     public static final void setSprintDaySnapshotDao(scrum.server.sprint.SprintDaySnapshotDao sprintDaySnapshotDao) {
         GSprint.sprintDaySnapshotDao = sprintDaySnapshotDao;
     }
 
-    static scrum.server.sprint.SprintReportDao sprintReportDao;
+    public static scrum.server.sprint.SprintReportDao sprintReportDao;
 
     @edu.umd.cs.findbugs.annotations.SuppressWarnings("URF_UNREAD_FIELD")
     public static final void setSprintReportDao(scrum.server.sprint.SprintReportDao sprintReportDao) {
         GSprint.sprintReportDao = sprintReportDao;
     }
 
-    static scrum.server.project.RequirementDao requirementDao;
+    public static scrum.server.project.RequirementDao requirementDao;
 
     @edu.umd.cs.findbugs.annotations.SuppressWarnings("URF_UNREAD_FIELD")
     public static final void setRequirementDao(scrum.server.project.RequirementDao requirementDao) {
         GSprint.requirementDao = requirementDao;
     }
 
-    static scrum.server.release.ReleaseDao releaseDao;
+    public static scrum.server.release.ReleaseDao releaseDao;
 
     @edu.umd.cs.findbugs.annotations.SuppressWarnings("URF_UNREAD_FIELD")
     public static final void setReleaseDao(scrum.server.release.ReleaseDao releaseDao) {
         GSprint.releaseDao = releaseDao;
     }
 
-    static scrum.server.sprint.TaskDao taskDao;
+    public static scrum.server.sprint.TaskDao taskDao;
 
     @edu.umd.cs.findbugs.annotations.SuppressWarnings("URF_UNREAD_FIELD")
     public static final void setTaskDao(scrum.server.sprint.TaskDao taskDao) {
         GSprint.taskDao = taskDao;
     }
 
-    static scrum.server.project.ProjectSprintSnapshotDao projectSprintSnapshotDao;
+    public static scrum.server.project.ProjectSprintSnapshotDao projectSprintSnapshotDao;
 
     @edu.umd.cs.findbugs.annotations.SuppressWarnings("URF_UNREAD_FIELD")
     public static final void setProjectSprintSnapshotDao(scrum.server.project.ProjectSprintSnapshotDao projectSprintSnapshotDao) {

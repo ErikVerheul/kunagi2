@@ -1000,56 +1000,56 @@ public abstract class GRequirement
     // - dependencies
     // -----------------------------------------------------------
 
-    static scrum.server.project.ProjectDao projectDao;
+    public static scrum.server.project.ProjectDao projectDao;
 
     @edu.umd.cs.findbugs.annotations.SuppressWarnings("URF_UNREAD_FIELD")
     public static final void setProjectDao(scrum.server.project.ProjectDao projectDao) {
         GRequirement.projectDao = projectDao;
     }
 
-    static scrum.server.sprint.SprintDao sprintDao;
+    public static scrum.server.sprint.SprintDao sprintDao;
 
     @edu.umd.cs.findbugs.annotations.SuppressWarnings("URF_UNREAD_FIELD")
     public static final void setSprintDao(scrum.server.sprint.SprintDao sprintDao) {
         GRequirement.sprintDao = sprintDao;
     }
 
-    static scrum.server.issues.IssueDao issueDao;
+    public static scrum.server.issues.IssueDao issueDao;
 
     @edu.umd.cs.findbugs.annotations.SuppressWarnings("URF_UNREAD_FIELD")
     public static final void setIssueDao(scrum.server.issues.IssueDao issueDao) {
         GRequirement.issueDao = issueDao;
     }
 
-    static scrum.server.project.QualityDao qualityDao;
+    public static scrum.server.project.QualityDao qualityDao;
 
     @edu.umd.cs.findbugs.annotations.SuppressWarnings("URF_UNREAD_FIELD")
     public static final void setQualityDao(scrum.server.project.QualityDao qualityDao) {
         GRequirement.qualityDao = qualityDao;
     }
 
-    static scrum.server.project.RequirementDao requirementDao;
+    public static scrum.server.project.RequirementDao requirementDao;
 
     @edu.umd.cs.findbugs.annotations.SuppressWarnings("URF_UNREAD_FIELD")
     public static final void setRequirementDao(scrum.server.project.RequirementDao requirementDao) {
         GRequirement.requirementDao = requirementDao;
     }
 
-    static scrum.server.sprint.SprintReportDao sprintReportDao;
+    public static scrum.server.sprint.SprintReportDao sprintReportDao;
 
     @edu.umd.cs.findbugs.annotations.SuppressWarnings("URF_UNREAD_FIELD")
     public static final void setSprintReportDao(scrum.server.sprint.SprintReportDao sprintReportDao) {
         GRequirement.sprintReportDao = sprintReportDao;
     }
 
-    static scrum.server.sprint.TaskDao taskDao;
+    public static scrum.server.sprint.TaskDao taskDao;
 
     @edu.umd.cs.findbugs.annotations.SuppressWarnings("URF_UNREAD_FIELD")
     public static final void setTaskDao(scrum.server.sprint.TaskDao taskDao) {
         GRequirement.taskDao = taskDao;
     }
 
-    static scrum.server.estimation.RequirementEstimationVoteDao requirementEstimationVoteDao;
+    public static scrum.server.estimation.RequirementEstimationVoteDao requirementEstimationVoteDao;
 
     @edu.umd.cs.findbugs.annotations.SuppressWarnings("URF_UNREAD_FIELD")
     public static final void setRequirementEstimationVoteDao(scrum.server.estimation.RequirementEstimationVoteDao requirementEstimationVoteDao) {
