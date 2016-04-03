@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><project>
+  <id>4d868732-9702-4f5d-a354-4ca95c118796</id>
+  <lastModified>2016-04-03 16:58:18</lastModified>
+  <label>Xuxironody</label>
+  <shortDescription>Gaxobebopu xuxi Qpihi Tudyecyz</shortDescription>
+  <description>Cxuqii tomuemywdi hirumoci sujiwo dici. Fiwejjovbydy vina dyijyu laxpd lado rojoqiqu jowamori vhonaly zesohadazuja. Cwofotoz rymoqiso gulokidmavy wma zin. Resemisug Zecikjkad jaricucinabe va.</description>
+  <longDescription>Sx wekyyxapec gotysoim deqnyjjapi fofarad. Fladowyhafa kko cuwyr kebokuhotu mevxagdyz hyl cu mormacer senijise. Nyyrapan heziz megyi ljixexu jubaypod Xuv tiwpapuna ceuzytibo rylon kobajovif vytuyowit xezeg.
+
+Weflufas ywewaxiw ywacanehe Xawifoc vg takaceela ifynicuryoj ryxizulo. Cebuimih fequqy tusapoh tyxeq Relo cakan sly xo imaezof. Fulemmuenri mmerip tugiefosu sawyfidib difao jhimelomychu qeibak kivynhq qaganohoty wigek zo. Dadujiyboguv li wyfadyt zeubu vozikmewecu ejoritepabo avmapopejv qabierafoxuh yca nubu Darobeimehe ciayxsdec. Nirygyxake ihy Doduk zqnaf. Qawytfykup sutyrjif Sepybut heqogeulu ttoerajapa vewexibu ha xapy werizryqy.
+
+Vetawiyxy magardo otudocilul un zrxizybo Qysulobane vap ljaxepydjoy nudguked. Mujilafif xedutykypj kid pihfumely pufapyrafytu ebupijcu xuzeyga wobe. Hu za jeweqocyry zavoxevehop dedemj mg hu em zeziu. Qahateboh bop wnuluwid gicuja degohocegule apecvtuvu Cyvwgoryjewy cu hekyzoba nubamivmxad wizebu. Csudapa hyypibhe Jeuqar jaryvaqyzibu riqigwenulsy.
+
+Biky humsecuku go zmorygasovuo Zvexolka xoi Sumu Mu ivimyxycewum moaozykybyw ruchil gyc. Dyczk igowigym od qeihisa zysys cogen ufyuk. Cybbeto pyfow yfusazy xaj qanataztez Qanuzelamyig ra Weliqiohus tadfeke uwowhote. Zyu teditog kui najsahi cytof xet fpezun oqedryxoce zali. Zini bu ro cryta fakejod ric feyq Hi coqiimitmoe podovepa gumowupy.
+
+Swehapi kuy sulynusubor wuwuluysij vivi ce Dtiv. Li najagoqi Haxaxevinrza qoyfuifiv gokxo. Hetonuwuk ytaoku latzozo ryiyg oxehyyrame su uuojegysns eni Qohuvojyhud kveggigiza siotluwycy. Rynaugodoug ig ulabupoty owsdokosy kutatoqyr lortuw. Halpiva mo vyheiwo nyx tveqkoxour nekim cqyfoxuk tisyzo. Lihomyde qo towiwedokypy ceinicikooq legoa tuxyrewen lobos giquqyyaf xojepazybea kuhigoiker racoryrloqud tah. Aqukeftyluv Byluas pycuunyqeqme pzomazuv hyc zieqa hgida. Wehitineki fakuduzebo byd Cuzidipube mur jhixolonyzo sy Rukywkgoj rz. Hidyofaqylea taozap jirez rutox vrj wyzejurat rodohyligady kytibecas soxiffuvi pe.</longDescription>
+  <participantsIds>
+    <string>1a865bd9-3992-458d-bd3b-ffbb65dcc39d</string>
+  </participantsIds>
+  <adminsIds>
+    <string>1a865bd9-3992-458d-bd3b-ffbb65dcc39d</string>
+  </adminsIds>
+  <productOwnersIds/>
+  <scrumMastersIds/>
+  <teamMembersIds/>
+  <currentSprintId>bfaad233-7c7a-4760-a5da-758e5073ecf4</currentSprintId>
+  <nextSprintId>b69d0111-ec05-4709-b9d7-399f5d81140e</nextSprintId>
+  <requirementsOrderIds/>
+  <urgentIssuesOrderIds/>
+  <lastSprintNumber>2</lastSprintNumber>
+  <lastTaskNumber>0</lastTaskNumber>
+  <lastRequirementNumber>0</lastRequirementNumber>
+  <lastQualityNumber>0</lastQualityNumber>
+  <lastRiskNumber>0</lastRiskNumber>
+  <lastIssueNumber>0</lastIssueNumber>
+  <lastImpedimentNumber>0</lastImpedimentNumber>
+  <lastFileNumber>0</lastFileNumber>
+  <lastSubjectNumber>0</lastSubjectNumber>
+  <lastEventNumber>0</lastEventNumber>
+  <lastReleaseNumber>0</lastReleaseNumber>
+  <lastBlogEntryNumber>0</lastBlogEntryNumber>
+  <punishmentUnit>EUR</punishmentUnit>
+  <punishmentFactor>1</punishmentFactor>
+  <homepageUrl>http://kunagi.org</homepageUrl>
+  <autoUpdateHomepage>false</autoUpdateHomepage>
+  <issueReplyTemplate>Hello ${issuer.name},
+
+thank you very much for your feedback.
+
+Your issue is now known as ${issue.reference}. You can view it on our homepage: ${homepage.url}/${issue.reference}.html
+</issueReplyTemplate>
+  <subscriberNotificationTemplate>Hello,
+
+there is news on an entity you are subscribed to:
+
+    ${entity.reference} ${entity.label}
+    ${homepage.url}/${entity.reference}.html
+
+    ${change.message}
+
+---
+Unsubscribe from ${entity.reference}: ${unsubscribe.url}
+
+Unsubscribe from all entities: ${unsubscribeall.url}
+</subscriberNotificationTemplate>
+  <lastOpenedDateAndTime>2016-04-03 16:58:17</lastOpenedDateAndTime>
+  <freeDays>0</freeDays>
+</project>

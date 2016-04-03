@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><risk>
+  <id>c10489a6-1a97-42db-93ab-5c08f361e087</id>
+  <lastModified>2016-04-03 16:58:18</lastModified>
+  <projectId>84457d3d-6afa-434a-ac7c-a45ee74274ea</projectId>
+  <number>1</number>
+  <label>Test</label>
+  <probability>1</probability>
+  <impact>1</impact>
+</risk>

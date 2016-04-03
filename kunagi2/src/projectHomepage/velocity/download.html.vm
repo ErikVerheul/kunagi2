@@ -1,0 +1,59 @@
+#header("download", "Download - Kunagi", "Kunagi free download link and Open Source GPL Copyright.", "Kunagi, download, open source, free")
+
+<div class="section">
+    <h2>Download</h2>
+    <div class="middle">
+        <p>
+            Kunagi is a Java web application. You can deploy it to your favorite web application
+            server on your favorite operating system. For the majorty of servers, all you have to do,
+            is to copy the current <code>kunagi.war</code> to the <code>webapps</code> directory.
+        </p>
+    </div>
+    <div class="sidebar">
+        <div class="starter">
+            <a href="http://sourceforge.net/projects/kunagi/files/$project.currentRelease" target="_blank">Download</a>
+        </div>
+        <div class="smallText" style="text-align: center;">Current release is $project.currentRelease</div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+<div class="separator"></div>
+<div class="section">
+    <h2>Follow or review Kunagi</h2>
+    If you like Kunagi, consider following us or writing a review on your favorite site: #sociallinks()
+</div>
+
+
+<div class="separator"></div>
+<div class="section">
+    <a href="http://www.gnu.org/licenses/agpl.html" target="_blank"><img src="img/agplv3-88x31.png" alt="GNU Affero General Public License"
+        align="right" style="margin: 0px 0px 15px 25px;"></a>
+    <h2>Copying</h2>
+    <p>
+        Kunagi is free software: you can redistribute it and/or modify
+        it under the terms of the <strong>GNU Affero General Public License</strong> as published
+        by the Free Software Foundation, either version 3 of the License, or
+        (at your option) any later version.
+    </p><p>
+        Kunagi is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+        GNU Affero General Public License for more details.
+    </p><p>
+        Get a copy of the GNU Affero General Public License from
+        <a href="http://www.gnu.org/licenses/" target="_blank">gnu.org</a>
+    </p>
+</div>
+
+<div class="separator"></div>
+
+<div class="section">
+    <a href="http://www.opensource.org/" target="_blank"><img src="img/opensource.png" alt="Open Source"
+        align="right" style="margin: 0px 0px 15px 25px;"></a>
+    $wiki.IncludedLibraries
+</div>
+
+
+#footer()

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><user>
+  <id>2cea57a7-aec3-446c-beed-976c15dde5d4</id>
+  <lastModified>2016-04-03 16:58:16</lastModified>
+  <name>admin</name>
+  <publicName>admin</publicName>
+  <admin>true</admin>
+  <emailVerified>false</emailVerified>
+  <color>darkred</color>
+  <registrationDateAndTime>2016-04-03 16:58:16</registrationDateAndTime>
+  <disabled>false</disabled>
+  <hideUserGuideBlog>false</hideUserGuideBlog>
+  <hideUserGuideCalendar>false</hideUserGuideCalendar>
+  <hideUserGuideFiles>false</hideUserGuideFiles>
+  <hideUserGuideForum>false</hideUserGuideForum>
+  <hideUserGuideImpediments>false</hideUserGuideImpediments>
+  <hideUserGuideIssues>false</hideUserGuideIssues>
+  <hideUserGuideJournal>false</hideUserGuideJournal>
+  <hideUserGuideNextSprint>false</hideUserGuideNextSprint>
+  <hideUserGuideProductBacklog>false</hideUserGuideProductBacklog>
+  <hideUserGuideCourtroom>false</hideUserGuideCourtroom>
+  <hideUserGuideQualityBacklog>false</hideUserGuideQualityBacklog>
+  <hideUserGuideReleases>false</hideUserGuideReleases>
+  <hideUserGuideRisks>false</hideUserGuideRisks>
+  <hideUserGuideSprintBacklog>false</hideUserGuideSprintBacklog>
+  <hideUserGuideWhiteboard>false</hideUserGuideWhiteboard>
+  <loginToken>48a47070-a85c-47ec-b441-6a62c4321c7d</loginToken>
+  <passwordSalt>kQ3QhM!&amp;KPJGN7Rza7vPotOw!=Y9zspg</passwordSalt>
+  <password>SHA-256:e4ec8b7290072da49ae43a1ad776700d21fc67dbf5bd703233d0ceed22bcb979</password>
+</user>

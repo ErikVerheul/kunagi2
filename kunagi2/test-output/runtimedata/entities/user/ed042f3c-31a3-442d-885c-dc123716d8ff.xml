@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><user>
+  <id>ed042f3c-31a3-442d-885c-dc123716d8ff</id>
+  <lastModified>2016-04-03 16:58:17</lastModified>
+  <name>homer</name>
+  <publicName>homer</publicName>
+  <admin>false</admin>
+  <emailVerified>false</emailVerified>
+  <color>darkgreen</color>
+  <registrationDateAndTime>2016-04-03 16:58:16</registrationDateAndTime>
+  <disabled>false</disabled>
+  <hideUserGuideBlog>false</hideUserGuideBlog>
+  <hideUserGuideCalendar>false</hideUserGuideCalendar>
+  <hideUserGuideFiles>false</hideUserGuideFiles>
+  <hideUserGuideForum>false</hideUserGuideForum>
+  <hideUserGuideImpediments>false</hideUserGuideImpediments>
+  <hideUserGuideIssues>false</hideUserGuideIssues>
+  <hideUserGuideJournal>false</hideUserGuideJournal>
+  <hideUserGuideNextSprint>false</hideUserGuideNextSprint>
+  <hideUserGuideProductBacklog>false</hideUserGuideProductBacklog>
+  <hideUserGuideCourtroom>false</hideUserGuideCourtroom>
+  <hideUserGuideQualityBacklog>false</hideUserGuideQualityBacklog>
+  <hideUserGuideReleases>false</hideUserGuideReleases>
+  <hideUserGuideRisks>false</hideUserGuideRisks>
+  <hideUserGuideSprintBacklog>false</hideUserGuideSprintBacklog>
+  <hideUserGuideWhiteboard>false</hideUserGuideWhiteboard>
+  <loginToken>a0c405ba-b5d9-4418-82b9-3ed5cebc5f00</loginToken>
+  <passwordSalt>pFYKqPGEtsVY3ZD2!aQKzzaqtsGu$uei</passwordSalt>
+  <password>SHA-256:48805e1b91c1320a054bc9b16c897e464b75848145d4dd2ff65bb00570191516</password>
+</user>

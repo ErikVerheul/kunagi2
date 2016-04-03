@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><sprintReport>
+  <id>ab5676d0-cc56-4b45-9e66-5b0d162e4b54</id>
+  <lastModified>2016-04-03 16:58:18</lastModified>
+  <sprintId>9a2a8367-0cb0-406e-b553-23a48864d1c9</sprintId>
+  <completedRequirementsIds>
+    <string>f33b3f56-f565-4b3c-9b56-68ce312f1fec</string>
+  </completedRequirementsIds>
+  <rejectedRequirementsIds>
+    <string>bdeeb6ef-0265-4013-8425-a7afca1c6dde</string>
+  </rejectedRequirementsIds>
+  <requirementsOrderIds/>
+  <closedTasksIds/>
+  <openTasksIds/>
+  <burnedWork>4</burnedWork>
+</sprintReport>

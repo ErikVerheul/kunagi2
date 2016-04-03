@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><systemConfig>
+  <id>f0b95376-0d51-4c62-9ecd-055e6074186c</id>
+  <lastModified>2016-04-03 16:58:16</lastModified>
+  <url>http://localhost:8888/</url>
+  <smtpTls>false</smtpTls>
+  <userEmailMandatory>false</userEmailMandatory>
+  <registrationDisabled>false</registrationDisabled>
+  <projectCreationDisabled>false</projectCreationDisabled>
+  <defaultUserPassword>geheim</defaultUserPassword>
+  <openIdDisabled>false</openIdDisabled>
+  <versionCheckEnabled>false</versionCheckEnabled>
+  <ldapEnabled>false</ldapEnabled>
+  <maxFileSize>20</maxFileSize>
+  <subscriptionKeySeed>yyl$CKNb!FndOE2zqU3w&amp;a6QvJA1DdfH</subscriptionKeySeed>
+</systemConfig>

@@ -1,0 +1,55 @@
+#header("rel", "$release.label - Kunagi", "Kunagi release $release.label", "Kunagi, release")
+
+<div class="section">
+    
+    <h2>
+      #if( $release.major ) Major #end
+      #if( $release.bugfix ) Bugfix #end
+      Release $release.label
+    </h2>
+    
+    #if ( $release.releaseDate )
+      <div class="middle">
+        <p>
+          #if ( $release.released ) Published on #else Planned for #end
+          $release.releaseDate
+        </p>
+      </div>
+      <div class="sidebar">
+          <div class="starter">
+              <a href="http://sourceforge.net/projects/kunagi/files/$release.label" target="_blank">Download</a>
+          </div>
+      </div>
+      <div class="clear"></div>
+    #end
+
+    #if( $release.releaseNotes )
+      <h3>Release notes</h3>
+      <p>$release.releaseNotes</p>
+    #end
+
+    #if( $release.finishedStories )
+      <h3>Finished user stories</h3>
+      #entitiesUl($release.finishedStories)
+    #end
+
+    #if( $release.affectedByIssues )
+      <h3>Affected by issues</h3>
+      #entitiesUl($release.affectedByIssues)
+    #end
+
+    #if( $release.fixedIssues )
+      <h3>Fixed issues</h3>
+      #entitiesUl($release.fixedIssues)
+    #end
+
+    #if( !$release.released and $release.plannedIssues )
+      <h3>Planned issues</h3>
+      #entitiesUl($release.plannedIssues)
+    #end
+        
+</div>
+
+#commentsSection($release)
+
+#footer()

@@ -1,0 +1,8 @@
+#header("faq", "FAQ - Kunagi", "$project.shortDescription", "FAQ, Kunagi, agile, tool, demo")
+
+<div class="section">
+    <h2>Frequently Asked Questions (FAQ)</h2>
+    $wiki.FAQ
+</div>
+
+#footer()

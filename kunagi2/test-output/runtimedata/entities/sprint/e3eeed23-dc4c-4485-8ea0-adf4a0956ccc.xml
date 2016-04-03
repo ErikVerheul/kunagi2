@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><sprint>
+  <id>e3eeed23-dc4c-4485-8ea0-adf4a0956ccc</id>
+  <lastModified>2016-04-03 16:58:18</lastModified>
+  <number>1</number>
+  <projectId>84457d3d-6afa-434a-ac7c-a45ee74274ea</projectId>
+  <label>New Sprint</label>
+  <begin>
+    <year>2016</year>
+    <month>4</month>
+    <day>3</day>
+  </begin>
+  <end>
+    <year>2016</year>
+    <month>4</month>
+    <day>3</day>
+  </end>
+  <velocity>0.0</velocity>
+  <completedRequirementsData>#encoded-requirements 1
+</completedRequirementsData>
+  <incompletedRequirementsData>#encoded-requirements 1
+</incompletedRequirementsData>
+  <requirementsOrderIds/>
+  <productOwnersIds/>
+  <scrumMastersIds/>
+  <teamMembersIds/>
+</sprint>

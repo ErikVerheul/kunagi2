@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>createRelease</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">createRelease</td></tr>
+</thead><tbody>
+<tr>
+	<td>click</td>
+	<td>link=Product</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Releases</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>ReleaseManagementWidget</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>button_CreateReleaseAction</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>editor_Release_label</td>
+	<td>test release</td>
+</tr>
+<tr>
+	<td>keyPress</td>
+	<td>editor_Release_label</td>
+	<td>13</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='viewer_Release_note']/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//div[@id='editor_Release_note']/textarea</td>
+	<td>test description</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>button_RichtextEditorWidget_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='viewer_Release_releaseNotes']/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//div[@id='editor_Release_releaseNotes']/textarea</td>
+	<td>test release notes</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>button_RichtextEditorWidget_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='viewer_Release_scmTag']/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>editor_Release_scmTag</td>
+	<td>testTag</td>
+</tr>
+<tr>
+	<td>keyPress</td>
+	<td>editor_Release_scmTag</td>
+	<td>13</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

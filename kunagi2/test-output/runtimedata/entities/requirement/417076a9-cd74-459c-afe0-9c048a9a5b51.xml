@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><requirement>
+  <id>417076a9-cd74-459c-afe0-9c048a9a5b51</id>
+  <lastModified>2016-04-03 16:58:16</lastModified>
+  <projectId>e539f998-2f6d-4e0b-8b48-b392292bc2e7</projectId>
+  <number>12</number>
+  <qualitysIds/>
+  <label>Divine Risk Management</label>
+  <description>As a Team member, I want Risk Management to be devine. Wait, that makes Risk Management superfluous, I guess.</description>
+  <estimatedWork>5.0</estimatedWork>
+  <closed>false</closed>
+  <dirty>false</dirty>
+  <workEstimationVotingActive>false</workEstimationVotingActive>
+  <workEstimationVotingShowoff>false</workEstimationVotingShowoff>
+  <tasksOrderIds/>
+  <themes/>
+</requirement>

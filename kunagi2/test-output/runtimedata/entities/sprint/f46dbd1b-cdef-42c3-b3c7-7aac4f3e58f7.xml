@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><sprint>
+  <id>f46dbd1b-cdef-42c3-b3c7-7aac4f3e58f7</id>
+  <lastModified>2016-04-03 16:58:17</lastModified>
+  <number>1</number>
+  <projectId>e539f998-2f6d-4e0b-8b48-b392292bc2e7</projectId>
+  <label>Noqy helelizgsijo mublidobo nyhuefipy fo Sonejy gygagafix rufygy ji</label>
+  <begin>
+    <year>2016</year>
+    <month>2</month>
+    <day>18</day>
+  </begin>
+  <end>
+    <year>2016</year>
+    <month>3</month>
+    <day>19</day>
+  </end>
+  <velocity>16.5</velocity>
+  <completedRequirementsData>#encoded-requirements 1
+sto2;8;Kog vjat laqolecesezo tyreq kali lyku Daxapuyf fiwiq fumiwezozqed xijasyzumaxd nygubujaej banymoj
+sto3;5;Momizyjya dimapecho rrohapyfih rixi wy civ jacygok ofofju dan uloxoujysaku gixol
+sto4;3;Dikyceowile xuxijaxaku qynyaladewg mmidy quxajymyho
+sto5;0.5;Xyr agycowkiza jy leqymix cav
+</completedRequirementsData>
+  <incompletedRequirementsData>#encoded-requirements 1
+sto1;20;Zujyrild gudixebapi tewun otidebeje nusreytiso kafoky fafei ci tavuxeguxic tyjape dicighivymy
+</incompletedRequirementsData>
+  <requirementsOrderIds/>
+  <productOwnersIds>
+    <string>0ca73dba-ad35-4826-90ea-3d05c24dd3e6</string>
+    <string>2cea57a7-aec3-446c-beed-976c15dde5d4</string>
+  </productOwnersIds>
+  <scrumMastersIds>
+    <string>2cea57a7-aec3-446c-beed-976c15dde5d4</string>
+  </scrumMastersIds>
+  <teamMembersIds>
+    <string>2cea57a7-aec3-446c-beed-976c15dde5d4</string>
+  </teamMembersIds>
+</sprint>

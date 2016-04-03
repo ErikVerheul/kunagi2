@@ -1,0 +1,61 @@
+#header("issues", "Issues & Bugs - Kunagi", "Kunagi issues and bugs. Feature requests.", "Kunagi, feature request, bugs, issues")
+
+<div class="section">
+
+    <h2>Report a bug / Request a feature / Suggest a UserStory</h2>
+    #commentForm("submitIssue", $null, "Description", $null, "Submit issue")
+    
+</div>
+
+
+<div class="separator"></div>                    
+
+<div class="section">
+    
+    <h2>Known bugs (in release $project.currentRelease)</h2>
+    #entitiesUl($bugs)
+    
+</div>
+
+
+<div class="separator"></div>
+
+<div class="section">
+    <a name="sprintbacklog"></a>
+    <h2>Sprint Backlog (currently in development)</h2>
+    #entitiesUl($sprintBacklog.stories)
+</div>
+
+
+<div class="separator"></div>
+
+<div class="section">
+
+    <a name="productbacklog"></a>
+    <h2>Product Backlog (our roadmap)</h2>
+    #entitiesUl($productBacklog.stories)
+
+</div>
+
+
+<div class="separator"></div>                    
+
+<div class="section">
+    
+    <h2>Ideas (for future releases)</h2>
+    #entitiesUl($ideas)
+    
+</div>
+
+
+<div class="separator"></div>                    
+
+<div class="section">
+    
+    <h2>Closed issues</h2>
+    #entitiesUl($closedIssues)
+    
+</div>
+
+
+#footer()

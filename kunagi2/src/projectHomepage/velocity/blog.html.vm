@@ -1,0 +1,25 @@
+#header("blog", "Blog - Kunagi", "Kunagi Blog. Announcements, releases and other infos.", "Kunagi, blog")
+
+#blogRssLink()
+
+#foreach( $entry in $blog.entries )
+    <a name="$entry.reference"></a>
+    <div class="section">
+        <h2>$entry.title</h2>
+        #if ($entry.textShort)
+            $entry.textShort
+            <p>
+                <a href="${entry.reference}.html" title="${entry.title}">Read the whole article...</a>
+            </p>
+        #else
+            $entry.text
+        #end
+        <div class="sectionfooter">
+            $entry.date |
+            <a href="http://kunagi.org/${entry.reference}.html" title="Permalink" rel="bookmark">Permalink</a>
+        </div>
+    </div>
+    <div class="separator"></div>
+#end
+
+#footer()

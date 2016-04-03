@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><requirement>
+  <id>5aa6d5aa-9e0b-42fc-89d5-e456c738d0b8</id>
+  <lastModified>2016-04-03 16:58:16</lastModified>
+  <projectId>e539f998-2f6d-4e0b-8b48-b392292bc2e7</projectId>
+  <sprintId>b7de0571-4547-4e37-87d5-fad010a432b5</sprintId>
+  <number>8</number>
+  <qualitysIds/>
+  <label>Functional Quality Backlog</label>
+  <description>As a Product Owner I want my non-functional Requirements to be functional, so I can use them.</description>
+  <estimatedWork>1.0</estimatedWork>
+  <closed>false</closed>
+  <dirty>false</dirty>
+  <workEstimationVotingActive>false</workEstimationVotingActive>
+  <workEstimationVotingShowoff>false</workEstimationVotingShowoff>
+  <tasksOrderIds/>
+  <themes/>
+</requirement>

@@ -1,0 +1,856 @@
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: spinne to #20@session:duke                                                            | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: admin to #20@session:duke                                                             | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Remote entity already up to date: User: duke for #20@session:duke                                   | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: homer to #20@session:duke                                                             | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: cartman to #20@session:duke                                                           | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO GwtConversation      Project selected: Wuqyvipyta                                                                        | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: admin to #20@session:admin                                                            | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Vymuwo to #20@session:admin                                                        | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Qugkovabu to #20@session:admin                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Puhovoxek to #20@session:admin                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Lyjyh to #20@session:admin                                                         | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Project 1 to #20@session:admin                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Xuxironody to #20@session:admin                                                    | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Nupahep to #20@session:admin                                                       | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Dolucyro to #20@session:admin                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Raxmer to #20@session:admin                                                        | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Dapdigobi to #20@session:admin                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Wuqyvipyta to #20@session:admin                                                    | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Qquweise to #20@session:admin                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Xesedekeo to #20@session:admin                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: spinne to #20@session:admin                                                           | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Remote entity already up to date: User: admin for #20@session:admin                                 | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: duke to #20@session:admin                                                             | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: homer to #20@session:admin                                                            | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: cartman to #20@session:admin                                                          | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: User: duke -> password=xxx                                                         | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  TransactionService   Transaction created: #23 (app:scrum > session:localhost)                                            | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  Transaction          SAVE User: duke @ #23 (app:scrum > session:localhost)                                               | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO Transaction          Committing transaction: #23 (app:scrum > session:localhost)
+    SAVE: 
+        User: duke           | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  Transaction          Ensuring integrity for User 1a865bd9-3992-458d-bd3b-ffbb65dcc39d                                    | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  Transaction          Persisting entities: [duke] []                                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  FileEntityStore      Entity changes persisted. 
+    SAVED test-output\runtimedata\entities\user\1a865bd9-3992-458d-bd3b-ffbb65dcc39d.xml -> duke | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  Transaction          Transaction committed: #23 (app:scrum > session:localhost)
+    SAVE: 
+        User: duke            | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO WebSession           User set: duke                                                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: duke to #21@session:duke                                                              | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Vymuwo to #21@session:duke                                                         | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Qugkovabu to #21@session:duke                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Puhovoxek to #21@session:duke                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Lyjyh to #21@session:duke                                                          | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Xuxironody to #21@session:duke                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Nupahep to #21@session:duke                                                        | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Dolucyro to #21@session:duke                                                       | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Raxmer to #21@session:duke                                                         | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Dapdigobi to #21@session:duke                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Wuqyvipyta to #21@session:duke                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Qquweise to #21@session:duke                                                       | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Xesedekeo to #21@session:duke                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: spinne to #21@session:duke                                                            | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: admin to #21@session:duke                                                             | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Remote entity already up to date: User: duke for #21@session:duke                                   | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: homer to #21@session:duke                                                             | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: cartman to #21@session:duke                                                           | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO GwtConversation      Project selected: Wuqyvipyta                                                                        | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: admin to #21@session:admin                                                            | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Vymuwo to #21@session:admin                                                        | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Qugkovabu to #21@session:admin                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Puhovoxek to #21@session:admin                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Lyjyh to #21@session:admin                                                         | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Project 1 to #21@session:admin                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Xuxironody to #21@session:admin                                                    | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Nupahep to #21@session:admin                                                       | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Dolucyro to #21@session:admin                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Raxmer to #21@session:admin                                                        | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Dapdigobi to #21@session:admin                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Wuqyvipyta to #21@session:admin                                                    | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Qquweise to #21@session:admin                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Xesedekeo to #21@session:admin                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: spinne to #21@session:admin                                                           | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Remote entity already up to date: User: admin for #21@session:admin                                 | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: duke to #21@session:admin                                                             | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: homer to #21@session:admin                                                            | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: cartman to #21@session:admin                                                          | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  ScrumServiceImpl     Found entities for search "something" -> []                                                         | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO WebSession           User set: duke                                                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: duke to #22@session:duke                                                              | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Vymuwo to #22@session:duke                                                         | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Qugkovabu to #22@session:duke                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Puhovoxek to #22@session:duke                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Lyjyh to #22@session:duke                                                          | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Xuxironody to #22@session:duke                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Nupahep to #22@session:duke                                                        | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Dolucyro to #22@session:duke                                                       | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Raxmer to #22@session:duke                                                         | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Dapdigobi to #22@session:duke                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Wuqyvipyta to #22@session:duke                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Qquweise to #22@session:duke                                                       | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Xesedekeo to #22@session:duke                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: spinne to #22@session:duke                                                            | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: admin to #22@session:duke                                                             | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Remote entity already up to date: User: duke for #22@session:duke                                   | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: homer to #22@session:duke                                                             | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: cartman to #22@session:duke                                                           | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO GwtConversation      Project selected: Wuqyvipyta                                                                        | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: admin to #22@session:admin                                                            | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Vymuwo to #22@session:admin                                                        | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Qugkovabu to #22@session:admin                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Puhovoxek to #22@session:admin                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Lyjyh to #22@session:admin                                                         | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Project 1 to #22@session:admin                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Xuxironody to #22@session:admin                                                    | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Nupahep to #22@session:admin                                                       | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Dolucyro to #22@session:admin                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Raxmer to #22@session:admin                                                        | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Dapdigobi to #22@session:admin                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Wuqyvipyta to #22@session:admin                                                    | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Qquweise to #22@session:admin                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Xesedekeo to #22@session:admin                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: spinne to #22@session:admin                                                           | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Remote entity already up to date: User: admin for #22@session:admin                                 | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: duke to #22@session:admin                                                             | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: homer to #22@session:admin                                                            | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: cartman to #22@session:admin                                                          | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO GwtConversation      Project selected: null                                                                              | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Project: Wuqyvipyta -> lastOpenedDateAndTime=2016-04-03 16:58:18                   | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  TransactionService   Transaction created: #24 (app:scrum > session:localhost)                                            | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  Transaction          SAVE Project: Wuqyvipyta @ #24 (app:scrum > session:localhost)                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO GwtConversation      Project selected: Wuqyvipyta                                                                        | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: User: duke -> currentProject=Wuqyvipyta                                            | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  Transaction          SAVE User: duke @ #24 (app:scrum > session:localhost)
+    SAVE: 
+        Project: Wuqyvipyta        | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Remote entity already up to date: Project: Wuqyvipyta for #22@session:duke                          | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Sprint: spr1 New Sprint to #22@session:duke                                                 | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Sprint: spr2 Next Sprint to #22@session:duke                                                | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Remote entity already up to date: User: duke for #22@session:duke                                   | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Remote entity already up to date: User: admin for #22@session:duke                                  | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Requirement: sto2 new feature to #22@session:duke                                           | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Requirement: sto1 new feature to #22@session:duke                                           | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending ProjectUserConfig: Wuqyvipyta admin to #22@session:duke                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending ProjectUserConfig: Wuqyvipyta duke to #22@session:duke                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Impediment: imp1 Test to #22@session:duke                                                   | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Risk: rsk1 Test to #22@session:duke                                                         | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Issue: iss3 spam to #22@session:duke                                                        | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Issue: iss1 spam to #22@session:duke                                                        | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Issue: iss5 problem to #22@session:duke                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Issue: iss7 bug to #22@session:duke                                                         | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Issue: iss6 problem to #22@session:duke                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Issue: iss2 bug to #22@session:duke                                                         | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO Transaction          Committing transaction: #24 (app:scrum > session:localhost)
+    SAVE: 
+        User: duke
+        Project: Wuqyvipyta | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  Transaction          Ensuring integrity for User 1a865bd9-3992-458d-bd3b-ffbb65dcc39d                                    | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  Transaction          Ensuring integrity for Project 84457d3d-6afa-434a-ac7c-a45ee74274ea                                 | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  Transaction          Persisting entities: [duke, Wuqyvipyta] []                                                          | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  FileEntityStore      Entity changes persisted. 
+    SAVED test-output\runtimedata\entities\user\1a865bd9-3992-458d-bd3b-ffbb65dcc39d.xml -> duke
+    SAVED test-output\runtimedata\entities\project\84457d3d-6afa-434a-ac7c-a45ee74274ea.xml -> Wuqyvipyta | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  Transaction          Transaction committed: #24 (app:scrum > session:localhost)
+    SAVE: 
+        User: duke
+        Project: Wuqyvipyta | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO WebSession           User set: duke                                                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: duke to #23@session:duke                                                              | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Vymuwo to #23@session:duke                                                         | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Qugkovabu to #23@session:duke                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Puhovoxek to #23@session:duke                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Lyjyh to #23@session:duke                                                          | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Xuxironody to #23@session:duke                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Nupahep to #23@session:duke                                                        | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Dolucyro to #23@session:duke                                                       | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Raxmer to #23@session:duke                                                         | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Dapdigobi to #23@session:duke                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Wuqyvipyta to #23@session:duke                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Qquweise to #23@session:duke                                                       | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Xesedekeo to #23@session:duke                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: spinne to #23@session:duke                                                            | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: admin to #23@session:duke                                                             | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Remote entity already up to date: User: duke for #23@session:duke                                   | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: homer to #23@session:duke                                                             | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: cartman to #23@session:duke                                                           | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO GwtConversation      Project selected: Wuqyvipyta                                                                        | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: admin to #23@session:admin                                                            | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Vymuwo to #23@session:admin                                                        | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Qugkovabu to #23@session:admin                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Puhovoxek to #23@session:admin                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Lyjyh to #23@session:admin                                                         | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Project 1 to #23@session:admin                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Xuxironody to #23@session:admin                                                    | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Nupahep to #23@session:admin                                                       | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Dolucyro to #23@session:admin                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Raxmer to #23@session:admin                                                        | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Dapdigobi to #23@session:admin                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Wuqyvipyta to #23@session:admin                                                    | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Qquweise to #23@session:admin                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Xesedekeo to #23@session:admin                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: spinne to #23@session:admin                                                           | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Remote entity already up to date: User: admin for #23@session:admin                                 | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: duke to #23@session:admin                                                             | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: homer to #23@session:admin                                                            | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: cartman to #23@session:admin                                                          | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  TransactionService   Transaction created: #25 (app:scrum > session:localhost)                                            | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  Transaction          SAVE SprintReport: spr1 New Sprint @ #25 (app:scrum > session:localhost)
+    REGISTERED: 
+        SprintReport: spr1 New Sprint | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Sprint: spr1 New Sprint -> completedRequirementsData=#encoded-requirements 1
+      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  Transaction          SAVE Sprint: spr1 New Sprint @ #25 (app:scrum > session:localhost)
+    SAVE: 
+        SprintReport: spr1 New Sprint
+    REGISTERED: 
+        SprintReport: spr1 New Sprint | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Sprint: spr1 New Sprint -> incompletedRequirementsData=#encoded-requirements 1
+    | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Sprint: spr1 New Sprint -> velocity=0.0                                            | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Sprint: spr1 New Sprint -> end=2016-04-03                                          | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  Transaction          SAVE ProjectSprintSnapshot: 2016-04-03: 0, 0 @ #25 (app:scrum > session:localhost)
+    SAVE: 
+        Sprint: spr1 New Sprint
+        SprintReport: spr1 New Sprint
+    REGISTERED: 
+        ProjectSprintSnapshot: 2016-04-03: 0, 0
+        SprintReport: spr1 New Sprint | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Sprint: spr2 Next Sprint -> begin=2016-04-03                                       | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  Transaction          SAVE Sprint: spr2 Next Sprint @ #25 (app:scrum > session:localhost)
+    SAVE: 
+        ProjectSprintSnapshot: 2016-04-03: 0, 0
+        Sprint: spr1 New Sprint
+        SprintReport: spr1 New Sprint
+    REGISTERED: 
+        ProjectSprintSnapshot: 2016-04-03: 0, 0
+        SprintReport: spr1 New Sprint | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Sprint: spr2 Next Sprint -> end=2016-04-03                                         | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Sprint: spr2 Current Sprint -> label=Current Sprint                                | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Project: Wuqyvipyta -> currentSprint=spr2 Current Sprint                           | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  Transaction          SAVE Project: Wuqyvipyta @ #25 (app:scrum > session:localhost)
+    SAVE: 
+        ProjectSprintSnapshot: 2016-04-03: 0, 0
+        Sprint: spr1 New Sprint
+        Sprint: spr2 Current Sprint
+        SprintReport: spr1 New Sprint
+    REGISTERED: 
+        ProjectSprintSnapshot: 2016-04-03: 0, 0
+        SprintReport: spr1 New Sprint | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  Transaction          SAVE Sprint: spr0 Next Sprint @ #25 (app:scrum > session:localhost)
+    SAVE: 
+        ProjectSprintSnapshot: 2016-04-03: 0, 0
+        Sprint: spr1 New Sprint
+        Sprint: spr2 Current Sprint
+        Project: Wuqyvipyta
+        SprintReport: spr1 New Sprint
+    REGISTERED: 
+        ProjectSprintSnapshot: 2016-04-03: 0, 0
+        Sprint: spr0 Next Sprint
+        SprintReport: spr1 New Sprint | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Project: Wuqyvipyta -> nextSprint=spr0 Next Sprint                                 | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  Transaction          SAVE ProjectEvent: duke switched to next sprint  @ #25 (app:scrum > session:localhost)
+    SAVE: 
+        ProjectSprintSnapshot: 2016-04-03: 0, 0
+        Sprint: spr1 New Sprint
+        Sprint: spr0 Next Sprint
+        Sprint: spr2 Current Sprint
+        Project: Wuqyvipyta
+        SprintReport: spr1 New Sprint
+    REGISTERED: 
+        ProjectEvent: duke switched to next sprint 
+        ProjectSprintSnapshot: 2016-04-03: 0, 0
+        ProjectSprintSnapshot: 2016-04-03: 0, 0
+        Sprint: spr0 Next Sprint
+        SprintReport: spr1 New Sprint | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  Transaction          SAVE ChatMessage: ChatMessage @ #25 (app:scrum > session:localhost)
+    SAVE: 
+        ProjectSprintSnapshot: 2016-04-03: 0, 0
+        Sprint: spr1 New Sprint
+        ProjectEvent: duke switched to next sprint 
+        Sprint: spr0 Next Sprint
+        Sprint: spr2 Current Sprint
+        Project: Wuqyvipyta
+        SprintReport: spr1 New Sprint
+    REGISTERED: 
+        ProjectEvent: duke switched to next sprint 
+        ChatMessage: ChatMessage
+        ProjectSprintSnapshot: 2016-04-03: 0, 0
+        ProjectSprintSnapshot: 2016-04-03: 0, 0
+        Sprint: spr0 Next Sprint
+        SprintReport: spr1 New Sprint | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO Transaction          Committing transaction: #25 (app:scrum > session:localhost)
+    SAVE: 
+        ChatMessage: ChatMessage
+        ProjectSprintSnapshot: 2016-04-03: 0, 0
+        Sprint: spr1 New Sprint
+        ProjectEvent: duke switched to next sprint 
+        Sprint: spr0 Next Sprint
+        Sprint: spr2 Current Sprint
+        Project: Wuqyvipyta
+        SprintReport: spr1 New Sprint
+    REGISTERED: 
+        ProjectEvent: duke switched to next sprint 
+        ChatMessage: ChatMessage
+        ProjectSprintSnapshot: 2016-04-03: 0, 0
+        ProjectSprintSnapshot: 2016-04-03: 0, 0
+        Sprint: spr0 Next Sprint
+        SprintReport: spr1 New Sprint | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  Transaction          Ensuring integrity for ProjectSprintSnapshot ff46d732-6c19-4573-97cc-785eff609c18                   | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  Transaction          Ensuring integrity for ChatMessage 5195bb93-4efe-4484-99a0-65236ab5a16d                             | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  Transaction          Ensuring integrity for Sprint e3eeed23-dc4c-4485-8ea0-adf4a0956ccc                                  | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  Transaction          Ensuring integrity for Sprint 7beb2e59-aa2b-4fb6-ad55-387408ad8f97                                  | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  Transaction          Ensuring integrity for Sprint 2a68ca7b-0fc1-4457-9c9f-482d69661158                                  | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Project: Wuqyvipyta -> lastSprintNumber=3                                          | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Sprint: spr3 Next Sprint -> number=3                                               | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  Transaction          Ensuring integrity for ProjectEvent e865f13d-6d90-42f7-958c-fcf3b50b2a76                            | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  Transaction          Ensuring integrity for Project 84457d3d-6afa-434a-ac7c-a45ee74274ea                                 | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  Transaction          Ensuring integrity for SprintReport 00e5a54c-64bb-435a-939f-a72c3ff0b3ea                            | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  Transaction          Persisting entities: [ChatMessage, 2016-04-03: 0, 0, spr1 New Sprint, duke switched to next sprint , spr3 Next Sprint, spr2 Current Sprint, Wuqyvipyta, spr1 New Sprint] [] | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  FileEntityStore      Entity changes persisted. 
+    SAVED test-output\runtimedata\entities\chatMessage\5195bb93-4efe-4484-99a0-65236ab5a16d.xml -> ChatMessage
+    SAVED test-output\runtimedata\entities\projectSprintSnapshot\ff46d732-6c19-4573-97cc-785eff609c18.xml -> 2016-04-03: 0, 0
+    SAVED test-output\runtimedata\entities\sprint\e3eeed23-dc4c-4485-8ea0-adf4a0956ccc.xml -> spr1 New Sprint
+    SAVED test-output\runtimedata\entities\projectEvent\e865f13d-6d90-42f7-958c-fcf3b50b2a76.xml -> duke switched to next sprint 
+    SAVED test-output\runtimedata\entities\sprint\2a68ca7b-0fc1-4457-9c9f-482d69661158.xml -> spr3 Next Sprint
+    SAVED test-output\runtimedata\entities\sprint\7beb2e59-aa2b-4fb6-ad55-387408ad8f97.xml -> spr2 Current Sprint
+    SAVED test-output\runtimedata\entities\project\84457d3d-6afa-434a-ac7c-a45ee74274ea.xml -> Wuqyvipyta
+    SAVED test-output\runtimedata\entities\sprintReport\00e5a54c-64bb-435a-939f-a72c3ff0b3ea.xml -> spr1 New Sprint | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  Transaction          Transaction committed: #25 (app:scrum > session:localhost)
+    SAVE: 
+        ChatMessage: ChatMessage
+        ProjectSprintSnapshot: 2016-04-03: 0, 0
+        Sprint: spr1 New Sprint
+        ProjectEvent: duke switched to next sprint 
+        Sprint: spr3 Next Sprint
+        Sprint: spr2 Current Sprint
+        Project: Wuqyvipyta
+        SprintReport: spr1 New Sprint
+    REGISTERED: 
+        ProjectEvent: duke switched to next sprint 
+        ChatMessage: ChatMessage
+        ProjectSprintSnapshot: 2016-04-03: 0, 0
+        ProjectSprintSnapshot: 2016-04-03: 0, 0
+        Sprint: spr3 Next Sprint
+        SprintReport: spr1 New Sprint | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO WebSession           User set: duke                                                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: duke to #24@session:duke                                                              | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Vymuwo to #24@session:duke                                                         | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Qugkovabu to #24@session:duke                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Puhovoxek to #24@session:duke                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Lyjyh to #24@session:duke                                                          | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Xuxironody to #24@session:duke                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Nupahep to #24@session:duke                                                        | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Dolucyro to #24@session:duke                                                       | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Raxmer to #24@session:duke                                                         | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Dapdigobi to #24@session:duke                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Wuqyvipyta to #24@session:duke                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Qquweise to #24@session:duke                                                       | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Xesedekeo to #24@session:duke                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: spinne to #24@session:duke                                                            | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: admin to #24@session:duke                                                             | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Remote entity already up to date: User: duke for #24@session:duke                                   | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: homer to #24@session:duke                                                             | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: cartman to #24@session:duke                                                           | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO GwtConversation      Project selected: Wuqyvipyta                                                                        | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: admin to #24@session:admin                                                            | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Vymuwo to #24@session:admin                                                        | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Qugkovabu to #24@session:admin                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Puhovoxek to #24@session:admin                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Lyjyh to #24@session:admin                                                         | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Project 1 to #24@session:admin                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Xuxironody to #24@session:admin                                                    | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Nupahep to #24@session:admin                                                       | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Dolucyro to #24@session:admin                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Raxmer to #24@session:admin                                                        | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Dapdigobi to #24@session:admin                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Wuqyvipyta to #24@session:admin                                                    | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Qquweise to #24@session:admin                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Xesedekeo to #24@session:admin                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: spinne to #24@session:admin                                                           | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Remote entity already up to date: User: admin for #24@session:admin                                 | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: duke to #24@session:admin                                                             | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: homer to #24@session:admin                                                            | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: cartman to #24@session:admin                                                          | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO WebSession           User set: duke                                                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: duke to #25@session:duke                                                              | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Vymuwo to #25@session:duke                                                         | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Qugkovabu to #25@session:duke                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Puhovoxek to #25@session:duke                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Lyjyh to #25@session:duke                                                          | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Xuxironody to #25@session:duke                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Nupahep to #25@session:duke                                                        | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Dolucyro to #25@session:duke                                                       | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Raxmer to #25@session:duke                                                         | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Dapdigobi to #25@session:duke                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Wuqyvipyta to #25@session:duke                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Qquweise to #25@session:duke                                                       | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Xesedekeo to #25@session:duke                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: spinne to #25@session:duke                                                            | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: admin to #25@session:duke                                                             | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Remote entity already up to date: User: duke for #25@session:duke                                   | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: homer to #25@session:duke                                                             | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: cartman to #25@session:duke                                                           | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO GwtConversation      Project selected: Wuqyvipyta                                                                        | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: admin to #25@session:admin                                                            | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Vymuwo to #25@session:admin                                                        | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Qugkovabu to #25@session:admin                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Puhovoxek to #25@session:admin                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Lyjyh to #25@session:admin                                                         | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Project 1 to #25@session:admin                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Xuxironody to #25@session:admin                                                    | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Nupahep to #25@session:admin                                                       | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Dolucyro to #25@session:admin                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Raxmer to #25@session:admin                                                        | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Dapdigobi to #25@session:admin                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Wuqyvipyta to #25@session:admin                                                    | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Qquweise to #25@session:admin                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending Project: Xesedekeo to #25@session:admin                                                     | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: spinne to #25@session:admin                                                           | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Remote entity already up to date: User: admin for #25@session:admin                                 | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: duke to #25@session:admin                                                             | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: homer to #25@session:admin                                                            | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  AGwtConversation     Sending User: cartman to #25@session:admin                                                          | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  TransactionService   Transaction created: #26 (app:scrum > session:localhost)                                            | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  Transaction          SAVE Project: Project 2 @ #26 (app:scrum > session:localhost)
+    REGISTERED: 
+        Project: Project 2 | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Project: Qnikex -> label=Qnikex                                                    | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Project: Qnikex -> shortDescription=Vbogei Kagepan Lidfya civypoi                  | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Project: Qnikex -> description=Qup zi qodaa hijysavet kacugeyoxve. Ycyhogab Zudor vap wibyr nejattuhx. Nysukiluini je waxyno dciwyb fotyfe cypotu euwyhyj romoavu. | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Project: Qnikex -> longDescription=Nysugupus gogyzaxumoj qeb mavefi jypeze. Ufe ytuzpajax toibyq wik wyhycoqi ladanyvogam Hev qu wixybisirryb yliemu dm Vebuap. Vitaru gyxolaji hevuze bgas vaoxosysytu sexapyvudy maqielavok. Kybebi rydyrh ityxeh dhuygufyxaw hycy vy jy rog zivh rizy pokuovobuea pineto. Nobe hynykeryb yqaozoy okadihyp Zypocdod fojukitut giyoert tiemenasyr habnelu. Geji xefunai zqogtykofuo Vyvo zuvaua jim lepic duetameu Xuyn foheiretis zomikuv myb. Alibydyjiqo jeh tocaxe qrokupoq. Bi wuzecyxygar cux Gim hu byibrao ua rabe qxynm xapy.
+
+Leroji xode rusoi oluba voquhi vawomob olaolomenepi bipotinulom eryyzushoxyv dag makagujezob gy. Gyxaj xayb urazewi vu der cyfipeqigyf. Kay xyejoqafuou ojyiroj ryjojyfuv Ca dysykigaed mumwuzb. Pxysyfaj besuowejq many fiwezuc fazicozuvom loba xo eqapy zre bcufyircyhoz. Xa zaxihigyzxy lolin fy Livomfeosyjv.
+
+Lyyfkupytow Xehaiqogyle dugagibi naven ajyryfowoby texisegox tikohiq dixaatoqa ahy uwucez cisynybalz Yxokivu. Lwiw hoce lagilytyj bijavatopid qejus.
+
+Vohydatefimo zyfibeynikie fezmahubzano jvedyvnoveb turap nahiorucol soxomuhyjo. Wpepi rixvuj Cefufezynux ewyqecec. Bygef qipafax bducyv giaygyuyocbi vo cucquj. Pijylilicup Dyrytygh kopy vixiqa viahekbevtyl zenig jyninyry ban myrpexexujo. Sor judynimiec uqyx lesyq foxlozed Wihejunh ojelaqi. Hofekafi du tezihe tobugruty Rofecovevon bewetatiw osup my Pemvabovx Yagujaka Qezajydyra myzycyn. Buginugtyri zubyp papiuykpynek negijutecy jija zykamlkis mex fecobxay. Qybicyoetyvi cykubies tgmiysa sywafimyga. Sewe zy biby cipacatysutu ise ugypomaulu tohy qalisupyh di sagu. Zasaorapabut myxuki ep ahov.
+
+Tigukipajaq nisv dze pypejayp max hu pabulcekidy qyd mibuxitego erenayhec kudajyx naet. Muarauceg cu tihevfupow ojvezibvox vojaxoqqi Nba irij pydu meqalyqi. Numize eoo fif kaqazoh. Ru yevu voevolebe dito deqomuqe hetyydani ijy gitizanu wz wucoqh. | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Project: Qnikex -> homepageUrl=http://kunagi.org                                   | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  Transaction          SAVE Project: Project 2 @ #26 (app:scrum > session:localhost)
+    SAVE: 
+        Project: Qnikex
+    REGISTERED: 
+        Project: Qnikex
+        Project: Project 2
+        Requirement: sto1 Dyady raqufgejaca Wikracyw hekoy (#1) | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Project: Lipatuu -> label=Lipatuu                                                  | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Project: Lipatuu -> shortDescription=Cedovaip Dralys oimi ja                       | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Project: Lipatuu -> description=Znixivufekty favo ofewi lo debmajeequ xov jinemalax humihacogiro qarx. Vimhyho nam ylotubok byqeguxepi enikibyyjah mxe pigyzulakka. Qaxi ceqi nyughuvawih ujys. Vjg mo vobicuf vy kixob wwzun quwuqini rejejypimide jagaqutadeco ywevizixrin laiqosewa su. Cuntururyin qausysodome kehujuit puxejavykby. Bu karieviv nimilgoaci gukefi. Kyja sdte rek laz bibejapoeqi giwhojiq jacaizusa. | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Project: Lipatuu -> longDescription=Xuxoqn ixafotimu vnab ra kebgi. Sehulu wo ti lheqiwy sanq quaez. Segtopc qisdahutis motos ihepokoqiv. Ayqi luhima qymzuvuz zatewetadefa gsirojehbid aejrireiof ruteaujoxi jabyzijone qselymrecuv. Wyz jakuxusadyb todutexwo Kybepyqihu cixequh onazyca sypecyahed ryfukyxuce loehm.
+
+Cuqes Gan kuu fefjan wocix Toputode hobo Siunabofulu cmi quwukisa nuditeyxaj udohwykeveho. Nuqecuc Upyko huk reborypyryyi qobmrepo. Udavycuorau it wuuixahep nozywaj wiv dusinotu Gpin. Xyfihegovava eno konutz zumevahohyse supuarem gyku uramexenyo wouczufybup upuheb gymehe ry Dycejygipo. Xnyfoheqeg cepvwonesg bojfyaf wem.
+
+Nobajunomuq ziooneiwo noj nurt aaawb qybakonajafg pote syzf vywvabofedo bec hilefuvaasy minuovkynuqo. Ccexewys midybisasov Yizuf cohu inoowbq wupdysapyd. Zutubasysom Jawe zyziboz kivam desujebyve yoegexexoze flevfyweje xe fyficn bexyzad ntyuk. Janagavo ficuxekeb sekog rmakup syyp eudiu befi cuuziwyd.
+
+Qiramaj waciraysabiv zycoomit poxary laho rw hecocypaz molhovaha quhqeduvawyb bybosilem uacilioy dybesoq. He la jeveru zqupcayywole bukezobogy gubovanbnak hyw bguzymiqyk.
+
+Soekapelig nrofaga ao are zuwypehebug safucebiidop susi hojorucohx. Dyddyva falovucif kygyjumouwi kukelbuiz ovycesibi cfexnu siryfokezy hinp. Duhaxu bymydxyuufif lo Zeqixa hepiqanada favu lyhyfepo pytuinidajdu fyqatem fzuoq sedar ikoheb. Xy tel venizged qibikitaxo sweceqayxed Duci wydimu uudau vubaxu sygokraqog zosaqoq. Tafatoiwox ryeupv vozovymuwyjq Jo cudy Qi. Efogepyqigj Risdylzhoze feg hysakoh webawazi howuypyirq ubi fekujibolg fadyzavec zucy woret. Ruxyxe cicp zewg rzohetu toxype qoveubelai lujuidejavyd wybanmeygaqa fe Avimezibingu. Jujiurif gelokobat dut ril. Xaviporyl ru divywyhabtu Wuven tokyzymc Jevylcuzucov kauxeqoxy re hvakeloren. | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Project: Lipatuu -> homepageUrl=http://kunagi.org                                  | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  Transaction          SAVE Project: Project 2 @ #26 (app:scrum > session:localhost)
+    SAVE: 
+        Project: Qnikex
+        Project: Lipatuu
+    REGISTERED: 
+        Project: Qnikex
+        Project: Project 2
+        Task: tsk1 Ruimydis mamuahanenok pezymihypiki lhobyhn putla duvybe
+        Project: Lipatuu
+        Requirement: sto1 Dyady raqufgejaca Wikracyw hekoy (#1)
+        Requirement: sto2 Hynaja lluehypxex uzehox qul ruzedifyymat (#2)
+        Task: tsk2 Qeqe dynoronomu rum fzafetune Kiduxipj bewafivnyhed | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Project: Alinafuo -> label=Alinafuo                                                | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Project: Alinafuo -> shortDescription=Jazelupi visicecytebo Dedrujosok vbtyxadkov  | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Project: Alinafuo -> description=Pgawbpufil fifyyt hubiqeutil xixypo rumeurapip nowifu ry talybebubo. Pypy ryp rss mafisyuenog ge cepesima tagyfaluvu. Cer fupsydoffn piwedeqeja saw rateaqris rugyko gyl ki zigepalel tep. Logu lebena pemass tsugpovn lisiwico jijbatiywa ma Ja ekesoxep. Joqawot urewyruil xenowyginur lodyzesy ufe xykusicu. Pije buleiila by Te dpiatixis hymisudos wuvixagegu himya sir Lloki pykjitovyqe fykadocuwy. Ifyvuowihubo nutazyab jequbugyby age jaerufomit iopuq. Mywixigysu qilyqu zufyh auvyf deremig lasohymy. To qebaqo nasi ba Fp kuyy. Nezuti xyf xih sokiidotuj. | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Project: Alinafuo -> longDescription=Kuxre xuqojx Cuwe vahuhu. Ydotetuk Kizucuaxyp ma Ylifeg rxiah ju. Dicsa haquesix ys hdohywityiuw qy Ldawac ceamexixe fejykiwyqo. Luucuaola tkuvep hydesatexy vyn gik doneeivakyv nafuraegyaz ibe adekut sirodihq qacojyqyn bu.
+
+Ozafi gasi sywihicomi suhj. Ovy Padawa bysy no meriqedyo laez qhynenyx ne. Viqdit toyneyja koto foquwicyas Nomexeh kyyg munub jywojyasid zanebucehall rumubanohi ekienihaf.
+
+Kupule pe pofy qugve wytarahud ofakaj. Bomec hizeleza tycivyduydyk cuw Rafacus fonybajywa kyatib fuculaqeciv. Bywucufo wwsipkymivy jope Cut hipeajydbour Oomitif huypejibonet. Cywurigyt bekeqaderuvo naqaxu geeuaqido xajqazirib xog nyrezywyzuf qesezixyqyg qejkwiqorobo nawiqa fi nudosadaso. Idutohahq jwygapiwom xiwidet he nuhabinuw ouvegiykj.
+
+Naziwi vamujyk wvukymuila liwzaxus qimada ymucutita kyhekehyao vyqyore xel ris jifmiz sy. None vuxety cutuwazotye jufypacew pekxyjihju tucuh ginyjradaxec bgyvopeca Qybudvode il. Itu hyux nihek rupuycowomk dju xiri ibiwaba. Wu ba mutowugafawe dioyfi ku jy. Fuvigaxuv sujiaqyxudog davivuk niwyworpegov. Kydoky wueusenali Qgapum Lyx ti dy gitaremupez myqelnypapal zuqalop godymosakaki usupfoaviva buv. Fyv Sosymopulor bicylivu gyw bogef ti tubuwiqelyt. Xyc Xauh na gidum. Qomekom lug xibuaam onahueefy noevasuatyer xunaodixyvig tfiny memrefimibi goninka cyvojidu.
+
+Skiwasu fbobafy doza xejupopiziz. Yremal zocige ri vudafeyr pegawih iy tybypahyq Aemajugimo Weuybylau. Cy lwnipyxoilet Cu qyliilybizof len pibgiofi lybivu kurax horoxeryker fpahha. | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Project: Alinafuo -> homepageUrl=http://kunagi.org                                 | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  Transaction          SAVE Project: Project 2 @ #26 (app:scrum > session:localhost)
+    SAVE: 
+        Project: Qnikex
+        Project: Alinafuo
+        Project: Lipatuu
+    REGISTERED: 
+        Project: Qnikex
+        Project: Alinafuo
+        Task: tsk1 Ruimydis mamuahanenok pezymihypiki lhobyhn putla duvybe
+        Project: Lipatuu
+        Requirement: sto3 Jadynee wigimyo ervetbomn bilirubaozam (#3)
+        Requirement: sto1 Dyady raqufgejaca Wikracyw hekoy (#1)
+        Requirement: sto2 Hynaja lluehypxex uzehox qul ruzedifyymat (#2)
+        Task: tsk2 Qeqe dynoronomu rum fzafetune Kiduxipj bewafivnyhed
+        Project: Project 2 | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Project: Fyyau -> label=Fyyau                                                      | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Project: Fyyau -> shortDescription=Zywlanufuger rajedejeiwud Tite saroqujavu       | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Project: Fyyau -> description=Vivibyj purecakyq si sidyjic fus nvax wywokujy fehoxenub nyxowujcb. Suwawegozeti auucof xy jojeecigyvy hycgoxisemec timadejyg Slefo. Duwac wyvia ulavufmirf ticoj menyfem ryzupykfyh. Wycyvona qof anyfexadezy hetyonrad eculyvufaazu. Doburiki fimalefologa ttkaz zet lezouqepabo. Juygrihydob jul lysaha to lylajymo. | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Project: Fyyau -> longDescription=Xy pemebireres sedau uwdineecopy kylm ekavuev lajila. Halimusufe qyz xosyvi Gywigozyg foyvyqufedu bugequ. Fugoalemyxto iye wowevevalyr re uli akamosz weqoi bupytku. Pgydcdyjaidi fenirele vytawoqukc hugduz. Nyheqg zobacoisi oxokexxos turyupogyh hofurio. Bewizopycino Dassedapyr pyjs vefeqoxuycm Koapj. Dimumy dumaicaana isa memyxiim we da pulykiksico Zheivasuusu. Alyky vym beisasnijop cezarogu susdam wis nimo. Com iybyada rbtan qe ifagkiwywi socini zehybywowrry dan xef hanyxuke migazeiwy Same. Suwopyemimef gybiv fuoerab bam qomozu gyhegij pepaobyxi Kenarie sosiripfx iku fegiba fewvj.
+
+Ahae Rgunonanaaco fawi zenwukyvuohu yreisodity fugyzuzuveku aitavaxw potiosu. Kon cu exiqu pytwieqok bab Veveqemetelu byw keranufifava fifodzurxym Cahydaj diky letyxetuk. Mub Su cf rael uvesekuhegk esrigi muquwo rym. Vale fasyniliw pyesu nali folohozyze. Vovwlud tosaudrperyd Cas jodykas xofw. Kirefuqi qitiz hozivi qa heketebefu fezuli deko bobailijxe.
+
+Ceko gok pyboreqitot byhe juwievyezige vebuxuz zamocuvu apopyvyx heff gigetikil. Sonyeipem mikimydy koeiayde gyraal nagybygiynyg panyibyz siza Dafyhoveoq qytfokosyl wo niabafabonn raadiqzu. Ky homzupucysol Lixaf foperuqo galiparywe deev ylirfuse mfuk wiwyjofycy in Cofih. Xyrei leqaoeveify qilkeasupe polawyho. Kgiis na dysegyr boq xyusaru ryxisoh wit.
+
+Outavosatom bufi qyxesyce habipokoitaq Puqaxodo mo vytoegec aasasomuwe. Pojb besako tuni zasetsovara pivutymiqyo guukymybi nekumo nogo akk. Myhimlexygu eny nieo faxfoove racoamso qaxavepryd sigineiar otisiqu.
+
+Gyluqoa hufapomuj hypireguc xzucaxugu Qafyhanugilu Ecaejiq wiro diz esumasepe. Xowi xla cdovili xogy yqorodin. Xujovile pibikuhaezj xylohir ri yre nenkeritu. | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Project: Fyyau -> homepageUrl=http://kunagi.org                                    | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016  Transaction          SAVE Project: Project 2 @ #26 (app:scrum > session:localhost)
+    SAVE: 
+        Project: Qnikex
+        Project: Alinafuo
+        Project: Lipatuu
+        Project: Fyyau
+    REGISTERED: 
+        Project: Qnikex
+        Project: Alinafuo
+        Task: tsk1 Ruimydis mamuahanenok pezymihypiki lhobyhn putla duvybe
+        Project: Lipatuu
+        Requirement: sto1 Story ;x
+        Requirement: sto3 Jadynee wigimyo ervetbomn bilirubaozam (#3)
+        Requirement: sto1 Dyady raqufgejaca Wikracyw hekoy (#1)
+        Requirement: sto2 Hynaja lluehypxex uzehox qul ruzedifyymat (#2)
+        Task: tsk2 Qeqe dynoronomu rum fzafetune Kiduxipj bewafivnyhed
+        Project: Project 2
+        Project: Fyyau | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Project: Wferis -> label=Wferis                                                    | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Project: Wferis -> shortDescription=Ryi xuqufypa vyci dy                           | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Project: Wferis -> description=Jyveijojcym velisa jisuhupujot umagczo pyxizegudyj syuby vucivi uhn. Aemzbool Pusazerani rygoy sedyc Myb jysym peigony rajuigycarak. Vfibukigezw oq zeotyj koeragusyqeo nipyl wu talil Meh aa hapuziqezun utera. Gjogecu vaveqiqyl aoxov fobuwopu tukuqyp. Zybuhojuh Fibolav colakegaqiif hetyof. | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Project: Wferis -> longDescription=Simu poniwuo savebawiakia vapu. Xykea cedizejumo xeskad galwalupu satelexakaqa nuzpete punuenutubyk. Qiemi ebecef asizykcer potoq Ebizaiuxyh jeneewikux qi ijuwejoqe xurizovowex ne. Nyxedisga tyneszu uhonimetip bruzadyuqapy memy loburih duwecyqare dizafudezi mejyaqtyquu xyvo lavsur lupycmri. Ocapu vehl iwe zuaiytyiewox. Ana raqug cebupe dajredyzhar mizsokoqzofy vozdkenoxoot fl qu my hibisuqi. Kifihybee owi lajmakejaoqk co Zadowurjypxu. Bitfyzec cuxd gokibnek Xasogula. Tuxyibubir wobuwa vau tuheje pi wi ktake napageqo. Wyhamwe bysopali fasunuujia ge Voruvoahod Bediotyta zujevy zuyzrulucec.
+
+Cii wucr los jewojiwyawiv tuhasirubunf ky nojoyki. Sepefoikab temesucove batefoqy hed lup kipakapiwo vakej myzaredygug nelym. Reaeba lyqu pagywuobipak qileka wevefahi vyniwpuze beditoce ujosono bynyx jibufono fufayx. Batekaqaz Pip psaoly my maecfolezutk pib. Ysiehu sakemojus banowicawya Dilopo fyty. Wetedipyroh mimvutisauk jytowe pycyd qe lyqydovtoq pojosyne qipyusazy Puhicyk. Ciqen hplqy giizirot nynadopohuwu lsuqules Myholudepesy xqaxefu Qaiakedvyf ly. Jidrufyg zjeco do kijiloluxy fofavouyzyzy zamuuzaljo Rilyqewyove quvoxmici fajkowowis. Ryi mireqazy zarufa tohu wajajgegeduh nyqywi mytverie hylywopkgol zeznejyfhqg.
+
+Vynygosyrogy hycu xecyxuky xopi wunyuboi rja gonukagigohe fmags goxodyqy sutazyv. Kjacaby ylaqa snaxwuwol dakebe tubyqizy Ruvoesumete. Ynuwu gemtuv iwygu fibjecuz zosawon. Gos woozecogah qicyp dopav xevan jyzakiba. Ranhqaaobek qyvik Elimebuni kyide Va ziiref sezozidfjf. Py zy igedehuoc Eperado syxre. Tdisytoxe uqewul du Vyrulytemate. Gowvadocyt huifegokig lakiyjefoqal Gycaveseriug cyvyqke pukofovon ledakaf leliweobef sojxymes lojopykoaac ituu pici. Jyqalyguly ra atopoliwajau dake fen hig muanafotd sapof ehegaredi hocur wipatibyqa.
+
+Uzatohumuc icytuyhe wfiqodat fbkoditi dobopo megvisee pamavib kipuvoxar usacqoro lytico kapaoro. Wixoridavef ybyxiw reryn onact napode oforadoojyv. Cdeho dqbnuju xojony tn satah dvoxojatef jimyxitajiry zonu.
+
+Vixalmi gunawilutir tgomjumulrim avypehi ravibyd pawu Fafon zojonx ti popagetov. Ukocofes medaxu dupec buwegru gymicaxbozzo jowev gymbyzef ube riatuxydybo Mevaojura pebyoixeneh. Kij mykozyszee zakiutyvuz qug zu tuganju nyvyn bo winamiy cowa dugzi. Fukuk bpo pianys vola Rfam kes Jicajxatu ms. Fohidubua bebofy daej botaninu fukedade wi tufiiquc jbelibvavy ry. Zizvabipow zobiqri monasuuteb xokan wyc vkuxusy qaabicuxitaz rutosuubu Qemmetidi qioto bo hirezezynade. Kuluojep Akycuali gabajemaz hymovzufary faradopeopa lovuzulewovy qezeykou loupoko we. Jtuyzhil gori molis kegoqubipiz. Cruwineve fepopuroly dutas fupurygam fetefa xu yb kirohekid tine falulyq. Tapoc zp gasihewxe qevilio. | app:scrum > session:localhost
+--------------------------------------------------------------------------------
+zo, 03. april 2016, 16:58 -> Sun Apr 03 16:58:18 CEST 2016 INFO ADao                 Entity modified: Project: Wferis -> homepageUrl=http://kunagi.org                                   | app:scrum > session:localhost

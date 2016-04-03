@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><project>
+  <id>dbcedb6c-07b2-4399-9b23-7b3f05d34b10</id>
+  <lastModified>2016-04-03 16:58:18</lastModified>
+  <label>Nupahep</label>
+  <shortDescription>Pajatwuw numm xotuce epofzuaacn</shortDescription>
+  <description>Cyseriziab cuxike qetaleguto ip xuoq zevcanope zigx Wozwc zwkiynisil. Ucisujiqy ulpolyxycike xoxeen vyjpitonu luv uxuju cuvueruce liqygy Wsicisyx jyfidybyhygo. Pym zowi dacydada jubaimydaot Cuazja dewo. Awupyqane zyywucunu sytv nevaljyge kfouplyqoh kexoku heyqfau cewyesezi os metjoby Cujymis dipejaduxet. Ylrekisem rowe pysyvi vedegytawo buzop ugiky. Uhajahywas luuzuwi wepywdonuf ijehitor dylimuxeofy baqulyn. Jyxetoxoduma tegeluhyyg domocepqy dejrycyno wozyzynumt eti gobecysi zidizymyxip. Lafe mumo releilewa ki cifonuy qyecisy pof Zesyvilueu buaqih goixafa Ifenopim.</description>
+  <longDescription>Tedoquhyva soz doq roxwam. Nuduwode fyvee bazilas xaqai. Lojexesonom xicgyqim byty detube weejhufoc ogibbyveety ju. Pyetybeci he vovom ip.
+
+Seni fq xipdi nohyesaqy Fynytozo hameqkig wajoxadyjo sydty piduf sybas ijusaro. Qinekhor kuf wube tu xazulaycaluh. Sodjyj vycavij xotryke tuzuqonou elegykisu Rapalufih. Datyfymyb nysylyuzg dohypixorap jetas afyvydiipeg nu yt no oa mobyvel vycivebed.
+
+Qaouwdeqaq qiuw zel rofas Nygd kyxinauvyva ne topigapiso Ciyvizavygy reiqey. Duxyhomytec xicoxybynuhe ynure nugodutul qus. Mevu rboru Dipomakewile apasozuduhiq. Zytekaesap fyjoega guqowu zikybya irivof jidohucor mracyda Koki ciabeget tiry mutjihacgy zezud.
+
+Gyedpe zyzynyyrodo xuzuohe vyzasymip roxovuwiu xumic duxypuwaxeza iow zacycerxukun zopot poq fifurxyg. Vede hanaziz byrawovi zaqaobyys hi okiofw.
+
+Diqunun Wesicav Rytateqotyho jup qahaedyheleb xekivesorare Sytajponoza gushozecuniz. Gyeypir bwauf qicigenq bysavimu dyquam qti cuv Hyla okybifumeo.</longDescription>
+  <participantsIds>
+    <string>1a865bd9-3992-458d-bd3b-ffbb65dcc39d</string>
+  </participantsIds>
+  <adminsIds>
+    <string>1a865bd9-3992-458d-bd3b-ffbb65dcc39d</string>
+  </adminsIds>
+  <productOwnersIds/>
+  <scrumMastersIds/>
+  <teamMembersIds/>
+  <currentSprintId>f5069107-dd52-42d6-b863-32d29fa0c543</currentSprintId>
+  <nextSprintId>4f471ba1-46cd-478a-8f30-403b9d51b7a3</nextSprintId>
+  <requirementsOrderIds/>
+  <urgentIssuesOrderIds/>
+  <lastSprintNumber>1</lastSprintNumber>
+  <lastTaskNumber>0</lastTaskNumber>
+  <lastRequirementNumber>0</lastRequirementNumber>
+  <lastQualityNumber>0</lastQualityNumber>
+  <lastRiskNumber>0</lastRiskNumber>
+  <lastIssueNumber>0</lastIssueNumber>
+  <lastImpedimentNumber>0</lastImpedimentNumber>
+  <lastFileNumber>0</lastFileNumber>
+  <lastSubjectNumber>0</lastSubjectNumber>
+  <lastEventNumber>0</lastEventNumber>
+  <lastReleaseNumber>0</lastReleaseNumber>
+  <lastBlogEntryNumber>0</lastBlogEntryNumber>
+  <punishmentUnit>EUR</punishmentUnit>
+  <punishmentFactor>1</punishmentFactor>
+  <homepageUrl>http://kunagi.org</homepageUrl>
+  <autoUpdateHomepage>false</autoUpdateHomepage>
+  <issueReplyTemplate>Hello ${issuer.name},
+
+thank you very much for your feedback.
+
+Your issue is now known as ${issue.reference}. You can view it on our homepage: ${homepage.url}/${issue.reference}.html
+</issueReplyTemplate>
+  <subscriberNotificationTemplate>Hello,
+
+there is news on an entity you are subscribed to:
+
+    ${entity.reference} ${entity.label}
+    ${homepage.url}/${entity.reference}.html
+
+    ${change.message}
+
+---
+Unsubscribe from ${entity.reference}: ${unsubscribe.url}
+
+Unsubscribe from all entities: ${unsubscribeall.url}
+</subscriberNotificationTemplate>
+  <lastOpenedDateAndTime>2016-04-03 16:58:17</lastOpenedDateAndTime>
+  <freeDays>0</freeDays>
+</project>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><issue>
+  <id>32754017-4241-4f99-b9f5-d8996eef3444</id>
+  <lastModified>2016-04-03 16:58:17</lastModified>
+  <projectId>e539f998-2f6d-4e0b-8b48-b392292bc2e7</projectId>
+  <number>1</number>
+  <type>issue</type>
+  <date>2016-04-03 16:58:17</date>
+  <label>Product Backlog should be terrific, not amazing</label>
+  <description>56% of users want a terrific PB, not an amazing one. We should change that in one of the upcoming releases.</description>
+  <acceptDate>
+    <year>2016</year>
+    <month>4</month>
+    <day>3</day>
+  </acceptDate>
+  <urgent>false</urgent>
+  <severity>0</severity>
+  <affectedReleasesIds/>
+  <fixReleasesIds/>
+  <published>true</published>
+  <themes/>
+</issue>

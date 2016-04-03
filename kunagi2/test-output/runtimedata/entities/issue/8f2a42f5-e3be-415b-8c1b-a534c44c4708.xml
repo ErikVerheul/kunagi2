@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><issue>
+  <id>8f2a42f5-e3be-415b-8c1b-a534c44c4708</id>
+  <lastModified>2016-04-03 16:58:17</lastModified>
+  <projectId>e539f998-2f6d-4e0b-8b48-b392292bc2e7</projectId>
+  <number>7</number>
+  <type>issue</type>
+  <date>2016-04-03 16:58:17</date>
+  <label>GUI inconsistency between PB and SB</label>
+  <description>The order of Qualities and Tests is different between widgets in the PB and SB. It should be the same.</description>
+  <acceptDate>
+    <year>2016</year>
+    <month>2</month>
+    <day>28</day>
+  </acceptDate>
+  <urgent>true</urgent>
+  <severity>-1</severity>
+  <affectedReleasesIds/>
+  <fixReleasesIds/>
+  <published>true</published>
+  <themes/>
+</issue>

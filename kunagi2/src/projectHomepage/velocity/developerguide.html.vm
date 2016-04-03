@@ -1,0 +1,39 @@
+#header("developerguide", "Developer Guide - Kunagi", "Kunagi developer guide, architecutre overview.", "Kunagi, developer, guide, tutorial")
+
+
+<div class="section">
+    <a name="source"></a>
+    <h2>Source Code</h2>
+    <p>You can get source code from 
+        <a target="_blank" href="http://github.com/Kunagi/">GitHub</a>, 
+        <a target="_blank" href="https://sourceforge.net/projects/kunagi/">SourceForge</a> or
+        <a target="_blank" href="https://code.google.com/p/kunagi/">Google Code</a>.
+    </p>
+</div>
+
+
+<div class="separator"></div>
+
+<div class="section">
+    <a name="devdoc"></a>
+    $wiki.DevDoc
+</div>
+
+
+<div class="separator"></div>
+
+<div class="section">
+    <h2>Project management</h2>
+    <div class="middle">
+        <p>We use Kunagi, of course.</p>        
+    </div>
+    <div class="sidebar">
+        <div class="starter">
+            <a target="_blank" href="https://servisto.de/scrum/">Kunagi Kunagi</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+#footer()

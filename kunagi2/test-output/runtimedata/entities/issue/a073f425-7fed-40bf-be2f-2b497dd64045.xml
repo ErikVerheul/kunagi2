@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><issue>
+  <id>a073f425-7fed-40bf-be2f-2b497dd64045</id>
+  <lastModified>2016-04-03 16:58:17</lastModified>
+  <projectId>e539f998-2f6d-4e0b-8b48-b392292bc2e7</projectId>
+  <number>2</number>
+  <type>issue</type>
+  <date>2016-04-03 16:58:17</date>
+  <label>I want eclipse integration</label>
+  <description>I would be really nice if eclipse commits would be represented in Kunagi! Thank you!</description>
+  <urgent>false</urgent>
+  <severity>0</severity>
+  <affectedReleasesIds/>
+  <fixReleasesIds/>
+  <published>false</published>
+  <themes/>
+</issue>

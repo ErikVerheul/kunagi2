@@ -1,0 +1,43 @@
+#header("team", "Team - Kunagi", "Kunagi Team. Feedback.", "Kunagi, team, feedback, developers")
+
+<div class="section">
+    
+    <a name="team"></a>
+    <h2>Kunagi Team</h2>
+    <p>Kunagi is developed by a distributed team:</p>
+    <ul>
+        <li><a>Artjom Kochtchi</a> is Product Owner and Team member</li>
+        <li><a href="http://koczewski.de/" target="_blank">Witoslaw Koczewski</a> (<a href="http://koczewski.de/witoslaw-koczewski-csm.pdf" target="_blank">CSM</a>) is ScrumMaster and Team member</li>
+        <li><a href="http://fabianhager.de/" target="_blank">Fabian Hager</a> is Team member</li>
+        <li><a href="http://grubalski.de/" target="_blank">Kacper Grubalski</a> is Team member</li>
+        <li><a>Fabian Wischnewski</a> is Team member</li>
+    </ul>
+    $wiki.Contributions
+    
+</div>
+
+
+<div class="separator"></div>                    
+
+<div class="section">
+
+    <h2>Networking</h2>
+    You can follow us or write a review on your favorite site: #sociallinks()
+    
+    #socialbuttonsmain()
+    
+</div>
+
+
+<div class="separator"></div>                    
+
+<div class="section">
+
+    <h2>Email</h2>
+    You can email us via <a href="mailto:support@kunagi.org">support@kunagi.org</a>.
+    
+</div>
+
+
+
+#footer()

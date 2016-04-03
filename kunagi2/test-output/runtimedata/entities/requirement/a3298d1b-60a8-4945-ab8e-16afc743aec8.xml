@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><requirement>
+  <id>a3298d1b-60a8-4945-ab8e-16afc743aec8</id>
+  <lastModified>2016-04-03 16:58:16</lastModified>
+  <projectId>e539f998-2f6d-4e0b-8b48-b392292bc2e7</projectId>
+  <number>16</number>
+  <qualitysIds/>
+  <label>Enlightening Wiki</label>
+  <description>As a User I want the Wiki to enlighten me so that I am enlightened after reading (makes sense, doesn&apos;t it?).</description>
+  <estimatedWork>5.0</estimatedWork>
+  <closed>false</closed>
+  <dirty>false</dirty>
+  <workEstimationVotingActive>false</workEstimationVotingActive>
+  <workEstimationVotingShowoff>false</workEstimationVotingShowoff>
+  <tasksOrderIds/>
+  <themes/>
+</requirement>

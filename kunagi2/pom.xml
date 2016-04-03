@@ -27,6 +27,7 @@
         <dependency>
             <groupId>com.googlecode.gwtupload</groupId>
             <artifactId>gwtupload</artifactId>
+            <!-- latest versions does not compile -->
             <version>0.6.1</version>
         </dependency>
         <dependency>

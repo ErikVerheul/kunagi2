@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><sprint>
+  <id>4f471ba1-46cd-478a-8f30-403b9d51b7a3</id>
+  <lastModified>2016-04-03 16:58:18</lastModified>
+  <number>1</number>
+  <projectId>dbcedb6c-07b2-4399-9b23-7b3f05d34b10</projectId>
+  <label>Next Sprint</label>
+  <begin>
+    <year>2016</year>
+    <month>4</month>
+    <day>3</day>
+  </begin>
+  <end>
+    <year>2016</year>
+    <month>5</month>
+    <day>3</day>
+  </end>
+  <requirementsOrderIds/>
+  <productOwnersIds/>
+  <scrumMastersIds/>
+  <teamMembersIds/>
+</sprint>

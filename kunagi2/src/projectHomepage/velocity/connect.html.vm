@@ -1,0 +1,9 @@
+#header("index", "Kunagi - Agile project management based on Scrum", "$project.shortDescription", "Scrum, Project Management, agile, tool, demo")
+
+<div class="section">
+    <h2>Connect with Kunagi</h2>
+    #socialpages()
+</div>
+
+
+#footer()

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><user>
+  <id>be3dafb0-806a-43c4-b7c0-55fc5bdb91b5</id>
+  <lastModified>2016-04-03 16:58:17</lastModified>
+  <name>spinne</name>
+  <publicName>spinne</publicName>
+  <admin>false</admin>
+  <emailVerified>false</emailVerified>
+  <color>darkslateblue</color>
+  <registrationDateAndTime>2016-04-03 16:58:16</registrationDateAndTime>
+  <disabled>false</disabled>
+  <hideUserGuideBlog>false</hideUserGuideBlog>
+  <hideUserGuideCalendar>false</hideUserGuideCalendar>
+  <hideUserGuideFiles>false</hideUserGuideFiles>
+  <hideUserGuideForum>false</hideUserGuideForum>
+  <hideUserGuideImpediments>false</hideUserGuideImpediments>
+  <hideUserGuideIssues>false</hideUserGuideIssues>
+  <hideUserGuideJournal>false</hideUserGuideJournal>
+  <hideUserGuideNextSprint>false</hideUserGuideNextSprint>
+  <hideUserGuideProductBacklog>false</hideUserGuideProductBacklog>
+  <hideUserGuideCourtroom>false</hideUserGuideCourtroom>
+  <hideUserGuideQualityBacklog>false</hideUserGuideQualityBacklog>
+  <hideUserGuideReleases>false</hideUserGuideReleases>
+  <hideUserGuideRisks>false</hideUserGuideRisks>
+  <hideUserGuideSprintBacklog>false</hideUserGuideSprintBacklog>
+  <hideUserGuideWhiteboard>false</hideUserGuideWhiteboard>
+  <loginToken>6ef93417-17e6-4912-91c2-785f61343644</loginToken>
+  <passwordSalt>SRCaUiV1CQ!MceD1PaN3R9Sw8yXJT13F</passwordSalt>
+  <password>SHA-256:c130d239f76a9ef3edcecc2922e0ffd2b1b03bdb46e1003bbbddda750b269660</password>
+</user>
