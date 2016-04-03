@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<ruleset name="Conservative PMD"
+    xmlns="http://pmd.sf.net/ruleset/1.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0 http://pmd.sf.net/ruleset_xml_schema.xsd"
+    xsi:noNamespaceSchemaLocation="http://pmd.sf.net/ruleset_xml_schema.xsd">
+  <description>
+  This ruleset includes only non-restrictive, un-annoying and generally accepted rules.
+  </description>
+  
+  <!-- basic rules for Java -->
+  <rule ref="rulesets/strings.xml"/>
+  <rule ref="rulesets/basic.xml"/>
+  
+  <!-- conventions -->
+  <rule ref="rulesets/strings.xml"/>
+  <rule ref="rulesets/finalizers.xml"/>
+  <rule ref="rulesets/javabeans.xml"/>
+  <rule ref="rulesets/strictexceptions.xml"/>
+  <rule ref="rulesets/sunsecure.xml"/>
+  
+  <!-- design rules -->
+  <rule ref="rulesets/design.xml"/>
+  <rule ref="rulesets/coupling.xml"/>
+  
+  <!-- style -->
+  <rule ref="rulesets/unusedcode.xml"/>
+  <rule ref="rulesets/naming.xml/VariableNamingConventions"/>
+  <rule ref="rulesets/naming.xml/MethodNamingConventions"/>
+  <rule ref="rulesets/naming.xml/ClassNamingConventions"/>
+  <rule ref="rulesets/naming.xml/AvoidDollarSigns"/>
+  
+  <!-- optimization -->
+  <rule ref="rulesets/optimizations.xml/AvoidInstantiatingObjectsInLoops"/>
+  
+</ruleset>
