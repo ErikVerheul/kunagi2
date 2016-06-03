@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='parent'>
+    <!-- Inherit the core Web Toolkit stuff.                        -->
+    <inherits name='com.google.gwt.user.User'/>
+
+    <!-- We need the JUnit module in the main module,               -->
+    <!-- otherwise eclipse complains (Google plugin bug?)           -->
+    <inherits name='com.google.gwt.junit.JUnit'/>
+
+    <!-- Inherit the default GWT style sheet.  You can change       -->
+    <!-- the theme of your GWT application by uncommenting          -->
+    <!-- any one of the following lines.                            -->
+    <inherits name='com.google.gwt.user.theme.standard.Standard'/>
+    <!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
+    <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
+
+    <!-- Other module inherits                                      -->   
+    <inherits name="ilarkesto.Ilarkesto" />   
+    <inherits name="com.allen_sauer.gwt.dnd.gwt-dnd" />
+    <inherits name="gwtupload.GWTUpload" />
+    <stylesheet src="Upload.css" />
+    
+    <stylesheet src="screen.css" />
+
+    <!-- Specify the app entry point class.                         -->
+    <entry-point class='scrum.client.ScrumGwtApplication'/>
+
+    <!-- Specify the paths for translatable code                    -->
+    <source path='scrum'/>
+    <source path='generated'/>
+    
+</module>
+
+<!-- ScrumGWTApplication.gwt.xml
+<module>
+
+    <inherits name="com.google.gwt.user.User" />
+    <inherits name="com.google.gwt.user.theme.standard.Standard" />
+
+    <inherits name="com.allen_sauer.gwt.dnd.gwt-dnd" />
+
+    <inherits name="gwtupload.GWTUpload" />
+    <stylesheet src="Upload.css" />
+
+    <inherits name="ilarkesto.Ilarkesto" />
+
+    <stylesheet src="screen.css" />
+
+    <entry-point class="scrum.client.ScrumGwtApplication" />
+
+    <replace-with class="com.google.gwt.user.client.impl.HistoryImplTimer">
+        <when-type-is class="com.google.gwt.user.client.impl.HistoryImpl" />
+        <any>
+            <when-property-is name="user.agent" value="opera" />
+        </any>
+    </replace-with>
+
+</module-->

@@ -1,0 +1,6 @@
+title=Kunagi
+port=9066
+version=$project.currentRelease
+warUrl=http://kunagi.org/releases/$project.currentRelease/kunagi.war
+windowIconUrl=http://kunagi.org/img/kunagi-k-64.png
+eulaUrl=http://kunagi.org/eula.txt

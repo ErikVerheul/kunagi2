@@ -1,0 +1,17 @@
+#header("message", "Message - Kunagi", "Kunagi Message", "Kunagi")
+
+<div class="section">
+    <span id="messageOutput"></span>
+</div>
+
+<script type="text/javascript">
+#literal()
+
+    message = window.location.hash;
+    if (message != null) message = message.substring(1);
+    $('\#messageOutput').append(unescape(message));
+    
+#end
+</script>
+
+#footer()

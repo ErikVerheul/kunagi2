@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+   <url>
+      <loc>http://kunagi.org/</loc>
+      <changefreq>monthly</changefreq>
+      <priority>1.0</priority>
+   </url>
+   <url>
+      <loc>http://kunagi.org/index.html</loc>
+      <changefreq>monthly</changefreq>
+      <priority>1.0</priority>
+   </url>
+   <url>
+      <loc>http://kunagi.org/blog.html</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.7</priority>
+   </url>
+   <url>
+      <loc>http://kunagi.org/screenshots.html</loc>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+   <url>
+      <loc>http://kunagi.org/issues.html</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.7</priority>
+   </url>
+   <url>
+      <loc>http://kunagi.org/team.html</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.6</priority>
+   </url>
+   <url>
+      <loc>http://kunagi.org/closedissues.html</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.3</priority>
+   </url>
+   <url>
+      <loc>http://kunagi.org/download.html</loc>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+   <url>
+      <loc>http://kunagi.org/support.html</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.7</priority>
+   </url>
+   <url>
+      <loc>http://kunagi.org/documentation.html</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.7</priority>
+   </url>
+   <url>
+      <loc>http://kunagi.org/development.html</loc>
+      <changefreq>monthly</changefreq>
+      <priority>0.6</priority>
+   </url>
+   <url>
+      <loc>http://kunagi.org/developerguide.html</loc>
+      <changefreq>monthly</changefreq>
+      <priority>0.6</priority>
+   </url>
+   <url>
+      <loc>http://kunagi.org/faq.html</loc>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+   <url>
+      <loc>http://kunagi.org/ideas.html</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.7</priority>
+   </url>
+   <url>
+      <loc>http://kunagi.org/message.html</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.0</priority>
+   </url>
+
+#foreach( $entry in $blog.entries )
+   <url>
+      <loc>http://kunagi.org/${entry.reference}.html</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+#end
+
+#foreach ($issue in $issues)
+   <url>
+      <loc>http://kunagi.org/${issue.reference}.html</loc>
+      <changefreq>daily</changefreq>
+      <priority>0.4</priority>
+   </url>
+#end
+
+#foreach ($story in $stories)
+   <url>
+      <loc>http://kunagi.org/${story.reference}.html</loc>
+      <changefreq>daily</changefreq>
+      <priority>0.4</priority>
+   </url>
+#end
+
+</urlset>

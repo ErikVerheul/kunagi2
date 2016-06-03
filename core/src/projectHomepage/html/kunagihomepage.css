@@ -1,0 +1,69 @@
+* {margin: 0; padding: 0;}
+body {background: url("img/bg.jpg") repeat-x fixed left top #172D3F; font:14px/19px "verdana","sans-serif"; color: #333;}
+img {border: none;}
+table td {vertical-align: top;}
+input, textarea {border: 1px solid #192666; font: 14px/19px monospace; padding: 5px;}
+
+
+#main {width: 924px; margin: 20px auto 1000px auto;}
+
+#header {height: 80px; color: #FFF;}
+    h1 {font: 30pt/55pt "georgia",serif; color: white; margin: 0px 20px; color: #192666;}
+        h1 .orange {color: orange;}
+
+#menu {position: fixed;}
+    #menu img {margin: 10px 0px 20px 0px; border: none;}
+    #menu a.navigLink {color: #fff; font-weight: bold; cursor: pointer; display: block; padding: 8px 10px; text-decoration: none; text-align: right; font-size: 16px; text-shadow: 1px 1px 0 #222;}
+    #menu a.navigLinkSelected {color: #fd0;}
+    #menu a.navigLink:hover {color: #f70;}
+    #searchbox {margin: 40px 10px 10px 10px;}
+        #searchinput {padding: 2px; font-size: 12px; line-height: 12px; background: #EEF; color: #666; border: 1px solid #666; float: right;}
+
+#content {background: white; padding: 25px; min-height: 500px; border: 1px solid #666; border-radius: 10px; -webkit-border-radius: 10px; -moz-border-radius: 10px;}
+    #content a {color: #B37400;}
+    #content a.reference {font-family: monospace;}
+    #content code {color: #7070A0; font-family: monospace;}
+    #content .section {padding: 0px 0px;}
+        #content .section .sectionfooter {text-align: right; font-size: 10px; margin-top: 10px;}
+        #content .section p {margin-bottom: 10px;}
+        h2 {font: 15pt/20pt "georgia",serif; color: #233C9B; margin-bottom: 10px;}
+        h3 {font: 12pt/17pt "georgia",serif; color: black; margin-bottom: 10px;}
+        h4 {font: 11pt/16pt "georgia",serif; color: black; margin-bottom: 10px;}
+        h5 {font: 10pt/15pt "georgia",serif; color: black; margin-bottom: 10px;}
+        h6 {font: 9pt/14pt "georgia",serif; color: black; margin-bottom: 10px;}
+        .middle {float: left; width: 500px;}
+        .sidebar {float: right;}
+#content .starter {background: orange url("img/button_bg.png") 0 0 repeat-x; border: 1px solid orange; width: 150px; padding: 5px; text-align: center; -moz-border-radius: 5px; margin-bottom: 5px;}
+    #content .starter a {color: #B37400; font-size: 16px; font-weight: bold; text-decoration: none; cursor: pointer;}
+        h3 {font: 12pt/16pt "georgia",serif; font-weight: bold; margin-bottom: 10px;}
+        img.screenshotthumb {margin: 0px 0px 10px 10px; border: 1px solid #DDD;}
+        .featureseparator {clear: both; height: 10px;}
+        ul {margin-left: 20px; margin-top: 10px; margin-bottom: 10px;}
+        ol {margin-left: 30px; margin-top: 10px; margin-bottom: 10px;}
+        .secondaryText {color: #666;}
+        .smallText {font-size: 10px;}
+        .codeBlock {display: block; border: 1px solid #DDD; padding: 5px; margin: 0 10px 10px 10px; background: #EEE; max-width: 640px; max-height: 600px; overflow: auto;}
+        label.optional {}
+        div.sublabel {color: #AAA; font-size: 9px; line-height: 9px;}
+        div.socialbuttons {}
+            .buzz-small-1, .buzz-small-2, .buzz-small-3 {display: block; float: left;}
+        #content .section .toc {background: #eee; width: 50%; float: right; margin: 0 0 10px 10px;} 
+    #content .separator {height: 15px; margin-bottom: 25px; border-bottom: 1px solid #CCC;}
+
+#footer {color: #CCC; padding: 0px 10px; font-size: 8px; text-align: right;}
+
+#cse {}
+    #cse input.gsc-input, #cse input.gsc-search-button, #cse div.gsc-clear-button {display: none;}
+    #cse form.gsc-search-box {margin: -20px 0 0 0;}
+    #cse div.gsc-control-cse div.gsc-wrapper {font:14px/19px "verdana","sans-serif";}
+    #cse div.gsc-control-cse div.gsc-wrapper .gs-result .gs-title * {color: #B37400;}
+    #cse div.gsc-control-cse div.gsc-wrapper .gs-visibleUrl {display: none;}
+
+.error {background: darkred; border: 1px solid darkred; text-align: center; color: #FFA; font-size: 16px; font-weight: bold; padding: 10px; margin-bottom: 20px;}
+input.textinput {width: 170px; padding: 5px 7px 5px 7px;}
+input.submit {color: #B37400; font-size: 16px; font-weight: bold; font-family: "verdana","sans-serif"; background: orange url("img/button_bg.png") 0 0 repeat-x; border: 1px solid orange; width: 150px; padding: 5px; text-align: center; -moz-border-radius: 5px; cursor: pointer;}
+.clear {clear: both;}
+
+#shareme {height: 60px;}
+.sharrre .button{ float:left; width:60px;}
+.sharrre .linkedin { width:70px; }

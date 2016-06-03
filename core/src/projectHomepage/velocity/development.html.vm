@@ -1,0 +1,61 @@
+#header("development", "Development - Kunagi", "Kunagi project roadmap. Sprint Backlog and Product Backlog. Developers. Donations.", "Kunagi, roadmap, Sprint Backlog, Product Backlog, developers, donations")
+
+
+<div class="section">
+    <h2>Scrum with Kunagi</h2>
+    <p>Since the project was started in September 2008, we are doing Scrum. After a year of work,
+        Kunagi was good enough to give it a try. From the beginning it was perfect for our needs.
+        Now Kunagi is able to export its contents, so we can share our progress and plans with you.</p>
+</div>
+
+<div class="separator"></div>
+
+
+<div class="section">
+    <a name="sprintbacklog"></a>
+    <h2>Sprint Backlog</h2>
+    <p>The current sprint started on <strong>${sprintBacklog.begin}</strong> and will end on <strong>${sprintBacklog.end}</strong>.
+        #if ($sprintBacklog.release)
+            Release <strong>${sprintBacklog.release}</strong> is being implemented.
+        #end
+    </p>
+    #if( $sprintBacklog.goal )
+        <h3>Goal for the current Sprint</h3>
+        <p>$sprintBacklog.goal</p>
+    #end
+    <h3>Stories the Team has committed to</h3>
+    <ul>
+    #foreach( $story in $sprintBacklog.stories )
+        <li><a href="${story.reference}.html" class="reference">$story.reference</a> $story.label</li>
+    #end
+    </ul>
+    <h3>Current Burndown</h3>
+    <img src="sprint-burndown-700x200.png" alt="current sprint burndown chart">
+</div>
+
+
+<div class="separator"></div>
+
+<div class="section">
+    <a name="productbacklog"></a>
+    <h2>Product Backlog</h2>
+    <ul>
+    #foreach( $story in $productBacklog.stories )
+        <li><a href="${story.reference}.html" class="reference">$story.reference</a> $story.label</li>
+    #end
+    </ul>
+    <p>There are more story canditates among collected <a href="ideas.html">ideas</a>.</p>
+</div>
+
+
+<div class="separator"></div>
+
+<div class="section">
+    <a name="participation"></a>
+    <h2>Participation</h2>
+    <p>We are working on making our development process more open. Please see our 
+        <a href="developerguide.html">developer guide</a> for source code and an introduction.</p>        
+</div>
+
+
+#footer()
