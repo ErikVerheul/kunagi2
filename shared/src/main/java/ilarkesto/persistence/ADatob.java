@@ -86,8 +86,8 @@ public abstract class ADatob implements Searchable {
 
 	// --- properties as map ---
 
-	public final Map createPropertiesMap() {
-		Map properties = new HashMap();
+	public final HashMap createPropertiesMap() {
+		HashMap properties = new HashMap();
 		storeProperties(properties);
 		return properties;
 	}
