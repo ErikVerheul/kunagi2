@@ -36,7 +36,7 @@ public abstract class ADataTransferObject implements Serializable, IsSerializabl
 
 	private String userId;
 	private Set<String> deletedEntities;
-	private Map<String, Map<String, Serializable>> entities;
+	private HashMap<String, Map<String, Serializable>> entities;
 
 	// dummys required for gwt-serialization
 	private int dummyI;
@@ -80,7 +80,7 @@ public abstract class ADataTransferObject implements Serializable, IsSerializabl
 		return entities.containsKey(entityId);
 	}
 
-	public final void addEntity(Map data) {
+	public final void addEntity(HashMap data) {
 		if (entities == null) {
                         entities = new HashMap<String, Map<String, Serializable>>();
                 }

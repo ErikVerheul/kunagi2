@@ -120,7 +120,7 @@ public abstract class AGwtConversation implements Comparable<AGwtConversation> {
 			return;
 		}
 
-		Map propertiesMap = entity.createPropertiesMap();
+		HashMap propertiesMap = entity.createPropertiesMap();
 		filterEntityProperties(entity, propertiesMap);
 
 		getNextData().addEntity(propertiesMap);
