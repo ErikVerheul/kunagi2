@@ -55,6 +55,7 @@ import static com.google.gwt.user.client.DOM.setInnerHTML;
 import static com.google.gwt.user.client.DOM.setStyleAttribute;
 import static com.google.gwt.user.client.DeferredCommand.addCommand;
 import com.google.gwt.user.client.Element;
+//import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.Event.NativePreviewEvent;
 import static com.google.gwt.user.client.ui.PopupPanel.AnimationType.ONE_WAY_CORNER;
@@ -983,8 +984,8 @@ public class MenuBar extends Widget implements PopupListener, HasAnimation, HasC
 		this.vertical = vertical;
 
 		
-                Element outer = FocusPanel.impl.createFocusable();
-		appendChild(outer, table);
+                com.google.gwt.dom.client.Element outer = (com.google.gwt.dom.client.Element) FocusPanel.impl.createFocusable();
+		appendChild((Element) outer, table);
 		setElement(outer);
 
 		Accessibility.setRole(getElement(), Accessibility.ROLE_MENUBAR);
