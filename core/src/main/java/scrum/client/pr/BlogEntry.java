@@ -14,7 +14,7 @@
  */
 package scrum.client.pr;
 
-import generated.client.pr.GBlogEntry;
+import generated.scrum.client.pr.GBlogEntry;
 import ilarkesto.core.base.Utl;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.gwt.client.HyperlinkWidget;

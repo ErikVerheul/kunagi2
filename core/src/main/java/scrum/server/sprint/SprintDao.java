@@ -14,7 +14,7 @@
  */
 package scrum.server.sprint;
 
-import generated.server.sprint.GSprintDao;
+import generated.scrum.server.sprint.GSprintDao;
 import ilarkesto.base.StrExtend;
 import ilarkesto.base.UtlExtend;
 import ilarkesto.core.scope.In;

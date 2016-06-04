@@ -14,7 +14,7 @@
  */
 package scrum.client.sprint;
 
-import generated.client.sprint.GClaimTaskAction;
+import generated.scrum.client.sprint.GClaimTaskAction;
 import scrum.client.admin.User;
 import scrum.client.common.TooltipBuilder;
 

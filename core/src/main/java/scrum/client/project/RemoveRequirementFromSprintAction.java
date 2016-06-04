@@ -14,9 +14,9 @@
  */
 package scrum.client.project;
 
-import generated.client.project.GRemoveRequirementFromSprintAction;
+import generated.scrum.client.project.GRemoveRequirementFromSprintAction;
 import scrum.client.common.TooltipBuilder;
-import generated.client.sprint.KickStoryFromSprintServiceCall;
+import generated.scrum.client.sprint.KickStoryFromSprintServiceCall;
 import scrum.client.sprint.Sprint;
 
 public class RemoveRequirementFromSprintAction extends GRemoveRequirementFromSprintAction {

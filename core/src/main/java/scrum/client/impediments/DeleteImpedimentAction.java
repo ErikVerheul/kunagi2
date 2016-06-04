@@ -14,7 +14,7 @@
  */
 package scrum.client.impediments;
 
-import generated.client.impediments.GDeleteImpedimentAction;
+import generated.scrum.client.impediments.GDeleteImpedimentAction;
 import scrum.client.common.TooltipBuilder;
 
 public class DeleteImpedimentAction extends GDeleteImpedimentAction {

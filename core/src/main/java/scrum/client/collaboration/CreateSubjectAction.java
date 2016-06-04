@@ -14,7 +14,7 @@
  */
 package scrum.client.collaboration;
 
-import generated.client.collaboration.GCreateSubjectAction;
+import generated.scrum.client.collaboration.GCreateSubjectAction;
 import ilarkesto.core.scope.Scope;
 import scrum.client.common.TooltipBuilder;
 import scrum.client.workspace.ProjectWorkspaceWidgets;

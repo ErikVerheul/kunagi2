@@ -14,7 +14,7 @@
  */
 package scrum.client.admin;
 
-import generated.client.admin.GCreateUserAction;
+import generated.scrum.client.admin.GCreateUserAction;
 import ilarkesto.core.scope.Scope;
 
 public class DeactivateSystemMessageAction extends GCreateUserAction {

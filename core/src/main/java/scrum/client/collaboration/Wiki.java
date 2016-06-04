@@ -14,7 +14,7 @@
  */
 package scrum.client.collaboration;
 
-import generated.client.collaboration.GWiki;
+import generated.scrum.client.collaboration.GWiki;
 import ilarkesto.gwt.client.CodemirrorEditorWidget;
 import ilarkesto.gwt.client.Gwt;
 import ilarkesto.gwt.client.Initializer;

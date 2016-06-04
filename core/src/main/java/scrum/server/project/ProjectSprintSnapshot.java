@@ -14,7 +14,7 @@
  */
 package scrum.server.project;
 
-import generated.server.project.GProjectSprintSnapshot;
+import generated.scrum.server.project.GProjectSprintSnapshot;
 import ilarkesto.core.time.Date;
 import scrum.server.admin.User;
 import scrum.server.common.BurndownSnapshot;

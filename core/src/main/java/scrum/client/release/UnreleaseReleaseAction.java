@@ -14,7 +14,7 @@
  */
 package scrum.client.release;
 
-import generated.client.release.GUnreleaseReleaseAction;
+import generated.scrum.client.release.GUnreleaseReleaseAction;
 import ilarkesto.core.time.Date;
 import scrum.client.common.TooltipBuilder;
 

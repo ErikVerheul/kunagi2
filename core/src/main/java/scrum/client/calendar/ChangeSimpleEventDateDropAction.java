@@ -16,7 +16,7 @@ package scrum.client.calendar;
 
 import ilarkesto.core.time.Date;
 import scrum.client.dnd.BlockListDropAction;
-import generated.client.workspace.VisibleDataChangedEvent;
+import generated.scrum.client.workspace.VisibleDataChangedEvent;
 
 public class ChangeSimpleEventDateDropAction implements BlockListDropAction<SimpleEvent> {
 

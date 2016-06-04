@@ -14,7 +14,7 @@
  */
 package scrum.client.estimation;
 
-import generated.client.estimation.GRequirementEstimationVote;
+import generated.scrum.client.estimation.GRequirementEstimationVote;
 import java.util.Map;
 
 public class RequirementEstimationVote extends GRequirementEstimationVote {

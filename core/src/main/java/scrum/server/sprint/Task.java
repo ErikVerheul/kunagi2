@@ -14,7 +14,7 @@
  */
 package scrum.server.sprint;
 
-import generated.server.sprint.GTask;
+import generated.scrum.server.sprint.GTask;
 import scrum.client.common.LabelSupport;
 import scrum.client.common.ReferenceSupport;
 import scrum.server.admin.User;

@@ -14,7 +14,7 @@
  */
 package scrum.client.calendar;
 
-import generated.client.calendar.GCreateSimpleEventAction;
+import generated.scrum.client.calendar.GCreateSimpleEventAction;
 import ilarkesto.core.scope.Scope;
 import scrum.client.common.TooltipBuilder;
 import scrum.client.workspace.ProjectWorkspaceWidgets;

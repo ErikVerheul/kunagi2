@@ -35,7 +35,7 @@ import scrum.client.files.Uploader;
 import scrum.client.i18n.Localizer;
 import scrum.client.issues.IssueManager;
 import scrum.client.journal.ChangeHistoryManager;
-import generated.client.project.CloseProjectServiceCall;
+import generated.scrum.client.project.CloseProjectServiceCall;
 import scrum.client.project.Project;
 import scrum.client.search.Search;
 import scrum.client.undo.Undo;

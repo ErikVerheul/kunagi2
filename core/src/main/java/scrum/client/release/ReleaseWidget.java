@@ -24,7 +24,7 @@ import java.util.List;
 
 import scrum.client.ScrumGwt;
 import scrum.client.common.AScrumWidget;
-import generated.client.issues.RequestReleaseIssuesServiceCall;
+import generated.scrum.client.issues.RequestReleaseIssuesServiceCall;
 import scrum.client.journal.ChangeHistoryWidget;
 import scrum.client.sprint.Sprint;
 

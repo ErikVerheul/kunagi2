@@ -14,7 +14,7 @@
  */
 package scrum.client.collaboration;
 
-import generated.client.collaboration.GChat;
+import generated.scrum.client.collaboration.GChat;
 import java.util.Collections;
 import java.util.LinkedList;
 

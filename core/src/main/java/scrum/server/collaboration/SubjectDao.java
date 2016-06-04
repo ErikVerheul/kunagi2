@@ -14,7 +14,7 @@
  */
 package scrum.server.collaboration;
 
-import generated.server.collaboration.GSubjectDao;
+import generated.scrum.server.collaboration.GSubjectDao;
 import ilarkesto.fp.Predicate;
 import scrum.server.project.Project;
 

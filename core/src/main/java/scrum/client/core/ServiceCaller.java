@@ -14,8 +14,8 @@
  */
 package scrum.client.core;
 
-import generated.client.core.AServiceCall;
-import generated.client.core.GServiceCaller;
+import generated.scrum.client.core.AServiceCall;
+import generated.scrum.client.core.GServiceCaller;
 import ilarkesto.core.base.Str;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.core.time.Tm;
@@ -27,10 +27,10 @@ import java.util.List;
 import scrum.client.Dao;
 import scrum.client.DataTransferObject;
 import scrum.client.ScrumGwtApplication;
-import generated.client.ScrumService;
-import generated.client.ScrumServiceAsync;
+import generated.scrum.client.ScrumService;
+import generated.scrum.client.ScrumServiceAsync;
 import scrum.client.common.AScrumWidget;
-import generated.client.communication.ServerDataReceivedEvent;
+import generated.scrum.client.communication.ServerDataReceivedEvent;
 
 public class ServiceCaller extends GServiceCaller {
 

@@ -14,7 +14,7 @@
  */
 package scrum.client.sprint;
 
-import generated.client.sprint.RequestHistoryServiceCall;
+import generated.scrum.client.sprint.RequestHistoryServiceCall;
 import ilarkesto.core.base.ChangeIndicator;
 import ilarkesto.gwt.client.Gwt;
 

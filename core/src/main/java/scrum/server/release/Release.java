@@ -14,7 +14,7 @@
  */
 package scrum.server.release;
 
-import generated.server.release.GRelease;
+import generated.scrum.server.release.GRelease;
 import ilarkesto.concurrent.TaskManager;
 import ilarkesto.core.base.Utl;
 import ilarkesto.core.logging.Log;

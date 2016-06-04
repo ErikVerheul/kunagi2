@@ -14,7 +14,7 @@
  */
 package scrum.server.collaboration;
 
-import generated.server.collaboration.GEmoticonDao;
+import generated.scrum.server.collaboration.GEmoticonDao;
 
 
 public class EmoticonDao

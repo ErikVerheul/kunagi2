@@ -14,7 +14,7 @@
  */
 package scrum.client.sprint;
 
-import generated.client.sprint.GSprint;
+import generated.scrum.client.sprint.GSprint;
 import ilarkesto.core.base.Utl;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.core.time.Date;

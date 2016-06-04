@@ -14,8 +14,8 @@
  */
 package scrum.client.release;
 
-import generated.client.release.PublishReleaseServiceCall;
-import generated.client.release.GReleaseReleaseAction;
+import generated.scrum.client.release.PublishReleaseServiceCall;
+import generated.scrum.client.release.GReleaseReleaseAction;
 import scrum.client.common.TooltipBuilder;
 
 public class ReleaseReleaseAction extends GReleaseReleaseAction {

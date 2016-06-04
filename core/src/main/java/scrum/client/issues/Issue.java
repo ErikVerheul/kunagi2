@@ -14,7 +14,7 @@
  */
 package scrum.client.issues;
 
-import generated.client.issues.GIssue;
+import generated.scrum.client.issues.GIssue;
 import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.base.Str;
 import ilarkesto.core.logging.Log;

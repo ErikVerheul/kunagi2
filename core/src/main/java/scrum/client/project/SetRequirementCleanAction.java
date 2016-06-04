@@ -14,7 +14,7 @@
  */
 package scrum.client.project;
 
-import generated.client.project.GSetRequirementCleanAction;
+import generated.scrum.client.project.GSetRequirementCleanAction;
 import scrum.client.common.TooltipBuilder;
 
 public class SetRequirementCleanAction extends GSetRequirementCleanAction {

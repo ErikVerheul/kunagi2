@@ -14,7 +14,7 @@
  */
 package scrum.client.calendar;
 
-import generated.client.calendar.GPublishSimpleEventAction;
+import generated.scrum.client.calendar.GPublishSimpleEventAction;
 import ilarkesto.core.base.Str;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.core.time.Time;

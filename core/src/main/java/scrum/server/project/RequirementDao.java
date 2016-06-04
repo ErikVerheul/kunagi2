@@ -14,7 +14,7 @@
  */
 package scrum.server.project;
 
-import generated.server.project.GRequirementDao;
+import generated.scrum.server.project.GRequirementDao;
 import ilarkesto.fp.Predicate;
 import scrum.server.issues.Issue;
 

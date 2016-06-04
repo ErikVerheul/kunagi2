@@ -14,7 +14,7 @@
  */
 package scrum.client.collaboration;
 
-import generated.client.collaboration.GCreateWikipageAction;
+import generated.scrum.client.collaboration.GCreateWikipageAction;
 
 public class CreateWikipageAction extends GCreateWikipageAction {
 

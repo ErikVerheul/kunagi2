@@ -14,7 +14,7 @@
  */
 package scrum.client;
 
-import generated.client.GScrumComponentsReflector;
+import generated.scrum.client.GScrumComponentsReflector;
 
 
 public class ScrumComponentsReflector extends GScrumComponentsReflector {

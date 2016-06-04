@@ -14,7 +14,7 @@
  */
 package scrum.client;
 
-import generated.client.GDao;
+import generated.scrum.client.GDao;
 import com.google.gwt.user.client.Timer;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.ADataTransferObject;
@@ -33,12 +33,12 @@ import scrum.client.collaboration.Comment;
 import scrum.client.collaboration.Subject;
 import scrum.client.collaboration.Wikipage;
 import scrum.client.common.AScrumGwtEntity;
-import generated.client.core.ChangePropertiesServiceCall;
-import generated.client.core.CreateEntityServiceCall;
-import generated.client.core.DeleteEntityServiceCall;
-import generated.client.core.RequestEntityByReferenceServiceCall;
+import generated.scrum.client.core.ChangePropertiesServiceCall;
+import generated.scrum.client.core.CreateEntityServiceCall;
+import generated.scrum.client.core.DeleteEntityServiceCall;
+import generated.scrum.client.core.RequestEntityByReferenceServiceCall;
 import scrum.client.files.File;
-import generated.client.files.FileUploadedEvent;
+import generated.scrum.client.files.FileUploadedEvent;
 import scrum.client.impediments.Impediment;
 import scrum.client.issues.Issue;
 import scrum.client.journal.Change;
@@ -50,7 +50,7 @@ import scrum.client.release.Release;
 import scrum.client.risks.Risk;
 import scrum.client.sprint.Sprint;
 import scrum.client.sprint.Task;
-import generated.client.workspace.VisibleDataChangedEvent;
+import generated.scrum.client.workspace.VisibleDataChangedEvent;
 
 public class Dao extends GDao {
 

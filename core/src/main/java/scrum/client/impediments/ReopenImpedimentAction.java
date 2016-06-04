@@ -14,7 +14,7 @@
  */
 package scrum.client.impediments;
 
-import generated.client.impediments.GCloseImpedimentAction;
+import generated.scrum.client.impediments.GCloseImpedimentAction;
 import scrum.client.common.TooltipBuilder;
 
 public class ReopenImpedimentAction extends GCloseImpedimentAction {

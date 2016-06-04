@@ -14,23 +14,23 @@
  */
 package scrum.client.communication;
 
-import generated.client.communication.GPinger;
-import generated.client.communication.ServerDataReceivedHandler;
-import generated.client.communication.ServerDataReceivedEvent;
-import generated.client.communication.PingServiceCall;
+import generated.scrum.client.communication.GPinger;
+import generated.scrum.client.communication.ServerDataReceivedHandler;
+import generated.scrum.client.communication.ServerDataReceivedEvent;
+import generated.scrum.client.communication.PingServiceCall;
 import ilarkesto.core.logging.Log;
 import ilarkesto.core.time.Tm;
 
 import java.util.LinkedList;
 
 import scrum.client.DataTransferObject;
-import generated.client.core.ApplicationStartedEvent;
-import generated.client.core.ApplicationStartedHandler;
+import generated.scrum.client.core.ApplicationStartedEvent;
+import generated.scrum.client.core.ApplicationStartedHandler;
 import scrum.client.project.Requirement;
-import generated.client.workspace.BlockCollapsedEvent;
-import generated.client.workspace.BlockCollapsedHandler;
-import generated.client.workspace.BlockExpandedEvent;
-import generated.client.workspace.BlockExpandedHandler;
+import generated.scrum.client.workspace.BlockCollapsedEvent;
+import generated.scrum.client.workspace.BlockCollapsedHandler;
+import generated.scrum.client.workspace.BlockExpandedEvent;
+import generated.scrum.client.workspace.BlockExpandedHandler;
 
 import com.google.gwt.user.client.Timer;
 

@@ -14,7 +14,7 @@
  */
 package scrum.client.project;
 
-import generated.client.project.GProject;
+import generated.scrum.client.project.GProject;
 import ilarkesto.core.base.Str;
 import ilarkesto.core.base.Utl;
 import ilarkesto.core.logging.Log;

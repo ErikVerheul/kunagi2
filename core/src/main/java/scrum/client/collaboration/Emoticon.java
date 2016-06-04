@@ -14,7 +14,7 @@
  */
 package scrum.client.collaboration;
 
-import generated.client.collaboration.GEmoticon;
+import generated.scrum.client.collaboration.GEmoticon;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.LabelProvider;
 

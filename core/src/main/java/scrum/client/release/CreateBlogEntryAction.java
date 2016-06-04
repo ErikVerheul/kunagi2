@@ -14,7 +14,7 @@
  */
 package scrum.client.release;
 
-import generated.client.release.GCreateBlogEntryAction;
+import generated.scrum.client.release.GCreateBlogEntryAction;
 import ilarkesto.core.scope.Scope;
 import scrum.client.common.TooltipBuilder;
 import scrum.client.pr.BlogEntry;

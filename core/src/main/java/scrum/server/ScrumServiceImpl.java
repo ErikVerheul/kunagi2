@@ -14,7 +14,7 @@
  */
 package scrum.server;
 
-import generated.server.GScrumServiceImpl;
+import generated.scrum.server.GScrumServiceImpl;
 import ilarkesto.auth.Auth;
 import ilarkesto.auth.AuthenticationFailedException;
 import ilarkesto.auth.WrongPasswordException;

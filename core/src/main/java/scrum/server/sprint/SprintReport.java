@@ -1,6 +1,6 @@
 package scrum.server.sprint;
 
-import generated.server.sprint.GSprintReport;
+import generated.scrum.server.sprint.GSprintReport;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;

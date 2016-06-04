@@ -14,7 +14,7 @@
  */
 package scrum.client.project;
 
-import generated.client.project.GCloseRequirementAction;
+import generated.scrum.client.project.GCloseRequirementAction;
 import scrum.client.common.TooltipBuilder;
 
 public class CloseRequirementAction extends GCloseRequirementAction {

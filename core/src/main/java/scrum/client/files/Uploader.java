@@ -14,9 +14,9 @@
  */
 package scrum.client.files;
 
-import generated.client.files.FileUploadedEvent;
-import generated.client.files.FileUploadedHandler;
-import generated.client.files.GUploader;
+import generated.scrum.client.files.FileUploadedEvent;
+import generated.scrum.client.files.FileUploadedHandler;
+import generated.scrum.client.files.GUploader;
 import com.google.gwt.user.client.ui.DialogBox;
 
 public class Uploader extends GUploader implements FileUploadedHandler {

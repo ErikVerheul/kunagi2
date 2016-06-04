@@ -14,7 +14,7 @@
  */
 package scrum.client.issues;
 
-import generated.client.issues.GRejectFixIssueAction;
+import generated.scrum.client.issues.GRejectFixIssueAction;
 
 public class RejectFixIssueAction extends GRejectFixIssueAction {
 

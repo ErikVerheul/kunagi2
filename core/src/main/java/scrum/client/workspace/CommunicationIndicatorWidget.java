@@ -21,7 +21,7 @@ import java.util.List;
 
 import scrum.client.common.AScrumWidget;
 import scrum.client.communication.Pinger;
-import generated.client.core.AServiceCall;
+import generated.scrum.client.core.AServiceCall;
 import scrum.client.core.ServiceCaller;
 import scrum.client.test.ScrumStatusWidget;
 

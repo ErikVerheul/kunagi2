@@ -1,6 +1,6 @@
 package scrum.client.project;
 
-import generated.client.project.GSplitRequirementAction;
+import generated.scrum.client.project.GSplitRequirementAction;
 import ilarkesto.core.scope.Scope;
 import scrum.client.common.TooltipBuilder;
 import scrum.client.workspace.ProjectWorkspaceWidgets;

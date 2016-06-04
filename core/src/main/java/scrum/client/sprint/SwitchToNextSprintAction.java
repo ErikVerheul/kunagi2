@@ -14,8 +14,8 @@
  */
 package scrum.client.sprint;
 
-import generated.client.sprint.GSwitchToNextSprintAction;
-import generated.client.sprint.SwitchToNextSprintServiceCall;
+import generated.scrum.client.sprint.GSwitchToNextSprintAction;
+import generated.scrum.client.sprint.SwitchToNextSprintServiceCall;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.Gwt;
 

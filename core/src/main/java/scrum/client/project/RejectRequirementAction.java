@@ -14,7 +14,7 @@
  */
 package scrum.client.project;
 
-import generated.client.project.GRejectRequirementAction;
+import generated.scrum.client.project.GRejectRequirementAction;
 
 public class RejectRequirementAction extends GRejectRequirementAction {
 

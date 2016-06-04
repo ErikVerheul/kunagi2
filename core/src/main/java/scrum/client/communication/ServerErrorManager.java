@@ -14,9 +14,9 @@
  */
 package scrum.client.communication;
 
-import generated.client.communication.ServerDataReceivedHandler;
-import generated.client.communication.GServerErrorManager;
-import generated.client.communication.ServerDataReceivedEvent;
+import generated.scrum.client.communication.ServerDataReceivedHandler;
+import generated.scrum.client.communication.GServerErrorManager;
+import generated.scrum.client.communication.ServerDataReceivedEvent;
 import ilarkesto.gwt.client.ErrorWrapper;
 
 import java.util.ArrayList;

@@ -14,7 +14,7 @@
  */
 package scrum.server.estimation;
 
-import generated.server.estimation.GRequirementEstimationVoteDao;
+import generated.scrum.server.estimation.GRequirementEstimationVoteDao;
 import ilarkesto.core.logging.Log;
 import ilarkesto.fp.Predicate;
 

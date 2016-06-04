@@ -14,7 +14,7 @@
  */
 package scrum.server.collaboration;
 
-import generated.server.collaboration.GChatMessage;
+import generated.scrum.server.collaboration.GChatMessage;
 import ilarkesto.core.time.TimePeriod;
 import scrum.server.admin.User;
 

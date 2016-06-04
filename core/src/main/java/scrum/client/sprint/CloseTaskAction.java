@@ -14,7 +14,7 @@
  */
 package scrum.client.sprint;
 
-import generated.client.sprint.GCloseTaskAction;
+import generated.scrum.client.sprint.GCloseTaskAction;
 import scrum.client.common.TooltipBuilder;
 
 public class CloseTaskAction extends GCloseTaskAction {

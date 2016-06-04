@@ -14,7 +14,7 @@
  */
 package scrum.server.collaboration;
 
-import generated.server.collaboration.GWikipage;
+import generated.scrum.server.collaboration.GWikipage;
 import scrum.server.admin.User;
 
 public class Wikipage extends GWikipage {

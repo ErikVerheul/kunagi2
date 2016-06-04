@@ -14,7 +14,7 @@
  */
 package scrum.client.risks;
 
-import generated.client.risks.GDeleteRiskAction;
+import generated.scrum.client.risks.GDeleteRiskAction;
 import scrum.client.common.TooltipBuilder;
 
 public class DeleteRiskAction extends GDeleteRiskAction {

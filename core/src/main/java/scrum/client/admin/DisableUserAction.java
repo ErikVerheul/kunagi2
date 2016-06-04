@@ -14,7 +14,7 @@
  */
 package scrum.client.admin;
 
-import generated.client.admin.GDisableUserAction;
+import generated.scrum.client.admin.GDisableUserAction;
 
 public class DisableUserAction extends GDisableUserAction {
 

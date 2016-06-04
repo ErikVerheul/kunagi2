@@ -14,7 +14,7 @@
  */
 package scrum.server.release;
 
-import generated.server.release.GReleaseDao;
+import generated.scrum.server.release.GReleaseDao;
 import ilarkesto.core.time.Date;
 import ilarkesto.fp.Predicate;
 

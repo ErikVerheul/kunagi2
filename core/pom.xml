@@ -94,7 +94,7 @@
                 <configuration>
                     <configuration>
                         <compileSourcesArtifacts>
-                            <artifact>ilarkesto:core</artifact>
+                            <artifact>com:google</artifact>
                             <artifact>ilarkesto:core</artifact>
                             <artifact>ilarkesto:gwt.client</artifact>
                         </compileSourcesArtifacts>

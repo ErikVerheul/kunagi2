@@ -14,7 +14,7 @@
  */
 package scrum.client.issues;
 
-import generated.client.issues.GPublishIssueAction;
+import generated.scrum.client.issues.GPublishIssueAction;
 import scrum.client.common.TooltipBuilder;
 
 public class PublishIssueAction extends GPublishIssueAction {

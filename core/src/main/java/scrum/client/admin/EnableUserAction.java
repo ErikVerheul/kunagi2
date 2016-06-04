@@ -14,7 +14,7 @@
  */
 package scrum.client.admin;
 
-import generated.client.admin.GEnableUserAction;
+import generated.scrum.client.admin.GEnableUserAction;
 
 public class EnableUserAction extends GEnableUserAction {
 

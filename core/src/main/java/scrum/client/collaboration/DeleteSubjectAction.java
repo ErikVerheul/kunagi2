@@ -14,7 +14,7 @@
  */
 package scrum.client.collaboration;
 
-import generated.client.collaboration.GDeleteSubjectAction;
+import generated.scrum.client.collaboration.GDeleteSubjectAction;
 import scrum.client.common.TooltipBuilder;
 
 public class DeleteSubjectAction extends GDeleteSubjectAction {

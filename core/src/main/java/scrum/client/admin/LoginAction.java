@@ -14,7 +14,7 @@
  */
 package scrum.client.admin;
 
-import generated.client.admin.GLoginAction;
+import generated.scrum.client.admin.GLoginAction;
 
 @Deprecated
 public class LoginAction extends GLoginAction {

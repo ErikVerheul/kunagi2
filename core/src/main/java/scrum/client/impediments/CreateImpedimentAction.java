@@ -14,7 +14,7 @@
  */
 package scrum.client.impediments;
 
-import generated.client.impediments.GCreateImpedimentAction;
+import generated.scrum.client.impediments.GCreateImpedimentAction;
 import scrum.client.common.TooltipBuilder;
 
 public class CreateImpedimentAction extends GCreateImpedimentAction {

@@ -14,9 +14,9 @@
  */
 package scrum.client.project;
 
-import generated.client.project.GAddRequirementToCurrentSprintAction;
+import generated.scrum.client.project.GAddRequirementToCurrentSprintAction;
 import scrum.client.common.TooltipBuilder;
-import generated.client.sprint.PullStoryToSprintServiceCall;
+import generated.scrum.client.sprint.PullStoryToSprintServiceCall;
 
 public class AddRequirementToCurrentSprintAction extends GAddRequirementToCurrentSprintAction {
 

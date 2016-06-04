@@ -14,7 +14,7 @@
  */
 package scrum.client.calendar;
 
-import generated.client.calendar.GCalendar;
+import generated.scrum.client.calendar.GCalendar;
 import ilarkesto.core.time.Date;
 
 import java.util.ArrayList;

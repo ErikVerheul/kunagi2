@@ -14,8 +14,8 @@
  */
 package scrum.client.project;
 
-import generated.client.project.UpdateProjectHomepageServiceCall;
-import generated.client.project.GUpdateProjectHomepageAction;
+import generated.scrum.client.project.UpdateProjectHomepageServiceCall;
+import generated.scrum.client.project.GUpdateProjectHomepageAction;
 import ilarkesto.core.base.Str;
 import scrum.client.common.TooltipBuilder;
 

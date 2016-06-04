@@ -14,7 +14,7 @@
  */
 package scrum.server.estimation;
 
-import generated.server.estimation.GRequirementEstimationVote;
+import generated.scrum.server.estimation.GRequirementEstimationVote;
 import scrum.server.admin.User;
 import scrum.server.project.Project;
 import scrum.server.project.Requirement;

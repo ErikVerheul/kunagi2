@@ -14,7 +14,7 @@
  */
 package scrum.client.pr;
 
-import generated.client.pr.GDeleteBlogEntryAction;
+import generated.scrum.client.pr.GDeleteBlogEntryAction;
 import scrum.client.common.TooltipBuilder;
 
 public class DeleteBlogEntryAction extends GDeleteBlogEntryAction {

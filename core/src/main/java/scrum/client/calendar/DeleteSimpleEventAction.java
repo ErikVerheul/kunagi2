@@ -14,7 +14,7 @@
  */
 package scrum.client.calendar;
 
-import generated.client.calendar.GDeleteSimpleEventAction;
+import generated.scrum.client.calendar.GDeleteSimpleEventAction;
 import scrum.client.common.TooltipBuilder;
 
 public class DeleteSimpleEventAction extends GDeleteSimpleEventAction {

@@ -14,7 +14,7 @@
  */
 package scrum.client.project;
 
-import generated.client.project.GFixRequirementAction;
+import generated.scrum.client.project.GFixRequirementAction;
 
 public class FixRequirementAction extends GFixRequirementAction {
 

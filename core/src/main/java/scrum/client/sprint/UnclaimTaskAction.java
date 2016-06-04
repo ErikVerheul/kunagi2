@@ -14,7 +14,7 @@
  */
 package scrum.client.sprint;
 
-import generated.client.sprint.GReopenTaskAction;
+import generated.scrum.client.sprint.GReopenTaskAction;
 import scrum.client.common.TooltipBuilder;
 
 public class UnclaimTaskAction extends GReopenTaskAction {

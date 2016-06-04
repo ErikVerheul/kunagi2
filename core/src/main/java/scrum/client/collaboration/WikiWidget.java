@@ -25,7 +25,7 @@ import scrum.client.common.AScrumAction;
 import scrum.client.common.AScrumGwtEntity;
 import scrum.client.common.AScrumWidget;
 import scrum.client.common.TooltipBuilder;
-import generated.client.communication.TouchLastActivityServiceCall;
+import generated.scrum.client.communication.TouchLastActivityServiceCall;
 import scrum.client.journal.ActivateChangeHistoryAction;
 import scrum.client.journal.ChangeHistoryWidget;
 import scrum.client.workspace.Navigator;

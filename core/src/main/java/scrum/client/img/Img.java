@@ -14,7 +14,7 @@
  */
 package scrum.client.img;
 
-import generated.client.img.GImageBundle;
+import generated.scrum.client.img.GImageBundle;
 import com.google.gwt.core.client.GWT;
 
 public class Img {

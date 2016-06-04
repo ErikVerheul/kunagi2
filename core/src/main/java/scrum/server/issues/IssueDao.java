@@ -14,7 +14,7 @@
  */
 package scrum.server.issues;
 
-import generated.server.issues.GIssueDao;
+import generated.scrum.server.issues.GIssueDao;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.fp.Predicate;
 

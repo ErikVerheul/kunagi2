@@ -14,8 +14,8 @@
  */
 package scrum.client.journal;
 
-import generated.client.journal.GChangeHistoryManager;
-import generated.client.journal.RequestChangesServiceCall;
+import generated.scrum.client.journal.GChangeHistoryManager;
+import generated.scrum.client.journal.RequestChangesServiceCall;
 import java.util.List;
 import scrum.client.common.AScrumGwtEntity;
 

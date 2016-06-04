@@ -14,9 +14,9 @@
  */
 package scrum.client.i18n;
 
-import generated.client.i18n.TextBundleViews;
-import generated.client.i18n.TextBundleFields;
-import generated.client.i18n.GLocalizer;
+import generated.scrum.client.i18n.TextBundleViews;
+import generated.scrum.client.i18n.TextBundleFields;
+import generated.scrum.client.i18n.GLocalizer;
 
 public class Localizer extends GLocalizer {
 

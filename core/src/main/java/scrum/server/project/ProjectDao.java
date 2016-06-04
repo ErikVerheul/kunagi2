@@ -14,7 +14,7 @@
  */
 package scrum.server.project;
 
-import generated.server.project.GProjectDao;
+import generated.scrum.server.project.GProjectDao;
 import ilarkesto.core.logging.Log;
 import ilarkesto.core.time.Date;
 import ilarkesto.core.time.DateAndTime;

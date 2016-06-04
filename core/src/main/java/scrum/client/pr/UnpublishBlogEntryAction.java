@@ -14,7 +14,7 @@
  */
 package scrum.client.pr;
 
-import generated.client.pr.GUnpublishBlogEntryAction;
+import generated.scrum.client.pr.GUnpublishBlogEntryAction;
 
 public class UnpublishBlogEntryAction extends GUnpublishBlogEntryAction {
 

@@ -14,7 +14,7 @@
  */
 package scrum.client.project;
 
-import generated.client.project.GSetRequirementDirtyAction;
+import generated.scrum.client.project.GSetRequirementDirtyAction;
 import scrum.client.common.TooltipBuilder;
 
 public class SetRequirementDirtyAction extends GSetRequirementDirtyAction {

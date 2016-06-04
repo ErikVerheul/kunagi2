@@ -14,15 +14,15 @@
  */
 package scrum.client.admin;
 
-import generated.client.admin.GSystemMessageManager;
-import generated.client.admin.UpdateSystemMessageServiceCall;
+import generated.scrum.client.admin.GSystemMessageManager;
+import generated.scrum.client.admin.UpdateSystemMessageServiceCall;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.gwt.client.editor.ADateAndTimeEditorModel;
 import ilarkesto.gwt.client.editor.ATextEditorModel;
 import scrum.client.DataTransferObject;
-import generated.client.communication.ServerDataReceivedEvent;
-import generated.client.communication.ServerDataReceivedHandler;
-import generated.client.workspace.VisibleDataChangedEvent;
+import generated.scrum.client.communication.ServerDataReceivedEvent;
+import generated.scrum.client.communication.ServerDataReceivedHandler;
+import generated.scrum.client.workspace.VisibleDataChangedEvent;
 
 public class SystemMessageManager extends GSystemMessageManager implements ServerDataReceivedHandler {
 

@@ -14,7 +14,7 @@
  */
 package scrum.server.calendar;
 
-import generated.server.calendar.GSimpleEvent;
+import generated.scrum.server.calendar.GSimpleEvent;
 import ilarkesto.core.base.Utl;
 import ilarkesto.core.time.Date;
 import scrum.server.admin.User;

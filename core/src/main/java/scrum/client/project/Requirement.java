@@ -14,7 +14,7 @@
  */
 package scrum.client.project;
 
-import generated.client.project.GRequirement;
+import generated.scrum.client.project.GRequirement;
 import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.base.Str;
 import ilarkesto.core.scope.Scope;

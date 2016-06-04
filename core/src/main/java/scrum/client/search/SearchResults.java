@@ -14,7 +14,7 @@
  */
 package scrum.client.search;
 
-import generated.client.search.SearchResultsChangedEvent;
+import generated.scrum.client.search.SearchResultsChangedEvent;
 import ilarkesto.core.logging.Log;
 
 import java.util.ArrayList;

@@ -14,7 +14,7 @@
  */
 package scrum.client.journal;
 
-import generated.client.journal.GChange;
+import generated.scrum.client.journal.GChange;
 import ilarkesto.core.base.Str;
 import ilarkesto.core.diff.HtmlDiffMarker;
 import ilarkesto.core.diff.TokenDiff;
@@ -28,7 +28,7 @@ import java.util.Map;
 
 import scrum.client.ScrumGwt;
 import scrum.client.admin.User;
-import generated.client.core.RequestEntityServiceCall;
+import generated.scrum.client.core.RequestEntityServiceCall;
 import scrum.client.impediments.Impediment;
 import scrum.client.issues.Issue;
 import scrum.client.project.Requirement;

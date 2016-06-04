@@ -14,7 +14,7 @@
  */
 package scrum.server.journal;
 
-import generated.server.journal.GChange;
+import generated.scrum.server.journal.GChange;
 import ilarkesto.auth.Auth;
 import ilarkesto.core.logging.Log;
 import ilarkesto.persistence.AEntity;

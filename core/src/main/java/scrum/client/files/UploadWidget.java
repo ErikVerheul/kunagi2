@@ -26,7 +26,7 @@ import ilarkesto.core.scope.Scope;
 import java.util.Set;
 
 import scrum.client.common.AScrumWidget;
-import generated.client.communication.PingServiceCall;
+import generated.scrum.client.communication.PingServiceCall;
 import scrum.client.project.Project;
 
 import com.google.gwt.dom.client.Style.Unit;

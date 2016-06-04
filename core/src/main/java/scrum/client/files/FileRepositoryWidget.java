@@ -18,7 +18,7 @@ import ilarkesto.gwt.client.ButtonWidget;
 import scrum.client.common.AScrumWidget;
 import scrum.client.common.BlockListWidget;
 import scrum.client.common.UserGuideWidget;
-import generated.client.impediments.RequestImpedimentsServiceCall;
+import generated.scrum.client.impediments.RequestImpedimentsServiceCall;
 import scrum.client.workspace.PagePanel;
 
 import com.google.gwt.user.client.ui.Widget;

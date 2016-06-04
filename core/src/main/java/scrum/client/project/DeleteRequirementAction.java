@@ -14,7 +14,7 @@
  */
 package scrum.client.project;
 
-import generated.client.project.GDeleteRequirementAction;
+import generated.scrum.client.project.GDeleteRequirementAction;
 import scrum.client.common.TooltipBuilder;
 
 public class DeleteRequirementAction extends GDeleteRequirementAction {

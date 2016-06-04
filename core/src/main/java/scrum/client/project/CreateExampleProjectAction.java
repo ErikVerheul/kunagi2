@@ -14,8 +14,8 @@
  */
 package scrum.client.project;
 
-import generated.client.project.CreateExampleProjectServiceCall;
-import generated.client.project.GCreateExampleProjectAction;
+import generated.scrum.client.project.CreateExampleProjectServiceCall;
+import generated.scrum.client.project.GCreateExampleProjectAction;
 import ilarkesto.core.scope.Scope;
 
 import java.util.List;

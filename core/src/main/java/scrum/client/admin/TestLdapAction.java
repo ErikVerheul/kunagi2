@@ -14,8 +14,8 @@
  */
 package scrum.client.admin;
 
-import generated.client.admin.GTestLdapAction;
-import generated.client.admin.TestLdapServiceCall;
+import generated.scrum.client.admin.GTestLdapAction;
+import generated.scrum.client.admin.TestLdapServiceCall;
 import ilarkesto.core.base.Str;
 
 public class TestLdapAction extends GTestLdapAction {

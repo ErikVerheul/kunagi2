@@ -14,7 +14,7 @@
  */
 package scrum.client.admin;
 
-import generated.client.admin.GRequestNewPasswordAction;
+import generated.scrum.client.admin.GRequestNewPasswordAction;
 
 @Deprecated
 public class RequestNewPasswordAction extends GRequestNewPasswordAction {

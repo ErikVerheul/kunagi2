@@ -14,9 +14,9 @@
  */
 package scrum.client.workspace;
 
-import generated.client.workspace.VisibleDataChangedEvent;
-import generated.client.workspace.GUi;
-import generated.client.workspace.VisibleDataChangedHandler;
+import generated.scrum.client.workspace.VisibleDataChangedEvent;
+import generated.scrum.client.workspace.GUi;
+import generated.scrum.client.workspace.VisibleDataChangedHandler;
 import ilarkesto.gwt.client.Gwt;
 
 import com.google.gwt.user.client.ui.Widget;

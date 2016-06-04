@@ -27,7 +27,7 @@
 
     <!-- Specify the paths for translatable code                    -->
     <source path='scrum'/>
-    <source path='generated'/>
+    <source path='generated/scrum'/>
     
 </module>
 

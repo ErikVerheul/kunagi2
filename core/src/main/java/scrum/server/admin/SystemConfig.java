@@ -14,7 +14,7 @@
  */
 package scrum.server.admin;
 
-import generated.server.admin.GSystemConfig;
+import generated.scrum.server.admin.GSystemConfig;
 import ilarkesto.base.StrExtend;
 import scrum.server.KunagiRootConfig;
 import scrum.server.ScrumWebApplication;

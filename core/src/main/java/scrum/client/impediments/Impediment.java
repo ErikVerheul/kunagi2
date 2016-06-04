@@ -14,7 +14,7 @@
  */
 package scrum.client.impediments;
 
-import generated.client.impediments.GImpediment;
+import generated.scrum.client.impediments.GImpediment;
 import ilarkesto.core.time.Date;
 import ilarkesto.gwt.client.HyperlinkWidget;
 

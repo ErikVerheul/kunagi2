@@ -21,7 +21,7 @@ import scrum.client.admin.User;
 import scrum.client.dnd.BlockListDropAction;
 import scrum.client.project.Requirement;
 import scrum.client.sprint.Task;
-import generated.client.workspace.VisibleDataChangedEvent;
+import generated.scrum.client.workspace.VisibleDataChangedEvent;
 
 public class CloseTaskDropAction implements BlockListDropAction<Task> {
 

@@ -14,7 +14,7 @@
  */
 package scrum.client.impediments;
 
-import generated.client.impediments.RequestImpedimentsServiceCall;
+import generated.scrum.client.impediments.RequestImpedimentsServiceCall;
 import ilarkesto.gwt.client.ButtonWidget;
 import ilarkesto.gwt.client.Gwt;
 import scrum.client.ScrumGwt;

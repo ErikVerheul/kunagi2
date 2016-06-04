@@ -14,7 +14,7 @@
  */
 package scrum.client.issues;
 
-import generated.client.issues.GRequestClosedIssuesAction;
+import generated.scrum.client.issues.GRequestClosedIssuesAction;
 import ilarkesto.core.scope.Scope;
 
 public class RequestClosedIssuesAction extends GRequestClosedIssuesAction {

@@ -14,21 +14,21 @@
  */
 package scrum.client.workspace;
 
-import generated.client.workspace.BlockExpandedHandler;
-import generated.client.workspace.GNavigator;
-import generated.client.workspace.BlockExpandedEvent;
+import generated.scrum.client.workspace.BlockExpandedHandler;
+import generated.scrum.client.workspace.GNavigator;
+import generated.scrum.client.workspace.BlockExpandedEvent;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.AGwtEntity;
 import scrum.client.ScrumGwt;
 import scrum.client.ScrumScopeManager;
 import scrum.client.admin.User;
 import scrum.client.collaboration.ForumSupport;
-import generated.client.communication.TouchLastActivityServiceCall;
-import generated.client.core.ApplicationStartedEvent;
-import generated.client.core.ApplicationStartedHandler;
+import generated.scrum.client.communication.TouchLastActivityServiceCall;
+import generated.scrum.client.core.ApplicationStartedEvent;
+import generated.scrum.client.core.ApplicationStartedHandler;
 import scrum.client.project.Project;
-import generated.client.project.ProjectDataReceivedEvent;
-import generated.client.project.SelectProjectServiceCall;
+import generated.scrum.client.project.ProjectDataReceivedEvent;
+import generated.scrum.client.project.SelectProjectServiceCall;
 import scrum.client.search.SearchInputWidget;
 import scrum.client.search.SearchResultsWidget;
 import scrum.client.workspace.history.HistoryToken;

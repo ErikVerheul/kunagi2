@@ -14,8 +14,8 @@
  */
 package scrum.client.admin;
 
-import generated.client.admin.GSendTestEmailAction;
-import generated.client.admin.SendTestEmailServiceCall;
+import generated.scrum.client.admin.GSendTestEmailAction;
+import generated.scrum.client.admin.SendTestEmailServiceCall;
 import ilarkesto.core.base.Str;
 
 public class SendTestEmailAction extends GSendTestEmailAction {

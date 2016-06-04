@@ -14,7 +14,7 @@
  */
 package scrum.server.journal;
 
-import generated.server.journal.GChangeDao;
+import generated.scrum.server.journal.GChangeDao;
 import ilarkesto.base.AFactoryCache;
 import ilarkesto.base.Cache;
 import ilarkesto.core.time.DateAndTime;

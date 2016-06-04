@@ -14,7 +14,7 @@
  */
 package scrum.client.workspace;
 
-import generated.client.workspace.GUsersWorkspaceWidgets;
+import generated.scrum.client.workspace.GUsersWorkspaceWidgets;
 import ilarkesto.gwt.client.AWidget;
 import ilarkesto.gwt.client.Gwt;
 import scrum.client.admin.ProjectSelectorWidget;

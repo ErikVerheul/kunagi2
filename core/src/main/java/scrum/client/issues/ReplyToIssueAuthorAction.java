@@ -14,7 +14,7 @@
  */
 package scrum.client.issues;
 
-import generated.client.issues.GReplyToIssueAuthorAction;
+import generated.scrum.client.issues.GReplyToIssueAuthorAction;
 import ilarkesto.core.base.Str;
 import scrum.client.common.TooltipBuilder;
 

@@ -14,7 +14,7 @@
  */
 package scrum.client.admin;
 
-import generated.client.admin.GConfirmUserEmailAction;
+import generated.scrum.client.admin.GConfirmUserEmailAction;
 import ilarkesto.core.base.Str;
 
 public class ConfirmUserEmailAction extends GConfirmUserEmailAction {

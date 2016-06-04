@@ -14,7 +14,7 @@
  */
 package scrum.server.collaboration;
 
-import generated.server.collaboration.GComment;
+import generated.scrum.server.collaboration.GComment;
 import ilarkesto.auth.Auth;
 import ilarkesto.base.UtlExtend;
 import ilarkesto.core.time.DateAndTime;

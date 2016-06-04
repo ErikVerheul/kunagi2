@@ -37,7 +37,7 @@ import scrum.client.common.BlockListWidget;
 import scrum.client.common.BlockWidgetFactory;
 import scrum.client.common.TooltipBuilder;
 import scrum.client.img.Img;
-import generated.client.project.SelectProjectServiceCall;
+import generated.scrum.client.project.SelectProjectServiceCall;
 import scrum.client.workspace.PagePanel;
 
 import com.google.gwt.event.dom.client.ClickEvent;

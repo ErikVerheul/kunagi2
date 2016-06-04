@@ -1,6 +1,6 @@
 package scrum.client.sprint;
 
-import generated.client.sprint.GSprintReport;
+import generated.scrum.client.sprint.GSprintReport;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;

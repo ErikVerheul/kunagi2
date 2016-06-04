@@ -14,7 +14,7 @@
  */
 package scrum.client.project;
 
-import generated.client.project.GRequirementEstimationVoteAction;
+import generated.scrum.client.project.GRequirementEstimationVoteAction;
 
 public class RequirementEstimationVoteAction extends GRequirementEstimationVoteAction {
 

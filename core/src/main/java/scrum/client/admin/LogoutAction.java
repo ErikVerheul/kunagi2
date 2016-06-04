@@ -14,7 +14,7 @@
  */
 package scrum.client.admin;
 
-import generated.client.admin.GLogoutAction;
+import generated.scrum.client.admin.GLogoutAction;
 
 
 public class LogoutAction extends GLogoutAction {
