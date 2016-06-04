@@ -19,103 +19,103 @@ import com.google.gwt.user.client.ui.ImageBundle;
 public interface GImageBundle
             extends com.google.gwt.user.client.ui.ImageBundle {
 
-    @Resource(value="blgPublished.png")
+    @Resource(value="images/blgPublished.png")
     com.google.gwt.user.client.ui.AbstractImagePrototype blgPublished();
 
-    @Resource(value="bugfixRelease.png")
+    @Resource(value="images/bugfixRelease.png")
     com.google.gwt.user.client.ui.AbstractImagePrototype bugfixRelease();
 
-    @Resource(value="enumlist.png")
+    @Resource(value="images/enumlist.png")
     com.google.gwt.user.client.ui.AbstractImagePrototype enumlist();
 
-    @Resource(value="formatTextBold.png")
+    @Resource(value="images/formatTextBold.png")
     com.google.gwt.user.client.ui.AbstractImagePrototype formatTextBold();
 
-    @Resource(value="formatTextCode.png")
+    @Resource(value="images/formatTextCode.png")
     com.google.gwt.user.client.ui.AbstractImagePrototype formatTextCode();
 
-    @Resource(value="formatTextItalic.png")
+    @Resource(value="images/formatTextItalic.png")
     com.google.gwt.user.client.ui.AbstractImagePrototype formatTextItalic();
 
-    @Resource(value="h1.png")
+    @Resource(value="images/h1.png")
     com.google.gwt.user.client.ui.AbstractImagePrototype h1();
 
-    @Resource(value="h2.png")
+    @Resource(value="images/h2.png")
     com.google.gwt.user.client.ui.AbstractImagePrototype h2();
 
-    @Resource(value="home.png")
+    @Resource(value="images/home.png")
     com.google.gwt.user.client.ui.AbstractImagePrototype home();
 
-    @Resource(value="hyperlink.png")
+    @Resource(value="images/hyperlink.png")
     com.google.gwt.user.client.ui.AbstractImagePrototype hyperlink();
 
-    @Resource(value="image.png")
+    @Resource(value="images/image.png")
     com.google.gwt.user.client.ui.AbstractImagePrototype image();
 
-    @Resource(value="impOpen.png")
+    @Resource(value="images/impOpen.png")
     com.google.gwt.user.client.ui.AbstractImagePrototype impOpen();
 
-    @Resource(value="issClaimed.png")
+    @Resource(value="images/issClaimed.png")
     com.google.gwt.user.client.ui.AbstractImagePrototype issClaimed();
 
-    @Resource(value="issFixed.png")
+    @Resource(value="images/issFixed.png")
     com.google.gwt.user.client.ui.AbstractImagePrototype issFixed();
 
-    @Resource(value="itemlist.png")
+    @Resource(value="images/itemlist.png")
     com.google.gwt.user.client.ui.AbstractImagePrototype itemlist();
 
-    @Resource(value="logo25.png")
+    @Resource(value="images/logo25.png")
     com.google.gwt.user.client.ui.AbstractImagePrototype logo25();
 
-    @Resource(value="majorRelease.png")
+    @Resource(value="images/majorRelease.png")
     com.google.gwt.user.client.ui.AbstractImagePrototype majorRelease();
 
-    @Resource(value="publicComment.png")
+    @Resource(value="images/publicComment.png")
     com.google.gwt.user.client.ui.AbstractImagePrototype publicComment();
 
-    @Resource(value="reqClosed.png")
+    @Resource(value="images/reqClosed.png")
     com.google.gwt.user.client.ui.AbstractImagePrototype reqClosed();
 
-    @Resource(value="reqDirty.png")
+    @Resource(value="images/reqDirty.png")
     com.google.gwt.user.client.ui.AbstractImagePrototype reqDirty();
 
-    @Resource(value="reqInSprint.png")
+    @Resource(value="images/reqInSprint.png")
     com.google.gwt.user.client.ui.AbstractImagePrototype reqInSprint();
 
-    @Resource(value="reqPoker.png")
+    @Resource(value="images/reqPoker.png")
     com.google.gwt.user.client.ui.AbstractImagePrototype reqPoker();
 
-    @Resource(value="reqRejected.png")
+    @Resource(value="images/reqRejected.png")
     com.google.gwt.user.client.ui.AbstractImagePrototype reqRejected();
 
-    @Resource(value="reqTasksClosed.png")
+    @Resource(value="images/reqTasksClosed.png")
     com.google.gwt.user.client.ui.AbstractImagePrototype reqTasksClosed();
 
-    @Resource(value="table.png")
+    @Resource(value="images/table.png")
     com.google.gwt.user.client.ui.AbstractImagePrototype table();
 
-    @Resource(value="toc.png")
+    @Resource(value="images/toc.png")
     com.google.gwt.user.client.ui.AbstractImagePrototype toc();
 
-    @Resource(value="trash32.png")
+    @Resource(value="images/trash32.png")
     com.google.gwt.user.client.ui.AbstractImagePrototype trash32();
 
-    @Resource(value="tskBlocked.png")
+    @Resource(value="images/tskBlocked.png")
     com.google.gwt.user.client.ui.AbstractImagePrototype tskBlocked();
 
-    @Resource(value="tskClaimed.png")
+    @Resource(value="images/tskClaimed.png")
     com.google.gwt.user.client.ui.AbstractImagePrototype tskClaimed();
 
-    @Resource(value="tskClosed.png")
+    @Resource(value="images/tskClosed.png")
     com.google.gwt.user.client.ui.AbstractImagePrototype tskClosed();
 
-    @Resource(value="upload.png")
+    @Resource(value="images/upload.png")
     com.google.gwt.user.client.ui.AbstractImagePrototype upload();
 
-    @Resource(value="usrDisabled.png")
+    @Resource(value="images/usrDisabled.png")
     com.google.gwt.user.client.ui.AbstractImagePrototype usrDisabled();
 
-    @Resource(value="usrEmailUnverified.png")
+    @Resource(value="images/usrEmailUnverified.png")
     com.google.gwt.user.client.ui.AbstractImagePrototype usrEmailUnverified();
 
 }

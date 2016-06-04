@@ -39,163 +39,187 @@ import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.Hidden;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
+import java.util.List;
 
 public class UploadWidget extends AScrumWidget {
 
-	private static final Log log = Log.get(UploadWidget.class);
+    private static final Log log = Log.get(UploadWidget.class);
 
-	private FormFlowPanel formPanel = new FormFlowPanel();
-	private Button button = new Button();
-	private Label statusLabel;
-	private SingleUploader uploader;
-	private DialogBox dialog;
+    private FormFlowPanel formPanel = new FormFlowPanel();
+    private Button button = new Button();
+    private Label statusLabel;
+    private SingleUploader uploader;
+    private DialogBox dialog;
 
-	public UploadWidget() {
-		statusLabel = new Label();
-		uploader = new SingleUploader(FileInputType.BROWSER_INPUT, new UploadStatus(), button, formPanel);
-		uploader.setAutoSubmit(true);
-		Uploader.setStatusInterval(1000);
-	}
+    public UploadWidget() {
+        statusLabel = new Label();
+        uploader = new SingleUploader(FileInputType.BROWSER_INPUT, new UploadStatus(), button, formPanel);
+        uploader.setAutoSubmit(true);
+        Uploader.setStatusInterval(1000);
+    }
 
-	@Override
-	protected Widget onInitialization() {
-		uploader.addOnFinishUploadHandler(new FinishHandler());
-		return uploader;
-	}
+    @Override
+    protected Widget onInitialization() {
+        uploader.addOnFinishUploadHandler(new FinishHandler());
+        return uploader;
+    }
 
-	@Override
-	protected void onUpdate() {
-		super.onUpdate();
-		button.setVisible(false);
-	}
+    @Override
+    protected void onUpdate() {
+        super.onUpdate();
+        button.setVisible(false);
+    }
 
-	public static UploadWidget showDialog(Integer topPosition) {
-		UploadWidget uploadWidget = new UploadWidget();
+    public static UploadWidget showDialog(Integer topPosition) {
+        UploadWidget uploadWidget = new UploadWidget();
 
-		uploadWidget.dialog = new DialogBox(true, true);
-		DialogBox dialog = uploadWidget.dialog;
-		dialog.setAnimationEnabled(true);
-		dialog.setWidget(uploadWidget.update());
+        uploadWidget.dialog = new DialogBox(true, true);
+        DialogBox dialog = uploadWidget.dialog;
+        dialog.setAnimationEnabled(true);
+        dialog.setWidget(uploadWidget.update());
 
-		dialog.center();
-		if (topPosition != null) dialog.setPopupPosition(dialog.getPopupLeft(), topPosition);
-		dialog.show();
+        dialog.center();
+        if (topPosition != null) {
+            dialog.setPopupPosition(dialog.getPopupLeft(), topPosition);
+        }
+        dialog.show();
 
-		return uploadWidget;
-	}
+        return uploadWidget;
+    }
 
-	public DialogBox getDialog() {
-		return dialog;
-	}
+    public DialogBox getDialog() {
+        return dialog;
+    }
 
-	private class FinishHandler implements IUploader.OnFinishUploaderHandler {
+    private class FinishHandler implements IUploader.OnFinishUploaderHandler {
 
-		@Override
-		public void onFinish(IUploader ul) {
-			if (ul.getStatus() != Status.SUCCESS) {
-				new PingServiceCall().execute();
-				if (dialog != null) dialog.hide();
-			}
-		}
+        @Override
+        public void onFinish(IUploader ul) {
+            if (ul.getStatus() != Status.SUCCESS) {
+                new PingServiceCall().execute();
+                if (dialog != null) {
+                    dialog.hide();
+                }
+            }
+        }
 
-	}
+    }
 
-	private class UploadStatus implements IUploadStatus {
+    private class UploadStatus implements IUploadStatus {
 
-		private Status status;
-		private String filename;
+        private Status status;
+        private String filename;
 
-		@Override
-		public HandlerRegistration addCancelHandler(UploadCancelHandler handler) {
-			return null;
-		}
+        @Override
+        public HandlerRegistration addCancelHandler(UploadCancelHandler handler) {
+            return null;
+        }
 
-		@Override
-		public Status getStatus() {
-			return status;
-		}
+        @Override
+        public Status getStatus() {
+            return status;
+        }
 
-		@Override
-		public Widget getWidget() {
-			return statusLabel;
-		}
+        @Override
+        public Widget getWidget() {
+            return statusLabel;
+        }
 
-		@Override
-		public IUploadStatus newInstance() {
-			return null;
-		}
+        @Override
+        public IUploadStatus newInstance() {
+            return null;
+        }
 
-		@Override
-		public void setCancelConfiguration(Set<CancelBehavior> config) {}
+        @Override
+        public void setCancelConfiguration(Set<CancelBehavior> config) {
+        }
 
-		@Override
-		public void setError(String error) {
-			log.error("Upload failed: " + error);
-			Window.alert("Upload failed: " + error);
-			statusLabel.setText(error);
-		}
+        @Override
+        public void setError(String error) {
+            log.error("Upload failed: " + error);
+            Window.alert("Upload failed: " + error);
+            statusLabel.setText(error);
+        }
 
-		@Override
-		public void setFileName(String name) {
-			this.filename = name;
-		}
+        public void setFileName(String name) {
+            this.filename = name;
+        }
 
-		@Override
-		public void setI18Constants(UploadStatusConstants strs) {
+        @Override
+        public void setI18Constants(UploadStatusConstants strs) {
 
-		}
+        }
 
-		@Override
-		public void setStatus(Status status) {
-			if (this.status == null) {
-				dialog.setAutoHideEnabled(false);
-				formPanel.hideFileField();
-				statusLabel.getElement().getStyle().setPadding(10, Unit.PX);
-			} else if (status != Status.INPROGRESS && filename != null) {
-				statusLabel.setText("Uploading " + filename);
-			}
-			this.status = status;
-		}
+        @Override
+        public void setStatus(Status status) {
+            if (this.status == null) {
+                dialog.setAutoHideEnabled(false);
+                formPanel.hideFileField();
+                statusLabel.getElement().getStyle().setPadding(10, Unit.PX);
+            } else if (status != Status.INPROGRESS && filename != null) {
+                statusLabel.setText("Uploading " + filename);
+            }
+            this.status = status;
+        }
 
-		@Override
-		public void setStatusChangedHandler(UploadStatusChangedHandler handler) {}
+        @Override
+        public void setStatusChangedHandler(UploadStatusChangedHandler handler) {
+        }
 
-		@Override
-		public void setVisible(boolean b) {}
+        @Override
+        public void setVisible(boolean b) {
+        }
 
-		@Override
-		public void setProgress(int done, int total) {
-			if (total == 0) {
-				statusLabel.setText("Uploading " + filename);
-			} else {
-				int percent = done * 100 / total;
-				statusLabel.setText("Uploading " + filename + " (" + percent + "%)");
-			}
-		}
-	}
+        @Override
+        public void setProgress(long done, long total) {
+            if (total == 0) {
+                statusLabel.setText("Uploading " + filename);
+            } else {
+                long percent = (done * 100 / total);
+                statusLabel.setText("Uploading " + filename + " (" + percent + "%)");
+            }
+        }
 
-	public class FormFlowPanel extends FormPanel {
+        @Override
+        public void setFileNames(List<String> names) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
 
-		FlowPanel formElements = new FlowPanel();
-		Widget fileField;
+        @Override
+        public Set<CancelBehavior> getCancelConfiguration() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
 
-		public FormFlowPanel() {
-			super.add(formElements);
-			Project project = Scope.get().getComponent(Project.class);
-			Hidden projectIdField = new Hidden("projectId", project.getId());
-			projectIdField.setID("uploadProjectId");
-			add(projectIdField);
-		}
+        @Override
+        public Widget asWidget() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+    }
 
-		@Override
-		public void add(Widget w) {
-			formElements.add(w);
-			if (w != button) fileField = w;
-		}
+    public class FormFlowPanel extends FormPanel {
 
-		public void hideFileField() {
-			fileField.setVisible(false);
-		}
-	}
+        FlowPanel formElements = new FlowPanel();
+        Widget fileField;
+
+        public FormFlowPanel() {
+            super.add(formElements);
+            Project project = Scope.get().getComponent(Project.class);
+            Hidden projectIdField = new Hidden("projectId", project.getId());
+            projectIdField.setID("uploadProjectId");
+            add(projectIdField);
+        }
+
+        @Override
+        public void add(Widget w) {
+            formElements.add(w);
+            if (w != button) {
+                fileField = w;
+            }
+        }
+
+        public void hideFileField() {
+            fileField.setVisible(false);
+        }
+    }
 
 }

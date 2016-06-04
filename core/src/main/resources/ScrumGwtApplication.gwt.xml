@@ -15,7 +15,8 @@
     <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
 
     <!-- Other module inherits                                      -->   
-    <inherits name="ilarkesto.Ilarkesto" />   
+    <inherits name="ilarkesto.Ilarkesto" />
+    <inherits name="com.Menubar" />  
     <inherits name="com.allen_sauer.gwt.dnd.gwt-dnd" />
     <inherits name="gwtupload.GWTUpload" />
     <stylesheet src="Upload.css" />
@@ -28,6 +29,7 @@
     <!-- Specify the paths for translatable code                    -->
     <source path='scrum'/>
     <source path='generated/scrum'/>
+    <source path='images'/>
     
 </module>
 

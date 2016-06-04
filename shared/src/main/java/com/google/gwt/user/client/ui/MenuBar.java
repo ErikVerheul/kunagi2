@@ -982,7 +982,8 @@ public class MenuBar extends Widget implements PopupListener, HasAnimation, HasC
 
 		this.vertical = vertical;
 
-		Element outer = FocusPanel.impl.createFocusable();
+		
+                Element outer = FocusPanel.impl.createFocusable();
 		appendChild(outer, table);
 		setElement(outer);
 

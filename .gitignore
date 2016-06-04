@@ -14,7 +14,6 @@ server/target
 shared/target
 web/target
 
-/ilarkesto2/test-output/
-/kunagi2/runtimedata/
-/kunagi2/test-output/
-/kunagi2/error.log
+/shared/test-output/
+/core/error.log
+/core/runtimedata/

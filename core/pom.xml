@@ -23,13 +23,13 @@
         <dependency>
             <groupId>com.allen-sauer.gwt.dnd</groupId>
             <artifactId>gwt-dnd</artifactId>
-            <version>r1137</version>
+            <version>3.3.4</version>
         </dependency>
         <dependency>
             <groupId>com.googlecode.gwtupload</groupId>
             <artifactId>gwtupload</artifactId>
             <!-- latest versions does not compile -->
-            <version>0.6.1</version>
+            <version>1.0.3</version>
         </dependency>
         <dependency>
             <groupId>org.jfree</groupId>
@@ -46,7 +46,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
+                <version>3.5.1</version>
                 <configuration>
                     <source>1.7</source>
                     <target>1.7</target>
@@ -59,7 +59,7 @@
                 <!-- Copy static web files before executing gwt:run -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>2.3</version>
+                <version>2.6</version>
                 <executions>
                     <execution>
                         <phase>compile</phase>
@@ -94,7 +94,7 @@
                 <configuration>
                     <configuration>
                         <compileSourcesArtifacts>
-                            <artifact>com:google</artifact>
+                            <artifact>com:google.gwt.user.client.ui</artifact>
                             <artifact>ilarkesto:core</artifact>
                             <artifact>ilarkesto:gwt.client</artifact>
                         </compileSourcesArtifacts>

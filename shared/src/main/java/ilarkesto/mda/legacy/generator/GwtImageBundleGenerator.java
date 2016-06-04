@@ -55,7 +55,7 @@ public class GwtImageBundleGenerator extends AClassGenerator {
 			name = name.substring(0, idx);
 		}
 		ln();
-		ln("    @Resource(value=\"" + fileName + "\")");
+		ln("    @Resource(value=\"" + "images/" + fileName + "\")");
 		ln("    " + AbstractImagePrototype.class.getName(), name + "();");
 	}
 

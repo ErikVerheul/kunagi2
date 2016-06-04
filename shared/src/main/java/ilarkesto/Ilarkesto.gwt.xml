@@ -2,7 +2,7 @@
 <module>
     <inherits name="com.google.gwt.user.User"/>
     
-    <source path="com/google/gwt/user/client/ui" />
+    <source path="google/gwt/user/client/ui" />
     <source path="core" />
     <source path="gwt/client" />
 </module>
