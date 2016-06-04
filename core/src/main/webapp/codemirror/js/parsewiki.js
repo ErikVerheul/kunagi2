@@ -38,16 +38,16 @@ var WikiParser = Editor.Parser = (function() {
 				var marker = '';
 				while (!source.endOfLine()) {
 					var ch = next(source);
-					if (ch == ' ') {
+					if (ch === ' ') {
 						marker = ' ';
 						continue;
 					}
-					if (ch != '=') {
+					if (ch !== '=') {
 						marker = '';
 						continue;
 					}
 					marker += ch;
-					if (source.endOfLine() && marker == endmarker) {
+					if (source.endOfLine() && marker === endmarker) {
 						setState(begin);
 						return 'wiki-h' + depth;
 					}
@@ -101,7 +101,7 @@ var WikiParser = Editor.Parser = (function() {
 			// log("code(" + source.peek() + ")");
 			while (!source.endOfLine()) {
 				var ch = source.peek();
-				if (ch == '<') {
+				if (ch === '<') {
 					if (source.lookAhead('</code>')) {
 						next(source);
 						next(source);
@@ -140,19 +140,19 @@ var WikiParser = Editor.Parser = (function() {
 						return 'wiki-text';
 					}
 					if (/\s/.test(prev)) {
-						if (ch == '<' && source.lookAhead('<code>')) {
+						if (ch === '<' && source.lookAhead('<code>')) {
 							setState(wrapper('<code>', '</code>', 'wiki-code', thisState, lineEndState));
 							return 'wiki-text';
 						}
-						if (ch == "'" && source.lookAhead("'''''")) {
+						if (ch === "'" && source.lookAhead("'''''")) {
 							setState(wrapper("'''''", "'''''", 'wiki-bold-italic', thisState, lineEndState));
 							return 'wiki-text';
 						}
-						if (ch == "'" && source.lookAhead("'''")) {
+						if (ch === "'" && source.lookAhead("'''")) {
 							setState(wrapper("'''", "'''", 'wiki-bold', thisState, lineEndState));
 							return 'wiki-text';
 						}
-						if (ch == "'" && source.lookAhead("''")) {
+						if (ch === "'" && source.lookAhead("''")) {
 							setState(wrapper("''", "''", 'wiki-italic', thisState, lineEndState));
 							return 'wiki-text';
 						}
@@ -171,7 +171,7 @@ var WikiParser = Editor.Parser = (function() {
 				// log("tableCell(" + source.peek() + ")");
 				while (!source.endOfLine()) {
 					var ch = source.peek();
-					if (ch == '|') {
+					if (ch === '|') {
 						setState(table);
 						return 'wiki-text';
 					}
@@ -185,7 +185,7 @@ var WikiParser = Editor.Parser = (function() {
 			// log("table(" + source.peek() + ")");
 			if (!source.endOfLine()) {
 				var ch = source.peek();
-				if (ch == '|') {
+				if (ch === '|') {
 					if (source.lookAhead('|}')) {
 						next(source);
 						next(source);
@@ -199,7 +199,7 @@ var WikiParser = Editor.Parser = (function() {
 					next(source);
 					return 'wiki-table';
 				}
-				if (ch == '!') {
+				if (ch === '!') {
 					next(source);
 					return 'wiki-table';
 				}
@@ -224,8 +224,8 @@ var WikiParser = Editor.Parser = (function() {
 
 			var ch = source.peek();
 
-			if (ch == '=') {
-				if (ch == '=' && source.lookAhead('= ')) {
+			if (ch === '=') {
+				if (ch === '=' && source.lookAhead('= ')) {
 					setState(header(1));
 					return null;
 				}
@@ -243,24 +243,24 @@ var WikiParser = Editor.Parser = (function() {
 				}
 			}
 
-			if (ch == '<' && source.lookAhead('<code>')) {
+			if (ch === '<' && source.lookAhead('<code>')) {
 				setState(code);
 				return null;
 			}
 
-			if ((ch == '*' && source.lookAhead('* ')) || (ch == '#' && source.lookAhead('# '))) {
+			if ((ch === '*' && source.lookAhead('* ')) || (ch === '#' && source.lookAhead('# '))) {
 				setState(list);
 				return null;
 			}
 
-			if (ch == '{' && source.lookAhead('{|')) {
+			if (ch === '{' && source.lookAhead('{|')) {
 				next(source);
 				next(source);
 				setState(table);
 				return 'wiki-table';
 			}
 
-			setState(normal())
+			setState(normal());
 			return null;
 		}
 
@@ -289,7 +289,7 @@ var WikiParser = Editor.Parser = (function() {
 
 				// console.log("content: "+content);
 
-				if (content == '\n') {
+				if (content === '\n') {
 					token.indentation = indentWiki(false, false, basecolumn);
 				}
 

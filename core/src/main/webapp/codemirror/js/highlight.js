@@ -21,7 +21,7 @@ var indentUnit = 2;
     string = string.replace(/\t/g, tab).replace(/\u00a0/g, " ").replace(/\r\n?/g, "\n");
     var pos = 0, parts = [], lines = string.split("\n");
     for (var line = 0; line < lines.length; line++) {
-      if (line != 0) parts.push("\n");
+      if (line !== 0) parts.push("\n");
       parts.push(lines[line]);
     }
 
@@ -36,7 +36,7 @@ var indentUnit = 2;
   window.highlightText = function(string, callback, parser) {
     parser = (parser || Editor.Parser).make(stringStream(normaliseString(string)));
     var line = [];
-    if (callback.nodeType == 1) {
+    if (callback.nodeType === 1) {
       var node = callback;
       callback = function(line) {
         for (var i = 0; i < line.length; i++)
@@ -48,7 +48,7 @@ var indentUnit = 2;
     try {
       while (true) {
         var token = parser.next();
-        if (token.value == "\n") {
+        if (token.value === "\n") {
           callback(line);
           line = [];
         }
@@ -61,8 +61,8 @@ var indentUnit = 2;
       }
     }
     catch (e) {
-      if (e != StopIteration) throw e;
+      if (e !== StopIteration) throw e;
     }
     if (line.length) callback(line);
-  }
+  };
 })();
