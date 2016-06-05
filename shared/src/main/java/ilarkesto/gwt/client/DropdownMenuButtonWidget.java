@@ -16,7 +16,6 @@ package ilarkesto.gwt.client;
 
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.ui.MenuBar;
-import static com.google.gwt.user.client.ui.MenuBar.PopupPosition.LEFT;
 import com.google.gwt.user.client.ui.MenuItem;
 import com.google.gwt.user.client.ui.Widget;
 import static ilarkesto.gwt.client.TableBuilder.row;
@@ -47,7 +46,7 @@ public class DropdownMenuButtonWidget extends AWidget {
                         title = "<div style='float: left; margin-top: 4px;'>" + label + "</div> " + title;
                 }
 		menuBar.addItem(title, true, menu);
-		menuBar.setPopupPosition(LEFT);
+		menuBar.setPopupPosition(com.google.gwt.user.client.ui.MenuBar.PopupPosition.LEFT);
 
 		Widget wrapper = row(false, 0, menuBar);
 		return wrapper;
