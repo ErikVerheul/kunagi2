@@ -1,55 +1,86 @@
-GWT Maven Example
-=================
+KUNAGI
 
-Overview
---------
+    Kunagi is a web-based tool for integrated agile project management
+    and collaboration based on Scrum.
 
-Finally, a working example combining a multi-project maven build together with
-GWT 2.
+    http://kunagi.org
+    mailto:support@kunagi.org
 
-This example is based on the GWT webapp created by the [Maven GWT Plugin archetype](http://mojo.codehaus.org/gwt-maven-plugin/user-guide/archetype.html).
+	
+DESCRIPTION
 
-I created this example as I was unable to find any **working** example on the
-net. The example doesn't just compile via Maven, but I was also able to run it
-in IntelliJ IDEA 11.1 Ultimate.
+    Kunagi is a free web-based tool for integrated project management and
+    collaboration based on Scrum. It is integrated, allowing users to manage
+    their complete project using only one tool. For that purpose, Scrum is
+    supplemented by a selection of other best practices to cover all project
+    management needs. The tool's range provides not only the basis for all
+    Scrum practices (like product, sprint backlogs and impediment list), but
+    also offers management of additional important project data (like non-
+    functional requirements, risks, files, issues and bugs), as well as
+    several features for ease of use (featuring a project dashboard, an
+    interactive whiteboard for the current sprint and planning poker for
+    estimation) and team collaboration (including comments for every entity,
+    a wiki and a discussion board).
 
+    Kunagi is aimed at, but not limited to, software projects. The light
+    nature of agile project management allows for use by both professionals
+    and non-professionals, causing minimal overhead to the project. Therefore,
+    it is also suitable for small projects done by virtual teams, i. e. teams
+    that are scattered across the world.
 
-Running via Maven in GWT Dev Mode
----------------------------------
+    Using Kunagi's web interface, it is possible to access project related
+    data from anywhere. Despite being an online application, the powerful
+    interface is built to keep up with the flexibility of desktop software,
+    as it makes use of asynchronous technology employing the Google Web
+    Toolkit (GWT).
 
-In order to run the example via Maven in GWT Dev Mode, you need to do:
-
-1. Start the web application in Tomcat 7 via Maven
-2. Start GWT Dev Mode via Maven
-3. Run the application in your browser
-
-To accomplish the first point, issue the following Maven command on a shell:
-
-    mvn clean install
-    mvn tomcat7:run-war-only
-
-Your application is now deployed at http://127.0.0.1:8082/parent/.
-
-Now, you need to start GWT Dev Mode. Open a second shell and execute:
-
-    mvn gwt:run -pl web
-
-On success, the GWT Dev Mode window opens. Click *Launch Default Browser* to open it in GWT Dev Mode.
-
-You can now make changes to your client Java code. Changes become immediately available as soon as you reloaded your page in the browser.
-
-
-Feedback
---------
-
-Feedback is very welcome! You can reach me via:
-
-* Email - seb-DOT-kde-AT-hpfsc.de
-* Web - [sebstein.hpfsc.de](http://sebstein.hpfsc.de/)
-* Twitter - [@stein2](https://twitter.com/stein2)
+    Last, but not least, it is important to us that the tool helps people get
+    their work done. We understand that it is therefore important for the tool
+    to be not only suitable for project management, but also be accessible,
+    offer a coherent work flow and be fun to use. For this reason, we have been
+    using Kunagi for it's own project management, once it was ready to provide
+    sufficient functionality for our needs. Moreover, after the tool's release,
+    we will provide additions, enhancements and updates on a regular basis.
 
 
-License
--------
+COPYING
 
-Public Domain
+    Copyright 2008-2011
+    Witoslaw Koczewski, Artjom Kochtchi, Arne Moehle, Fabian Hager, Kacper Grubalski
+
+    Kunagi is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Kunagi is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with Kunagi. If not, see <http://www.gnu.org/licenses/>.
+
+    
+INCLUDED LIBRARIES
+
+    Kunagi uses libraries from other projects with different open source
+    licenses. The following are included in our package:
+
+    * Google Web Toolkit - Apache License, Version 2.0
+    * gwt-dnd - Apache License, Version 2.0
+    * gwt-upload - Apache License, Version 2.0
+    * iText PDF - GNU Affero General Public License
+    * JFreeChart - GNU Lesser General Public License
+    * XStream - Berkeley Software Distribution License
+    * JDOM - Apache-style open source license
+    * Commons Fileupload - Apache License, Version 2.0
+    * JavaMail - Common Development and Distribution License
+    * Log4j - Apache License, Version 2.0
+    * Velocity Engine - Apache License, Version 2.0
+    * openid4java - Apache License, Version 2.0
+    * CodeMirror - zlib-style open source license
+    * Liberation Fonts - GNU General Public License
+    * Ubuntu Font - Ubuntu Font License
+
+    
