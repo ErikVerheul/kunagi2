@@ -17,7 +17,6 @@
 
 package scrum.server;
 
-import generated.scrum.server.GScrumWebApplication;
 import ilarkesto.auth.OpenId;
 import ilarkesto.base.Sys;
 import ilarkesto.core.time.Tm;

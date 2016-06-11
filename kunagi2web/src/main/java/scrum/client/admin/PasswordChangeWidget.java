@@ -14,7 +14,6 @@
  */
 package scrum.client.admin;
 
-import generated.scrum.client.admin.ChangePasswordServiceCall;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.AAction;
 import ilarkesto.gwt.client.AViewEditWidget;

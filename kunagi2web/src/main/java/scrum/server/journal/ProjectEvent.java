@@ -14,7 +14,6 @@
  */
 package scrum.server.journal;
 
-import generated.scrum.server.journal.GProjectEvent;
 import scrum.server.admin.User;
 import scrum.server.collaboration.ChatMessage;
 import scrum.server.collaboration.ChatMessageDao;

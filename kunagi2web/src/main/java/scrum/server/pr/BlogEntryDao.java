@@ -14,7 +14,7 @@
  */
 package scrum.server.pr;
 
-import generated.scrum.server.pr.GBlogEntryDao;
+import scrum.server.pr.GBlogEntryDao;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.fp.Predicate;
 import scrum.server.project.Project;

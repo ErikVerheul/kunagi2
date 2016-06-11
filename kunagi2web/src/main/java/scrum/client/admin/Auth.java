@@ -14,11 +14,10 @@
  */
 package scrum.client.admin;
 
-import generated.scrum.client.admin.GAuth;
 import scrum.client.DataTransferObject;
 import scrum.client.ScrumScopeManager;
-import generated.scrum.client.communication.ServerDataReceivedEvent;
-import generated.scrum.client.communication.ServerDataReceivedHandler;
+import scrum.client.communication.ServerDataReceivedEvent;
+import scrum.client.communication.ServerDataReceivedHandler;
 
 public class Auth extends GAuth implements ServerDataReceivedHandler {
 

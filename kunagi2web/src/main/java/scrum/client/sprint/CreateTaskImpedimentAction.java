@@ -14,7 +14,7 @@
  */
 package scrum.client.sprint;
 
-import generated.scrum.client.sprint.GCreateTaskImpedimentAction;
+import scrum.client.sprint.GCreateTaskImpedimentAction;
 import ilarkesto.core.scope.Scope;
 import scrum.client.common.TooltipBuilder;
 import scrum.client.impediments.Impediment;

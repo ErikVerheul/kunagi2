@@ -14,7 +14,7 @@
  */
 package scrum.client.undo;
 
-import generated.scrum.client.undo.GUndo;
+import scrum.client.undo.GUndo;
 import ilarkesto.gwt.client.Gwt;
 import ilarkesto.gwt.client.undo.UndoManager;
 

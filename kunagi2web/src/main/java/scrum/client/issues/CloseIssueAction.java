@@ -14,7 +14,7 @@
  */
 package scrum.client.issues;
 
-import generated.scrum.client.issues.GCloseIssueAction;
+import scrum.client.issues.GCloseIssueAction;
 import scrum.client.common.TooltipBuilder;
 
 public class CloseIssueAction extends GCloseIssueAction {

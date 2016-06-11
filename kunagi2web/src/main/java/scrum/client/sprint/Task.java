@@ -14,7 +14,7 @@
  */
 package scrum.client.sprint;
 
-import generated.scrum.client.sprint.GTask;
+import scrum.client.sprint.GTask;
 import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.HyperlinkWidget;

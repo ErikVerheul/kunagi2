@@ -14,9 +14,8 @@
  */
 package scrum.client.project;
 
-import generated.scrum.client.project.GStartRequirementEstimationVotingAction;
 import scrum.client.common.TooltipBuilder;
-import generated.scrum.client.estimation.ActivateRequirementEstimationVotingServiceCall;
+import scrum.client.estimation.ActivateRequirementEstimationVotingServiceCall;
 
 public class StartRequirementEstimationVotingAction extends GStartRequirementEstimationVotingAction {
 

@@ -18,7 +18,7 @@ import ilarkesto.gwt.client.Gwt;
 import ilarkesto.gwt.client.TableBuilder;
 import scrum.client.common.AScrumGwtEntity;
 import scrum.client.common.AScrumWidget;
-import generated.scrum.client.workspace.VisibleDataChangedEvent;
+import scrum.client.workspace.VisibleDataChangedEvent;
 
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.dom.client.Style.Unit;

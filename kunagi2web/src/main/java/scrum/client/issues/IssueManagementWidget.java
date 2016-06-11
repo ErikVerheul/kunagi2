@@ -14,7 +14,7 @@
  */
 package scrum.client.issues;
 
-import generated.scrum.client.issues.RequestAcceptedIssuesServiceCall;
+import scrum.client.issues.RequestAcceptedIssuesServiceCall;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.ButtonWidget;
 import ilarkesto.gwt.client.Gwt;

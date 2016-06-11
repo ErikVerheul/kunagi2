@@ -14,7 +14,7 @@
  */
 package scrum.client.release;
 
-import generated.scrum.client.release.GDeleteReleaseAction;
+import scrum.client.release.GDeleteReleaseAction;
 import scrum.client.common.TooltipBuilder;
 
 public class DeleteReleaseAction extends GDeleteReleaseAction {

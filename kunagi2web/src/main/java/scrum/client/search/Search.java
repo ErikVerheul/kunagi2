@@ -14,10 +14,10 @@
  */
 package scrum.client.search;
 
-import generated.scrum.client.search.GSearch;
-import generated.scrum.client.search.SearchResultsChangedHandler;
-import generated.scrum.client.search.SearchServiceCall;
-import generated.scrum.client.search.SearchResultsChangedEvent;
+import scrum.client.search.GSearch;
+import scrum.client.search.SearchResultsChangedHandler;
+import scrum.client.search.SearchServiceCall;
+import scrum.client.search.SearchResultsChangedEvent;
 import ilarkesto.core.base.Str;
 
 import java.util.ArrayList;

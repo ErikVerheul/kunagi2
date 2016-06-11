@@ -14,7 +14,6 @@
  */
 package scrum.server.project;
 
-import generated.scrum.server.project.GQuality;
 import ilarkesto.core.base.Utl;
 import scrum.client.common.LabelSupport;
 import scrum.client.common.ReferenceSupport;

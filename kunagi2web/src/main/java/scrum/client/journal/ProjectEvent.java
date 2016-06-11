@@ -14,7 +14,6 @@
  */
 package scrum.client.journal;
 
-import generated.scrum.client.journal.GProjectEvent;
 import ilarkesto.core.time.DateAndTime;
 
 import java.util.Comparator;

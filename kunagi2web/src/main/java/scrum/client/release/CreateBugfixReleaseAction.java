@@ -14,7 +14,7 @@
  */
 package scrum.client.release;
 
-import generated.scrum.client.release.GCreateBugfixReleaseAction;
+import scrum.client.release.GCreateBugfixReleaseAction;
 import ilarkesto.core.scope.Scope;
 import scrum.client.common.TooltipBuilder;
 import scrum.client.workspace.ProjectWorkspaceWidgets;

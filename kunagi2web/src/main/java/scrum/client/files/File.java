@@ -14,7 +14,7 @@
  */
 package scrum.client.files;
 
-import generated.scrum.client.files.GFile;
+import scrum.client.files.GFile;
 import java.util.Comparator;
 import java.util.Map;
 

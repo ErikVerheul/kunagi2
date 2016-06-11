@@ -14,7 +14,6 @@
  */
 package scrum.client.project;
 
-import generated.scrum.client.project.GCreateProjectAction;
 import ilarkesto.core.scope.Scope;
 import scrum.client.common.TooltipBuilder;
 import scrum.client.workspace.UsersWorkspaceWidgets;

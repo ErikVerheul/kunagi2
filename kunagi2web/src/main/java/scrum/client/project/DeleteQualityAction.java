@@ -14,7 +14,6 @@
  */
 package scrum.client.project;
 
-import generated.scrum.client.project.GDeleteQualityAction;
 import scrum.client.common.TooltipBuilder;
 
 public class DeleteQualityAction extends GDeleteQualityAction {

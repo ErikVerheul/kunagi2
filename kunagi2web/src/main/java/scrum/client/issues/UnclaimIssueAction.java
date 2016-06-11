@@ -14,7 +14,7 @@
  */
 package scrum.client.issues;
 
-import generated.scrum.client.issues.GUnclaimIssueAction;
+import scrum.client.issues.GUnclaimIssueAction;
 
 public class UnclaimIssueAction extends GUnclaimIssueAction {
 

@@ -14,7 +14,6 @@
  */
 package scrum.server.impediments;
 
-import generated.scrum.server.impediments.GImpediment;
 import ilarkesto.core.base.Utl;
 import ilarkesto.core.time.Date;
 import scrum.client.common.LabelSupport;

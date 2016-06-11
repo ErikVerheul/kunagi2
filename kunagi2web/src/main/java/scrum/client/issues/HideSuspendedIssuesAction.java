@@ -14,7 +14,7 @@
  */
 package scrum.client.issues;
 
-import generated.scrum.client.issues.GHideSuspendedIssuesAction;
+import scrum.client.issues.GHideSuspendedIssuesAction;
 import ilarkesto.core.scope.Scope;
 
 public class HideSuspendedIssuesAction extends GHideSuspendedIssuesAction {

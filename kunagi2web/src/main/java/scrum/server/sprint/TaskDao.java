@@ -14,7 +14,6 @@
  */
 package scrum.server.sprint;
 
-import generated.scrum.server.sprint.GTaskDao;
 import ilarkesto.fp.Predicate;
 
 import java.util.Set;

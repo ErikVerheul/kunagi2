@@ -14,7 +14,6 @@
  */
 package scrum.client.admin;
 
-import generated.scrum.client.admin.GCreateUserAction;
 import ilarkesto.core.base.Str;
 import ilarkesto.core.scope.Scope;
 

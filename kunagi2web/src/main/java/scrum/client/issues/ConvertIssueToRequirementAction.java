@@ -14,8 +14,8 @@
  */
 package scrum.client.issues;
 
-import generated.scrum.client.issues.GConvertIssueToRequirementAction;
-import generated.scrum.client.issues.ConvertIssueToStoryServiceCall;
+import scrum.client.issues.GConvertIssueToRequirementAction;
+import scrum.client.issues.ConvertIssueToStoryServiceCall;
 import scrum.client.common.TooltipBuilder;
 import scrum.client.project.Requirement;
 

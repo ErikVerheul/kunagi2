@@ -14,9 +14,6 @@
  */
 package scrum.client.admin;
 
-import generated.scrum.client.admin.ResetPasswordServiceCall;
-import generated.scrum.client.admin.GResetUserPasswordAction;
-
 public class ResetUserPasswordAction extends GResetUserPasswordAction {
 
 	public ResetUserPasswordAction(scrum.client.admin.User user) {

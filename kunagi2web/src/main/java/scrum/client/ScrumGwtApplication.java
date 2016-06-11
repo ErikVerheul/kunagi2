@@ -14,7 +14,6 @@
  */
 package scrum.client;
 
-import generated.scrum.client.GScrumGwtApplication;
 import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -26,12 +25,12 @@ import ilarkesto.gwt.client.AGwtDao;
 import ilarkesto.gwt.client.ErrorWrapper;
 import java.util.List;
 import scrum.client.admin.Auth;
-import generated.scrum.client.admin.LogoutServiceCall;
+import scrum.client.admin.LogoutServiceCall;
 import scrum.client.calendar.SimpleEvent;
 import scrum.client.collaboration.Subject;
 import scrum.client.communication.Pinger;
-import generated.scrum.client.communication.StartConversationServiceCall;
-import generated.scrum.client.core.ApplicationStartedEvent;
+import scrum.client.communication.StartConversationServiceCall;
+import scrum.client.core.ApplicationStartedEvent;
 import scrum.client.files.File;
 import scrum.client.impediments.Impediment;
 import scrum.client.issues.Issue;

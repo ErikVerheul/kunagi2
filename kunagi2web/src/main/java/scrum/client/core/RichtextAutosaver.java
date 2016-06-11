@@ -14,9 +14,9 @@
  */
 package scrum.client.core;
 
-import generated.scrum.client.core.ApplicationStartedHandler;
-import generated.scrum.client.core.GRichtextAutosaver;
-import generated.scrum.client.core.ApplicationStartedEvent;
+import scrum.client.core.ApplicationStartedHandler;
+import scrum.client.core.GRichtextAutosaver;
+import scrum.client.core.ApplicationStartedEvent;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.AViewEditWidget;
 import ilarkesto.gwt.client.editor.RichtextEditorWidget;

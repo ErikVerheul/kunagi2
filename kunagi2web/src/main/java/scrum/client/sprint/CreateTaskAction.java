@@ -14,7 +14,7 @@
  */
 package scrum.client.sprint;
 
-import generated.scrum.client.sprint.GCreateTaskAction;
+import scrum.client.sprint.GCreateTaskAction;
 import ilarkesto.core.scope.Scope;
 import scrum.client.common.TooltipBuilder;
 import scrum.client.project.Requirement;

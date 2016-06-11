@@ -14,7 +14,7 @@
  */
 package scrum.server.impediments;
 
-import generated.scrum.server.impediments.GImpedimentDao;
+import scrum.server.impediments.GImpedimentDao;
 import ilarkesto.core.time.Date;
 import ilarkesto.fp.Predicate;
 import scrum.server.project.Project;

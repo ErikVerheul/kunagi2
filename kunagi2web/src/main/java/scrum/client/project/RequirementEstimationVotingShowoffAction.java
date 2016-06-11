@@ -14,7 +14,6 @@
  */
 package scrum.client.project;
 
-import generated.scrum.client.project.GRequirementEstimationVotingShowoffAction;
 import scrum.client.common.TooltipBuilder;
 
 public class RequirementEstimationVotingShowoffAction extends GRequirementEstimationVotingShowoffAction {

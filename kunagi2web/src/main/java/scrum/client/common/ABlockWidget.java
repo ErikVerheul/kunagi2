@@ -18,8 +18,8 @@ import ilarkesto.gwt.client.AGwtEntity;
 import ilarkesto.gwt.client.Gwt;
 import scrum.client.ScrumScopeManager;
 import scrum.client.dnd.BlockDndMarkerWidget;
-import generated.scrum.client.workspace.BlockCollapsedEvent;
-import generated.scrum.client.workspace.BlockExpandedEvent;
+import scrum.client.workspace.BlockCollapsedEvent;
+import scrum.client.workspace.BlockExpandedEvent;
 import scrum.client.workspace.Navigator;
 
 import com.google.gwt.event.dom.client.ClickEvent;

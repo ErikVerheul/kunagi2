@@ -14,7 +14,6 @@
  */
 package scrum.client.collaboration;
 
-import generated.scrum.client.collaboration.GUsersStatus;
 import ilarkesto.gwt.client.AGwtEntity;
 import ilarkesto.gwt.client.EntityDoesNotExistException;
 
@@ -23,11 +22,11 @@ import java.util.List;
 
 import scrum.client.admin.User;
 import scrum.client.common.AScrumGwtEntity;
-import generated.scrum.client.core.RequestEntityServiceCall;
-import generated.scrum.client.workspace.BlockCollapsedEvent;
-import generated.scrum.client.workspace.BlockCollapsedHandler;
-import generated.scrum.client.workspace.BlockExpandedEvent;
-import generated.scrum.client.workspace.BlockExpandedHandler;
+import scrum.client.core.RequestEntityServiceCall;
+import scrum.client.workspace.BlockCollapsedEvent;
+import scrum.client.workspace.BlockCollapsedHandler;
+import scrum.client.workspace.BlockExpandedEvent;
+import scrum.client.workspace.BlockExpandedHandler;
 
 public class UsersStatus extends GUsersStatus implements BlockCollapsedHandler, BlockExpandedHandler {
 

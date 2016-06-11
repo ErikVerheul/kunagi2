@@ -14,7 +14,6 @@
  */
 package scrum.server.project;
 
-import generated.scrum.server.project.GRequirement;
 import ilarkesto.core.base.Str;
 
 import java.util.ArrayList;

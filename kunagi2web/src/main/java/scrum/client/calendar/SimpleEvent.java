@@ -14,7 +14,6 @@
  */
 package scrum.client.calendar;
 
-import generated.scrum.client.calendar.GSimpleEvent;
 import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.time.Date;
 import ilarkesto.core.time.Time;

@@ -14,7 +14,6 @@
  */
 package scrum.client.collaboration;
 
-import generated.scrum.client.collaboration.RequestCommentsServiceCall;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;

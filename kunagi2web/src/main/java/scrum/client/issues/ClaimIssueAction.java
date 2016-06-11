@@ -14,7 +14,7 @@
  */
 package scrum.client.issues;
 
-import generated.scrum.client.issues.GClaimIssueAction;
+import scrum.client.issues.GClaimIssueAction;
 import scrum.client.admin.User;
 import scrum.client.common.TooltipBuilder;
 

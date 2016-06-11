@@ -14,7 +14,6 @@
  */
 package scrum.client.project;
 
-import generated.scrum.client.project.GQuality;
 import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.base.Utl;
 import ilarkesto.core.scope.Scope;

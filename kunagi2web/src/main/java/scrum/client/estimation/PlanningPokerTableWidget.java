@@ -38,7 +38,7 @@ import scrum.client.project.Project;
 import scrum.client.project.Requirement;
 import scrum.client.project.RequirementEstimationVotingShowoffAction;
 import scrum.client.project.ResetRequirementEstimationVotingAction;
-import generated.scrum.client.workspace.VisibleDataChangedEvent;
+import scrum.client.workspace.VisibleDataChangedEvent;
 
 public class PlanningPokerTableWidget extends AScrumWidget {
 

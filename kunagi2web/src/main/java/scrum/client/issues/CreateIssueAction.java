@@ -14,7 +14,7 @@
  */
 package scrum.client.issues;
 
-import generated.scrum.client.issues.GCreateIssueAction;
+import scrum.client.issues.GCreateIssueAction;
 import ilarkesto.core.scope.Scope;
 import scrum.client.workspace.ProjectWorkspaceWidgets;
 

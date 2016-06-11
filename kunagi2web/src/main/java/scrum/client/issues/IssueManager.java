@@ -14,8 +14,8 @@
  */
 package scrum.client.issues;
 
-import generated.scrum.client.issues.RequestClosedIssuesServiceCall;
-import generated.scrum.client.issues.GIssueManager;
+import scrum.client.issues.RequestClosedIssuesServiceCall;
+import scrum.client.issues.GIssueManager;
 
 public class IssueManager extends GIssueManager {
 

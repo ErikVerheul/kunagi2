@@ -14,7 +14,7 @@
  */
 package scrum.server.collaboration;
 
-import generated.scrum.server.collaboration.GEmoticon;
+import scrum.server.collaboration.GEmoticon;
 import ilarkesto.auth.Auth;
 import scrum.server.admin.User;
 

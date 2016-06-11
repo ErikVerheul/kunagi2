@@ -14,7 +14,7 @@
  */
 package scrum.client.collaboration;
 
-import generated.scrum.client.collaboration.RequestForumServiceCall;
+import scrum.client.collaboration.RequestForumServiceCall;
 import ilarkesto.gwt.client.ButtonWidget;
 import scrum.client.common.AScrumWidget;
 import scrum.client.common.BlockListWidget;

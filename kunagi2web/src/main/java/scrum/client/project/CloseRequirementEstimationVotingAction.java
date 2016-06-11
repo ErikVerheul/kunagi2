@@ -14,7 +14,6 @@
  */
 package scrum.client.project;
 
-import generated.scrum.client.project.GCloseRequirementEstimationVotingAction;
 import scrum.client.common.TooltipBuilder;
 
 public class CloseRequirementEstimationVotingAction extends GCloseRequirementEstimationVotingAction {

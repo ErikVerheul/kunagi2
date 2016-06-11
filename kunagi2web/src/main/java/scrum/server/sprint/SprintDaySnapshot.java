@@ -14,7 +14,6 @@
  */
 package scrum.server.sprint;
 
-import generated.scrum.server.sprint.GSprintDaySnapshot;
 import scrum.server.admin.User;
 import scrum.server.common.BurndownSnapshot;
 import scrum.server.project.Project;

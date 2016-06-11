@@ -14,7 +14,7 @@
  */
 package scrum.client.sprint;
 
-import generated.scrum.client.sprint.GDeleteTaskAction;
+import scrum.client.sprint.GDeleteTaskAction;
 import scrum.client.common.TooltipBuilder;
 
 public class DeleteTaskAction extends GDeleteTaskAction {

@@ -14,7 +14,7 @@
  */
 package scrum.client.risks;
 
-import generated.scrum.client.risks.GCreateRiskAction;
+import scrum.client.risks.GCreateRiskAction;
 import ilarkesto.core.scope.Scope;
 import scrum.client.common.TooltipBuilder;
 import scrum.client.workspace.ProjectWorkspaceWidgets;

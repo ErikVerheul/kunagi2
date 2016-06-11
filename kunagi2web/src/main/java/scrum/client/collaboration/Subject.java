@@ -14,7 +14,6 @@
  */
 package scrum.client.collaboration;
 
-import generated.scrum.client.collaboration.GSubject;
 import ilarkesto.gwt.client.TableBuilder;
 
 import java.util.Map;

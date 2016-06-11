@@ -14,7 +14,7 @@
  */
 package scrum.client.issues;
 
-import generated.scrum.client.issues.GAcceptIssueAsIdeaAction;
+import scrum.client.issues.GAcceptIssueAsIdeaAction;
 import scrum.client.common.TooltipBuilder;
 
 public class AcceptIssueAsIdeaAction extends GAcceptIssueAsIdeaAction {

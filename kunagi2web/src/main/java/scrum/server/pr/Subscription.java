@@ -1,6 +1,5 @@
 package scrum.server.pr;
 
-import generated.scrum.server.pr.GSubscription;
 import ilarkesto.auth.Auth;
 import ilarkesto.core.time.TimePeriod;
 import scrum.server.admin.User;

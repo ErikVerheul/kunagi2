@@ -14,7 +14,7 @@
  */
 package scrum.client.issues;
 
-import generated.scrum.client.issues.GAcceptIssueAsBugAction;
+import scrum.client.issues.GAcceptIssueAsBugAction;
 import scrum.client.common.TooltipBuilder;
 
 public class AcceptIssueAsBugAction extends GAcceptIssueAsBugAction {

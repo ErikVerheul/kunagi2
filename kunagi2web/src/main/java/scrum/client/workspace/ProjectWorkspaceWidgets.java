@@ -14,7 +14,7 @@
  */
 package scrum.client.workspace;
 
-import generated.scrum.client.workspace.GProjectWorkspaceWidgets;
+import scrum.client.workspace.GProjectWorkspaceWidgets;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.AGwtEntity;
 import ilarkesto.gwt.client.AWidget;
@@ -35,8 +35,8 @@ import scrum.client.collaboration.Subject;
 import scrum.client.collaboration.WikiWidget;
 import scrum.client.collaboration.Wikipage;
 import scrum.client.context.UserHighlightSupport;
-import generated.scrum.client.core.RequestEntityByReferenceServiceCall;
-import generated.scrum.client.core.RequestEntityServiceCall;
+import scrum.client.core.RequestEntityByReferenceServiceCall;
+import scrum.client.core.RequestEntityServiceCall;
 import scrum.client.dashboard.DashboardWidget;
 import scrum.client.files.File;
 import scrum.client.files.FileRepositoryWidget;
@@ -51,8 +51,8 @@ import scrum.client.pr.BlogWidget;
 import scrum.client.project.ProductBacklogWidget;
 import scrum.client.project.Project;
 import scrum.client.project.ProjectAdminWidget;
-import generated.scrum.client.project.ProjectDataReceivedEvent;
-import generated.scrum.client.project.ProjectDataReceivedHandler;
+import scrum.client.project.ProjectDataReceivedEvent;
+import scrum.client.project.ProjectDataReceivedHandler;
 import scrum.client.project.ProjectOverviewWidget;
 import scrum.client.project.Quality;
 import scrum.client.project.QualityBacklogWidget;

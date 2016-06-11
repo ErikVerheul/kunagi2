@@ -14,7 +14,7 @@
  */
 package scrum.client.risks;
 
-import generated.scrum.client.risks.RequestRisksServiceCall;
+import scrum.client.risks.RequestRisksServiceCall;
 import ilarkesto.gwt.client.ButtonWidget;
 import ilarkesto.gwt.client.Gwt;
 import scrum.client.ScrumGwt;

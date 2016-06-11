@@ -1,6 +1,5 @@
 package scrum.server.sprint;
 
-import generated.scrum.server.sprint.GSprintReportDao;
 import ilarkesto.fp.Predicate;
 
 import java.util.Set;

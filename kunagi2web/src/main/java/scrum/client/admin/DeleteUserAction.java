@@ -14,7 +14,6 @@
  */
 package scrum.client.admin;
 
-import generated.scrum.client.admin.GDeleteUserAction;
 import ilarkesto.gwt.client.Gwt;
 import scrum.client.common.TooltipBuilder;
 

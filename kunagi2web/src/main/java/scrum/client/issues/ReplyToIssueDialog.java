@@ -14,7 +14,7 @@
  */
 package scrum.client.issues;
 
-import generated.scrum.client.issues.SendIssueReplyEmailServiceCall;
+import scrum.client.issues.SendIssueReplyEmailServiceCall;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.TableBuilder;
 import ilarkesto.gwt.client.ToolbarWidget;

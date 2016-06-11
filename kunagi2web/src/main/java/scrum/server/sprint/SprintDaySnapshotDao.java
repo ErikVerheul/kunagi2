@@ -14,7 +14,7 @@
  */
 package scrum.server.sprint;
 
-import generated.scrum.server.sprint.GSprintDaySnapshotDao;
+import scrum.server.sprint.GSprintDaySnapshotDao;
 import ilarkesto.core.time.Date;
 import ilarkesto.fp.Predicate;
 

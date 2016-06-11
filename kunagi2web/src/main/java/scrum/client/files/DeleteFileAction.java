@@ -14,7 +14,7 @@
  */
 package scrum.client.files;
 
-import generated.scrum.client.files.GDeleteFileAction;
+import scrum.client.files.GDeleteFileAction;
 import ilarkesto.gwt.client.Gwt;
 import scrum.client.common.TooltipBuilder;
 

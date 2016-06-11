@@ -14,7 +14,6 @@
  */
 package scrum.server.collaboration;
 
-import generated.scrum.server.collaboration.GChatMessageDao;
 import ilarkesto.core.time.DateAndTime;
 import scrum.server.project.Project;
 

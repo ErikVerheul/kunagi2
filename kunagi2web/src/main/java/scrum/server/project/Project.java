@@ -14,7 +14,6 @@
  */
 package scrum.server.project;
 
-import generated.scrum.server.project.GProject;
 import ilarkesto.base.Money;
 import ilarkesto.base.StrExtend;
 import ilarkesto.base.UtlExtend;

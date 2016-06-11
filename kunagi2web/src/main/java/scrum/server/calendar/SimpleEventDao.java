@@ -14,7 +14,7 @@
  */
 package scrum.server.calendar;
 
-import generated.scrum.server.calendar.GSimpleEventDao;
+import scrum.server.calendar.GSimpleEventDao;
 import ilarkesto.core.time.Date;
 import ilarkesto.core.time.Time;
 import ilarkesto.fp.Predicate;

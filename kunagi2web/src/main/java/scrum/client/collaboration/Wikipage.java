@@ -14,7 +14,6 @@
  */
 package scrum.client.collaboration;
 
-import generated.scrum.client.collaboration.GWikipage;
 import ilarkesto.gwt.client.HyperlinkWidget;
 
 import java.util.Map;

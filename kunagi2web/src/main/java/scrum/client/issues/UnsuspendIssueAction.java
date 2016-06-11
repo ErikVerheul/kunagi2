@@ -14,7 +14,7 @@
  */
 package scrum.client.issues;
 
-import generated.scrum.client.issues.GUnsuspendIssueAction;
+import scrum.client.issues.GUnsuspendIssueAction;
 import scrum.client.common.TooltipBuilder;
 
 public class UnsuspendIssueAction extends GUnsuspendIssueAction {

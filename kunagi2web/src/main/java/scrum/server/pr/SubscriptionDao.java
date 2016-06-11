@@ -1,6 +1,5 @@
 package scrum.server.pr;
 
-import generated.scrum.server.pr.GSubscriptionDao;
 import ilarkesto.persistence.AEntity;
 
 public class SubscriptionDao extends GSubscriptionDao {

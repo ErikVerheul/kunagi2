@@ -14,7 +14,7 @@
  */
 package scrum.server.admin;
 
-import generated.scrum.server.admin.GProjectUserConfigDao;
+import scrum.server.admin.GProjectUserConfigDao;
 import ilarkesto.fp.Predicate;
 import scrum.server.project.Project;
 

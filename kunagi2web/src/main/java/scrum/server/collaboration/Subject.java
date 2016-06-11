@@ -14,7 +14,6 @@
  */
 package scrum.server.collaboration;
 
-import generated.scrum.server.collaboration.GSubject;
 import java.util.Set;
 
 import scrum.server.admin.User;

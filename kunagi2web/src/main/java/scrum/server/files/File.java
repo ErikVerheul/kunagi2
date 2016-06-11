@@ -14,7 +14,6 @@
  */
 package scrum.server.files;
 
-import generated.scrum.server.files.GFile;
 import ilarkesto.io.IO;
 import scrum.server.admin.User;
 

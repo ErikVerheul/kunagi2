@@ -14,7 +14,7 @@
  */
 package scrum.client.sprint;
 
-import generated.scrum.client.sprint.GPullNextRequirementAction;
+import scrum.client.sprint.GPullNextRequirementAction;
 import scrum.client.project.AddRequirementToCurrentSprintAction;
 import scrum.client.project.Requirement;
 

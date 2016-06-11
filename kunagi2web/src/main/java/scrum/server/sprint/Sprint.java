@@ -14,7 +14,6 @@
  */
 package scrum.server.sprint;
 
-import generated.scrum.server.sprint.GSprint;
 import ilarkesto.base.StrExtend;
 import ilarkesto.base.UtlExtend;
 import ilarkesto.core.logging.Log;

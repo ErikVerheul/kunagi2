@@ -14,8 +14,6 @@
  */
 package scrum.client.project;
 
-import generated.scrum.client.project.GRequirementEstimationVoteAction;
-
 public class RequirementEstimationVoteAction extends GRequirementEstimationVoteAction {
 
 	private Float estimatedWork;

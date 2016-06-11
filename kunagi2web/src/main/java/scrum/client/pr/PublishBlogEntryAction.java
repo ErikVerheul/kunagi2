@@ -14,7 +14,6 @@
  */
 package scrum.client.pr;
 
-import generated.scrum.client.pr.GPublishBlogEntryAction;
 import ilarkesto.core.base.Str;
 import scrum.client.common.TooltipBuilder;
 

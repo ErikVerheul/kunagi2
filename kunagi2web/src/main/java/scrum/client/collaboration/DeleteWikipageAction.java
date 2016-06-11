@@ -14,7 +14,6 @@
  */
 package scrum.client.collaboration;
 
-import generated.scrum.client.collaboration.GDeleteWikipageAction;
 import ilarkesto.gwt.client.Gwt;
 
 public class DeleteWikipageAction extends GDeleteWikipageAction {

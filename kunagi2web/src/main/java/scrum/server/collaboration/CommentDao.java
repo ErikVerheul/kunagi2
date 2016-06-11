@@ -14,7 +14,6 @@
  */
 package scrum.server.collaboration;
 
-import generated.scrum.server.collaboration.GCommentDao;
 import ilarkesto.base.AFactoryCache;
 import ilarkesto.base.Cache;
 import ilarkesto.core.base.Str;

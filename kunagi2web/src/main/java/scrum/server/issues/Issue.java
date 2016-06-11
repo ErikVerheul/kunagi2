@@ -14,7 +14,6 @@
  */
 package scrum.server.issues;
 
-import generated.scrum.server.issues.GIssue;
 import ilarkesto.base.UtlExtend;
 import ilarkesto.core.time.DateAndTime;
 

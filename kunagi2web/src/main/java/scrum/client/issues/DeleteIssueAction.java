@@ -14,7 +14,7 @@
  */
 package scrum.client.issues;
 
-import generated.scrum.client.issues.GDeleteIssueAction;
+import scrum.client.issues.GDeleteIssueAction;
 import scrum.client.common.TooltipBuilder;
 
 public class DeleteIssueAction extends GDeleteIssueAction {

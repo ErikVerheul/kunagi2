@@ -14,7 +14,6 @@
  */
 package scrum.server.project;
 
-import generated.scrum.server.project.GProjectSprintSnapshotDao;
 import ilarkesto.fp.Predicate;
 
 import java.util.ArrayList;

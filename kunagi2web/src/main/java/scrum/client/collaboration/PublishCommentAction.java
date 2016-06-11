@@ -14,7 +14,6 @@
  */
 package scrum.client.collaboration;
 
-import generated.scrum.client.collaboration.GPublishCommentAction;
 import scrum.client.common.TooltipBuilder;
 
 public class PublishCommentAction extends GPublishCommentAction {

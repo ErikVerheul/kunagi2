@@ -14,7 +14,6 @@
  */
 package scrum.client.project;
 
-import generated.scrum.client.project.GReopenRequirementAction;
 import scrum.client.common.TooltipBuilder;
 
 public class ReopenRequirementAction extends GReopenRequirementAction {

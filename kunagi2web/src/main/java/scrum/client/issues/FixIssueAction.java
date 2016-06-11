@@ -14,7 +14,7 @@
  */
 package scrum.client.issues;
 
-import generated.scrum.client.issues.GFixIssueAction;
+import scrum.client.issues.GFixIssueAction;
 import scrum.client.common.TooltipBuilder;
 
 public class FixIssueAction extends GFixIssueAction {

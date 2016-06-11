@@ -14,7 +14,7 @@
  */
 package scrum.client.workspace;
 
-import generated.scrum.client.workspace.GDndManager;
+import scrum.client.workspace.GDndManager;
 import java.util.HashMap;
 import java.util.Map;
 

@@ -14,7 +14,6 @@
  */
 package scrum.client.project;
 
-import generated.scrum.client.project.GOpenProjectAction;
 import scrum.client.common.TooltipBuilder;
 
 public class OpenProjectAction extends GOpenProjectAction {

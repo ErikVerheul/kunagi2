@@ -14,7 +14,6 @@
  */
 package scrum.server.admin;
 
-import generated.scrum.server.admin.GUser;
 import ilarkesto.auth.PasswordHasher;
 import ilarkesto.base.CryptOneWay;
 import ilarkesto.base.StrExtend;

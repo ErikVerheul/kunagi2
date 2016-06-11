@@ -44,6 +44,25 @@
         
         <plugins>
             <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.10</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/generated/java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.5.1</version>
@@ -81,6 +100,9 @@
                 <version>${gwtVersion}</version>
                 <executions>
                     <execution>
+                        <configuration>
+                            <module>scrum.ScrumGWTApplication</module>
+                        </configuration>
                         <goals>
                             <goal>compile</goal>
                             <!--
@@ -92,15 +114,12 @@
                 <!-- Plugin configuration. There are many available options, see
                 gwt-maven-plugin documentation at codehaus.org -->
                 <configuration>
-                    <configuration>
-                        <compileSourcesArtifacts>
-                            <artifact>com:google.gwt.user.client.ui</artifact>
-                            <artifact>ilarkesto:core</artifact>
-                            <artifact>ilarkesto:gwt.client</artifact>
-                        </compileSourcesArtifacts>
-                    </configuration>
-            
-                    <runTarget>parent.html</runTarget>
+                    <compileSourcesArtifacts>
+                        <artifact>com.allen-sauer.gwt.dnd:gwt-dnd</artifact>
+                        <artifact>nl.verheulconsultants.kunagi2:ilarkesto2</artifact>
+                        <artefact>com.googlecode.gwtupload:gwtupload</artefact>
+                    </compileSourcesArtifacts>                        
+                    <runTarget>ScrumGWTApplication.html</runTarget>
                     <draftCompile>true</draftCompile>
                     <hostedWebapp>${webappDirectory}</hostedWebapp>
                     <noServer>true</noServer>

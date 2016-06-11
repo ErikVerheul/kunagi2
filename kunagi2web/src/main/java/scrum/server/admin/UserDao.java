@@ -14,7 +14,6 @@
  */
 package scrum.server.admin;
 
-import generated.scrum.server.admin.GUserDao;
 import ilarkesto.auth.OpenId;
 import ilarkesto.base.StrExtend;
 import ilarkesto.core.logging.Log;

@@ -14,7 +14,7 @@
  */
 package scrum.client.issues;
 
-import generated.scrum.client.issues.GConvertIssueToQualityAction;
+import scrum.client.issues.GConvertIssueToQualityAction;
 import scrum.client.common.TooltipBuilder;
 import scrum.client.project.Quality;
 

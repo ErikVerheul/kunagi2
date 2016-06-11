@@ -14,7 +14,6 @@
  */
 package scrum.client.admin;
 
-import generated.scrum.client.admin.GSystemConfig;
 import java.util.Map;
 
 public class SystemConfig extends GSystemConfig {
