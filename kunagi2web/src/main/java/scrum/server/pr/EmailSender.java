@@ -55,7 +55,7 @@ public class EmailSender {
 			return;
 		}
 
-		if (Str.isBlank(subject)) subject = "Kunagi";
+		if (Str.isBlank(subject)) subject = "Kunagi2";
 
 		MimeMessage message = Eml.createTextMessage(session, subject, text, from, to);
 		Eml.sendSmtpMessage(session, message);

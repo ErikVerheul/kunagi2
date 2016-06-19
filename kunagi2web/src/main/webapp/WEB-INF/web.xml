@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
     <display-name>Kunagi2</display-name>
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
@@ -13,6 +17,10 @@
         <!-- <param-value>200</param-value>  -->
         <param-value>0</param-value>
     </context-param>
+    <servlet-mapping>
+       <servlet-name>default</servlet-name>
+       <url-pattern>/</url-pattern>
+   </servlet-mapping>
     <!-- start page -->
     <servlet>
         <servlet-name>start</servlet-name>
@@ -81,7 +89,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>scrum</servlet-name>
-        <url-pattern>/scrum.ScrumGwtApplication/scrum</url-pattern>
+        <url-pattern>/scrum.Kunagi2/scrum</url-pattern>
     </servlet-mapping>
     <!-- css -->
     <servlet>
@@ -91,7 +99,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>css</servlet-name>
-        <url-pattern>/scrum.ScrumGwtApplication/screen.css</url-pattern>
+        <url-pattern>/scrum.Kunagi2/screen.css</url-pattern>
     </servlet-mapping>
     <!-- file download -->
     <servlet>
@@ -101,7 +109,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>fileDownload</servlet-name>
-        <url-pattern>/scrum.ScrumGwtApplication/fileDownload/*</url-pattern>
+        <url-pattern>/scrum.Kunagi2/fileDownload/*</url-pattern>
     </servlet-mapping>
     <!-- file upload -->
     <servlet>
@@ -121,7 +129,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>backupDownload</servlet-name>
-        <url-pattern>/scrum.ScrumGwtApplication/backupDownload.zip</url-pattern>
+        <url-pattern>/scrum.Kunagi2/backupDownload.zip</url-pattern>
     </servlet-mapping>
     <!-- sprint burndown chart -->
     <servlet>
@@ -131,7 +139,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>sprintBurndownChart</servlet-name>
-        <url-pattern>/scrum.ScrumGwtApplication/sprintBurndownChart.png</url-pattern>
+        <url-pattern>/scrum.Kunagi2/sprintBurndownChart.png</url-pattern>
     </servlet-mapping>
     <!-- sprint report -->
     <servlet>
@@ -141,7 +149,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>pdf</servlet-name>
-        <url-pattern>/scrum.ScrumGwtApplication/pdf.pdf</url-pattern>
+        <url-pattern>/scrum.Kunagi2/pdf.pdf</url-pattern>
     </servlet-mapping>
     <!-- journal rss -->
     <servlet>
@@ -151,7 +159,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>journalRss</servlet-name>
-        <url-pattern>/scrum.ScrumGwtApplication/projectJournal.rss</url-pattern>
+        <url-pattern>/scrum.Kunagi2/projectJournal.rss</url-pattern>
     </servlet-mapping>
     <!-- issue -->
     <servlet>

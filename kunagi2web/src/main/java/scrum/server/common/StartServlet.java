@@ -51,13 +51,13 @@ public class StartServlet extends AKunagiServlet {
 		HtmlRenderer html = new HtmlRenderer(req.getWriter(), charset);
 		html.startHTMLstandard();
 
-		String title = "Kunagi";
+		String title = "Kunagi2";
 		if (config.isShowRelease()) title += " " + applicationInfo.getRelease();
 		if (systemConfig.isInstanceNameSet()) title += " @ " + systemConfig.getInstanceName();
 		html.startHEAD(title, "EN");
 		html.META("X-UA-Compatible", "IE=edge");
 		html.LINKfavicon();
-		html.SCRIPTjavascript("scrum.ScrumGwtApplication/scrum.ScrumGwtApplication.nocache.js", null);
+		html.SCRIPTjavascript("scrum.Kunagi2/scrum.Kunagi2.nocache.js", null);
 		html.SCRIPTjavascript("codemirror/js/codemirror.js", null);
 		html.endHEAD();
 

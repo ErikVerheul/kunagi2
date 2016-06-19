@@ -384,13 +384,13 @@ public class LoginServlet extends AKunagiServlet {
 		HtmlRenderer html = new HtmlRenderer(req.getWriter(), charset);
 		html.startHTMLstandard();
 
-		String title = "Kunagi Login";
+		String title = "Kunagi2 Login";
 		if (webApplication.getConfig().isShowRelease()) title += " " + applicationInfo.getRelease();
 		if (systemConfig.isInstanceNameSet()) title += " @ " + systemConfig.getInstanceName();
 		html.startHEAD(title, "EN");
 		html.META("X-UA-Compatible", "IE=edge");
 		html.LINKfavicon();
-		html.LINKcss("scrum.ScrumGwtApplication/screen.css");
+		html.LINKcss("scrum.Kunagi2/screen.css");
 		html.endHEAD();
 
 		html.startBODY();
@@ -398,7 +398,7 @@ public class LoginServlet extends AKunagiServlet {
 		html.startDIV("panel");
 		String logoUrl = webApplication.getSystemConfig().getLoginPageLogoUrl();
 		if (StrExtend.isBlank(logoUrl)) logoUrl = "kunagi.png";
-		html.IMG(logoUrl, "Kunagi", null, null, null, null);
+		html.IMG(logoUrl, "Kunagi2", null, null, null, null);
 		html.DIV("separator", null);
 		if (message != null) renderMessage(html, message);
 		if (!createAccount && !passwordRequest) renderLogin(html, username, historyToken);
@@ -406,7 +406,7 @@ public class LoginServlet extends AKunagiServlet {
 		if (createAccount) renderCreateAccount(html, username, email, historyToken);
 		html.DIV("separator", null);
 		html.startDIV("kunagiLink");
-		html.text("Kunagi " + webApplication.getReleaseLabel() + " | ");
+		html.text("Kunagi2 " + webApplication.getReleaseLabel() + " | ");
 		html.A("http://kunagi.org", "kunagi.org");
 		html.endDIV();
 		html.endDIV();

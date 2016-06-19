@@ -55,7 +55,7 @@ public class KunagiRootConfig {
 			props.setDefaults(defaults);
 			log.warn("Configuration file "
 					+ defaultsFile.getAbsolutePath()
-					+ " is deprecated and will be ignored by future Kunagi versions! Please move configuration properties into your instance configuration file "
+					+ " is deprecated and will be ignored by future Kunagi2 versions! Please move configuration properties into your instance configuration file "
 					+ configFile.getAbsolutePath() + ".");
 		}
 	}
@@ -71,7 +71,7 @@ public class KunagiRootConfig {
 				} else {
 					log.warn("The property data.path in configuration file "
 							+ configFile.getAbsolutePath()
-							+ " is deprecated and will be ignored in future Kunagi versions! Instead the configuration file config.properties needs to be in your Kunagi data directory.");
+							+ " is deprecated and will be ignored in future Kunagi2 versions! Instead the configuration file config.properties needs to be in your Kunagi2 data directory.");
 				}
 			} else {
 				dataPath = configFile.getParent();
@@ -83,7 +83,7 @@ public class KunagiRootConfig {
 	private static File determineConfigFile(String webappName) {
 		String configFilePath = System.getProperty("kunagi.config");
 		if (configFilePath != null) {
-			log.warn("Java System Property kunagi.config is deprecated and will be ignored in future Kunagi versions! Please instead set the Java System Property kunagi.data and point it to your Kunagi data directory. Also place there your configuration file as config.properties.");
+			log.warn("Java System Property kunagi2.config is deprecated and will be ignored in future Kunagi2 versions! Please instead set the Java System Property kunagi2.data and point it to your Kunagi2 data directory. Also place there your configuration file as config.properties.");
 			return new File(configFilePath);
 		}
 
@@ -104,7 +104,7 @@ public class KunagiRootConfig {
 		File legacyDataDir = determineLegacyDataDir(webappName);
 		if (legacyDataDir != null && legacyDataDir.exists()) {
 			log.warn("Data directory " + legacyDataDir.getAbsolutePath()
-					+ " is deprecated and will be ignored by future Kunagi version! Please move it to "
+					+ " is deprecated and will be ignored by future Kunagi2 version! Please move it to "
 					+ determineDefaultDataPath(webappName));
 			return legacyDataDir.getAbsolutePath();
 		}

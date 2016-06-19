@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+    <!-- Inherit the core Web Toolkit stuff.                        -->
+    <inherits name="com.google.gwt.user.User" />
+    <!-- Inherit the default GWT style sheet.  You can change       -->
+    <!-- the theme of your GWT application by uncommenting          -->
+    <!-- any one of the following lines.                            -->
+    <inherits name='com.google.gwt.user.theme.standard.Standard'/>
+    <!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
+    <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
+
+    <!-- Other module inherits                                      -->
+    <inherits name="com.Menubar" />
+    <inherits name="com.allen_sauer.gwt.dnd.gwt-dnd" />
+
+    <inherits name="gwtupload.GWTUpload" />
+    <stylesheet src="Upload.css" />
+
+    <inherits name="ilarkesto.Ilarkesto" />
+
+    <stylesheet src="screen.css" />
+
+    <!-- Specify the app entry point class.                         -->
+    <entry-point class="scrum.client.ScrumGwtApplication" />
+
+    <replace-with class="com.google.gwt.user.client.impl.HistoryImplTimer">
+        <when-type-is class="com.google.gwt.user.client.impl.HistoryImpl" />
+        <any>
+            <when-property-is name="user.agent" value="opera" />
+        </any>
+    </replace-with>
+
+</module>

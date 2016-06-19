@@ -36,6 +36,28 @@
             <artifactId>jfreechart</artifactId>
             <version>1.0.19</version>
         </dependency>
+        <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-servlet</artifactId>
+            <version>${gwtVersion}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-user</artifactId>
+            <version>${gwtVersion}</version>
+        </dependency>
+        <dependency> 
+            <groupId>javax.validation</groupId> 
+            <artifactId>validation-api</artifactId> 
+            <version>1.0.0.GA</version> 
+            <scope>runtime</scope> 
+        </dependency> 
+        <dependency> 
+            <groupId>org.json</groupId> 
+            <artifactId>json</artifactId> 
+            <version>20160212</version> 
+        </dependency>
     </dependencies>
 
     <build>
@@ -101,7 +123,7 @@
                 <executions>
                     <execution>
                         <configuration>
-                            <module>scrum.ScrumGWTApplication</module>
+                            <module>scrum.Kunagi2</module>
                         </configuration>
                         <goals>
                             <goal>compile</goal>
@@ -119,12 +141,7 @@
                         <artifact>nl.verheulconsultants.kunagi2:ilarkesto2</artifact>
                         <artefact>com.googlecode.gwtupload:gwtupload</artefact>
                     </compileSourcesArtifacts>                        
-                    <runTarget>ScrumGWTApplication.html</runTarget>
-                    <draftCompile>true</draftCompile>
-                    <hostedWebapp>${webappDirectory}</hostedWebapp>
-                    <noServer>true</noServer>
-                    <port>${tomcat.webport}</port>
-                    <runTarget>${tomcat.context}</runTarget>
+                    
                 </configuration>
             </plugin>
         </plugins>
