@@ -22,7 +22,7 @@ http://maven.apache.org/maven-v4_0_0.xsd">
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <tomcat.webport>8082</tomcat.webport>
         <tomcat.ajpport>8182</tomcat.ajpport>
-        <tomcat.context>/parent</tomcat.context>
+        <tomcat.context>/kunagi2</tomcat.context>
     </properties>
 
     <dependencies>
