@@ -136,7 +136,7 @@ public class Paragraph extends AParagraph implements ItextElement {
 		selector.addFont(createFont(preferredFont, fontStyle));
 
 		// fallback from ilarkesto.jar
-		selector.addFont(createFont("src/main/resources/fonts/HDZB_36.ttf", fontStyle)); // embeddable chinese
+		selector.addFont(createFont("fonts/HDZB_36.ttf", fontStyle)); // embeddable chinese
 
 		// fallback from iTextAsian.jar
 		selector.addFont(createFont("STSong-Light", fontStyle)); // simplified chinese

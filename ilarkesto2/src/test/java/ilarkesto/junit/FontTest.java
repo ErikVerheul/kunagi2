@@ -49,10 +49,10 @@ public class FontTest {
         assertTrue("Cannot create FONT_LIBERATION_MONO.", createFont(FONT_LIBERATION_MONO));
     }
     
-//    @Test
-//    public void chineseFont() {
-//        assertTrue("Cannot create STSong-Light.", createFont("STSong-Light")); // simplified chinese
-//    }
+    @Test
+    public void chineseFont() {
+        assertTrue("Cannot create STSong-Light.", createFont("STSong-Light")); // simplified chinese
+    }
     
     private boolean createFont(String name) {
         Font font;

@@ -19,8 +19,8 @@ import static com.itextpdf.text.BaseColor.BLACK;
 
 public final class FontStyle {
 
-	public static final String FONT_UBUNTU = "src/main/resources/fonts/Ubuntu-R.ttf";
-	public static final String FONT_LIBERATION_MONO = "src/main/resources/fonts/LiberationMono-Regular.ttf";
+	public static final String FONT_UBUNTU = "fonts/Ubuntu-R.ttf";
+	public static final String FONT_LIBERATION_MONO = "fonts/LiberationMono-Regular.ttf";
 	public static final String FONT_DEFAULT = FONT_UBUNTU;
 	public static final String FONT_DEFAULT_FIXED = FONT_LIBERATION_MONO;
 
