@@ -66,7 +66,7 @@ COPYING
     GNU Affero General Public License for more details.
 
     You should have received a copy of the GNU Affero General Public License
-    along with Kunagi(20. If not, see <http://www.gnu.org/licenses/>.
+    along with Kunagi(2). If not, see <http://www.gnu.org/licenses/>.
 
     
 INCLUDED LIBRARIES
