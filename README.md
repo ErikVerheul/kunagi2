@@ -9,8 +9,8 @@ KUNAGI
 KUNAGI2
 
     Kunagi2 is a fork of Kunagi ported to JKD7 which builds with Maven. Using
-    the latest GWT compiler the generated javascript supports the latest 
-    browser versions.
+    the latest GWT compiler the generated javascript supports recent browser 
+    versions.
 
     author: Erik Verheul, 2016
 	
