@@ -6,10 +6,17 @@ KUNAGI
     http://kunagi.org
     mailto:support@kunagi.org
 
+KUNAGI2
+
+    Kunagi2 is a fork of Kunagi ported to JKD7 which builds with Maven. Using
+    the latest GWT compiler the generated javascript supports the latest 
+    browser versions.
+
+    author: Erik Verheul, 2016
 	
 DESCRIPTION
 
-    Kunagi is a free web-based tool for integrated project management and
+    Kunagi(2) is a free web-based tool for integrated project management and
     collaboration based on Scrum. It is integrated, allowing users to manage
     their complete project using only one tool. For that purpose, Scrum is
     supplemented by a selection of other best practices to cover all project
@@ -22,13 +29,13 @@ DESCRIPTION
     estimation) and team collaboration (including comments for every entity,
     a wiki and a discussion board).
 
-    Kunagi is aimed at, but not limited to, software projects. The light
+    Kunagi(2) is aimed at, but not limited to, software projects. The light
     nature of agile project management allows for use by both professionals
     and non-professionals, causing minimal overhead to the project. Therefore,
-    it is also suitable for small projects done by virtual teams, i. e. teams
+    it is also suitable for small projects done by virtual teams, i.e. teams
     that are scattered across the world.
 
-    Using Kunagi's web interface, it is possible to access project related
+    Using Kunagi(2)'s web interface, it is possible to access project related
     data from anywhere. Despite being an online application, the powerful
     interface is built to keep up with the flexibility of desktop software,
     as it makes use of asynchronous technology employing the Google Web
@@ -38,7 +45,7 @@ DESCRIPTION
     their work done. We understand that it is therefore important for the tool
     to be not only suitable for project management, but also be accessible,
     offer a coherent work flow and be fun to use. For this reason, we have been
-    using Kunagi for it's own project management, once it was ready to provide
+    using Kunagi(2) for it's own project management, once it was ready to provide
     sufficient functionality for our needs. Moreover, after the tool's release,
     we will provide additions, enhancements and updates on a regular basis.
 
@@ -48,23 +55,23 @@ COPYING
     Copyright 2008-2011
     Witoslaw Koczewski, Artjom Kochtchi, Arne Moehle, Fabian Hager, Kacper Grubalski
 
-    Kunagi is free software: you can redistribute it and/or modify
+    Kunagi(2) is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    Kunagi is distributed in the hope that it will be useful,
+    Kunagi(2) is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
     GNU Affero General Public License for more details.
 
     You should have received a copy of the GNU Affero General Public License
-    along with Kunagi. If not, see <http://www.gnu.org/licenses/>.
+    along with Kunagi(20. If not, see <http://www.gnu.org/licenses/>.
 
     
 INCLUDED LIBRARIES
 
-    Kunagi uses libraries from other projects with different open source
+    Kunagi2 uses libraries from other projects with different open source
     licenses. The following are included in our package:
 
     * Google Web Toolkit - Apache License, Version 2.0
