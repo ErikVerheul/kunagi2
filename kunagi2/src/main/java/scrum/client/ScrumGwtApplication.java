@@ -46,7 +46,7 @@ import scrum.client.workspace.WorkspaceWidget;
 
 public class ScrumGwtApplication extends GScrumGwtApplication {
 
-	public static final String LOGIN_TOKEN_COOKIE = "kunagiLoginToken";
+	public static final String LOGIN_TOKEN_COOKIE = "kunagi2LoginToken";
 
 	static final String[] REFERENCE_PREFIXES = new String[] { Requirement.REFERENCE_PREFIX,
 			Task.REFERENCE_PREFIX, Quality.REFERENCE_PREFIX, Issue.REFERENCE_PREFIX, Impediment.REFERENCE_PREFIX,
