@@ -18,9 +18,7 @@ import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.event.dom.client.KeyDownHandler;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.Widget;
-import ilarkesto.core.base.Str;
 import static ilarkesto.core.base.Str.isBlank;
-import ilarkesto.core.time.Tm;
 import static ilarkesto.core.time.Tm.getCurrentTimeMillis;
 
 // http://codemirror.net/manual.html

@@ -14,7 +14,6 @@
  */
 package ilarkesto.gwt.client;
 
-import com.google.gwt.core.client.GWT;
 import static com.google.gwt.core.client.GWT.isScript;
 import ilarkesto.core.logging.LogRecord;
 import ilarkesto.core.logging.LogRecordHandler;
