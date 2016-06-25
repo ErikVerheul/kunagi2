@@ -285,11 +285,11 @@ public class Gwt {
 
 	public static void setRichtextEditorEditInitializer(
 			Initializer<RichtextEditorWidget> richtextEditorToolbarInitializer) {
-		richtextEditorEditInitializer = richtextEditorToolbarInitializer;
+		Gwt.richtextEditorEditInitializer = richtextEditorToolbarInitializer;
 	}
 
 	public static void setDefaultRichtextFormater(RichtextFormater defaultRichtextFormater) {
-		defaultRichtextFormater = defaultRichtextFormater;
+		Gwt.defaultRichtextFormater = defaultRichtextFormater;
 	}
 
 	public static Initializer<RichtextEditorWidget> getRichtextEditorEditInitializer() {
@@ -305,11 +305,11 @@ public class Gwt {
 	}
 
 	public static void setDefaultRichtextSyntaxInfo(String defaultRichtextSyntaxInfo) {
-		defaultRichtextSyntaxInfo = defaultRichtextSyntaxInfo;
+		Gwt.defaultRichtextSyntaxInfo = defaultRichtextSyntaxInfo;
 	}
 
 	public static void setRootWidget(Widget rootWidget) {
-		rootWidget = rootWidget;
+		Gwt.rootWidget = rootWidget;
 	}
 
 	public static Widget getRootWidget() {
