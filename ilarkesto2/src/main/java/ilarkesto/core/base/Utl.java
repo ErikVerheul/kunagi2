@@ -147,7 +147,7 @@ public class Utl {
 	}
 
 	/**
-	 * Check if the first given parameter equals at least one of the other parameters
+	 * Check if the first given parameter equalObjects at least one of the other parameters
 	 */
 	public static boolean equalsAny(Object o, Object... others) {
 		for (Object other : others) {
@@ -158,7 +158,7 @@ public class Utl {
 		return false;
 	}
 
-	public static boolean equals(Object a, Object b) {
+	public static boolean equalObjects(Object a, Object b) {
 		if (a == null && b == null) {
                         return true;
                 }
@@ -172,7 +172,7 @@ public class Utl {
                                 return false;
                         }
 			for (int i = 0; i < aa.length; i++) {
-				if (!equals(aa[i], ba[i])) {
+				if (!equalObjects(aa[i], ba[i])) {
                                         return false;
                                 }
 			}

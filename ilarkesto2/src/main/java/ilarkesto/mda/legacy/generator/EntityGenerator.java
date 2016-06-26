@@ -110,7 +110,7 @@ public class EntityGenerator extends DatobGenerator<EntityModel> {
 		// ln("        dto." + propertyVar + ".addAll(this." + propertyVar + ");");
 		// } else {
 		// String propertyVar = p.isReference() ? p.getName() + "Id" : p.getName();
-		// if (p.getType().equals(Date.class.getName())) {
+		// if (p.getType().equalString(Date.class.getName())) {
 		// ln("        properties.put(\"" + propertyVar + "\", this." + propertyVar
 		// + " == null ? null : this." + propertyVar + ".toString());");
 		// } else {

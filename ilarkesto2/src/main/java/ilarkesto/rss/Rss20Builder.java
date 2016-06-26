@@ -117,8 +117,8 @@ public class Rss20Builder {
 			if (i == item) {
                                 continue;
                         }
-			if (UtlExtend.equals(i.guid, item.guid) || (i.enclosure != null && UtlExtend.equals(i.enclosure, item.enclosure))
-					|| UtlExtend.equals(i.title, item.title)) {
+			if (UtlExtend.equalObjects(i.guid, item.guid) || (i.enclosure != null && UtlExtend.equalObjects(i.enclosure, item.enclosure))
+					|| UtlExtend.equalObjects(i.title, item.title)) {
 				items.remove(item);
 			}
 		}

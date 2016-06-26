@@ -121,7 +121,7 @@ public class LogRecord {
 		if (name == null ? other.name != null : !name.equals(other.name)) {
                         return false;
                 }
-		return Utl.equals(parameters, other.parameters);
+		return Utl.equalObjects(parameters, other.parameters);
 	}
 
 }

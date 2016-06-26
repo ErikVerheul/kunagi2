@@ -214,7 +214,7 @@ public final class Sys {
 		return asList(threads);
 	}
 
-	public static boolean equals(Object a, Object b) {
+	public static boolean equalObjects(Object a, Object b) {
                 if (a == b) {
                         return true;
                 }

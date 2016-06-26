@@ -39,7 +39,7 @@ public class DateFormField extends AFormField {
 	@Override
 	public void update(Map<String, String> data, Collection<FileItem> uploadedFiles) {
 		String newValue = prepareValue(data.get(getName()));
-		if (UtlExtend.equals(value, newValue)) {
+		if (UtlExtend.equalObjects(value, newValue)) {
                         return;
                 }
 		value = newValue;

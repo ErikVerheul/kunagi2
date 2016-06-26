@@ -136,6 +136,7 @@ public abstract class AGwtEntity {
 		return value == null ? null : value.toString();
 	}
 
+        //@ToDo: rename this method and see that the new name is used in the code generator
 	protected final boolean equals(Object a, Object b) {
 		if (a == b) {
                         return true;

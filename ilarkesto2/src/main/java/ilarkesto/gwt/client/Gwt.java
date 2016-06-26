@@ -182,16 +182,6 @@ public class Gwt {
 		return getInnerHTML(div);
 	}
 
-	public static boolean equals(Object a, Object b) {
-		if (a == b) {
-                        return true;
-                }
-		if (a != null) {
-                        return a.equals(b);
-                }
-		return false;
-	}
-
 	public static UndoManager getUndoManager() {
 		return undoManager;
 	}

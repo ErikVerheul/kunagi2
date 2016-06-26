@@ -122,20 +122,6 @@ public class UtlExtend extends ilarkesto.core.base.Utl {
 
 	private static final Random random = new Random(currentTimeMillis());
 
-	public static boolean equals(Set<?> objects) {
-		Object first = null;
-		for (Object o : objects) {
-			if (first == null) {
-				first = o;
-			} else {
-				if (!first.equals(o)) {
-                                        return false;
-                                }
-			}
-		}
-		return true;
-	}
-
 	public static boolean isEmpty(String s) {
 		if (s == null) {
                         return true;

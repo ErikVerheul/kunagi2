@@ -27,8 +27,8 @@ public class UtlTest extends ATest {
 		Object[] a = { "hello", "equals" };
 		Object[] b = { "hello", "equals" };
 		Object[] c = { "hello", "world" };
-		assertTrue(Utl.equals(a, b));
-		assertFalse(Utl.equals(a, c));
+		assertTrue(Utl.equalObjects(a, b));
+		assertFalse(Utl.equalObjects(a, c));
 	}
 
 	@Test

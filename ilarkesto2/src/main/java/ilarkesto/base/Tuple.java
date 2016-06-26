@@ -49,7 +49,7 @@ public final class Tuple<A, B> {
                         return false;
                 }
 		Tuple<A, B> other = (Tuple<A, B>) obj;
-		return Sys.equals(a, other.a) && Sys.equals(b, other.b);
+		return Sys.equalObjects(a, other.a) && Sys.equalObjects(b, other.b);
 	}
 
 	@Override

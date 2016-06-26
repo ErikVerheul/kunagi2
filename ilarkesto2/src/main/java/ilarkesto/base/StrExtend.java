@@ -491,9 +491,9 @@ public class StrExtend extends ilarkesto.core.base.Str {
 	/**
 	 * Determine the index of a string inside of an string array.
 	 */
-	public static int indexOfStringInArray(String s, String[] strings) {
+	private static int indexOfStringInArray(String s, String[] strings) {
 		for (int i = 0; i < strings.length; i++) {
-			if (equals(strings[i], s)) {
+			if (equalString(strings[i], s)) {
                                 return i;
                         }
 		}
@@ -501,14 +501,14 @@ public class StrExtend extends ilarkesto.core.base.Str {
 	}
 
     @SuppressWarnings("NP_NULL_ON_SOME_PATH_MIGHT_BE_INFEASIBLE")
-	public static boolean equals(String s1, String s2) {
+	private static boolean equalString(String s1, String s2) {
 		if (s1 == null && s2 == null) {
                         return true;
                 }
 		if (s1 == null && s2 != null) {
                         return false;
                 }
-		if (s1 != null && s2 == null) {
+		if (s2 == null) {
                         return false;
                 }
 		return s1.equals(s2);
@@ -1451,7 +1451,7 @@ public class StrExtend extends ilarkesto.core.base.Str {
 		return ret;
 	}
 
-	public static boolean equals(String[] sa1, String[] sa2) {
+	public static boolean equalStringArrays(String[] sa1, String[] sa2) {
 		if (sa1.length != sa2.length) {
                         return false;
                 }
