@@ -308,7 +308,7 @@ public abstract class AViewEditWidget extends AWidget {
 	}
 
 	public static void setGlobalModeSwitchHandler(ModeSwitchHandler globalModeSwitchHandler) {
-		globalModeSwitchHandler = globalModeSwitchHandler;
+		AViewEditWidget.globalModeSwitchHandler = globalModeSwitchHandler;
 	}
 
 	private class ViewerClickListener implements ClickHandler {

@@ -46,7 +46,7 @@ public class Tm {
 	}
 
 	public static void setTimeOffset(long timeOffset) {
-		timeOffset = timeOffset;
+		Tm.timeOffset = timeOffset;
 	}
 
 	public static Date getDateAndTime(Date date, long time) {

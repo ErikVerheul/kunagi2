@@ -960,7 +960,7 @@ public class Eml {
 	}
 
 	public static void setCharset(String charset) {
-		charset = charset;
+		Eml.charset = charset;
 		setProperty("mail.mime.charset", charset);
 	}
 

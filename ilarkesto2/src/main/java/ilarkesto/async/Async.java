@@ -30,7 +30,7 @@ public class Async {
 	}
 
 	public static void setWorker(AsyncWorker worker) {
-		worker = worker;
+		Async.worker = worker;
 	}
 
 }

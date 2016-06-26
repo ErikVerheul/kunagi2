@@ -110,7 +110,7 @@ public class Utl {
 	}
         
         public static void setLanguage(String language) {
-		language = language;
+		Utl.language = language;
 	}
 
 	public static String getLanguage() {
