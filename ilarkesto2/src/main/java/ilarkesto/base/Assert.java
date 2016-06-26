@@ -16,19 +16,19 @@ package ilarkesto.base;
 
 public abstract class Assert {
 
-	public static void greater(int a, int b) {
+	public static void greaterInt(int a, int b) {
 		if (a <= b) {
                         throw new AssertionException(a + " <= " + b);
                 }
 	}
 
-	public static void greaterOrEqual(int a, int b) {
+	public static void greaterOrEqualInt(int a, int b) {
 		if (a < b) {
                         throw new AssertionException(a + " < " + b);
                 }
 	}
 
-	public static void equal(int a, int b) {
+	public static void equalInt(int a, int b) {
 		if (a != b) {
                         throw new AssertionException(a + " != " + b);
                 }

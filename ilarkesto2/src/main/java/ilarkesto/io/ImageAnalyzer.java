@@ -14,7 +14,7 @@
  */
 package ilarkesto.io;
 
-import static ilarkesto.base.Assert.equal;
+import static ilarkesto.base.Assert.equalInt;
 import ilarkesto.core.logging.Log;
 import static ilarkesto.io.IO.loadImage;
 import java.awt.image.BufferedImage;
@@ -46,15 +46,15 @@ public class ImageAnalyzer {
 	}
 
 	public void assertColor(int x, int y, int color) {
-		equal(image.getRGB(x, y), color);
+		equalInt(image.getRGB(x, y), color);
 	}
 
 	public void assertWidth(int w) {
-		equal(image.getWidth(), w);
+		equalInt(image.getWidth(), w);
 	}
 
 	public void assertHeight(int h) {
-		equal(image.getHeight(), h);
+		equalInt(image.getHeight(), h);
 	}
 
 	public ImageAnalyzer getSubimage(int x, int y, int w, int h) {
