@@ -70,8 +70,47 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <type>jar</type>
+            <scope>test</scope>
         </dependency>
     </dependencies>
+    
+    <profiles>
+        <profile>
+            <!-- Run this profile to change/update the model and generated sources -->
+            <id>ScrumModeller</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>  
+                <plugins>  
+                    <plugin>  
+                        <groupId>org.codehaus.mojo</groupId>  
+                        <artifactId>exec-maven-plugin</artifactId>  
+                        <version>1.5.0</version>  
+                        <executions>  
+                            <execution>  
+                                <phase>compile</phase>  
+                                <goals>  
+                                    <goal>java</goal>  
+                                </goals>  
+                                <configuration>  
+                                    <mainClass>scrum.mda.ScrumModeller</mainClass>  
+                                </configuration>  
+                            </execution>  
+                        </executions>  
+                    </plugin>  
+                </plugins>  
+            </build>  
+            <dependencies>
+                <dependency>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>javax.servlet-api</artifactId>
+                    <version>3.1.0</version>
+                    <scope>runtime</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
 
     <build>
         <!-- Generate compiled stuff in the folder used for developing mode -->
