@@ -30,242 +30,250 @@ import com.google.gwt.user.client.ui.Widget;
 
 /**
  * Base class for a block widget, which can be added to a <code>BlockWidgetList</code>.
- * 
+ *
  */
 @SuppressWarnings("unchecked")
 public abstract class ABlockWidget<O> extends AScrumWidget {
 
-	private O object;
-	private boolean extended;
-	private BlockListWidget<O> list;
+    private O object;
+    private boolean extended;
+    private BlockListWidget<O> list;
 
-	private BlockHeaderWidget header;
+    private BlockHeaderWidget header;
 
-	private FlowPanel outerPanel;
-	private FlowPanel preHeaderPanel;
-	private FlowPanel panel;
-	private SimplePanel bodyWrapper;
-	private BlockDndMarkerWidget dndMarkerTop = new BlockDndMarkerWidget();
+    private FlowPanel outerPanel;
+    private FlowPanel preHeaderPanel;
+    private FlowPanel panel;
+    private SimplePanel bodyWrapper;
+    private BlockDndMarkerWidget dndMarkerTop = new BlockDndMarkerWidget();
 
-	private boolean initializingExtension;
-	private boolean initializedExtension;
-	private Widget body;
+    private boolean initializingExtension;
+    private boolean initializedExtension;
+    private Widget body;
 
-	protected abstract void onInitializationHeader(BlockHeaderWidget header);
+    protected abstract void onInitializationHeader(BlockHeaderWidget header);
 
-	protected abstract void onUpdateHeader(BlockHeaderWidget header);
+    protected abstract void onUpdateHeader(BlockHeaderWidget header);
 
-	protected abstract Widget onExtendedInitialization();
+    protected abstract Widget onExtendedInitialization();
 
-	public ABlockWidget() {}
+    public ABlockWidget() {
+    }
 
-	@Override
-	protected final Widget onInitialization() {
-		header = new BlockHeaderWidget();
-		header.initialize();
-		if (ScrumScopeManager.isProjectScope() && getObject() instanceof AScrumGwtEntity) {
-			header.appendOuterCell(new UsersOnBlockWidget((AScrumGwtEntity) getObject()), null, true);
-		}
+    @Override
+    protected final Widget onInitialization() {
+        header = new BlockHeaderWidget();
+        header.initialize();
+        if (ScrumScopeManager.isProjectScope() && getObject() instanceof AScrumGwtEntity) {
+            header.appendOuterCell(new UsersOnBlockWidget((AScrumGwtEntity) getObject()), null, true);
+        }
 
-		if (list.dndManager != null) list.dndManager.makeDraggable(this, header.getDragHandle());
+        if (list.dndManager != null) {
+            list.dndManager.makeDraggable(this, header.getDragHandle());
+        }
 
-		panel = Gwt.createFlowPanel("ABlockWidget", null, header);
-		panel.add(header);
+        panel = Gwt.createFlowPanel("ABlockWidget", null, header);
+        panel.add(header);
 
-		outerPanel = Gwt.createFlowPanel("ABlockWidget-outer", null, dndMarkerTop, panel);
+        outerPanel = Gwt.createFlowPanel("ABlockWidget-outer", null, dndMarkerTop, panel);
 
-		dndMarkerTop.setActive(false);
+        dndMarkerTop.setActive(false);
 
-		onInitializationHeader(header);
-		if (!ScrumScopeManager.isProjectScope() || !(object instanceof AGwtEntity)) {
-			header.addClickHandler(new SelectionClickHandler());
-		}
+        onInitializationHeader(header);
+        if (!ScrumScopeManager.isProjectScope() || !(object instanceof AGwtEntity)) {
+            header.addClickHandler(new SelectionClickHandler());
+        }
 
-		return outerPanel;
-	}
+        return outerPanel;
+    }
 
-	private long lastModificationTime;
+    private long lastModificationTime;
 
-	public final void resetLastModificationTime() {
-		lastModificationTime = 0;
-	}
+    public final void resetLastModificationTime() {
+        lastModificationTime = 0;
+    }
 
-	@Override
-	protected boolean isUpdateRequired() {
-		if (object instanceof AGwtEntity) {
-			AGwtEntity entity = getHrefEntity();
-			long localModificationTime = entity.getLocalModificationTime();
-			if (localModificationTime == lastModificationTime) {
-				updateHref();
-				return false;
-			}
-			lastModificationTime = localModificationTime;
-			return true;
-		}
-		updateHref();
-		return super.isUpdateRequired();
-	}
+    @Override
+    protected boolean isUpdateRequired() {
+        if (object instanceof AGwtEntity) {
+            AGwtEntity entity = getHrefEntity();
+            long localModificationTime = entity.getLocalModificationTime();
+            if (localModificationTime == lastModificationTime) {
+                updateHref();
+                return false;
+            }
+            lastModificationTime = localModificationTime;
+            return true;
+        }
+        updateHref();
+        return super.isUpdateRequired();
+    }
 
-	@Override
-	protected final void onUpdate() {
-		onUpdateHeader(header);
-		updateHref();
-		header.update();
-		if (isExtended()) {
-			ensureExtendedInitialized();
-			onUpdateBody();
-			if (bodyWrapper == null) {
-				bodyWrapper = Gwt.createDiv("ABlockWidget-body", body);
-				panel.add(bodyWrapper);
-			}
-		} else {
-			if (bodyWrapper != null) {
-				panel.remove(bodyWrapper);
-				bodyWrapper = null;
-			}
-		}
-		Gwt.update(preHeaderPanel);
-	}
+    @Override
+    protected final void onUpdate() {
+        onUpdateHeader(header);
+        updateHref();
+        header.update();
+        if (isExtended()) {
+            ensureExtendedInitialized();
+            onUpdateBody();
+            if (bodyWrapper == null) {
+                bodyWrapper = Gwt.createDiv("ABlockWidget-body", body);
+                panel.add(bodyWrapper);
+            }
+        } else {
+            if (bodyWrapper != null) {
+                panel.remove(bodyWrapper);
+                bodyWrapper = null;
+            }
+        }
+        Gwt.update(preHeaderPanel);
+    }
 
-	private void updateHref() {
-		if (ScrumScopeManager.isProjectScope() && object instanceof AGwtEntity) {
-			AGwtEntity entity = getHrefEntity();
-			String href = Navigator.getEntityHref(entity);
-			href += "|toggle=" + isExtended();
-			header.setHref(href);
-		}
-	}
+    private void updateHref() {
+        if (ScrumScopeManager.isProjectScope() && object instanceof AGwtEntity) {
+            AGwtEntity entity = getHrefEntity();
+            String href = Navigator.getEntityHref(entity);
+            href += "|toggle=" + isExtended();
+            header.setHref(href);
+        }
+    }
 
-	protected AGwtEntity getHrefEntity() {
-		return (AGwtEntity) object;
-	}
+    protected AGwtEntity getHrefEntity() {
+        return (AGwtEntity) object;
+    }
 
-	protected void onUpdateBody() {
-		Gwt.update(body);
-	}
+    protected void onUpdateBody() {
+        Gwt.update(body);
+    }
 
-	private void ensureExtendedInitialized() {
-		if (initializingExtension)
-			throw new RuntimeException("Extension initializing. Don't call update() within onInitailization(): "
-					+ toString());
-		if (!initializedExtension) {
-			if (initializingExtension) throw new RuntimeException("Extension already initializing: " + toString());
-			initializingExtension = true;
-			body = onExtendedInitialization();
-			initializedExtension = true;
-			initializingExtension = false;
-		}
-	}
+    private void ensureExtendedInitialized() {
+        if (initializingExtension) {
+            throw new RuntimeException("Extension initializing. Don't call update() within onInitailization(): "
+                    + toString());
+        } else {
+            initializingExtension = true;
+            body = onExtendedInitialization();
+            initializedExtension = true;
+            initializingExtension = false;
+        }
+    }
 
-	protected final void setObject(O object) {
-		assert this.object == null;
-		assert object != null;
-		this.object = object;
-	}
+    protected final void setObject(O object) {
+        assert this.object == null;
+        assert object != null;
+        this.object = object;
+    }
 
-	public final O getObject() {
-		return object;
-	}
+    public final O getObject() {
+        return object;
+    }
 
 	// public Widget getBorderPanel() {
-	// return panel;
-	// }
+    // return panel;
+    // }
+    public void deactivateDndMarkers() {
+        dndMarkerTop.setActive(false);
+    }
 
-	public void deactivateDndMarkers() {
-		dndMarkerTop.setActive(false);
-	}
+    public void activateDndMarkerTop() {
+        dndMarkerTop.setActive(true);
+    }
 
-	public void activateDndMarkerTop() {
-		dndMarkerTop.setActive(true);
-	}
+    public final BlockListWidget<O> getList() {
+        return list;
+    }
 
-	public final BlockListWidget<O> getList() {
-		return list;
-	}
+    final void setList(BlockListWidget list) {
+        this.list = list;
+    }
 
-	final void setList(BlockListWidget list) {
-		this.list = list;
-	}
+    /**
+     * Indicates if the block is in extended-mode. This method should be called within the <code>build()</code>-method.
+     */
+    public final boolean isExtended() {
+        return extended;
+    }
 
-	/**
-	 * Indicates if the block is in extended-mode. This method should be called within the
-	 * <code>build()</code>-method.
-	 */
-	public final boolean isExtended() {
-		return extended;
-	}
+    /**
+     * This method is only called by BlockListWidget. To select a block on a BlockListWidget call <code>BlockListWidget.selectBlock(B block)</code> instead.
+     */
+    final void setExtended(boolean extended) {
+        if (this.extended == extended) {
+            return;
+        }
+        this.extended = extended;
 
-	/**
-	 * This method is only called by BlockListWidget. To select a block on a BlockListWidget call
-	 * <code>BlockListWidget.selectBlock(B block)</code> instead.
-	 */
-	final void setExtended(boolean extended) {
-		if (this.extended == extended) return;
-		this.extended = extended;
+        if (extended) {
+            new BlockExpandedEvent(getObject()).fireInCurrentScope();
+            panel.addStyleName("ABlockWidget-extended");
+        } else {
+            new BlockCollapsedEvent(getObject()).fireInCurrentScope();
+            panel.removeStyleName("ABlockWidget-extended");
+        }
 
-		if (extended) {
-			new BlockExpandedEvent(getObject()).fireInCurrentScope();
-			panel.addStyleName("ABlockWidget-extended");
-		} else {
-			new BlockCollapsedEvent(getObject()).fireInCurrentScope();
-			panel.removeStyleName("ABlockWidget-extended");
-		}
+        resetLastModificationTime();
+        update();
+    }
 
-		resetLastModificationTime();
-		update();
-	}
+    final void activate() {
+        onActivation();
+        scrollIntoView();
+    }
 
-	final void activate() {
-		onActivation();
-		scrollIntoView();
-	}
+    public void scrollIntoView() {
+        getElement().scrollIntoView();
+        header.getDragHandle().getElement().scrollIntoView();
+    }
 
-	public void scrollIntoView() {
-		getElement().scrollIntoView();
-		header.getDragHandle().getElement().scrollIntoView();
-	}
+    protected void onActivation() {
+    }
 
-	protected void onActivation() {}
+    @Override
+    protected void onLoad() {
+        super.onLoad();
+        if (getList().isDndSorting()) {
+            getList().dndManager.registerDropTarget(this);
+        }
+        if (extended) {
+            new BlockExpandedEvent(getObject()).fireInCurrentScope();
+        }
 
-	@Override
-	protected void onLoad() {
-		super.onLoad();
-		if (getList().isDndSorting()) {
-			getList().dndManager.registerDropTarget(this);
-		}
-		if (extended) new BlockExpandedEvent(getObject()).fireInCurrentScope();
+    }
 
-	}
+    @Override
+    protected void onUnload() {
+        if (extended) {
+            new BlockCollapsedEvent(getObject()).fireInCurrentScope();
+        }
 
-	@Override
-	protected void onUnload() {
-		if (extended) new BlockCollapsedEvent(getObject()).fireInCurrentScope();
+        if (list.dndManager != null) {
+            list.dndManager.unregisterDropTarget(this);
+        }
+        super.onUnload();
+    }
 
-		if (list.dndManager != null) list.dndManager.unregisterDropTarget(this);
-		super.onUnload();
-	}
+    public FlowPanel getPreHeaderPanel() {
+        if (preHeaderPanel == null) {
+            preHeaderPanel = new FlowPanel();
+            outerPanel.insert(preHeaderPanel, 0);
+        }
+        return preHeaderPanel;
+    }
 
-	public FlowPanel getPreHeaderPanel() {
-		if (preHeaderPanel == null) {
-			preHeaderPanel = new FlowPanel();
-			outerPanel.insert(preHeaderPanel, 0);
-		}
-		return preHeaderPanel;
-	}
+    private class SelectionClickHandler implements ClickHandler {
 
-	private class SelectionClickHandler implements ClickHandler {
+        @Override
+        public void onClick(ClickEvent event) {
+            list.toggleExtension(getObject(), true);
+            event.stopPropagation();
+        }
 
-		@Override
-		public void onClick(ClickEvent event) {
-			list.toggleExtension(getObject(), true);
-			event.stopPropagation();
-		}
+    }
 
-	}
-
-	@Override
-	public String toString() {
-		return "[" + object + "]";
-	}
+    @Override
+    public String toString() {
+        return "[" + object + "]";
+    }
 
 }
