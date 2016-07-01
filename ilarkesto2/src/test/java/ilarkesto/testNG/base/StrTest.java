@@ -15,22 +15,10 @@
 package ilarkesto.testNG.base;
 
 import ilarkesto.base.StrExtend;
-import static ilarkesto.base.StrExtend.html2text;
-import static java.lang.System.out;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class StrTest extends Assert {
-
-	@Test
-	public void htmlToText() {
-		String html = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\"><html><head><title>HTML Page</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-15\"><style type=\"text/css\">\n"
-				+ "<!--\n"
-				+ "hr { border: 0; border-top: thin solid #DEC822; }</style><head><body><em>Hello world</em></body></html>";
-		String text = html2text(html);
-		out.println(text);
-		assertEquals(text, "Hello world");
-	}
 
 	@Test
 	public void getLeadingSpaces() {
