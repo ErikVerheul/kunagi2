@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+vr, 01. juli 2016, 14:41 -> Fri Jul 01 14:41:13 CEST 2016 INFO aultLogRecordHandler Log-file: error.log                                                                                 | scrum.mda.ScrumModeller.main()
+--------------------------------------------------------------------------------
+vr, 01. juli 2016, 14:41 -> Fri Jul 01 14:41:13 CEST 2016 INFO Log                  Debug-logging disabled.                                                                             | scrum.mda.ScrumModeller.main()
+--------------------------------------------------------------------------------
+vr, 01. juli 2016, 14:41 -> Fri Jul 01 14:41:13 CEST 2016 INFO ApplicationStarter   ********************************************************************************                    | scrum.mda.ScrumModeller.main()
+--------------------------------------------------------------------------------
+vr, 01. juli 2016, 14:41 -> Fri Jul 01 14:41:13 CEST 2016 INFO ApplicationStarter   Starting application: scrum.mda.ScrumModelApplication                                               | scrum.mda.ScrumModeller.main()
+--------------------------------------------------------------------------------
+vr, 01. juli 2016, 14:41 -> Fri Jul 01 14:41:13 CEST 2016 INFO ApplicationStarter       PRODUCTION MODE                                                                                 | scrum.mda.ScrumModeller.main()
+--------------------------------------------------------------------------------
+vr, 01. juli 2016, 14:41 -> Fri Jul 01 14:41:13 CEST 2016 INFO ApplicationStarter       time:         2016-07-01 14:41:13                                                               | scrum.mda.ScrumModeller.main()
+--------------------------------------------------------------------------------
+vr, 01. juli 2016, 14:41 -> Fri Jul 01 14:41:13 CEST 2016 INFO ApplicationStarter       system user:  erik                                                                              | scrum.mda.ScrumModeller.main()
+--------------------------------------------------------------------------------
+vr, 01. juli 2016, 14:41 -> Fri Jul 01 14:41:13 CEST 2016 INFO ApplicationStarter       user home:    C:\Users\erik.MYNETWORK                                                           | scrum.mda.ScrumModeller.main()
+--------------------------------------------------------------------------------
+vr, 01. juli 2016, 14:41 -> Fri Jul 01 14:41:13 CEST 2016 INFO ApplicationStarter       work-path:    C:\NB-DEV\kunagi2parent                                                           | scrum.mda.ScrumModeller.main()
+--------------------------------------------------------------------------------
+vr, 01. juli 2016, 14:41 -> Fri Jul 01 14:41:13 CEST 2016 INFO ApplicationStarter       temp-path:    C:\Users\ERIK~1.MYN\AppData\Local\Temp                                            | scrum.mda.ScrumModeller.main()
+--------------------------------------------------------------------------------
+vr, 01. juli 2016, 14:41 -> Fri Jul 01 14:41:13 CEST 2016 INFO ApplicationStarter       locale:       en_US                                                                             | scrum.mda.ScrumModeller.main()
+--------------------------------------------------------------------------------
+vr, 01. juli 2016, 14:41 -> Fri Jul 01 14:41:13 CEST 2016 INFO ApplicationStarter       encoding:     Cp1252                                                                            | scrum.mda.ScrumModeller.main()
+--------------------------------------------------------------------------------
+vr, 01. juli 2016, 14:41 -> Fri Jul 01 14:41:13 CEST 2016 INFO ApplicationStarter       java:         C:\Program Files\Java\jdk1.7.0_51\jre                                             | scrum.mda.ScrumModeller.main()
+--------------------------------------------------------------------------------
+vr, 01. juli 2016, 14:41 -> Fri Jul 01 14:41:13 CEST 2016 INFO ApplicationStarter       java version: 1.7.0_51-b13                                                                      | scrum.mda.ScrumModeller.main()
+--------------------------------------------------------------------------------
+vr, 01. juli 2016, 14:41 -> Fri Jul 01 14:41:13 CEST 2016 INFO ApplicationStarter       arguments:    {}                                                                                | scrum.mda.ScrumModeller.main()
