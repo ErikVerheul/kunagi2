@@ -38,13 +38,13 @@ public class ScrumEntityfilePreparator implements EntityfilePreparator {
 	public void prepareClusterfile(File file, Class type, String alias) {}
 
 	@Override
-	public void prepareEntityfile(File file, Class type, String alias) {
-
+        //@ToDo: why are 3 out of 4 actions not supposed to work?
+	public void prepareEntityfile(File file, Class type, String alias) {        
 		try {
-			if ("_template_".equalsIgnoreCase(alias)) prepare_template_(file);
+//			if ("_template_".equalsIgnoreCase(alias)) prepare_template_(file);
 			if ("sprint".equalsIgnoreCase(alias)) prepareSprint(file);
-			// if ("projectUserConfig".equalsIgnoreCase(alias)) prepareProjectUserConfig(file);
-			// if ("change".equalsIgnoreCase(alias)) prepareChange(file);
+//			if ("projectUserConfig".equalsIgnoreCase(alias)) prepareProjectUserConfig(file);
+//			if ("change".equalsIgnoreCase(alias)) prepareChange(file);
 		} catch (Throwable ex) {
 			throw new RuntimeException(ex);
 		}
@@ -114,7 +114,6 @@ public class ScrumEntityfilePreparator implements EntityfilePreparator {
 	 * use as template, don't modify
 	 */
 	private void prepare_template_(File file) throws IOException {
-		if (true) throw new RuntimeException("remove this line");
 		boolean modified = false;
 
 		Document doc;
