@@ -56,10 +56,6 @@ public class CascadingScope extends Scope {
 			componentReflector.callInitializationMethods(component);
 			componentReflector.outjectComponents(component, this);
 		}
-
-		if (wiringRequired) {
-                        wireComponents();
-                }
 	}
 
 	@Override
