@@ -14,9 +14,6 @@
  */
 package scrum.client.core;
 
-import scrum.client.core.ApplicationStartedHandler;
-import scrum.client.core.GRichtextAutosaver;
-import scrum.client.core.ApplicationStartedEvent;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.AViewEditWidget;
 import ilarkesto.gwt.client.editor.RichtextEditorWidget;
@@ -39,7 +36,7 @@ public class RichtextAutosaver extends GRichtextAutosaver implements Application
 		}.scheduleRepeating(SAVE_INTERVAL_IN_SECONDS * 1000);
 	}
 
-	public void autosave() {
+	private void autosave() {
 		AViewEditWidget currentEditor = RichtextEditorWidget.getCurrentEditor();
 		if (currentEditor == null) return;
 
