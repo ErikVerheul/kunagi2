@@ -500,12 +500,11 @@ public class StrExtend extends ilarkesto.core.base.Str {
 		return -1;
 	}
 
-    @SuppressWarnings("NP_NULL_ON_SOME_PATH_MIGHT_BE_INFEASIBLE")
 	private static boolean equalString(String s1, String s2) {
 		if (s1 == null && s2 == null) {
                         return true;
                 }
-		if (s1 == null && s2 != null) {
+		if (s1 == null) {
                         return false;
                 }
 		if (s2 == null) {
@@ -937,119 +936,7 @@ public class StrExtend extends ilarkesto.core.base.Str {
 		s = s.replace("\\", "\\\\");
 		s = s.replace("\"", "\\\"");
 		return s;
-	}
-
-	public static String html2text(String s) {
-		if (s == null) {
-                        return null;
-                }
-
-		s = getHtmlBody(s);
-
-		StringBuilder sb = new StringBuilder();
-		StringBuilder tag = null;
-
-		boolean inside = false;
-		int len = s.length();
-		String href = null;
-		char cPrev = (char) -1;
-		for (int i = 0; i < len; i++) {
-			char c = s.charAt(i);
-			if (inside) {
-				// inside html tag declaration
-				if (c == '>') {
-					inside = false;
-					String t = tag.toString().toLowerCase();
-					if (isTag(t, "br") || isTag(t, "ul") || isTag(t, "/ul") || isTag(t, "div")) {
-						sb.append("\n");
-					} else if (isTag(t, "p") || isTag(t, "h1") || isTag(t, "h2") || isTag(t, "h3") || isTag(t, "h4")
-							|| isTag(t, "h5") || isTag(t, "h6")) {
-						sb.append("\n\n");
-					} else if (isTag(t, "li")) {
-						sb.append("\n- ");
-					} else if (isTag(t, "hr")) {
-						sb.append("\n--------------------\n");
-					} else if (isTag(t, "/a")) {
-						if (href != null) {
-							int hrefLen = href.length();
-							if (i > hrefLen * 2 && s.substring(i - 3 - hrefLen, i - 3).equalsIgnoreCase(href)) {
-								// skip
-							} else {
-								sb.append(" [ ").append(href).append(" ]");
-							}
-							href = null;
-						}
-					} else if (isTag(t, "a")) {
-						int idx = t.indexOf("href=\"");
-						if (idx >= 0) {
-							idx += 6;
-							int endidx = t.indexOf('"', idx);
-							if (endidx > idx) {
-								href = t.substring(idx, endidx);
-							}
-						} else {
-							idx = t.indexOf("href='");
-							if (idx >= 0) {
-								idx += 6;
-								int endidx = t.indexOf('\'', idx);
-								if (endidx > idx) {
-									href = t.substring(idx, endidx);
-								}
-							}
-						}
-					}
-					tag = null;
-				} else {
-					tag.append(c);
-				}
-				cPrev = c;
-				continue;
-			} else {
-				// outside html tag
-				if (c == '<') {
-					inside = true;
-					tag = new StringBuilder();
-					cPrev = c;
-					continue;
-				}
-				if (c == '\n' || c == '\r' || (isWhitespace(c) && isWhitespace(cPrev))) {
-					// skip
-				} else {
-					sb.append(c);
-				}
-			}
-			cPrev = c;
-		}
-
-		s = sb.toString();
-
-		s = s.replace("&nbsp;", " ");
-		s = s.replace("&auml;", valueOf(ae));
-		s = s.replace("&uuml;", valueOf(ue));
-		s = s.replace("&ouml;", valueOf(oe));
-		s = s.replace("&Auml;", valueOf(AE));
-		s = s.replace("&Uuml;", valueOf(UE));
-		s = s.replace("&Ouml;", valueOf(OE));
-		s = s.replace("&szlig;", valueOf(sz));
-		s = s.replace("&euro;", valueOf(EUR));
-		s = s.replace("&amp;", "&");
-		s = s.replace("&quot;", "\"");
-		s = s.replace("&lt;", "<");
-		s = s.replace("&gt;", ">");
-		s = s.replace("&bdquo;", "„");
-		s = s.replace("&ldquo;", "“");
-		s = s.replace("&ndash;", "–");
-		s = s.replace("<br>", "\n");
-
-		s = s.replace(" \n", "\n");
-		s = s.replace("  \n", "\n");
-		s = s.replace("   \n", "\n");
-		s = s.replace("\n\n\n\n\n", "\n\n");
-		s = s.replace("\n\n\n\n", "\n\n");
-		s = s.replace("\n\n\n", "\n\n");
-
-		return s.trim();
-	}
+	}	
 
 	public static String getHtmlBody(String s) {
 		if (s == null) {

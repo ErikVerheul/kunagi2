@@ -18,7 +18,6 @@ import static ilarkesto.Servers.SERVISTO;
 import ilarkesto.auth.LoginData;
 import ilarkesto.auth.LoginDataProvider;
 import static ilarkesto.base.StrExtend.decodeQuotedPrintable;
-import static ilarkesto.base.StrExtend.html2text;
 import static ilarkesto.base.StrExtend.tokenize;
 import static ilarkesto.base.Sys.setFileEncoding;
 import static ilarkesto.base.Sys.setProperty;
@@ -226,18 +225,6 @@ public class Eml {
 			throw new RuntimeException(ex);
 		}
 		return null;
-	}
-
-	public static String getContentAsText(Part part) {
-		String result = getPlainTextContent(part);
-		if (result == null) {
-			result = html2text(getHtmlTextContent(part));
-		} else {
-			if (result.trim().startsWith("<!DOCTYPE HTML")) {
-                                result = html2text(result);
-                        }
-		}
-		return result;
 	}
 
 	public static String getHtmlTextContent(Part part) {
