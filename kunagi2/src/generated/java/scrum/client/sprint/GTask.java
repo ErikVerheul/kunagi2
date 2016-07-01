@@ -57,14 +57,14 @@ public abstract class GTask
 
     public final Task setRequirement(scrum.client.project.Requirement requirement) {
         String id = requirement == null ? null : requirement.getId();
-        if (equals(this.requirementId, id)) return (Task) this;
+        if (equalObjects(this.requirementId, id)) return (Task) this;
         this.requirementId = id;
         propertyChanged("requirementId", this.requirementId);
         return (Task)this;
     }
 
     public final boolean isRequirement(scrum.client.project.Requirement requirement) {
-        return equals(this.requirementId, requirement);
+        return equalObjects(this.requirementId, requirement);
     }
 
     // --- number ---
@@ -83,7 +83,7 @@ public abstract class GTask
     }
 
     public final boolean isNumber(int number) {
-        return equals(this.number, number);
+        return equalObjects(this.number, number);
     }
 
     private transient NumberModel numberModel;
@@ -147,7 +147,7 @@ public abstract class GTask
     }
 
     public final boolean isLabel(java.lang.String label) {
-        return equals(this.label, label);
+        return equalObjects(this.label, label);
     }
 
     private transient LabelModel labelModel;
@@ -208,7 +208,7 @@ public abstract class GTask
     }
 
     public final boolean isDescription(java.lang.String description) {
-        return equals(this.description, description);
+        return equalObjects(this.description, description);
     }
 
     private transient DescriptionModel descriptionModel;
@@ -269,7 +269,7 @@ public abstract class GTask
     }
 
     public final boolean isRemainingWork(int remainingWork) {
-        return equals(this.remainingWork, remainingWork);
+        return equalObjects(this.remainingWork, remainingWork);
     }
 
     private transient RemainingWorkModel remainingWorkModel;
@@ -337,7 +337,7 @@ public abstract class GTask
     }
 
     public final boolean isBurnedWork(int burnedWork) {
-        return equals(this.burnedWork, burnedWork);
+        return equalObjects(this.burnedWork, burnedWork);
     }
 
     private transient BurnedWorkModel burnedWorkModel;
@@ -404,14 +404,14 @@ public abstract class GTask
 
     public final Task setOwner(scrum.client.admin.User owner) {
         String id = owner == null ? null : owner.getId();
-        if (equals(this.ownerId, id)) return (Task) this;
+        if (equalObjects(this.ownerId, id)) return (Task) this;
         this.ownerId = id;
         propertyChanged("ownerId", this.ownerId);
         return (Task)this;
     }
 
     public final boolean isOwner(scrum.client.admin.User owner) {
-        return equals(this.ownerId, owner);
+        return equalObjects(this.ownerId, owner);
     }
 
     // --- impediment ---
@@ -429,14 +429,14 @@ public abstract class GTask
 
     public final Task setImpediment(scrum.client.impediments.Impediment impediment) {
         String id = impediment == null ? null : impediment.getId();
-        if (equals(this.impedimentId, id)) return (Task) this;
+        if (equalObjects(this.impedimentId, id)) return (Task) this;
         this.impedimentId = id;
         propertyChanged("impedimentId", this.impedimentId);
         return (Task)this;
     }
 
     public final boolean isImpediment(scrum.client.impediments.Impediment impediment) {
-        return equals(this.impedimentId, impediment);
+        return equalObjects(this.impedimentId, impediment);
     }
 
     // --- closedInPastSprint ---
@@ -454,14 +454,14 @@ public abstract class GTask
 
     public final Task setClosedInPastSprint(scrum.client.sprint.Sprint closedInPastSprint) {
         String id = closedInPastSprint == null ? null : closedInPastSprint.getId();
-        if (equals(this.closedInPastSprintId, id)) return (Task) this;
+        if (equalObjects(this.closedInPastSprintId, id)) return (Task) this;
         this.closedInPastSprintId = id;
         propertyChanged("closedInPastSprintId", this.closedInPastSprintId);
         return (Task)this;
     }
 
     public final boolean isClosedInPastSprint(scrum.client.sprint.Sprint closedInPastSprint) {
-        return equals(this.closedInPastSprintId, closedInPastSprint);
+        return equalObjects(this.closedInPastSprintId, closedInPastSprint);
     }
 
     // --- update properties by map ---

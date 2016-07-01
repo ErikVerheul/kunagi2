@@ -55,14 +55,14 @@ public abstract class GSprintReport
 
     public final SprintReport setSprint(scrum.client.sprint.Sprint sprint) {
         String id = sprint == null ? null : sprint.getId();
-        if (equals(this.sprintId, id)) return (SprintReport) this;
+        if (equalObjects(this.sprintId, id)) return (SprintReport) this;
         this.sprintId = id;
         propertyChanged("sprintId", this.sprintId);
         return (SprintReport)this;
     }
 
     public final boolean isSprint(scrum.client.sprint.Sprint sprint) {
-        return equals(this.sprintId, sprint);
+        return equalObjects(this.sprintId, sprint);
     }
 
     // --- completedRequirements ---
@@ -233,7 +233,7 @@ public abstract class GSprintReport
     }
 
     public final boolean isBurnedWork(int burnedWork) {
-        return equals(this.burnedWork, burnedWork);
+        return equalObjects(this.burnedWork, burnedWork);
     }
 
     private transient BurnedWorkModel burnedWorkModel;

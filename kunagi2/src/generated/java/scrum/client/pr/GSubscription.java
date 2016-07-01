@@ -55,14 +55,14 @@ public abstract class GSubscription
 
     public final Subscription setSubject(ilarkesto.gwt.client.AGwtEntity subject) {
         String id = subject == null ? null : subject.getId();
-        if (equals(this.subjectId, id)) return (Subscription) this;
+        if (equalObjects(this.subjectId, id)) return (Subscription) this;
         this.subjectId = id;
         propertyChanged("subjectId", this.subjectId);
         return (Subscription)this;
     }
 
     public final boolean isSubject(ilarkesto.gwt.client.AGwtEntity subject) {
-        return equals(this.subjectId, subject);
+        return equalObjects(this.subjectId, subject);
     }
 
     // --- subscribersEmails ---

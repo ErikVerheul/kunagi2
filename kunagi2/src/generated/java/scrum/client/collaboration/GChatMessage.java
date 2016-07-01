@@ -55,14 +55,14 @@ public abstract class GChatMessage
 
     public final ChatMessage setProject(scrum.client.project.Project project) {
         String id = project == null ? null : project.getId();
-        if (equals(this.projectId, id)) return (ChatMessage) this;
+        if (equalObjects(this.projectId, id)) return (ChatMessage) this;
         this.projectId = id;
         propertyChanged("projectId", this.projectId);
         return (ChatMessage)this;
     }
 
     public final boolean isProject(scrum.client.project.Project project) {
-        return equals(this.projectId, project);
+        return equalObjects(this.projectId, project);
     }
 
     // --- author ---
@@ -80,14 +80,14 @@ public abstract class GChatMessage
 
     public final ChatMessage setAuthor(scrum.client.admin.User author) {
         String id = author == null ? null : author.getId();
-        if (equals(this.authorId, id)) return (ChatMessage) this;
+        if (equalObjects(this.authorId, id)) return (ChatMessage) this;
         this.authorId = id;
         propertyChanged("authorId", this.authorId);
         return (ChatMessage)this;
     }
 
     public final boolean isAuthor(scrum.client.admin.User author) {
-        return equals(this.authorId, author);
+        return equalObjects(this.authorId, author);
     }
 
     // --- text ---
@@ -107,7 +107,7 @@ public abstract class GChatMessage
     }
 
     public final boolean isText(java.lang.String text) {
-        return equals(this.text, text);
+        return equalObjects(this.text, text);
     }
 
     private transient TextModel textModel;
@@ -166,7 +166,7 @@ public abstract class GChatMessage
     }
 
     public final boolean isDateAndTime(ilarkesto.core.time.DateAndTime dateAndTime) {
-        return equals(this.dateAndTime, dateAndTime);
+        return equalObjects(this.dateAndTime, dateAndTime);
     }
 
     private transient DateAndTimeModel dateAndTimeModel;

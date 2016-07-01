@@ -57,14 +57,14 @@ public abstract class GRequirement
 
     public final Requirement setProject(scrum.client.project.Project project) {
         String id = project == null ? null : project.getId();
-        if (equals(this.projectId, id)) return (Requirement) this;
+        if (equalObjects(this.projectId, id)) return (Requirement) this;
         this.projectId = id;
         propertyChanged("projectId", this.projectId);
         return (Requirement)this;
     }
 
     public final boolean isProject(scrum.client.project.Project project) {
-        return equals(this.projectId, project);
+        return equalObjects(this.projectId, project);
     }
 
     // --- sprint ---
@@ -82,14 +82,14 @@ public abstract class GRequirement
 
     public final Requirement setSprint(scrum.client.sprint.Sprint sprint) {
         String id = sprint == null ? null : sprint.getId();
-        if (equals(this.sprintId, id)) return (Requirement) this;
+        if (equalObjects(this.sprintId, id)) return (Requirement) this;
         this.sprintId = id;
         propertyChanged("sprintId", this.sprintId);
         return (Requirement)this;
     }
 
     public final boolean isSprint(scrum.client.sprint.Sprint sprint) {
-        return equals(this.sprintId, sprint);
+        return equalObjects(this.sprintId, sprint);
     }
 
     // --- issue ---
@@ -107,14 +107,14 @@ public abstract class GRequirement
 
     public final Requirement setIssue(scrum.client.issues.Issue issue) {
         String id = issue == null ? null : issue.getId();
-        if (equals(this.issueId, id)) return (Requirement) this;
+        if (equalObjects(this.issueId, id)) return (Requirement) this;
         this.issueId = id;
         propertyChanged("issueId", this.issueId);
         return (Requirement)this;
     }
 
     public final boolean isIssue(scrum.client.issues.Issue issue) {
-        return equals(this.issueId, issue);
+        return equalObjects(this.issueId, issue);
     }
 
     // --- number ---
@@ -133,7 +133,7 @@ public abstract class GRequirement
     }
 
     public final boolean isNumber(int number) {
-        return equals(this.number, number);
+        return equalObjects(this.number, number);
     }
 
     private transient NumberModel numberModel;
@@ -230,7 +230,7 @@ public abstract class GRequirement
     }
 
     public final boolean isLabel(java.lang.String label) {
-        return equals(this.label, label);
+        return equalObjects(this.label, label);
     }
 
     private transient LabelModel labelModel;
@@ -291,7 +291,7 @@ public abstract class GRequirement
     }
 
     public final boolean isDescription(java.lang.String description) {
-        return equals(this.description, description);
+        return equalObjects(this.description, description);
     }
 
     private transient DescriptionModel descriptionModel;
@@ -352,7 +352,7 @@ public abstract class GRequirement
     }
 
     public final boolean isTestDescription(java.lang.String testDescription) {
-        return equals(this.testDescription, testDescription);
+        return equalObjects(this.testDescription, testDescription);
     }
 
     private transient TestDescriptionModel testDescriptionModel;
@@ -413,7 +413,7 @@ public abstract class GRequirement
     }
 
     public final boolean isEstimatedWork(java.lang.Float estimatedWork) {
-        return equals(this.estimatedWork, estimatedWork);
+        return equalObjects(this.estimatedWork, estimatedWork);
     }
 
     private transient EstimatedWorkModel estimatedWorkModel;
@@ -468,7 +468,7 @@ public abstract class GRequirement
     }
 
     public final boolean isRejectDate(ilarkesto.core.time.Date rejectDate) {
-        return equals(this.rejectDate, rejectDate);
+        return equalObjects(this.rejectDate, rejectDate);
     }
 
     private transient RejectDateModel rejectDateModel;
@@ -521,7 +521,7 @@ public abstract class GRequirement
     }
 
     public final boolean isClosed(boolean closed) {
-        return equals(this.closed, closed);
+        return equalObjects(this.closed, closed);
     }
 
     private transient ClosedModel closedModel;
@@ -574,7 +574,7 @@ public abstract class GRequirement
     }
 
     public final boolean isDirty(boolean dirty) {
-        return equals(this.dirty, dirty);
+        return equalObjects(this.dirty, dirty);
     }
 
     private transient DirtyModel dirtyModel;
@@ -627,7 +627,7 @@ public abstract class GRequirement
     }
 
     public final boolean isWorkEstimationVotingActive(boolean workEstimationVotingActive) {
-        return equals(this.workEstimationVotingActive, workEstimationVotingActive);
+        return equalObjects(this.workEstimationVotingActive, workEstimationVotingActive);
     }
 
     private transient WorkEstimationVotingActiveModel workEstimationVotingActiveModel;
@@ -680,7 +680,7 @@ public abstract class GRequirement
     }
 
     public final boolean isWorkEstimationVotingShowoff(boolean workEstimationVotingShowoff) {
-        return equals(this.workEstimationVotingShowoff, workEstimationVotingShowoff);
+        return equalObjects(this.workEstimationVotingShowoff, workEstimationVotingShowoff);
     }
 
     private transient WorkEstimationVotingShowoffModel workEstimationVotingShowoffModel;
@@ -772,14 +772,14 @@ public abstract class GRequirement
 
     public final Requirement setEpic(scrum.client.project.Requirement epic) {
         String id = epic == null ? null : epic.getId();
-        if (equals(this.epicId, id)) return (Requirement) this;
+        if (equalObjects(this.epicId, id)) return (Requirement) this;
         this.epicId = id;
         propertyChanged("epicId", this.epicId);
         return (Requirement)this;
     }
 
     public final boolean isEpic(scrum.client.project.Requirement epic) {
-        return equals(this.epicId, epic);
+        return equalObjects(this.epicId, epic);
     }
 
     // --- update properties by map ---

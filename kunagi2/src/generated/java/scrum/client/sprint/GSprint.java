@@ -66,7 +66,7 @@ public abstract class GSprint
     }
 
     public final boolean isNumber(int number) {
-        return equals(this.number, number);
+        return equalObjects(this.number, number);
     }
 
     private transient NumberModel numberModel;
@@ -128,14 +128,14 @@ public abstract class GSprint
 
     public final Sprint setProject(scrum.client.project.Project project) {
         String id = project == null ? null : project.getId();
-        if (equals(this.projectId, id)) return (Sprint) this;
+        if (equalObjects(this.projectId, id)) return (Sprint) this;
         this.projectId = id;
         propertyChanged("projectId", this.projectId);
         return (Sprint)this;
     }
 
     public final boolean isProject(scrum.client.project.Project project) {
-        return equals(this.projectId, project);
+        return equalObjects(this.projectId, project);
     }
 
     // --- label ---
@@ -155,7 +155,7 @@ public abstract class GSprint
     }
 
     public final boolean isLabel(java.lang.String label) {
-        return equals(this.label, label);
+        return equalObjects(this.label, label);
     }
 
     private transient LabelModel labelModel;
@@ -218,7 +218,7 @@ public abstract class GSprint
     public abstract String getGoalTemplate();
 
     public final boolean isGoal(java.lang.String goal) {
-        return equals(this.goal, goal);
+        return equalObjects(this.goal, goal);
     }
 
     private transient GoalModel goalModel;
@@ -282,7 +282,7 @@ public abstract class GSprint
     }
 
     public final boolean isBegin(ilarkesto.core.time.Date begin) {
-        return equals(this.begin, begin);
+        return equalObjects(this.begin, begin);
     }
 
     private transient BeginModel beginModel;
@@ -340,7 +340,7 @@ public abstract class GSprint
     }
 
     public final boolean isEnd(ilarkesto.core.time.Date end) {
-        return equals(this.end, end);
+        return equalObjects(this.end, end);
     }
 
     private transient EndModel endModel;
@@ -398,7 +398,7 @@ public abstract class GSprint
     }
 
     public final boolean isVelocity(java.lang.Float velocity) {
-        return equals(this.velocity, velocity);
+        return equalObjects(this.velocity, velocity);
     }
 
     private transient VelocityModel velocityModel;
@@ -451,7 +451,7 @@ public abstract class GSprint
     }
 
     public final boolean isCompletedRequirementsData(java.lang.String completedRequirementsData) {
-        return equals(this.completedRequirementsData, completedRequirementsData);
+        return equalObjects(this.completedRequirementsData, completedRequirementsData);
     }
 
     private transient CompletedRequirementsDataModel completedRequirementsDataModel;
@@ -504,7 +504,7 @@ public abstract class GSprint
     }
 
     public final boolean isIncompletedRequirementsData(java.lang.String incompletedRequirementsData) {
-        return equals(this.incompletedRequirementsData, incompletedRequirementsData);
+        return equalObjects(this.incompletedRequirementsData, incompletedRequirementsData);
     }
 
     private transient IncompletedRequirementsDataModel incompletedRequirementsDataModel;
@@ -559,7 +559,7 @@ public abstract class GSprint
     public abstract String getPlanningNoteTemplate();
 
     public final boolean isPlanningNote(java.lang.String planningNote) {
-        return equals(this.planningNote, planningNote);
+        return equalObjects(this.planningNote, planningNote);
     }
 
     private transient PlanningNoteModel planningNoteModel;
@@ -625,7 +625,7 @@ public abstract class GSprint
     public abstract String getReviewNoteTemplate();
 
     public final boolean isReviewNote(java.lang.String reviewNote) {
-        return equals(this.reviewNote, reviewNote);
+        return equalObjects(this.reviewNote, reviewNote);
     }
 
     private transient ReviewNoteModel reviewNoteModel;
@@ -691,7 +691,7 @@ public abstract class GSprint
     public abstract String getRetrospectiveNoteTemplate();
 
     public final boolean isRetrospectiveNote(java.lang.String retrospectiveNote) {
-        return equals(this.retrospectiveNote, retrospectiveNote);
+        return equalObjects(this.retrospectiveNote, retrospectiveNote);
     }
 
     private transient RetrospectiveNoteModel retrospectiveNoteModel;

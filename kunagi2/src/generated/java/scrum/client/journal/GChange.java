@@ -55,14 +55,14 @@ public abstract class GChange
 
     public final Change setParent(ilarkesto.gwt.client.AGwtEntity parent) {
         String id = parent == null ? null : parent.getId();
-        if (equals(this.parentId, id)) return (Change) this;
+        if (equalObjects(this.parentId, id)) return (Change) this;
         this.parentId = id;
         propertyChanged("parentId", this.parentId);
         return (Change)this;
     }
 
     public final boolean isParent(ilarkesto.gwt.client.AGwtEntity parent) {
-        return equals(this.parentId, parent);
+        return equalObjects(this.parentId, parent);
     }
 
     // --- user ---
@@ -80,14 +80,14 @@ public abstract class GChange
 
     public final Change setUser(scrum.client.admin.User user) {
         String id = user == null ? null : user.getId();
-        if (equals(this.userId, id)) return (Change) this;
+        if (equalObjects(this.userId, id)) return (Change) this;
         this.userId = id;
         propertyChanged("userId", this.userId);
         return (Change)this;
     }
 
     public final boolean isUser(scrum.client.admin.User user) {
-        return equals(this.userId, user);
+        return equalObjects(this.userId, user);
     }
 
     // --- dateAndTime ---
@@ -107,7 +107,7 @@ public abstract class GChange
     }
 
     public final boolean isDateAndTime(ilarkesto.core.time.DateAndTime dateAndTime) {
-        return equals(this.dateAndTime, dateAndTime);
+        return equalObjects(this.dateAndTime, dateAndTime);
     }
 
     private transient DateAndTimeModel dateAndTimeModel;
@@ -163,7 +163,7 @@ public abstract class GChange
     }
 
     public final boolean isKey(java.lang.String key) {
-        return equals(this.key, key);
+        return equalObjects(this.key, key);
     }
 
     private transient KeyModel keyModel;
@@ -216,7 +216,7 @@ public abstract class GChange
     }
 
     public final boolean isOldValue(java.lang.String oldValue) {
-        return equals(this.oldValue, oldValue);
+        return equalObjects(this.oldValue, oldValue);
     }
 
     private transient OldValueModel oldValueModel;
@@ -269,7 +269,7 @@ public abstract class GChange
     }
 
     public final boolean isNewValue(java.lang.String newValue) {
-        return equals(this.newValue, newValue);
+        return equalObjects(this.newValue, newValue);
     }
 
     private transient NewValueModel newValueModel;
@@ -322,7 +322,7 @@ public abstract class GChange
     }
 
     public final boolean isComment(java.lang.String comment) {
-        return equals(this.comment, comment);
+        return equalObjects(this.comment, comment);
     }
 
     private transient CommentModel commentModel;

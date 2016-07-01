@@ -55,14 +55,14 @@ public abstract class GBlogEntry
 
     public final BlogEntry setProject(scrum.client.project.Project project) {
         String id = project == null ? null : project.getId();
-        if (equals(this.projectId, id)) return (BlogEntry) this;
+        if (equalObjects(this.projectId, id)) return (BlogEntry) this;
         this.projectId = id;
         propertyChanged("projectId", this.projectId);
         return (BlogEntry)this;
     }
 
     public final boolean isProject(scrum.client.project.Project project) {
-        return equals(this.projectId, project);
+        return equalObjects(this.projectId, project);
     }
 
     // --- number ---
@@ -81,7 +81,7 @@ public abstract class GBlogEntry
     }
 
     public final boolean isNumber(int number) {
-        return equals(this.number, number);
+        return equalObjects(this.number, number);
     }
 
     private transient NumberModel numberModel;
@@ -181,7 +181,7 @@ public abstract class GBlogEntry
     }
 
     public final boolean isTitle(java.lang.String title) {
-        return equals(this.title, title);
+        return equalObjects(this.title, title);
     }
 
     private transient TitleModel titleModel;
@@ -239,7 +239,7 @@ public abstract class GBlogEntry
     }
 
     public final boolean isText(java.lang.String text) {
-        return equals(this.text, text);
+        return equalObjects(this.text, text);
     }
 
     private transient TextModel textModel;
@@ -297,7 +297,7 @@ public abstract class GBlogEntry
     }
 
     public final boolean isDateAndTime(ilarkesto.core.time.DateAndTime dateAndTime) {
-        return equals(this.dateAndTime, dateAndTime);
+        return equalObjects(this.dateAndTime, dateAndTime);
     }
 
     private transient DateAndTimeModel dateAndTimeModel;
@@ -385,7 +385,7 @@ public abstract class GBlogEntry
     }
 
     public final boolean isPublished(boolean published) {
-        return equals(this.published, published);
+        return equalObjects(this.published, published);
     }
 
     private transient PublishedModel publishedModel;

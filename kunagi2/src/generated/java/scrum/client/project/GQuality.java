@@ -57,14 +57,14 @@ public abstract class GQuality
 
     public final Quality setProject(scrum.client.project.Project project) {
         String id = project == null ? null : project.getId();
-        if (equals(this.projectId, id)) return (Quality) this;
+        if (equalObjects(this.projectId, id)) return (Quality) this;
         this.projectId = id;
         propertyChanged("projectId", this.projectId);
         return (Quality)this;
     }
 
     public final boolean isProject(scrum.client.project.Project project) {
-        return equals(this.projectId, project);
+        return equalObjects(this.projectId, project);
     }
 
     // --- number ---
@@ -83,7 +83,7 @@ public abstract class GQuality
     }
 
     public final boolean isNumber(int number) {
-        return equals(this.number, number);
+        return equalObjects(this.number, number);
     }
 
     private transient NumberModel numberModel;
@@ -147,7 +147,7 @@ public abstract class GQuality
     }
 
     public final boolean isLabel(java.lang.String label) {
-        return equals(this.label, label);
+        return equalObjects(this.label, label);
     }
 
     private transient LabelModel labelModel;
@@ -208,7 +208,7 @@ public abstract class GQuality
     }
 
     public final boolean isDescription(java.lang.String description) {
-        return equals(this.description, description);
+        return equalObjects(this.description, description);
     }
 
     private transient DescriptionModel descriptionModel;
@@ -269,7 +269,7 @@ public abstract class GQuality
     }
 
     public final boolean isTestDescription(java.lang.String testDescription) {
-        return equals(this.testDescription, testDescription);
+        return equalObjects(this.testDescription, testDescription);
     }
 
     private transient TestDescriptionModel testDescriptionModel;

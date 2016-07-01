@@ -55,14 +55,14 @@ public abstract class GSimpleEvent
 
     public final SimpleEvent setProject(scrum.client.project.Project project) {
         String id = project == null ? null : project.getId();
-        if (equals(this.projectId, id)) return (SimpleEvent) this;
+        if (equalObjects(this.projectId, id)) return (SimpleEvent) this;
         this.projectId = id;
         propertyChanged("projectId", this.projectId);
         return (SimpleEvent)this;
     }
 
     public final boolean isProject(scrum.client.project.Project project) {
-        return equals(this.projectId, project);
+        return equalObjects(this.projectId, project);
     }
 
     // --- label ---
@@ -82,7 +82,7 @@ public abstract class GSimpleEvent
     }
 
     public final boolean isLabel(java.lang.String label) {
-        return equals(this.label, label);
+        return equalObjects(this.label, label);
     }
 
     private transient LabelModel labelModel;
@@ -138,7 +138,7 @@ public abstract class GSimpleEvent
     }
 
     public final boolean isNumber(int number) {
-        return equals(this.number, number);
+        return equalObjects(this.number, number);
     }
 
     private transient NumberModel numberModel;
@@ -204,7 +204,7 @@ public abstract class GSimpleEvent
     }
 
     public final boolean isDate(ilarkesto.core.time.Date date) {
-        return equals(this.date, date);
+        return equalObjects(this.date, date);
     }
 
     private transient DateModel dateModel;
@@ -257,7 +257,7 @@ public abstract class GSimpleEvent
     }
 
     public final boolean isTime(ilarkesto.core.time.Time time) {
-        return equals(this.time, time);
+        return equalObjects(this.time, time);
     }
 
     private transient TimeModel timeModel;
@@ -310,7 +310,7 @@ public abstract class GSimpleEvent
     }
 
     public final boolean isLocation(java.lang.String location) {
-        return equals(this.location, location);
+        return equalObjects(this.location, location);
     }
 
     private transient LocationModel locationModel;
@@ -363,7 +363,7 @@ public abstract class GSimpleEvent
     }
 
     public final boolean isDuration(java.lang.Integer duration) {
-        return equals(this.duration, duration);
+        return equalObjects(this.duration, duration);
     }
 
     private transient DurationModel durationModel;
@@ -426,7 +426,7 @@ public abstract class GSimpleEvent
     }
 
     public final boolean isAgenda(java.lang.String agenda) {
-        return equals(this.agenda, agenda);
+        return equalObjects(this.agenda, agenda);
     }
 
     private transient AgendaModel agendaModel;
@@ -482,7 +482,7 @@ public abstract class GSimpleEvent
     }
 
     public final boolean isNote(java.lang.String note) {
-        return equals(this.note, note);
+        return equalObjects(this.note, note);
     }
 
     private transient NoteModel noteModel;

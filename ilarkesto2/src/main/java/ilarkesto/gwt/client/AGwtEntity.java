@@ -136,8 +136,7 @@ public abstract class AGwtEntity {
 		return value == null ? null : value.toString();
 	}
 
-        //@ToDo: rename this method and see that the new name is used in the code generator
-	protected final boolean equals(Object a, Object b) {
+	protected final boolean equalObjects(Object a, Object b) {
 		if (a == b) {
                         return true;
                 }
@@ -145,16 +144,6 @@ public abstract class AGwtEntity {
                         return false;
                 }
 		return a.equals(b);
-	}
-
-	protected final boolean equals(String id, AGwtEntity entity) {
-		if (id == null && entity == null) {
-                        return true;
-                }
-		if (id == null || entity == null) {
-                        return false;
-                }
-		return id.equals(entity.getId());
 	}
 
 	protected void addUndo(AEditorModel editorModel, Object oldValue) {

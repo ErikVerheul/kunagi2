@@ -55,14 +55,14 @@ public abstract class GIssue
 
     public final Issue setProject(scrum.client.project.Project project) {
         String id = project == null ? null : project.getId();
-        if (equals(this.projectId, id)) return (Issue) this;
+        if (equalObjects(this.projectId, id)) return (Issue) this;
         this.projectId = id;
         propertyChanged("projectId", this.projectId);
         return (Issue)this;
     }
 
     public final boolean isProject(scrum.client.project.Project project) {
-        return equals(this.projectId, project);
+        return equalObjects(this.projectId, project);
     }
 
     // --- story ---
@@ -80,14 +80,14 @@ public abstract class GIssue
 
     public final Issue setStory(scrum.client.project.Requirement story) {
         String id = story == null ? null : story.getId();
-        if (equals(this.storyId, id)) return (Issue) this;
+        if (equalObjects(this.storyId, id)) return (Issue) this;
         this.storyId = id;
         propertyChanged("storyId", this.storyId);
         return (Issue)this;
     }
 
     public final boolean isStory(scrum.client.project.Requirement story) {
-        return equals(this.storyId, story);
+        return equalObjects(this.storyId, story);
     }
 
     // --- number ---
@@ -106,7 +106,7 @@ public abstract class GIssue
     }
 
     public final boolean isNumber(int number) {
-        return equals(this.number, number);
+        return equalObjects(this.number, number);
     }
 
     private transient NumberModel numberModel;
@@ -171,7 +171,7 @@ public abstract class GIssue
     public abstract List<java.lang.String> getTypeOptions();
 
     public final boolean isType(java.lang.String type) {
-        return equals(this.type, type);
+        return equalObjects(this.type, type);
     }
 
     private transient TypeModel typeModel;
@@ -230,7 +230,7 @@ public abstract class GIssue
     }
 
     public final boolean isDate(ilarkesto.core.time.DateAndTime date) {
-        return equals(this.date, date);
+        return equalObjects(this.date, date);
     }
 
     private transient DateModel dateModel;
@@ -285,14 +285,14 @@ public abstract class GIssue
 
     public final Issue setCreator(scrum.client.admin.User creator) {
         String id = creator == null ? null : creator.getId();
-        if (equals(this.creatorId, id)) return (Issue) this;
+        if (equalObjects(this.creatorId, id)) return (Issue) this;
         this.creatorId = id;
         propertyChanged("creatorId", this.creatorId);
         return (Issue)this;
     }
 
     public final boolean isCreator(scrum.client.admin.User creator) {
-        return equals(this.creatorId, creator);
+        return equalObjects(this.creatorId, creator);
     }
 
     // --- label ---
@@ -312,7 +312,7 @@ public abstract class GIssue
     }
 
     public final boolean isLabel(java.lang.String label) {
-        return equals(this.label, label);
+        return equalObjects(this.label, label);
     }
 
     private transient LabelModel labelModel;
@@ -370,7 +370,7 @@ public abstract class GIssue
     }
 
     public final boolean isDescription(java.lang.String description) {
-        return equals(this.description, description);
+        return equalObjects(this.description, description);
     }
 
     private transient DescriptionModel descriptionModel;
@@ -428,7 +428,7 @@ public abstract class GIssue
     }
 
     public final boolean isStatement(java.lang.String statement) {
-        return equals(this.statement, statement);
+        return equalObjects(this.statement, statement);
     }
 
     private transient StatementModel statementModel;
@@ -486,7 +486,7 @@ public abstract class GIssue
     }
 
     public final boolean isIssuerName(java.lang.String issuerName) {
-        return equals(this.issuerName, issuerName);
+        return equalObjects(this.issuerName, issuerName);
     }
 
     private transient IssuerNameModel issuerNameModel;
@@ -541,7 +541,7 @@ public abstract class GIssue
     }
 
     public final boolean isIssuerEmail(java.lang.String issuerEmail) {
-        return equals(this.issuerEmail, issuerEmail);
+        return equalObjects(this.issuerEmail, issuerEmail);
     }
 
     private transient IssuerEmailModel issuerEmailModel;
@@ -596,7 +596,7 @@ public abstract class GIssue
     }
 
     public final boolean isAcceptDate(ilarkesto.core.time.Date acceptDate) {
-        return equals(this.acceptDate, acceptDate);
+        return equalObjects(this.acceptDate, acceptDate);
     }
 
     private transient AcceptDateModel acceptDateModel;
@@ -649,7 +649,7 @@ public abstract class GIssue
     }
 
     public final boolean isUrgent(boolean urgent) {
-        return equals(this.urgent, urgent);
+        return equalObjects(this.urgent, urgent);
     }
 
     private transient UrgentModel urgentModel;
@@ -704,7 +704,7 @@ public abstract class GIssue
     public abstract List<java.lang.Integer> getSeverityOptions();
 
     public final boolean isSeverity(int severity) {
-        return equals(this.severity, severity);
+        return equalObjects(this.severity, severity);
     }
 
     private transient SeverityModel severityModel;
@@ -763,14 +763,14 @@ public abstract class GIssue
 
     public final Issue setOwner(scrum.client.admin.User owner) {
         String id = owner == null ? null : owner.getId();
-        if (equals(this.ownerId, id)) return (Issue) this;
+        if (equalObjects(this.ownerId, id)) return (Issue) this;
         this.ownerId = id;
         propertyChanged("ownerId", this.ownerId);
         return (Issue)this;
     }
 
     public final boolean isOwner(scrum.client.admin.User owner) {
-        return equals(this.ownerId, owner);
+        return equalObjects(this.ownerId, owner);
     }
 
     // --- fixDate ---
@@ -789,7 +789,7 @@ public abstract class GIssue
     }
 
     public final boolean isFixDate(ilarkesto.core.time.Date fixDate) {
-        return equals(this.fixDate, fixDate);
+        return equalObjects(this.fixDate, fixDate);
     }
 
     private transient FixDateModel fixDateModel;
@@ -842,7 +842,7 @@ public abstract class GIssue
     }
 
     public final boolean isCloseDate(ilarkesto.core.time.Date closeDate) {
-        return equals(this.closeDate, closeDate);
+        return equalObjects(this.closeDate, closeDate);
     }
 
     private transient CloseDateModel closeDateModel;
@@ -895,7 +895,7 @@ public abstract class GIssue
     }
 
     public final boolean isSuspendedUntilDate(ilarkesto.core.time.Date suspendedUntilDate) {
-        return equals(this.suspendedUntilDate, suspendedUntilDate);
+        return equalObjects(this.suspendedUntilDate, suspendedUntilDate);
     }
 
     private transient SuspendedUntilDateModel suspendedUntilDateModel;
@@ -1014,7 +1014,7 @@ public abstract class GIssue
     }
 
     public final boolean isPublished(boolean published) {
-        return equals(this.published, published);
+        return equalObjects(this.published, published);
     }
 
     private transient PublishedModel publishedModel;

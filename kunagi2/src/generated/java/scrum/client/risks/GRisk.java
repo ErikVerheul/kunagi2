@@ -57,14 +57,14 @@ public abstract class GRisk
 
     public final Risk setProject(scrum.client.project.Project project) {
         String id = project == null ? null : project.getId();
-        if (equals(this.projectId, id)) return (Risk) this;
+        if (equalObjects(this.projectId, id)) return (Risk) this;
         this.projectId = id;
         propertyChanged("projectId", this.projectId);
         return (Risk)this;
     }
 
     public final boolean isProject(scrum.client.project.Project project) {
-        return equals(this.projectId, project);
+        return equalObjects(this.projectId, project);
     }
 
     // --- number ---
@@ -83,7 +83,7 @@ public abstract class GRisk
     }
 
     public final boolean isNumber(int number) {
-        return equals(this.number, number);
+        return equalObjects(this.number, number);
     }
 
     private transient NumberModel numberModel;
@@ -147,7 +147,7 @@ public abstract class GRisk
     }
 
     public final boolean isLabel(java.lang.String label) {
-        return equals(this.label, label);
+        return equalObjects(this.label, label);
     }
 
     private transient LabelModel labelModel;
@@ -205,7 +205,7 @@ public abstract class GRisk
     }
 
     public final boolean isDescription(java.lang.String description) {
-        return equals(this.description, description);
+        return equalObjects(this.description, description);
     }
 
     private transient DescriptionModel descriptionModel;
@@ -263,7 +263,7 @@ public abstract class GRisk
     }
 
     public final boolean isProbabilityMitigation(java.lang.String probabilityMitigation) {
-        return equals(this.probabilityMitigation, probabilityMitigation);
+        return equalObjects(this.probabilityMitigation, probabilityMitigation);
     }
 
     private transient ProbabilityMitigationModel probabilityMitigationModel;
@@ -321,7 +321,7 @@ public abstract class GRisk
     }
 
     public final boolean isImpactMitigation(java.lang.String impactMitigation) {
-        return equals(this.impactMitigation, impactMitigation);
+        return equalObjects(this.impactMitigation, impactMitigation);
     }
 
     private transient ImpactMitigationModel impactMitigationModel;
@@ -381,7 +381,7 @@ public abstract class GRisk
     public abstract List<java.lang.Integer> getProbabilityOptions();
 
     public final boolean isProbability(int probability) {
-        return equals(this.probability, probability);
+        return equalObjects(this.probability, probability);
     }
 
     private transient ProbabilityModel probabilityModel;
@@ -446,7 +446,7 @@ public abstract class GRisk
     public abstract List<java.lang.Integer> getImpactOptions();
 
     public final boolean isImpact(int impact) {
-        return equals(this.impact, impact);
+        return equalObjects(this.impact, impact);
     }
 
     private transient ImpactModel impactModel;

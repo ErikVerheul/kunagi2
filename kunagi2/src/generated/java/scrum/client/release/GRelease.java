@@ -55,14 +55,14 @@ public abstract class GRelease
 
     public final Release setProject(scrum.client.project.Project project) {
         String id = project == null ? null : project.getId();
-        if (equals(this.projectId, id)) return (Release) this;
+        if (equalObjects(this.projectId, id)) return (Release) this;
         this.projectId = id;
         propertyChanged("projectId", this.projectId);
         return (Release)this;
     }
 
     public final boolean isProject(scrum.client.project.Project project) {
-        return equals(this.projectId, project);
+        return equalObjects(this.projectId, project);
     }
 
     // --- parentRelease ---
@@ -80,14 +80,14 @@ public abstract class GRelease
 
     public final Release setParentRelease(scrum.client.release.Release parentRelease) {
         String id = parentRelease == null ? null : parentRelease.getId();
-        if (equals(this.parentReleaseId, id)) return (Release) this;
+        if (equalObjects(this.parentReleaseId, id)) return (Release) this;
         this.parentReleaseId = id;
         propertyChanged("parentReleaseId", this.parentReleaseId);
         return (Release)this;
     }
 
     public final boolean isParentRelease(scrum.client.release.Release parentRelease) {
-        return equals(this.parentReleaseId, parentRelease);
+        return equalObjects(this.parentReleaseId, parentRelease);
     }
 
     // --- sprints ---
@@ -139,7 +139,7 @@ public abstract class GRelease
     }
 
     public final boolean isNumber(int number) {
-        return equals(this.number, number);
+        return equalObjects(this.number, number);
     }
 
     private transient NumberModel numberModel;
@@ -206,7 +206,7 @@ public abstract class GRelease
     }
 
     public final boolean isLabel(java.lang.String label) {
-        return equals(this.label, label);
+        return equalObjects(this.label, label);
     }
 
     private transient LabelModel labelModel;
@@ -264,7 +264,7 @@ public abstract class GRelease
     }
 
     public final boolean isNote(java.lang.String note) {
-        return equals(this.note, note);
+        return equalObjects(this.note, note);
     }
 
     private transient NoteModel noteModel;
@@ -322,7 +322,7 @@ public abstract class GRelease
     }
 
     public final boolean isReleaseDate(ilarkesto.core.time.Date releaseDate) {
-        return equals(this.releaseDate, releaseDate);
+        return equalObjects(this.releaseDate, releaseDate);
     }
 
     private transient ReleaseDateModel releaseDateModel;
@@ -377,7 +377,7 @@ public abstract class GRelease
     }
 
     public final boolean isReleased(boolean released) {
-        return equals(this.released, released);
+        return equalObjects(this.released, released);
     }
 
     private transient ReleasedModel releasedModel;
@@ -430,7 +430,7 @@ public abstract class GRelease
     }
 
     public final boolean isReleaseNotes(java.lang.String releaseNotes) {
-        return equals(this.releaseNotes, releaseNotes);
+        return equalObjects(this.releaseNotes, releaseNotes);
     }
 
     private transient ReleaseNotesModel releaseNotesModel;
@@ -488,7 +488,7 @@ public abstract class GRelease
     }
 
     public final boolean isScmTag(java.lang.String scmTag) {
-        return equals(this.scmTag, scmTag);
+        return equalObjects(this.scmTag, scmTag);
     }
 
     private transient ScmTagModel scmTagModel;
@@ -543,7 +543,7 @@ public abstract class GRelease
     }
 
     public final boolean isScriptRunning(boolean scriptRunning) {
-        return equals(this.scriptRunning, scriptRunning);
+        return equalObjects(this.scriptRunning, scriptRunning);
     }
 
     private transient ScriptRunningModel scriptRunningModel;
@@ -596,7 +596,7 @@ public abstract class GRelease
     }
 
     public final boolean isScriptOutput(java.lang.String scriptOutput) {
-        return equals(this.scriptOutput, scriptOutput);
+        return equalObjects(this.scriptOutput, scriptOutput);
     }
 
     private transient ScriptOutputModel scriptOutputModel;

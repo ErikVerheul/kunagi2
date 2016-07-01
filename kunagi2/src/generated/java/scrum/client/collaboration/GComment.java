@@ -57,14 +57,14 @@ public abstract class GComment
 
     public final Comment setParent(ilarkesto.gwt.client.AGwtEntity parent) {
         String id = parent == null ? null : parent.getId();
-        if (equals(this.parentId, id)) return (Comment) this;
+        if (equalObjects(this.parentId, id)) return (Comment) this;
         this.parentId = id;
         propertyChanged("parentId", this.parentId);
         return (Comment)this;
     }
 
     public final boolean isParent(ilarkesto.gwt.client.AGwtEntity parent) {
-        return equals(this.parentId, parent);
+        return equalObjects(this.parentId, parent);
     }
 
     // --- author ---
@@ -82,14 +82,14 @@ public abstract class GComment
 
     public final Comment setAuthor(scrum.client.admin.User author) {
         String id = author == null ? null : author.getId();
-        if (equals(this.authorId, id)) return (Comment) this;
+        if (equalObjects(this.authorId, id)) return (Comment) this;
         this.authorId = id;
         propertyChanged("authorId", this.authorId);
         return (Comment)this;
     }
 
     public final boolean isAuthor(scrum.client.admin.User author) {
-        return equals(this.authorId, author);
+        return equalObjects(this.authorId, author);
     }
 
     // --- published ---
@@ -108,7 +108,7 @@ public abstract class GComment
     }
 
     public final boolean isPublished(boolean published) {
-        return equals(this.published, published);
+        return equalObjects(this.published, published);
     }
 
     private transient PublishedModel publishedModel;
@@ -161,7 +161,7 @@ public abstract class GComment
     }
 
     public final boolean isAuthorName(java.lang.String authorName) {
-        return equals(this.authorName, authorName);
+        return equalObjects(this.authorName, authorName);
     }
 
     private transient AuthorNameModel authorNameModel;
@@ -214,7 +214,7 @@ public abstract class GComment
     }
 
     public final boolean isAuthorEmail(java.lang.String authorEmail) {
-        return equals(this.authorEmail, authorEmail);
+        return equalObjects(this.authorEmail, authorEmail);
     }
 
     private transient AuthorEmailModel authorEmailModel;
@@ -267,7 +267,7 @@ public abstract class GComment
     }
 
     public final boolean isAuthorNameVisible(boolean authorNameVisible) {
-        return equals(this.authorNameVisible, authorNameVisible);
+        return equalObjects(this.authorNameVisible, authorNameVisible);
     }
 
     private transient AuthorNameVisibleModel authorNameVisibleModel;
@@ -321,7 +321,7 @@ public abstract class GComment
     }
 
     public final boolean isText(java.lang.String text) {
-        return equals(this.text, text);
+        return equalObjects(this.text, text);
     }
 
     private transient TextModel textModel;
@@ -383,7 +383,7 @@ public abstract class GComment
     }
 
     public final boolean isDateAndTime(ilarkesto.core.time.DateAndTime dateAndTime) {
-        return equals(this.dateAndTime, dateAndTime);
+        return equalObjects(this.dateAndTime, dateAndTime);
     }
 
     private transient DateAndTimeModel dateAndTimeModel;

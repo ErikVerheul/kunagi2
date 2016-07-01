@@ -56,7 +56,7 @@ public abstract class GSystemConfig
     }
 
     public final boolean isUrl(java.lang.String url) {
-        return equals(this.url, url);
+        return equalObjects(this.url, url);
     }
 
     private transient UrlModel urlModel;
@@ -111,7 +111,7 @@ public abstract class GSystemConfig
     }
 
     public final boolean isAdminEmail(java.lang.String adminEmail) {
-        return equals(this.adminEmail, adminEmail);
+        return equalObjects(this.adminEmail, adminEmail);
     }
 
     private transient AdminEmailModel adminEmailModel;
@@ -166,7 +166,7 @@ public abstract class GSystemConfig
     }
 
     public final boolean isGoogleAnalyticsId(java.lang.String googleAnalyticsId) {
-        return equals(this.googleAnalyticsId, googleAnalyticsId);
+        return equalObjects(this.googleAnalyticsId, googleAnalyticsId);
     }
 
     private transient GoogleAnalyticsIdModel googleAnalyticsIdModel;
@@ -221,7 +221,7 @@ public abstract class GSystemConfig
     }
 
     public final boolean isSmtpServer(java.lang.String smtpServer) {
-        return equals(this.smtpServer, smtpServer);
+        return equalObjects(this.smtpServer, smtpServer);
     }
 
     private transient SmtpServerModel smtpServerModel;
@@ -276,7 +276,7 @@ public abstract class GSystemConfig
     }
 
     public final boolean isSmtpPort(java.lang.Integer smtpPort) {
-        return equals(this.smtpPort, smtpPort);
+        return equalObjects(this.smtpPort, smtpPort);
     }
 
     private transient SmtpPortModel smtpPortModel;
@@ -341,7 +341,7 @@ public abstract class GSystemConfig
     }
 
     public final boolean isSmtpTls(boolean smtpTls) {
-        return equals(this.smtpTls, smtpTls);
+        return equalObjects(this.smtpTls, smtpTls);
     }
 
     private transient SmtpTlsModel smtpTlsModel;
@@ -396,7 +396,7 @@ public abstract class GSystemConfig
     }
 
     public final boolean isSmtpUser(java.lang.String smtpUser) {
-        return equals(this.smtpUser, smtpUser);
+        return equalObjects(this.smtpUser, smtpUser);
     }
 
     private transient SmtpUserModel smtpUserModel;
@@ -451,7 +451,7 @@ public abstract class GSystemConfig
     }
 
     public final boolean isSmtpPassword(java.lang.String smtpPassword) {
-        return equals(this.smtpPassword, smtpPassword);
+        return equalObjects(this.smtpPassword, smtpPassword);
     }
 
     private transient SmtpPasswordModel smtpPasswordModel;
@@ -509,7 +509,7 @@ public abstract class GSystemConfig
     }
 
     public final boolean isSmtpFrom(java.lang.String smtpFrom) {
-        return equals(this.smtpFrom, smtpFrom);
+        return equalObjects(this.smtpFrom, smtpFrom);
     }
 
     private transient SmtpFromModel smtpFromModel;
@@ -564,7 +564,7 @@ public abstract class GSystemConfig
     }
 
     public final boolean isInstanceName(java.lang.String instanceName) {
-        return equals(this.instanceName, instanceName);
+        return equalObjects(this.instanceName, instanceName);
     }
 
     private transient InstanceNameModel instanceNameModel;
@@ -619,7 +619,7 @@ public abstract class GSystemConfig
     }
 
     public final boolean isLoginPageLogoUrl(java.lang.String loginPageLogoUrl) {
-        return equals(this.loginPageLogoUrl, loginPageLogoUrl);
+        return equalObjects(this.loginPageLogoUrl, loginPageLogoUrl);
     }
 
     private transient LoginPageLogoUrlModel loginPageLogoUrlModel;
@@ -674,7 +674,7 @@ public abstract class GSystemConfig
     }
 
     public final boolean isLoginPageMessage(java.lang.String loginPageMessage) {
-        return equals(this.loginPageMessage, loginPageMessage);
+        return equalObjects(this.loginPageMessage, loginPageMessage);
     }
 
     private transient LoginPageMessageModel loginPageMessageModel;
@@ -732,7 +732,7 @@ public abstract class GSystemConfig
     }
 
     public final boolean isRegisterPageMessage(java.lang.String registerPageMessage) {
-        return equals(this.registerPageMessage, registerPageMessage);
+        return equalObjects(this.registerPageMessage, registerPageMessage);
     }
 
     private transient RegisterPageMessageModel registerPageMessageModel;
@@ -790,7 +790,7 @@ public abstract class GSystemConfig
     }
 
     public final boolean isAboutPageMessage(java.lang.String aboutPageMessage) {
-        return equals(this.aboutPageMessage, aboutPageMessage);
+        return equalObjects(this.aboutPageMessage, aboutPageMessage);
     }
 
     private transient AboutPageMessageModel aboutPageMessageModel;
@@ -846,7 +846,7 @@ public abstract class GSystemConfig
     }
 
     public final boolean isUserEmailMandatory(boolean userEmailMandatory) {
-        return equals(this.userEmailMandatory, userEmailMandatory);
+        return equalObjects(this.userEmailMandatory, userEmailMandatory);
     }
 
     private transient UserEmailMandatoryModel userEmailMandatoryModel;
@@ -901,7 +901,7 @@ public abstract class GSystemConfig
     }
 
     public final boolean isRegistrationDisabled(boolean registrationDisabled) {
-        return equals(this.registrationDisabled, registrationDisabled);
+        return equalObjects(this.registrationDisabled, registrationDisabled);
     }
 
     private transient RegistrationDisabledModel registrationDisabledModel;
@@ -956,7 +956,7 @@ public abstract class GSystemConfig
     }
 
     public final boolean isProjectCreationDisabled(boolean projectCreationDisabled) {
-        return equals(this.projectCreationDisabled, projectCreationDisabled);
+        return equalObjects(this.projectCreationDisabled, projectCreationDisabled);
     }
 
     private transient ProjectCreationDisabledModel projectCreationDisabledModel;
@@ -1011,7 +1011,7 @@ public abstract class GSystemConfig
     }
 
     public final boolean isDefaultUserPassword(java.lang.String defaultUserPassword) {
-        return equals(this.defaultUserPassword, defaultUserPassword);
+        return equalObjects(this.defaultUserPassword, defaultUserPassword);
     }
 
     private transient DefaultUserPasswordModel defaultUserPasswordModel;
@@ -1069,7 +1069,7 @@ public abstract class GSystemConfig
     }
 
     public final boolean isOpenIdDisabled(boolean openIdDisabled) {
-        return equals(this.openIdDisabled, openIdDisabled);
+        return equalObjects(this.openIdDisabled, openIdDisabled);
     }
 
     private transient OpenIdDisabledModel openIdDisabledModel;
@@ -1124,7 +1124,7 @@ public abstract class GSystemConfig
     }
 
     public final boolean isOpenIdDomains(java.lang.String openIdDomains) {
-        return equals(this.openIdDomains, openIdDomains);
+        return equalObjects(this.openIdDomains, openIdDomains);
     }
 
     private transient OpenIdDomainsModel openIdDomainsModel;
@@ -1179,7 +1179,7 @@ public abstract class GSystemConfig
     }
 
     public final boolean isVersionCheckEnabled(boolean versionCheckEnabled) {
-        return equals(this.versionCheckEnabled, versionCheckEnabled);
+        return equalObjects(this.versionCheckEnabled, versionCheckEnabled);
     }
 
     private transient VersionCheckEnabledModel versionCheckEnabledModel;
@@ -1234,7 +1234,7 @@ public abstract class GSystemConfig
     }
 
     public final boolean isLdapEnabled(boolean ldapEnabled) {
-        return equals(this.ldapEnabled, ldapEnabled);
+        return equalObjects(this.ldapEnabled, ldapEnabled);
     }
 
     private transient LdapEnabledModel ldapEnabledModel;
@@ -1289,7 +1289,7 @@ public abstract class GSystemConfig
     }
 
     public final boolean isLdapUrl(java.lang.String ldapUrl) {
-        return equals(this.ldapUrl, ldapUrl);
+        return equalObjects(this.ldapUrl, ldapUrl);
     }
 
     private transient LdapUrlModel ldapUrlModel;
@@ -1344,7 +1344,7 @@ public abstract class GSystemConfig
     }
 
     public final boolean isLdapUser(java.lang.String ldapUser) {
-        return equals(this.ldapUser, ldapUser);
+        return equalObjects(this.ldapUser, ldapUser);
     }
 
     private transient LdapUserModel ldapUserModel;
@@ -1399,7 +1399,7 @@ public abstract class GSystemConfig
     }
 
     public final boolean isLdapPassword(java.lang.String ldapPassword) {
-        return equals(this.ldapPassword, ldapPassword);
+        return equalObjects(this.ldapPassword, ldapPassword);
     }
 
     private transient LdapPasswordModel ldapPasswordModel;
@@ -1457,7 +1457,7 @@ public abstract class GSystemConfig
     }
 
     public final boolean isLdapBaseDn(java.lang.String ldapBaseDn) {
-        return equals(this.ldapBaseDn, ldapBaseDn);
+        return equalObjects(this.ldapBaseDn, ldapBaseDn);
     }
 
     private transient LdapBaseDnModel ldapBaseDnModel;
@@ -1512,7 +1512,7 @@ public abstract class GSystemConfig
     }
 
     public final boolean isLdapUserFilterRegex(java.lang.String ldapUserFilterRegex) {
-        return equals(this.ldapUserFilterRegex, ldapUserFilterRegex);
+        return equalObjects(this.ldapUserFilterRegex, ldapUserFilterRegex);
     }
 
     private transient LdapUserFilterRegexModel ldapUserFilterRegexModel;
@@ -1567,7 +1567,7 @@ public abstract class GSystemConfig
     }
 
     public final boolean isMaxFileSize(java.lang.Integer maxFileSize) {
-        return equals(this.maxFileSize, maxFileSize);
+        return equalObjects(this.maxFileSize, maxFileSize);
     }
 
     private transient MaxFileSizeModel maxFileSizeModel;
@@ -1632,7 +1632,7 @@ public abstract class GSystemConfig
     }
 
     public final boolean isSubscriptionKeySeed(java.lang.String subscriptionKeySeed) {
-        return equals(this.subscriptionKeySeed, subscriptionKeySeed);
+        return equalObjects(this.subscriptionKeySeed, subscriptionKeySeed);
     }
 
     private transient SubscriptionKeySeedModel subscriptionKeySeedModel;

@@ -55,14 +55,14 @@ public abstract class GEmoticon
 
     public final Emoticon setParent(ilarkesto.gwt.client.AGwtEntity parent) {
         String id = parent == null ? null : parent.getId();
-        if (equals(this.parentId, id)) return (Emoticon) this;
+        if (equalObjects(this.parentId, id)) return (Emoticon) this;
         this.parentId = id;
         propertyChanged("parentId", this.parentId);
         return (Emoticon)this;
     }
 
     public final boolean isParent(ilarkesto.gwt.client.AGwtEntity parent) {
-        return equals(this.parentId, parent);
+        return equalObjects(this.parentId, parent);
     }
 
     // --- owner ---
@@ -80,14 +80,14 @@ public abstract class GEmoticon
 
     public final Emoticon setOwner(scrum.client.admin.User owner) {
         String id = owner == null ? null : owner.getId();
-        if (equals(this.ownerId, id)) return (Emoticon) this;
+        if (equalObjects(this.ownerId, id)) return (Emoticon) this;
         this.ownerId = id;
         propertyChanged("ownerId", this.ownerId);
         return (Emoticon)this;
     }
 
     public final boolean isOwner(scrum.client.admin.User owner) {
-        return equals(this.ownerId, owner);
+        return equalObjects(this.ownerId, owner);
     }
 
     // --- emotion ---
@@ -106,7 +106,7 @@ public abstract class GEmoticon
     }
 
     public final boolean isEmotion(java.lang.String emotion) {
-        return equals(this.emotion, emotion);
+        return equalObjects(this.emotion, emotion);
     }
 
     private transient EmotionModel emotionModel;

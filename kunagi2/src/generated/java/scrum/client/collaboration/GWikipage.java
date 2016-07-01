@@ -55,14 +55,14 @@ public abstract class GWikipage
 
     public final Wikipage setProject(scrum.client.project.Project project) {
         String id = project == null ? null : project.getId();
-        if (equals(this.projectId, id)) return (Wikipage) this;
+        if (equalObjects(this.projectId, id)) return (Wikipage) this;
         this.projectId = id;
         propertyChanged("projectId", this.projectId);
         return (Wikipage)this;
     }
 
     public final boolean isProject(scrum.client.project.Project project) {
-        return equals(this.projectId, project);
+        return equalObjects(this.projectId, project);
     }
 
     // --- name ---
@@ -82,7 +82,7 @@ public abstract class GWikipage
     }
 
     public final boolean isName(java.lang.String name) {
-        return equals(this.name, name);
+        return equalObjects(this.name, name);
     }
 
     private transient NameModel nameModel;
@@ -138,7 +138,7 @@ public abstract class GWikipage
     }
 
     public final boolean isText(java.lang.String text) {
-        return equals(this.text, text);
+        return equalObjects(this.text, text);
     }
 
     private transient TextModel textModel;

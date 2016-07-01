@@ -55,14 +55,14 @@ public abstract class GRequirementEstimationVote
 
     public final RequirementEstimationVote setRequirement(scrum.client.project.Requirement requirement) {
         String id = requirement == null ? null : requirement.getId();
-        if (equals(this.requirementId, id)) return (RequirementEstimationVote) this;
+        if (equalObjects(this.requirementId, id)) return (RequirementEstimationVote) this;
         this.requirementId = id;
         propertyChanged("requirementId", this.requirementId);
         return (RequirementEstimationVote)this;
     }
 
     public final boolean isRequirement(scrum.client.project.Requirement requirement) {
-        return equals(this.requirementId, requirement);
+        return equalObjects(this.requirementId, requirement);
     }
 
     // --- user ---
@@ -80,14 +80,14 @@ public abstract class GRequirementEstimationVote
 
     public final RequirementEstimationVote setUser(scrum.client.admin.User user) {
         String id = user == null ? null : user.getId();
-        if (equals(this.userId, id)) return (RequirementEstimationVote) this;
+        if (equalObjects(this.userId, id)) return (RequirementEstimationVote) this;
         this.userId = id;
         propertyChanged("userId", this.userId);
         return (RequirementEstimationVote)this;
     }
 
     public final boolean isUser(scrum.client.admin.User user) {
-        return equals(this.userId, user);
+        return equalObjects(this.userId, user);
     }
 
     // --- estimatedWork ---
@@ -106,7 +106,7 @@ public abstract class GRequirementEstimationVote
     }
 
     public final boolean isEstimatedWork(java.lang.Float estimatedWork) {
-        return equals(this.estimatedWork, estimatedWork);
+        return equalObjects(this.estimatedWork, estimatedWork);
     }
 
     private transient EstimatedWorkModel estimatedWorkModel;

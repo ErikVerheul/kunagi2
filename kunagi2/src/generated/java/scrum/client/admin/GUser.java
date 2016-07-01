@@ -58,7 +58,7 @@ public abstract class GUser
     }
 
     public final boolean isName(java.lang.String name) {
-        return equals(this.name, name);
+        return equalObjects(this.name, name);
     }
 
     private transient NameModel nameModel;
@@ -116,7 +116,7 @@ public abstract class GUser
     }
 
     public final boolean isPublicName(java.lang.String publicName) {
-        return equals(this.publicName, publicName);
+        return equalObjects(this.publicName, publicName);
     }
 
     private transient PublicNameModel publicNameModel;
@@ -171,7 +171,7 @@ public abstract class GUser
     }
 
     public final boolean isFullName(java.lang.String fullName) {
-        return equals(this.fullName, fullName);
+        return equalObjects(this.fullName, fullName);
     }
 
     private transient FullNameModel fullNameModel;
@@ -226,7 +226,7 @@ public abstract class GUser
     }
 
     public final boolean isAdmin(boolean admin) {
-        return equals(this.admin, admin);
+        return equalObjects(this.admin, admin);
     }
 
     private transient AdminModel adminModel;
@@ -279,7 +279,7 @@ public abstract class GUser
     }
 
     public final boolean isEmailVerified(boolean emailVerified) {
-        return equals(this.emailVerified, emailVerified);
+        return equalObjects(this.emailVerified, emailVerified);
     }
 
     private transient EmailVerifiedModel emailVerifiedModel;
@@ -333,7 +333,7 @@ public abstract class GUser
     }
 
     public final boolean isEmail(java.lang.String email) {
-        return equals(this.email, email);
+        return equalObjects(this.email, email);
     }
 
     private transient EmailModel emailModel;
@@ -385,14 +385,14 @@ public abstract class GUser
 
     public final User setCurrentProject(scrum.client.project.Project currentProject) {
         String id = currentProject == null ? null : currentProject.getId();
-        if (equals(this.currentProjectId, id)) return (User) this;
+        if (equalObjects(this.currentProjectId, id)) return (User) this;
         this.currentProjectId = id;
         propertyChanged("currentProjectId", this.currentProjectId);
         return (User)this;
     }
 
     public final boolean isCurrentProject(scrum.client.project.Project currentProject) {
-        return equals(this.currentProjectId, currentProject);
+        return equalObjects(this.currentProjectId, currentProject);
     }
 
     // --- color ---
@@ -411,7 +411,7 @@ public abstract class GUser
     }
 
     public final boolean isColor(java.lang.String color) {
-        return equals(this.color, color);
+        return equalObjects(this.color, color);
     }
 
     private transient ColorModel colorModel;
@@ -464,7 +464,7 @@ public abstract class GUser
     }
 
     public final boolean isLastLoginDateAndTime(ilarkesto.core.time.DateAndTime lastLoginDateAndTime) {
-        return equals(this.lastLoginDateAndTime, lastLoginDateAndTime);
+        return equalObjects(this.lastLoginDateAndTime, lastLoginDateAndTime);
     }
 
     private transient LastLoginDateAndTimeModel lastLoginDateAndTimeModel;
@@ -517,7 +517,7 @@ public abstract class GUser
     }
 
     public final boolean isRegistrationDateAndTime(ilarkesto.core.time.DateAndTime registrationDateAndTime) {
-        return equals(this.registrationDateAndTime, registrationDateAndTime);
+        return equalObjects(this.registrationDateAndTime, registrationDateAndTime);
     }
 
     private transient RegistrationDateAndTimeModel registrationDateAndTimeModel;
@@ -570,7 +570,7 @@ public abstract class GUser
     }
 
     public final boolean isDisabled(boolean disabled) {
-        return equals(this.disabled, disabled);
+        return equalObjects(this.disabled, disabled);
     }
 
     private transient DisabledModel disabledModel;
@@ -623,7 +623,7 @@ public abstract class GUser
     }
 
     public final boolean isHideUserGuideBlog(boolean hideUserGuideBlog) {
-        return equals(this.hideUserGuideBlog, hideUserGuideBlog);
+        return equalObjects(this.hideUserGuideBlog, hideUserGuideBlog);
     }
 
     private transient HideUserGuideBlogModel hideUserGuideBlogModel;
@@ -676,7 +676,7 @@ public abstract class GUser
     }
 
     public final boolean isHideUserGuideCalendar(boolean hideUserGuideCalendar) {
-        return equals(this.hideUserGuideCalendar, hideUserGuideCalendar);
+        return equalObjects(this.hideUserGuideCalendar, hideUserGuideCalendar);
     }
 
     private transient HideUserGuideCalendarModel hideUserGuideCalendarModel;
@@ -729,7 +729,7 @@ public abstract class GUser
     }
 
     public final boolean isHideUserGuideFiles(boolean hideUserGuideFiles) {
-        return equals(this.hideUserGuideFiles, hideUserGuideFiles);
+        return equalObjects(this.hideUserGuideFiles, hideUserGuideFiles);
     }
 
     private transient HideUserGuideFilesModel hideUserGuideFilesModel;
@@ -782,7 +782,7 @@ public abstract class GUser
     }
 
     public final boolean isHideUserGuideForum(boolean hideUserGuideForum) {
-        return equals(this.hideUserGuideForum, hideUserGuideForum);
+        return equalObjects(this.hideUserGuideForum, hideUserGuideForum);
     }
 
     private transient HideUserGuideForumModel hideUserGuideForumModel;
@@ -835,7 +835,7 @@ public abstract class GUser
     }
 
     public final boolean isHideUserGuideImpediments(boolean hideUserGuideImpediments) {
-        return equals(this.hideUserGuideImpediments, hideUserGuideImpediments);
+        return equalObjects(this.hideUserGuideImpediments, hideUserGuideImpediments);
     }
 
     private transient HideUserGuideImpedimentsModel hideUserGuideImpedimentsModel;
@@ -888,7 +888,7 @@ public abstract class GUser
     }
 
     public final boolean isHideUserGuideIssues(boolean hideUserGuideIssues) {
-        return equals(this.hideUserGuideIssues, hideUserGuideIssues);
+        return equalObjects(this.hideUserGuideIssues, hideUserGuideIssues);
     }
 
     private transient HideUserGuideIssuesModel hideUserGuideIssuesModel;
@@ -941,7 +941,7 @@ public abstract class GUser
     }
 
     public final boolean isHideUserGuideJournal(boolean hideUserGuideJournal) {
-        return equals(this.hideUserGuideJournal, hideUserGuideJournal);
+        return equalObjects(this.hideUserGuideJournal, hideUserGuideJournal);
     }
 
     private transient HideUserGuideJournalModel hideUserGuideJournalModel;
@@ -994,7 +994,7 @@ public abstract class GUser
     }
 
     public final boolean isHideUserGuideNextSprint(boolean hideUserGuideNextSprint) {
-        return equals(this.hideUserGuideNextSprint, hideUserGuideNextSprint);
+        return equalObjects(this.hideUserGuideNextSprint, hideUserGuideNextSprint);
     }
 
     private transient HideUserGuideNextSprintModel hideUserGuideNextSprintModel;
@@ -1047,7 +1047,7 @@ public abstract class GUser
     }
 
     public final boolean isHideUserGuideProductBacklog(boolean hideUserGuideProductBacklog) {
-        return equals(this.hideUserGuideProductBacklog, hideUserGuideProductBacklog);
+        return equalObjects(this.hideUserGuideProductBacklog, hideUserGuideProductBacklog);
     }
 
     private transient HideUserGuideProductBacklogModel hideUserGuideProductBacklogModel;
@@ -1100,7 +1100,7 @@ public abstract class GUser
     }
 
     public final boolean isHideUserGuideCourtroom(boolean hideUserGuideCourtroom) {
-        return equals(this.hideUserGuideCourtroom, hideUserGuideCourtroom);
+        return equalObjects(this.hideUserGuideCourtroom, hideUserGuideCourtroom);
     }
 
     private transient HideUserGuideCourtroomModel hideUserGuideCourtroomModel;
@@ -1153,7 +1153,7 @@ public abstract class GUser
     }
 
     public final boolean isHideUserGuideQualityBacklog(boolean hideUserGuideQualityBacklog) {
-        return equals(this.hideUserGuideQualityBacklog, hideUserGuideQualityBacklog);
+        return equalObjects(this.hideUserGuideQualityBacklog, hideUserGuideQualityBacklog);
     }
 
     private transient HideUserGuideQualityBacklogModel hideUserGuideQualityBacklogModel;
@@ -1206,7 +1206,7 @@ public abstract class GUser
     }
 
     public final boolean isHideUserGuideReleases(boolean hideUserGuideReleases) {
-        return equals(this.hideUserGuideReleases, hideUserGuideReleases);
+        return equalObjects(this.hideUserGuideReleases, hideUserGuideReleases);
     }
 
     private transient HideUserGuideReleasesModel hideUserGuideReleasesModel;
@@ -1259,7 +1259,7 @@ public abstract class GUser
     }
 
     public final boolean isHideUserGuideRisks(boolean hideUserGuideRisks) {
-        return equals(this.hideUserGuideRisks, hideUserGuideRisks);
+        return equalObjects(this.hideUserGuideRisks, hideUserGuideRisks);
     }
 
     private transient HideUserGuideRisksModel hideUserGuideRisksModel;
@@ -1312,7 +1312,7 @@ public abstract class GUser
     }
 
     public final boolean isHideUserGuideSprintBacklog(boolean hideUserGuideSprintBacklog) {
-        return equals(this.hideUserGuideSprintBacklog, hideUserGuideSprintBacklog);
+        return equalObjects(this.hideUserGuideSprintBacklog, hideUserGuideSprintBacklog);
     }
 
     private transient HideUserGuideSprintBacklogModel hideUserGuideSprintBacklogModel;
@@ -1365,7 +1365,7 @@ public abstract class GUser
     }
 
     public final boolean isHideUserGuideWhiteboard(boolean hideUserGuideWhiteboard) {
-        return equals(this.hideUserGuideWhiteboard, hideUserGuideWhiteboard);
+        return equalObjects(this.hideUserGuideWhiteboard, hideUserGuideWhiteboard);
     }
 
     private transient HideUserGuideWhiteboardModel hideUserGuideWhiteboardModel;
@@ -1419,7 +1419,7 @@ public abstract class GUser
     }
 
     public final boolean isLoginToken(java.lang.String loginToken) {
-        return equals(this.loginToken, loginToken);
+        return equalObjects(this.loginToken, loginToken);
     }
 
     private transient LoginTokenModel loginTokenModel;
@@ -1473,7 +1473,7 @@ public abstract class GUser
     }
 
     public final boolean isOpenId(java.lang.String openId) {
-        return equals(this.openId, openId);
+        return equalObjects(this.openId, openId);
     }
 
     private transient OpenIdModel openIdModel;

@@ -57,14 +57,14 @@ public abstract class GProjectEvent
 
     public final ProjectEvent setProject(scrum.client.project.Project project) {
         String id = project == null ? null : project.getId();
-        if (equals(this.projectId, id)) return (ProjectEvent) this;
+        if (equalObjects(this.projectId, id)) return (ProjectEvent) this;
         this.projectId = id;
         propertyChanged("projectId", this.projectId);
         return (ProjectEvent)this;
     }
 
     public final boolean isProject(scrum.client.project.Project project) {
-        return equals(this.projectId, project);
+        return equalObjects(this.projectId, project);
     }
 
     // --- label ---
@@ -84,7 +84,7 @@ public abstract class GProjectEvent
     }
 
     public final boolean isLabel(java.lang.String label) {
-        return equals(this.label, label);
+        return equalObjects(this.label, label);
     }
 
     private transient LabelModel labelModel;
@@ -142,14 +142,14 @@ public abstract class GProjectEvent
 
     public final ProjectEvent setSubject(ilarkesto.gwt.client.AGwtEntity subject) {
         String id = subject == null ? null : subject.getId();
-        if (equals(this.subjectId, id)) return (ProjectEvent) this;
+        if (equalObjects(this.subjectId, id)) return (ProjectEvent) this;
         this.subjectId = id;
         propertyChanged("subjectId", this.subjectId);
         return (ProjectEvent)this;
     }
 
     public final boolean isSubject(ilarkesto.gwt.client.AGwtEntity subject) {
-        return equals(this.subjectId, subject);
+        return equalObjects(this.subjectId, subject);
     }
 
     // --- dateAndTime ---
@@ -169,7 +169,7 @@ public abstract class GProjectEvent
     }
 
     public final boolean isDateAndTime(ilarkesto.core.time.DateAndTime dateAndTime) {
-        return equals(this.dateAndTime, dateAndTime);
+        return equalObjects(this.dateAndTime, dateAndTime);
     }
 
     private transient DateAndTimeModel dateAndTimeModel;

@@ -55,14 +55,14 @@ public abstract class GFile
 
     public final File setProject(scrum.client.project.Project project) {
         String id = project == null ? null : project.getId();
-        if (equals(this.projectId, id)) return (File) this;
+        if (equalObjects(this.projectId, id)) return (File) this;
         this.projectId = id;
         propertyChanged("projectId", this.projectId);
         return (File)this;
     }
 
     public final boolean isProject(scrum.client.project.Project project) {
-        return equals(this.projectId, project);
+        return equalObjects(this.projectId, project);
     }
 
     // --- filename ---
@@ -82,7 +82,7 @@ public abstract class GFile
     }
 
     public final boolean isFilename(java.lang.String filename) {
-        return equals(this.filename, filename);
+        return equalObjects(this.filename, filename);
     }
 
     private transient FilenameModel filenameModel;
@@ -142,7 +142,7 @@ public abstract class GFile
     }
 
     public final boolean isUploadTime(ilarkesto.core.time.DateAndTime uploadTime) {
-        return equals(this.uploadTime, uploadTime);
+        return equalObjects(this.uploadTime, uploadTime);
     }
 
     private transient UploadTimeModel uploadTimeModel;
@@ -202,7 +202,7 @@ public abstract class GFile
     }
 
     public final boolean isLabel(java.lang.String label) {
-        return equals(this.label, label);
+        return equalObjects(this.label, label);
     }
 
     private transient LabelModel labelModel;
@@ -260,7 +260,7 @@ public abstract class GFile
     }
 
     public final boolean isNumber(int number) {
-        return equals(this.number, number);
+        return equalObjects(this.number, number);
     }
 
     private transient NumberModel numberModel;
@@ -326,7 +326,7 @@ public abstract class GFile
     }
 
     public final boolean isNote(java.lang.String note) {
-        return equals(this.note, note);
+        return equalObjects(this.note, note);
     }
 
     private transient NoteModel noteModel;

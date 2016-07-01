@@ -416,7 +416,7 @@ public class GwtEntityGenerator extends ABeanGenerator<EntityModel> {
 				ln();
 				ln("    public final", bean.getName(), "set" + nameUpper + "(" + type, p.getName() + ") {");
 				ln("        String id = " + p.getName() + " == null ? null : " + p.getName() + ".getId();");
-				ln("        if (equals(this." + p.getName() + "Id, id)) return (" + bean.getName() + ") this;");
+				ln("        if (equalObjects(this." + p.getName() + "Id, id)) return (" + bean.getName() + ") this;");
 				ln("        this." + p.getName() + "Id = id;");
 				ln("        propertyChanged(\"" + p.getName() + "Id\", this." + p.getName() + "Id);");
 				ln("        return (" + bean.getName() + ")this;");
@@ -468,7 +468,7 @@ public class GwtEntityGenerator extends ABeanGenerator<EntityModel> {
 			ln();
 			ln("    public final boolean is" + nameUpper + "(" + type.replace(".server.", ".client."), p.getName()
 					+ ") {");
-			ln("        return equals(this." + (p.isReference() ? p.getName() + "Id" : p.getName()) + ", "
+			ln("        return equalObjects(this." + (p.isReference() ? p.getName() + "Id" : p.getName()) + ", "
 					+ p.getName() + ");");
 			ln("    }");
 		}
