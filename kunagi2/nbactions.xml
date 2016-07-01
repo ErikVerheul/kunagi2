@@ -11,4 +11,15 @@
                 
             </goals>
         </action>
+        <action>
+            <actionName>CUSTOM-ScrumModeller</actionName>
+            <displayName>ScrumModeller</displayName>
+            <recursive>false</recursive>
+            <goals>
+                <goal>generate-sources</goal>
+            </goals>
+            <activatedProfiles>
+                <activatedProfile>ScrumModeller</activatedProfile>
+            </activatedProfiles>
+        </action>
     </actions>
