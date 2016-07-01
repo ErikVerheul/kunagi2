@@ -45,10 +45,9 @@ public abstract class ABlockWidget<O> extends AScrumWidget {
     private FlowPanel preHeaderPanel;
     private FlowPanel panel;
     private SimplePanel bodyWrapper;
-    private BlockDndMarkerWidget dndMarkerTop = new BlockDndMarkerWidget();
+    private final BlockDndMarkerWidget dndMarkerTop = new BlockDndMarkerWidget();
 
     private boolean initializingExtension;
-    private boolean initializedExtension;
     private Widget body;
 
     protected abstract void onInitializationHeader(BlockHeaderWidget header);
@@ -154,7 +153,6 @@ public abstract class ABlockWidget<O> extends AScrumWidget {
         } else {
             initializingExtension = true;
             body = onExtendedInitialization();
-            initializedExtension = true;
             initializingExtension = false;
         }
     }
@@ -169,9 +167,6 @@ public abstract class ABlockWidget<O> extends AScrumWidget {
         return object;
     }
 
-	// public Widget getBorderPanel() {
-    // return panel;
-    // }
     public void deactivateDndMarkers() {
         dndMarkerTop.setActive(false);
     }
