@@ -48,6 +48,7 @@ class Transaction implements IdentifiableResolver<AEntity> {
 	}
 
 	synchronized void saveEntity(AEntity entity) {
+                Log.setDebugEnabled(true);
 		if (entity == null) {
                         throw new NullPointerException("entity");
                 }
@@ -75,6 +76,7 @@ class Transaction implements IdentifiableResolver<AEntity> {
 	private boolean committed;
 
 	synchronized void commit() {
+                Log.setDebugEnabled(true);
 		if (committed) {
                         throw new RuntimeException("Transaction already committed: " + this);
                 }
