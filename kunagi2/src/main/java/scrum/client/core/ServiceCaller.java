@@ -51,7 +51,6 @@ public class ServiceCaller extends GServiceCaller {
 	}
 
 	public void onServiceCallSuccess(DataTransferObject data) {
-                Log.setDebugEnabled(true);
 		lastSuccessfullServiceCallTime = Tm.getCurrentTimeMillis();
 
 		if (data.conversationNumber != null) {
@@ -73,7 +72,6 @@ public class ServiceCaller extends GServiceCaller {
 	}
 
 	public void onServiceCallFailure(AServiceCall serviceCall, List<ErrorWrapper> errors) {
-                Log.setDebugEnabled(true);
 		long timeFromLastSuccess = Tm.getCurrentTimeMillis() - lastSuccessfullServiceCallTime;
 		if (serviceCall.isDispensable() && timeFromLastSuccess < MAX_FAILURE_TIME) {
 			log.warn("Dispensable service call failed:", serviceCall, errors);
