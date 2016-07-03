@@ -14,7 +14,6 @@
  */
 package scrum.server;
 
-import scrum.server.GScrumServiceImpl;
 import ilarkesto.auth.Auth;
 import ilarkesto.auth.AuthenticationFailedException;
 import ilarkesto.auth.WrongPasswordException;
@@ -74,7 +73,7 @@ import scrum.server.sprint.Task;
 
 public class ScrumServiceImpl extends GScrumServiceImpl {
 
-	private static final Log local_log = Log.get(ScrumServiceImpl.class);
+	private static final Log LOG = Log.get(ScrumServiceImpl.class);
 	private static final long serialVersionUID = 1;
 
 	// --- dependencies ---
@@ -218,7 +217,7 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
 		Project project = conversation.getProject();
 		if (project == null) return;
 		List<AEntity> foundEntities = project.search(text);
-		local_log.debug("Found entities for search", "\"" + text + "\"", "->", foundEntities);
+		LOG.debug("Found entities for search", "\"" + text + "\"", "->", foundEntities);
 		conversation.sendToClient(foundEntities);
 	}
 
@@ -253,7 +252,7 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
 
 		user.setPassword(newPassword);
 
-		local_log.info("password changed by", user);
+		LOG.info("password changed by", user);
 	}
 
 	@Override
@@ -780,7 +779,7 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
 			conversation.sendToClient(entity);
 			conversation.sendToClient(getAssociatedEntities(entity));
 		} catch (EntityDoesNotExistException ex) {
-			local_log.info("Requested entity not found:", entityId);
+			LOG.info("Requested entity not found:", entityId);
 			// nop
 		}
 	}
@@ -792,7 +791,7 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
 
 		AEntity entity = project.getEntityByReference(reference);
 		if (entity == null) {
-			local_log.info("Requested entity not found:", reference);
+			LOG.info("Requested entity not found:", reference);
 		} else {
 			conversation.sendToClient(entity);
 			conversation.sendToClient(getAssociatedEntities(entity));
@@ -936,7 +935,7 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
 
 	@Override
 	public DataTransferObject startConversation(int conversationNumber) {
-		local_log.debug("startConversation");
+		LOG.debug("startConversation");
 		WebSession session = (WebSession) getSession();
 		GwtConversation conversation = session.getGwtConversation(-1);
 		ilarkesto.di.Context context = ilarkesto.di.Context.get();
@@ -969,7 +968,7 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
 		try {
 			sendProjectEventEmails(message, subject, project, conversation.getSession().getUser().getEmail());
 		} catch (Throwable ex) {
-			local_log.error("Sending project event notification emails failed.", ex);
+			LOG.error("Sending project event notification emails failed.", ex);
 		}
 	}
 
