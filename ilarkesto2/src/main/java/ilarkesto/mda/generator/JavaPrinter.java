@@ -49,7 +49,7 @@ public class JavaPrinter {
 	}
 
 	public void loggerByClassName(String className) {
-		field("protected final static", Log.class.getName(), "log", Log.class.getName() + ".get(" + className + ".class)");
+		field("protected final static", Log.class.getName(), "LOG", Log.class.getName() + ".get(" + className + ".class)");
 	}
 
 	public void logDebug(String params) {
@@ -65,7 +65,7 @@ public class JavaPrinter {
 	}
 
 	public void logger(String name) {
-		field("protected final static", Log.class.getName(), "log", Log.class.getName() + ".get(\"" + name + "\")");
+		field("protected final static", Log.class.getName(), "LOG", Log.class.getName() + ".get(\"" + name + "\")");
 	}
 
 	public void assignment(String var, String value) {
