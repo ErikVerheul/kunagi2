@@ -31,7 +31,7 @@ import javax.swing.border.EmptyBorder;
 
 public class NodeListBarPanel extends JPanel implements Observer, ModelChangedHandler {
 
-	private static final Log log = Log.get(NodeListBarPanel.class);
+	private static final Log LOG = Log.get(NodeListBarPanel.class);
 
 	@In
 	ModellingSession modellingSession;
@@ -54,7 +54,7 @@ public class NodeListBarPanel extends JPanel implements Observer, ModelChangedHa
 
 	@Init
 	public void rebuild() {
-		log.debug("rebuild()");
+		LOG.debug("rebuild()");
 		bar.removeAllColumns();
 		bar.addColumn(createNodeList(modellingSession.getModel().getRoot()));
 	}

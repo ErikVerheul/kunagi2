@@ -33,7 +33,7 @@ import ilarkesto.mda.model.NodeTypes;
 
 public class GwtClassesGenerator implements ModelProcessor, NodeTypes {
 
-	private static final Log log = Log.get(GwtClassesGenerator.class);
+	private static final Log LOG = Log.get(GwtClassesGenerator.class);
 
 	private final String genSrcPath;
 	private final String implSrcPath;
@@ -55,7 +55,7 @@ public class GwtClassesGenerator implements ModelProcessor, NodeTypes {
 	}
 
 	private void processModule(Node module) {
-		log.info(module);
+		LOG.info(module);
 		componentsReflectorGenerator = new GwtComponentsReflectorGenerator(genSrcPath, module);
 		for (Node package_ : module.getChildrenByType(Package)) {
 			processPackage(package_);
@@ -70,7 +70,7 @@ public class GwtClassesGenerator implements ModelProcessor, NodeTypes {
 	}
 
 	private void processPackage(Node package_) {
-		log.info(package_);
+		LOG.info(package_);
 		for (Node component : package_.getChildrenByType(Component)) {
 			processComponent(component);
 		}
@@ -83,18 +83,18 @@ public class GwtClassesGenerator implements ModelProcessor, NodeTypes {
 	}
 
 	private void processServiceCall(Node call) {
-		log.info("ServiceCall:", call);
+		LOG.info("ServiceCall:", call);
 		new GwtServiceCallGenerator(genSrcPath, call).generate();
 	}
 
 	private void processEvent(Node event) {
-		log.info("Event:", event);
+		LOG.info("Event:", event);
 		new GwtEventHandlerGenerator(genSrcPath, event).generate();
 		new GwtEventGenerator(genSrcPath, event).generate();
 	}
 
 	private void processComponent(Node component) {
-		log.info("Component:", component);
+		LOG.info("Component:", component);
 		new GwtComponentBaseGenerator(genSrcPath, component).generate();
 		new GwtComponentReflectorGenerator(genSrcPath, component).generate();
 		new GwtComponentTemplateGenerator(implSrcPath, component).generate();

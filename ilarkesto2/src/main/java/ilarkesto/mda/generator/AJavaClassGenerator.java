@@ -14,11 +14,9 @@
  */
 package ilarkesto.mda.generator;
 
-import ilarkesto.base.StrExtend;
 import static ilarkesto.base.StrExtend.uppercaseFirstLetter;
 import ilarkesto.mda.model.Node;
 import ilarkesto.mda.model.NodeByIndexComparator;
-import ilarkesto.mda.model.NodeTypes;
 import static ilarkesto.mda.model.NodeTypes.Component;
 import static ilarkesto.mda.model.NodeTypes.Entity;
 import static ilarkesto.mda.model.NodeTypes.GwtModule;
@@ -26,8 +24,6 @@ import static ilarkesto.mda.model.NodeTypes.Package;
 import static ilarkesto.mda.model.NodeTypes.Parameter;
 import static ilarkesto.mda.model.NodeTypes.Type;
 import java.util.ArrayList;
-import java.util.Collections;
-import static java.util.Collections.sort;
 import static java.util.Collections.sort;
 import java.util.List;
 

@@ -61,7 +61,7 @@ public class JavaPrinter {
 	}
 
 	public void log(String level, String params) {
-		statement("log." + level + "(" + params + ")");
+		statement("LOG." + level + "(" + params + ")");
 	}
 
 	public void logger(String name) {

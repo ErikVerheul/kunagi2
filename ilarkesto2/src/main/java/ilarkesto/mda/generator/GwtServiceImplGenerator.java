@@ -69,7 +69,7 @@ public class GwtServiceImplGenerator extends AJavaClassGenerator implements Node
 			out.beginTry();
 			out.statement("conversation = session.getGwtConversation(conversationNumber)");
 			out.beginCatchThrowable();
-			out.statement("log.info(\"Getting conversation failed:\", conversationNumber)");
+			out.statement("LOG.info(\"Getting conversation failed:\", conversationNumber)");
 			out.statement(getGwtPackageName() + ".DataTransferObject dto = new " + getGwtPackageName()
 					+ ".DataTransferObject()");
 			out.statement("dto.addError(new " + ErrorWrapper.class.getName() + "(ex))");

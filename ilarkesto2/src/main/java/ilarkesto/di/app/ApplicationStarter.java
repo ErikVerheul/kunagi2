@@ -47,7 +47,8 @@ public class ApplicationStarter {
 
 		storeStartupTime();
 		DefaultLogRecordHandler.activate();
-		setDebugEnabled(isDevelopmentMode());
+                //@ToDo: reset to setDebugEnabled(isDevelopmentMode());
+		setDebugEnabled(true);
 		setLanguage(getDefault().getLanguage());
 		LOG.info("********************************************************************************");
 		LOG.info("Starting application:", applicationClass.getName());

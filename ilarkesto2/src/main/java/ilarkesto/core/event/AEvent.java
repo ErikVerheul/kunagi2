@@ -21,7 +21,7 @@ import static ilarkesto.core.scope.Scope.get;
 
 public abstract class AEvent implements Event {
 
-	protected Log log = Log.get(this.toString());
+	protected Log LOG = Log.get(this.toString());
 
 	public final void fireInCurrentScope() {
 		AEventBus eventBus = (AEventBus) get().getComponent(DEFAULT_COMPONENT_NAME);

@@ -21,7 +21,7 @@ import java.util.Comparator;
 
 public class NodeByIndexComparator implements Comparator<Node>, NodeTypes {
 
-	private static final Log log = Log.get(NodeByIndexComparator.class);
+	private static final Log LOG = Log.get(NodeByIndexComparator.class);
 
 	@Override
 	public int compare(Node a, Node b) {
@@ -40,7 +40,7 @@ public class NodeByIndexComparator implements Comparator<Node>, NodeTypes {
 		try {
 			return parseInt(value);
 		} catch (NumberFormatException ex) {
-			log.warn("Failed to parse Index:", value);
+			LOG.warn("Failed to parse Index:", value);
 			return MAX_VALUE;
 		}
 	}

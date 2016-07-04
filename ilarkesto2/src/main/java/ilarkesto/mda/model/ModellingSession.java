@@ -23,7 +23,7 @@ import java.util.List;
 
 public final class ModellingSession {
 
-	private static final Log log = Log.get(ModellingSession.class);
+	private static final Log LOG = Log.get(ModellingSession.class);
 
 	@In
 	protected EventBus eventBus;
@@ -47,7 +47,7 @@ public final class ModellingSession {
 
 	public void addProcessor(ModelProcessor processor) {
 		processors.add(processor);
-		log.debug("Processor added:", processor);
+		LOG.debug("Processor added:", processor);
 	}
 
 	public void process() {

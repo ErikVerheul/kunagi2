@@ -28,7 +28,7 @@ import java.util.List;
 
 public class CsvFileModelSource implements ModelSource {
 
-	private static final Log log = Log.get(CsvFileModelSource.class);
+	private static final Log LOG = Log.get(CsvFileModelSource.class);
 
 	private final String charset = UTF_8;
 	private final File file;
@@ -45,7 +45,7 @@ public class CsvFileModelSource implements ModelSource {
 		out.writeHeaders(asList("id", "parentId", "type", "value"));
 		writeNode(model.getRoot(), out);
 
-		log.info("Writing file:", file.getPath());
+		LOG.info("Writing file:", file.getPath());
 		writeFile(file, sw.toString(), charset);
 	}
 
@@ -68,7 +68,7 @@ public class CsvFileModelSource implements ModelSource {
 	public void load(Model model) {
 		model.clear();
 
-		log.info("Loading file:", file.getPath());
+		LOG.info("Loading file:", file.getPath());
 
 		CsvParser parser;
 		try {
