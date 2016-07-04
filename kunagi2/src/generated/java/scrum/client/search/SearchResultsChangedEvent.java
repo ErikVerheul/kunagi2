@@ -9,7 +9,7 @@ public class SearchResultsChangedEvent extends ilarkesto.core.event.AEvent {
 
     public void tryToGetHandled(Object handler) {
         if (handler instanceof SearchResultsChangedHandler) {
-            log.debug("    " + handler.getClass().getName() + ".onSearchResultsChanged(event)");
+            LOG.debug("    " + handler.getClass().getName() + ".onSearchResultsChanged(event)");
             ((SearchResultsChangedHandler)handler).onSearchResultsChanged(this);
         }
     }

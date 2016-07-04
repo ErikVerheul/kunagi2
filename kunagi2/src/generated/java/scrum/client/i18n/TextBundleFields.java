@@ -4,7 +4,7 @@ package scrum.client.i18n;
 
 public class TextBundleFields {
 
-    protected final static ilarkesto.core.logging.Log log = ilarkesto.core.logging.Log.get(TextBundleFields.class);
+    protected final static ilarkesto.core.logging.Log LOG = ilarkesto.core.logging.Log.get(TextBundleFields.class);
 
     public String releaseAffectedByIssues() {
         return "Known Issues for this release.";

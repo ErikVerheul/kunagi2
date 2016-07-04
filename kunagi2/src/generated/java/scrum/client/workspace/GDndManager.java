@@ -4,7 +4,7 @@ package scrum.client.workspace;
 
 public abstract class GDndManager {
 
-    protected final static ilarkesto.core.logging.Log log = ilarkesto.core.logging.Log.get(DndManager.class);
+    protected final static ilarkesto.core.logging.Log LOG = ilarkesto.core.logging.Log.get(DndManager.class);
 
     @Override
     public String toString() {

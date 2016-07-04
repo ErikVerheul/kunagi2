@@ -4,7 +4,7 @@ package scrum.client.collaboration;
 
 public abstract class GWiki {
 
-    protected final static ilarkesto.core.logging.Log log = ilarkesto.core.logging.Log.get(Wiki.class);
+    protected final static ilarkesto.core.logging.Log LOG = ilarkesto.core.logging.Log.get(Wiki.class);
 
     public abstract void initialize();
 

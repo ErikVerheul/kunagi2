@@ -9,7 +9,7 @@ public class VisibleDataChangedEvent extends ilarkesto.core.event.AEvent {
 
     public void tryToGetHandled(Object handler) {
         if (handler instanceof VisibleDataChangedHandler) {
-            log.debug("    " + handler.getClass().getName() + ".onVisibleDataChanged(event)");
+            LOG.debug("    " + handler.getClass().getName() + ".onVisibleDataChanged(event)");
             ((VisibleDataChangedHandler)handler).onVisibleDataChanged(this);
         }
     }

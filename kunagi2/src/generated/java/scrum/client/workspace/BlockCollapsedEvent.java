@@ -16,7 +16,7 @@ public class BlockCollapsedEvent extends ilarkesto.core.event.AEvent {
 
     public void tryToGetHandled(Object handler) {
         if (handler instanceof BlockCollapsedHandler) {
-            log.debug("    " + handler.getClass().getName() + ".onBlockCollapsed(event)");
+            LOG.debug("    " + handler.getClass().getName() + ".onBlockCollapsed(event)");
             ((BlockCollapsedHandler)handler).onBlockCollapsed(this);
         }
     }

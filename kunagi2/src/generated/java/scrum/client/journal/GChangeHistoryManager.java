@@ -4,7 +4,7 @@ package scrum.client.journal;
 
 public abstract class GChangeHistoryManager {
 
-    protected final static ilarkesto.core.logging.Log log = ilarkesto.core.logging.Log.get(ChangeHistoryManager.class);
+    protected final static ilarkesto.core.logging.Log LOG = ilarkesto.core.logging.Log.get(ChangeHistoryManager.class);
 
     protected scrum.client.ScrumGwtApplication app;
 

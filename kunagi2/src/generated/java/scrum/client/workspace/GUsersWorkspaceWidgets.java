@@ -4,7 +4,7 @@ package scrum.client.workspace;
 
 public abstract class GUsersWorkspaceWidgets {
 
-    protected final static ilarkesto.core.logging.Log log = ilarkesto.core.logging.Log.get(UsersWorkspaceWidgets.class);
+    protected final static ilarkesto.core.logging.Log LOG = ilarkesto.core.logging.Log.get(UsersWorkspaceWidgets.class);
 
     public abstract void initialize();
 

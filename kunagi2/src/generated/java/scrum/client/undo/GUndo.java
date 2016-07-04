@@ -4,7 +4,7 @@ package scrum.client.undo;
 
 public abstract class GUndo {
 
-    protected final static ilarkesto.core.logging.Log log = ilarkesto.core.logging.Log.get(Undo.class);
+    protected final static ilarkesto.core.logging.Log LOG = ilarkesto.core.logging.Log.get(Undo.class);
 
     public abstract void initialize();
 

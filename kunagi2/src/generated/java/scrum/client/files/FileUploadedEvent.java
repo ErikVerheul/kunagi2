@@ -16,7 +16,7 @@ public class FileUploadedEvent extends ilarkesto.core.event.AEvent {
 
     public void tryToGetHandled(Object handler) {
         if (handler instanceof FileUploadedHandler) {
-            log.debug("    " + handler.getClass().getName() + ".onFileUploaded(event)");
+            LOG.debug("    " + handler.getClass().getName() + ".onFileUploaded(event)");
             ((FileUploadedHandler)handler).onFileUploaded(this);
         }
     }

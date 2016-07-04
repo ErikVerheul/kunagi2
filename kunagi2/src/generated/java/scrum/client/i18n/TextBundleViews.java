@@ -4,7 +4,7 @@ package scrum.client.i18n;
 
 public class TextBundleViews {
 
-    protected final static ilarkesto.core.logging.Log log = ilarkesto.core.logging.Log.get(TextBundleViews.class);
+    protected final static ilarkesto.core.logging.Log LOG = ilarkesto.core.logging.Log.get(TextBundleViews.class);
 
     public String blog() {
         return "<p>The blog can be used to communicate project related information, such as release notes\nor development roadmaps, to the public.</p>\n\n<h3>Creating and publishing Blog Entries</h3>\n<p>Every project member can create and edit Blog Entries. Once created, Entries are\nnot published by default, to allow for preparation in advance. The Product Owner can\nchoose to publish Blog Entries. Only published Entries will be taken into account when\nproject data is exported.</p>";
