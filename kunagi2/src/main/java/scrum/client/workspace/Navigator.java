@@ -14,9 +14,6 @@
  */
 package scrum.client.workspace;
 
-import scrum.client.workspace.BlockExpandedHandler;
-import scrum.client.workspace.GNavigator;
-import scrum.client.workspace.BlockExpandedEvent;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.AGwtEntity;
 import scrum.client.ScrumGwt;
@@ -156,7 +153,7 @@ public class Navigator extends GNavigator implements BlockExpandedHandler, Appli
 			ScrumScopeManager.destroyProjectScope();
 		}
 
-		log.info("Activating USER mode");
+		LOG.info("Activating USER mode");
 		Scope.get().getComponent(UsersWorkspaceWidgets.class).activate(page);
 		currentMode = Mode.USER;
 	}
@@ -166,7 +163,7 @@ public class Navigator extends GNavigator implements BlockExpandedHandler, Appli
 
 		if (currentMode == Mode.PROJECT) ScrumScopeManager.destroyProjectScope();
 
-		log.info("Activating PROJECT mode");
+		LOG.info("Activating PROJECT mode");
 		Scope.get().getComponent(Ui.class).lock("Loading " + project.getLabel() + "...");
 		new SelectProjectServiceCall(project.getId()).execute(new Runnable() {
 

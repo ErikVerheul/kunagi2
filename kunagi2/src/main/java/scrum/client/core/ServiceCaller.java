@@ -55,14 +55,14 @@ public class ServiceCaller extends GServiceCaller {
 
 		if (data.conversationNumber != null) {
 			conversationNumber = data.conversationNumber;
-			log.info("conversatioNumber received:", conversationNumber);
+			LOG.info("conversatioNumber received:", conversationNumber);
 		}
 		Scope.get().getComponent(Dao.class).handleDataFromServer(data);
 
 		ScrumGwtApplication app = ScrumGwtApplication.get();
 		if (data.applicationInfo != null) {
 			app.applicationInfo = data.applicationInfo;
-			log.debug("applicationInfo:", data.applicationInfo);
+			LOG.debug("applicationInfo:", data.applicationInfo);
 			// Scope.get().putComponent(data.applicationInfo);
 		} else {
 			assert app.applicationInfo != null;
@@ -74,10 +74,10 @@ public class ServiceCaller extends GServiceCaller {
 	public void onServiceCallFailure(AServiceCall serviceCall, List<ErrorWrapper> errors) {
 		long timeFromLastSuccess = Tm.getCurrentTimeMillis() - lastSuccessfullServiceCallTime;
 		if (serviceCall.isDispensable() && timeFromLastSuccess < MAX_FAILURE_TIME) {
-			log.warn("Dispensable service call failed:", serviceCall, errors);
+			LOG.warn("Dispensable service call failed:", serviceCall, errors);
 			return;
 		}
-		log.error("Service call failed:", serviceCall, errors);
+		LOG.error("Service call failed:", serviceCall, errors);
 		String serviceCallName = Str.getSimpleName(serviceCall.getClass());
 		serviceCallName = Str.removeSuffix(serviceCallName, "ServiceCall");
 		ScrumGwtApplication.get().handleServiceCallError(serviceCallName, errors);

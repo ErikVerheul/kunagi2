@@ -14,9 +14,6 @@
  */
 package scrum.client.communication;
 
-import scrum.client.communication.ServerDataReceivedHandler;
-import scrum.client.communication.GServerErrorManager;
-import scrum.client.communication.ServerDataReceivedEvent;
 import ilarkesto.gwt.client.ErrorWrapper;
 
 import java.util.ArrayList;
@@ -31,7 +28,7 @@ public class ServerErrorManager extends GServerErrorManager implements ServerDat
 		List<ErrorWrapper> serverErrors = event.getData().getErrors();
 		if (serverErrors != null) {
 			errors.addAll(serverErrors);
-			log.info("Errors received:", serverErrors);
+			LOG.info("Errors received:", serverErrors);
 		}
 	}
 

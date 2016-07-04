@@ -14,10 +14,6 @@
  */
 package scrum.client.search;
 
-import scrum.client.search.GSearch;
-import scrum.client.search.SearchResultsChangedHandler;
-import scrum.client.search.SearchServiceCall;
-import scrum.client.search.SearchResultsChangedEvent;
 import ilarkesto.core.base.Str;
 
 import java.util.ArrayList;
@@ -35,7 +31,7 @@ public class Search extends GSearch implements SearchResultsChangedHandler {
 	public void search(String text) {
 		if (text != null) text = text.toLowerCase();
 		this.searchText = text;
-		log.info("Searching:", searchText);
+		LOG.info("Searching:", searchText);
 		results.clear();
 		if (Str.isBlank(searchText)) return;
 

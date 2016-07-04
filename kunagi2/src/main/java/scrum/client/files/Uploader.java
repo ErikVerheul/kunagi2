@@ -14,9 +14,6 @@
  */
 package scrum.client.files;
 
-import scrum.client.files.FileUploadedEvent;
-import scrum.client.files.FileUploadedHandler;
-import scrum.client.files.GUploader;
 import com.google.gwt.user.client.ui.DialogBox;
 
 public class Uploader extends GUploader implements FileUploadedHandler {
@@ -25,7 +22,7 @@ public class Uploader extends GUploader implements FileUploadedHandler {
 	private UploadedFileHandler uploadedFileHandler;
 
 	public void showUploadDialog(Integer topPosition, UploadedFileHandler uploadedFileHandler) {
-		log.debug("Acitvating file upload dialog");
+		LOG.debug("Acitvating file upload dialog");
 		this.uploadedFileHandler = uploadedFileHandler;
 		UploadWidget uploadWidget = UploadWidget.showDialog(topPosition);
 		this.dialog = uploadWidget.getDialog();
@@ -34,7 +31,7 @@ public class Uploader extends GUploader implements FileUploadedHandler {
         @Override
 	public void onFileUploaded(FileUploadedEvent event) {
 		File file = event.getFile();
-		log.debug("File received:", file);
+		LOG.debug("File received:", file);
 		if (dialog != null) {
 			dialog.hide();
 			dialog = null;

@@ -31,7 +31,7 @@ public class SystemMessageManager extends GSystemMessageManager implements Serve
 		DataTransferObject data = event.getData();
 		if (data.systemMessage != null) {
 			systemMessage = data.systemMessage;
-			log.info("SystemMessage received:", systemMessage);
+			LOG.info("SystemMessage received:", systemMessage);
 			new VisibleDataChangedEvent().fireInCurrentScope();
 		}
 	}

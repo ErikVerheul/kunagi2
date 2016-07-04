@@ -14,7 +14,6 @@
  */
 package scrum.client.workspace;
 
-import scrum.client.workspace.GProjectWorkspaceWidgets;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.AGwtEntity;
 import ilarkesto.gwt.client.AWidget;
@@ -207,7 +206,7 @@ public class ProjectWorkspaceWidgets extends GProjectWorkspaceWidgets implements
 	}
 
 	public void showEntityByReference(final String reference) {
-		log.debug("Showing entity by reference:", reference);
+		LOG.debug("Showing entity by reference:", reference);
 
 		AGwtEntity entity = dao.getEntityByReference(reference);
 		if (entity != null) {
@@ -239,7 +238,7 @@ public class ProjectWorkspaceWidgets extends GProjectWorkspaceWidgets implements
 	}
 
 	public void showEntityById(final String entityId) {
-		log.debug("Showing entity by id:", entityId);
+		LOG.debug("Showing entity by id:", entityId);
 
 		AGwtEntity entity;
 		try {
@@ -275,7 +274,7 @@ public class ProjectWorkspaceWidgets extends GProjectWorkspaceWidgets implements
 	}
 
 	public void showEntity(AGwtEntity entity) {
-		log.debug("Showing entity:", entity);
+		LOG.debug("Showing entity:", entity);
 		if (entity instanceof Task) {
 			showTask((Task) entity);
 		} else if (entity instanceof Requirement) {
@@ -383,7 +382,7 @@ public class ProjectWorkspaceWidgets extends GProjectWorkspaceWidgets implements
 				}
 				select(results);
 			} else {
-				log.warn("Page does not exist:", pageName);
+				LOG.warn("Page does not exist:", pageName);
 			}
 			return;
 		}

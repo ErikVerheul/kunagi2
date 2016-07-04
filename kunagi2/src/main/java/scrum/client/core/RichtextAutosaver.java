@@ -50,7 +50,7 @@ public class RichtextAutosaver extends GRichtextAutosaver implements Application
 			if (!editor.isAutosave()) return;
 			editor.submitEditor(false);
 		} catch (Throwable ex) {
-			log.error(ex);
+			LOG.error(ex);
 		}
 	}
 

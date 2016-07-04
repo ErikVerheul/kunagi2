@@ -23,12 +23,12 @@ public class ChangeHistoryManager extends GChangeHistoryManager {
 
 	public void activateChangeHistory(AScrumGwtEntity entity) {
 		if (currentChangeHistoryParent == entity) {
-			log.debug("ChangeHistory already active for", entity);
+			LOG.debug("ChangeHistory already active for", entity);
 			return;
 		}
 		deactivateChangeHistory();
 		currentChangeHistoryParent = entity;
-		log.info("ChangeHistory activated for", entity);
+		LOG.info("ChangeHistory activated for", entity);
 		if (currentChangeHistoryParent != null)
 			new RequestChangesServiceCall(currentChangeHistoryParent.getId()).execute();
 	}
