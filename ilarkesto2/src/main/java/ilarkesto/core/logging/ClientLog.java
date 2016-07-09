@@ -1,27 +1,37 @@
-
 package ilarkesto.core.logging;
 
 /**
  *
  * @author erik
  */
-import static ilarkesto.logging.ClientLoggerServlet.getClientLogger;
+import com.allen_sauer.gwt.log.client.Log;
 
 public class ClientLog {
 
     public static void DEBUG(Object... s) {
-        getClientLogger().debug(s);
+        Log.debug(concat(s));
     }
-    
+
     public static void ERROR(Object... s) {
-        getClientLogger().debug(s);
+        Log.error(concat(s));
     }
 
     public static void WARN(Object... s) {
-        getClientLogger().debug(s);
+        Log.warn(concat(s));
     }
 
     public static void INFO(Object... s) {
-        getClientLogger().debug(s);
+        Log.info(concat(s));
+    }
+
+    private static String concat(Object... values) {
+        if (values.length == 0) {
+            return "ClientLog|concat: No values supplied.";
+        }
+        StringBuilder sb = new StringBuilder();
+        for (Object s : values) {
+            sb.append(s.toString());
+        }
+        return sb.toString();
     }
 }

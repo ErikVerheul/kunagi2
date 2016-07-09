@@ -44,7 +44,6 @@ public abstract class Scope {
 	// --- helper ---
 
 	public <T> T putComponent(T component) {
-            // found the messenger
 		if (component == null) {
                         throw new IllegalArgumentException("component == null");
                 }

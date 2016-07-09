@@ -136,10 +136,7 @@ public abstract class AGwtEntity {
 		return value == null ? null : value.toString();
 	}
 
-	protected final boolean equalObjects(Object a, Object b) {
-		if (a == b) {
-                        return true;
-                }
+	protected final boolean equalObjects(Object a, Object b) {		
 		if (a == null || b == null) {
                         return false;
                 }

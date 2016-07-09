@@ -17,15 +17,20 @@
 
     <inherits name="ilarkesto.Ilarkesto" />
     
-    <!-- Client side logging configuration -->
-    <inherits name="com.google.gwt.logging.Logging"/>
-
-    <set-property name="gwt.logging.logLevel" value="INFO"/>
-    <set-property name="gwt.logging.enabled" value="TRUE"/>
-    <set-property name="gwt.logging.simpleRemoteHandler" value="ENABLED" />  
-    <set-property name="gwt.logging.developmentModeHandler" value="DISABLED" />  
-    <set-property name="gwt.logging.systemHandler" value="DISABLED" />
-    <set-property name="gwt.logging.consoleHandler" value="DISABLED"/> 
+    <!-- Logging configuration -->
+    <!-- For development, a default of `DEBUG` is recommended -->
+    <inherits name="com.allen_sauer.gwt.log.gwt-log-DEBUG" />
+    <!-- To compile at `DEBUG`, `WARN` and `OFF` log levels (with a 3x compile time cost) >
+    <inherits name="com.allen_sauer.gwt.log.gwt-log-OFF" />
+    <extend-property name="log_level" values="DEBUG,WARN"/-->
+    
+    <!-- Enable remote logging. In gwt-log-3.0.3 or later -->
+    <inherits name="com.allen_sauer.gwt.log.gwt-log-RemoteLogger" />
+    <!--
+      Inspired by Apache log4j PatternLayout:
+      http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/PatternLayout.html
+    -->
+    <set-configuration-property name="log_pattern" value="(%F:%L) %d [%-5p] %m%n" />
 
     <stylesheet src="screen.css" />
 

@@ -15,8 +15,6 @@
 package ilarkesto.gwt.client;
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.core.client.GWT;
-import static com.google.gwt.core.client.GWT.setUncaughtExceptionHandler;
 import java.util.List;
 
 public abstract class AGwtApplication implements EntryPoint {
@@ -25,23 +23,13 @@ public abstract class AGwtApplication implements EntryPoint {
 
 	public abstract void handleServiceCallError(String serviceCall, List<ErrorWrapper> errors);
 
-	protected abstract void handleUnexpectedError(Throwable ex);
-
 	protected abstract AGwtDao getDao();
 
 	public AGwtApplication() {
 		if (singleton != null) {
                         throw new RuntimeException("GWT application already instantiated: " + singleton);
                 }
-		singleton = this;
-//		setLogRecordHandler(new GwtLogRecordHandler()); [Erik] don't do this in the client code.
-		setUncaughtExceptionHandler(new GWT.UncaughtExceptionHandler() {
-
-			@Override
-			public void onUncaughtException(Throwable ex) {
-				handleUnexpectedError(ex);
-			}
-		});
+		singleton = this;		
 	}
 
 	@Override

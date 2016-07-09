@@ -14,6 +14,9 @@
  */
 package scrum.client;
 
+import com.allen_sauer.gwt.log.client.Log;
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -47,102 +50,151 @@ import scrum.client.workspace.WorkspaceWidget;
 
 public class ScrumGwtApplication extends GScrumGwtApplication {
 
-	public static final String LOGIN_TOKEN_COOKIE = "kunagi2LoginToken";
+    public static final String LOGIN_TOKEN_COOKIE = "kunagi2LoginToken";
 
-	static final String[] REFERENCE_PREFIXES = new String[] { Requirement.REFERENCE_PREFIX,
-			Task.REFERENCE_PREFIX, Quality.REFERENCE_PREFIX, Issue.REFERENCE_PREFIX, Impediment.REFERENCE_PREFIX,
-			Risk.REFERENCE_PREFIX, File.REFERENCE_PREFIX, Subject.REFERENCE_PREFIX, SimpleEvent.REFERENCE_PREFIX,
-			Release.REFERENCE_PREFIX, BlogEntry.REFERENCE_PREFIX, Sprint.REFERENCE_PREFIX };
+    static final String[] REFERENCE_PREFIXES = new String[]{Requirement.REFERENCE_PREFIX,
+        Task.REFERENCE_PREFIX, Quality.REFERENCE_PREFIX, Issue.REFERENCE_PREFIX, Impediment.REFERENCE_PREFIX,
+        Risk.REFERENCE_PREFIX, File.REFERENCE_PREFIX, Subject.REFERENCE_PREFIX, SimpleEvent.REFERENCE_PREFIX,
+        Release.REFERENCE_PREFIX, BlogEntry.REFERENCE_PREFIX, Sprint.REFERENCE_PREFIX};
 
-	public ApplicationInfo applicationInfo;
+    public ApplicationInfo applicationInfo;
+    /**
+     * This field gets compiled out when <code>log_level=OFF</code>, or any <code>log_level</code> higher than <code>DEBUG</code>.
+     */
+    private long startTimeMillis;
 
-	@Override
-	public void onModuleLoad() {
-		System.out.println("ScrumGwtApplication.onModuleLoad()");
+    /**
+     * Note, we defer all application initialization code to {@link #onModuleLoad2()} so that the UncaughtExceptionHandler can catch any unexpected exceptions.
+     */
+    @Override
+    public void onModuleLoad() {
+        /*
+         * Install an UncaughtExceptionHandler which will produce <code>FATAL</code> log messages
+         */
+        Log.setUncaughtExceptionHandler();
 
-		ScrumScopeManager.initialize();
+        // use deferred command to catch initialization exceptions in onModuleLoad2
+        Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+            @Override
+            public void execute() {
+                onModuleLoad2();
+            }
+        });
 
-		// if (true) {
-		// RootPanel.get().add(new WidgetsTesterWidget().update());
-		// return;
-		// }
+        System.out.println("ScrumGwtApplication.onModuleLoad()");
 
-		final WorkspaceWidget workspace = Scope.get().getComponent(Ui.class).getWorkspace();
-		workspace.lock("Loading...");
+        ScrumScopeManager.initialize();
 
-		RootPanel rootPanel = RootPanel.get();
-		rootPanel.getElement().getStyle().setProperty("position", "relative");
-		rootPanel.add(workspace);
-		ScrumJs.initialize();
+        // if (true) {
+        // RootPanel.get().add(new WidgetsTesterWidget().update());
+        // return;
+        // }
+        final WorkspaceWidget workspace = Scope.get().getComponent(Ui.class).getWorkspace();
+        workspace.lock("Loading...");
 
-		new StartConversationServiceCall().execute(new Runnable() {
+        RootPanel rootPanel = RootPanel.get();
+        rootPanel.getElement().getStyle().setProperty("position", "relative");
+        rootPanel.add(workspace);
+        ScrumJs.initialize();
 
-			@Override
-			public void run() {
-				new ApplicationStartedEvent().fireInCurrentScope();
-			}
-		});
+        new StartConversationServiceCall().execute(new Runnable() {
 
-	}
+            @Override
+            public void run() {
+                new ApplicationStartedEvent().fireInCurrentScope();
+            }
+        });
 
-	public ApplicationInfo getApplicationInfo() {
-		return applicationInfo;
-	}
+    }
 
-	public void logout() {
-		INFO("Logging out");
+    /**
+     * Deferred initialization method, used by {@link #onModuleLoad()}.
+     */
+    private void onModuleLoad2() {
+        /*
+         * Use a <code>if (Log.isDebugEnabled()) {...}</code> guard to ensure that
+         * <code>System.currentTimeMillis()</code> is compiled out when <code>log_level=OFF</code>, or
+         * any <code>log_level</code> higher than <code>DEBUG</code>.
+         */
+        if (Log.isDebugEnabled()) {
+            startTimeMillis = System.currentTimeMillis();
+        }
 
-		Cookies.removeCookie(LOGIN_TOKEN_COOKIE);
+        /*
+         * No guards necessary. Code will be compiled out when <code>log_level=OFF</code>
+         */
+        Log.debug("This is a 'DEBUG' test message");
+        Log.info("This is a 'INFO' test message");
+        Log.warn("This is a 'WARN' test message");
+        Log.error("This is a 'ERROR' test message");
+        Log.fatal("This is a 'FATAL' test message");
 
-		Scope.get().getComponent(Ui.class).lock("Logging out...");
-		Scope.get().getComponent(Auth.class).logout();
-		Scope.get().getComponent(Pinger.class).shutdown();
-		Scope.get().getComponent(Dao.class).clearAllEntities();
+//        Log.fatal("This is what an exception might look like", new RuntimeException("2 + 2 = 5"));
+//
+//        Log.debug("foo.bar.baz", "Using logging categories", (Exception) null);
 
-		new LogoutServiceCall().execute(new Runnable() {
+        /*
+         * Again, we need a guard here, otherwise <code>log_level=OFF</code> would still produce the
+         * following useless JavaScript: <pre> var durationSeconds, endTimeMillis; endTimeMillis =
+         * currentTimeMillis_0(); durationSeconds = (endTimeMillis - this$static.startTimeMillis) /
+         * 1000.0; </pre>
+         */
+        if (Log.isDebugEnabled()) {
+            long endTimeMillis = System.currentTimeMillis();
+            float durationSeconds = (endTimeMillis - startTimeMillis) / 1000F;
+            Log.debug("Duration: " + durationSeconds + " seconds");
+        }
+    }
 
-			@Override
-			public void run() {
-				Window.Location.replace(ScrumGwt.getLoginUrl());
-			}
-		});
+    public ApplicationInfo getApplicationInfo() {
+        return applicationInfo;
+    }
 
-	}
+    public void logout() {
+        INFO("Logging out");
 
-	@Override
-	public void handleServiceCallError(String serviceCall, List<ErrorWrapper> errors) {
-		for (ErrorWrapper error : errors) {
-			if ("ilarkesto.webapp.GwtConversationDoesNotExist".equals(error.getName())) {
-				Scope.get().getComponent(Ui.class).getWorkspace().abort("Session timed out.");
-				return;
-			}
-		}
+        Cookies.removeCookie(LOGIN_TOKEN_COOKIE);
 
-		StringBuilder sb = new StringBuilder();
-		sb.append("<strong>Server service call error</strong><br>");
-		sb.append("Calling service <em>").append(serviceCall).append("</em> failed.<br>");
-		for (ErrorWrapper error : errors) {
-			sb.append(Str.toHtml(error.toString())).append("<br>");
-		}
-		Scope.get().getComponent(Ui.class).getWorkspace().abort(sb.toString());
-	}
+        Scope.get().getComponent(Ui.class).lock("Logging out...");
+        Scope.get().getComponent(Auth.class).logout();
+        Scope.get().getComponent(Pinger.class).shutdown();
+        Scope.get().getComponent(Dao.class).clearAllEntities();
 
-	@Override
-	protected void handleUnexpectedError(Throwable ex) {
-		ERROR("Unexpected error", ex);
-		StringBuilder sb = new StringBuilder();
-		sb.append("<strong>Unexpected Error</strong><br>");
-		sb.append(Str.toHtml(Str.formatException(ex)));
-		Scope.get().getComponent(Ui.class).getWorkspace().abort(sb.toString());
-	}
+        new LogoutServiceCall().execute(new Runnable() {
 
-	@Override
-	protected AGwtDao getDao() {
-		return Dao.get();
-	}
+            @Override
+            public void run() {
+                Window.Location.replace(ScrumGwt.getLoginUrl());
+            }
+        });
 
-	public static ScrumGwtApplication get() {
-		return (ScrumGwtApplication) AGwtApplication.get();
-	}
+    }
+
+    @Override
+    public void handleServiceCallError(String serviceCall, List<ErrorWrapper> errors) {
+        for (ErrorWrapper error : errors) {
+            if ("ilarkesto.webapp.GwtConversationDoesNotExist".equals(error.getName())) {
+                Scope.get().getComponent(Ui.class).getWorkspace().abort("Session timed out.");
+                return;
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("<strong>Server service call error</strong><br>");
+        sb.append("Calling service <em>").append(serviceCall).append("</em> failed.<br>");
+        for (ErrorWrapper error : errors) {
+            sb.append(Str.toHtml(error.toString())).append("<br>");
+        }
+        Scope.get().getComponent(Ui.class).getWorkspace().abort(sb.toString());
+    }
+
+    @Override
+    protected AGwtDao getDao() {
+        return Dao.get();
+    }
+
+    public static ScrumGwtApplication get() {
+        return (ScrumGwtApplication) AGwtApplication.get();
+    }
 
 }

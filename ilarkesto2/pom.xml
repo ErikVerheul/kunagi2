@@ -71,6 +71,10 @@
     </build>
     <dependencies>
         <dependency>
+            <groupId>com.allen-sauer.gwt.log</groupId>
+            <artifactId>gwt-log</artifactId>
+        </dependency>
+        <dependency>
             <groupId>findbugs</groupId>
             <artifactId>annotations</artifactId>
         </dependency>

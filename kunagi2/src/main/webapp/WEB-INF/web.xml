@@ -23,12 +23,52 @@
     </servlet-mapping>
     <!-- remote logging -->
     <servlet>
-        <servlet-name>remoteLogging</servlet-name>
-        <servlet-class>ilarkesto.core.logging.ClientLoggerServlet</servlet-class>
+        <servlet-name>gwt-log-remote-logger-servlet</servlet-name>
+        <servlet-class>com.allen_sauer.gwt.log.server.RemoteLoggerServlet</servlet-class>
+        <!--
+           These symbol maps parameters specify the server location where the GWT
+           compiler symbol maps are stored, which is used for stack trace deobfuscation:
+           - 'symbolMapsFileSystem' uses StackTraceDeobfuscator#fromFileSystem(String)
+           - 'symbolMapsResourcePath' uses StackTraceDeobfuscator#fromResource(String)
+           - "symbolMapsResourceUrl' uses StackTraceDeobfuscator#fromResource(String)
+        -->
+        <init-param>
+            <!-- This value assumes a GWT compile with '-deploy war/WEB-INF/deploy/' -->
+            <param-name>symbolMapsFileSystem</param-name>
+            <!--
+              Modify the param-value based on your server environment. Some web servers
+              use your `war` directory as the 'current working dir', while other
+              vendors will do something different. You may use trial and error. Specify the
+              relative path you think should work, then check the server log after forwarding
+              the first client log message to the server. If the directory cannot be found,
+              gwt-log will report the full path which it tried.
+            -->
+            <param-value>WEB-INF/deploy/your-module-name/symbolMaps/</param-value>
+        </init-param>
+
+        <!--
+           Additional or alternate locations may be specified via additional parameters
+           which also begin with one of the symbol maps prefixes ('symbolMapsFileSystem',
+           'symbolMapsResourcePath' or 'symbolMapsResourceUrl'). This may be useful
+           if you deploy to multiple server environments which use different locations or
+           have a different notion of what the 'current working directory' is.
+        -->
+        <init-param>
+            <param-name>symbolMapsFileSystem_2</param-name>
+            <param-value>some/alternate/path/to/try/your-module-name/symbolMaps/</param-value>
+        </init-param>
+
+        <!-- Optionally enable CORS (http://www.w3.org/TR/cors/) -->
+        <!--
+        <init-param>
+          <param-name>Access-Control-Allow-Origin</param-name>
+          <param-value>http://your-applications-origin</param-value>
+        </init-param>
+        -->
     </servlet>
     <servlet-mapping>
-        <servlet-name>remoteLogging</servlet-name>
-        <url-pattern>/ilarkesto.Ilarkesto/remote_logging</url-pattern>
+        <servlet-name>gwt-log-remote-logger-servlet</servlet-name>
+        <url-pattern>/scrum.Kunagi2/gwt-log</url-pattern>
     </servlet-mapping>
     <!-- start page -->
     <servlet>

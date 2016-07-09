@@ -14,6 +14,7 @@
 package scrum.client;
 
 import static ilarkesto.core.logging.ClientLog.DEBUG;
+import static ilarkesto.core.logging.ClientLog.ERROR;
 import java.util.*;
 import scrum.client.common.*;
 import ilarkesto.gwt.client.*;
@@ -1661,6 +1662,7 @@ public abstract class GDao
         for (scrum.client.admin.ProjectUserConfig entity : projectUserConfigs.values()) {
             if (entity.isProject(project)) ret.add(entity);
         }
+        if (ret.isEmpty()) ERROR("getProjectUserConfigsByProject is returning an empty list");
         return ret;
     }
 

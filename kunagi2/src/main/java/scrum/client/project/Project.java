@@ -218,9 +218,11 @@ public class Project extends GProject implements ForumSupport {
 	}
 
 	public ProjectUserConfig getUserConfig(User user) {
+                if (user == null) ERROR("user == null!");
 		for (ProjectUserConfig config : getDao().getProjectUserConfigsByProject(this)) {
 			if (config.isUser(user)) return config;
 		}
+                ERROR("getUserConfig is returning null!");
 		return null;
 	}
 

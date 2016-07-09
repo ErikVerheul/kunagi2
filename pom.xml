@@ -44,6 +44,11 @@ http://maven.apache.org/maven-v4_0_0.xsd">
                 <version>1.0.0</version>
             </dependency>
             <dependency>
+                <groupId>com.allen-sauer.gwt.log</groupId>
+                <artifactId>gwt-log</artifactId>
+                <version>3.3.2</version>
+            </dependency>
+            <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>4.7</version>

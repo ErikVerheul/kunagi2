@@ -120,7 +120,7 @@ public class HistoryToken {
 	}
 
 	public String getProjectId() {
-                DEBUG("projectId returns:", projectId);
+                if (projectId == null) DEBUG("projectId returns project Id= null");
 		return projectId;
 	}
 

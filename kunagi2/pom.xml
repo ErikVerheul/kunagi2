@@ -16,6 +16,10 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.allen-sauer.gwt.log</groupId>
+            <artifactId>gwt-log</artifactId>
+        </dependency>
+        <dependency>
             <groupId>findbugs</groupId>
             <artifactId>annotations</artifactId>
             <type>jar</type>
@@ -193,7 +197,8 @@
                         <artifact>com.allen-sauer.gwt.dnd:gwt-dnd</artifact>
                         <artifact>nl.verheulconsultants.kunagi2:ilarkesto2</artifact>
                         <artefact>com.googlecode.gwtupload:gwtupload</artefact>
-                    </compileSourcesArtifacts>                        
+                    </compileSourcesArtifacts>
+                    <style>DETAILED</style>                    
                     
                 </configuration>
             </plugin>

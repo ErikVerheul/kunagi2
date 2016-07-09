@@ -14,6 +14,8 @@
  */
 package scrum.client;
 
+import static ilarkesto.core.logging.ClientLog.ERROR;
+import static ilarkesto.core.logging.ClientLog.INFO;
 import ilarkesto.core.scope.CascadingScope;
 import ilarkesto.core.scope.NonConcurrentScopeManager;
 import ilarkesto.core.scope.Scope;
@@ -89,22 +91,35 @@ public class ScrumScopeManager {
 	}
 
 	public static void createProjectScope(Project project) {
-		assert scopeManager == ScopeManager.getInstance();
+                if (project == null) ERROR("project == null!");
 		projectScope = userScope.createScope("project");
 		Scope scope = scopeManager.setScope(projectScope);
 
+                INFO("project");
 		scope.putComponent(project);
+                 INFO("project.getUserConfig(userScope.getComponent(User.class))");
 		scope.putComponent(project.getUserConfig(userScope.getComponent(User.class)));
+                 INFO("new ProjectWorkspaceWidgets()");
 		scope.putComponent(new ProjectWorkspaceWidgets());
+                 INFO("new Chat()");
 		scope.putComponent(new Chat());
+                 INFO("new ChangeHistoryManager()");
 		scope.putComponent(new ChangeHistoryManager());
+                 INFO("new Wiki()");
 		scope.putComponent(new Wiki());
+                 INFO("new Calendar()");
 		scope.putComponent(new Calendar());
+                 INFO("new Undo()");
 		scope.putComponent(new Undo());
+                 INFO("new DndManager()");
 		scope.putComponent(new DndManager());
+                 INFO("new Uploader()");
 		scope.putComponent(new Uploader());
+                 INFO("new Search()");
 		scope.putComponent(new Search());
+                 INFO("new UsersStatus()");
 		scope.putComponent(new UsersStatus());
+                 INFO("new IssueManager()");
 		scope.putComponent(new IssueManager());
 
 		projectScope.wireComponents();

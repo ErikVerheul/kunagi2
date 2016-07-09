@@ -32,6 +32,7 @@ import scrum.client.workspace.history.HistoryToken;
 import scrum.client.workspace.history.HistoryTokenObserver;
 import com.google.gwt.user.client.ui.Widget;
 import static ilarkesto.core.logging.ClientLog.DEBUG;
+import static ilarkesto.core.logging.ClientLog.ERROR;
 import static ilarkesto.core.logging.ClientLog.INFO;
 
 public class Navigator extends GNavigator implements BlockExpandedHandler, ApplicationStartedHandler,
@@ -161,11 +162,11 @@ public class Navigator extends GNavigator implements BlockExpandedHandler, Appli
 	}
 
 	private void acitvateProjectMode(final Project project, final String page, final String entityId) {
-		assert project != null;
 
 		if (currentMode == Mode.PROJECT) ScrumScopeManager.destroyProjectScope();
 
 		INFO("Activating PROJECT mode");
+                if (project == null) ERROR("project == null!");
 		Scope.get().getComponent(Ui.class).lock("Loading " + project.getLabel() + "...");
 		new SelectProjectServiceCall(project.getId()).execute(new Runnable() {
 

@@ -15,6 +15,7 @@
 package ilarkesto.core.scope;
 
 import static ilarkesto.core.event.AEventBus.DEFAULT_COMPONENT_NAME;
+import static ilarkesto.core.logging.ClientLog.ERROR;
 import static ilarkesto.core.logging.ClientLog.INFO;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -82,8 +83,6 @@ public class CascadingScope extends Scope {
 
 	@Override
 	public final synchronized <T> T putComponent(String name, T component) {
-		assert name != null;
-		assert component != null;
 
 		Object existingComponent = componentsByName.get(name);
 		if (existingComponent == component) {
@@ -91,6 +90,7 @@ public class CascadingScope extends Scope {
                 }
 
 		INFO("Putting component:", name);
+                if (component == null) ERROR("Putting null component!");
 
 		componentsByName.put(name, component);
 		wiringRequired = true;
