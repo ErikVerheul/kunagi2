@@ -16,7 +16,7 @@ package scrum.server;
 
 import ilarkesto.base.Sys;
 import ilarkesto.base.UtlExtend;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.io.IO;
 import ilarkesto.properties.APropertiesStore;
 import ilarkesto.properties.FilePropertiesStore;

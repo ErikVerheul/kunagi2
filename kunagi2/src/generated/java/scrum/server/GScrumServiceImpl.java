@@ -4,7 +4,7 @@ package scrum.server;
 
 public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtServiceImpl implements scrum.client.ScrumService {
 
-    protected final static ilarkesto.core.logging.Log LOG = ilarkesto.core.logging.Log.get(ScrumServiceImpl.class);
+    protected final static ilarkesto.logging.Log LOG = ilarkesto.logging.Log.get(ScrumServiceImpl.class);
 
     public abstract void onChangePassword(GwtConversation conversation, String newPassword, String oldPassword);
 

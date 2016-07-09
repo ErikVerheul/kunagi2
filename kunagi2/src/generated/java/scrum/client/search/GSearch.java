@@ -4,8 +4,6 @@ package scrum.client.search;
 
 public abstract class GSearch {
 
-    protected final static ilarkesto.core.logging.Log LOG = ilarkesto.core.logging.Log.get(Search.class);
-
     protected scrum.client.ScrumGwtApplication app;
 
     protected scrum.client.workspace.Navigator navigator;

@@ -14,7 +14,7 @@
 package scrum.server.project;
 
 import java.util.*;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.persistence.ADatob;
 import ilarkesto.persistence.AEntity;
 import ilarkesto.persistence.AStructure;
@@ -150,7 +150,7 @@ public abstract class GProject
         return userDao.getUsersByCurrentProject((Project)this);
     }
 
-    private static final ilarkesto.core.logging.Log LOG = ilarkesto.core.logging.Log.get(GProject.class);
+    private static final ilarkesto.logging.Log LOG = ilarkesto.logging.Log.get(GProject.class);
 
     public static final String TYPE = "project";
 

@@ -17,7 +17,7 @@ package scrum;
 import ilarkesto.base.StrExtend;
 import ilarkesto.base.Sys;
 import ilarkesto.base.UtlExtend;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.core.time.Date;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.core.time.Time;

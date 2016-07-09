@@ -2,6 +2,8 @@
 
 package scrum.client.files;
 
+import static ilarkesto.core.logging.ClientLog.DEBUG;
+
 public class FileUploadedEvent extends ilarkesto.core.event.AEvent {
 
     private scrum.client.files.File file;
@@ -16,7 +18,7 @@ public class FileUploadedEvent extends ilarkesto.core.event.AEvent {
 
     public void tryToGetHandled(Object handler) {
         if (handler instanceof FileUploadedHandler) {
-            LOG.debug("    " + handler.getClass().getName() + ".onFileUploaded(event)");
+            DEBUG("    " + handler.getClass().getName() + ".onFileUploaded(event)");
             ((FileUploadedHandler)handler).onFileUploaded(this);
         }
     }

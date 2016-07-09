@@ -15,7 +15,7 @@
 package scrum.server.estimation;
 
 import scrum.server.estimation.GRequirementEstimationVoteDao;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.fp.Predicate;
 
 import java.util.HashSet;

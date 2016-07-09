@@ -15,7 +15,7 @@
 package scrum.server.admin;
 
 import ilarkesto.core.base.Str;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.io.IO;
 import ilarkesto.ui.web.HtmlRenderer;
 import ilarkesto.webapp.RequestWrapper;

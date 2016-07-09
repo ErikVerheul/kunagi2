@@ -2,6 +2,8 @@
 
 package scrum.client.core;
 
+import static ilarkesto.core.logging.ClientLog.DEBUG;
+
 public class ApplicationStartedEvent extends ilarkesto.core.event.AEvent {
 
     public  ApplicationStartedEvent() {
@@ -9,7 +11,7 @@ public class ApplicationStartedEvent extends ilarkesto.core.event.AEvent {
 
     public void tryToGetHandled(Object handler) {
         if (handler instanceof ApplicationStartedHandler) {
-            LOG.debug("    " + handler.getClass().getName() + ".onApplicationStarted(event)");
+            DEBUG("    " + handler.getClass().getName() + ".onApplicationStarted(event)");
             ((ApplicationStartedHandler)handler).onApplicationStarted(this);
         }
     }

@@ -189,6 +189,7 @@
                 gwt-maven-plugin documentation at codehaus.org -->
                 <configuration>
                     <compileSourcesArtifacts>
+                        <!-- see https://gwt-maven-plugin.github.io/gwt-maven-plugin/user-guide/library.html -->
                         <artifact>com.allen-sauer.gwt.dnd:gwt-dnd</artifact>
                         <artifact>nl.verheulconsultants.kunagi2:ilarkesto2</artifact>
                         <artefact>com.googlecode.gwtupload:gwtupload</artefact>

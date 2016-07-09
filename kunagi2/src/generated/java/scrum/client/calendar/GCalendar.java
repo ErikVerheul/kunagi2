@@ -4,8 +4,6 @@ package scrum.client.calendar;
 
 public abstract class GCalendar {
 
-    protected final static ilarkesto.core.logging.Log LOG = ilarkesto.core.logging.Log.get(Calendar.class);
-
     protected scrum.client.project.Project project;
 
     protected scrum.client.workspace.ProjectWorkspaceWidgets projectWorkspaceWidgets;

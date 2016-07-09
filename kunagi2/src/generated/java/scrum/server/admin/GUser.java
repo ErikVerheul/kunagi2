@@ -14,7 +14,7 @@
 package scrum.server.admin;
 
 import java.util.*;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.persistence.ADatob;
 import ilarkesto.persistence.AEntity;
 import ilarkesto.persistence.AStructure;
@@ -116,7 +116,7 @@ public abstract class GUser
         return requirementEstimationVoteDao.getRequirementEstimationVotesByUser((User)this);
     }
 
-    private static final ilarkesto.core.logging.Log LOG = ilarkesto.core.logging.Log.get(GUser.class);
+    private static final ilarkesto.logging.Log LOG = ilarkesto.logging.Log.get(GUser.class);
 
     public static final String TYPE = "user";
 

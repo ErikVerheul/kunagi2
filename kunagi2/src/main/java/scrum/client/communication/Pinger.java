@@ -14,7 +14,6 @@
  */
 package scrum.client.communication;
 
-import ilarkesto.core.logging.Log;
 import ilarkesto.core.time.Tm;
 
 import java.util.LinkedList;
@@ -29,11 +28,11 @@ import scrum.client.workspace.BlockExpandedEvent;
 import scrum.client.workspace.BlockExpandedHandler;
 
 import com.google.gwt.user.client.Timer;
+import static ilarkesto.core.logging.ClientLog.DEBUG;
+import static ilarkesto.core.logging.ClientLog.INFO;
 
 public class Pinger extends GPinger implements ServerDataReceivedHandler, BlockExpandedHandler, BlockCollapsedHandler,
 		ApplicationStartedHandler {
-
-	private static Log log = Log.get(Pinger.class);
 
 	public static final int MIN_DELAY = 1000;
 	public static final int MAX_DELAY = 5000;
@@ -68,7 +67,7 @@ public class Pinger extends GPinger implements ServerDataReceivedHandler, BlockE
 	}
 
 	public void shutdown() {
-		log.info("Shutting down");
+		INFO("Shutting down");
 		if (timer == null) return;
 		timer.cancel();
 		timer = null;
@@ -108,14 +107,14 @@ public class Pinger extends GPinger implements ServerDataReceivedHandler, BlockE
 
 	private void activatePowerPolling() {
 		maxDelay = MIN_DELAY;
-		log.debug("PowerPolling activated");
+		DEBUG("PowerPolling activated");
 	}
 
 	private void deactivatePowerPolling() {
 		if (maxDelay == MAX_DELAY) return;
 		maxDelay = MAX_DELAY;
 		lastDataReceiveTime = Tm.getCurrentTimeMillis();
-		log.debug("PowerPolling deactivated");
+		DEBUG("PowerPolling deactivated");
 	}
 
 	public Long getAvaragePingTime() {

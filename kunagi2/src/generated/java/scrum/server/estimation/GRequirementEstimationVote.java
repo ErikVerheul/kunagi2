@@ -14,7 +14,7 @@
 package scrum.server.estimation;
 
 import java.util.*;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.persistence.ADatob;
 import ilarkesto.persistence.AEntity;
 import ilarkesto.persistence.AStructure;
@@ -47,7 +47,7 @@ public abstract class GRequirementEstimationVote
         return toString().toLowerCase().compareTo(other.toString().toLowerCase());
     }
 
-    private static final ilarkesto.core.logging.Log LOG = ilarkesto.core.logging.Log.get(GRequirementEstimationVote.class);
+    private static final ilarkesto.logging.Log LOG = ilarkesto.logging.Log.get(GRequirementEstimationVote.class);
 
     public static final String TYPE = "requirementEstimationVote";
 

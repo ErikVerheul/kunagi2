@@ -17,7 +17,7 @@ package scrum.server.files;
 import gwtupload.server.UploadAction;
 import gwtupload.server.exceptions.UploadActionException;
 import ilarkesto.base.PermissionDeniedException;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.io.IO;
 import ilarkesto.webapp.Servlet;
 import java.util.ArrayList;

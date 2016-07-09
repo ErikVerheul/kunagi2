@@ -14,7 +14,7 @@
  */
 package scrum.server.project;
 
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 
 import java.io.IOException;
 

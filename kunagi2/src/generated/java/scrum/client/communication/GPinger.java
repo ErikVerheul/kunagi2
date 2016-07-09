@@ -4,8 +4,6 @@ package scrum.client.communication;
 
 public abstract class GPinger {
 
-    protected final static ilarkesto.core.logging.Log LOG = ilarkesto.core.logging.Log.get(Pinger.class);
-
     protected scrum.client.ScrumGwtApplication app;
 
     protected scrum.client.core.ServiceCaller serviceCaller;

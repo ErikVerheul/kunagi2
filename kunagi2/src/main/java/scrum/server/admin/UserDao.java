@@ -16,7 +16,7 @@ package scrum.server.admin;
 
 import ilarkesto.auth.OpenId;
 import ilarkesto.base.StrExtend;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.integration.gravatar.Gravatar;
 import ilarkesto.integration.gravatar.Profile;

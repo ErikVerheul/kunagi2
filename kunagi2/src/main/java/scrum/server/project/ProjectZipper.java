@@ -15,7 +15,7 @@
 package scrum.server.project;
 
 import ilarkesto.base.UtlExtend;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.io.IO;
 import ilarkesto.io.zip.Deflater;
 import ilarkesto.io.zip.ZipOutputStream;

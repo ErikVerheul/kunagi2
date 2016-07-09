@@ -4,8 +4,6 @@ package scrum.client.admin;
 
 public abstract class GAuth {
 
-    protected final static ilarkesto.core.logging.Log LOG = ilarkesto.core.logging.Log.get(Auth.class);
-
     protected scrum.client.ScrumGwtApplication app;
 
     protected scrum.client.Dao dao;

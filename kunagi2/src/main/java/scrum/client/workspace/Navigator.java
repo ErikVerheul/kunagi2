@@ -30,12 +30,13 @@ import scrum.client.search.SearchInputWidget;
 import scrum.client.search.SearchResultsWidget;
 import scrum.client.workspace.history.HistoryToken;
 import scrum.client.workspace.history.HistoryTokenObserver;
-
 import com.google.gwt.user.client.ui.Widget;
+import static ilarkesto.core.logging.ClientLog.DEBUG;
+import static ilarkesto.core.logging.ClientLog.INFO;
 
 public class Navigator extends GNavigator implements BlockExpandedHandler, ApplicationStartedHandler,
 		HistoryTokenObserver {
-
+        
 	public static enum Mode {
 		USER, PROJECT
 	}
@@ -95,6 +96,7 @@ public class Navigator extends GNavigator implements BlockExpandedHandler, Appli
 	}
 
 	private void showProject(String projectId, String page, String entityId) {
+            DEBUG("showProject projectId = " + projectId + " page = " + page + "entityId = " + entityId);
 		Project project = Scope.get().getComponent(Project.class);
 		if (project != null && !projectId.equals(project.getId())) {
 			project = null;
@@ -153,7 +155,7 @@ public class Navigator extends GNavigator implements BlockExpandedHandler, Appli
 			ScrumScopeManager.destroyProjectScope();
 		}
 
-		LOG.info("Activating USER mode");
+		INFO("Activating USER mode");
 		Scope.get().getComponent(UsersWorkspaceWidgets.class).activate(page);
 		currentMode = Mode.USER;
 	}
@@ -163,7 +165,7 @@ public class Navigator extends GNavigator implements BlockExpandedHandler, Appli
 
 		if (currentMode == Mode.PROJECT) ScrumScopeManager.destroyProjectScope();
 
-		LOG.info("Activating PROJECT mode");
+		INFO("Activating PROJECT mode");
 		Scope.get().getComponent(Ui.class).lock("Loading " + project.getLabel() + "...");
 		new SelectProjectServiceCall(project.getId()).execute(new Runnable() {
 

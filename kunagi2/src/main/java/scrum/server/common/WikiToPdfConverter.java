@@ -15,7 +15,7 @@
 package scrum.server.common;
 
 import com.itextpdf.text.BaseColor;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.pdf.ACell;
 import ilarkesto.pdf.AImage;
 import ilarkesto.pdf.AParagraph;

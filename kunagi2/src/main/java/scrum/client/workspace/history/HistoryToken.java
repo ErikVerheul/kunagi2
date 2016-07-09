@@ -18,15 +18,13 @@ import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.History;
 import ilarkesto.core.base.Str;
-import ilarkesto.core.logging.Log;
+import static ilarkesto.core.logging.ClientLog.DEBUG;
 import ilarkesto.gwt.client.AGwtEntity;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 public class HistoryToken {
-
-	private static final Log log = Log.get(HistoryToken.class);
 
 	public static final String START_PAGE = "Dashboard";
 
@@ -47,7 +45,7 @@ public class HistoryToken {
 	}
 
 	private void evalHistoryToken(String token) {
-		log.debug("Evaluating history token:", token);
+		DEBUG("Evaluating history token:", token);
 		Map<String, String> props = parseHistoryToken(token);
 
 		String oldProjectId = projectId;
@@ -68,7 +66,7 @@ public class HistoryToken {
                         (toggle != oldToggle)) {
 			observer.onPageOrEntityChanged();
 		} else {
-			log.debug("Nothing changed");
+			DEBUG("Nothing changed");
 		}
 	}
 
@@ -122,6 +120,7 @@ public class HistoryToken {
 	}
 
 	public String getProjectId() {
+                DEBUG("projectId returns:", projectId);
 		return projectId;
 	}
 

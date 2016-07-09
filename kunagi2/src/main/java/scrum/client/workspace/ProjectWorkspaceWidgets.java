@@ -70,6 +70,8 @@ import scrum.client.sprint.Task;
 import scrum.client.tasks.WhiteboardWidget;
 
 import com.google.gwt.user.client.ui.Widget;
+import static ilarkesto.core.logging.ClientLog.DEBUG;
+import static ilarkesto.core.logging.ClientLog.WARN;
 
 public class ProjectWorkspaceWidgets extends GProjectWorkspaceWidgets implements ProjectDataReceivedHandler {
 
@@ -206,7 +208,7 @@ public class ProjectWorkspaceWidgets extends GProjectWorkspaceWidgets implements
 	}
 
 	public void showEntityByReference(final String reference) {
-		LOG.debug("Showing entity by reference:", reference);
+		DEBUG("Showing entity by reference:", reference);
 
 		AGwtEntity entity = dao.getEntityByReference(reference);
 		if (entity != null) {
@@ -238,7 +240,7 @@ public class ProjectWorkspaceWidgets extends GProjectWorkspaceWidgets implements
 	}
 
 	public void showEntityById(final String entityId) {
-		LOG.debug("Showing entity by id:", entityId);
+		DEBUG("Showing entity by id:", entityId);
 
 		AGwtEntity entity;
 		try {
@@ -274,7 +276,7 @@ public class ProjectWorkspaceWidgets extends GProjectWorkspaceWidgets implements
 	}
 
 	public void showEntity(AGwtEntity entity) {
-		LOG.debug("Showing entity:", entity);
+		DEBUG("Showing entity:", entity);
 		if (entity instanceof Task) {
 			showTask((Task) entity);
 		} else if (entity instanceof Requirement) {
@@ -382,7 +384,7 @@ public class ProjectWorkspaceWidgets extends GProjectWorkspaceWidgets implements
 				}
 				select(results);
 			} else {
-				LOG.warn("Page does not exist:", pageName);
+				WARN("Page does not exist:", pageName);
 			}
 			return;
 		}

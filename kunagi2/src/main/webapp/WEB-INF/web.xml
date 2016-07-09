@@ -18,9 +18,18 @@
         <param-value>0</param-value>
     </context-param>
     <servlet-mapping>
-       <servlet-name>default</servlet-name>
-       <url-pattern>/</url-pattern>
-   </servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <!-- remote logging -->
+    <servlet>
+        <servlet-name>remoteLogging</servlet-name>
+        <servlet-class>ilarkesto.core.logging.ClientLoggerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>remoteLogging</servlet-name>
+        <url-pattern>/ilarkesto.Ilarkesto/remote_logging</url-pattern>
+    </servlet-mapping>
     <!-- start page -->
     <servlet>
         <servlet-name>start</servlet-name>

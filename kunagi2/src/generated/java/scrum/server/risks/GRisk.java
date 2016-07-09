@@ -14,7 +14,7 @@
 package scrum.server.risks;
 
 import java.util.*;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.persistence.ADatob;
 import ilarkesto.persistence.AEntity;
 import ilarkesto.persistence.AStructure;
@@ -52,7 +52,7 @@ public abstract class GRisk
         return toString().toLowerCase().compareTo(other.toString().toLowerCase());
     }
 
-    private static final ilarkesto.core.logging.Log LOG = ilarkesto.core.logging.Log.get(GRisk.class);
+    private static final ilarkesto.logging.Log LOG = ilarkesto.logging.Log.get(GRisk.class);
 
     public static final String TYPE = "risk";
 

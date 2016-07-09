@@ -14,7 +14,7 @@
 package scrum.server;
 
 import java.util.*;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 
 public abstract class GScrumWebApplication
             extends ilarkesto.webapp.AWebApplication {

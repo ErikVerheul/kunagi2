@@ -22,7 +22,7 @@ import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
-import ilarkesto.core.logging.Log;
+import static ilarkesto.core.logging.ClientLog.DEBUG;
 import ilarkesto.gwt.client.Gwt;
 import ilarkesto.gwt.client.HyperlinkWidget;
 import ilarkesto.gwt.client.TableBuilder;
@@ -41,8 +41,6 @@ import scrum.client.project.ResetRequirementEstimationVotingAction;
 import scrum.client.workspace.VisibleDataChangedEvent;
 
 public class PlanningPokerTableWidget extends AScrumWidget {
-
-	private static final Log LOG = Log.get(PlanningPokerTableWidget.class);
 
 	private Requirement requirement;
 
@@ -189,7 +187,7 @@ public class PlanningPokerTableWidget extends AScrumWidget {
 			boolean currentUser = user == getCurrentUser();
 			RequirementEstimationVote vote = requirement.getEstimationVote(user);
 			Float estimation = vote == null ? null : vote.getEstimatedWork();
-			LOG.debug("Estimation:", user.getName(), "->", estimation);
+			DEBUG("Estimation:", user.getName(), "->", estimation);
 
 			Widget card;
 			if (estimation == null) {

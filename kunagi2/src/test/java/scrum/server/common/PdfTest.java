@@ -16,9 +16,9 @@ package scrum.server.common;
 
 import ilarkesto.base.StrExtend;
 import ilarkesto.base.UtlExtend;
-import ilarkesto.core.logging.Log;
 import ilarkesto.core.time.Date;
 import ilarkesto.integration.itext.PdfBuilder;
+import ilarkesto.logging.Log;
 import ilarkesto.testng.ATest;
 import java.io.File;
 import java.util.Arrays;
@@ -45,6 +45,8 @@ import scrum.server.sprint.SprintReportPdfCreator;
 import scrum.server.sprint.Task;
 
 public class PdfTest extends ATest {
+    
+    private static final Log LOG = Log.get(PdfTest.class);
 
 	@Test
 	public void calendar() {
@@ -227,7 +229,7 @@ public class PdfTest extends ATest {
 		PdfBuilder pdf = new PdfBuilder();
 		creator.build(pdf);
 		File file = new File(OUTPUT_DIR + "/" + creator.getFilename() + ".pdf");
-		Log.DEBUG("Writing PDF:", file);
+		LOG.debug("Writing PDF:", file);
 		pdf.write(file);
 	}
 

@@ -15,7 +15,7 @@
 package scrum.server.project;
 
 import ilarkesto.concurrent.ACollectionTask;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.core.time.Date;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.persistence.TransactionService;

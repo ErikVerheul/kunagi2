@@ -4,8 +4,6 @@ package scrum.client.workspace;
 
 public abstract class GNavigator {
 
-    protected final static ilarkesto.core.logging.Log LOG = ilarkesto.core.logging.Log.get(Navigator.class);
-
     public abstract void initialize();
 
     protected scrum.client.ScrumGwtApplication app;

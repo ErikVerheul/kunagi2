@@ -14,6 +14,7 @@
  */
 package scrum.client.admin;
 
+import static ilarkesto.core.logging.ClientLog.INFO;
 import scrum.client.DataTransferObject;
 import scrum.client.ScrumScopeManager;
 import scrum.client.communication.ServerDataReceivedEvent;
@@ -28,7 +29,7 @@ public class Auth extends GAuth implements ServerDataReceivedHandler {
 		DataTransferObject data = event.getData();
 		if (data.isUserSet()) {
 			user = dao.getUser(data.getUserId());
-			LOG.info("User logged in:", user);
+			INFO("User logged in:", user);
 			ScrumScopeManager.createUserScope(user);
 		}
 	}

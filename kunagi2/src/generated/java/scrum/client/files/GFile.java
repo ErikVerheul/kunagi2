@@ -14,7 +14,7 @@
 package scrum.client.files;
 
 import java.util.*;
-import ilarkesto.core.logging.Log;
+
 import scrum.client.common.*;
 import ilarkesto.gwt.client.*;
 

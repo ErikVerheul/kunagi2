@@ -20,6 +20,7 @@ import ilarkesto.gwt.client.editor.RichtextEditorWidget;
 import scrum.client.admin.ProjectUserConfig;
 
 import com.google.gwt.user.client.Timer;
+import static ilarkesto.core.logging.ClientLog.ERROR;
 
 public class RichtextAutosaver extends GRichtextAutosaver implements ApplicationStartedHandler {
 
@@ -50,7 +51,7 @@ public class RichtextAutosaver extends GRichtextAutosaver implements Application
 			if (!editor.isAutosave()) return;
 			editor.submitEditor(false);
 		} catch (Throwable ex) {
-			LOG.error(ex);
+			ERROR(ex);
 		}
 	}
 

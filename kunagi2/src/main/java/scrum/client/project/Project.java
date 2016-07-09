@@ -16,7 +16,6 @@ package scrum.client.project;
 
 import ilarkesto.core.base.Str;
 import ilarkesto.core.base.Utl;
-import ilarkesto.core.logging.Log;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.core.time.Date;
 import ilarkesto.core.time.DateAndTime;
@@ -60,10 +59,9 @@ import scrum.client.sprint.SprintReport;
 import scrum.client.sprint.Task;
 
 import com.google.gwt.user.client.ui.Widget;
+import static ilarkesto.core.logging.ClientLog.ERROR;
 
 public class Project extends GProject implements ForumSupport {
-
-	private static transient final Log LOG = Log.get(Project.class);
 
 	private static final String effortUnit = "pts";
 	public static final String INIT_LABEL = "New Project";
@@ -352,7 +350,7 @@ public class Project extends GProject implements ForumSupport {
 		for (Comment comment : getDao().getComments()) {
 			AGwtEntity entity = comment.getParent();
 			if (!(entity instanceof ForumSupport)) {
-				LOG.error(entity.getClass().getName() + " needs to implement ForumSupport");
+				ERROR(entity.getClass().getName() + " needs to implement ForumSupport");
 				continue;
 			}
 			ret.add((ForumSupport) comment.getParent());

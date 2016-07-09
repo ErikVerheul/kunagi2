@@ -14,6 +14,8 @@
  */
 package scrum.client.journal;
 
+import static ilarkesto.core.logging.ClientLog.DEBUG;
+import static ilarkesto.core.logging.ClientLog.INFO;
 import java.util.List;
 import scrum.client.common.AScrumGwtEntity;
 
@@ -23,12 +25,12 @@ public class ChangeHistoryManager extends GChangeHistoryManager {
 
 	public void activateChangeHistory(AScrumGwtEntity entity) {
 		if (currentChangeHistoryParent == entity) {
-			LOG.debug("ChangeHistory already active for", entity);
+			DEBUG("ChangeHistory already active for", entity);
 			return;
 		}
 		deactivateChangeHistory();
 		currentChangeHistoryParent = entity;
-		LOG.info("ChangeHistory activated for", entity);
+		INFO("ChangeHistory activated for", entity);
 		if (currentChangeHistoryParent != null)
 			new RequestChangesServiceCall(currentChangeHistoryParent.getId()).execute();
 	}

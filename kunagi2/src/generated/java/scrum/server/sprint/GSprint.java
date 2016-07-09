@@ -14,7 +14,7 @@
 package scrum.server.sprint;
 
 import java.util.*;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.persistence.ADatob;
 import ilarkesto.persistence.AEntity;
 import ilarkesto.persistence.AStructure;
@@ -92,7 +92,7 @@ public abstract class GSprint
         return projectSprintSnapshotDao.getProjectSprintSnapshotBySprint((Sprint)this);
     }
 
-    private static final ilarkesto.core.logging.Log LOG = ilarkesto.core.logging.Log.get(GSprint.class);
+    private static final ilarkesto.logging.Log LOG = ilarkesto.logging.Log.get(GSprint.class);
 
     public static final String TYPE = "sprint";
 

@@ -14,7 +14,6 @@
  */
 package scrum.client;
 
-import scrum.client.GDao;
 import com.google.gwt.user.client.Timer;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.ADataTransferObject;

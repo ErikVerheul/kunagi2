@@ -16,7 +16,7 @@ package scrum.server.sprint;
 
 import ilarkesto.base.StrExtend;
 import ilarkesto.base.UtlExtend;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.core.time.Date;
 
 import java.util.ArrayList;

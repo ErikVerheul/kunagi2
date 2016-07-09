@@ -14,6 +14,7 @@
  */
 package scrum.client.admin;
 
+import static ilarkesto.core.logging.ClientLog.INFO;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.gwt.client.editor.ADateAndTimeEditorModel;
 import ilarkesto.gwt.client.editor.ATextEditorModel;
@@ -31,7 +32,7 @@ public class SystemMessageManager extends GSystemMessageManager implements Serve
 		DataTransferObject data = event.getData();
 		if (data.systemMessage != null) {
 			systemMessage = data.systemMessage;
-			LOG.info("SystemMessage received:", systemMessage);
+			INFO("SystemMessage received:", systemMessage);
 			new VisibleDataChangedEvent().fireInCurrentScope();
 		}
 	}

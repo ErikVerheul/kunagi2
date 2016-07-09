@@ -14,10 +14,9 @@
  */
 package scrum.client.issues;
 
-import scrum.client.issues.GIssue;
 import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.base.Str;
-import ilarkesto.core.logging.Log;
+import static ilarkesto.core.logging.ClientLog.INFO;
 import ilarkesto.core.time.Date;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.core.time.TimePeriod;
@@ -40,8 +39,6 @@ import scrum.client.project.Project;
 import scrum.client.project.Requirement;
 
 public class Issue extends GIssue implements ReferenceSupport, LabelSupport, ForumSupport, ThemesContainer {
-
-	private static Log log = Log.get(Issue.class);
 
 	public static final String INIT_TYPE = Types.ISSUE;
 	public static final String REFERENCE_PREFIX = "iss";
@@ -109,7 +106,7 @@ public class Issue extends GIssue implements ReferenceSupport, LabelSupport, For
 
 	public void suspend(int days) {
 		Date date = Date.today().addDays(days);
-		log.info("Suspending for", days, "days, until", date);
+		INFO("Suspending for", days, "days, until", date);
 		setSuspendedUntilDate(date);
 	}
 

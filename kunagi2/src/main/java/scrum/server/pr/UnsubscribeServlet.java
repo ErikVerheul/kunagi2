@@ -15,7 +15,7 @@
 package scrum.server.pr;
 
 import ilarkesto.base.StrExtend;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.io.IO;
 import ilarkesto.persistence.AEntity;
 import ilarkesto.persistence.DaoService;

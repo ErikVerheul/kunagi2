@@ -4,8 +4,6 @@ package scrum.client.issues;
 
 public abstract class GIssueManager {
 
-    protected final static ilarkesto.core.logging.Log LOG = ilarkesto.core.logging.Log.get(IssueManager.class);
-
     protected scrum.client.ScrumGwtApplication app;
 
     @Override

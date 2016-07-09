@@ -14,7 +14,7 @@
 package scrum.server.pr;
 
 import java.util.*;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.persistence.ADatob;
 import ilarkesto.persistence.AEntity;
 import ilarkesto.persistence.AStructure;
@@ -46,7 +46,7 @@ public abstract class GSubscription
         return toString().toLowerCase().compareTo(other.toString().toLowerCase());
     }
 
-    private static final ilarkesto.core.logging.Log LOG = ilarkesto.core.logging.Log.get(GSubscription.class);
+    private static final ilarkesto.logging.Log LOG = ilarkesto.logging.Log.get(GSubscription.class);
 
     public static final String TYPE = "subscription";
 

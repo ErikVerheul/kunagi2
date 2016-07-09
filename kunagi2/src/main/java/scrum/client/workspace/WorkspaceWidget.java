@@ -14,7 +14,6 @@
  */
 package scrum.client.workspace;
 
-import ilarkesto.core.logging.Log;
 import ilarkesto.gwt.client.Gwt;
 import ilarkesto.gwt.client.LockWidget;
 import ilarkesto.gwt.client.SwitcherWidget;
@@ -28,10 +27,9 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
+import static ilarkesto.core.logging.ClientLog.DEBUG;
 
 public class WorkspaceWidget extends AScrumWidget {
-
-	private static final Log LOG = Log.get(WorkspaceWidget.class);
 
 	public static final int HEADER_HEIGHT = 25;
 
@@ -66,7 +64,7 @@ public class WorkspaceWidget extends AScrumWidget {
 
 	@Override
 	protected void onUpdate() {
-		LOG.debug("Updating UI");
+		DEBUG("Updating UI");
 		super.onUpdate();
 	}
 

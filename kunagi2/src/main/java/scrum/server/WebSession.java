@@ -15,7 +15,7 @@
 package scrum.server;
 
 import ilarkesto.core.time.Tm;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.core.scope.In;
 import ilarkesto.core.time.TimePeriod;
 import ilarkesto.di.Context;

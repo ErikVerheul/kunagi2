@@ -8,7 +8,7 @@
     <inherits name='com.google.gwt.user.theme.standard.Standard'/>
     <!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
     <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
-
+    
     <!-- Other module inherits                                      -->
     <inherits name="com.Menubar" />
     <inherits name="com.allen_sauer.gwt.dnd.gwt-dnd" />
@@ -16,6 +16,16 @@
     <inherits name="gwtupload.GWTUpload" />
 
     <inherits name="ilarkesto.Ilarkesto" />
+    
+    <!-- Client side logging configuration -->
+    <inherits name="com.google.gwt.logging.Logging"/>
+
+    <set-property name="gwt.logging.logLevel" value="INFO"/>
+    <set-property name="gwt.logging.enabled" value="TRUE"/>
+    <set-property name="gwt.logging.simpleRemoteHandler" value="ENABLED" />  
+    <set-property name="gwt.logging.developmentModeHandler" value="DISABLED" />  
+    <set-property name="gwt.logging.systemHandler" value="DISABLED" />
+    <set-property name="gwt.logging.consoleHandler" value="DISABLED"/> 
 
     <stylesheet src="screen.css" />
 

@@ -19,7 +19,7 @@ import ilarkesto.base.StrExtend;
 import ilarkesto.base.Sys;
 import ilarkesto.base.UtlExtend;
 import ilarkesto.base.TmExtend;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.integration.velocity.ContextBuilder;
 import ilarkesto.integration.velocity.Velocity;

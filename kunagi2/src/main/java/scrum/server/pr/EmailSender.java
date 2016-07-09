@@ -15,7 +15,7 @@
 package scrum.server.pr;
 
 import ilarkesto.core.base.Str;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.core.scope.In;
 import ilarkesto.email.Eml;
 

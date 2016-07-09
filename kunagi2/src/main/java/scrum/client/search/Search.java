@@ -15,6 +15,7 @@
 package scrum.client.search;
 
 import ilarkesto.core.base.Str;
+import static ilarkesto.core.logging.ClientLog.INFO;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -31,7 +32,7 @@ public class Search extends GSearch implements SearchResultsChangedHandler {
 	public void search(String text) {
 		if (text != null) text = text.toLowerCase();
 		this.searchText = text;
-		LOG.info("Searching:", searchText);
+		INFO("Searching:", searchText);
 		results.clear();
 		if (Str.isBlank(searchText)) return;
 

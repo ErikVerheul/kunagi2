@@ -14,7 +14,7 @@
  */
 package scrum.server.css;
 
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.io.DynamicClassLoader;
 import ilarkesto.ui.web.CssRenderer;
 import ilarkesto.webapp.RequestWrapper;

@@ -18,7 +18,7 @@ import ilarkesto.base.Bytes;
 import ilarkesto.base.Proc;
 import ilarkesto.base.Sys;
 import ilarkesto.base.UtlExtend;
-import ilarkesto.core.logging.LogRecord;
+import ilarkesto.logging.LogRecord;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.core.time.TimePeriod;
 import ilarkesto.gwt.server.AGwtConversation;

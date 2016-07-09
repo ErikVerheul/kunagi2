@@ -15,7 +15,10 @@
 package scrum.client.core;
 
 import ilarkesto.core.base.Str;
-import ilarkesto.core.logging.Log;
+import static ilarkesto.core.logging.ClientLog.DEBUG;
+import static ilarkesto.core.logging.ClientLog.ERROR;
+import static ilarkesto.core.logging.ClientLog.INFO;
+import static ilarkesto.core.logging.ClientLog.WARN;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.core.time.Tm;
 import ilarkesto.gwt.client.ErrorWrapper;
@@ -55,14 +58,14 @@ public class ServiceCaller extends GServiceCaller {
 
 		if (data.conversationNumber != null) {
 			conversationNumber = data.conversationNumber;
-			LOG.info("conversatioNumber received:", conversationNumber);
+			INFO("conversatioNumber received:", conversationNumber);
 		}
 		Scope.get().getComponent(Dao.class).handleDataFromServer(data);
 
 		ScrumGwtApplication app = ScrumGwtApplication.get();
 		if (data.applicationInfo != null) {
 			app.applicationInfo = data.applicationInfo;
-			LOG.debug("applicationInfo:", data.applicationInfo);
+			DEBUG("applicationInfo:", data.applicationInfo);
 			// Scope.get().putComponent(data.applicationInfo);
 		} else {
 			assert app.applicationInfo != null;
@@ -74,10 +77,10 @@ public class ServiceCaller extends GServiceCaller {
 	public void onServiceCallFailure(AServiceCall serviceCall, List<ErrorWrapper> errors) {
 		long timeFromLastSuccess = Tm.getCurrentTimeMillis() - lastSuccessfullServiceCallTime;
 		if (serviceCall.isDispensable() && timeFromLastSuccess < MAX_FAILURE_TIME) {
-			LOG.warn("Dispensable service call failed:", serviceCall, errors);
+			WARN("Dispensable service call failed:", serviceCall, errors);
 			return;
 		}
-		LOG.error("Service call failed:", serviceCall, errors);
+		ERROR("Service call failed:", serviceCall, errors);
 		String serviceCallName = Str.getSimpleName(serviceCall.getClass());
 		serviceCallName = Str.removeSuffix(serviceCallName, "ServiceCall");
 		ScrumGwtApplication.get().handleServiceCallError(serviceCallName, errors);

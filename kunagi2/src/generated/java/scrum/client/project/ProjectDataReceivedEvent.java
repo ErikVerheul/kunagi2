@@ -2,6 +2,8 @@
 
 package scrum.client.project;
 
+import static ilarkesto.core.logging.ClientLog.DEBUG;
+
 public class ProjectDataReceivedEvent extends ilarkesto.core.event.AEvent {
 
     public  ProjectDataReceivedEvent() {
@@ -9,7 +11,7 @@ public class ProjectDataReceivedEvent extends ilarkesto.core.event.AEvent {
 
     public void tryToGetHandled(Object handler) {
         if (handler instanceof ProjectDataReceivedHandler) {
-            LOG.debug("    " + handler.getClass().getName() + ".onProjectDataReceived(event)");
+            DEBUG("    " + handler.getClass().getName() + ".onProjectDataReceived(event)");
             ((ProjectDataReceivedHandler)handler).onProjectDataReceived(this);
         }
     }

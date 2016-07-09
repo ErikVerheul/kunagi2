@@ -16,8 +16,8 @@ package scrum.server.common;
 
 import ilarkesto.base.PermissionDeniedException;
 import ilarkesto.base.StrExtend;
-import ilarkesto.core.logging.Log;
-import ilarkesto.core.logging.LogRecord;
+import ilarkesto.logging.Log;
+import ilarkesto.logging.LogRecord;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.io.IO;
 import ilarkesto.persistence.AEntity;

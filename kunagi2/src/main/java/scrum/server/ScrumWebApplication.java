@@ -23,7 +23,7 @@ import ilarkesto.core.time.Tm;
 import ilarkesto.base.UtlExtend;
 import ilarkesto.concurrent.TaskManager;
 import ilarkesto.core.base.Str;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.core.time.TimePeriod;
 import ilarkesto.di.app.BackupApplicationDataDirTask;

@@ -22,7 +22,7 @@ import ilarkesto.base.Reflect;
 import ilarkesto.base.UtlExtend;
 import ilarkesto.base.time.DateExtend;
 import ilarkesto.core.base.Str;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.core.scope.In;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.integration.ldap.Ldap;

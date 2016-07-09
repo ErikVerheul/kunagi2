@@ -18,7 +18,7 @@ import ilarkesto.auth.PasswordHasher;
 import ilarkesto.base.CryptOneWay;
 import ilarkesto.base.StrExtend;
 import ilarkesto.base.UtlExtend;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.integration.gravatar.Gravatar;
 import ilarkesto.integration.gravatar.Profile;
 import ilarkesto.integration.gravatar.Profile.Name;

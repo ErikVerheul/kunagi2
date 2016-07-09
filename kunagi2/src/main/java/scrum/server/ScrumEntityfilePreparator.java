@@ -14,7 +14,7 @@
  */
 package scrum.server;
 
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.io.IO;
 import ilarkesto.persistence.EntityfilePreparator;
 

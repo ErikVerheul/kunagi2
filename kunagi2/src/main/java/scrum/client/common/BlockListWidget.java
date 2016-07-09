@@ -35,8 +35,6 @@ import scrum.client.workspace.Navigator;
  */
 public final class BlockListWidget<O> extends AScrumWidget {
 
-	// private static final Logger LOG = Logger.get(BlockListWidget.class);
-
 	private GlobalsSingleton globals;
         DndManager dndManager;
 

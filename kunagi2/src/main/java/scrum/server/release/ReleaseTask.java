@@ -2,7 +2,7 @@ package scrum.server.release;
 
 import ilarkesto.base.Proc;
 import ilarkesto.concurrent.ATask;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.persistence.AEntity;
 import ilarkesto.persistence.TransactionService;
 

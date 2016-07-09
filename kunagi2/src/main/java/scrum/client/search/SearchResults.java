@@ -14,9 +14,7 @@
  */
 package scrum.client.search;
 
-import scrum.client.search.SearchResultsChangedEvent;
-import ilarkesto.core.logging.Log;
-
+import static ilarkesto.core.logging.ClientLog.INFO;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -27,8 +25,6 @@ import java.util.Map;
 import scrum.client.common.AScrumGwtEntity;
 
 public class SearchResults {
-
-	private static final Log LOG = Log.get(SearchResults.class);
 
 	private final Collection<AScrumGwtEntity> entities = new HashSet<AScrumGwtEntity>();
 
@@ -45,7 +41,7 @@ public class SearchResults {
 	public void addEntities(List<? extends AScrumGwtEntity> entities) {
 		boolean changed = this.entities.addAll(entities);
 		if (changed) {
-			LOG.info("SearchResults:", this.entities.size());
+			INFO("SearchResults:", this.entities.size());
 			new SearchResultsChangedEvent().fireInCurrentScope();
 		}
 	}

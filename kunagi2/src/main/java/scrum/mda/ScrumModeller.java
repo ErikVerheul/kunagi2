@@ -15,7 +15,7 @@
 package scrum.mda;
 
 import ilarkesto.base.StrExtend;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.core.time.Date;
 import ilarkesto.core.time.DateAndTime;

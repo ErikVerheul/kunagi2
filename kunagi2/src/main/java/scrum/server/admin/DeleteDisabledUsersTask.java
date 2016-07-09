@@ -15,7 +15,7 @@
 package scrum.server.admin;
 
 import ilarkesto.concurrent.ACollectionTask;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.persistence.TransactionService;
 
 import java.util.Collection;

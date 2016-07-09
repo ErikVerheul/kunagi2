@@ -15,7 +15,7 @@
 package scrum.server.journal;
 
 import ilarkesto.auth.Auth;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.persistence.AEntity;
 import java.util.ArrayList;
 import java.util.Collection;

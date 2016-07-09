@@ -15,7 +15,7 @@
 package scrum.server.issues;
 
 import ilarkesto.base.StrExtend;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.io.IO;
 import ilarkesto.persistence.TransactionService;
 import ilarkesto.webapp.RequestWrapper;

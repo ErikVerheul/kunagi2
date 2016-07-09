@@ -20,7 +20,6 @@ import gwtupload.client.IUploadStatus.Status;
 import gwtupload.client.IUploader;
 import gwtupload.client.SingleUploader;
 import gwtupload.client.Uploader;
-import ilarkesto.core.logging.Log;
 import ilarkesto.core.scope.Scope;
 
 import java.util.Set;
@@ -39,11 +38,10 @@ import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.Hidden;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
+import static ilarkesto.core.logging.ClientLog.ERROR;
 import java.util.List;
 
 public class UploadWidget extends AScrumWidget {
-
-    private static final Log log = Log.get(UploadWidget.class);
 
     private FormFlowPanel formPanel = new FormFlowPanel();
     private Button button = new Button();
@@ -136,7 +134,7 @@ public class UploadWidget extends AScrumWidget {
 
         @Override
         public void setError(String error) {
-            log.error("Upload failed: " + error);
+            ERROR("Upload failed: " + error);
             Window.alert("Upload failed: " + error);
             statusLabel.setText(error);
         }

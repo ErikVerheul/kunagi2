@@ -18,7 +18,8 @@ import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootPanel;
 import ilarkesto.core.base.Str;
-import ilarkesto.core.logging.Log;
+import static ilarkesto.core.logging.ClientLog.ERROR;
+import static ilarkesto.core.logging.ClientLog.INFO;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.AGwtApplication;
 import ilarkesto.gwt.client.AGwtDao;
@@ -52,8 +53,6 @@ public class ScrumGwtApplication extends GScrumGwtApplication {
 			Task.REFERENCE_PREFIX, Quality.REFERENCE_PREFIX, Issue.REFERENCE_PREFIX, Impediment.REFERENCE_PREFIX,
 			Risk.REFERENCE_PREFIX, File.REFERENCE_PREFIX, Subject.REFERENCE_PREFIX, SimpleEvent.REFERENCE_PREFIX,
 			Release.REFERENCE_PREFIX, BlogEntry.REFERENCE_PREFIX, Sprint.REFERENCE_PREFIX };
-
-	private final Log log = Log.get(getClass());
 
 	public ApplicationInfo applicationInfo;
 
@@ -91,7 +90,7 @@ public class ScrumGwtApplication extends GScrumGwtApplication {
 	}
 
 	public void logout() {
-		log.info("Logging out");
+		INFO("Logging out");
 
 		Cookies.removeCookie(LOGIN_TOKEN_COOKIE);
 
@@ -130,7 +129,7 @@ public class ScrumGwtApplication extends GScrumGwtApplication {
 
 	@Override
 	protected void handleUnexpectedError(Throwable ex) {
-		log.error("Unexpected error", ex);
+		ERROR("Unexpected error", ex);
 		StringBuilder sb = new StringBuilder();
 		sb.append("<strong>Unexpected Error</strong><br>");
 		sb.append(Str.toHtml(Str.formatException(ex)));
