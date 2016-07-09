@@ -14,7 +14,7 @@
  */
 package ilarkesto.mda.model.processor;
 
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.mda.generator.GwtComponentBaseGenerator;
 import ilarkesto.mda.generator.GwtComponentReflectorGenerator;
 import ilarkesto.mda.generator.GwtComponentTemplateGenerator;

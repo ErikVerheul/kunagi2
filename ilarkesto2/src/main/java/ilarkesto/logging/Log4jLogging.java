@@ -15,8 +15,7 @@
 package ilarkesto.logging;
 
 import static ilarkesto.core.base.Str.format;
-import ilarkesto.core.logging.Log;
-import static ilarkesto.core.logging.Log.get;
+import static ilarkesto.logging.Log.get;
 import org.apache.log4j.Appender;
 import org.apache.log4j.Layout;
 import org.apache.log4j.Level;

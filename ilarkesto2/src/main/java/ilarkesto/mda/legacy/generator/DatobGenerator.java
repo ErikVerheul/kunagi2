@@ -18,7 +18,7 @@ import ilarkesto.auth.AUser;
 import ilarkesto.base.StrExtend;
 import static ilarkesto.base.StrExtend.lowercaseFirstLetter;
 import static ilarkesto.base.StrExtend.uppercaseFirstLetter;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.core.time.Date;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.core.time.Time;

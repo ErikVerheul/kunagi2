@@ -14,12 +14,12 @@
  */
 package ilarkesto.integration.velocity;
 
-import ilarkesto.core.logging.Log;
-import ilarkesto.core.logging.Log.Level;
-import static ilarkesto.core.logging.Log.Level.DEBUG;
-import static ilarkesto.core.logging.Log.Level.ERROR;
-import static ilarkesto.core.logging.Log.Level.INFO;
-import static ilarkesto.core.logging.Log.Level.WARN;
+import ilarkesto.logging.Log;
+import ilarkesto.logging.Log.Level;
+import static ilarkesto.logging.Log.Level.DEBUG;
+import static ilarkesto.logging.Log.Level.ERROR;
+import static ilarkesto.logging.Log.Level.INFO;
+import static ilarkesto.logging.Log.Level.WARN;
 import org.apache.velocity.runtime.RuntimeServices;
 import org.apache.velocity.runtime.log.LogChute;
 

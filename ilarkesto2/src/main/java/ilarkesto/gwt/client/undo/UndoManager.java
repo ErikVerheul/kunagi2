@@ -14,13 +14,11 @@
  */
 package ilarkesto.gwt.client.undo;
 
-import ilarkesto.core.logging.Log;
+import static ilarkesto.core.logging.ClientLog.INFO;
 import java.util.LinkedList;
 import java.util.List;
 
 public class UndoManager {
-
-	private static final Log LOG = Log.get(UndoManager.class);
 
 	private final int maxOperations = 5;
 	private final List<AUndoOperation> operations = new LinkedList<AUndoOperation>();
@@ -33,7 +31,7 @@ public class UndoManager {
 	}
 
 	public void undo(AUndoOperation operation) {
-		LOG.info("Undo:", operation);
+		INFO("Undo:", operation);
 		operation.undo();
 		operations.remove(operation);
 	}

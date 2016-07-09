@@ -16,7 +16,7 @@ package ilarkesto.net;
 
 import ilarkesto.concurrent.ATask;
 import ilarkesto.concurrent.TaskManager;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;

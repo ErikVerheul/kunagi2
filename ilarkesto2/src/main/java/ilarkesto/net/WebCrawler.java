@@ -18,7 +18,7 @@ import static ilarkesto.base.StrExtend.getCharsetFromHtml;
 import static ilarkesto.core.base.Str.indexOf;
 import static ilarkesto.core.base.Str.isBlank;
 import static ilarkesto.core.base.Utl.toList;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import static ilarkesto.io.IO.UTF_8;
 import static ilarkesto.io.IO.downloadToFile;
 import static ilarkesto.io.IO.openUrlConnection;

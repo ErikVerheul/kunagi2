@@ -15,7 +15,7 @@
 package ilarkesto.webapp;
 
 import static ilarkesto.core.base.Str.format;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import static ilarkesto.webapp.AWebApplication.get;
 import java.io.IOException;
 import javax.servlet.ServletConfig;

@@ -15,7 +15,7 @@
 package ilarkesto.form.swing;
 
 import edu.umd.cs.findbugs.annotations.SuppressWarnings;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.form.FileFormField;
 import ilarkesto.form.Form;
 import ilarkesto.form.FormButton;

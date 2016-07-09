@@ -14,7 +14,7 @@
  */
 package ilarkesto.jdbc;
 
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.jdbc.Jdbc.RecordHandler;
 import static ilarkesto.jdbc.Jdbc.closeQuiet;
 import java.sql.Connection;

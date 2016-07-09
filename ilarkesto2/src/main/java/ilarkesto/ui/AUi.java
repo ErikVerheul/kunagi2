@@ -18,7 +18,7 @@ import static ilarkesto.base.Reflect.getFieldValue;
 import static ilarkesto.base.StrExtend.lowercaseFirstLetter;
 import ilarkesto.base.Url;
 import static ilarkesto.core.base.Str.removeSuffix;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import static ilarkesto.core.time.Tm.HOUR;
 import static ilarkesto.core.time.Tm.getCurrentTimeMillis;
 import ilarkesto.di.BeanContainer;

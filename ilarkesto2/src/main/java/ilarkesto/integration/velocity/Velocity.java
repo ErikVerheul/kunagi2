@@ -15,7 +15,7 @@
 package ilarkesto.integration.velocity;
 
 import static ilarkesto.core.base.Str.removeSuffix;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.io.IO;
 import static ilarkesto.io.IO.UTF_8;
 import static ilarkesto.io.IO.copyFile;

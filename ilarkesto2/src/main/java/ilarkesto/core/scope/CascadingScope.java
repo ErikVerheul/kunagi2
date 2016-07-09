@@ -15,6 +15,7 @@
 package ilarkesto.core.scope;
 
 import static ilarkesto.core.event.AEventBus.DEFAULT_COMPONENT_NAME;
+import static ilarkesto.core.logging.ClientLog.INFO;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -45,7 +46,7 @@ public class CascadingScope extends Scope {
 	}
 
 	public synchronized void wireComponents() {
-		log.info("Wiring components:", getName());
+		INFO("Wiring components:", getName());
 		wiringRequired = false;
 
 		List components = new ArrayList(componentsByName.values());
@@ -89,7 +90,7 @@ public class CascadingScope extends Scope {
                         return component;
                 }
 
-		log.info("Putting component:", name);
+		INFO("Putting component:", name);
 
 		componentsByName.put(name, component);
 		wiringRequired = true;
@@ -108,7 +109,7 @@ public class CascadingScope extends Scope {
 	}
 
 	public CascadingScope createScope(String name) {
-		log.info("Creating sub scope:", getName(), "->", name);
+		INFO("Creating sub scope:", getName(), "->", name);
 		CascadingScope scope = new CascadingScope(this, name, componentReflector);
 		childScopesById.put(scope.getId(), scope);
 		return scope;

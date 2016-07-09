@@ -12,21 +12,9 @@
  * You should have received a copy of the GNU General Public License along with this program. If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package ilarkesto.gwt.client;
+package ilarkesto.logging;
 
-import static com.google.gwt.core.client.GWT.isScript;
-import ilarkesto.core.logging.LogRecord;
-import ilarkesto.core.logging.LogRecordHandler;
-import static java.lang.System.out;
+public interface LogRecordHandler {
 
-public class GwtLogRecordHandler implements LogRecordHandler {
-
-	@Override
-	public void log(LogRecord record) {
-		if (isScript()) {
-                        return;
-                }
-		out.println(record.toString());
-	}
-
+	void log(LogRecord record);
 }

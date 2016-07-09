@@ -19,7 +19,7 @@ import ilarkesto.base.Factory;
 import ilarkesto.base.Money;
 import static ilarkesto.base.StrExtend.getRootCauseMessage;
 import static ilarkesto.core.base.Str.format;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.core.time.Date;
 import ilarkesto.core.time.Time;
 import ilarkesto.core.time.TimePeriod;

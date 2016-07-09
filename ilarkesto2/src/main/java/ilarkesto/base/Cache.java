@@ -14,7 +14,7 @@
  */
 package ilarkesto.base;
 
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import java.util.HashMap;
 import java.util.Map;
 

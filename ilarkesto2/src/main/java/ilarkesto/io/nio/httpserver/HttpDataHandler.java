@@ -14,7 +14,7 @@
  */
 package ilarkesto.io.nio.httpserver;
 
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import static ilarkesto.io.IO.UTF_8;
 import static ilarkesto.io.nio.httpserver.HttpMethod.values;
 import static ilarkesto.io.nio.httpserver.HttpStatusCode.BAD_REQUEST;

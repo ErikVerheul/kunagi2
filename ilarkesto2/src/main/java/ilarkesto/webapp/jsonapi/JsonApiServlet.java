@@ -17,7 +17,7 @@ package ilarkesto.webapp.jsonapi;
 import static ilarkesto.core.base.Str.cutFrom;
 import static ilarkesto.core.base.Str.isBlank;
 import static ilarkesto.core.base.Str.removeSuffix;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.json.JsonObject;
 import ilarkesto.webapp.AServlet;
 import ilarkesto.webapp.AWebApplication;

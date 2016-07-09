@@ -14,7 +14,7 @@
  */
 package ilarkesto.mda.swingeditor;
 
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.mda.model.Node;
 import ilarkesto.mda.model.RuleSet;
 import java.awt.BorderLayout;

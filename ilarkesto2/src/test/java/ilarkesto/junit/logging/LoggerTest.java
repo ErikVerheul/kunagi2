@@ -1,7 +1,7 @@
 package ilarkesto.junit.logging;
 
 import static ilarkesto.base.Sys.isDevelopmentMode;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import junit.framework.TestCase;
 
 public class LoggerTest extends TestCase {

@@ -14,7 +14,7 @@
  */
 package ilarkesto.mda.model;
 
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.io.CsvParser;
 import ilarkesto.io.CsvWriter;
 import static ilarkesto.io.IO.UTF_8;

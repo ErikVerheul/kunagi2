@@ -14,7 +14,7 @@
  */
 package ilarkesto.integration.jquery;
 
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import static ilarkesto.io.IO.downloadUrlToFile;
 import java.io.File;
 

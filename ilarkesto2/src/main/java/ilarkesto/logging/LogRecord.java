@@ -12,7 +12,7 @@
  * You should have received a copy of the GNU General Public License along with this program. If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package ilarkesto.core.logging;
+package ilarkesto.logging;
 import edu.umd.cs.findbugs.annotations.SuppressWarnings;
 import ilarkesto.core.base.Str;
 import static ilarkesto.core.base.Str.cutLeft;
@@ -20,9 +20,9 @@ import static ilarkesto.core.base.Str.fillUpRight;
 import static ilarkesto.core.base.Str.format;
 import static ilarkesto.core.base.Str.getStackTrace;
 import ilarkesto.core.base.Utl;
-import ilarkesto.core.logging.Log.Level;
-import static ilarkesto.core.logging.Log.Level.DEBUG;
-import static ilarkesto.core.logging.Log.Level.INFO;
+import ilarkesto.logging.Log.Level;
+import static ilarkesto.logging.Log.Level.DEBUG;
+import static ilarkesto.logging.Log.Level.INFO;
 import java.util.Date;
 
 public class LogRecord {

@@ -13,9 +13,7 @@
  * <http://www.gnu.org/licenses/>.
  */
 package ilarkesto.gwt.client;
-
-import ilarkesto.core.logging.Log;
-import static ilarkesto.core.logging.Log.DEBUG;
+import static ilarkesto.core.logging.ClientLog.DEBUG;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -60,7 +58,7 @@ public abstract class AGwtDao extends AComponent {
 	public void handleDataFromServer(ADataTransferObject data) {
 		if (data.entityIdBase != null) {
 			entityIdBase = data.entityIdBase;
-			log.debug("entityIdBase received:", data.entityIdBase);
+			DEBUG("entityIdBase received:", data.entityIdBase);
 		}
 		List<AGwtEntity> modifiedEntities = null;
 		if (data.containsEntities()) {
@@ -112,7 +110,7 @@ public abstract class AGwtDao extends AComponent {
                                 return entity;
                         }
 		}
-                ilarkesto.core.logging.Log.DEBUG("EntityDoesNotExistException thrown in " + this.getClass().getName());
+                DEBUG("EntityDoesNotExistException thrown in " + this.getClass().getName());
 		throw new EntityDoesNotExistException(id);
 	}
 

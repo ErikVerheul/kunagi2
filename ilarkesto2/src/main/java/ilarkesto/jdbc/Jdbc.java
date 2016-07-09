@@ -14,7 +14,7 @@
  */
 package ilarkesto.jdbc;
 
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import static java.lang.Class.forName;
 import java.sql.Connection;
 import static java.sql.DriverManager.getConnection;

@@ -20,7 +20,7 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import static com.itextpdf.text.pdf.PdfWriter.getInstance;
 import static ilarkesto.base.Sys.getUsersHomePath;
-import static ilarkesto.core.logging.Log.DEBUG;
+import static ilarkesto.core.logging.ClientLog.DEBUG;
 import ilarkesto.pdf.AImage;
 import ilarkesto.pdf.AParagraph;
 import ilarkesto.pdf.APdfBuilder;

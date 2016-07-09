@@ -14,7 +14,7 @@
  */
 package ilarkesto.ui.swing;
 
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.swing.ALazyTreeNode;
 import java.io.File;
 import static java.io.File.listRoots;

@@ -29,7 +29,7 @@ public class NodeSelectionChangedEvent extends AEvent {
 	@Override
 	public void tryToGetHandled(Object handler) {
 		if (handler instanceof NodeSelectionChangedHandler) {
-			LOG.info("Calling event handler:", handler);
+//			LOG.info("Calling event handler:", handler);
 			((NodeSelectionChangedHandler) handler).onNodeSelectionChanged(this);
 		}
 	}

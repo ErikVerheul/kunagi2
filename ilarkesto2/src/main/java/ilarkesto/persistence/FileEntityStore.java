@@ -14,7 +14,7 @@
  */
 package ilarkesto.persistence;
 import static ilarkesto.core.base.Str.isBlank;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.core.time.Date;
 import static ilarkesto.core.time.Date.beforeDays;
 import static ilarkesto.core.time.Date.today;

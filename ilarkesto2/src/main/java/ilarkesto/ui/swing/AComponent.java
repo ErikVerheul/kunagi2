@@ -14,7 +14,7 @@
  */
 package ilarkesto.ui.swing;
 
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.persistence.TransactionService;
 import static ilarkesto.swing.Swing.getIcon16;
 import static ilarkesto.swing.Swing.invokeInEventDispatchThread;

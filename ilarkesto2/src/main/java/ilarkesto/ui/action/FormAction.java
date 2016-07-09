@@ -18,7 +18,7 @@ import ilarkesto.base.Iconized;
 import ilarkesto.base.MissingDependencyException;
 import ilarkesto.base.StringProvider;
 import static ilarkesto.core.base.Str.format;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.di.BeanProvider;
 import ilarkesto.form.BeanForm;
 import ilarkesto.form.Form;

@@ -16,8 +16,8 @@ package ilarkesto.io.nio.tcpserver;
 
 import edu.umd.cs.findbugs.annotations.SuppressWarnings;
 import ilarkesto.concurrent.ALoopTask;
-import ilarkesto.core.logging.Log;
-import static ilarkesto.core.logging.Log.get;
+import ilarkesto.logging.Log;
+import static ilarkesto.logging.Log.get;
 import static ilarkesto.io.nio.tcpserver.ChangeRequest.CHANGEOPS;
 import static ilarkesto.io.nio.tcpserver.TcpConnection.CLOSE_CONNECTION;
 import java.io.IOException;

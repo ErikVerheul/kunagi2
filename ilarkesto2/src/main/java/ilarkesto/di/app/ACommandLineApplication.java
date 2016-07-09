@@ -16,7 +16,7 @@ package ilarkesto.di.app;
 
 import edu.umd.cs.findbugs.annotations.SuppressWarnings;
 import ilarkesto.concurrent.TaskManager;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import static java.lang.System.exit;
 
 public abstract class ACommandLineApplication extends AApplication {

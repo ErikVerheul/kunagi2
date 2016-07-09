@@ -16,12 +16,9 @@ package ilarkesto.core.event;
 
 import static ilarkesto.core.base.Str.getSimpleName;
 import static ilarkesto.core.event.AEventBus.DEFAULT_COMPONENT_NAME;
-import ilarkesto.core.logging.Log;
 import static ilarkesto.core.scope.Scope.get;
 
 public abstract class AEvent implements Event {
-
-	protected Log LOG = Log.get(this.toString());
 
 	public final void fireInCurrentScope() {
 		AEventBus eventBus = (AEventBus) get().getComponent(DEFAULT_COMPONENT_NAME);

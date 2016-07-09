@@ -27,7 +27,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 import static ilarkesto.core.base.Str.isBlank;
-import ilarkesto.core.logging.Log;
+import static ilarkesto.core.logging.ClientLog.ERROR;
 import ilarkesto.gwt.client.AAction;
 import ilarkesto.gwt.client.AViewEditWidget;
 import ilarkesto.gwt.client.CodemirrorEditorWidget;
@@ -40,8 +40,6 @@ import ilarkesto.gwt.client.RichtextFormater;
 import ilarkesto.gwt.client.ToolbarWidget;
 
 public class RichtextEditorWidget extends AViewEditWidget {
-
-	private static final Log log = Log.get(RichtextEditorWidget.class);
 
 	private HTML viewer;
 	private SimplePanel editorWrapper;
@@ -223,7 +221,7 @@ public class RichtextEditorWidget extends AViewEditWidget {
 		try {
 			editorWrapper.clear();
 		} catch (AttachDetachException ex) {
-			log.error(ex);
+			ERROR(ex);
 		}
 	}
 

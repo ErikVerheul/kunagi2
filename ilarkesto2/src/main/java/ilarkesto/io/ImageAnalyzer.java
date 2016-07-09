@@ -15,7 +15,7 @@
 package ilarkesto.io;
 
 import static ilarkesto.base.Assert.equalInt;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import static ilarkesto.io.IO.loadImage;
 import java.awt.image.BufferedImage;
 import java.io.File;

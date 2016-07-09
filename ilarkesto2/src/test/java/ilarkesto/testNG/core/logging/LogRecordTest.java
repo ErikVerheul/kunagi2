@@ -14,9 +14,9 @@
  */
 package ilarkesto.testNG.core.logging;
 
-import ilarkesto.core.logging.Log.Level;
-import ilarkesto.core.logging.LogRecord;
-import static ilarkesto.core.logging.Log.Level.INFO;
+import ilarkesto.logging.Log.Level;
+import ilarkesto.logging.LogRecord;
+import static ilarkesto.logging.Log.Level.INFO;
 import ilarkesto.core.time.Tm;
 import static ilarkesto.core.time.Tm.getCurrentTimeMillis;
 import ilarkesto.testng.ATest;

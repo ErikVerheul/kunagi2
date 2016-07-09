@@ -18,7 +18,7 @@ import edu.umd.cs.findbugs.annotations.SuppressWarnings;
 import ilarkesto.auth.AUser;
 import ilarkesto.base.StrExtend;
 import ilarkesto.concurrent.TaskManager;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.di.BeanProvider;
 import ilarkesto.di.Context;
 import ilarkesto.di.app.AApplication;

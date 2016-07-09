@@ -15,14 +15,13 @@
 package ilarkesto.core.navig;
 
 import static ilarkesto.core.base.Str.toStringHelper;
-import ilarkesto.core.logging.Log;
+import static ilarkesto.core.logging.ClientLog.DEBUG;
+import static ilarkesto.core.logging.ClientLog.INFO;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public final class Navigator {
-
-	private static final Log log = Log.get(Navigator.class);
 
 	private final Page rootPage = new Page(null);
 	private final List<Page> pages = new LinkedList<Page>();
@@ -37,7 +36,7 @@ public final class Navigator {
 		if (item == null) {
                         return;
                 }
-		log.info("execute:", item);
+		INFO("execute:", item);
 		Plugin plugin = item.getPlugin();
 		if (plugin == null) {
                         return;
@@ -54,9 +53,9 @@ public final class Navigator {
 	}
 
 	public void goNext(Page page) {
-		log.info("goNext:", page);
+		INFO("goNext:", page);
 		for (Item item : page.getItems()) {
-			log.debug(" -", item);
+			DEBUG(" -", item);
 		}
 		pages.add(0, page);
 		firePageChanged();

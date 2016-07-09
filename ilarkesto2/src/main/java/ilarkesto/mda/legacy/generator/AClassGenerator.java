@@ -15,7 +15,7 @@
 package ilarkesto.mda.legacy.generator;
 
 import static ilarkesto.base.StrExtend.uppercaseFirstLetter;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import static ilarkesto.io.IO.UTF_8;
 import static ilarkesto.io.IO.readFile;
 import static ilarkesto.io.IO.writeFile;

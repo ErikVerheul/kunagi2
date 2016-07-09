@@ -14,7 +14,7 @@
  */
 package ilarkesto.io;
 
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import static ilarkesto.io.IO.readFileToByteArray;
 import java.io.File;
 import java.net.URL;

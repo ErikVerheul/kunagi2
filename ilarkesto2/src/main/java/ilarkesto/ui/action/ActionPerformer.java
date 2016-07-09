@@ -15,7 +15,7 @@
 package ilarkesto.ui.action;
 
 import ilarkesto.concurrent.TaskManager;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.di.BeanProvider;
 import static ilarkesto.di.Context.get;
 import ilarkesto.ui.AUi;

@@ -14,8 +14,8 @@
  */
 package ilarkesto.concurrent;
 
-import ilarkesto.core.logging.Log;
-import static ilarkesto.core.logging.Log.get;
+import ilarkesto.logging.Log;
+import static ilarkesto.logging.Log.get;
 
 public abstract class ALoopTask extends ATask {
 

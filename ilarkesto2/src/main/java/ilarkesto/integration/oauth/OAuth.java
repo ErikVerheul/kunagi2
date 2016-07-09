@@ -2,7 +2,7 @@ package ilarkesto.integration.oauth;
 
 import ilarkesto.auth.LoginData;
 import ilarkesto.auth.LoginDataProvider;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.json.JsonObject;
 import static java.lang.System.in;
 import static java.lang.System.out;

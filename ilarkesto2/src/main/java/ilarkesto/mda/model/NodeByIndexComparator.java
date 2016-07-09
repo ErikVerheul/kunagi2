@@ -14,7 +14,7 @@
  */
 package ilarkesto.mda.model;
 
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import static java.lang.Integer.MAX_VALUE;
 import static java.lang.Integer.parseInt;
 import java.util.Comparator;

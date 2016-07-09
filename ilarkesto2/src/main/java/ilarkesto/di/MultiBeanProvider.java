@@ -15,7 +15,7 @@
 package ilarkesto.di;
 
 import static ilarkesto.core.base.Str.concat;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;

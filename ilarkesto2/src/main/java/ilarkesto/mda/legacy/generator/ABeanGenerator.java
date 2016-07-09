@@ -18,7 +18,7 @@ import edu.umd.cs.findbugs.annotations.SuppressWarnings;
 import ilarkesto.base.Reflect;
 import static ilarkesto.base.StrExtend.lowercaseFirstLetter;
 import static ilarkesto.base.StrExtend.uppercaseFirstLetter;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.mda.legacy.model.BeanModel;
 import ilarkesto.mda.legacy.model.CompositeModel;
 import ilarkesto.mda.legacy.model.DependencyModel;

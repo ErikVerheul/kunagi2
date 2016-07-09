@@ -21,7 +21,8 @@ import ilarkesto.auth.Ownable;
 import ilarkesto.base.Iconized;
 import ilarkesto.base.Reflect;
 import static ilarkesto.base.UtlExtend.toStringWithType;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
+import static ilarkesto.core.logging.ClientLog.DEBUG;
 import static ilarkesto.core.time.DateAndTime.now;
 import ilarkesto.di.Context;
 import ilarkesto.fp.Predicate;
@@ -136,7 +137,7 @@ public abstract class ADao<E extends AEntity> extends ADatobManager<E> implement
                 }
 		E entity = (E) transactionService.getById(id);
 		if (entity == null) {
-                        ilarkesto.core.logging.Log.DEBUG("EntityDoesNotExistException thrown in " + this.getClass().getName());
+                        DEBUG("EntityDoesNotExistException thrown in " + this.getClass().getName());
                         throw new EntityDoesNotExistException(id);
                 }
 		return entity;

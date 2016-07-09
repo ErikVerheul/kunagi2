@@ -14,11 +14,9 @@
  */
 package ilarkesto.core.scope;
 
-import ilarkesto.core.logging.Log;
+import static ilarkesto.core.logging.ClientLog.INFO;
 
 public class NonConcurrentScopeManager extends ScopeManager {
-
-	private static final Log log = Log.get(NonConcurrentScopeManager.class);
 
 	private Scope currentScope;
 
@@ -41,7 +39,7 @@ public class NonConcurrentScopeManager extends ScopeManager {
 	public Scope setScope(Scope scope) {
 		assert scope != null;
 		this.currentScope = scope;
-		log.info("Scope activated:", scope);
+		INFO("Scope activated:", scope);
 		return scope;
 	}
 

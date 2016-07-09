@@ -16,7 +16,7 @@ package ilarkesto.webapp;
 
 import static ilarkesto.base.Sys.isDevelopmentMode;
 import static ilarkesto.core.base.Str.isBlank;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.core.time.Date;
 import ilarkesto.integration.itext.PdfBuilder;
 import ilarkesto.json.JsonObject;

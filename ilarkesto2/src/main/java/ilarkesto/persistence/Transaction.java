@@ -15,7 +15,7 @@
 package ilarkesto.persistence;
 
 import ilarkesto.base.UtlExtend;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.fp.Predicate;
 import ilarkesto.id.IdentifiableResolver;
 import static ilarkesto.persistence.Persist.test;

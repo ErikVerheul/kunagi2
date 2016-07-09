@@ -27,15 +27,14 @@ import com.google.gwt.user.client.ui.Widget;
 import static ilarkesto.core.base.Str.getSimpleName;
 import static ilarkesto.core.base.Str.isBlank;
 import static ilarkesto.core.base.Utl.getUserMessageStack;
-import ilarkesto.core.logging.Log;
-import static ilarkesto.core.logging.Log.DEBUG;
+import static ilarkesto.core.logging.ClientLog.DEBUG;
+import static ilarkesto.core.logging.ClientLog.ERROR;
 import static ilarkesto.gwt.client.Gwt.addTooltipHtml;
 import static ilarkesto.gwt.client.Gwt.createDiv;
 import static ilarkesto.gwt.client.Gwt.getRootWidget;
 
 public abstract class AViewEditWidget extends AWidget {
 
-	private static Log log = Log.get(AViewEditWidget.class);
 	private static AViewEditWidget currentEditor;
 	private static ModeSwitchHandler globalModeSwitchHandler;
 
@@ -99,7 +98,7 @@ public abstract class AViewEditWidget extends AWidget {
 			try {
 				currentEditor.closeEditor();
 			} catch (Throwable ex) {
-				log.error(ex);
+				ERROR(ex);
 			}
 		}
 		currentEditor = this;

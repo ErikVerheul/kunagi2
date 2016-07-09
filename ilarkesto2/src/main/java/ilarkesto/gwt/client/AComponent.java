@@ -14,13 +14,9 @@
  */
 package ilarkesto.gwt.client;
 
-import ilarkesto.core.logging.Log;
-import static ilarkesto.core.logging.Log.get;
 import static ilarkesto.gwt.client.Gwt.getSimpleName;
 
 public class AComponent {
-
-	protected final Log log = get(getClass());
 
 	private boolean initialized;
 	private boolean destroyed;

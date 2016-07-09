@@ -16,7 +16,7 @@ package ilarkesto.base;
 
 import static ilarkesto.base.Reflect.setProperty;
 import static ilarkesto.base.UtlExtend.toStringWithType;
-import static ilarkesto.core.logging.Log.DEBUG;
+import ilarkesto.logging.Log;
 import java.beans.BeanInfo;
 import java.beans.IntrospectionException;
 import static java.beans.Introspector.getBeanInfo;
@@ -40,6 +40,8 @@ import java.util.Set;
  * @param <T>
  */
 public class BeanMap<T> extends AbstractMap<String, Object> implements Cloneable {
+    
+    private static final Log LOG = Log.get(BeanMap.class);
 
 	private transient T bean;
 
@@ -291,7 +293,7 @@ public class BeanMap<T> extends AbstractMap<String, Object> implements Cloneable
 	 */
 	@Override
 	public Object put(String name, Object value) throws IllegalArgumentException, ClassCastException {
-		DEBUG("------------- setting property ", name, "->", toStringWithType(value));
+		LOG.debug("------------- setting property ", name, "->", toStringWithType(value));
 		if (bean != null) {
 			Object oldValue = get(name);
 			setProperty(bean, name, value);

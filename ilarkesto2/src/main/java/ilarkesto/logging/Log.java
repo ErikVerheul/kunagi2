@@ -12,13 +12,13 @@
  * You should have received a copy of the GNU General Public License along with this program. If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package ilarkesto.core.logging;
+package ilarkesto.logging;
 
 import static ilarkesto.core.base.Str.getSimpleName;
-import static ilarkesto.core.logging.Log.Level.ERROR;
-import static ilarkesto.core.logging.Log.Level.FATAL;
-import static ilarkesto.core.logging.Log.Level.INFO;
-import static ilarkesto.core.logging.Log.Level.WARN;
+import static ilarkesto.logging.Log.Level.ERROR;
+import static ilarkesto.logging.Log.Level.FATAL;
+import static ilarkesto.logging.Log.Level.INFO;
+import static ilarkesto.logging.Log.Level.WARN;
 import static ilarkesto.core.time.Tm.getCurrentTimeMillis;
 import static java.lang.System.err;
 import java.util.HashMap;
@@ -26,8 +26,7 @@ import java.util.Map;
 
 public class Log {
 
-	private static final Log ANONYMOUS = new Log("?");
-	private static final Map<String, Log> LOGGERS = new HashMap<String, Log>();
+	private static final Map<String, Log> LOGGERS = new HashMap<>();
 	private static boolean debugEnabled = true;
 	private static LogRecordHandler logRecordHandler = new PrintStreamLogRecordHandler(err);
 
@@ -41,7 +40,7 @@ public class Log {
 		if (logRecordHandler == null) {
                         return;
                 }
-//		if (level.isDebug() && !isDebugEnabled()) return; log all for now TODO: reset this
+//		if (level.isDebug() && !isDebugEnabled()) return; log all for now @ToDo: reset this
 		logRecordHandler.log(new LogRecord(getCurrentTimeMillis(), name, level, parameters));
 	}
 
@@ -128,9 +127,6 @@ public class Log {
 		}
 	}
 
-	public static void DEBUG(Object... s) {
-		ANONYMOUS.debug(s);
-	}
 
 	public static void setLogRecordHandler(LogRecordHandler handler) {
 		Log.logRecordHandler = handler;

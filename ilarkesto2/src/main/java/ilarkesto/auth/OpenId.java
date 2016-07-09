@@ -18,7 +18,7 @@ import static ilarkesto.core.base.Str.cutFrom;
 import static ilarkesto.core.base.Str.cutFromTo;
 import static ilarkesto.core.base.Str.cutTo;
 import static ilarkesto.core.base.Str.isBlank;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import java.util.Iterator;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;

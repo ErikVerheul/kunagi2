@@ -20,9 +20,9 @@ public class ModelChangedEvent extends AEvent {
 
 	@Override
 	public void tryToGetHandled(Object handler) {
-		LOG.info("Testing event handler:", handler);
+//		LOG.info("Testing event handler:", handler);
 		if (handler instanceof ModelChangedHandler) {
-			LOG.info("Calling event handler:", handler);
+//			LOG.info("Calling event handler:", handler);
 			((ModelChangedHandler) handler).onModelChanged(this);
 		}
 	}

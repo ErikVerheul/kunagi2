@@ -14,7 +14,7 @@
  */
 package ilarkesto.io;
 
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import static ilarkesto.io.IO.loadImage;
 import static ilarkesto.io.IO.quadratizeAndLimitSize;
 import static ilarkesto.io.IO.writeImage;

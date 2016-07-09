@@ -14,7 +14,7 @@
  */
 package ilarkesto.mda.model;
 
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 
 public class Model implements NodeTypes {
 

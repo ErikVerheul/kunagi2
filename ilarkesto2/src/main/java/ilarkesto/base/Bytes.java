@@ -16,9 +16,6 @@ package ilarkesto.base;
 
 import static java.lang.Math.round;
 import static java.lang.String.valueOf;
-import static java.lang.String.valueOf;
-import static java.lang.String.valueOf;
-import static java.lang.String.valueOf;
 
 /**
  * Data type for storing amount of bytes.

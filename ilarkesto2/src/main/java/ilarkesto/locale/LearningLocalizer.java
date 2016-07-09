@@ -18,7 +18,7 @@ import ilarkesto.base.Cache;
 import ilarkesto.base.StrExtend;
 import static ilarkesto.base.StrExtend.replaceForHtml;
 import static ilarkesto.base.StrExtend.replaceUnicodeCharsWithJavaNotation;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import static ilarkesto.io.IO.UTF_8;
 import static ilarkesto.io.IO.appendLine;
 import static ilarkesto.io.IO.loadProperties;

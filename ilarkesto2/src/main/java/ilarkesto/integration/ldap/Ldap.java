@@ -17,7 +17,7 @@ package ilarkesto.integration.ldap;
 import ilarkesto.auth.AuthenticationFailedException;
 import ilarkesto.auth.WrongPasswordException;
 import static ilarkesto.core.base.Str.isBlank;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import static java.lang.System.out;
 import java.util.Hashtable;
 import javax.naming.AuthenticationException;

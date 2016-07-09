@@ -16,7 +16,7 @@ package ilarkesto.ui.action;
 
 import ilarkesto.concurrent.ATask;
 import static ilarkesto.core.base.Str.format;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.di.BeanProvider;
 import ilarkesto.form.Form;
 import ilarkesto.form.validator.Validator;

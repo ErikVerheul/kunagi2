@@ -14,7 +14,7 @@
  */
 package ilarkesto.integration.jdom;
 
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import static ilarkesto.io.IO.close;
 import static ilarkesto.io.IO.closeQuiet;
 import static ilarkesto.io.IO.createDirectory;

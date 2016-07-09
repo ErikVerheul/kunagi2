@@ -18,7 +18,7 @@ import ilarkesto.base.PermissionDeniedException;
 import static ilarkesto.base.Sys.isDevelopmentMode;
 import static ilarkesto.base.UtlExtend.toStringWithType;
 import static ilarkesto.core.base.Utl.compare;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.core.time.DateAndTime;
 import static ilarkesto.core.time.DateAndTime.now;
 import ilarkesto.core.time.TimePeriod;

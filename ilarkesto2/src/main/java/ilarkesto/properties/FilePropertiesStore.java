@@ -14,7 +14,7 @@
  */
 package ilarkesto.properties;
 
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.io.IO;
 import static ilarkesto.io.IO.loadProperties;
 import static ilarkesto.io.IO.saveProperties;

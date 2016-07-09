@@ -14,7 +14,7 @@
  */
 package ilarkesto.base;
 
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import static ilarkesto.core.time.Tm.getCurrentTimeMillis;
 import static ilarkesto.io.IO.UTF_8;
 import static ilarkesto.io.IO.closeQuiet;

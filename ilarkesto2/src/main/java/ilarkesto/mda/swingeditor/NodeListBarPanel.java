@@ -15,7 +15,7 @@
 package ilarkesto.mda.swingeditor;
 
 import ilarkesto.core.event.EventBus;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.core.scope.In;
 import ilarkesto.core.scope.Init;
 import ilarkesto.mda.model.ModelChangedEvent;

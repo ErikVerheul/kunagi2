@@ -15,8 +15,7 @@
 package ilarkesto.logging;
 
 import static ilarkesto.base.Sys.getUsersHomePath;
-import ilarkesto.core.logging.Log;
-import static ilarkesto.core.logging.Log.get;
+import static ilarkesto.logging.Log.get;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;

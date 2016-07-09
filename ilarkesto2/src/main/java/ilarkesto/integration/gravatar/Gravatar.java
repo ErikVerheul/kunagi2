@@ -15,7 +15,7 @@
 package ilarkesto.integration.gravatar;
 
 import static ilarkesto.core.base.Str.isBlank;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import static ilarkesto.io.IO.downloadUrlToString;
 import ilarkesto.json.JsonObject;
 import java.io.UnsupportedEncodingException;

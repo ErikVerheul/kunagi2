@@ -14,7 +14,7 @@
  */
 package ilarkesto.tools;
 
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import static ilarkesto.io.IO.listFiles;
 import static ilarkesto.io.IO.readFile;
 import java.io.File;

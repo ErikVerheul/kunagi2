@@ -16,7 +16,7 @@ package ilarkesto.scope;
 
 import ilarkesto.base.Reflect;
 import static ilarkesto.base.Reflect.processAnnotations;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.core.scope.ComponentReflector;
 import ilarkesto.core.scope.In;
 import ilarkesto.core.scope.Init;

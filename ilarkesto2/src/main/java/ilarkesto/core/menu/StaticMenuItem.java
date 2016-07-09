@@ -14,11 +14,9 @@
  */
 package ilarkesto.core.menu;
 
-import ilarkesto.core.logging.Log;
+import static ilarkesto.core.logging.ClientLog.DEBUG;
 
 public class StaticMenuItem implements MenuItem {
-
-	private final Log log = Log.get(StaticMenuItem.class);
 
 	private final String label;
 	private boolean selected;
@@ -52,7 +50,7 @@ public class StaticMenuItem implements MenuItem {
 		if (selected) {
                         return;
                 }
-		log.debug("select(", this, ")");
+		DEBUG("select(", this, ")");
 		menu.deselectAll();
 		selected = true;
 		if (onSelect != null) {

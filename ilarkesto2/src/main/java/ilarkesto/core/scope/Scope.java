@@ -15,14 +15,11 @@
 package ilarkesto.core.scope;
 
 import static ilarkesto.core.base.Str.getSimpleName;
-import ilarkesto.core.logging.Log;
 import static ilarkesto.core.scope.ScopeManager.getInstance;
 import static ilarkesto.core.scope.ScopeUtil.getComponentName;
 import java.util.List;
 
 public abstract class Scope {
-
-	static Log log = Log.get(Scope.class);
 
 	/**
 	 * Gets an initialized component by name.
@@ -47,6 +44,7 @@ public abstract class Scope {
 	// --- helper ---
 
 	public <T> T putComponent(T component) {
+            // found the messenger
 		if (component == null) {
                         throw new IllegalArgumentException("component == null");
                 }

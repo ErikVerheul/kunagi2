@@ -18,7 +18,7 @@ import ilarkesto.cli.ACommand;
 import ilarkesto.cli.BadSyntaxException;
 import ilarkesto.cli.CommandExecutionFailedException;
 import ilarkesto.cli.CommandService;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import static java.lang.System.out;
 
 public class CommandApplication extends ACommandLineApplication {

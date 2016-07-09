@@ -14,7 +14,7 @@
  */
 package ilarkesto.swing;
 
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import static ilarkesto.swing.Swing.showInJFrame;
 import java.awt.BorderLayout;
 import static java.awt.BorderLayout.CENTER;

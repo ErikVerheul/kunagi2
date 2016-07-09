@@ -14,9 +14,8 @@
  */
 package ilarkesto.base;
 
-import ilarkesto.core.logging.Log;
-import static ilarkesto.core.logging.Log.DEBUG;
 import static ilarkesto.core.time.Tm.getCurrentTimeMillis;
+import ilarkesto.logging.Log;
 import static java.lang.String.valueOf;
 
 /**
@@ -24,22 +23,24 @@ import static java.lang.String.valueOf;
  */
 public class TimeMonitor {
 
-	private long start = getCurrentTimeMillis();
+    private static final Log LOG = Log.get(Cache.class);
 
-	public long getTime() {
-		return getCurrentTimeMillis() - start;
-	}
+    private final long start = getCurrentTimeMillis();
 
-	public void debugOut(String name) {
-		if (name == null) {
-                        name = "TimeMonitor";
-                }
-		DEBUG(name, "->", this);
-	}
+    public long getTime() {
+        return getCurrentTimeMillis() - start;
+    }
 
-	@Override
-	public String toString() {
-		return valueOf(getTime()) + " ms.";
-	}
+    public void debugOut(String name) {
+        if (name == null) {
+            name = "TimeMonitor";
+        }
+        LOG.debug(name, "->", this);
+    }
+
+    @Override
+    public String toString() {
+        return valueOf(getTime()) + " ms.";
+    }
 
 }

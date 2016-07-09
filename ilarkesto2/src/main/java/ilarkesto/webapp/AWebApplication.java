@@ -16,7 +16,7 @@ package ilarkesto.webapp;
 
 import static ilarkesto.base.Sys.setHeadless;
 import static ilarkesto.core.base.Str.removeSuffix;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.di.app.AApplication;
 import ilarkesto.gwt.server.AGwtConversation;
 import static ilarkesto.logging.DefaultLogRecordHandler.setLogFile;

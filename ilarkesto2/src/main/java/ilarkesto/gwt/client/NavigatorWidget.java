@@ -14,13 +14,13 @@
  */
 package ilarkesto.gwt.client;
 
+import static ilarkesto.core.logging.ClientLog.DEBUG;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
-import ilarkesto.core.logging.Log;
 import ilarkesto.core.menu.MenuItem;
 import ilarkesto.core.menu.StaticMenu;
 import ilarkesto.core.menu.StaticMenuItem;
@@ -31,8 +31,6 @@ import static ilarkesto.gwt.client.Gwt.createEmptyDiv;
 import ilarkesto.gwt.client.animation.AnimatingFlowPanel;
 
 public class NavigatorWidget<K extends Object> extends AWidget {
-
-	private static final Log log = Log.get(NavigatorWidget.class);
 
 	private FlowPanel panel;
 	protected StaticMenu menu;
@@ -80,7 +78,7 @@ public class NavigatorWidget<K extends Object> extends AWidget {
 
 				@Override
 				public void onClick(ClickEvent event) {
-					log.debug("Item clicked:", item.getLabel());
+					DEBUG("Item clicked:", item.getLabel());
 					event.stopPropagation();
 					item.select();
 					a.setFocus(false);
@@ -96,7 +94,7 @@ public class NavigatorWidget<K extends Object> extends AWidget {
 		if (item.isSelected()) {
 			if (item instanceof Submenu) {
 				boolean animate = lastAnimatedItem != item;
-				// log.debug("---------- animate:", animate);
+				// DEBUG("---------- animate:", animate);
 				Widget submenuPanel = animate ? new AnimatingFlowPanel() : new FlowPanel();
 				if (animate) {
                                         lastAnimatedItem = item;

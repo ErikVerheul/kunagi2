@@ -14,7 +14,7 @@
  */
 package ilarkesto.persistence;
 
-import ilarkesto.core.logging.Log;
+import static ilarkesto.core.logging.ClientLog.DEBUG;
 import ilarkesto.core.time.Date;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.core.time.Time;
@@ -30,8 +30,6 @@ import java.util.Map;
 import java.util.Set;
 
 public class DaoService implements IdentifiableResolver<AEntity> {
-
-	private static final Log LOG = Log.get(DaoService.class);
 
 	private final Map<Class, ADao> daos = new HashMap<>();
 
@@ -93,7 +91,7 @@ public class DaoService implements IdentifiableResolver<AEntity> {
 		});
 
 		if (entity == null) {
-                        ilarkesto.core.logging.Log.DEBUG("EntityDoesNotExistException thrown in " + this.getClass().getName());
+                        DEBUG("EntityDoesNotExistException thrown in " + this.getClass().getName());
                         throw new EntityDoesNotExistException(id);
                 }
 		return entity;

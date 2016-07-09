@@ -22,7 +22,7 @@ import static ilarkesto.base.UtlExtend.sleep;
 import ilarkesto.concurrent.ATask;
 import ilarkesto.concurrent.TaskManager;
 import static ilarkesto.core.base.Str.removeSuffix;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.core.time.Time;
 import ilarkesto.core.time.TimePeriod;

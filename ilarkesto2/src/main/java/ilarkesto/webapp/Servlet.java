@@ -18,7 +18,7 @@ import static ilarkesto.base.Net.getHostnameOrIp;
 import static ilarkesto.base.TmExtend.toUtc;
 import static ilarkesto.core.base.Str.encodeUrlParameter;
 import static ilarkesto.core.base.Str.format;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import ilarkesto.core.time.DateAndTime;
 import static ilarkesto.io.IO.UTF_8;
 import static ilarkesto.io.IO.copyFile;

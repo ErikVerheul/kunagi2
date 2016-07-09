@@ -14,7 +14,7 @@
  */
 package ilarkesto.swing;
 
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import static ilarkesto.io.IO.getScaled;
 import static ilarkesto.io.IO.loadImage;
 import static ilarkesto.io.IO.toBufferedImage;

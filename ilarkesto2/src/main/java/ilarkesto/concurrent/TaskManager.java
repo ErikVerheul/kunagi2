@@ -17,7 +17,7 @@ package ilarkesto.concurrent;
 import static ilarkesto.base.UtlExtend.getRootCause;
 import static ilarkesto.base.UtlExtend.toSet;
 import static ilarkesto.base.UtlExtend.toStringWithType;
-import ilarkesto.core.logging.Log;
+import ilarkesto.logging.Log;
 import static ilarkesto.core.time.Tm.getCurrentTimeMillis;
 import ilarkesto.di.Context;
 import static ilarkesto.di.Context.get;
