@@ -63,8 +63,9 @@ public abstract class GProjectUserConfig
         return (ProjectUserConfig)this;
     }
 
+    //@ToDo: check this bug solution
     public final boolean isProject(scrum.client.project.Project project) {
-        return equalObjects(this.projectId, project);
+        return this.projectId.equals(project.getId());
     }
 
     // --- user ---
@@ -88,8 +89,9 @@ public abstract class GProjectUserConfig
         return (ProjectUserConfig)this;
     }
 
+    //@ToDo: check this bug solution
     public final boolean isUser(scrum.client.admin.User user) {
-        return equalObjects(this.userId, user);
+        return this.userId.equals(user.getId());
     }
 
     // --- color ---
