@@ -13,6 +13,7 @@
 
 package scrum.client.calendar;
 
+import static ilarkesto.core.base.Utl.equalObjects;
 import java.util.*;
 
 import scrum.client.common.*;
