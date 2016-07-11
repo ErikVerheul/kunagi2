@@ -66,6 +66,9 @@ public abstract class AClassGenerator {
 
                 ln();
                 ln("import java.util.*;");
+                for (String im : getStaticImports()) {
+                        ln("import static " + im + ";");
+                }
                 for (String im : getImports()) {
                         ln("import " + im + ";");
                 }
@@ -255,6 +258,10 @@ public abstract class AClassGenerator {
                 return EMPTY_SET;
         }
 
+        protected Set<String> getStaticImports() {
+                return EMPTY_SET;
+        }
+        
         protected Set<String> getImports() {
                 return EMPTY_SET;
         }

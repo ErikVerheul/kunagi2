@@ -94,7 +94,7 @@ public class GwtDaoGenerator extends AClassGenerator {
                         ln("    protected Map<String, " + type + ">", mapVar + " = new HashMap<String, " + type + ">();");
                         ln();
                         ln("    public final void clear" + entity.getName() + "s() {");
-                        ln("        " + Log.class.getName() + ".DEBUG(\"Clearing " + entity.getName() + "s\");");
+                        ln("        " + "DEBUG(\"Clearing " + entity.getName() + "s\");");
                         ln("        " + mapVar + ".clear();");
                         ln("    }");
                         ln();
@@ -123,11 +123,11 @@ public class GwtDaoGenerator extends AClassGenerator {
                         ln("        if (entity == null) {");
                         ln("            entity = new", type + "(data);");
                         ln("            " + mapVar + ".put(id, entity);");
-                        ln("            " + Log.class.getName() + ".DEBUG(\"" + name
+                        ln("            " + "DEBUG(\"" + name
                                 + " received: \" + entity.getId() + \" (\"+entity+\")\");");
                         ln("        } else {");
                         ln("            entity.updateProperties(data);");
-                        ln("            " + Log.class.getName() + ".DEBUG(\"" + name + " updated: \" + entity);");
+                        ln("            " + "DEBUG(\"" + name + " updated: \" + entity);");
                         ln("        }");
                         ln("        return entity;");
                         ln("    }");
@@ -135,7 +135,7 @@ public class GwtDaoGenerator extends AClassGenerator {
                         ln("    public final", type, "get" + name + "(String id) {");
                         ln("        " + type, "ret =", mapVar + ".get(id);");
                         ln("        if (ret == null) {");
-                        ln("            " + Log.class.getName() + ".DEBUG(\"" + name + " :EntityDoesNotExistException in \" + this.getClass().getName());");
+                        ln("            " + "DEBUG(\"" + name + " :EntityDoesNotExistException in \" + this.getClass().getName());");
                         ln("            " + "throw new " + EntityDoesNotExistException.class.getName() + "(id);");
                         ln("        }");
                         ln("        return ret;");
@@ -146,7 +146,7 @@ public class GwtDaoGenerator extends AClassGenerator {
                         ln("        for (String id : ids) {");
                         ln("            " + type + " entity = " + mapVar + ".get(id);");
                         ln("            if (entity == null) {");
-                        ln("              " + Log.class.getName() + ".DEBUG(\"" + name + " :EntityDoesNotExistException in \" + this.getClass().getName());");
+                        ln("              " + "DEBUG(\"" + name + " :EntityDoesNotExistException in \" + this.getClass().getName());");
                         ln("              " + "throw new " + EntityDoesNotExistException.class.getName() + "(id);");
                         ln("            }");
                         ln("            ret.add(entity);");
