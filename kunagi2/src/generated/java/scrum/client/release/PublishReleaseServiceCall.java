@@ -10,6 +10,7 @@ public class PublishReleaseServiceCall extends scrum.client.core.AServiceCall {
         this.releaseId = releaseId;
     }
 
+    @Override
     public void execute(Runnable returnHandler) {
         serviceCaller.onServiceCall(this);
         serviceCaller.getService().publishRelease(serviceCaller.getConversationNumber(), releaseId, new DefaultCallback(this, returnHandler));

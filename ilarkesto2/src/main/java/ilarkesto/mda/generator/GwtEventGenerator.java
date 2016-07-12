@@ -67,7 +67,7 @@ public class GwtEventGenerator extends AJavaClassGenerator implements NodeTypes 
 			out.getter(getType(parameter), parameter.getValue());
 		}
 
-		out.beginMethod("void", "tryToGetHandled", asList("Object handler"));
+		out.beginMethod(false, "void", "tryToGetHandled", asList("Object handler"));
 		out.beginIf("handler instanceof " + event.getValue() + "Handler");
 		if (!event.containsChild(Flag, QUIET_FLAG)) {
 			out.logDebug("\"    \" + handler.getClass().getName() + \".on" + event.getValue() + "(event)\"");

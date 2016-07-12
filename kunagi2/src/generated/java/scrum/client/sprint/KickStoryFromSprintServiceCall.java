@@ -10,6 +10,7 @@ public class KickStoryFromSprintServiceCall extends scrum.client.core.AServiceCa
         this.storyId = storyId;
     }
 
+    @Override
     public void execute(Runnable returnHandler) {
         serviceCaller.onServiceCall(this);
         serviceCaller.getService().kickStoryFromSprint(serviceCaller.getConversationNumber(), storyId, new DefaultCallback(this, returnHandler));

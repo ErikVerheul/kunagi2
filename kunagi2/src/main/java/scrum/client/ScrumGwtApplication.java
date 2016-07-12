@@ -21,7 +21,6 @@ import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootPanel;
 import ilarkesto.core.base.Str;
-import static ilarkesto.core.logging.ClientLog.ERROR;
 import static ilarkesto.core.logging.ClientLog.INFO;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.AGwtApplication;

@@ -16,6 +16,8 @@ package ilarkesto.mda.generator;
 
 import static ilarkesto.base.StrExtend.uppercaseFirstLetter;
 import static ilarkesto.core.base.Str.concat;
+import static ilarkesto.core.logging.ClientLog.DEBUG;
+import static ilarkesto.core.logging.ClientLog.INFO;
 import ilarkesto.logging.Log;
 import static ilarkesto.io.IO.UTF_8;
 import static ilarkesto.io.IO.writeFileIfChanged;
@@ -44,28 +46,12 @@ public class JavaPrinter {
 		ln("// " + text);
 	}
 
-	public void loggerByClassName() {
-		loggerByClassName(className);
-	}
-
-	public void loggerByClassName(String className) {
-		field("protected final static", Log.class.getName(), "LOG", Log.class.getName() + ".get(" + className + ".class)");
-	}
-
 	public void logDebug(String params) {
-		log("debug", params);
+		DEBUG(params);
 	}
 
 	public void logInfo(String params) {
-		log("info", params);
-	}
-
-	public void log(String level, String params) {
-		statement("LOG." + level + "(" + params + ")");
-	}
-
-	public void logger(String name) {
-		field("protected final static", Log.class.getName(), "LOG", Log.class.getName() + ".get(\"" + name + "\")");
+		INFO(params);
 	}
 
 	public void assignment(String var, String value) {
@@ -98,7 +84,7 @@ public class JavaPrinter {
 	}
 
 	public void getter(String type, String name) {
-		beginMethod(type, "get" + uppercaseFirstLetter(name), null);
+		beginMethod(false, type, "get" + uppercaseFirstLetter(name), null);
 		returnStatement(name);
 		endMethod();
 	}
@@ -120,14 +106,15 @@ public class JavaPrinter {
 	}
 
 	public void beginProcedure(String name, List<String> parameters) {
-		beginMethod("void", name, parameters);
+		beginMethod(true, "void", name, parameters);
 	}
 
 	public void beginToStringMethod() {
-		beginMethod("String", "toString", null);
+		beginMethod(false, "String", "toString", null);
 	}
 
-	public void beginMethod(String returnType, String name, List<String> parameters) {
+	public void beginMethod(boolean override, String returnType, String name, List<String> parameters) {
+                if (override) ln("@Override");
 		s("public " + returnType + " " + name + "(");
 		if (parameters != null && !parameters.isEmpty()) {
                         s(concat(parameters, ", "));
@@ -267,7 +254,7 @@ public class JavaPrinter {
 	}
 
 	public void beginConstructor(List<String> parameters) {
-		beginMethod("", className, parameters);
+		beginMethod(false, "", className, parameters);
 	}
 
 	public void endConstructor() {

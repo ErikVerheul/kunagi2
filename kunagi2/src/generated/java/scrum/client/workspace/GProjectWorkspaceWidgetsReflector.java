@@ -4,6 +4,7 @@ package scrum.client.workspace;
 
 public class GProjectWorkspaceWidgetsReflector implements ilarkesto.core.scope.ComponentReflector<ProjectWorkspaceWidgets> {
 
+    @Override
     public void injectComponents(ProjectWorkspaceWidgets component, ilarkesto.core.scope.Scope scope) {
         component.app = (scrum.client.ScrumGwtApplication) scope.getComponent("app");
         component.dao = (scrum.client.Dao) scope.getComponent("dao");
@@ -12,10 +13,12 @@ public class GProjectWorkspaceWidgetsReflector implements ilarkesto.core.scope.C
         component.user = (scrum.client.admin.User) scope.getComponent("user");
     }
 
+    @Override
     public void callInitializationMethods(ProjectWorkspaceWidgets component) {
         component.initialize();
     }
 
+    @Override
     public void outjectComponents(ProjectWorkspaceWidgets component, ilarkesto.core.scope.Scope scope) {
     }
 

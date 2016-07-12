@@ -13,7 +13,6 @@
 
 package scrum.client.project;
 
-import static ilarkesto.core.logging.ClientLog.DEBUG;
 import java.util.*;
 
 public abstract class GOpenProjectAction
@@ -23,7 +22,6 @@ public abstract class GOpenProjectAction
 
     public GOpenProjectAction(scrum.client.project.Project project) {
         this.project = project;
-        DEBUG("GOpenProjectAction:Opening project: " + project.getShortDescription());
     }
 
     @Override
@@ -33,7 +31,6 @@ public abstract class GOpenProjectAction
 
     @Override
     public String getId() {
-        DEBUG("GOpenProjectAction:getId: " + ilarkesto.core.base.Str.getSimpleName(getClass()) + '_' + ilarkesto.core.base.Str.toHtmlId(project));
         return ilarkesto.core.base.Str.getSimpleName(getClass()) + '_' + ilarkesto.core.base.Str.toHtmlId(project);
     }
 

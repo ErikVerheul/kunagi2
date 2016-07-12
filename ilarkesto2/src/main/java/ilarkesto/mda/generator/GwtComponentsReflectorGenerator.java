@@ -72,7 +72,7 @@ public class GwtComponentsReflectorGenerator extends AJavaClassGenerator impleme
 	}
 
 	private void printCreateMethod(JavaPrinter out, Node component) {
-		out.beginMethod(ComponentReflector.class.getName(), "create" + component.getValue() + "Reflector", null);
+		out.beginMethod(false,ComponentReflector.class.getName(), "create" + component.getValue() + "Reflector", null);
 		out.returnStatement("new " + getReflectorType(component) + "()");
 		out.endMethod();
 	}

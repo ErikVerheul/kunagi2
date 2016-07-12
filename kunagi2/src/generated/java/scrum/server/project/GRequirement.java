@@ -14,7 +14,6 @@
 package scrum.server.project;
 
 import java.util.*;
-import ilarkesto.logging.Log;
 import ilarkesto.persistence.ADatob;
 import ilarkesto.persistence.AEntity;
 import ilarkesto.persistence.AStructure;

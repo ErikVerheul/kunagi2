@@ -15,46 +15,56 @@
 package ilarkesto.mda.legacy.generator;
 
 import ilarkesto.mda.legacy.model.BeanModel;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class GwtEntityTemplateGenerator extends ABeanGenerator<BeanModel> {
 
-	public GwtEntityTemplateGenerator(BeanModel bean) {
-		super(bean);
-	}
+    public GwtEntityTemplateGenerator(BeanModel bean) {
+        super(bean);
+    }
 
-	@Override
-	protected final String getName() {
-		return bean.getName();
-	}
+    @Override
+    protected final String getName() {
+        return bean.getName();
+    }
 
-	@Override
-	protected final boolean isInterface() {
-		return false;
-	}
+    @Override
+    protected final boolean isInterface() {
+        return false;
+    }
 
-	@Override
-	protected void writeContent() {
-		toString();
-	}
+    @Override
+    protected void writeContent() {
+        toString();
+    }
 
-	@Override
-	protected final String getSuperclass() {
-		return "G" + bean.getName();
-	}
+    @Override
+    protected final String getSuperclass() {
+        return "G" + bean.getName();
+    }
 
-	@Override
-	protected final boolean isAbstract() {
-		return bean.isAbstract();
-	}
+    @Override
+    protected final boolean isAbstract() {
+        return bean.isAbstract();
+    }
 
-	@Override
-	protected boolean isOverwrite() {
-		return false;
-	}
+    @Override
+    protected boolean isOverwrite() {
+        return false;
+    }
 
-	@Override
-	protected String getPackage() {
-		return super.getPackage().replaceAll(".server.", ".client.");
-	}
+    @Override
+    protected String getPackage() {
+        return super.getPackage().replaceAll(".server.", ".client.");
+    }
+
+    @Override
+    protected Set<String> getStaticImports() {
+        Set<String> result = new LinkedHashSet<>();
+        result.add("ilarkesto.core.base.Utl.equalObjects");
+        result.add("ilarkesto.core.logging.ClientLog.*");
+        return result;
+    }
 
 }

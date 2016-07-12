@@ -577,6 +577,14 @@ public class GwtEntityGenerator extends ABeanGenerator<EntityModel> {
 	protected String getSuperclass() {
 		return "scrum.client.common.AScrumGwtEntity";
 	}
+        
+         @Override
+        protected Set<String> getStaticImports() {
+            Set<String> result = new LinkedHashSet<>();
+            result.add("ilarkesto.core.base.Utl.equalObjects");
+            result.add("ilarkesto.core.logging.ClientLog.*");
+            return result;
+        }
 
 	@Override
 	protected Set<String> getImports() {

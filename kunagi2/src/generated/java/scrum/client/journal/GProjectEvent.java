@@ -13,9 +13,9 @@
 
 package scrum.client.journal;
 
-import static ilarkesto.core.base.Utl.equalObjects;
 import java.util.*;
-
+import static ilarkesto.core.base.Utl.equalObjects;
+import static ilarkesto.core.logging.ClientLog.*;
 import scrum.client.common.*;
 import ilarkesto.gwt.client.*;
 

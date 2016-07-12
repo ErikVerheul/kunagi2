@@ -18,7 +18,6 @@ import edu.umd.cs.findbugs.annotations.SuppressWarnings;
 import ilarkesto.base.Reflect;
 import static ilarkesto.base.StrExtend.lowercaseFirstLetter;
 import static ilarkesto.base.StrExtend.uppercaseFirstLetter;
-import ilarkesto.logging.Log;
 import ilarkesto.mda.legacy.model.BeanModel;
 import ilarkesto.mda.legacy.model.CompositeModel;
 import ilarkesto.mda.legacy.model.DependencyModel;
@@ -167,28 +166,11 @@ public abstract class ABeanGenerator<B extends BeanModel> extends AClassGenerato
 	protected boolean isInterface() {
 		return false;
 	}
-        
-        @Override
-        protected Set<String> getStaticImports() {
-            Set<String> result = new LinkedHashSet<>();
-            result.add("ilarkesto.core.base.Utl.equalObjects");
-            result.add("ilarkesto.core.logging.ClientLog.ERROR");
-            result.add("ilarkesto.core.logging.ClientLog.DEBUG");
-            result.add("ilarkesto.core.logging.ClientLog.WARN");
-            result.add("ilarkesto.core.logging.ClientLog.INFO");
-            return result;
-        }
 
 	@Override
 	protected Set<String> getImports() {
 		Set<String> result = new LinkedHashSet<>();
 		result.addAll(super.getImports());
-		// result.add("ilarkesto.persistence.*");
-//		result.add(Log.class.getName());
-		// result.add("ilarkesto.base.*");
-		// result.add("ilarkesto.base.time.*");
-		// result.add("ilarkesto.auth.*");
-		// result.add(AEntity.class.getName());
 		return result;
 	}
 

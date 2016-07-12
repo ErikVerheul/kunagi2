@@ -13,9 +13,9 @@
 
 package scrum.client.admin;
 
-import static ilarkesto.core.base.Utl.equalObjects;
 import java.util.*;
-
+import static ilarkesto.core.base.Utl.equalObjects;
+import static ilarkesto.core.logging.ClientLog.*;
 import scrum.client.common.*;
 import ilarkesto.gwt.client.*;
 
@@ -64,9 +64,8 @@ public abstract class GProjectUserConfig
         return (ProjectUserConfig)this;
     }
 
-    //@ToDo: check this bug solution
     public final boolean isProject(scrum.client.project.Project project) {
-        return this.projectId.equals(project.getId());
+        return equalObjects(this.projectId, project);
     }
 
     // --- user ---
@@ -90,9 +89,8 @@ public abstract class GProjectUserConfig
         return (ProjectUserConfig)this;
     }
 
-    //@ToDo: check this bug solution
     public final boolean isUser(scrum.client.admin.User user) {
-        return this.userId.equals(user.getId());
+        return equalObjects(this.userId, user);
     }
 
     // --- color ---

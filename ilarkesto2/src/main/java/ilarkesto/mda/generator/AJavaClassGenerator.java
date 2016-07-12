@@ -29,8 +29,8 @@ import java.util.List;
 
 public abstract class AJavaClassGenerator {
 
-	private String srcPath;
-	private boolean overwriteAllowed;
+	private final String srcPath;
+	private final boolean overwriteAllowed;
 
 	protected abstract void printCode(JavaPrinter out);
 

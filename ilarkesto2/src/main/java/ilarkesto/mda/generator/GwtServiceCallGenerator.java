@@ -70,7 +70,7 @@ public class GwtServiceCallGenerator extends AJavaClassGenerator implements Node
 			callParameters.append(parameter.getValue()).append(", ");
 		}
 
-		out.beginMethod("void", "execute", asList("Runnable returnHandler"));
+		out.beginMethod(true, "void", "execute", asList("Runnable returnHandler"));
 		out.statement("serviceCaller.onServiceCall(this)");
 		out.statement("serviceCaller.getService()." + lowercaseFirstLetter(call.getValue())
 				+ "(serviceCaller.getConversationNumber(), " + callParameters
@@ -80,7 +80,7 @@ public class GwtServiceCallGenerator extends AJavaClassGenerator implements Node
 		Node dispensable = call.getChildByType(Dispensable);
 		if (dispensable != null) {
 			out.annotationOverride();
-			out.beginMethod("boolean", "isDispensable", null);
+			out.beginMethod(false, "boolean", "isDispensable", null);
 			out.returnStatement(dispensable.getValue());
 			out.endMethod();
 		}

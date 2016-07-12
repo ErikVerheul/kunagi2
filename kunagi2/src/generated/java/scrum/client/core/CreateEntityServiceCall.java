@@ -6,13 +6,14 @@ public class CreateEntityServiceCall extends scrum.client.core.AServiceCall {
 
     private String type;
 
-    private java.util.Map properties;
+    private java.util.Map<String, Object> properties;
 
-    public  CreateEntityServiceCall(String type, java.util.Map properties) {
+    public  CreateEntityServiceCall(String type, java.util.Map<String, Object> properties) {
         this.type = type;
         this.properties = properties;
     }
 
+    @Override
     public void execute(Runnable returnHandler) {
         serviceCaller.onServiceCall(this);
         serviceCaller.getService().createEntity(serviceCaller.getConversationNumber(), type, properties, new DefaultCallback(this, returnHandler));

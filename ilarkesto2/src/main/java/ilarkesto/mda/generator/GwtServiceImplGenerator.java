@@ -38,8 +38,6 @@ public class GwtServiceImplGenerator extends AJavaClassGenerator implements Node
 		out.beginClass(true, "G" + module.getValue() + "ServiceImpl", AGwtServiceImpl.class.getName(),
 			asList(getGwtPackageName() + "." + module.getValue() + "Service"));
 
-		out.loggerByClassName(module.getValue() + "ServiceImpl");
-
 		List<Node> calls = module.getChildrenByTypeRecursive(ServiceCall);
 		for (Node call : calls) {
 			if (call.getValue().equals("StartConversation")) {
@@ -58,7 +56,7 @@ public class GwtServiceImplGenerator extends AJavaClassGenerator implements Node
 			out.annotationOverride();
 			List<String> params = getParameterTypesAndNames(call, "String");
 			params.add(0, "int conversationNumber");
-			out.beginMethod(getGwtPackageName() + ".DataTransferObject", lowercaseFirstLetter(call.getValue()),
+			out.beginMethod(false, getGwtPackageName() + ".DataTransferObject", lowercaseFirstLetter(call.getValue()),
 				params);
 			if (!call.getValue().equals("Ping")) {
 				out.logDebug("\"Handling service call: " + call.getValue() + "\"");

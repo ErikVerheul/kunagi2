@@ -4,8 +4,6 @@ package scrum.server;
 
 public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtServiceImpl implements scrum.client.ScrumService {
 
-    protected final static ilarkesto.logging.Log LOG = ilarkesto.logging.Log.get(ScrumServiceImpl.class);
-
     public abstract void onChangePassword(GwtConversation conversation, String newPassword, String oldPassword);
 
     public abstract void onLogout(GwtConversation conversation);
@@ -80,7 +78,6 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     @Override
     public scrum.client.DataTransferObject changePassword(int conversationNumber, String newPassword, String oldPassword) {
-        LOG.debug("Handling service call: ChangePassword");
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -107,7 +104,6 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     @Override
     public scrum.client.DataTransferObject logout(int conversationNumber) {
-        LOG.debug("Handling service call: Logout");
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -134,7 +130,6 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     @Override
     public scrum.client.DataTransferObject resetPassword(int conversationNumber, String userId) {
-        LOG.debug("Handling service call: ResetPassword");
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -161,7 +156,6 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     @Override
     public scrum.client.DataTransferObject sendTestEmail(int conversationNumber) {
-        LOG.debug("Handling service call: SendTestEmail");
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -188,7 +182,6 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     @Override
     public scrum.client.DataTransferObject testLdap(int conversationNumber) {
-        LOG.debug("Handling service call: TestLdap");
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -215,7 +208,6 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     @Override
     public scrum.client.DataTransferObject updateSystemMessage(int conversationNumber, scrum.client.admin.SystemMessage systemMessage) {
-        LOG.debug("Handling service call: UpdateSystemMessage");
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -242,7 +234,6 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     @Override
     public scrum.client.DataTransferObject requestComments(int conversationNumber, String parentId) {
-        LOG.debug("Handling service call: RequestComments");
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -269,7 +260,6 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     @Override
     public scrum.client.DataTransferObject requestForum(int conversationNumber, boolean all) {
-        LOG.debug("Handling service call: RequestForum");
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -322,7 +312,6 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     @Override
     public scrum.client.DataTransferObject touchLastActivity(int conversationNumber) {
-        LOG.debug("Handling service call: TouchLastActivity");
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -348,8 +337,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
     }
 
     @Override
-    public scrum.client.DataTransferObject changeProperties(int conversationNumber, String entityId, java.util.Map properties) {
-        LOG.debug("Handling service call: ChangeProperties");
+    public scrum.client.DataTransferObject changeProperties(int conversationNumber, String entityId, java.util.Map<String, Object> properties) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -375,8 +363,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
     }
 
     @Override
-    public scrum.client.DataTransferObject createEntity(int conversationNumber, String type, java.util.Map properties) {
-        LOG.debug("Handling service call: CreateEntity");
+    public scrum.client.DataTransferObject createEntity(int conversationNumber, String type, java.util.Map<String, Object> properties) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -403,7 +390,6 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     @Override
     public scrum.client.DataTransferObject deleteEntity(int conversationNumber, String entityId) {
-        LOG.debug("Handling service call: DeleteEntity");
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -430,7 +416,6 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     @Override
     public scrum.client.DataTransferObject requestEntity(int conversationNumber, String entityId) {
-        LOG.debug("Handling service call: RequestEntity");
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -457,7 +442,6 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     @Override
     public scrum.client.DataTransferObject requestEntityByReference(int conversationNumber, String reference) {
-        LOG.debug("Handling service call: RequestEntityByReference");
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -484,7 +468,6 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     @Override
     public scrum.client.DataTransferObject sleep(int conversationNumber, long millis) {
-        LOG.debug("Handling service call: Sleep");
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -511,7 +494,6 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     @Override
     public scrum.client.DataTransferObject activateRequirementEstimationVoting(int conversationNumber, String requirementId) {
-        LOG.debug("Handling service call: ActivateRequirementEstimationVoting");
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -538,7 +520,6 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     @Override
     public scrum.client.DataTransferObject requestRequirementEstimationVotes(int conversationNumber, String requirementId) {
-        LOG.debug("Handling service call: RequestRequirementEstimationVotes");
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -565,7 +546,6 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     @Override
     public scrum.client.DataTransferObject requestImpediments(int conversationNumber) {
-        LOG.debug("Handling service call: RequestImpediments");
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -592,7 +572,6 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     @Override
     public scrum.client.DataTransferObject convertIssueToStory(int conversationNumber, String issueId) {
-        LOG.debug("Handling service call: ConvertIssueToStory");
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -619,7 +598,6 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     @Override
     public scrum.client.DataTransferObject requestAcceptedIssues(int conversationNumber) {
-        LOG.debug("Handling service call: RequestAcceptedIssues");
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -646,7 +624,6 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     @Override
     public scrum.client.DataTransferObject requestClosedIssues(int conversationNumber) {
-        LOG.debug("Handling service call: RequestClosedIssues");
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -673,7 +650,6 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     @Override
     public scrum.client.DataTransferObject requestReleaseIssues(int conversationNumber, String releaseId) {
-        LOG.debug("Handling service call: RequestReleaseIssues");
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -700,7 +676,6 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     @Override
     public scrum.client.DataTransferObject sendIssueReplyEmail(int conversationNumber, String issueId, String from, String to, String subject, String text) {
-        LOG.debug("Handling service call: SendIssueReplyEmail");
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -727,7 +702,6 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     @Override
     public scrum.client.DataTransferObject requestChanges(int conversationNumber, String parentId) {
-        LOG.debug("Handling service call: RequestChanges");
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -754,7 +728,6 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     @Override
     public scrum.client.DataTransferObject closeProject(int conversationNumber) {
-        LOG.debug("Handling service call: CloseProject");
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -781,7 +754,6 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     @Override
     public scrum.client.DataTransferObject createExampleProject(int conversationNumber) {
-        LOG.debug("Handling service call: CreateExampleProject");
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -808,7 +780,6 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     @Override
     public scrum.client.DataTransferObject selectProject(int conversationNumber, String projectId) {
-        LOG.debug("Handling service call: SelectProject");
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -835,7 +806,6 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     @Override
     public scrum.client.DataTransferObject updateProjectHomepage(int conversationNumber) {
-        LOG.debug("Handling service call: UpdateProjectHomepage");
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -862,7 +832,6 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     @Override
     public scrum.client.DataTransferObject publishRelease(int conversationNumber, String releaseId) {
-        LOG.debug("Handling service call: PublishRelease");
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -889,7 +858,6 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     @Override
     public scrum.client.DataTransferObject requestRisks(int conversationNumber) {
-        LOG.debug("Handling service call: RequestRisks");
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -916,7 +884,6 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     @Override
     public scrum.client.DataTransferObject search(int conversationNumber, String text) {
-        LOG.debug("Handling service call: Search");
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -943,7 +910,6 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     @Override
     public scrum.client.DataTransferObject kickStoryFromSprint(int conversationNumber, String storyId) {
-        LOG.debug("Handling service call: KickStoryFromSprint");
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -970,7 +936,6 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     @Override
     public scrum.client.DataTransferObject pullStoryToSprint(int conversationNumber, String storyId) {
-        LOG.debug("Handling service call: PullStoryToSprint");
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -997,7 +962,6 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     @Override
     public scrum.client.DataTransferObject requestHistory(int conversationNumber) {
-        LOG.debug("Handling service call: RequestHistory");
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -1024,7 +988,6 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     @Override
     public scrum.client.DataTransferObject switchToNextSprint(int conversationNumber) {
-        LOG.debug("Handling service call: SwitchToNextSprint");
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;

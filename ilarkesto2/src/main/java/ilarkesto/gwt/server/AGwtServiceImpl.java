@@ -30,7 +30,7 @@ import javax.servlet.ServletException;
  */
 public abstract class AGwtServiceImpl extends RemoteServiceServlet {
 
-	private static final Log LOG = Log.get(AGwtServiceImpl.class);
+	public static final Log LOG = Log.get(AGwtServiceImpl.class);
 
 	protected abstract Class<? extends AWebApplication> getWebApplicationClass();
 

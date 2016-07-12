@@ -46,6 +46,7 @@ public class GScrumComponentsReflector implements ilarkesto.core.scope.Component
 
     protected ilarkesto.core.scope.ComponentReflector usersWorkspaceWidgetsReflector = createUsersWorkspaceWidgetsReflector();
 
+    @Override
     public void injectComponents(Object component, ilarkesto.core.scope.Scope scope) {
         if (component instanceof scrum.client.admin.Auth) authReflector.injectComponents(component, scope);
         if (component instanceof scrum.client.admin.SystemMessageManager) systemMessageManagerReflector.injectComponents(component, scope);
@@ -70,6 +71,7 @@ public class GScrumComponentsReflector implements ilarkesto.core.scope.Component
         if (component instanceof scrum.client.workspace.UsersWorkspaceWidgets) usersWorkspaceWidgetsReflector.injectComponents(component, scope);
     }
 
+    @Override
     public void callInitializationMethods(Object component) {
         if (component instanceof scrum.client.admin.Auth) authReflector.callInitializationMethods(component);
         if (component instanceof scrum.client.admin.SystemMessageManager) systemMessageManagerReflector.callInitializationMethods(component);
@@ -94,6 +96,7 @@ public class GScrumComponentsReflector implements ilarkesto.core.scope.Component
         if (component instanceof scrum.client.workspace.UsersWorkspaceWidgets) usersWorkspaceWidgetsReflector.callInitializationMethods(component);
     }
 
+    @Override
     public void outjectComponents(Object component, ilarkesto.core.scope.Scope scope) {
         if (component instanceof scrum.client.admin.Auth) authReflector.outjectComponents(component, scope);
         if (component instanceof scrum.client.admin.SystemMessageManager) systemMessageManagerReflector.outjectComponents(component, scope);

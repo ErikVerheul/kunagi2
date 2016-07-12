@@ -10,6 +10,7 @@ public class RequestEntityServiceCall extends scrum.client.core.AServiceCall {
         this.entityId = entityId;
     }
 
+    @Override
     public void execute(Runnable returnHandler) {
         serviceCaller.onServiceCall(this);
         serviceCaller.getService().requestEntity(serviceCaller.getConversationNumber(), entityId, new DefaultCallback(this, returnHandler));

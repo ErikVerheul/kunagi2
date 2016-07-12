@@ -14,7 +14,6 @@
  */
 package ilarkesto.gwt.client.editor;
 
-import ilarkesto.core.base.Str;
 import static ilarkesto.core.base.Str.getSimpleName;
 
 public abstract class AFieldModel<T> {

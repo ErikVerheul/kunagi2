@@ -136,13 +136,6 @@ public abstract class AGwtEntity {
 		return value == null ? null : value.toString();
 	}
 
-//	protected final boolean equalObjects(Object a, Object b) {		
-//		if (a == null || b == null) {
-//                        return false;
-//                }
-//		return a.equals(b);
-//	}
-
 	protected void addUndo(AEditorModel editorModel, Object oldValue) {
 		Gwt.getUndoManager().add(new EditorModelUndo(editorModel, oldValue));
 	}

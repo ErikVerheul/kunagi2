@@ -14,7 +14,6 @@
 package scrum.server.risks;
 
 import java.util.*;
-import ilarkesto.logging.Log;
 import ilarkesto.auth.Auth;
 import ilarkesto.base.Cache;
 import ilarkesto.persistence.EntityEvent;

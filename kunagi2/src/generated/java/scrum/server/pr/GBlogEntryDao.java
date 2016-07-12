@@ -14,7 +14,6 @@
 package scrum.server.pr;
 
 import java.util.*;
-import ilarkesto.logging.Log;
 import ilarkesto.auth.Auth;
 import ilarkesto.base.Cache;
 import ilarkesto.persistence.EntityEvent;

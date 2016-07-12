@@ -39,8 +39,6 @@ public class GwtComponentBaseGenerator extends AJavaClassGenerator implements No
 		out.package_(getPackageName());
 		out.beginClass(true, getClassName(), null, null);
 
-		out.loggerByClassName(component.getValue());
-
 		for (Node initProc : component.getChildrenByType(InitializationProcedure)) {
 			printInitializationProcedure(out, initProc);
 		}

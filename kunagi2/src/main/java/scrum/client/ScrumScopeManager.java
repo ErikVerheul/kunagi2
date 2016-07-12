@@ -19,7 +19,6 @@ import static ilarkesto.core.logging.ClientLog.INFO;
 import ilarkesto.core.scope.CascadingScope;
 import ilarkesto.core.scope.NonConcurrentScopeManager;
 import ilarkesto.core.scope.Scope;
-import ilarkesto.core.scope.ScopeManager;
 import ilarkesto.gwt.client.AGwtApplication;
 import ilarkesto.gwt.client.ObjectMappedFlowPanel;
 import scrum.client.admin.Auth;
@@ -49,96 +48,100 @@ import scrum.client.workspace.UsersWorkspaceWidgets;
 
 public class ScrumScopeManager {
 
-	private static NonConcurrentScopeManager scopeManager;
-	private static CascadingScope appScope;
-	private static CascadingScope userScope;
-	private static CascadingScope projectScope;
+    private static NonConcurrentScopeManager scopeManager;
+    private static CascadingScope appScope;
+    private static CascadingScope userScope;
+    private static CascadingScope projectScope;
 
-	static synchronized void initialize() {
-		Dao dao = Dao.get();
-		ScrumGwtApplication app = (ScrumGwtApplication) AGwtApplication.get();
+    static synchronized void initialize() {
+        Dao dao = Dao.get();
+        ScrumGwtApplication app = (ScrumGwtApplication) AGwtApplication.get();
 
-		scopeManager = NonConcurrentScopeManager.createCascadingScopeInstance("app", new ScrumComponentsReflector());
-		appScope = (CascadingScope) scopeManager.getScope();
-		Scope scope = appScope;
+        scopeManager = NonConcurrentScopeManager.createCascadingScopeInstance("app", new ScrumComponentsReflector());
+        appScope = (CascadingScope) scopeManager.getScope();
+        Scope scope = appScope;
 
-		scope.putComponent("app", app);
-		scope.putComponent(dao);
-		scope.putComponent(new ServiceCaller());
-		scope.putComponent(new Pinger());
-		scope.putComponent(new Ui());
-		scope.putComponent(new SystemMessageManager());
-		scope.putComponent(new Auth());
-		scope.putComponent(new Navigator());
-		scope.putComponent(new ServerErrorManager());
-		scope.putComponent(new RichtextAutosaver());
+        scope.putComponent("app", app);
+        scope.putComponent(dao);
+        scope.putComponent(new ServiceCaller());
+        scope.putComponent(new Pinger());
+        scope.putComponent(new Ui());
+        scope.putComponent(new SystemMessageManager());
+        scope.putComponent(new Auth());
+        scope.putComponent(new Navigator());
+        scope.putComponent(new ServerErrorManager());
+        scope.putComponent(new RichtextAutosaver());
 
-		appScope.wireComponents();
-	}
+        appScope.wireComponents();
+    }
 
-	public static void createUserScope(User user) {
-		assert user != null;
+    public static void createUserScope(User user) {
+        if (user == null) {
+            ERROR("user == null!");
+        }
 
-		userScope = appScope.createScope("user");
-		Scope scope = scopeManager.setScope(userScope);
+        userScope = appScope.createScope("user");
+        Scope scope = scopeManager.setScope(userScope);
 
-		scope.putComponent(user);
-		scope.putComponent(appScope.getComponent(Dao.class).getSystemConfig());
-		scope.putComponent(new UsersWorkspaceWidgets());
-		scope.putComponent(new Localizer());
+        scope.putComponent(user);
+        scope.putComponent(appScope.getComponent(Dao.class).getSystemConfig());
+        scope.putComponent(new UsersWorkspaceWidgets());
+        scope.putComponent(new Localizer());
 
-		userScope.wireComponents();
-	}
+        userScope.wireComponents();
+    }
 
-	public static void createProjectScope(Project project) {
-                if (project == null) ERROR("project == null!");
-		projectScope = userScope.createScope("project");
-		Scope scope = scopeManager.setScope(projectScope);
+    public static void createProjectScope(Project project) {
+        if (project == null) {
+            ERROR("project == null!");
+        }
+        projectScope = userScope.createScope("project");
+        Scope scope = scopeManager.setScope(projectScope);
 
-                INFO("project");
-		scope.putComponent(project);
-                 INFO("project.getUserConfig(userScope.getComponent(User.class))");
-		scope.putComponent(project.getUserConfig(userScope.getComponent(User.class)));
-                 INFO("new ProjectWorkspaceWidgets()");
-		scope.putComponent(new ProjectWorkspaceWidgets());
-                 INFO("new Chat()");
-		scope.putComponent(new Chat());
-                 INFO("new ChangeHistoryManager()");
-		scope.putComponent(new ChangeHistoryManager());
-                 INFO("new Wiki()");
-		scope.putComponent(new Wiki());
-                 INFO("new Calendar()");
-		scope.putComponent(new Calendar());
-                 INFO("new Undo()");
-		scope.putComponent(new Undo());
-                 INFO("new DndManager()");
-		scope.putComponent(new DndManager());
-                 INFO("new Uploader()");
-		scope.putComponent(new Uploader());
-                 INFO("new Search()");
-		scope.putComponent(new Search());
-                 INFO("new UsersStatus()");
-		scope.putComponent(new UsersStatus());
-                 INFO("new IssueManager()");
-		scope.putComponent(new IssueManager());
+        INFO("createProjectScope:putComponent project");
+        scope.putComponent(project);
+        INFO("createProjectScope:putComponent project.getUserConfig(userScope.getComponent(User.class))");
+        scope.putComponent(project.getUserConfig(userScope.getComponent(User.class)));
+        INFO("createProjectScope:putComponent new ProjectWorkspaceWidgets()");
+        scope.putComponent(new ProjectWorkspaceWidgets());
+        INFO("createProjectScope:putComponent new Chat()");
+        scope.putComponent(new Chat());
+        INFO("createProjectScope:putComponent new ChangeHistoryManager()");
+        scope.putComponent(new ChangeHistoryManager());
+        INFO("createProjectScope:putComponent new Wiki()");
+        scope.putComponent(new Wiki());
+        INFO("createProjectScope:putComponent new Calendar()");
+        scope.putComponent(new Calendar());
+        INFO("createProjectScope:putComponent new Undo()");
+        scope.putComponent(new Undo());
+        INFO("createProjectScope:putComponent new DndManager()");
+        scope.putComponent(new DndManager());
+        INFO("createProjectScope:putComponent new Uploader()");
+        scope.putComponent(new Uploader());
+        INFO("createProjectScope:putComponent new Search()");
+        scope.putComponent(new Search());
+        INFO("createProjectScope:putComponent new UsersStatus()");
+        scope.putComponent(new UsersStatus());
+        INFO("createProjectScope:putComponent new IssueManager()");
+        scope.putComponent(new IssueManager());
 
-		projectScope.wireComponents();
-	}
+        projectScope.wireComponents();
+    }
 
-	public static void destroyProjectScope() {
-		Scope.get().getComponent(Ui.class).lock("Closing project...");
-		new CloseProjectServiceCall().execute();
-		appScope.getComponent(Dao.class).clearProjectEntities();
-		ObjectMappedFlowPanel.objectHeights.clear();
-		projectScope = null;
-		scopeManager.setScope(userScope);
-	}
+    public static void destroyProjectScope() {
+        Scope.get().getComponent(Ui.class).lock("Closing project...");
+        new CloseProjectServiceCall().execute();
+        appScope.getComponent(Dao.class).clearProjectEntities();
+        ObjectMappedFlowPanel.objectHeights.clear();
+        projectScope = null;
+        scopeManager.setScope(userScope);
+    }
 
-	public static boolean isProjectScope() {
-		return projectScope != null;
-	}
+    public static boolean isProjectScope() {
+        return projectScope != null;
+    }
 
-	public static Project getProject() {
-		return (Project) projectScope.getComponent("project");
-	}
+    public static Project getProject() {
+        return (Project) projectScope.getComponent("project");
+    }
 }

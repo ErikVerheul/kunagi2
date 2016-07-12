@@ -4,6 +4,7 @@ package scrum.client.collaboration;
 
 public class GUsersStatusReflector implements ilarkesto.core.scope.ComponentReflector<UsersStatus> {
 
+    @Override
     public void injectComponents(UsersStatus component, ilarkesto.core.scope.Scope scope) {
         component.app = (scrum.client.ScrumGwtApplication) scope.getComponent("app");
         component.auth = (scrum.client.admin.Auth) scope.getComponent("auth");
@@ -11,9 +12,11 @@ public class GUsersStatusReflector implements ilarkesto.core.scope.ComponentRefl
         component.project = (scrum.client.project.Project) scope.getComponent("project");
     }
 
+    @Override
     public void callInitializationMethods(UsersStatus component) {
     }
 
+    @Override
     public void outjectComponents(UsersStatus component, ilarkesto.core.scope.Scope scope) {
     }
 

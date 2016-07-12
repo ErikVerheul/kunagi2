@@ -17,17 +17,16 @@ package ilarkesto.mda.model;
 import static java.lang.String.valueOf;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import static java.util.UUID.randomUUID;
 
 public class Node implements Comparable<Node> {
 
 	private String id;
-	private Model model;
-	private Node parent;
-	private String type;
+	private final Model model;
+	private final Node parent;
+	private final String type;
 	private String value;
-	private List<Node> children = new ArrayList<>();
+	private final List<Node> children = new ArrayList<>();
 	private boolean transient_;
 
 	Node(Model model, String id, Node parent, String type, String value) {
