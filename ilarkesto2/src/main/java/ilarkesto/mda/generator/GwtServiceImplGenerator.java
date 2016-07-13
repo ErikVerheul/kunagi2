@@ -35,6 +35,7 @@ public class GwtServiceImplGenerator extends AJavaClassGenerator implements Node
 	@Override
 	protected void printCode(JavaPrinter out) {
 		out.package_(getServerPackageName());
+                out.imports(asList("ilarkesto.webapp.GwtConversationDoesNotExist"));
 		out.beginClass(true, "G" + module.getValue() + "ServiceImpl", AGwtServiceImpl.class.getName(),
 			asList(getGwtPackageName() + "." + module.getValue() + "Service"));
 
@@ -66,7 +67,7 @@ public class GwtServiceImplGenerator extends AJavaClassGenerator implements Node
 			out.statement("GwtConversation conversation = null");
 			out.beginTry();
 			out.statement("conversation = session.getGwtConversation(conversationNumber)");
-			out.beginCatchThrowable();
+			out.catchConversationDoesNotExist();
 			out.statement("LOG.info(\"Getting conversation failed:\", conversationNumber)");
 			out.statement(getGwtPackageName() + ".DataTransferObject dto = new " + getGwtPackageName()
 					+ ".DataTransferObject()");
@@ -81,7 +82,7 @@ public class GwtServiceImplGenerator extends AJavaClassGenerator implements Node
 			parameterNames.add(0, "conversation");
 			out.statement("on" + call.getValue() + "(" + concat(parameterNames, ", ") + ")");
 			out.statement("onServiceMethodExecuted(context)");
-			out.beginCatchThrowable();
+			out.beginCatchRuntimeException();
 			out.statement("handleServiceMethodException(conversationNumber, \"" + call.getValue() + "\", ex)");
 			out.endCatch();
 			out.returnStatement("(" + getGwtPackageName() + ".DataTransferObject) conversation.popNextData()");

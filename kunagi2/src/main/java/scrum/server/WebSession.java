@@ -22,6 +22,7 @@ import ilarkesto.di.Context;
 import ilarkesto.gwt.server.AGwtConversation;
 import ilarkesto.persistence.TransactionService;
 import ilarkesto.webapp.AWebSession;
+import ilarkesto.webapp.GwtConversationDoesNotExist;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -29,58 +30,60 @@ import scrum.server.admin.User;
 
 public class WebSession extends AWebSession {
 
-	private static final Log LOG = Log.get(WebSession.class);
+    private static final Log LOG = Log.get(WebSession.class);
 
-	@In
-	private TransactionService transactionService;
+    @In
+    private TransactionService transactionService;
 
-	private TimePeriod TIMEOUT = new TimePeriod(Tm.HOUR);
-	private User user;
+    private final TimePeriod TIMEOUT = new TimePeriod(Tm.HOUR);
+    private User user;
 
-	public WebSession(Context parentContext, HttpServletRequest initialRequest) {
-		super(parentContext, initialRequest);
-	}
+    public WebSession(Context parentContext, HttpServletRequest initialRequest) {
+        super(parentContext, initialRequest);
+    }
 
-	@Override
-	public GwtConversation getGwtConversation(int conversationNumber) {
-		return (GwtConversation) super.getGwtConversation(conversationNumber);
-	}
+    @Override
+    public GwtConversation getGwtConversation(int conversationNumber) throws GwtConversationDoesNotExist {
+        return (GwtConversation) super.getGwtConversation(conversationNumber);
+    }
 
-	@Override
-	public AGwtConversation createGwtConversation() {
-		GwtConversation gwtConversation = new GwtConversation(this, nextGwtConversationNumber());
-		gwtConversation.setEmoticonDao(ScrumWebApplication.get().getEmoticonDao());
-		gwtConversation.setTransactionService(transactionService);
+    @Override
+    public AGwtConversation createGwtConversation() {
+        GwtConversation gwtConversation = new GwtConversation(this, nextGwtConversationNumber());
+        gwtConversation.setEmoticonDao(ScrumWebApplication.get().getEmoticonDao());
+        gwtConversation.setTransactionService(transactionService);
 
-		if (user != null) gwtConversation.sendUserScopeDataToClient(user);
+        if (user != null) {
+            gwtConversation.sendUserScopeDataToClient(user);
+        }
 
-		return gwtConversation;
-	}
+        return gwtConversation;
+    }
 
-	public void setUser(User user) {
-		LOG.info("User set:", user);
-		this.user = user;
-		getContext().setName(toString());
-	}
+    public void setUser(User user) {
+        LOG.info("User set:", user);
+        this.user = user;
+        getContext().setName(toString());
+    }
 
-	public User getUser() {
-		return user;
-	}
+    public User getUser() {
+        return user;
+    }
 
-	@Override
-	protected void onInvalidate() {
-		setUser(null);
-		super.onInvalidate();
-	}
+    @Override
+    protected void onInvalidate() {
+        setUser(null);
+        super.onInvalidate();
+    }
 
-	@Override
-	protected TimePeriod getTimeout() {
-		return TIMEOUT;
-	}
+    @Override
+    protected TimePeriod getTimeout() {
+        return TIMEOUT;
+    }
 
-	@Override
-	public String toString() {
-		return user == null ? super.toString() : "session:" + user;
-	}
+    @Override
+    public String toString() {
+        return user == null ? super.toString() : "session:" + user;
+    }
 
 }

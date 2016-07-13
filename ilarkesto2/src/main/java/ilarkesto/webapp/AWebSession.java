@@ -55,7 +55,7 @@ public abstract class AWebSession implements Comparable<AWebSession> {
 		touch();
 	}
 
-	public synchronized AGwtConversation getGwtConversation(int conversationNumber) {
+	public synchronized AGwtConversation getGwtConversation(int conversationNumber) throws GwtConversationDoesNotExist {
 		if (conversationNumber == -1) {
 			AGwtConversation conversation = createGwtConversation();
 			gwtConversations.add(conversation);

@@ -14,15 +14,12 @@
  */
 package ilarkesto.mda.generator;
 
-import ilarkesto.base.StrExtend;
 import static ilarkesto.base.StrExtend.lowercaseFirstLetter;
 import ilarkesto.mda.model.Node;
 import ilarkesto.mda.model.NodeByIndexComparator;
 import ilarkesto.mda.model.NodeTypes;
 import java.util.ArrayList;
-import java.util.Arrays;
 import static java.util.Arrays.asList;
-import java.util.Collections;
 import static java.util.Collections.sort;
 import java.util.List;
 

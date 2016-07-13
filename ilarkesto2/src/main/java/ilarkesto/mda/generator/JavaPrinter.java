@@ -204,8 +204,12 @@ public class JavaPrinter {
 		in();
 	}
 
-	public void beginCatchThrowable() {
-		beginCatch("Throwable");
+	public void beginCatchRuntimeException() {
+		beginCatch("RuntimeException");
+	}
+        
+        public void catchConversationDoesNotExist() {
+		beginCatch("GwtConversationDoesNotExist");
 	}
 
 	public void beginCatch(String exceptionType) {
