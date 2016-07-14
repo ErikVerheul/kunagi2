@@ -85,7 +85,7 @@ public final class ActionPerformer {
 		// throw new ActionAbortedException("InterruptedException");
 		// }
 
-		Throwable exception = action.getException();
+		Exception exception = action.getException();
 		if (exception != null) {
 			if (exception instanceof RuntimeException) {
                                 throw (RuntimeException) exception;

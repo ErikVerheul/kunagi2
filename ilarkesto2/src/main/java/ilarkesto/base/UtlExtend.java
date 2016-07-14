@@ -21,7 +21,6 @@ import static java.lang.System.currentTimeMillis;
 import static java.lang.System.out;
 import static java.lang.Thread.getAllStackTraces;
 import java.util.ArrayList;
-import java.util.Arrays;
 import static java.util.Arrays.asList;
 import java.util.Collection;
 import java.util.Comparator;
@@ -115,9 +114,9 @@ public class UtlExtend extends ilarkesto.core.base.Utl {
 		return new Color(parseHex(color.substring(1)));
 	}
 
-	public static Throwable getRootCause(Throwable ex) {
+	public static Exception getRootCause(Exception ex) {
 		Throwable cause = ex.getCause();
-		return cause == null ? ex : getRootCause(cause);
+		return cause == null ? ex : getRootCause((Exception) cause);
 	}
 
 	private static final Random random = new Random(currentTimeMillis());
@@ -150,7 +149,7 @@ public class UtlExtend extends ilarkesto.core.base.Utl {
                 }
 		try {
 			return o.toString();
-		} catch (Throwable ex) {
+		} catch (Exception ex) {
 			return "<toString() error in" + o.getClass().getSimpleName() + ">";
 		}
 	}

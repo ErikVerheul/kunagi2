@@ -232,7 +232,7 @@ public abstract class ADao<E extends AEntity> extends ADatobManager<E> implement
 			try {
 				entity.ensureIntegrity();
 			} catch (EnsureIntegrityCompletedException ex) {
-			} catch (Throwable ex) {
+			} catch (Exception ex) {
 				throw new RuntimeException("Ensuring integrity for " + clazz.getSimpleName() + ":" + entity.getId()
 						+ " failed.", ex);
 			}

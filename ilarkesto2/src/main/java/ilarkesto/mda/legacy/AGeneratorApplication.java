@@ -91,7 +91,7 @@ public abstract class AGeneratorApplication extends AApplication {
 	public final AGeneratorApplication generateClasses() {
 		try {
 			onGeneration();
-		} catch (Throwable ex) {
+		} catch (Exception ex) {
 			LOG.fatal("Generation failed.", ex);
 		}
 		return this;

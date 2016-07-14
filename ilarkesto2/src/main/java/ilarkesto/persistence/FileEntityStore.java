@@ -269,7 +269,7 @@ public class FileEntityStore implements EntityStore {
                                 
                                 try {
                                         loadObject(file, entities, cls, alias);
-                                } catch (Throwable ex) {
+                                } catch (Exception ex) {
                                         throw new RuntimeException("Loading object from " + file + " failed", ex);
                                 }
                         }
@@ -390,7 +390,7 @@ public class FileEntityStore implements EntityStore {
 			Date date;
 			try {
 				date = new Date(name);
-			} catch (Throwable ex) {
+			} catch (Exception ex) {
 				continue;
 			}
 			if (date.isBefore(deadline)) {

@@ -74,7 +74,7 @@ public class CommentServlet extends AKunagiServlet {
 		try {
 			SpamChecker.check(req);
 			message = postComment(projectId, entityId, text, name, email);
-		} catch (Throwable ex) {
+		} catch (Exception ex) {
 			log.error("Posting comment failed.", "\n" + Servlet.toString(req.getHttpRequest(), "  "), ex);
 			message = "<h2>Failure</h2><p>Posting your comment failed: <strong>" + StrExtend.getRootCauseMessage(ex)
 					+ "</strong></p><p>We are sorry, please try again later.</p>";

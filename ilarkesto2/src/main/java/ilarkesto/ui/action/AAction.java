@@ -43,7 +43,7 @@ public abstract class AAction extends ATask {
 	protected abstract void performAction() throws InterruptedException;
 
 	private volatile boolean finished;
-	private volatile Throwable exception;
+	private volatile Exception exception;
 
 	@Override
 	public final void perform() {
@@ -62,7 +62,7 @@ public abstract class AAction extends ATask {
                         }
 			finish();
 			return;
-		} catch (Throwable ex) {
+		} catch (Exception ex) {
 			transactionService.commit();
 			exception = ex;
 			LOG.error(ex);
@@ -107,7 +107,7 @@ public abstract class AAction extends ATask {
 		return finished;
 	}
 
-	public final Throwable getException() {
+	public final Exception getException() {
 		return exception;
 	}
 
@@ -277,7 +277,7 @@ public abstract class AAction extends ATask {
 		ui.getUserMessageService().info(string("info." + key, parameters));
 	}
 
-	protected final void error(Throwable t) {
+	protected final void error(Exception t) {
 		error("exception", format(t));
 	}
 

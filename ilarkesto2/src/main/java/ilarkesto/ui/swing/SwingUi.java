@@ -211,7 +211,7 @@ public class SwingUi extends AUi {
 		return FormDialog.showDialog(getWindow(getParentComponent()), form);
 	}
 
-	public final void showErrorDialog(Throwable ex) {
+	public final void showErrorDialog(Exception ex) {
 		ExceptionPanel.showDialog(getParentComponent(), ex, localizer.string("dialog.error.title"));
 	}
 

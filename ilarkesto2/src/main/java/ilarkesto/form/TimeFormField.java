@@ -53,7 +53,7 @@ public class TimeFormField extends AFormField {
                 }
 		try {
 			return new Time(s).toString();
-		} catch (Throwable ex) {
+		} catch (Exception ex) {
 			return s;
 		}
 	}
@@ -65,7 +65,7 @@ public class TimeFormField extends AFormField {
 		} else {
 			try {
 				new Time(value);
-			} catch (Throwable ex) {
+			} catch (Exception ex) {
 				throw new ValidationException("Eingabe muss eine Uhrzeit sein. " + ex.getMessage());
 			}
 		}

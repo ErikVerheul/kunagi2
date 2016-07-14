@@ -49,7 +49,7 @@ public abstract class AServlet<A extends AWebApplication, S extends AWebSession>
                 }
 		try {
 			onGet(req);
-		} catch (Throwable ex) {
+		} catch (Exception ex) {
 			handleError(ex, req);
 		}
 	}
@@ -63,7 +63,7 @@ public abstract class AServlet<A extends AWebApplication, S extends AWebSession>
                 }
 		try {
 			onPost(req);
-		} catch (Throwable ex) {
+		} catch (Exception ex) {
 			handleError(ex, req);
 		}
 	}
@@ -85,7 +85,7 @@ public abstract class AServlet<A extends AWebApplication, S extends AWebSession>
 		return true;
 	}
 
-	private void handleError(Throwable ex, RequestWrapper<S> req) {
+	private void handleError(Exception ex, RequestWrapper<S> req) {
 		log.info("request caused error:", req, ex);
 		req.sendErrorInternal(format(ex));
 	}
@@ -102,7 +102,7 @@ public abstract class AServlet<A extends AWebApplication, S extends AWebSession>
                                 throw new RuntimeException("Web application startup failed.");
                         }
 			onInit(config);
-		} catch (Throwable ex) {
+		} catch (Exception ex) {
 			throw new ServletException(getClass().getSimpleName() + ".init(ServletConfig) failed.", ex);
 		}
 	}

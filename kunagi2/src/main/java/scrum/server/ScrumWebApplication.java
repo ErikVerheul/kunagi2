@@ -130,7 +130,7 @@ public class ScrumWebApplication extends GScrumWebApplication {
 				Properties currentReleaseProperties = IO.loadPropertiesFromUrl(url, IO.UTF_8);
 				currentRelease = currentReleaseProperties.getProperty("currentRelease");
 				log.info("   ", currentRelease);
-			} catch (Throwable ex) {
+			} catch (Exception ex) {
 				return null;
 			}
 		}
@@ -388,7 +388,7 @@ public class ScrumWebApplication extends GScrumWebApplication {
 		String subject = user.getLabel() + " registered on " + getBaseUrl();
 		try {
 			getEmailSender().sendEmail((String) null, null, subject, sb.toString());
-		} catch (Throwable ex) {
+		} catch (Exception ex) {
 			log.error("Sending notification email failed:", subject, ex);
 		}
 	}

@@ -16,7 +16,7 @@ package ilarkesto.json.jsondb;
 
 public class JsonDbException extends RuntimeException {
 
-	public JsonDbException(String message, Throwable cause) {
+	public JsonDbException(String message, Exception cause) {
 		super(message, cause);
 	}
 

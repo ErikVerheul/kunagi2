@@ -116,26 +116,26 @@ public abstract class AApplication {
 
 			try {
 				getApplicationConfig();
-			} catch (Throwable ex) {
+			} catch (Exception ex) {
 				startupFailed = true;
 				throw new RuntimeException("Application startup failed. Loading configuration failed.", ex);
 			}
 			try {
 				backupApplicationDataDir();
 				deleteOldApplicationDataDirBackups();
-			} catch (Throwable ex) {
+			} catch (Exception ex) {
 				log.error("Backing up application data directory failed.", ex);
 			}
 			try {
 				ensureIntegrity();
-			} catch (Throwable ex) {
+			} catch (Exception ex) {
 				startupFailed = true;
 				shutdown(false);
 				throw new RuntimeException("Application startup failed. Data integrity check or repair failed.", ex);
 			}
 			try {
 				onStart();
-			} catch (Throwable ex) {
+			} catch (Exception ex) {
 				startupFailed = true;
 				shutdown(false);
 				throw new RuntimeException("Application startup failed.", ex);
@@ -143,7 +143,7 @@ public abstract class AApplication {
 
 			try {
 				scheduleTasks(getTaskManager());
-			} catch (Throwable ex) {
+			} catch (Exception ex) {
 				startupFailed = true;
 				shutdown(true);
 				throw new RuntimeException("Application startup failed.", ex);
@@ -373,7 +373,7 @@ public abstract class AApplication {
 		if (buildProperties == null) {
 			try {
 				buildProperties = loadProperties(getResource(getClass(), "build.properties"), UTF_8);
-			} catch (Throwable t) {
+			} catch (Exception t) {
 				log.error(t);
 				buildProperties = new Properties();
 			}

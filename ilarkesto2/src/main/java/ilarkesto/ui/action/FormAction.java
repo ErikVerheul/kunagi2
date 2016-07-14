@@ -70,7 +70,7 @@ public final class FormAction<F extends Form> extends AAction {
 	}
 
 	/**
-	 * @return true, if submit handeled internally (show form again)
+	 * @return true, if submit handled internally (show form again)
 	 */
 	private boolean handleSubmit() {
 		// inject form with current request properties
@@ -98,7 +98,7 @@ public final class FormAction<F extends Form> extends AAction {
 				} catch (ValidationException ex) {
 					LOG.debug("Form is not valid:", ex);
 					String message = ex.getMessage();
-					Throwable cause = ex.getCause();
+					Exception cause = (Exception) ex.getCause();
 					if (cause != null) {
                                                 message += " " + format(cause);
                                         }

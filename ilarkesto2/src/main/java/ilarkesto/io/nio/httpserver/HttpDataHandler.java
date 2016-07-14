@@ -58,7 +58,7 @@ public class HttpDataHandler implements DataHandler {
 
 		try {
 			processEvent(event);
-		} catch (Throwable ex) {
+		} catch (Exception ex) {
 			log.error("Processing request failed:", request.getUri() == null ? event.getConnection() : request, ex);
 			request.sendEmptyResponse(INTERNAL_SERVER_ERROR, null);
 		}

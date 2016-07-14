@@ -20,7 +20,7 @@ public interface Job<R> {
 
 	void onSuccess(R result);
 
-	void onError(Throwable error);
+	void onError(Exception error);
 
 	Job<R> setCallback(Callback<R> callback);
 

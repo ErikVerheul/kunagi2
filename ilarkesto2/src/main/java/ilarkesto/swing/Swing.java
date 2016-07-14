@@ -90,7 +90,7 @@ import static javax.swing.WindowConstants.HIDE_ON_CLOSE;
  */
 public class Swing {
 
-	public static void main(String[] args) throws Throwable {
+	public static void main(String[] args) throws Exception {
 		setDebugEnabled(true);
 		DEBUG((Object[])getInstalledLookAndFeels());
 		setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");

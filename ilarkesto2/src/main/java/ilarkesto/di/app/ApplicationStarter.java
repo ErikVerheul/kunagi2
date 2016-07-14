@@ -64,7 +64,7 @@ public class ApplicationStarter {
 			JavaLogging.redirectToLoggers();
 			try {
 				Log4jLogging.redirectToLoggers();
-			} catch (Throwable ex) {}
+			} catch (Exception ex) {}
 			application.setArguments(arguments);
 			application.start();
 			LOG.info("Application started:", application.getApplicationName() + " " + application.getReleaseLabel());

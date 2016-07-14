@@ -140,7 +140,7 @@ public class TaskManager {
 			// LOG.debug("Task started:", task);
 			try {
 				task.run();
-			} catch (Throwable ex) {
+			} catch (Exception ex) {
 				if (shutdownInProgress && getRootCause(ex) instanceof InterruptedException) {
 					LOG.info("Task interrupted while shutdown:", toStringWithType(task));
 				} else {

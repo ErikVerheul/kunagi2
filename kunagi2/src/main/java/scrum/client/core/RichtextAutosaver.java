@@ -50,7 +50,7 @@ public class RichtextAutosaver extends GRichtextAutosaver implements Application
 			if (!editor.isEditMode()) return;
 			if (!editor.isAutosave()) return;
 			editor.submitEditor(false);
-		} catch (Throwable ex) {
+		} catch (Exception ex) {
 			ERROR(ex);
 		}
 	}

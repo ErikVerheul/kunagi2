@@ -88,8 +88,8 @@ public class LogRecord {
 		} else {
 			for (Object parameter : parameters) {
 				textSb.append(' ');
-				if (parameter instanceof Throwable) {
-					textSb.append("\n").append(getStackTrace((Throwable) parameter));
+				if (parameter instanceof Exception) {
+					textSb.append("\n").append(getStackTrace((Exception) parameter));
 				} else {
 					textSb.append(format(parameter));
 				}

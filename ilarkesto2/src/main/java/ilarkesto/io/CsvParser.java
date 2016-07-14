@@ -224,7 +224,7 @@ public final class CsvParser {
 
 	public static class ParseException extends RuntimeException {
 
-		public ParseException(String message, Throwable cause) {
+		public ParseException(String message, Exception cause) {
 			super(message, cause);
 		}
 

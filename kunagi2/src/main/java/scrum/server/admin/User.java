@@ -56,7 +56,7 @@ public class User extends GUser {
 	public void tryUpdateByGravatar() {
 		try {
 			updateByGravatar();
-		} catch (Throwable ex) {
+		} catch (Exception ex) {
 			log.error("Updating user data by Gravatar failed", ex);
 		}
 	}

@@ -1521,12 +1521,10 @@ public abstract class IO {
                 throw new RuntimeException("Creating directory failed: " + parent.getPath());
             }
         }
-        FileOutputStream out;
         try {
-            out = new FileOutputStream(f, true);
-            out.close();
-        } catch (Exception ex) {
-            throw new RuntimeException(ex);
+            FileOutputStream out = new FileOutputStream(f, true);
+        } catch (FileNotFoundException ex) {
+            throw new RuntimeException("Cannot open an outputstream on file " + f.toString(), ex);
         }
     }
 

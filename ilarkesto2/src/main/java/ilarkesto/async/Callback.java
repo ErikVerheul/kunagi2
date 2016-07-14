@@ -18,6 +18,6 @@ public interface Callback<R> {
 
 	void onSuccess(R result);
 
-	void onError(Throwable error);
+	void onError(Exception error);
 
 }

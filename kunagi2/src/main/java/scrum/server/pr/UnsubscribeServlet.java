@@ -65,7 +65,7 @@ public class UnsubscribeServlet extends AKunagiServlet {
 			message = subject == null ? "Succesfully unsubscribed from all entities"
 					: "Succesfully unsubscribed from <strong>" + KunagiUtl.createExternalRelativeHtmlAnchor(subject)
 							+ "</strong>";
-		} catch (Throwable ex) {
+		} catch (Exception ex) {
 			log.error("Unsubscription failed.", "\n" + Servlet.toString(req.getHttpRequest(), "  "), ex);
 			sendFailureResponse(req, StrExtend.getRootCauseMessage(ex));
 			return;

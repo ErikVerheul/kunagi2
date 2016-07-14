@@ -37,7 +37,7 @@ import java.util.Collection;
 public class PdfBuilder extends APdfBuilder {
         private static FileOutputStream outStream;
         
-	public static void main(String[] args) throws Throwable {
+	public static void main(String[] args) throws Exception {
                 PdfBuilder pdf = new PdfBuilder();
 		FontStyle fs = new FontStyle();
 		fs.setSize(20);

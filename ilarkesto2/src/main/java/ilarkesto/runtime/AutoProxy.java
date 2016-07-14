@@ -34,7 +34,7 @@ public class AutoProxy {
 	private static boolean isHis() {
 		try {
 			return downloadUrlToString("http://xqisdev.his.de").contains("<title>qisdev</title>");
-		} catch (Throwable ex) {
+		} catch (Exception ex) {
 			return false;
 		}
 	}

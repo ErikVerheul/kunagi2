@@ -31,17 +31,17 @@ public abstract class ALoopTask extends ATask {
 		while (!isAbortRequested()) {
 			try {
 				iteration();
-			} catch (Throwable ex) {
+			} catch (Exception ex) {
 				try {
 					onError(ex);
-				} catch (Throwable ex1) {
+				} catch (Exception ex1) {
 					throw new RuntimeException("Task aborted by exception: " + toString(), ex1);
 				}
 			}
 		}
 	}
 
-	protected void onError(Throwable ex) throws Throwable {
+	protected void onError(Exception ex) throws Exception {
 		log.error("Loop iteration failed:", ex);
 	}
 

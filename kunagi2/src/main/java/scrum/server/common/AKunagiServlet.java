@@ -58,7 +58,7 @@ public abstract class AKunagiServlet extends AServlet<ScrumWebApplication, WebSe
 		req.preventCaching();
 		try {
 			onRequest(req);
-		} catch (Throwable ex) {
+		} catch (Exception ex) {
 			log.fatal("GET failed:", getClass().getName(), "->", ex);
 		}
 	}
@@ -68,7 +68,7 @@ public abstract class AKunagiServlet extends AServlet<ScrumWebApplication, WebSe
 		req.preventCaching();
 		try {
 			onRequest(req);
-		} catch (Throwable ex) {
+		} catch (Exception ex) {
 			log.fatal("POST failed:", getClass().getName(), "->", ex);
 		}
 	}

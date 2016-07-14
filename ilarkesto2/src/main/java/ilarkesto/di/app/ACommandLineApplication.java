@@ -31,7 +31,7 @@ public abstract class ACommandLineApplication extends AApplication {
 		int rc;
 		try {
 			rc = execute(getArguments());
-		} catch (Throwable ex) {
+		} catch (Exception ex) {
 			LOG.fatal(ex);
 			rc = 1;
 		}

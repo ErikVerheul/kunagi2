@@ -52,7 +52,7 @@ public class EmailAddressFormField extends AFormField {
                 }
 		try {
 			return new EmailAddress(s).toString();
-		} catch (Throwable ex) {
+		} catch (Exception ex) {
 			return s;
 		}
 	}
@@ -66,7 +66,7 @@ public class EmailAddressFormField extends AFormField {
 		} else {
 			try {
 				new EmailAddress(value);
-			} catch (Throwable ex) {
+			} catch (Exception ex) {
 				throw new ValidationException(ex.getMessage());
 			}
 		}

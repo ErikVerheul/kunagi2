@@ -89,7 +89,7 @@ public class Change extends GChange implements Comparable<Change> {
         AEntity parent;
         try {
             parent = getParent();
-        } catch (Throwable ex) {
+        } catch (Exception ex) {
             parent = null;
         }
         return "Change(" + getUser() + "," + getDateAndTime() + ", " + parent + "." + getKey() + ")";

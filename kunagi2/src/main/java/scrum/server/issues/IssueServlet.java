@@ -71,7 +71,7 @@ public class IssueServlet extends AKunagiServlet {
 		try {
 			SpamChecker.check(req);
 			message = submitIssue(projectId, subject, text, name, email, publish);
-		} catch (Throwable ex) {
+		} catch (Exception ex) {
 			log.error("Submitting issue failed.", "\n" + Servlet.toString(req.getHttpRequest(), "  "), ex);
 			message = "<h2>Failure</h2><p>Submitting your feedback failed: <strong>" + StrExtend.getRootCauseMessage(ex)
 					+ "</strong></p><p>We are sorry, please try again later.</p>";

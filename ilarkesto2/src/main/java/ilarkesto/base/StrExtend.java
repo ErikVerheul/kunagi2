@@ -1223,15 +1223,15 @@ public class StrExtend extends ilarkesto.core.base.Str {
 		return sb.toString();
 	}
 
-	public static String getRootCauseMessage(Throwable t) {
-		Throwable cause = t.getCause();
+	public static String getRootCauseMessage(Exception ex) {
+		Throwable cause = ex.getCause();
 		while (cause != null) {
-			t = cause;
-			cause = t.getCause();
+			ex = (Exception) cause;
+			cause = ex.getCause();
 		}
-		String message = t.getMessage();
+		String message = ex.getMessage();
 		if (message == null) {
-                        message = t.getClass().getName();
+                        message = ex.getClass().getName();
                 }
 		return message;
 	}

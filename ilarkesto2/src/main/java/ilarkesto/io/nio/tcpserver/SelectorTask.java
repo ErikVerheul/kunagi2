@@ -126,7 +126,7 @@ public class SelectorTask extends ALoopTask {
 	}
 
 	@Override
-	protected void onError(Throwable ex) throws Throwable {
+	protected void onError(Exception ex) throws Exception {
 		throw ex;
 	}
 

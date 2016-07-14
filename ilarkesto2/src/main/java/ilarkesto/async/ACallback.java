@@ -52,7 +52,7 @@ public abstract class ACallback<R> implements Callback<R> {
 	}
 
 	@Override
-	public void onError(Throwable error) {
+	public void onError(Exception error) {
 		if (called) {
                         throw new IllegalStateException("Callback already called: " + this);
                 }

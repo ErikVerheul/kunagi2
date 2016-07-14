@@ -1017,7 +1017,7 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
 
         try {
             sendProjectEventEmails(message, subject, project, conversation.getSession().getUser().getEmail());
-        } catch (Throwable ex) {
+        } catch (Exception ex) {
             LOG.error("Sending project event notification emails failed.", ex);
         }
     }

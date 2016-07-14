@@ -57,7 +57,7 @@ public class SubscribeServlet extends AKunagiServlet {
 			AEntity subject = subscribe(email, subjectId);
 			message = "Succesfully subscribed to <strong>" + KunagiUtl.createExternalRelativeHtmlAnchor(subject)
 					+ "</strong>";
-		} catch (Throwable ex) {
+		} catch (Exception ex) {
 			log.error("Subscription failed.", "\n" + Servlet.toString(req.getHttpRequest(), "  "), ex);
 			message = "<h2>Failure</h2><p>Subscription failed: <strong>" + StrExtend.getRootCauseMessage(ex)
 					+ "</strong></p><p>We are sorry, please try again later.</p>";

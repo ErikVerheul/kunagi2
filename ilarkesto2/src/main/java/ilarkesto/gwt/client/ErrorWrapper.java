@@ -16,7 +16,7 @@ public class ErrorWrapper implements Serializable, IsSerializable {
 		this.message = message;
 	}
 
-	public ErrorWrapper(Throwable ex) {
+	public ErrorWrapper(Exception ex) {
 		this(ex.getClass().getName(), formatException(ex));
 	}
 

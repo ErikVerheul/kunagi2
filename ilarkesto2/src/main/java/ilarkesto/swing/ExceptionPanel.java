@@ -59,7 +59,7 @@ public class ExceptionPanel extends JPanel {
     private JTextArea stackTraceField;
     private JPanel expandButtonPanel;
 
-    public ExceptionPanel(Throwable exception) {
+    public ExceptionPanel(Exception exception) {
 
         // messageField = new JEditorPane();
         // messageField = new JTextArea(3, 50);
@@ -105,11 +105,11 @@ public class ExceptionPanel extends JPanel {
                 center(window);
     }
 
-    public static void showErrorDialog(Component parent, Throwable ex) {
+    public static void showErrorDialog(Component parent, Exception ex) {
                 showMessageDialog(parent, new ExceptionPanel(ex), "Error", ERROR_MESSAGE);
     }
 
-    public static void showDialog(Component parent, Throwable ex, String title) {
+    public static void showDialog(Component parent, Exception ex, String title) {
                 showMessageDialog(parent, new ExceptionPanel(ex), title, ERROR_MESSAGE);
     }
 

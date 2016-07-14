@@ -16,7 +16,7 @@ package ilarkesto.scope;
 
 public class DependencyInjectionFailedException extends RuntimeException {
 
-	public DependencyInjectionFailedException(Object component, String fieldName, Object dependency, Throwable cause) {
+	public DependencyInjectionFailedException(Object component, String fieldName, Object dependency, Exception cause) {
 		super("Component dependency injection failed: " + component.getClass().getSimpleName() + "." + fieldName
 				+ " = " + dependency, cause);
 	}

@@ -78,7 +78,7 @@ public final class LearningLocalizer extends Localizer {
 
 		if (parameters != null) {
 			for (int i = 0; i < parameters.length; i++) {
-				if (parameters[i] instanceof Throwable) {
+				if (parameters[i] instanceof Exception) {
                                         parameters[i] = StrExtend.format(parameters[i]);
                                 }
 			}

@@ -116,8 +116,8 @@ public abstract class ATask {
 			perform();
 		} catch (InterruptedException ex) {
 			// all right
-		} catch (Throwable ex) {
-			Throwable rootCause = getRootCause(ex);
+		} catch (Exception ex) {
+			Exception rootCause = getRootCause(ex);
 			if (rootCause instanceof InterruptedException) {
 				// all right
 			} else {

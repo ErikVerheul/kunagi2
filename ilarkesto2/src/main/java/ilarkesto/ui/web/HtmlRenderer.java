@@ -966,7 +966,7 @@ public class HtmlRenderer {
 			} else {
 				try {
 					s = text.toString();
-				} catch (Throwable ex) {
+				} catch (Exception ex) {
 					s = "<ERROR: " + getRootCause(ex).getMessage() + ">";
 				}
 			}

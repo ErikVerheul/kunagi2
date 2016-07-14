@@ -49,7 +49,7 @@ public abstract class AServiceCall implements ServiceCall {
 		@Override
 		public void onFailure(Throwable ex) {
 			serviceCaller.onServiceCallReturn(AServiceCall.this);
-			serviceCaller.onServiceCallFailure(AServiceCall.this, Utl.toList(new ErrorWrapper(ex)));
+			serviceCaller.onServiceCallFailure(AServiceCall.this, Utl.toList(new ErrorWrapper((Exception) ex)));
 		}
 
 	}

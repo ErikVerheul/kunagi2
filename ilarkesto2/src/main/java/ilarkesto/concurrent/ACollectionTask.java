@@ -40,8 +40,8 @@ public abstract class ACollectionTask<E> extends ATask {
 			this.element = local_element;
 			try {
 				perform(local_element);
-			} catch (Throwable ex) {
-				Throwable rootCause = getRootCause(ex);
+			} catch (Exception ex) {
+				Exception rootCause = getRootCause(ex);
 				if (!(rootCause instanceof InterruptedException)) {
                                         onElementError(local_element, ex);
                                 }
@@ -54,7 +54,7 @@ public abstract class ACollectionTask<E> extends ATask {
 		cleanup();
 	}
 
-	protected void onElementError(E element, Throwable ex) {
+	protected void onElementError(E element, Exception ex) {
 		throw new RuntimeException("Processing element failed: " + element, ex);
 	}
 

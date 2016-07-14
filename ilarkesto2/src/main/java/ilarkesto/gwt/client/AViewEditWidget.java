@@ -97,7 +97,7 @@ public abstract class AViewEditWidget extends AWidget {
 		if (currentEditor != null) {
 			try {
 				currentEditor.closeEditor();
-			} catch (Throwable ex) {
+			} catch (Exception ex) {
 				ERROR(ex);
 			}
 		}
@@ -156,7 +156,7 @@ public abstract class AViewEditWidget extends AWidget {
                 }
 		try {
 			onEditorSubmit();
-		} catch (Throwable ex) {
+		} catch (Exception ex) {
 			ex.printStackTrace();
 			setEditorError(getUserMessageStack(ex));
 			return false;

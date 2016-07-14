@@ -436,13 +436,13 @@ public class Str {
 		if (o instanceof Enumeration) {
                         return formatEnumeration((Enumeration) o);
                 }
-		if (o instanceof Throwable) {
-                        return formatException((Throwable) o);
+		if (o instanceof Exception) {
+                        return formatException((Exception) o);
                 }
 		return o.toString();
 	}
 
-	private static boolean isWrapperException(Throwable ex) {
+	private static boolean isWrapperException(Exception ex) {
 		if (getSimpleName(ex.getClass()).equals("RuntimeException")) {
                         return true;
                 }
@@ -484,7 +484,7 @@ public class Str {
 		return sb.toString();
 	}
 
-	public static String formatException(Throwable ex) {
+	public static String formatException(Exception ex) {
 		StringBuilder sb = null;
 		while (ex != null) {
 			Throwable cause = ex.getCause();
@@ -494,7 +494,6 @@ public class Str {
                         }
 			while ((isWrapperException(ex) && isBlank(message) && cause != null)
 					|| getSimpleName(ex.getClass()).equals("UmbrellaException")) {
-				ex = cause;
 				cause = ex.getCause();
 				message = ex.getMessage();
 				if (cause != null && message != null && message.startsWith(cause.getClass().getName())) {
@@ -511,7 +510,6 @@ public class Str {
 				sb.append(": ");
 			}
 			sb.append(message);
-			ex = cause;
 		}
 		return sb.toString();
 	}
@@ -524,12 +522,12 @@ public class Str {
 		return sb.toString();
 	}
 
-	public static String getStackTrace(Throwable t) {
+	public static String getStackTrace(Exception t) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(t.toString()).append("\n");
 		sb.append(formatStackTrace(t.getStackTrace()));
 
-		Throwable cause = t.getCause();
+		Exception cause = (Exception) t.getCause();
 		if (cause == null) {
                         return sb.toString();
                 }

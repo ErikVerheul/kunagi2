@@ -55,7 +55,7 @@ public class MoneyFormField extends AFormField {
 		if (value != null) {
 			try {
 				setValue(new Money(value, currency));
-			} catch (Throwable ex) {}
+			} catch (Exception ex) {}
 		}
 	}
 
@@ -68,7 +68,7 @@ public class MoneyFormField extends AFormField {
 		} else {
 			try {
 				new Money(value, currency);
-			} catch (Throwable ex) {
+			} catch (Exception ex) {
 				throw new ValidationException("eingabe muss ein betrag sein. " + ex.getMessage());
 			}
 		}

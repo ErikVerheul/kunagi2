@@ -39,7 +39,7 @@ public abstract class AAsyncWorker implements AsyncWorker {
 			Object result;
 			try {
 				result = job.runJob();
-			} catch (Throwable ex) {
+			} catch (Exception ex) {
 				runCallback(new FailureRunnable(job, ex));
 				return;
 			}
@@ -68,9 +68,9 @@ public abstract class AAsyncWorker implements AsyncWorker {
 	private static class FailureRunnable implements Runnable {
 
 		private Job job;
-		private Throwable error;
+		private Exception error;
 
-		public FailureRunnable(Job job, Throwable result) {
+		public FailureRunnable(Job job, Exception result) {
 			super();
 			this.job = job;
 			this.error = result;

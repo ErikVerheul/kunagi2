@@ -45,7 +45,7 @@ public class ScrumEntityfilePreparator implements EntityfilePreparator {
 			if ("sprint".equalsIgnoreCase(alias)) prepareSprint(file);
 //			if ("projectUserConfig".equalsIgnoreCase(alias)) prepareProjectUserConfig(file);
 //			if ("change".equalsIgnoreCase(alias)) prepareChange(file);
-		} catch (Throwable ex) {
+		} catch (Exception ex) {
 			throw new RuntimeException(ex);
 		}
 	}

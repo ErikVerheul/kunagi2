@@ -56,7 +56,7 @@ public class TimePeriodFormField extends AFormField {
                 }
 		try {
 			return new TimePeriod(s).toHoursAndMinutesString();
-		} catch (Throwable ex) {
+		} catch (Exception ex) {
 			return s;
 		}
 	}
@@ -68,7 +68,7 @@ public class TimePeriodFormField extends AFormField {
 		} else {
 			try {
 				new TimePeriod(value);
-			} catch (Throwable ex) {
+			} catch (Exception ex) {
 				throw new ValidationException("Eingabe muss eine Uhrzeit sein. " + ex.getMessage());
 			}
 		}

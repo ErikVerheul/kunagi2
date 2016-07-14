@@ -58,7 +58,7 @@ public class GwtTestparent extends GWTTestCase {
 //    // Send a request to the server.
 //    greetingService.greetServer("GWT User", new AsyncCallback<String>() {
 //      @Override
-//      public void onFailure(Throwable caught) {
+//      public void onFailure(Exception caught) {
 //        // The request resulted in an unexpected error.
 //        fail("Request failure: " + caught.getMessage());
 //      }

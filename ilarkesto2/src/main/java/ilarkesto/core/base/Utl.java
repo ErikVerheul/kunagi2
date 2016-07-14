@@ -31,17 +31,17 @@ public class Utl {
 
     private static String language = "en";
 
-    public static boolean isRootCause(Class<? extends Throwable> exceptionType, Throwable ex) {
-        Throwable cause = getRootCause(ex);
+    public static boolean isRootCause(Class<? extends Exception> exceptionType, Exception ex) {
+        Exception cause = getRootCause(ex);
         return cause.getClass().equals(exceptionType);
     }
 
-    public static Throwable getRootCause(Throwable ex) {
+    public static Exception getRootCause(Exception ex) {
         Throwable cause = ex.getCause();
-        return cause == null ? ex : getRootCause(cause);
+        return cause == null ? ex : getRootCause((Exception) cause);
     }
 
-    public static String getUserMessage(Throwable ex) {
+    public static String getUserMessage(Exception ex) {
         if (ex instanceof NullPointerException) {
             return "NullPointerException";
         }
@@ -51,11 +51,11 @@ public class Utl {
         return Str.getSimpleName(ex.getClass()) + ": " + ex.getMessage();
     }
 
-    public static String getUserMessageStack(Throwable ex) {
+    public static String getUserMessageStack(Exception ex) {
         return getUserMessageStack(ex, " -> ");
     }
 
-    public static String getUserMessageStack(Throwable ex, String separator) {
+    public static String getUserMessageStack(Exception ex, String separator) {
         StringBuilder sb = null;
         while (ex != null) {
             if (sb == null) {
@@ -64,7 +64,7 @@ public class Utl {
                 sb.append(separator);
             }
             sb.append(getUserMessage(ex));
-            ex = ex.getCause();
+            ex = (Exception) ex.getCause();
         }
         return sb == null ? null : sb.toString();
     }

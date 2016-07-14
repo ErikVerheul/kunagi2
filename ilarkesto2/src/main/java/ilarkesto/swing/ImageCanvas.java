@@ -30,7 +30,7 @@ import java.io.File;
 
 public class ImageCanvas extends Component {
 
-	public static void main(String[] args) throws Throwable {
+	public static void main(String[] args) throws Exception {
 		ImageCanvas ic = new ImageCanvas();
 		ic.setImage(captureScreen(getWindow(ic)));
 		ic.setPreferredSize(new Dimension(300, 300));

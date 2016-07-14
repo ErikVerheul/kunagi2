@@ -61,7 +61,7 @@ public abstract class AJob<R> implements Job<R> {
 	};
 
 	@Override
-	public void onError(Throwable error) {
+	public void onError(Exception error) {
 		callback.onError(error);
 	}
 

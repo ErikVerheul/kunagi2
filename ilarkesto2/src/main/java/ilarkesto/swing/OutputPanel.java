@@ -30,7 +30,7 @@ import javax.swing.JScrollPane;
 
 public class OutputPanel extends JPanel {
 
-	public static void main(String[] args) throws Throwable {
+	public static void main(String[] args) throws Exception {
 		OutputPanel op = new OutputPanel();
 		showInJFrame(op);
 		op.append("message 1");

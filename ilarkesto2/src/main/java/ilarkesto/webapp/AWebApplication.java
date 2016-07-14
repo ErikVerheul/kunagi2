@@ -127,10 +127,10 @@ public abstract class AWebApplication extends AApplication {
 			if (httpSession != null) {
 				try {
 					httpSession.removeAttribute(WEB_SESSION_SESSION_ATTRIBUTE);
-				} catch (Throwable t) {}
+				} catch (Exception t) {}
 				try {
 					httpSession.invalidate();
-				} catch (Throwable t) {}
+				} catch (Exception t) {}
 			}
 		}
 	}

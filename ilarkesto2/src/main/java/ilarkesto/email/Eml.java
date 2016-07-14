@@ -96,7 +96,7 @@ import javax.mail.internet.MimeMultipart;
  */
 public class Eml {
 
-	public static void main(String[] args) throws Throwable {
+	public static void main(String[] args) throws Exception {
 		setDebugEnabled(true);
 		setFileEncoding(UTF_8);
 
@@ -247,7 +247,7 @@ public class Eml {
 			String contentType;
 			try {
 				contentType = part.getContentType();
-			} catch (Throwable t) {
+			} catch (Exception t) {
 				contentType = "unknown";
 			}
 			if (contentType.toLowerCase().startsWith("text/" + type)) {
@@ -386,7 +386,7 @@ public class Eml {
 			sb.append(getFromFormated(message));
 			sb.append(":");
 			sb.append(message.getSubject());
-		} catch (Throwable ex) {
+		} catch (Exception ex) {
 			message.toString();
 		}
 		return sb.toString();
