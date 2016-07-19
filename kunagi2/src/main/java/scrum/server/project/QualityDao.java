@@ -14,7 +14,6 @@
  */
 package scrum.server.project;
 
-import scrum.server.project.GQualityDao;
 import ilarkesto.fp.Predicate;
 
 public class QualityDao extends GQualityDao {

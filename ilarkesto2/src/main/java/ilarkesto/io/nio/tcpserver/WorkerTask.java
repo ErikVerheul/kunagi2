@@ -19,18 +19,32 @@ import static java.lang.System.arraycopy;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class WorkerTask extends ALoopTask {
 
 	private DataHandler handler;
 
 	private final List<ServerDataEvent> queue = new LinkedList<>();
 
-	public WorkerTask(DataHandler handler) {
+    /**
+     *
+     * @param handler
+     */
+    public WorkerTask(DataHandler handler) {
 		super();
 		this.handler = handler;
 	}
 
-	public void processData(TcpConnection connection, byte[] data, int count) {
+    /**
+     *
+     * @param connection
+     * @param data
+     * @param count
+     */
+    public void processData(TcpConnection connection, byte[] data, int count) {
 		byte[] dataCopy;
 		if (data == null) {
 			dataCopy = null;
@@ -44,7 +58,11 @@ public class WorkerTask extends ALoopTask {
 		}
 	}
 
-	@Override
+    /**
+     *
+     * @throws InterruptedException
+     */
+    @Override
 	protected void iteration() throws InterruptedException {
 		ServerDataEvent dataEvent;
 

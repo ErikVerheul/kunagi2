@@ -17,6 +17,10 @@ package ilarkesto.pdf;
 import com.itextpdf.text.BaseColor;
 import edu.umd.cs.findbugs.annotations.SuppressWarnings;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class ATable extends APdfElement {
 
 	private Float width = 100f;
@@ -26,66 +30,132 @@ public abstract class ATable extends APdfElement {
 	private Float defaultCellPadding;
 	private FontStyle defaultFontStyle;
 
-	public abstract ACell cell();
+    /**
+     *
+     * @return
+     */
+    public abstract ACell cell();
 
-	public abstract ARow row();
+    /**
+     *
+     * @return
+     */
+    public abstract ARow row();
 
-	public abstract ARow row(Object... cellTexts);
+    /**
+     *
+     * @param cellTexts
+     * @return
+     */
+    public abstract ARow row(Object... cellTexts);
 
-	public abstract ATable createCellBorders(BaseColor color, float width);
+    /**
+     *
+     * @param color
+     * @param width
+     * @return
+     */
+    public abstract ATable createCellBorders(BaseColor color, float width);
 
 	/**
 	 * Width in percent.
+     * @return 
 	 */
 	public ATable setWidth(Float width) {
 		this.width = width;
 		return this;
 	}
 
-	public Float getWidth() {
+    /**
+     *
+     * @return
+     */
+    public Float getWidth() {
 		return width;
 	}
 
-        @SuppressWarnings("EI_EXPOSE_REP")
+    /**
+     *
+     * @return
+     */
+    @SuppressWarnings("EI_EXPOSE_REP")
 	public float[] getCellWidths() {
 		return cellWidths;
 	}
 
-	public ATable setCellWidths(float... cellWidths) {
+    /**
+     *
+     * @param cellWidths
+     * @return
+     */
+    public ATable setCellWidths(float... cellWidths) {
 		this.cellWidths = cellWidths;
 		setColumnCount(cellWidths.length);
 		return this;
 	}
 
-	public int getColumnCount() {
+    /**
+     *
+     * @return
+     */
+    public int getColumnCount() {
 		return columnCount;
 	}
 
-	public ATable setColumnCount(int columnCount) {
+    /**
+     *
+     * @param columnCount
+     * @return
+     */
+    public ATable setColumnCount(int columnCount) {
 		this.columnCount = columnCount;
 		return this;
 	}
 
-	public ATable setDefaultCellPadding(Float defaultCellPadding) {
+    /**
+     *
+     * @param defaultCellPadding
+     * @return
+     */
+    public ATable setDefaultCellPadding(Float defaultCellPadding) {
 		this.defaultCellPadding = defaultCellPadding;
 		return this;
 	}
 
-	public Float getDefaultCellPadding() {
+    /**
+     *
+     * @return
+     */
+    public Float getDefaultCellPadding() {
 		return defaultCellPadding;
 	}
 
-	public ATable setDefaultFontStyle(FontStyle defaultFontStyle) {
+    /**
+     *
+     * @param defaultFontStyle
+     * @return
+     */
+    public ATable setDefaultFontStyle(FontStyle defaultFontStyle) {
 		this.defaultFontStyle = defaultFontStyle;
 		return this;
 	}
 
-	public FontStyle getDefaultFontStyle() {
+    /**
+     *
+     * @return
+     */
+    public FontStyle getDefaultFontStyle() {
 		return defaultFontStyle;
 	}
 
 	// --- helper ---
 
+    /**
+     *
+     * @param text
+     * @return
+     */
+    
 	public ACell cell(Object text) {
 		ACell cell = cell();
 		if (text != null) {
@@ -94,7 +164,13 @@ public abstract class ATable extends APdfElement {
 		return cell;
 	}
 
-	public ACell cell(Object text, FontStyle fontStyle) {
+    /**
+     *
+     * @param text
+     * @param fontStyle
+     * @return
+     */
+    public ACell cell(Object text, FontStyle fontStyle) {
 		ACell cell = cell();
 		if (text != null) {
                         cell.paragraph().text(text, fontStyle);
@@ -104,6 +180,11 @@ public abstract class ATable extends APdfElement {
 
 	// --- dependencies ---
 
+    /**
+     *
+     * @param parent
+     */
+    
 	public ATable(APdfElement parent) {
 		super(parent);
 	}

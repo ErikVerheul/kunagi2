@@ -19,10 +19,24 @@ import ilarkesto.pdf.AParagraph;
 import scrum.client.wiki.Image;
 import scrum.server.project.Project;
 
+/**
+ *
+ * @author erik
+ */
 public interface PdfContext {
 
-	AImage appendImage(AParagraph p, Image wikiImage);
+    /**
+     *
+     * @param p
+     * @param wikiImage
+     * @return
+     */
+    AImage appendImage(AParagraph p, Image wikiImage);
 
-	Project getProject();
+    /**
+     *
+     * @return
+     */
+    Project getProject();
 
 }

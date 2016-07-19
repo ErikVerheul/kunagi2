@@ -4,9 +4,17 @@ import ilarkesto.core.scope.Scope;
 import scrum.client.common.TooltipBuilder;
 import scrum.client.workspace.ProjectWorkspaceWidgets;
 
+/**
+ *
+ * @author erik
+ */
 public class SplitRequirementAction extends GSplitRequirementAction {
 
-	public SplitRequirementAction(scrum.client.project.Requirement requirement) {
+    /**
+     *
+     * @param requirement
+     */
+    public SplitRequirementAction(scrum.client.project.Requirement requirement) {
 		super(requirement);
 	}
 
@@ -15,16 +23,21 @@ public class SplitRequirementAction extends GSplitRequirementAction {
 		return "Split Story";
 	}
 
-	@Override
+    /**
+     *
+     * @param tb
+     */
+    @Override
 	public void updateTooltip(TooltipBuilder tb) {
 		tb.setText("Create a new substory from this (epic) story.");
-		if (!requirement.getProject().isProductOwner(getCurrentUser())) tb.addRemark(TooltipBuilder.NOT_PRODUCT_OWNER);
+		if (!requirement.getProject().isProductOwner(getCurrentUser())) {
+                    tb.addRemark(TooltipBuilder.NOT_PRODUCT_OWNER);
+        }
 	}
 
 	@Override
 	public boolean isPermitted() {
-		if (!requirement.getProject().isProductOwner(getCurrentUser())) return false;
-		return true;
+		return requirement.getProject().isProductOwner(getCurrentUser());
 	}
 
 	@Override

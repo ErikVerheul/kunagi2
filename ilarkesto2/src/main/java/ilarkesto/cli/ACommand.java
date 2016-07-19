@@ -20,15 +20,39 @@ import static ilarkesto.di.Context.get;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/**
+ *
+ * @author erik
+ * @param <A>
+ */
 public abstract class ACommand<A extends Arguments> {
 
-	public abstract A createArguments();
+    /**
+     *
+     * @return
+     */
+    public abstract A createArguments();
 
-	public abstract void assertPermissions() throws LoginRequiredException;
+    /**
+     *
+     * @throws LoginRequiredException
+     */
+    public abstract void assertPermissions() throws LoginRequiredException;
 
-	public abstract Object execute(A arguments) throws BadSyntaxException, CommandExecutionFailedException;
+    /**
+     *
+     * @param arguments
+     * @return
+     * @throws BadSyntaxException
+     * @throws CommandExecutionFailedException
+     */
+    public abstract Object execute(A arguments) throws BadSyntaxException, CommandExecutionFailedException;
 
-	public String getName() {
+    /**
+     *
+     * @return
+     */
+    public String getName() {
 		String name = getClass().getSimpleName();
 		name = removeSuffix(name, "Command");
 		name = name.toLowerCase();
@@ -37,23 +61,45 @@ public abstract class ACommand<A extends Arguments> {
 
 	private String description;
 
-	public ACommand(String description) {
+    /**
+     *
+     * @param description
+     */
+    public ACommand(String description) {
 		this.description = description;
 	}
 
-	public String getDescription() {
+    /**
+     *
+     * @return
+     */
+    public String getDescription() {
 		return description;
 	}
 
-	public Collection getAliases() {
+    /**
+     *
+     * @return
+     */
+    public Collection getAliases() {
 		return new ArrayList(1);
 	}
 
-	public String getUsage() {
+    /**
+     *
+     * @return
+     */
+    public String getUsage() {
 		return getName() + createArguments().getUsage();
 	}
 
-	protected final <T> T autowire(T target) {
+    /**
+     *
+     * @param <T>
+     * @param target
+     * @return
+     */
+    protected final <T> T autowire(T target) {
 		return get().autowire(target);
 	}
 

@@ -14,11 +14,10 @@
  */
 package scrum.client.project;
 
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.TableBuilder;
 import scrum.client.ScrumGwt;
 import scrum.client.common.AScrumWidget;
-
-import com.google.gwt.user.client.ui.Widget;
 
 public class QualityWidget extends AScrumWidget {
 

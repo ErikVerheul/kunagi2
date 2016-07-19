@@ -14,7 +14,6 @@
  */
 package ilarkesto.rss;
 import edu.umd.cs.findbugs.annotations.SuppressWarnings;
-import ilarkesto.base.TmExtend;
 import static ilarkesto.base.TmExtend.FORMAT_RFC822;
 import ilarkesto.base.UtlExtend;
 import ilarkesto.core.time.DateAndTime;
@@ -23,7 +22,6 @@ import static ilarkesto.integration.jdom.JDom.addElement;
 import static ilarkesto.integration.jdom.JDom.addTextElement;
 import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.Collections;
 import static java.util.Collections.sort;
 import java.util.List;
 import org.jdom2.Document;

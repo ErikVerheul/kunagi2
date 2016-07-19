@@ -16,6 +16,10 @@ package scrum.client.admin;
 
 import ilarkesto.core.base.Str;
 
+/**
+ *
+ * @author erik
+ */
 public class SendTestEmailAction extends GSendTestEmailAction {
 
 	@Override
@@ -26,10 +30,13 @@ public class SendTestEmailAction extends GSendTestEmailAction {
 	@Override
 	public boolean isExecutable() {
 		SystemConfig config = getDao().getSystemConfig();
-		if (Str.isBlank(config.getSmtpFrom())) return false;
-		if (Str.isBlank(config.getSmtpServer())) return false;
-		if (Str.isBlank(config.getAdminEmail())) return false;
-		return true;
+		if (Str.isBlank(config.getSmtpFrom())) {
+                    return false;
+        }
+		if (Str.isBlank(config.getSmtpServer())) {
+                    return false;
+        }
+		return !Str.isBlank(config.getAdminEmail());
 	}
 
 	@Override

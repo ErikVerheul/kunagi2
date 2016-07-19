@@ -16,24 +16,35 @@ package scrum.server.project;
 
 import ilarkesto.base.PermissionDeniedException;
 import ilarkesto.webapp.RequestWrapper;
-
 import java.io.File;
 import java.io.IOException;
-
 import scrum.server.ScrumWebApplication;
 import scrum.server.WebSession;
 import scrum.server.common.AKunagiServlet;
 
+/**
+ *
+ * @author erik
+ */
 public class BackupDownloadServlet extends AKunagiServlet {
 
-	@Override
+    /**
+     *
+     * @param req
+     * @throws IOException
+     */
+    @Override
 	protected void onRequest(RequestWrapper<WebSession> req) throws IOException {
 		ScrumWebApplication webapp = ScrumWebApplication.get();
 		String projectId = req.getMandatory("projectId");
-		if (projectId == null) throw new RuntimeException("projectId == null");
+		if (projectId == null) {
+                    throw new RuntimeException("projectId == null");
+        }
 
 		Project project = webapp.getProjectDao().getById(projectId);
-		if (!project.containsAdmin(req.getSession().getUser())) throw new PermissionDeniedException();
+		if (!project.containsAdmin(req.getSession().getUser())) {
+                    throw new PermissionDeniedException();
+        }
 
 		ProjectZipper zipper = new ProjectZipper(new File(webapp.getApplicationDataDir()), project);
 

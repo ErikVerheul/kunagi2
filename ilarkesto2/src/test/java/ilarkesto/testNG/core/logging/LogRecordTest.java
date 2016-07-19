@@ -14,11 +14,9 @@
  */
 package ilarkesto.testNG.core.logging;
 
-import ilarkesto.logging.Log.Level;
-import ilarkesto.logging.LogRecord;
-import static ilarkesto.logging.Log.Level.INFO;
-import ilarkesto.core.time.Tm;
 import static ilarkesto.core.time.Tm.getCurrentTimeMillis;
+import static ilarkesto.logging.Log.Level.INFO;
+import ilarkesto.logging.LogRecord;
 import ilarkesto.testng.ATest;
 import org.testng.annotations.Test;
 

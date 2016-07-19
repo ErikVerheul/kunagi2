@@ -19,6 +19,10 @@ import static java.lang.Integer.MAX_VALUE;
 import static java.lang.Integer.parseInt;
 import java.util.Comparator;
 
+/**
+ *
+ * @author erik
+ */
 public class NodeByIndexComparator implements Comparator<Node>, NodeTypes {
 
 	private static final Log LOG = Log.get(NodeByIndexComparator.class);

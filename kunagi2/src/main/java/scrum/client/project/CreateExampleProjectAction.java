@@ -15,13 +15,15 @@
 package scrum.client.project;
 
 import ilarkesto.core.scope.Scope;
-
 import java.util.List;
-
 import scrum.client.common.TooltipBuilder;
 import scrum.client.workspace.Ui;
 import scrum.client.workspace.UsersWorkspaceWidgets;
 
+/**
+ *
+ * @author erik
+ */
 public class CreateExampleProjectAction extends GCreateExampleProjectAction {
 
 	@Override
@@ -29,17 +31,21 @@ public class CreateExampleProjectAction extends GCreateExampleProjectAction {
 		return "Create Example Project";
 	}
 
-	@Override
+    /**
+     *
+     * @param tb
+     */
+    @Override
 	protected void updateTooltip(TooltipBuilder tb) {
 		tb.setText("Create a new example Project with some content.");
-		if (!getCurrentUser().isAdmin() && getDao().getSystemConfig().isProjectCreationDisabled())
-			tb.addRemark("Creating new projects is disabled.");
+		if (!getCurrentUser().isAdmin() && getDao().getSystemConfig().isProjectCreationDisabled()) {
+                    tb.addRemark("Creating new projects is disabled.");
+        }
 	}
 
 	@Override
 	public boolean isPermitted() {
-		if (!getCurrentUser().isAdmin() && getDao().getSystemConfig().isProjectCreationDisabled()) return false;
-		return true;
+		return !(!getCurrentUser().isAdmin() && getDao().getSystemConfig().isProjectCreationDisabled());
 	}
 
 	@Override

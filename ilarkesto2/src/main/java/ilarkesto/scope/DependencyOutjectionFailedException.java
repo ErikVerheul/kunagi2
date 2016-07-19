@@ -14,9 +14,19 @@
  */
 package ilarkesto.scope;
 
+/**
+ *
+ * @author erik
+ */
 public class DependencyOutjectionFailedException extends RuntimeException {
 
-	public DependencyOutjectionFailedException(Object component, String fieldName, Exception cause) {
+    /**
+     *
+     * @param component
+     * @param fieldName
+     * @param cause
+     */
+    public DependencyOutjectionFailedException(Object component, String fieldName, Exception cause) {
 		super("Component dependency outjection failed: " + component.getClass().getSimpleName() + "." + fieldName,
 				cause);
 	}

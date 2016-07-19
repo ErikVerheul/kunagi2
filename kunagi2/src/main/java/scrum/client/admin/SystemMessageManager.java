@@ -23,11 +23,19 @@ import scrum.client.communication.ServerDataReceivedEvent;
 import scrum.client.communication.ServerDataReceivedHandler;
 import scrum.client.workspace.VisibleDataChangedEvent;
 
+/**
+ *
+ * @author erik
+ */
 public class SystemMessageManager extends GSystemMessageManager implements ServerDataReceivedHandler {
 
 	private SystemMessage systemMessage = new SystemMessage();
 
-	@Override
+    /**
+     *
+     * @param event
+     */
+    @Override
 	public void onServerDataReceived(ServerDataReceivedEvent event) {
 		DataTransferObject data = event.getData();
 		if (data.systemMessage != null) {
@@ -37,23 +45,36 @@ public class SystemMessageManager extends GSystemMessageManager implements Serve
 		}
 	}
 
-	public void activateSystemMessage() {
+    /**
+     *
+     */
+    public void activateSystemMessage() {
 		systemMessage.setActive(true);
 		new UpdateSystemMessageServiceCall(systemMessage).execute();
 		new VisibleDataChangedEvent().fireInCurrentScope();
 	}
 
-	public void deactivateSystemMessage() {
+    /**
+     *
+     */
+    public void deactivateSystemMessage() {
 		systemMessage.setActive(false);
 		new UpdateSystemMessageServiceCall(systemMessage).execute();
 		new VisibleDataChangedEvent().fireInCurrentScope();
 	}
 
-	public SystemMessage getSystemMessage() {
+    /**
+     *
+     * @return
+     */
+    public SystemMessage getSystemMessage() {
 		return systemMessage;
 	}
 
-	public ATextEditorModel systemMessageTextModel = new ATextEditorModel() {
+    /**
+     *
+     */
+    public ATextEditorModel systemMessageTextModel = new ATextEditorModel() {
 
 		@Override
 		public void setValue(String value) {
@@ -66,7 +87,10 @@ public class SystemMessageManager extends GSystemMessageManager implements Serve
 		}
 	};
 
-	public ADateAndTimeEditorModel systemMessageExpiresModel = new ADateAndTimeEditorModel() {
+    /**
+     *
+     */
+    public ADateAndTimeEditorModel systemMessageExpiresModel = new ADateAndTimeEditorModel() {
 
 		@Override
 		public DateAndTime getValue() {

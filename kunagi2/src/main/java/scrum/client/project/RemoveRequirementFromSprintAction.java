@@ -18,9 +18,17 @@ import scrum.client.common.TooltipBuilder;
 import scrum.client.sprint.KickStoryFromSprintServiceCall;
 import scrum.client.sprint.Sprint;
 
+/**
+ *
+ * @author erik
+ */
 public class RemoveRequirementFromSprintAction extends GRemoveRequirementFromSprintAction {
 
-	public RemoveRequirementFromSprintAction(Requirement requirement) {
+    /**
+     *
+     * @param requirement
+     */
+    public RemoveRequirementFromSprintAction(Requirement requirement) {
 		super(requirement);
 	}
 
@@ -29,26 +37,30 @@ public class RemoveRequirementFromSprintAction extends GRemoveRequirementFromSpr
 		return "Kick from Sprint";
 	}
 
-	@Override
+    /**
+     *
+     * @param tb
+     */
+    @Override
 	protected void updateTooltip(TooltipBuilder tb) {
 		tb.setText("Remove this Story from the current Sprint.");
 		if (!requirement.getProject().isProductOwner(getCurrentUser())) {
 			tb.addRemark(TooltipBuilder.NOT_PRODUCT_OWNER);
 		} else {
-			if (!requirement.isSprintSet()) tb.addRemark("Story is not in in the current Sprint.");
+			if (!requirement.isSprintSet()) {
+                            tb.addRemark("Story is not in in the current Sprint.");
+            }
 		}
 	}
 
 	@Override
 	public boolean isExecutable() {
-		if (!requirement.isInCurrentSprint()) return false;
-		return true;
+		return requirement.isInCurrentSprint();
 	}
 
 	@Override
 	public boolean isPermitted() {
-		if (!requirement.getProject().isProductOwner(getCurrentUser())) return false;
-		return true;
+		return requirement.getProject().isProductOwner(getCurrentUser());
 	}
 
 	@Override

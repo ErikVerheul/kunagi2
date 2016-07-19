@@ -16,9 +16,19 @@ package scrum.server.pr;
 
 import scrum.server.project.Project;
 
+/**
+ *
+ * @author erik
+ */
 public class EmailHelper {
 
-	public static String createSubject(Project project, String text) {
+    /**
+     *
+     * @param project
+     * @param text
+     * @return
+     */
+    public static String createSubject(Project project, String text) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(project.isProductLabelSet() ? project.getProductLabel() : project.getLabel());
 		sb.append(": ").append(text);

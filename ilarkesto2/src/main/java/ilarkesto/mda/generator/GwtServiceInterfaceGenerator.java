@@ -20,16 +20,29 @@ import ilarkesto.mda.model.NodeTypes;
 import static java.util.Arrays.asList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class GwtServiceInterfaceGenerator extends AJavaClassGenerator implements NodeTypes {
 
 	private final Node module;
 
-	public GwtServiceInterfaceGenerator(String srcPath, Node module) {
+    /**
+     *
+     * @param srcPath
+     * @param module
+     */
+    public GwtServiceInterfaceGenerator(String srcPath, Node module) {
 		super(srcPath, true);
 		this.module = module;
 	}
 
-	@Override
+    /**
+     *
+     * @param out
+     */
+    @Override
 	protected void printCode(JavaPrinter out) {
 		out.package_(getPackageName());
 		out.beginInterface(module.getValue() + "Service", asList(com.google.gwt.user.client.rpc.RemoteService.class.getName()));

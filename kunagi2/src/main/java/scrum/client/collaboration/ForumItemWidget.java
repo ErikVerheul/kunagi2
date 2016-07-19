@@ -14,11 +14,10 @@
  */
 package scrum.client.collaboration;
 
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.TableBuilder;
 import scrum.client.common.AScrumGwtEntity;
 import scrum.client.common.AScrumWidget;
-
-import com.google.gwt.user.client.ui.Widget;
 
 public class ForumItemWidget extends AScrumWidget {
 

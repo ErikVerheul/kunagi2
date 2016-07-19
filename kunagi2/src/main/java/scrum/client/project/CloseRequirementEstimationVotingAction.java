@@ -16,9 +16,17 @@ package scrum.client.project;
 
 import scrum.client.common.TooltipBuilder;
 
+/**
+ *
+ * @author erik
+ */
 public class CloseRequirementEstimationVotingAction extends GCloseRequirementEstimationVotingAction {
 
-	public CloseRequirementEstimationVotingAction(scrum.client.project.Requirement requirement) {
+    /**
+     *
+     * @param requirement
+     */
+    public CloseRequirementEstimationVotingAction(scrum.client.project.Requirement requirement) {
 		super(requirement);
 	}
 
@@ -27,22 +35,26 @@ public class CloseRequirementEstimationVotingAction extends GCloseRequirementEst
 		return "Close Planning Poker";
 	}
 
-	@Override
+    /**
+     *
+     * @param tb
+     */
+    @Override
 	protected void updateTooltip(TooltipBuilder tb) {
 		tb.setText("Close the Planning Poker table for this Story.");
-		if (!requirement.getProject().isTeamMember(getCurrentUser())) tb.addRemark(TooltipBuilder.NOT_TEAM);
+		if (!requirement.getProject().isTeamMember(getCurrentUser())) {
+                    tb.addRemark(TooltipBuilder.NOT_TEAM);
+        }
 	}
 
 	@Override
 	public boolean isPermitted() {
-		if (!requirement.getProject().isTeamMember(getCurrentUser())) return false;
-		return true;
+		return requirement.getProject().isTeamMember(getCurrentUser());
 	}
 
 	@Override
 	public boolean isExecutable() {
-		if (!requirement.isWorkEstimationVotingActive()) return false;
-		return true;
+		return requirement.isWorkEstimationVotingActive();
 	}
 
 	@Override

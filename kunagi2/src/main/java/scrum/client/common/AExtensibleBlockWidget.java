@@ -14,6 +14,12 @@
  */
 package scrum.client.common;
 
+/**
+ *
+ * @author erik
+ * @param <O>
+ * @deprecated
+ */
 @Deprecated
 public abstract class AExtensibleBlockWidget<O extends Object> extends ABlockWidget<O> {
 

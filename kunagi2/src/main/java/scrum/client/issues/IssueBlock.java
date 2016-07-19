@@ -14,6 +14,8 @@
  */
 package scrum.client.issues;
 
+import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.AnchorPanel;
 import scrum.client.collaboration.EmoticonsWidget;
 import scrum.client.common.ABlockWidget;
@@ -24,22 +26,32 @@ import scrum.client.dnd.TrashSupport;
 import scrum.client.img.Img;
 import scrum.client.journal.ActivateChangeHistoryAction;
 
-import com.google.gwt.user.client.ui.Image;
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class IssueBlock extends ABlockWidget<Issue> implements TrashSupport {
 
 	private AnchorPanel statusIcon;
 
 	// private Label typeLabel;
 
+    /**
+     *
+     * @param header
+     */
+    
 	@Override
 	protected void onInitializationHeader(BlockHeaderWidget header) {
 		Issue issue = getObject();
 
-		if (issue.isBug()) statusIcon = header.addIconWrapper();
+		if (issue.isBug()) {
+                    statusIcon = header.addIconWrapper();
+        }
 
-		if (issue.isBug()) header.addText(issue.getSeverityLabelModel(), "40px", true, false);
+		if (issue.isBug()) {
+                    header.addText(issue.getSeverityLabelModel(), "40px", true, false);
+        }
 
 		header.addText(issue.getLabelModel());
 		header.addText(issue.getThemesAsStringModel(), true, false);
@@ -66,7 +78,11 @@ public class IssueBlock extends ABlockWidget<Issue> implements TrashSupport {
 		header.addMenuAction(new DeleteIssueAction(issue));
 	}
 
-	@Override
+    /**
+     *
+     * @param header
+     */
+    @Override
 	protected void onUpdateHeader(BlockHeaderWidget header) {
 		Issue issue = getObject();
 
@@ -79,22 +95,35 @@ public class IssueBlock extends ABlockWidget<Issue> implements TrashSupport {
 				statusImage = Img.bundle.issClaimed().createImage();
 				statusImage.setTitle("Claimed by " + issue.getOwner().getName());
 			}
-			if (statusIcon != null) statusIcon.setWidget(statusImage);
+			if (statusIcon != null) {
+                            statusIcon.setWidget(statusImage);
+            }
 		}
 		header.setDragHandle(issue.getReference());
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected Widget onExtendedInitialization() {
 		return new IssueWidget(getObject());
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public AScrumAction getTrashAction() {
 		return new DeleteIssueAction(getObject());
 	}
 
-	public static final BlockWidgetFactory<Issue> FACTORY = new BlockWidgetFactory<Issue>() {
+    /**
+     *
+     */
+    public static final BlockWidgetFactory<Issue> FACTORY = new BlockWidgetFactory<Issue>() {
 
 		@Override
 		public IssueBlock createBlock() {

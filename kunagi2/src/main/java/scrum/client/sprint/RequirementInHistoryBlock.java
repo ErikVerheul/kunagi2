@@ -29,6 +29,10 @@ import scrum.client.journal.ChangeHistoryWidget;
 import scrum.client.project.Requirement;
 import scrum.client.project.RequirementWidget;
 
+/**
+ *
+ * @author erik
+ */
 public class RequirementInHistoryBlock extends ABlockWidget<Requirement> {
 
 	private Sprint sprint;
@@ -36,11 +40,19 @@ public class RequirementInHistoryBlock extends ABlockWidget<Requirement> {
 	private RequirementWidget requirementWidget;
 	private ChangeHistoryWidget changeHistoryWidget;
 
-	public RequirementInHistoryBlock(Sprint sprint) {
+    /**
+     *
+     * @param sprint
+     */
+    public RequirementInHistoryBlock(Sprint sprint) {
 		this.sprint = sprint;
 	}
 
-	@Override
+    /**
+     *
+     * @param header
+     */
+    @Override
 	protected void onInitializationHeader(BlockHeaderWidget header) {
 		Requirement requirement = getObject();
 
@@ -62,10 +74,18 @@ public class RequirementInHistoryBlock extends ABlockWidget<Requirement> {
 		header.setDragHandle(requirement.getReference());
 	}
 
-	@Override
+    /**
+     *
+     * @param header
+     */
+    @Override
 	protected void onUpdateHeader(BlockHeaderWidget header) {}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected Widget onExtendedInitialization() {
 		Requirement requirement = getObject();
 		SprintReport report = sprint.getSprintReport();
@@ -89,18 +109,31 @@ public class RequirementInHistoryBlock extends ABlockWidget<Requirement> {
 		return panel;
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void onUpdateBody() {
 		requirementWidget.update();
 		taskList.update();
 		changeHistoryWidget.update();
 	}
 
-	public boolean selectTask(Task task) {
+    /**
+     *
+     * @param task
+     * @return
+     */
+    public boolean selectTask(Task task) {
 		return taskList.showObject(task);
 	}
 
-	public static BlockWidgetFactory<Requirement> createFactory(final Sprint sprint) {
+    /**
+     *
+     * @param sprint
+     * @return
+     */
+    public static BlockWidgetFactory<Requirement> createFactory(final Sprint sprint) {
 		return new BlockWidgetFactory<Requirement>() {
 
 			@Override

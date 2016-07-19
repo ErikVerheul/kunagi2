@@ -14,19 +14,26 @@
  */
 package scrum.client.dnd;
 
-import scrum.client.common.ABlockWidget;
-import scrum.client.common.BlockListWidget;
-
 import com.allen_sauer.gwt.dnd.client.DragContext;
 import com.allen_sauer.gwt.dnd.client.VetoDragException;
 import com.allen_sauer.gwt.dnd.client.drop.DropController;
 import com.google.gwt.user.client.ui.Widget;
+import scrum.client.common.ABlockWidget;
+import scrum.client.common.BlockListWidget;
 
+/**
+ *
+ * @author erik
+ */
 public class BlockListDropController implements DropController {
 
 	private BlockListWidget list;
 
-	public BlockListDropController(BlockListWidget list) {
+    /**
+     *
+     * @param list
+     */
+    public BlockListDropController(BlockListWidget list) {
 		this.list = list;
 	}
 
@@ -37,14 +44,18 @@ public class BlockListDropController implements DropController {
 
 	@Override
 	public void onDrop(DragContext context) {
-		if (!isDropAllowed(context.draggable)) return;
+		if (!isDropAllowed(context.draggable)) {
+                    return;
+        }
 
 		list.drop((ABlockWidget) context.draggable, 0);
 	}
 
 	@Override
 	public void onEnter(DragContext context) {
-		if (!isDropAllowed(context.draggable)) return;
+		if (!isDropAllowed(context.draggable)) {
+                    return;
+        }
 		list.activateDrop();
 	}
 
@@ -62,7 +73,9 @@ public class BlockListDropController implements DropController {
 	private boolean isDropAllowed(Widget draggable) {
 		if (draggable instanceof ABlockWidget) {
 			ABlockWidget block = (ABlockWidget) draggable;
-			if (block.getList() == list) return false;
+			if (block.getList() == list) {
+                            return false;
+            }
 			return list.acceptsDrop(block);
 		}
 		return false;

@@ -17,13 +17,20 @@ package ilarkesto.concurrent;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public final class BatchTask extends ATask {
 
 	private List<TaskWrapper> tasks = new ArrayList<>();
 	private TaskWrapper currentTask;
 	private float progressed;
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void perform() {
 		int totalWeight = 0;
 		for (TaskWrapper wrapper : tasks) {
@@ -41,7 +48,10 @@ public final class BatchTask extends ATask {
 		}
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	public void abort() {
 		if (currentTask != null) {
                         currentTask.task.abort();
@@ -49,7 +59,10 @@ public final class BatchTask extends ATask {
 		super.abort();
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	public void reset() {
 		for (TaskWrapper taskWrapper : tasks) {
 			if (taskWrapper.task.isFinished()) {
@@ -60,12 +73,20 @@ public final class BatchTask extends ATask {
 		super.reset();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getProgressMessage() {
 		return currentTask == null ? null : currentTask.task.getProgressMessage();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public float getProgress() {
 		if (currentTask == null) {
                         return super.getProgress();
@@ -73,11 +94,20 @@ public final class BatchTask extends ATask {
 		return progressed + (currentTask.effectiveWeight * currentTask.task.getProgress());
 	}
 
-	public void addTask(ATask task) {
+    /**
+     *
+     * @param task
+     */
+    public void addTask(ATask task) {
 		addTask(task, 1);
 	}
 
-	public void addTask(ATask task, int weight) {
+    /**
+     *
+     * @param task
+     * @param weight
+     */
+    public void addTask(ATask task, int weight) {
 		tasks.add(new TaskWrapper(task, weight));
 	}
 

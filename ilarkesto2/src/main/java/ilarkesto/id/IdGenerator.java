@@ -14,8 +14,16 @@
  */
 package ilarkesto.id;
 
+/**
+ *
+ * @author erik
+ */
 public interface IdGenerator {
 
+    /**
+     *
+     * @return
+     */
     public String generateId();
 
 }

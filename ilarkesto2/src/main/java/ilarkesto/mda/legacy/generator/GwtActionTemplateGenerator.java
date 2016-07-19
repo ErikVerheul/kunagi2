@@ -17,31 +17,54 @@ package ilarkesto.mda.legacy.generator;
 import ilarkesto.mda.legacy.model.ActionModel;
 import ilarkesto.mda.legacy.model.ParameterModel;
 
+/**
+ *
+ * @author erik
+ */
 public class GwtActionTemplateGenerator extends AClassGenerator {
 
 	private ActionModel action;
 
-	public GwtActionTemplateGenerator(ActionModel action) {
+    /**
+     *
+     * @param action
+     */
+    public GwtActionTemplateGenerator(ActionModel action) {
 		super();
 		this.action = action;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected final String getName() {
 		return action.getName() + "Action";
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected final String getPackage() {
 		return action.getPackageName().replace(".server", ".client");
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected final boolean isInterface() {
 		return false;
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void writeContent() {
 		if (!action.getParameters().isEmpty()) {
                         writeConstructor();
@@ -79,17 +102,29 @@ public class GwtActionTemplateGenerator extends AClassGenerator {
 		ln("    }");
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected final String getSuperclass() {
 		return "G" + action.getName() + "Action";
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected boolean isAbstract() {
 		return false;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected boolean isOverwrite() {
 		return false;
 	}

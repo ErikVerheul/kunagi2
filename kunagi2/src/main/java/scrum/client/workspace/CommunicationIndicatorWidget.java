@@ -14,17 +14,6 @@
  */
 package scrum.client.workspace;
 
-import ilarkesto.core.scope.Scope;
-import ilarkesto.core.time.Tm;
-
-import java.util.List;
-
-import scrum.client.common.AScrumWidget;
-import scrum.client.communication.Pinger;
-import scrum.client.core.AServiceCall;
-import scrum.client.core.ServiceCaller;
-import scrum.client.test.ScrumStatusWidget;
-
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -32,7 +21,19 @@ import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.FocusPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
+import ilarkesto.core.scope.Scope;
+import ilarkesto.core.time.Tm;
+import java.util.List;
+import scrum.client.common.AScrumWidget;
+import scrum.client.communication.Pinger;
+import scrum.client.core.AServiceCall;
+import scrum.client.core.ServiceCaller;
+import scrum.client.test.ScrumStatusWidget;
 
+/**
+ *
+ * @author erik
+ */
 public class CommunicationIndicatorWidget extends AScrumWidget {
 
 	private ServiceCaller serviceCaller;
@@ -80,9 +81,13 @@ public class CommunicationIndicatorWidget extends AScrumWidget {
 	protected void onUpdate() {
 		List<AServiceCall> calls = serviceCaller.getActiveServiceCalls();
 		if (calls.isEmpty()) {
-			if (isOn()) switchOff();
+			if (isOn()) {
+                            switchOff();
+            }
 		} else {
-			if (!isOn()) switchOn();
+			if (!isOn()) {
+                            switchOn();
+            }
 		}
 	}
 

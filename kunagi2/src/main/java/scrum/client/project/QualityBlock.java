@@ -14,14 +14,13 @@
  */
 package scrum.client.project;
 
+import com.google.gwt.user.client.ui.Widget;
 import scrum.client.collaboration.EmoticonsWidget;
 import scrum.client.common.ABlockWidget;
 import scrum.client.common.AScrumAction;
 import scrum.client.common.BlockHeaderWidget;
 import scrum.client.common.BlockWidgetFactory;
 import scrum.client.dnd.TrashSupport;
-
-import com.google.gwt.user.client.ui.Widget;
 
 public class QualityBlock extends ABlockWidget<Quality> implements TrashSupport {
 

@@ -15,14 +15,11 @@
 package ilarkesto.properties;
 
 import edu.umd.cs.findbugs.annotations.SuppressWarnings;
-import ilarkesto.base.StrExtend;
 import static ilarkesto.base.StrExtend.tokenize;
-import ilarkesto.base.UtlExtend;
 import static ilarkesto.core.base.Utl.toList;
 import ilarkesto.email.EmailAddress;
 import java.io.File;
 import static java.lang.Boolean.parseBoolean;
-import static java.lang.Integer.parseInt;
 import static java.lang.Integer.parseInt;
 import java.util.List;
 import java.util.Properties;

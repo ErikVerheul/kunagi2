@@ -15,7 +15,6 @@
 package scrum.server.project;
 
 import ilarkesto.concurrent.ACollectionTask;
-
 import java.util.Collection;
 
 public class HomepageUpdaterTask extends ACollectionTask<Project> {

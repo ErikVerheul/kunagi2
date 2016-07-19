@@ -72,6 +72,10 @@ import scrum.server.sprint.SprintReport;
 import scrum.server.sprint.SprintReportDao;
 import scrum.server.sprint.Task;
 
+/**
+ *
+ * @author erik
+ */
 public class ScrumServiceImpl extends GScrumServiceImpl {
 
     private static final long serialVersionUID = 1L;
@@ -95,34 +99,66 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
     @In
     private transient EmailSender emailSender;
 
+    /**
+     *
+     * @param releaseDao
+     */
     public void setReleaseDao(ReleaseDao releaseDao) {
         this.releaseDao = releaseDao;
     }
 
+    /**
+     *
+     * @param changeDao
+     */
     public void setChangeDao(ChangeDao changeDao) {
         this.changeDao = changeDao;
     }
 
+    /**
+     *
+     * @param webApplication
+     */
     public void setWebApplication(ScrumWebApplication webApplication) {
         this.webApplication = webApplication;
     }
 
+    /**
+     *
+     * @param requirementDao
+     */
     public void setRequirementDao(RequirementDao requirementDao) {
         this.requirementDao = requirementDao;
     }
 
+    /**
+     *
+     * @param issueDao
+     */
     public void setIssueDao(IssueDao issueDao) {
         this.issueDao = issueDao;
     }
 
+    /**
+     *
+     * @param projectDao
+     */
     public void setProjectDao(ProjectDao projectDao) {
         this.projectDao = projectDao;
     }
 
+    /**
+     *
+     * @param userDao
+     */
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
     }
 
+    /**
+     *
+     * @param commentDao
+     */
     public void setCommentDao(CommentDao commentDao) {
         this.commentDao = commentDao;
     }
@@ -140,6 +176,10 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         conversation.sendUserScopeDataToClient(user);
     }
 
+    /**
+     *
+     * @param conversation
+     */
     @Override
     public void onRequestHistory(GwtConversation conversation) {
         assertProjectSelected(conversation);
@@ -153,6 +193,11 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         conversation.sendToClient(entities);
     }
 
+    /**
+     *
+     * @param conversation
+     * @param storyId
+     */
     @Override
     public void onPullStoryToSprint(GwtConversation conversation, String storyId) {
         assertProjectSelected(conversation);
@@ -171,6 +216,11 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         sendToClients(conversation, story.getTasksInSprint());
     }
 
+    /**
+     *
+     * @param conversation
+     * @param storyId
+     */
     @Override
     public void onKickStoryFromSprint(GwtConversation conversation, String storyId) {
         assertProjectSelected(conversation);
@@ -189,6 +239,15 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         sendToClients(conversation, sprint.getProject());
     }
 
+    /**
+     *
+     * @param conversation
+     * @param issueId
+     * @param from
+     * @param to
+     * @param subject
+     * @param text
+     */
     @Override
     public void onSendIssueReplyEmail(GwtConversation conversation, String issueId, String from, String to,
             String subject, String text) {
@@ -205,6 +264,10 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         conversation.sendToClient(change);
     }
 
+    /**
+     *
+     * @param conversation
+     */
     @Override
     public void onCreateExampleProject(GwtConversation conversation) {
         User user = conversation.getSession().getUser();
@@ -212,6 +275,11 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         conversation.sendToClient(project);
     }
 
+    /**
+     *
+     * @param conversation
+     * @param text
+     */
     @Override
     public void onSearch(GwtConversation conversation, String text) {
         Project project = conversation.getProject();
@@ -223,6 +291,11 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         conversation.sendToClient(foundEntities);
     }
 
+    /**
+     *
+     * @param conversation
+     * @param systemMessage
+     */
     @Override
     public void onUpdateSystemMessage(GwtConversation conversation, SystemMessage systemMessage) {
         User user = conversation.getSession().getUser();
@@ -232,12 +305,21 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         webApplication.updateSystemMessage(systemMessage);
     }
 
+    /**
+     *
+     * @param conversation
+     */
     @Override
     public void onLogout(GwtConversation conversation) {
         WebSession session = conversation.getSession();
         webApplication.destroyWebSession(session, getThreadLocalRequest().getSession());
     }
 
+    /**
+     *
+     * @param conversation
+     * @param userId
+     */
     @Override
     public void onResetPassword(GwtConversation conversation, String userId) {
         if (!conversation.getSession().getUser().isAdmin()) {
@@ -251,6 +333,12 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         }
     }
 
+    /**
+     *
+     * @param conversation
+     * @param oldPassword
+     * @param newPassword
+     */
     @Override
     public void onChangePassword(GwtConversation conversation, String oldPassword, String newPassword) {
         User user = conversation.getSession().getUser();
@@ -263,6 +351,12 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         LOG.info("password changed by", user);
     }
 
+    /**
+     *
+     * @param conversation
+     * @param type
+     * @param properties
+     */
     @Override
     public void onCreateEntity(GwtConversation conversation, String type, Map properties) {
         String id = (String) properties.get("id");
@@ -365,6 +459,11 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         }
     }
 
+    /**
+     *
+     * @param conversation
+     * @param entityId
+     */
     @Override
     public void onDeleteEntity(GwtConversation conversation, String entityId) {
         AEntity entity = getDaoService().getEntityById(entityId);
@@ -416,6 +515,12 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         }
     }
 
+    /**
+     *
+     * @param conversation
+     * @param entityId
+     * @param properties
+     */
     @Override
     public void onChangeProperties(GwtConversation conversation, String entityId, Map properties) {
         AEntity entity = getDaoService().getEntityById(entityId);
@@ -696,6 +801,11 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         }
     }
 
+    /**
+     *
+     * @param conversation
+     * @param projectId
+     */
     @Override
     public void onSelectProject(GwtConversation conversation, String projectId) {
         Project project = projectDao.getById(projectId);
@@ -737,6 +847,10 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         sendToClients(conversation, config);
     }
 
+    /**
+     *
+     * @param conversation
+     */
     @Override
     public void onCloseProject(GwtConversation conversation) {
         Project project = conversation.getProject();
@@ -749,6 +863,11 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         conversation.setProject(null);
     }
 
+    /**
+     *
+     * @param conversation
+     * @param all
+     */
     @Override
     public void onRequestForum(GwtConversation conversation, boolean all) {
         Project project = conversation.getProject();
@@ -770,6 +889,10 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         conversation.sendToClient(parents);
     }
 
+    /**
+     *
+     * @param conversation
+     */
     @Override
     public void onRequestImpediments(GwtConversation conversation) {
         assertProjectSelected(conversation);
@@ -777,6 +900,10 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         conversation.sendToClient(project.getImpediments());
     }
 
+    /**
+     *
+     * @param conversation
+     */
     @Override
     public void onRequestRisks(GwtConversation conversation) {
         assertProjectSelected(conversation);
@@ -784,6 +911,10 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         conversation.sendToClient(project.getRisks());
     }
 
+    /**
+     *
+     * @param conversation
+     */
     @Override
     public void onRequestAcceptedIssues(GwtConversation conversation) {
         assertProjectSelected(conversation);
@@ -791,6 +922,10 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         conversation.sendToClient(project.getAcceptedIssues());
     }
 
+    /**
+     *
+     * @param conversation
+     */
     @Override
     public void onRequestClosedIssues(GwtConversation conversation) {
         assertProjectSelected(conversation);
@@ -798,6 +933,11 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         conversation.sendToClient(project.getClosedIssues());
     }
 
+    /**
+     *
+     * @param conversation
+     * @param releaseId
+     */
     @Override
     public void onRequestReleaseIssues(GwtConversation conversation, String releaseId) {
         assertProjectSelected(conversation);
@@ -809,6 +949,11 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         conversation.sendToClient(release.getIssues());
     }
 
+    /**
+     *
+     * @param conversation
+     * @param entityId
+     */
     @Override
     public void onRequestEntity(GwtConversation conversation, String entityId) {
         assertProjectSelected(conversation);
@@ -827,6 +972,11 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         }
     }
 
+    /**
+     *
+     * @param conversation
+     * @param reference
+     */
     @Override
     public void onRequestEntityByReference(GwtConversation conversation, String reference) {
         assertProjectSelected(conversation);
@@ -875,16 +1025,31 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         return ret;
     }
 
+    /**
+     *
+     * @param conversation
+     * @param parentId
+     */
     @Override
     public void onRequestComments(GwtConversation conversation, String parentId) {
         conversation.sendToClient(commentDao.getCommentsByParentId(parentId));
     }
 
+    /**
+     *
+     * @param conversation
+     * @param parentId
+     */
     @Override
     public void onRequestChanges(GwtConversation conversation, String parentId) {
         conversation.sendToClient(changeDao.getChangesByParentId(parentId));
     }
 
+    /**
+     *
+     * @param conversation
+     * @param requirementId
+     */
     @Override
     public void onRequestRequirementEstimationVotes(GwtConversation conversation, String requirementId) {
         assertProjectSelected(conversation);
@@ -896,6 +1061,11 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         conversation.sendToClient(requirement.getEstimationVotes());
     }
 
+    /**
+     *
+     * @param conversation
+     * @param requirementId
+     */
     @Override
     public void onActivateRequirementEstimationVoting(GwtConversation conversation, String requirementId) {
         Requirement requirement = requirementDao.getById(requirementId);
@@ -909,6 +1079,10 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         sendToClients(conversation, requirement.getEstimationVotes());
     }
 
+    /**
+     *
+     * @param conversation
+     */
     @Override
     public void onSwitchToNextSprint(GwtConversation conversation) {
         assertProjectSelected(conversation);
@@ -930,6 +1104,10 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         sendToClients(conversation, project);
     }
 
+    /**
+     *
+     * @param conversation
+     */
     @Override
     public void onUpdateProjectHomepage(GwtConversation conversation) {
         assertProjectSelected(conversation);
@@ -937,11 +1115,19 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         project.updateHomepage();
     }
 
+    /**
+     *
+     * @param conversation
+     */
     @Override
     public void onSendTestEmail(GwtConversation conversation) {
         emailSender.sendEmail((String) null, null, "Kunagi email test", "Kunagi email test");
     }
 
+    /**
+     *
+     * @param conversation
+     */
     @Override
     public void onTestLdap(GwtConversation conversation) {
         SystemConfig config = webApplication.getSystemConfig();
@@ -952,6 +1138,10 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         }
     }
 
+    /**
+     *
+     * @param conversation
+     */
     @Override
     public void onTouchLastActivity(GwtConversation conversation) {
         Project project = conversation.getProject();
@@ -961,6 +1151,11 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         project.getUserConfig(conversation.getSession().getUser()).touch();
     }
 
+    /**
+     *
+     * @param conversation
+     * @param releaseId
+     */
     @Override
     public void onPublishRelease(GwtConversation conversation, String releaseId) {
         Project project = conversation.getProject();
@@ -971,18 +1166,33 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         release.release(project, conversation.getSession().getUser(), webApplication);
     }
 
+    /**
+     *
+     * @param conversation
+     */
     @Override
     public void onPing(GwtConversation conversation) {
         // nop
     }
 
+    /**
+     *
+     * @param conversation
+     * @param millis
+     */
     @Override
     public void onSleep(GwtConversation conversation, long millis) {
         UtlExtend.sleep(millis);
     }
 
 // --- helper ---
-    @Override
+
+    /**
+     *
+     * @param conversationNumber
+     * @return
+     */
+        @Override
     public DataTransferObject startConversation(int conversationNumber) {
         LOG.debug("startConversation");
         WebSession session = (WebSession) getSession();
@@ -1022,6 +1232,13 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         }
     }
 
+    /**
+     *
+     * @param message
+     * @param subject
+     * @param project
+     * @param exceptionEmail
+     */
     public void sendProjectEventEmails(String message, AEntity subject, Project project, String exceptionEmail) {
         if (exceptionEmail == null) {
             LOG.error("sendProjectEventEmails: cannot send email when email address is null.");
@@ -1069,16 +1286,29 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected Class<? extends AWebApplication> getWebApplicationClass() {
         return ScrumWebApplication.class;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected AWebApplication getWebApplication() {
         return webApplication;
     }
 
+    /**
+     *
+     * @param conversation
+     * @param issueId
+     */
     @Override
     public void onConvertIssueToStory(GwtConversation conversation, String issueId) {
         Issue issue = issueDao.getById(issueId);

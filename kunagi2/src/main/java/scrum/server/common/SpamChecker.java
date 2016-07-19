@@ -3,11 +3,21 @@ package scrum.server.common;
 import ilarkesto.webapp.RequestWrapper;
 import scrum.server.WebSession;
 
+/**
+ *
+ * @author erik
+ */
 public class SpamChecker {
 
-	public static void check(RequestWrapper<WebSession> req) {
+    /**
+     *
+     * @param req
+     */
+    public static void check(RequestWrapper<WebSession> req) {
 		String spamPreventionCode = req.get("spamPreventionCode");
-		if (!"no-spam".equals(spamPreventionCode)) throw new RuntimeException("HTTP Request identified as SPAM.");
+		if (!"no-spam".equals(spamPreventionCode)) {
+                    throw new RuntimeException("HTTP Request identified as SPAM.");
+        }
 	}
 
 }

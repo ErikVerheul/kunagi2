@@ -17,16 +17,28 @@ package ilarkesto.mda.swingeditor;
 import ilarkesto.core.event.AEvent;
 import ilarkesto.mda.model.Node;
 
+/**
+ *
+ * @author erik
+ */
 public class NodeSelectionChangedEvent extends AEvent {
 
 	private Node selectedNode;
 
-	public NodeSelectionChangedEvent(Node selectedNode) {
+    /**
+     *
+     * @param selectedNode
+     */
+    public NodeSelectionChangedEvent(Node selectedNode) {
 		super();
 		this.selectedNode = selectedNode;
 	}
 
-	@Override
+    /**
+     *
+     * @param handler
+     */
+    @Override
 	public void tryToGetHandled(Object handler) {
 		if (handler instanceof NodeSelectionChangedHandler) {
 //			LOG.info("Calling event handler:", handler);
@@ -34,7 +46,11 @@ public class NodeSelectionChangedEvent extends AEvent {
 		}
 	}
 
-	public Node getSelectedNode() {
+    /**
+     *
+     * @return
+     */
+    public Node getSelectedNode() {
 		return selectedNode;
 	}
 

@@ -14,10 +14,23 @@
  */
 package ilarkesto.persistence;
 
+/**
+ *
+ * @author erik
+ * @param <E>
+ */
 public interface DaoListener<E extends AEntity> {
 
-	void entitySaved(EntityEvent<E> event);
+    /**
+     *
+     * @param event
+     */
+    void entitySaved(EntityEvent<E> event);
 
-	void entityDeleted(EntityEvent<E> event);
+    /**
+     *
+     * @param event
+     */
+    void entityDeleted(EntityEvent<E> event);
 
 }

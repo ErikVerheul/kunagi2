@@ -14,10 +14,8 @@
  */
 package ilarkesto.runtime;
 
-import ilarkesto.base.Sys;
 import static ilarkesto.base.Sys.isDevelopmentMode;
 import static ilarkesto.base.Sys.setHttpProxy;
-import ilarkesto.io.IO;
 import static ilarkesto.io.IO.downloadUrlToString;
 
 public class AutoProxy {

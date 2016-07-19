@@ -14,12 +14,21 @@
  */
 package scrum.client.wiki;
 
+/**
+ *
+ * @author erik
+ */
 public class Code extends AWikiElement {
 
 	private String text;
 	private boolean forceBlock;
 
-	public Code(String text, boolean forceBlock) {
+    /**
+     *
+     * @param text
+     * @param forceBlock
+     */
+    public Code(String text, boolean forceBlock) {
 		super();
 		this.text = text;
 		this.forceBlock = forceBlock;
@@ -28,7 +37,9 @@ public class Code extends AWikiElement {
 	@Override
 	String toHtml(HtmlContext context) {
 		String s = text;
-		if (s.length() > 0 && s.startsWith("\n")) s = s.substring(1);
+		if (s.length() > 0 && s.startsWith("\n")) {
+                    s = s.substring(1);
+        }
 		String html = escapeHtml(s);
 		html = html.replace("\n", "<br>");
 		html = html.replace(" ", "&nbsp;");
@@ -46,14 +57,25 @@ public class Code extends AWikiElement {
 		return sb.toString();
 	}
 
-	public boolean isBlock() {
-		if (forceBlock) return true;
-		if (text.length() > 80) return true;
-		if (text.contains("\n")) return true;
-		return false;
+    /**
+     *
+     * @return
+     */
+    public boolean isBlock() {
+		if (forceBlock) {
+                    return true;
+        }
+                if (text.length() > 80) {
+                    return true;
+        }
+		return text.contains("\n");
 	}
 
-	public String getText() {
+    /**
+     *
+     * @return
+     */
+    public String getText() {
 		return text;
 	}
 

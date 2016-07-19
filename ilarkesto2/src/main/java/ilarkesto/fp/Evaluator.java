@@ -14,8 +14,16 @@
  */
 package ilarkesto.fp;
 
+/**
+ *
+ * @author erik
+ */
 public interface Evaluator {
 
-	boolean eval();
+    /**
+     *
+     * @return
+     */
+    boolean eval();
 
 }

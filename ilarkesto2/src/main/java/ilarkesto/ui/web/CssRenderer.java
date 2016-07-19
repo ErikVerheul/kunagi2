@@ -17,8 +17,6 @@ package ilarkesto.ui.web;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import static java.lang.String.valueOf;
-import static java.lang.String.valueOf;
-import static java.lang.String.valueOf;
 
 public class CssRenderer {
 

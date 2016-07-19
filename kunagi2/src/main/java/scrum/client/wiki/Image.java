@@ -14,13 +14,23 @@
  */
 package scrum.client.wiki;
 
+/**
+ *
+ * @author erik
+ */
 public class Image extends AWikiElement {
 
 	private String reference;
 	private boolean thumb;
 	private boolean thumbAlignmentLeft;
 
-	public Image(String reference, boolean thumb, boolean thumbAlignmentLeft) {
+    /**
+     *
+     * @param reference
+     * @param thumb
+     * @param thumbAlignmentLeft
+     */
+    public Image(String reference, boolean thumb, boolean thumbAlignmentLeft) {
 		super();
 		this.reference = reference;
 		this.thumb = thumb;
@@ -57,19 +67,35 @@ public class Image extends AWikiElement {
 		return sb.toString();
 	}
 
-	public boolean isExternal() {
+    /**
+     *
+     * @return
+     */
+    public boolean isExternal() {
 		return reference.startsWith("http://") || reference.startsWith("https://");
 	}
 
-	public String getReference() {
+    /**
+     *
+     * @return
+     */
+    public String getReference() {
 		return reference;
 	}
 
-	public boolean isThumb() {
+    /**
+     *
+     * @return
+     */
+    public boolean isThumb() {
 		return thumb;
 	}
 
-	public boolean isThumbAlignmentLeft() {
+    /**
+     *
+     * @return
+     */
+    public boolean isThumbAlignmentLeft() {
 		return thumbAlignmentLeft;
 	}
 

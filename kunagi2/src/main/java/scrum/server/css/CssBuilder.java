@@ -16,8 +16,16 @@ package scrum.server.css;
 
 import ilarkesto.ui.web.CssRenderer;
 
+/**
+ *
+ * @author erik
+ */
 public interface CssBuilder {
 
-	void buildCss(CssRenderer css);
+    /**
+     *
+     * @param css
+     */
+    void buildCss(CssRenderer css);
 
 }

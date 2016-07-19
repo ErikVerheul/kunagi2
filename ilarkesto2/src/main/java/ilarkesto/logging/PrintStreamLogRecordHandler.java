@@ -16,16 +16,28 @@ package ilarkesto.logging;
 
 import java.io.PrintStream;
 
+/**
+ *
+ * @author erik
+ */
 public class PrintStreamLogRecordHandler implements LogRecordHandler {
 
 	private PrintStream out;
 
-	public PrintStreamLogRecordHandler(PrintStream out) {
+    /**
+     *
+     * @param out
+     */
+    public PrintStreamLogRecordHandler(PrintStream out) {
 		super();
 		this.out = out;
 	}
 
-	@Override
+    /**
+     *
+     * @param record
+     */
+    @Override
 	public void log(LogRecord record) {
 		out.println(record.toString());
 	}

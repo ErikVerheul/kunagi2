@@ -16,9 +16,8 @@ package scrum.server.sprint;
 
 import ilarkesto.base.StrExtend;
 import ilarkesto.base.UtlExtend;
-import ilarkesto.logging.Log;
 import ilarkesto.core.time.Date;
-
+import ilarkesto.logging.Log;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -36,6 +35,10 @@ import scrum.server.project.Project;
 import scrum.server.project.Requirement;
 import scrum.server.release.Release;
 
+/**
+ *
+ * @author erik
+ */
 public class Sprint extends GSprint implements Numbered {
 
 	private static final Log log = Log.get(Sprint.class);
@@ -44,32 +47,56 @@ public class Sprint extends GSprint implements Numbered {
 
 	private static transient ChangeDao changeDao;
 
-	public static void setChangeDao(ChangeDao changeDao) {
+    /**
+     *
+     * @param changeDao
+     */
+    public static void setChangeDao(ChangeDao changeDao) {
 		Sprint.changeDao = changeDao;
 	}
 
 	// --- ---
 
+    /**
+     *
+     * @return
+     */
+    
 	public List<Requirement> getClosedRequirementsAsList() {
 		return UtlExtend.sort(getClosedRequirements(), getRequirementsOrderComparator());
 	}
 
-	public Set<Requirement> getClosedRequirements() {
+    /**
+     *
+     * @return
+     */
+    public Set<Requirement> getClosedRequirements() {
 		Set<Requirement> requirements = getRequirements();
 		Iterator<Requirement> iterator = requirements.iterator();
 		while (iterator.hasNext()) {
 			Requirement requirement = iterator.next();
-			if (!requirement.isClosed()) iterator.remove();
+			if (!requirement.isClosed()) {
+                            iterator.remove();
+            }
 		}
 		return requirements;
 	}
 
-	public Release getNextRelease() {
+    /**
+     *
+     * @return
+     */
+    public Release getNextRelease() {
 		List<Release> releases = new ArrayList<Release>(getReleases());
 		return releases.isEmpty() ? null : UtlExtend.getElement(releases, 0);
 	}
 
-	public void pullRequirement(Requirement requirement, User user) {
+    /**
+     *
+     * @param requirement
+     * @param user
+     */
+    public void pullRequirement(Requirement requirement, User user) {
 		requirement.setSprint(this);
 		for (Task task : requirement.getTasksInSprint()) {
 			task.reset();
@@ -80,7 +107,12 @@ public class Sprint extends GSprint implements Numbered {
 		changeDao.postChange(requirement, user, "sprintId", null, getId());
 	}
 
-	public void kickRequirement(Requirement requirement, User user) {
+    /**
+     *
+     * @param requirement
+     * @param user
+     */
+    public void kickRequirement(Requirement requirement, User user) {
 		int burned = 0;
 		for (Task task : requirement.getTasksInSprint()) {
 			burned += task.getBurnedWork();
@@ -98,14 +130,21 @@ public class Sprint extends GSprint implements Numbered {
 		changeDao.postChange(requirement, user, "sprintId", getId(), null);
 	}
 
-	public void moveToBottom(Requirement requirement) {
+    /**
+     *
+     * @param requirement
+     */
+    public void moveToBottom(Requirement requirement) {
 		List<String> orderIds = getRequirementsOrderIds();
 		orderIds.remove(requirement.getId());
 		orderIds.add(requirement.getId());
 		setRequirementsOrderIds(orderIds);
 	}
 
-	public void close() {
+    /**
+     *
+     */
+    public void close() {
 		SprintReport report = sprintReportDao.postSprintReport(this);
 		report.setRequirementsOrderIds(getRequirementsOrderIds());
 		report.setBurnedWork(getBurnedWork());
@@ -148,7 +187,9 @@ public class Sprint extends GSprint implements Numbered {
 			List<Task> tasks = new ArrayList<Task>(requirement.getTasksInSprint());
 			if (requirement.isClosed()) {
 				Float work = requirement.getEstimatedWork();
-				if (work != null) velocity += work;
+				if (work != null) {
+                                    velocity += work;
+                }
 			} else {
 				for (Task task : tasks) {
 					if (task.isClosed()) {
@@ -184,58 +225,107 @@ public class Sprint extends GSprint implements Numbered {
 		setScrumMasters(project.getScrumMasters());
 		setTeamMembers(project.getTeamMembers());
 		int roundedVelocity = Math.round(velocity);
-		if (roundedVelocity > 0) project.setVelocity(roundedVelocity);
+                if (roundedVelocity > 0) {
+                    project.setVelocity(roundedVelocity);
+        }
 	}
 
-	public Set<Issue> getFixedIssues() {
+    /**
+     *
+     * @return
+     */
+    public Set<Issue> getFixedIssues() {
 		Set<Issue> fixedIssues = new HashSet<Issue>();
 		for (Release release : getReleases()) {
-			for (Issue issue : release.getFixIssues()) {
-				if (issue.isFixed()) fixedIssues.add(issue);
+                    for (Issue issue : release.getFixIssues()) {
+                        if (issue.isFixed()) {
+                    fixedIssues.add(issue);
+                }
 			}
 		}
 		return fixedIssues;
 	}
 
-	public String getProductOwnersAsString() {
+    /**
+     *
+     * @return
+     */
+    public String getProductOwnersAsString() {
 		return StrExtend.concat(User.getNames(getProductOwners()), ", ");
 	}
 
-	public String getScrumMastersAsString() {
+    /**
+     *
+     * @return
+     */
+    public String getScrumMastersAsString() {
 		return StrExtend.concat(User.getNames(getScrumMasters()), ", ");
 	}
 
-	public String getTeamMembersAsString() {
+    /**
+     *
+     * @return
+     */
+    public String getTeamMembersAsString() {
 		return StrExtend.concat(User.getNames(getTeamMembers()), ", ");
 	}
 
-	public List<SprintDaySnapshot> getDaySnapshots() {
+    /**
+     *
+     * @return
+     */
+    public List<SprintDaySnapshot> getDaySnapshots() {
 		return sprintDaySnapshotDao.getSprintDaySnapshots(this);
 	}
 
-	public Set<SprintDaySnapshot> getExistingDaySnapshots() {
+    /**
+     *
+     * @return
+     */
+    public Set<SprintDaySnapshot> getExistingDaySnapshots() {
 		return sprintDaySnapshotDao.getSprintDaySnapshotsBySprint(this);
 	}
 
-	public Integer getLengthInDays() {
-		if (!isBeginSet() || !isEndSet()) return null;
+    /**
+     *
+     * @return
+     */
+    public Integer getLengthInDays() {
+		if (!isBeginSet() || !isEndSet()) {
+            return null;
+        }
 		return getBegin().getPeriodTo(getEnd()).toDays();
 	}
 
-	public SprintDaySnapshot getDaySnapshot(Date date) {
+    /**
+     *
+     * @param date
+     * @return
+     */
+    public SprintDaySnapshot getDaySnapshot(Date date) {
 		return sprintDaySnapshotDao.getSprintDaySnapshot(this, date, true);
 	}
 
-	public int getRemainingWork() {
+    /**
+     *
+     * @return
+     */
+    public int getRemainingWork() {
 		int sum = 0;
-		for (Task task : getTasks()) {
-			Integer effort = task.getRemainingWork();
-			if (effort != null) sum += effort;
+                for (Task task : getTasks()) {
+                    Integer effort = task.getRemainingWork();
+			if (effort != null) {
+                sum += effort;
+            }
 		}
 		return sum;
 	}
 
-	public int getBurnedWork() {
+    /**
+     *
+     * @return
+     */
+    public int getBurnedWork() {
 		int sum = 0;
 		for (Task task : getTasks()) {
 			sum += task.getBurnedWork();
@@ -243,66 +333,100 @@ public class Sprint extends GSprint implements Numbered {
 		return sum;
 	}
 
-	public Set<Task> getTasks() {
+    /**
+     *
+     * @return
+     */
+    public Set<Task> getTasks() {
 		return taskDao.getTasksBySprint(this);
 	}
 
-	public String getReference() {
-		return scrum.client.sprint.Sprint.REFERENCE_PREFIX + getNumber();
-	}
-
-	@Override
+    /**
+     *
+     * @return
+     */
+    public String getReference() {
+        return scrum.client.sprint.Sprint.REFERENCE_PREFIX + getNumber();
+    }
+    
+    /**
+     *
+     */
+    @Override
 	public void updateNumber() {
-		if (getNumber() == 0) setNumber(getProject().generateSprintNumber());
+		if (getNumber() == 0) {
+            setNumber(getProject().generateSprintNumber());
+        }
 	}
 
 	@Override
 	public void ensureIntegrity() {
 		super.ensureIntegrity();
-		updateNumber();
-
-		Project project = getProject();
-
-		if (project.isCurrentSprint(this)) {
-			if (!isBeginSet()) setBegin(Date.today());
-			if (!isEndSet()) setEnd(getBegin().addDays(14));
+                updateNumber();
+                
+                Project project = getProject();
+                
+                if (project.isCurrentSprint(this)) {
+			if (!isBeginSet()) {
+                            setBegin(Date.today());
+            }
+			if (!isEndSet()) {
+                setEnd(getBegin().addDays(14));
+            }
 
 			// auto stretch sprint
-			if (getEnd().isYesterday()) setEnd(Date.today());
-
-			updateNextSprintDates();
+			if (getEnd().isYesterday()) {
+                setEnd(Date.today());
+                        }
+                        
+                        updateNextSprintDates();
 		}
 
-		if (project.isNextSprint(this)) {
+                if (project.isNextSprint(this)) {
 			// auto move next sprint
 			if (isBeginSet() && getBegin().isPast()) {
-				int len = 0;
-				if (isEndSet()) len = getLengthInDays();
+                            int len = 0;
+                            if (isEndSet()) {
+                    len = getLengthInDays();
+                }
 				setBegin(Date.today());
-				if (len > 0) setEnd(Date.inDays(len));
+				if (len > 0) {
+                    setEnd(Date.inDays(len));
+                }
 			}
 		}
 
-		if (isBeginSet() && isEndSet() && getBegin().isAfter(getEnd())) setEnd(getBegin());
+		if (isBeginSet() && isEndSet() && getBegin().isAfter(getEnd())) {
+            setEnd(getBegin());
+        }
 
 		// delete when not current and end date older than 4 weeks
-		// if (isEndSet() && !getProject().isCurrentSprint(this) && getEnd().isPast()
+                // if (isEndSet() && !getProject().isCurrentSprint(this) && getEnd().isPast()
 		// && getEnd().getPeriodToNow().toWeeks() > 4) {
-		// LOG.info("Deleting sprint, which ended on", getEnd(), "->", toString());
+                // LOG.info("Deleting sprint, which ended on", getEnd(), "->", toString());
 		// getDao().deleteEntity(this);
-		// }
-
-	}
-
-	public void updateNextSprintDates() {
+                // }
+                
+        }
+        
+    /**
+     *
+     */
+    public void updateNextSprintDates() {
 		Project project = getProject();
-		if (!project.isCurrentSprint(this)) return;
+		if (!project.isCurrentSprint(this)) {
+            return;
+        }
 
 		Sprint nextSprint = project.getNextSprint();
-		if (nextSprint == null) return;
+		if (nextSprint == null) {
+            return;
+        }
 
 		Date nextBegin = nextSprint.getBegin();
-		if (nextBegin == null) return;
+		if (nextBegin == null) {
+            return;
+        }
 
 		if (getEnd().isAfter(nextBegin)) {
 			Integer length = nextSprint.getLengthInDays();
@@ -318,7 +442,11 @@ public class Sprint extends GSprint implements Numbered {
 		return getProject().isVisibleFor(user);
 	}
 
-	public String getReferenceAndLabel() {
+    /**
+     *
+     * @return
+     */
+    public String getReferenceAndLabel() {
 		return getReference() + " " + getLabel();
 	}
 
@@ -327,10 +455,15 @@ public class Sprint extends GSprint implements Numbered {
 		return getReferenceAndLabel();
 	}
 
-	public void burndownTasksRandomly(Date begin, Date end) {
+    /**
+     *
+     * @param begin
+     * @param end
+     */
+    public void burndownTasksRandomly(Date begin, Date end) {
 		int days = getBegin().getPeriodTo(getEnd()).toDays();
 		days -= (days / 7) * 2;
-		int defaultWorkPerDay = getRemainingWork() / days;
+                int defaultWorkPerDay = getRemainingWork() / days;
 
 		getDaySnapshot(begin).updateWithCurrentSprint();
 		begin = begin.nextDay();
@@ -339,7 +472,9 @@ public class Sprint extends GSprint implements Numbered {
 				int toBurn = UtlExtend.randomInt(0, defaultWorkPerDay + (defaultWorkPerDay * 2));
 				int totalRemaining = getRemainingWork();
 				for (Task task : getTasks()) {
-					if (toBurn == 0) break;
+					if (toBurn == 0) {
+                        break;
+                    }
 					int remaining = task.getRemainingWork();
 					int burn = Math.min(toBurn, remaining);
 					remaining -= burn;
@@ -349,21 +484,26 @@ public class Sprint extends GSprint implements Numbered {
 						remaining += UtlExtend.randomInt(-defaultWorkPerDay * 2, defaultWorkPerDay * 3);
 					}
 					if (totalRemaining == 0) {
-						remaining += UtlExtend.randomInt(defaultWorkPerDay * 3, defaultWorkPerDay * 5);
-						totalRemaining = remaining;
-					}
-					task.setRemainingWork(remaining);
-				}
-			}
-			getDaySnapshot(begin).updateWithCurrentSprint();
-			begin = begin.nextDay();
-		}
-	}
-
-	private transient Comparator<Requirement> requirementsOrderComparator;
-
-	public Comparator<Requirement> getRequirementsOrderComparator() {
-		if (requirementsOrderComparator == null) requirementsOrderComparator = new Comparator<Requirement>() {
+                                            remaining += UtlExtend.randomInt(defaultWorkPerDay * 3, defaultWorkPerDay * 5);
+                                            totalRemaining = remaining;
+                                        }
+                                        task.setRemainingWork(remaining);
+                                }
+                        }
+                        getDaySnapshot(begin).updateWithCurrentSprint();
+                        begin = begin.nextDay();
+                }
+    }
+    
+    private transient Comparator<Requirement> requirementsOrderComparator;
+    
+    /**
+     *
+     * @return
+     */
+    public Comparator<Requirement> getRequirementsOrderComparator() {
+        if (requirementsOrderComparator == null) {
+            requirementsOrderComparator = new Comparator<Requirement>() {
 
 			@Override
 			public int compare(Requirement a, Requirement b) {
@@ -382,10 +522,14 @@ public class Sprint extends GSprint implements Numbered {
 				return ia - ib;
 			}
 		};
+        }
 		return requirementsOrderComparator;
 	}
 
-	public static final Comparator<Sprint> END_DATE_COMPARATOR = new Comparator<Sprint>() {
+    /**
+     *
+     */
+    public static final Comparator<Sprint> END_DATE_COMPARATOR = new Comparator<Sprint>() {
 
 		@Override
 		public int compare(Sprint a, Sprint b) {

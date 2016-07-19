@@ -19,6 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 import static java.util.UUID.randomUUID;
 
+/**
+ *
+ * @author erik
+ */
 public class Node implements Comparable<Node> {
 
 	private String id;
@@ -42,11 +46,21 @@ public class Node implements Comparable<Node> {
                 }
 	}
 
-	public Model getModel() {
+    /**
+     *
+     * @return
+     */
+    public Model getModel() {
 		return model;
 	}
 
-	public Node addChild(String type, String value) {
+    /**
+     *
+     * @param type
+     * @param value
+     * @return
+     */
+    public Node addChild(String type, String value) {
 		return addChild(null, type, value);
 	}
 
@@ -56,11 +70,21 @@ public class Node implements Comparable<Node> {
 		return child;
 	}
 
-	public boolean isType(String type) {
+    /**
+     *
+     * @param type
+     * @return
+     */
+    public boolean isType(String type) {
 		return this.type.equals(type);
 	}
 
-	public boolean isType(String... types) {
+    /**
+     *
+     * @param types
+     * @return
+     */
+    public boolean isType(String... types) {
 		for (String local_type : types) {
 			if (isType(local_type)) {
                                 return true;
@@ -69,16 +93,34 @@ public class Node implements Comparable<Node> {
 		return false;
 	}
 
-	public boolean containsChild(String type, String value) {
+    /**
+     *
+     * @param type
+     * @param value
+     * @return
+     */
+    public boolean containsChild(String type, String value) {
 		return getChild(type, value) != null;
 	}
 
-	public boolean containsChild(String type, boolean value) {
+    /**
+     *
+     * @param type
+     * @param value
+     * @return
+     */
+    public boolean containsChild(String type, boolean value) {
 		Node child = getChildByType(type);
 		return child == null ? false : child.isValue(valueOf(value));
 	}
 
-	public Node getChildRecursive(String type, String value) {
+    /**
+     *
+     * @param type
+     * @param value
+     * @return
+     */
+    public Node getChildRecursive(String type, String value) {
 		for (Node child : getChildrenByType(type)) {
 			if (value.equals(child.getValue())) {
                                 return child;
@@ -93,7 +135,13 @@ public class Node implements Comparable<Node> {
 		return null;
 	}
 
-	public Node getChildOrCreate(String type, String value) {
+    /**
+     *
+     * @param type
+     * @param value
+     * @return
+     */
+    public Node getChildOrCreate(String type, String value) {
 		Node child = getChild(type, value);
 		if (child == null) {
                         child = addChild(type, value);
@@ -101,7 +149,13 @@ public class Node implements Comparable<Node> {
 		return child;
 	}
 
-	public Node getChild(String type, String value) {
+    /**
+     *
+     * @param type
+     * @param value
+     * @return
+     */
+    public Node getChild(String type, String value) {
 		for (Node child : getChildrenByType(type)) {
 			if (value.equals(child.getValue())) {
                                 return child;
@@ -110,7 +164,12 @@ public class Node implements Comparable<Node> {
 		return null;
 	}
 
-	public List<Node> getChildrenByType(String type) {
+    /**
+     *
+     * @param type
+     * @return
+     */
+    public List<Node> getChildrenByType(String type) {
 		List<Node> ret = new ArrayList<>();
 		for (Node child : getChildren()) {
 			if (child.isType(type)) {
@@ -120,7 +179,12 @@ public class Node implements Comparable<Node> {
 		return ret;
 	}
 
-	public List<Node> getChildrenByTypeRecursive(String type) {
+    /**
+     *
+     * @param type
+     * @return
+     */
+    public List<Node> getChildrenByTypeRecursive(String type) {
 		List<Node> ret = new ArrayList<>();
 		for (Node child : getChildren()) {
 			if (child.isType(type)) {
@@ -131,12 +195,22 @@ public class Node implements Comparable<Node> {
 		return ret;
 	}
 
-	public String getChildValueByType(String type) {
+    /**
+     *
+     * @param type
+     * @return
+     */
+    public String getChildValueByType(String type) {
 		Node child = getChildByType(type);
 		return child == null ? null : child.getValue();
 	}
 
-	public Node getChildByType(String type) {
+    /**
+     *
+     * @param type
+     * @return
+     */
+    public Node getChildByType(String type) {
 		for (Node child : getChildren()) {
 			if (child.isType(type)) {
                                 return child;
@@ -145,11 +219,22 @@ public class Node implements Comparable<Node> {
 		return null;
 	}
 
-	public boolean containsChildByType(String type) {
+    /**
+     *
+     * @param type
+     * @return
+     */
+    public boolean containsChildByType(String type) {
 		return getChildByType(type) != null;
 	}
 
-	public boolean containsChildByTypeAndValue(String type, String value) {
+    /**
+     *
+     * @param type
+     * @param value
+     * @return
+     */
+    public boolean containsChildByTypeAndValue(String type, String value) {
 		Node child = getChildByType(type);
 		if (child == null) {
                         return false;
@@ -157,7 +242,12 @@ public class Node implements Comparable<Node> {
 		return child.isValue(value);
 	}
 
-	public boolean containsChildByTypeAndValueTrue(String type) {
+    /**
+     *
+     * @param type
+     * @return
+     */
+    public boolean containsChildByTypeAndValueTrue(String type) {
 		Node child = getChildByType(type);
 		if (child == null) {
                         return false;
@@ -165,7 +255,12 @@ public class Node implements Comparable<Node> {
 		return child.isValueTrue();
 	}
 
-	public boolean containsChildByTypeAndValueFalse(String type) {
+    /**
+     *
+     * @param type
+     * @return
+     */
+    public boolean containsChildByTypeAndValueFalse(String type) {
 		Node child = getChildByType(type);
 		if (child == null) {
                         return false;
@@ -173,55 +268,107 @@ public class Node implements Comparable<Node> {
 		return child.isValueFalse();
 	}
 
-	public String getLabel() {
+    /**
+     *
+     * @return
+     */
+    public String getLabel() {
 		return getType() + ":" + getValue();
 	}
 
-	public List<Node> getChildren() {
+    /**
+     *
+     * @return
+     */
+    public List<Node> getChildren() {
 		return children;
 	}
 
-	public boolean containsChildren() {
+    /**
+     *
+     * @return
+     */
+    public boolean containsChildren() {
 		return !getChildren().isEmpty();
 	}
 
-	public boolean removeChild(Node child) {
+    /**
+     *
+     * @param child
+     * @return
+     */
+    public boolean removeChild(Node child) {
 		return children.remove(child);
 	}
 
-	public void removeAllChildren() {
+    /**
+     *
+     */
+    public void removeAllChildren() {
 		children.clear();
 	}
 
-	public void removeFromParent() {
+    /**
+     *
+     */
+    public void removeFromParent() {
 		getParent().removeChild(this);
 	}
 
-	public String getId() {
+    /**
+     *
+     * @return
+     */
+    public String getId() {
 		return id;
 	}
 
-	public Node getParent() {
+    /**
+     *
+     * @return
+     */
+    public Node getParent() {
 		return parent;
 	}
 
-	public String getParentId() {
+    /**
+     *
+     * @return
+     */
+    public String getParentId() {
 		return parent == null ? null : parent.getId();
 	}
 
-	public String getType() {
+    /**
+     *
+     * @return
+     */
+    public String getType() {
 		return type;
 	}
 
-	public void setValue(String value) {
+    /**
+     *
+     * @param value
+     */
+    public void setValue(String value) {
 		this.value = value;
 	}
 
-	public String getValue() {
+    /**
+     *
+     * @return
+     */
+    public String getValue() {
 		return value;
 	}
 
-	public boolean isValue(String test) {
+    /**
+     *
+     * @param test
+     * @return
+     */
+    public boolean isValue(String test) {
 		if (value == null && test == null) {
                         return true;
                 }
@@ -234,19 +381,35 @@ public class Node implements Comparable<Node> {
 		return value.equals(test);
 	}
 
-	public boolean isValueTrue() {
+    /**
+     *
+     * @return
+     */
+    public boolean isValueTrue() {
 		return isValue("true");
 	}
 
-	public boolean isValueFalse() {
+    /**
+     *
+     * @return
+     */
+    public boolean isValueFalse() {
 		return isValue("false");
 	}
 
-	public boolean isTransient() {
+    /**
+     *
+     * @return
+     */
+    public boolean isTransient() {
 		return transient_;
 	}
 
-	public void setTransient(boolean transient_) {
+    /**
+     *
+     * @param transient_
+     */
+    public void setTransient(boolean transient_) {
 		this.transient_ = transient_;
 	}
 
@@ -276,6 +439,12 @@ public class Node implements Comparable<Node> {
 
 	// --- helper ---
 
+    /**
+     *
+     * @param type
+     * @return
+     */
+    
 	public Node getSuperparentByType(String type) {
 		if (parent == null) {
                         return null;

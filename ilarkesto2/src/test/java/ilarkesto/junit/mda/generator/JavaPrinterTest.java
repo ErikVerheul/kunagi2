@@ -6,9 +6,16 @@ import static java.util.Arrays.asList;
 import junit.framework.TestCase;
 import org.testng.annotations.Test;
 
+/**
+ *
+ * @author erik
+ */
 public class JavaPrinterTest extends TestCase {
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void test() {
 		JavaPrinter out = new JavaPrinter();
 

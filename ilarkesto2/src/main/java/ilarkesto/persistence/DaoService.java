@@ -29,11 +29,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ *
+ * @author erik
+ */
 public class DaoService implements IdentifiableResolver<AEntity> {
 
 	private final Map<Class, ADao> daos = new HashMap<>();
 
-	public void ensureIntegrity() {
+    /**
+     *
+     */
+    public void ensureIntegrity() {
 		if (!initialized) {
                         throw new RuntimeException("Not initiialized!");
                 }
@@ -42,16 +49,29 @@ public class DaoService implements IdentifiableResolver<AEntity> {
 		}
 	}
 
-	public Collection<ADao> getDaos() {
+    /**
+     *
+     * @return
+     */
+    public Collection<ADao> getDaos() {
 		return daos.values();
 	}
 
-	public void addDao(ADao dao) {
+    /**
+     *
+     * @param dao
+     */
+    public void addDao(ADao dao) {
 		daos.put(dao.getEntityClass(), dao);
 		entityStore.load(dao.getEntityClass(), dao.getEntityName());
 	}
 
-	public ADao getDaoByName(String entityName) {
+    /**
+     *
+     * @param entityName
+     * @return
+     */
+    public ADao getDaoByName(String entityName) {
 		for (ADao manager : daos.values()) {
 			if (manager.getEntityName().equals(entityName)) {
                                 return manager;
@@ -60,11 +80,21 @@ public class DaoService implements IdentifiableResolver<AEntity> {
 		throw new RuntimeException("Dao does not exist: entityName=" + entityName);
 	}
 
-	public ADao getDao(AEntity entity) {
+    /**
+     *
+     * @param entity
+     * @return
+     */
+    public ADao getDao(AEntity entity) {
 		return getDaoByClass(entity.getClass());
 	}
 
-	public ADao getDaoByClass(Class entityClass) {
+    /**
+     *
+     * @param entityClass
+     * @return
+     */
+    public ADao getDaoByClass(Class entityClass) {
 		ADao dao = daos.get(entityClass);
 		if (dao == null) {
                         throw new RuntimeException("Dao does not exist: " + entityClass);
@@ -72,12 +102,22 @@ public class DaoService implements IdentifiableResolver<AEntity> {
 		return dao;
 	}
 
-	@Override
+    /**
+     *
+     * @param id
+     * @return
+     */
+    @Override
 	public AEntity getById(String id) {
 		return getEntityById(id);
 	}
 
-	public AEntity getEntityById(final String id) {
+    /**
+     *
+     * @param id
+     * @return
+     */
+    public AEntity getEntityById(final String id) {
 		if (id == null) {
                         throw new IllegalArgumentException("id == null");
                 }
@@ -97,7 +137,12 @@ public class DaoService implements IdentifiableResolver<AEntity> {
 		return entity;
 	}
 
-	public boolean containsEntityWithId(final String id) {
+    /**
+     *
+     * @param id
+     * @return
+     */
+    public boolean containsEntityWithId(final String id) {
 		if (id == null) {
                         throw new IllegalArgumentException("id == null");
                 }
@@ -112,16 +157,31 @@ public class DaoService implements IdentifiableResolver<AEntity> {
 		return entity != null;
 	}
 
-	@Override
+    /**
+     *
+     * @param ids
+     * @return
+     */
+    @Override
 	public List<AEntity> getByIds(Collection<String> ids) {
 		return getEntitiesByIds(ids);
 	}
 
-	public Set<AEntity> getByIdsAsSet(Collection<String> ids) {
+    /**
+     *
+     * @param ids
+     * @return
+     */
+    public Set<AEntity> getByIdsAsSet(Collection<String> ids) {
 		return new HashSet<>(getByIds(ids));
 	}
 
-	public List<AEntity> getEntitiesByIds(final Collection<String> ids) {
+    /**
+     *
+     * @param ids
+     * @return
+     */
+    public List<AEntity> getEntitiesByIds(final Collection<String> ids) {
 		List<AEntity> ret = new ArrayList<>(ids.size());
 		for (String id : ids) {
                         ret.add(transactionService.getById(id));
@@ -133,21 +193,33 @@ public class DaoService implements IdentifiableResolver<AEntity> {
 
 	private List<DaoListener> listeners;
 
-	public void addListener(DaoListener listener) {
+    /**
+     *
+     * @param listener
+     */
+    public void addListener(DaoListener listener) {
 		if (listeners == null) {
                         listeners = new ArrayList<>();
                 }
 		listeners.add(listener);
 	}
 
-	public void removeListener(DaoListener listener) {
+    /**
+     *
+     * @param listener
+     */
+    public void removeListener(DaoListener listener) {
 		if (listeners == null) {
                         return;
                 }
 		listeners.remove(listener);
 	}
 
-	public void fireEntitySaved(AEntity entity) {
+    /**
+     *
+     * @param entity
+     */
+    public void fireEntitySaved(AEntity entity) {
 		if (listeners == null) {
                         return;
                 }
@@ -157,7 +229,11 @@ public class DaoService implements IdentifiableResolver<AEntity> {
                 }
 	}
 
-	public void fireEntityDeleted(AEntity entity) {
+    /**
+     *
+     * @param entity
+     */
+    public void fireEntityDeleted(AEntity entity) {
 		if (listeners == null) {
                         return;
                 }
@@ -171,7 +247,11 @@ public class DaoService implements IdentifiableResolver<AEntity> {
 
 	private volatile boolean initialized;
 
-	public synchronized final void initialize(Context context) {
+    /**
+     *
+     * @param context
+     */
+    public synchronized final void initialize(Context context) {
 		if (initialized) {
                         throw new RuntimeException("Already initialized!");
                 }
@@ -206,13 +286,21 @@ public class DaoService implements IdentifiableResolver<AEntity> {
 
 	private EntityStore entityStore;
 
-	public void setEntityStore(EntityStore entityStore) {
+    /**
+     *
+     * @param entityStore
+     */
+    public void setEntityStore(EntityStore entityStore) {
 		this.entityStore = entityStore;
 	}
 
 	private TransactionService transactionService;
 
-	public void setTransactionService(TransactionService transactionService) {
+    /**
+     *
+     * @param transactionService
+     */
+    public void setTransactionService(TransactionService transactionService) {
 		this.transactionService = transactionService;
 	}
 

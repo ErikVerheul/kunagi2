@@ -19,8 +19,16 @@ import ilarkesto.base.UtlExtend;
 import ilarkesto.core.time.DateAndTime;
 import scrum.server.admin.User;
 
+/**
+ *
+ * @author erik
+ */
 public class Comment extends GComment implements Comparable<Comment> {
 
+    /**
+     *
+     * @return
+     */
     public String getAuthorLabel() {
         if (isAuthorSet()) {
             return getAuthor().getPublicName();
@@ -51,6 +59,11 @@ public class Comment extends GComment implements Comparable<Comment> {
         return Auth.isVisible(getParent(), user);
     }
 
+    /**
+     *
+     * @param user
+     * @return
+     */
     public boolean isEditableBy(User user) {
         return isAuthor(user);
     }

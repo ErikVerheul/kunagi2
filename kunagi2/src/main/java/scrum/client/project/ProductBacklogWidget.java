@@ -14,6 +14,8 @@
  */
 package scrum.client.project;
 
+import com.google.gwt.user.client.ui.SimplePanel;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.AAction;
 import ilarkesto.gwt.client.AFieldValueWidget;
 import ilarkesto.gwt.client.AWidget;
@@ -24,19 +26,18 @@ import ilarkesto.gwt.client.animation.AnimatingFlowPanel.InsertCallback;
 import ilarkesto.gwt.client.editor.AFieldModel;
 import ilarkesto.gwt.client.editor.IntegerEditorWidget;
 import ilarkesto.gwt.client.editor.TextOutputWidget;
-
 import java.util.Collections;
 import java.util.List;
-
 import scrum.client.ScrumGwt;
 import scrum.client.common.AScrumWidget;
 import scrum.client.common.BlockListWidget;
 import scrum.client.common.UserGuideWidget;
 import scrum.client.workspace.PagePanel;
 
-import com.google.gwt.user.client.ui.SimplePanel;
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class ProductBacklogWidget extends AScrumWidget {
 
 	private BlockListWidget<Requirement> list;
@@ -71,7 +72,11 @@ public class ProductBacklogWidget extends AScrumWidget {
 		return page;
 	}
 
-	public AWidget createCreateStoryButtons() {
+    /**
+     *
+     * @return
+     */
+    public AWidget createCreateStoryButtons() {
 		return getCurrentProject().isProductOwner(getCurrentUser()) ? new CreateStoryButtonWidget(filterToggleAction)
 				: new ButtonWidget(new CreateRequirementAction(filterToggleAction));
 	}
@@ -101,13 +106,22 @@ public class ProductBacklogWidget extends AScrumWidget {
 		super.onUpdate();
 	}
 
-	public boolean select(Requirement requirement) {
-		if (!list.contains(requirement)) update();
+    /**
+     *
+     * @param requirement
+     * @return
+     */
+    public boolean select(Requirement requirement) {
+		if (!list.contains(requirement)) {
+                    update();
+        }
 		return list.showObject(requirement);
 	}
 
 	private Widget getFilterWidget() {
-		if (filterWidget == null) filterWidget = new ProductBacklogFilterWidget();
+		if (filterWidget == null) {
+                    filterWidget = new ProductBacklogFilterWidget();
+        }
 		return filterWidget;
 	}
 

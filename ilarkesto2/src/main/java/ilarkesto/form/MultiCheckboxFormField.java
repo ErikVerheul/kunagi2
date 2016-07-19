@@ -24,6 +24,11 @@ import java.util.Map;
 import java.util.Set;
 import org.apache.commons.fileupload.FileItem;
 
+/**
+ *
+ * @author erik
+ * @param <T>
+ */
 public class MultiCheckboxFormField<T> extends AFormField {
 
 	private Set<T> value;
@@ -32,38 +37,74 @@ public class MultiCheckboxFormField<T> extends AFormField {
 	private StringProvider<T> itemTooltipProvider;
 	private StringProvider<T> itemImageUrlProvider;
 
-	public MultiCheckboxFormField(String name) {
+    /**
+     *
+     * @param name
+     */
+    public MultiCheckboxFormField(String name) {
 		super(name);
 	}
 
-	public MultiCheckboxFormField<T> setItemTooltipProvider(StringProvider<T> itemTooltipProvider) {
+    /**
+     *
+     * @param itemTooltipProvider
+     * @return
+     */
+    public MultiCheckboxFormField<T> setItemTooltipProvider(StringProvider<T> itemTooltipProvider) {
 		this.itemTooltipProvider = itemTooltipProvider;
 		return this;
 	}
 
-	public StringProvider<T> getItemTooltipProvider() {
+    /**
+     *
+     * @return
+     */
+    public StringProvider<T> getItemTooltipProvider() {
 		return itemTooltipProvider;
 	}
 
-	public MultiCheckboxFormField<T> setItemImageUrlProvider(StringProvider<T> itemImageUrlProvider) {
+    /**
+     *
+     * @param itemImageUrlProvider
+     * @return
+     */
+    public MultiCheckboxFormField<T> setItemImageUrlProvider(StringProvider<T> itemImageUrlProvider) {
 		this.itemImageUrlProvider = itemImageUrlProvider;
 		return this;
 	}
 
-	public StringProvider<T> getItemImageUrlProvider() {
+    /**
+     *
+     * @return
+     */
+    public StringProvider<T> getItemImageUrlProvider() {
 		return itemImageUrlProvider;
 	}
 
-	public List<T> getSelectableItems() {
+    /**
+     *
+     * @return
+     */
+    public List<T> getSelectableItems() {
 		return selectableItems;
 	}
 
-	public MultiCheckboxFormField<T> setSelectableItems(Collection<T> items) {
+    /**
+     *
+     * @param items
+     * @return
+     */
+    public MultiCheckboxFormField<T> setSelectableItems(Collection<T> items) {
 		this.selectableItems = items == null ? new ArrayList<T>() : new ArrayList<>(items);
 		return this;
 	}
 
-	public MultiCheckboxFormField<T> setValue(Set<T> value) {
+    /**
+     *
+     * @param value
+     * @return
+     */
+    public MultiCheckboxFormField<T> setValue(Set<T> value) {
 		if (value == null) {
 			this.value = null;
 		} else {
@@ -73,20 +114,38 @@ public class MultiCheckboxFormField<T> extends AFormField {
 		return this;
 	}
 
-	public boolean isSelected(T item) {
+    /**
+     *
+     * @param item
+     * @return
+     */
+    public boolean isSelected(T item) {
 		return value != null && value.contains(item);
 	}
 
-	public Set<T> getValue() {
+    /**
+     *
+     * @return
+     */
+    public Set<T> getValue() {
 		return value;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getValueAsString() {
 		return value == null ? "0" : valueOf(value.size());
 	}
 
-	@Override
+    /**
+     *
+     * @param data
+     * @param uploadedFiles
+     */
+    @Override
 	public void update(Map<String, String> data, Collection<FileItem> uploadedFiles) {
 		value = new HashSet<>();
 		int index = 0;
@@ -98,7 +157,11 @@ public class MultiCheckboxFormField<T> extends AFormField {
 		}
 	}
 
-	@Override
+    /**
+     *
+     * @throws ValidationException
+     */
+    @Override
 	public void validate() throws ValidationException {
 		if (isRequired() && (value == null || value.isEmpty())) {
                         throw new ValidationException("Hier ist eine Auswahl erforderlich.");

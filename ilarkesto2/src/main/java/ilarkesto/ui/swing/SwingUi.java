@@ -38,41 +38,78 @@ import static javax.swing.JOptionPane.YES_NO_OPTION;
 import static javax.swing.JOptionPane.YES_OPTION;
 import static javax.swing.JOptionPane.showMessageDialog;
 
+/**
+ *
+ * @author erik
+ */
 public class SwingUi extends AUi {
 
 	private JFrame frame;
 
 	// --- dependencies ---
 
+    /**
+     *
+     */
+    
 	protected ASwingApplicationConfig config;
-	protected ASwingApplication application;
 
-	public void setApplication(ASwingApplication application) {
+    /**
+     *
+     */
+    protected ASwingApplication application;
+
+    /**
+     *
+     * @param application
+     */
+    public void setApplication(ASwingApplication application) {
 		this.application = application;
 	}
 
-	public void setConfig(ASwingApplicationConfig config) {
+    /**
+     *
+     * @param config
+     */
+    public void setConfig(ASwingApplicationConfig config) {
 		this.config = config;
 	}
 
 	// --- ---
 
+    /**
+     *
+     * @return
+     */
+    
 	@Override
 	protected Class<? extends AView> getEntityView() {
 		return null;
 	}
 
-	@Override
+    /**
+     *
+     * @param view
+     */
+    @Override
 	public void showView(Class<? extends AView> view) {
 	// TODO: SwingView
 	}
 
-	@Override
+    /**
+     *
+     * @param view
+     */
+    @Override
 	protected void showDialog(Class<? extends AView> view) {
 		showView(view); // TODO
 	}
 
-	@Override
+    /**
+     *
+     * @param viewId
+     */
+    @Override
 	protected void showView(String viewId) {
 		Component component = getJavaComponent(viewId);
 
@@ -90,17 +127,29 @@ public class SwingUi extends AUi {
                 }
 	}
 
-	@Override
+    /**
+     *
+     * @param url
+     */
+    @Override
 	public void showWebPage(Url url) {
 		throw new RuntimeException("Not implemented yet");
 	}
 
-	@Override
+    /**
+     *
+     * @param viewId
+     */
+    @Override
 	protected void showDialog(String viewId) {
 		throw new RuntimeException("Not implemented yet");
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public boolean isViewSet() {
 		return frame != null;
 	}
@@ -124,7 +173,11 @@ public class SwingUi extends AUi {
 		return javaComponent;
 	}
 
-	public JFrame getFrame() {
+    /**
+     *
+     * @return
+     */
+    public JFrame getFrame() {
 		if (frame == null) {
 			frame = new JFrame();
 			frame.addWindowListener(application.getShutdownWindowListener());
@@ -133,7 +186,14 @@ public class SwingUi extends AUi {
 		return frame;
 	}
 
-	public void showDirSelectionDialog(File dir, String title, String description, final ADialogAdapter<File> adapter) {
+    /**
+     *
+     * @param dir
+     * @param title
+     * @param description
+     * @param adapter
+     */
+    public void showDirSelectionDialog(File dir, String title, String description, final ADialogAdapter<File> adapter) {
 		final DirSelectionComponent component = new DirSelectionComponent();
 		component.setUi(this);
 		component.setSelectedDir(dir);
@@ -153,7 +213,12 @@ public class SwingUi extends AUi {
 		});
 	}
 
-	public void showLoginDialog(final String id, final ADialogAdapter<LoginData> adapter) {
+    /**
+     *
+     * @param id
+     * @param adapter
+     */
+    public void showLoginDialog(final String id, final ADialogAdapter<LoginData> adapter) {
 		LoginData initialLoginData = config.getLoginData(id);
 		final LoginComponent loginComponent = new LoginComponent();
 		loginComponent.setUi(this);
@@ -181,7 +246,18 @@ public class SwingUi extends AUi {
 			});
 	}
 
-	public <C extends Component> void showDialog(final C javaComponent, String title, String description,
+    /**
+     *
+     * @param <C>
+     * @param javaComponent
+     * @param title
+     * @param description
+     * @param okLabel
+     * @param okHint
+     * @param icon128
+     * @param adapter
+     */
+    public <C extends Component> void showDialog(final C javaComponent, String title, String description,
 			String okLabel, String okHint, String icon128, final ADialogAdapter<C> adapter) {
 		SwingDialog dialog = new SwingDialog();
 		dialog.setUi(this);
@@ -207,34 +283,65 @@ public class SwingUi extends AUi {
 		});
 	}
 
-	public final FormButton showFormDialog(Form form) {
+    /**
+     *
+     * @param form
+     * @return
+     */
+    public final FormButton showFormDialog(Form form) {
 		return FormDialog.showDialog(getWindow(getParentComponent()), form);
 	}
 
-	public final void showErrorDialog(Exception ex) {
+    /**
+     *
+     * @param ex
+     */
+    public final void showErrorDialog(Exception ex) {
 		ExceptionPanel.showDialog(getParentComponent(), ex, localizer.string("dialog.error.title"));
 	}
 
-	public final void showErrorDialog(String message) {
+    /**
+     *
+     * @param message
+     */
+    public final void showErrorDialog(String message) {
 		showMessageDialog(getParentComponent(), createMessageComponent(message), localizer
 				.string("dialog.error.title"), ERROR_MESSAGE);
 	}
 
-	public final void showInfoDialog(String message) {
+    /**
+     *
+     * @param message
+     */
+    public final void showInfoDialog(String message) {
 		showMessageDialog(getParentComponent(), message);
 	}
 
-	public final boolean showConfirmDialog(String message) {
+    /**
+     *
+     * @param message
+     * @return
+     */
+    public final boolean showConfirmDialog(String message) {
 		return OK_OPTION == JOptionPane.showConfirmDialog(getParentComponent(), message, localizer
 				.string("dialog.confirm.title"), OK_CANCEL_OPTION);
 	}
 
-	public final boolean showYesNoDialog(String message) {
+    /**
+     *
+     * @param message
+     * @return
+     */
+    public final boolean showYesNoDialog(String message) {
 		return YES_OPTION == JOptionPane.showConfirmDialog(getParentComponent(), message, localizer
 				.string("dialog.yesno.title"), YES_NO_OPTION);
 	}
 
-	public Component getParentComponent() {
+    /**
+     *
+     * @return
+     */
+    public Component getParentComponent() {
 		return frame;
 	}
 

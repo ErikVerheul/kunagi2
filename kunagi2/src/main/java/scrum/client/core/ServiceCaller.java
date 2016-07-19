@@ -22,10 +22,8 @@ import static ilarkesto.core.logging.ClientLog.WARN;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.core.time.Tm;
 import ilarkesto.gwt.client.ErrorWrapper;
-
 import java.util.LinkedList;
 import java.util.List;
-
 import scrum.client.Dao;
 import scrum.client.DataTransferObject;
 import scrum.client.ScrumGwtApplication;
@@ -34,6 +32,10 @@ import scrum.client.ScrumServiceAsync;
 import scrum.client.common.AScrumWidget;
 import scrum.client.communication.ServerDataReceivedEvent;
 
+/**
+ *
+ * @author erik
+ */
 public class ServiceCaller extends GServiceCaller {
 
 	private static final long MAX_FAILURE_TIME = 30 * Tm.SECOND;
@@ -41,10 +43,18 @@ public class ServiceCaller extends GServiceCaller {
 	private List<AServiceCall> activeServiceCalls = new LinkedList<AServiceCall>();
 	private AScrumWidget statusWidget;
 	private ScrumServiceAsync scrumService;
-	protected int conversationNumber = -1;
+
+    /**
+     *
+     */
+    protected int conversationNumber = -1;
 	private long lastSuccessfullServiceCallTime;
 
-	public final ScrumServiceAsync getService() {
+    /**
+     *
+     * @return
+     */
+    public final ScrumServiceAsync getService() {
 		if (scrumService == null) {
 			scrumService = com.google.gwt.core.client.GWT.create(ScrumService.class);
 			((com.google.gwt.user.client.rpc.ServiceDefTarget) scrumService)
@@ -53,7 +63,11 @@ public class ServiceCaller extends GServiceCaller {
 		return scrumService;
 	}
 
-	public void onServiceCallSuccess(DataTransferObject data) {
+    /**
+     *
+     * @param data
+     */
+    public void onServiceCallSuccess(DataTransferObject data) {
 		lastSuccessfullServiceCallTime = Tm.getCurrentTimeMillis();
 
 		if (data.conversationNumber != null) {
@@ -74,7 +88,12 @@ public class ServiceCaller extends GServiceCaller {
 		new ServerDataReceivedEvent(data).fireInCurrentScope();
 	}
 
-	public void onServiceCallFailure(AServiceCall serviceCall, List<ErrorWrapper> errors) {
+    /**
+     *
+     * @param serviceCall
+     * @param errors
+     */
+    public void onServiceCallFailure(AServiceCall serviceCall, List<ErrorWrapper> errors) {
 		long timeFromLastSuccess = Tm.getCurrentTimeMillis() - lastSuccessfullServiceCallTime;
 		if (serviceCall.isDispensable() && timeFromLastSuccess < MAX_FAILURE_TIME) {
 			WARN("Dispensable service call failed:", serviceCall, errors);
@@ -86,38 +105,72 @@ public class ServiceCaller extends GServiceCaller {
 		ScrumGwtApplication.get().handleServiceCallError(serviceCallName, errors);
 	}
 
-	public void onServiceCall(AServiceCall call) {
+    /**
+     *
+     * @param call
+     */
+    public void onServiceCall(AServiceCall call) {
 		activeServiceCalls.add(call);
-		if (statusWidget != null) statusWidget.update();
+		if (statusWidget != null) {
+                    statusWidget.update();
+        }
 	}
 
-	public void onServiceCallReturn(AServiceCall call) {
+    /**
+     *
+     * @param call
+     */
+    public void onServiceCallReturn(AServiceCall call) {
 		activeServiceCalls.remove(call);
-		if (statusWidget != null) statusWidget.update();
+		if (statusWidget != null) {
+                    statusWidget.update();
+        }
 	}
 
-	public List<AServiceCall> getActiveServiceCalls() {
+    /**
+     *
+     * @return
+     */
+    public List<AServiceCall> getActiveServiceCalls() {
 		return activeServiceCalls;
 	}
 
-	public boolean containsServiceCall(Class<? extends AServiceCall> type) {
+    /**
+     *
+     * @param type
+     * @return
+     */
+    public boolean containsServiceCall(Class<? extends AServiceCall> type) {
 		String name = Str.getSimpleName(type);
 		for (AServiceCall call : activeServiceCalls) {
 			String callName = Str.getSimpleName(call.getClass());
-			if (callName.equals(name)) return true;
+			if (callName.equals(name)) {
+                            return true;
+            }
 		}
 		return false;
 	}
 
-	public int getConversationNumber() {
+    /**
+     *
+     * @return
+     */
+    public int getConversationNumber() {
 		return conversationNumber;
 	}
 
-	public void resetConversation() {
+    /**
+     *
+     */
+    public void resetConversation() {
 		conversationNumber = -1;
 	}
 
-	public void setStatusWidget(AScrumWidget statusWidget) {
+    /**
+     *
+     * @param statusWidget
+     */
+    public void setStatusWidget(AScrumWidget statusWidget) {
 		this.statusWidget = statusWidget;
 	}
 

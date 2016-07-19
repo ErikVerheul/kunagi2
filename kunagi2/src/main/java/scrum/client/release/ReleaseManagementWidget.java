@@ -14,6 +14,7 @@
  */
 package scrum.client.release;
 
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.ButtonWidget;
 import ilarkesto.gwt.client.TableBuilder;
 import scrum.client.ScrumGwt;
@@ -24,12 +25,21 @@ import scrum.client.common.UserGuideWidget;
 import scrum.client.project.Project;
 import scrum.client.workspace.PagePanel;
 
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class ReleaseManagementWidget extends AScrumWidget {
 
-	public BlockListWidget<Release> planned;
-	public BlockListWidget<Release> published;
+    /**
+     *
+     */
+    public BlockListWidget<Release> planned;
+
+    /**
+     *
+     */
+    public BlockListWidget<Release> published;
 	private BlockListSelectionManager selectionManager;
 
 	@Override
@@ -49,7 +59,9 @@ public class ReleaseManagementWidget extends AScrumWidget {
 		published.setAutoSorter(Release.DATE_REVERSE_COMPARATOR);
 
 		PagePanel page = new PagePanel();
-		if (!fields.isEmpty()) page.addSection(fields.createTable());
+		if (!fields.isEmpty()) {
+                    page.addSection(fields.createTable());
+        }
 		page.addHeader("Planned releases", new ButtonWidget(new CreateReleaseAction()));
 		page.addSection(planned);
 		page.addSection(ScrumGwt.createPdfLink("Download as PDF", "releasePlan", project));
@@ -68,7 +80,12 @@ public class ReleaseManagementWidget extends AScrumWidget {
 		super.onUpdate();
 	}
 
-	public boolean select(Release release) {
+    /**
+     *
+     * @param release
+     * @return
+     */
+    public boolean select(Release release) {
 		update();
 		return selectionManager.select(release);
 	}

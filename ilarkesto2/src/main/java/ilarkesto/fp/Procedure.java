@@ -14,11 +14,25 @@
  */
 package ilarkesto.fp;
 
+/**
+ *
+ * @author erik
+ * @param <T>
+ */
 public abstract class Procedure<T> implements Function<T, T> {
 
-	public abstract void exec(T e);
+    /**
+     *
+     * @param e
+     */
+    public abstract void exec(T e);
 
-	@Override
+    /**
+     *
+     * @param e
+     * @return
+     */
+    @Override
 	public T eval(T e) {
 		exec(e);
 		return e;

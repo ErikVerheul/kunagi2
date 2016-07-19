@@ -17,27 +17,49 @@ package ilarkesto.mda.legacy.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class GwtServiceModel extends AModel {
 
 	private String packageName;
 	private List<MethodModel> methods = new ArrayList<>();
 
-	public GwtServiceModel(String name, String packageName) {
+    /**
+     *
+     * @param name
+     * @param packageName
+     */
+    public GwtServiceModel(String name, String packageName) {
 		super(name);
 		this.packageName = packageName;
 	}
 
-	public MethodModel addMethod(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public MethodModel addMethod(String name) {
 		MethodModel methodModel = new MethodModel(name);
 		methods.add(methodModel);
 		return methodModel;
 	}
 
-	public String getPackageName() {
+    /**
+     *
+     * @return
+     */
+    public String getPackageName() {
 		return packageName;
 	}
 
-	public List<MethodModel> getMethods() {
+    /**
+     *
+     * @return
+     */
+    public List<MethodModel> getMethods() {
 		return methods;
 	}
 

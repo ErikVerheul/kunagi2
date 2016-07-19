@@ -17,15 +17,14 @@ package scrum.server.project;
 import ilarkesto.base.Proc;
 import ilarkesto.base.StrExtend;
 import ilarkesto.base.Sys;
-import ilarkesto.base.UtlExtend;
 import ilarkesto.base.TmExtend;
-import ilarkesto.logging.Log;
+import ilarkesto.base.UtlExtend;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.integration.velocity.ContextBuilder;
 import ilarkesto.integration.velocity.Velocity;
 import ilarkesto.io.IO;
+import ilarkesto.logging.Log;
 import ilarkesto.persistence.AEntity;
-
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -50,6 +49,10 @@ import scrum.server.pr.BlogEntry;
 import scrum.server.release.Release;
 import scrum.server.sprint.Sprint;
 
+/**
+ *
+ * @author erik
+ */
 public class HomepageUpdater {
 
 	private static Log log = Log.get(HomepageUpdater.class);
@@ -61,7 +64,13 @@ public class HomepageUpdater {
 	private Velocity velocity;
 	private Properties properties;
 
-	public HomepageUpdater(Project project, String templatePath, String outputPath) {
+    /**
+     *
+     * @param project
+     * @param templatePath
+     * @param outputPath
+     */
+    public HomepageUpdater(Project project, String templatePath, String outputPath) {
 		super();
 		assert project != null;
 		this.project = project;
@@ -73,12 +82,19 @@ public class HomepageUpdater {
 		loadProperties();
 	}
 
-	public HomepageUpdater(Project project) {
+    /**
+     *
+     * @param project
+     */
+    public HomepageUpdater(Project project) {
 		this(project, project.getHomepageVelocityDir(), Sys.isDevelopmentMode() ? "runtimedata/homepage" : project
 				.getHomepageDir());
 	}
 
-	public void processAll() {
+    /**
+     *
+     */
+    public void processAll() {
 		executeScript("pre-update");
 		processDefaultTemplates();
 		processIssueTemplates();
@@ -89,7 +105,11 @@ public class HomepageUpdater {
 		executeScript("post-update");
 	}
 
-	public void processEntityTemplate(AEntity entity) {
+    /**
+     *
+     * @param entity
+     */
+    public void processEntityTemplate(AEntity entity) {
 		executeScript("pre-update");
 		if (entity instanceof Issue) {
 			processIssueTemplate((Issue) entity);
@@ -104,14 +124,22 @@ public class HomepageUpdater {
 	private void executeScript(String name) {
 		File file = null;
 		File dir = new File(project.getHomepageDir() + "/scripts");
-		if (!dir.exists()) return;
+		if (!dir.exists()) {
+                    return;
+        }
 		for (File f : dir.listFiles()) {
-			if (!f.isFile()) continue;
-			if (!f.getName().startsWith(name)) continue;
-			file = f;
-			break;
+			if (!f.isFile()) {
+                            continue;
+            }
+                        if (!f.getName().startsWith(name)) {
+                            continue;
+            }
+                        file = f;
+                        break;
 		}
-		if (file == null) return;
+		if (file == null) {
+            return;
+        }
 		log.info("Executing script:", file.getAbsolutePath());
 		String output = Proc.execute(project.getHomepageDirFile(), file.getAbsolutePath());
 		log.info(" ", file.getName() + ":", output);
@@ -131,17 +159,29 @@ public class HomepageUpdater {
 		fillClosedIssues(context);
 		fillReleases(context);
 		fillIssues(context);
-		fillStories(context);
-
-		File[] templateFiles = templateDir.listFiles();
-		if (templateFiles == null) return;
-		for (File templateFile : templateFiles) {
+                fillStories(context);
+                
+                File[] templateFiles = templateDir.listFiles();
+		if (templateFiles == null) {
+            return;
+        }
+                for (File templateFile : templateFiles) {
 			String templateName = templateFile.getName();
-			if (!templateName.endsWith(".vm")) continue;
-			if (templateName.equals(Velocity.LIB_TEMPLATE_NAME)) continue;
-			if (templateName.startsWith("iss.")) continue;
-			if (templateName.startsWith("blg.")) continue;
-			if (templateName.startsWith("sto.")) continue;
+                        if (!templateName.endsWith(".vm")) {
+                            continue;
+                        }
+                        if (templateName.equals(Velocity.LIB_TEMPLATE_NAME)) {
+                continue;
+            }
+                        if (templateName.startsWith("iss.")) {
+                continue;
+            }
+			if (templateName.startsWith("blg.")) {
+                continue;
+            }
+			if (templateName.startsWith("sto.")) {
+                continue;
+            }
 			String outputFileName = StrExtend.removeSuffix(templateName, ".vm");
 			velocity.processTemplate(templateName, new File(outputDir.getPath() + "/" + outputFileName), context);
 		}
@@ -151,16 +191,22 @@ public class HomepageUpdater {
 		fillConfig(context.putSubContext("config"));
 		fillProject(context.putSubContext("project"));
 		fillProductBacklog(context.putSubContext("productBacklog"));
-		fillSprintBacklog(context.putSubContext("sprintBacklog"));
+                fillSprintBacklog(context.putSubContext("sprintBacklog"));
 		fillWiki(context.putSubContext("wiki"));
 
 		String prefix = reference.substring(0, 3);
-		File[] templateFiles = templateDir.listFiles();
-		if (templateFiles == null) return;
+                File[] templateFiles = templateDir.listFiles();
+		if (templateFiles == null) {
+                    return;
+        }
 		for (File templateFile : templateFiles) {
 			String templateName = templateFile.getName();
-			if (!templateName.endsWith(".vm")) continue;
-			if (!templateName.startsWith(prefix + ".")) continue;
+			if (!templateName.endsWith(".vm")) {
+                continue;
+            }
+			if (!templateName.startsWith(prefix + ".")) {
+                continue;
+            }
 			String outputFileName = StrExtend.removeSuffix(templateName, ".vm");
 			outputFileName = StrExtend.removePrefix(outputFileName, prefix + ".");
 			outputFileName = reference + "." + outputFileName;
@@ -172,14 +218,16 @@ public class HomepageUpdater {
 		SystemConfig config = ScrumWebApplication.get().getSystemConfig();
 		context.put("kunagiUrl", config.getUrl());
 		context.put("kunagiAdminEmail", config.getAdminEmail());
-		context.put("kunagiInstanceName", config.getInstanceName());
-	}
+                context.put("kunagiInstanceName", config.getInstanceName());
+        }
 
 	private void processReleaseTemplates() {
 		List<Release> releases = new ArrayList<Release>(project.getReleases());
 		Collections.sort(releases, Release.DATE_REVERSE_COMPARATOR);
 		for (Release release : releases) {
-			if (!release.isReleased()) continue;
+			if (!release.isReleased()) {
+                continue;
+            }
 			ContextBuilder context = new ContextBuilder();
 			fillRelease(context.putSubContext("release"), release);
 			String reference = release.getReference();
@@ -196,28 +244,32 @@ public class HomepageUpdater {
 
 	private void processIssueTemplate(Issue issue) {
 		ContextBuilder context = new ContextBuilder();
-		fillIssue(context.putSubContext("issue"), issue);
+                fillIssue(context.putSubContext("issue"), issue);
 		processEntityTemplate(context, issue.getReference());
 	}
 
 	private void processStoryTemplates() {
 		List<Requirement> requirements = new ArrayList<Requirement>(project.getRequirements());
 		for (Requirement requirement : requirements) {
-			if (requirement.isClosed()) continue;
+			if (requirement.isClosed()) {
+                continue;
+            }
 			processStoryTemplate(requirement);
 		}
 	}
 
 	private void processStoryTemplate(Requirement requirement) {
 		ContextBuilder context = new ContextBuilder();
-		fillStory(context.putSubContext("story"), requirement);
+                fillStory(context.putSubContext("story"), requirement);
 		processEntityTemplate(context, requirement.getReference());
 	}
 
 	private void processBlogEntryTemplates() {
 		List<BlogEntry> entries = new ArrayList<BlogEntry>(project.getBlogEntrys());
 		for (BlogEntry entry : entries) {
-			if (!entry.isPublished()) continue;
+			if (!entry.isPublished()) {
+                continue;
+            }
 			processBlogEntryTemplate(entry);
 		}
 	}
@@ -231,14 +283,16 @@ public class HomepageUpdater {
 	private void createSprintBurndownChart(int width, int height) {
 		byte[] imageData = BurndownChart.createBurndownChartAsByteArray(project.getCurrentSprint(), width, height);
 		IO.copyDataToFile(imageData,
-			new File(outputDir.getPath() + "/sprint-burndown-" + width + "x" + height + ".png"));
+                        new File(outputDir.getPath() + "/sprint-burndown-" + width + "x" + height + ".png"));
 	}
 
 	private void fillIssues(ContextBuilder context) {
 		List<Issue> issues = new ArrayList<Issue>(project.getBugsInCurrentRelease());
 		Collections.sort(issues, Issue.ACCEPT_DATE_COMPARATOR);
 		for (Issue issue : project.getIssues()) {
-			if (!issue.isPublished()) continue;
+			if (!issue.isPublished()) {
+                continue;
+            }
 			fillIssue(context.addSubContext("issues"), issue);
 		}
 	}
@@ -276,19 +330,23 @@ public class HomepageUpdater {
 	}
 
 	private void fillIssue(ContextBuilder context, Issue issue) {
-		context.put("id", issue.getId());
-		context.put("reference", issue.getReference());
-		context.put("label", toHtml(issue.getLabel()));
+            context.put("id", issue.getId());
+            context.put("reference", issue.getReference());
+            context.put("label", toHtml(issue.getLabel()));
 		context.put("description", wikiToHtml(issue.getDescription()));
 		context.put("statement", wikiToHtml(issue.getStatement()));
 		context.put("statusText", toHtml(issue.getStatusText()));
-		if (issue.isOwnerSet()) context.put("owner", issue.getOwner().getPublicName());
-		if (issue.isFixed()) context.put("fixed", "true");
+		if (issue.isOwnerSet()) {
+            context.put("owner", issue.getOwner().getPublicName());
+        }
+		if (issue.isFixed()) {
+            context.put("fixed", "true");
+        }
 		fillComments(context, issue);
 	}
 
 	private void fillComments(ContextBuilder context, AEntity entity) {
-		CommentDao commentDao = (CommentDao) entity.getDaoService().getDaoByClass(Comment.class);
+		CommentDao commentDao = (CommentDao) AEntity.getDaoService().getDaoByClass(Comment.class);
 		Collection<Comment> comments = commentDao.getPublishedCommentsByParent(entity);
 		comments = UtlExtend.sort(comments);
 		for (Comment comment : comments) {
@@ -344,7 +402,7 @@ public class HomepageUpdater {
 	private void fillSprint(ContextBuilder context, Sprint sprint) {
 		context.put("id", sprint.getId());
 		context.put("reference", sprint.getReference());
-		context.put("label", toHtml(sprint.getLabel()));
+                context.put("label", toHtml(sprint.getLabel()));
 		context.put("goal", wikiToHtml(sprint.getGoal()));
 		fillComments(context, sprint);
 	}
@@ -353,7 +411,9 @@ public class HomepageUpdater {
 		List<BlogEntry> entries = new ArrayList<BlogEntry>(project.getBlogEntrys());
 		Collections.sort(entries);
 		for (BlogEntry entry : entries) {
-			if (!entry.isPublished()) continue;
+			if (!entry.isPublished()) {
+                continue;
+            }
 			fillBlogEntry(context.addSubContext("entries"), entry);
 		}
 	}
@@ -375,17 +435,19 @@ public class HomepageUpdater {
 	}
 
 	private void fillSprintBacklog(ContextBuilder context) {
-		Sprint sprint = project.getCurrentSprint();
-		context.put("label", toHtml(sprint.getLabel()));
+            Sprint sprint = project.getCurrentSprint();
+            context.put("label", toHtml(sprint.getLabel()));
 		context.put("goal", wikiToHtml(sprint.getGoal()));
 		context.put("begin", TmExtend.FORMAT_LONGMONTH_DAY_YEAR.format(sprint.getBegin()));
 		context.put("end", TmExtend.FORMAT_LONGMONTH_DAY_YEAR.format(sprint.getEnd()));
 		Release release = sprint.getNextRelease();
-		if (release != null) context.put("release", release.getLabel());
+		if (release != null) {
+            context.put("release", release.getLabel());
+        }
 		List<Requirement> requirements = new ArrayList<Requirement>(sprint.getRequirements());
 		Collections.sort(requirements, project.getRequirementsOrderComparator());
 		for (Requirement requirement : requirements) {
-			fillStory(context.addSubContext("stories"), requirement);
+                    fillStory(context.addSubContext("stories"), requirement);
 		}
 	}
 
@@ -393,7 +455,9 @@ public class HomepageUpdater {
 		List<Requirement> requirements = new ArrayList<Requirement>(project.getRequirements());
 		Collections.sort(requirements, project.getRequirementsOrderComparator());
 		for (Requirement requirement : requirements) {
-			if (requirement.isClosed() || requirement.isInCurrentSprint()) continue;
+			if (requirement.isClosed() || requirement.isInCurrentSprint()) {
+                continue;
+            }
 			fillStory(context.addSubContext("stories"), requirement);
 		}
 	}
@@ -405,14 +469,15 @@ public class HomepageUpdater {
 		}
 	}
 
-	private void fillStory(ContextBuilder context, Requirement requirement) {
-		context.put("id", requirement.getId());
+        private void fillStory(ContextBuilder context, Requirement requirement) {
+            context.put("id", requirement.getId());
 		context.put("reference", requirement.getReference());
 		context.put("label", toHtml(requirement.getLabel()));
 		context.put("description", wikiToHtml(requirement.getDescription()));
 		context.put("testDescription", wikiToHtml(requirement.getTestDescription()));
-		if (requirement.isEstimatedWorkSet() && !requirement.isDirty())
-			context.put("estimatedWork", requirement.getEstimatedWorkAsString());
+		if (requirement.isEstimatedWorkSet() && !requirement.isDirty()) {
+            context.put("estimatedWork", requirement.getEstimatedWorkAsString());
+        }
 		fillComments(context, requirement);
 	}
 
@@ -428,33 +493,56 @@ public class HomepageUpdater {
 		context.put("vision", project.getVision());
 		context.put("shortDescription", toHtml(project.getShortDescription()));
 		context.put("description", wikiToHtml(project.getDescription()));
-		context.put("longDescription", wikiToHtml(project.getLongDescription()));
+                context.put("longDescription", wikiToHtml(project.getLongDescription()));
 		context.put("homepageUrl", project.getHomepageUrl());
 		Release currentRelease = project.getCurrentRelease();
 		context.put("currentRelease", currentRelease == null ? "?" : toHtml(currentRelease.getLabel()));
 	}
 
-	public String wikiToHtml(String wikitext) {
-		if (StrExtend.isBlank(wikitext)) return null;
-		WikiParser wikiParser = new WikiParser(wikitext);
+    /**
+     *
+     * @param wikitext
+     * @return
+     */
+    public String wikiToHtml(String wikitext) {
+		if (StrExtend.isBlank(wikitext)) {
+            return null;
+        }
+                WikiParser wikiParser = new WikiParser(wikitext);
 		WikiModel model = wikiParser.parse(false);
 		return model.toHtml(htmlContext);
 	}
 
-	public static String wikiToText(String wikitext) {
-		if (StrExtend.isBlank(wikitext)) return null;
+    /**
+     *
+     * @param wikitext
+     * @return
+     */
+    public static String wikiToText(String wikitext) {
+        if (StrExtend.isBlank(wikitext)) {
+            return null;
+        }
 		return wikitext;
 	}
 
-	public static String toHtml(String text) {
-		if (text == null) return null;
+    /**
+     *
+     * @param text
+     * @return
+     */
+    public static String toHtml(String text) {
+		if (text == null) {
+            return null;
+        }
 		text = StrExtend.toHtml(text);
 		return text;
 	}
 
 	private void loadProperties() {
 		File file = new File(outputDir.getPath() + "/kunagi.properties");
-		if (!file.exists()) file = new File(templateDir.getPath() + "/kunagi.properties");
+		if (!file.exists()) {
+            file = new File(templateDir.getPath() + "/kunagi.properties");
+        }
 		if (!file.exists()) {
 			properties = new Properties();
 			return;

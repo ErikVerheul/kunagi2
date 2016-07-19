@@ -19,33 +19,44 @@ import ilarkesto.base.UtlExtend;
 import ilarkesto.core.time.Date;
 import ilarkesto.io.IO;
 import ilarkesto.testng.ATest;
-
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-
 import scrum.TestUtil;
 import scrum.server.issues.Issue;
 import scrum.server.release.Release;
 import scrum.server.sprint.Sprint;
 
+/**
+ *
+ * @author erik
+ */
 public class HomepageUpdaterTest extends ATest {
 
 	Project project;
 
-	@BeforeSuite
+    /**
+     *
+     */
+    @BeforeSuite
 	public void initglobal() {
 		TestUtil.initialize();
 	}
 
-	@BeforeClass
+    /**
+     *
+     */
+    @BeforeClass
 	public void createProject() {
 		TestUtil.getApp().getSystemConfig().setUrl("http://localhost/kunagi");
 		project = TestUtil.createProject(TestUtil.getDuke());
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void updateHomepage() {
 		Sprint sprint = TestUtil.createSprint(project, Date.inDays(15));
 		project.setCurrentSprint(sprint);
@@ -88,7 +99,9 @@ public class HomepageUpdaterTest extends ATest {
 		for (int i = 6; i <= 10; i++) {
 			Issue issue = TestUtil.createIssue(project, i);
 			issue.setAcceptDate(Date.today());
-			if (i > 3) issue.addFixRelease(rel1);
+			if (i > 3) {
+                            issue.addFixRelease(rel1);
+            }
 		}
 		for (int i = 11; i <= 15; i++) {
 			Issue issue = TestUtil.createIssue(project, i);
@@ -102,9 +115,14 @@ public class HomepageUpdaterTest extends ATest {
 		new HomepageUpdater(project, "src/projectHomepage/velocity", OUTPUT_DIR + "/homepage").processAll();
 	}
 
-	@AfterClass
+    /**
+     *
+     */
+    @AfterClass
 	public void cleanup() {
-		if (project != null) TestUtil.getApp().getProjectDao().deleteEntity(project);
+		if (project != null) {
+                    TestUtil.getApp().getProjectDao().deleteEntity(project);
+        }
 	}
 
 }

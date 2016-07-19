@@ -14,6 +14,7 @@
  */
 package scrum.client.workspace;
 
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.menu.MenuItem;
 import ilarkesto.core.menu.StaticMenu;
 import ilarkesto.core.menu.StaticMenuItem;
@@ -27,32 +28,62 @@ import scrum.client.pr.BlogWidget;
 import scrum.client.project.ProductBacklogWidget;
 import scrum.client.tasks.WhiteboardWidget;
 
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class ScrumNavigatorWidget extends NavigatorWidget<Object> {
 
-	@Override
+    /**
+     *
+     * @param item
+     * @return
+     */
+    @Override
 	protected String getHref(MenuItem item) {
 		if (item instanceof StaticMenuItem) {
 			StaticMenuItem staticItem = (StaticMenuItem) item;
 			Object payload = staticItem.getPayload();
-			if ("sprint".equals(payload)) return Navigator.getPageHref(WhiteboardWidget.class);
-			if ("product".equals(payload)) return Navigator.getPageHref(ProductBacklogWidget.class);
-			if ("project".equals(payload)) return Navigator.getPageHref(ImpedimentListWidget.class);
-			if ("collaboration".equals(payload)) return Navigator.getPageHref(WikiWidget.class);
-			if ("administration".equals(payload)) return Navigator.getPageHref(BlogWidget.class);
-			if (payload instanceof Widget) return Navigator.getPageHref(((Widget) payload).getClass());
+			if ("sprint".equals(payload)) {
+                            return Navigator.getPageHref(WhiteboardWidget.class);
+            }
+			if ("product".equals(payload)) {
+                            return Navigator.getPageHref(ProductBacklogWidget.class);
+            }
+                        if ("project".equals(payload)) {
+                            return Navigator.getPageHref(ImpedimentListWidget.class);
+            }
+                        if ("collaboration".equals(payload)) {
+                            return Navigator.getPageHref(WikiWidget.class);
+                        }
+                        if ("administration".equals(payload)) {
+                            return Navigator.getPageHref(BlogWidget.class);
+                        }
+			if (payload instanceof Widget) {
+                return Navigator.getPageHref(((Widget) payload).getClass());
+            }
 		}
 		return super.getHref(item);
 	}
 
-	public void addGroup(String label, String key) {
+    /**
+     *
+     * @param label
+     * @param key
+     */
+    public void addGroup(String label, String key) {
 		final StaticSubmenu submenu = new StaticSubmenu(label);
 		submenu.setPayload(key);
 		menu.addItem(submenu);
 	}
 
-	public void addItem(String group, String label, final Widget widget) {
+    /**
+     *
+     * @param group
+     * @param label
+     * @param widget
+     */
+    public void addItem(String group, String label, final Widget widget) {
 		final Submenu<StaticMenuItem> groupItem = (Submenu<StaticMenuItem>) menu.getItemByPayload(group);
 		assert groupItem != null;
 		StaticMenu menu = (StaticMenu) groupItem.getMenu();
@@ -68,7 +99,12 @@ public class ScrumNavigatorWidget extends NavigatorWidget<Object> {
 		});
 	}
 
-	public void addItem(String label, final Widget widget) {
+    /**
+     *
+     * @param label
+     * @param widget
+     */
+    public void addItem(String label, final Widget widget) {
 		assert label != null;
 		assert widget != null;
 		addItem(label, widget, new Runnable() {
@@ -79,22 +115,36 @@ public class ScrumNavigatorWidget extends NavigatorWidget<Object> {
 		});
 	}
 
-	public SwitchAction createSwitchAction(Widget widget) {
+    /**
+     *
+     * @param widget
+     * @return
+     */
+    public SwitchAction createSwitchAction(Widget widget) {
 		return new SwitchAction(widget);
 	}
 
-	public class SwitchAction extends AAction {
+    /**
+     *
+     */
+    public class SwitchAction extends AAction {
 
 		private Widget widget;
 		private String label;
 
-		public SwitchAction(Widget widget) {
+        /**
+         *
+         * @param widget
+         */
+                public SwitchAction(Widget widget) {
 			this.widget = widget;
 		}
 
 		@Override
 		public String getLabel() {
-			if (label != null) return label;
+			if (label != null) {
+                return label;
+            }
 			StaticMenuItem item = menu.getItemByPayload(widget);
 			return item.getLabel();
 		}
@@ -109,7 +159,11 @@ public class ScrumNavigatorWidget extends NavigatorWidget<Object> {
 			return Navigator.getPageHistoryToken(Page.getPageName(widget));
 		}
 
-		public void setLabel(String label) {
+        /**
+         *
+         * @param label
+         */
+        public void setLabel(String label) {
 			this.label = label;
 		}
 	}

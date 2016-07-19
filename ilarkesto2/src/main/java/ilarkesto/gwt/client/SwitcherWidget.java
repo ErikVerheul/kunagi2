@@ -14,7 +14,6 @@
  */
 package ilarkesto.gwt.client;
 
-import com.google.gwt.user.client.Window;
 import static com.google.gwt.user.client.Window.scrollTo;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;

@@ -18,47 +18,86 @@ import ilarkesto.mda.legacy.model.BeanModel;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+/**
+ *
+ * @author erik
+ */
 public class GwtEntityTemplateGenerator extends ABeanGenerator<BeanModel> {
 
+    /**
+     *
+     * @param bean
+     */
     public GwtEntityTemplateGenerator(BeanModel bean) {
         super(bean);
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected final String getName() {
         return bean.getName();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected final boolean isInterface() {
         return false;
     }
 
+    /**
+     *
+     */
     @Override
     protected void writeContent() {
         toString();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected final String getSuperclass() {
         return "G" + bean.getName();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected final boolean isAbstract() {
         return bean.isAbstract();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected boolean isOverwrite() {
         return false;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected String getPackage() {
         return super.getPackage().replaceAll(".server.", ".client.");
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected Set<String> getStaticImports() {
         Set<String> result = new LinkedHashSet<>();

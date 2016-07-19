@@ -14,6 +14,10 @@
  */
 package scrum.client.collaboration;
 
+import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.AOutputViewEditWidget;
 import ilarkesto.gwt.client.ButtonWidget;
 import ilarkesto.gwt.client.Gwt;
@@ -23,11 +27,6 @@ import scrum.client.admin.ProjectUserConfig;
 import scrum.client.admin.User;
 import scrum.client.common.AScrumWidget;
 import scrum.client.img.Img;
-
-import com.google.gwt.user.client.ui.FlowPanel;
-import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.Widget;
 
 public class CommentWidget extends AScrumWidget {
 

@@ -14,23 +14,28 @@
  */
 package scrum.client.common;
 
-import ilarkesto.gwt.client.Gwt;
-import ilarkesto.gwt.client.TableBuilder;
-
-import java.util.Set;
-
-import scrum.client.admin.User;
-
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
+import ilarkesto.gwt.client.Gwt;
+import ilarkesto.gwt.client.TableBuilder;
+import java.util.Set;
+import scrum.client.admin.User;
 
+/**
+ *
+ * @author erik
+ */
 public class UsersOnBlockWidget extends AScrumWidget {
 
 	private AScrumGwtEntity entity;
 	private SimplePanel wrapper;
 
-	public UsersOnBlockWidget(AScrumGwtEntity entity) {
+    /**
+     *
+     * @param entity
+     */
+    public UsersOnBlockWidget(AScrumGwtEntity entity) {
 		super();
 		this.entity = entity;
 	}
@@ -49,7 +54,9 @@ public class UsersOnBlockWidget extends AScrumWidget {
 		Set<User> users = getCurrentProject().getUsersSelecting(entity);
 		boolean first = true;
 		for (User user : users) {
-			if (user == getCurrentUser()) continue;
+			if (user == getCurrentUser()) {
+                            continue;
+            }
 			if (first) {
 				first = false;
 			} else {

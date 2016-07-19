@@ -14,8 +14,15 @@
  */
 package ilarkesto.core.menu;
 
+/**
+ *
+ * @author erik
+ */
 public interface ChangeListener {
 
-	void onChange();
+    /**
+     *
+     */
+    void onChange();
 
 }

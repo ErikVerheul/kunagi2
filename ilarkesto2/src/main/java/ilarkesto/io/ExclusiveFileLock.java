@@ -23,12 +23,21 @@ import java.nio.channels.FileChannel;
 import java.nio.channels.FileLock;
 import java.nio.channels.OverlappingFileLockException;
 
+/**
+ *
+ * @author erik
+ */
 public class ExclusiveFileLock {
 
 	private File file;
 	private FileLock lock;
 
-	public ExclusiveFileLock(File file) throws FileLockedException {
+    /**
+     *
+     * @param file
+     * @throws FileLockedException
+     */
+    public ExclusiveFileLock(File file) throws FileLockedException {
 		file = file.getAbsoluteFile();
 
 		this.file = file;
@@ -55,7 +64,10 @@ public class ExclusiveFileLock {
                 }
 	}
 
-	public void release() {
+    /**
+     *
+     */
+    public void release() {
 		try {
 			lock.release();
 		} catch (IOException ex) {
@@ -63,7 +75,10 @@ public class ExclusiveFileLock {
 		}
 	}
 
-	public class FileLockedException extends Exception {
+    /**
+     *
+     */
+    public class FileLockedException extends Exception {
 
 		private FileLockedException() {
 			super("File already locked: " + file.getName());

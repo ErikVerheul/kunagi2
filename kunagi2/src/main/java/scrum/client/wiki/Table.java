@@ -17,6 +17,10 @@ package scrum.client.wiki;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class Table extends AWikiElement {
 
 	private final List<TableRow> rows = new ArrayList<TableRow>();
@@ -33,8 +37,15 @@ public class Table extends AWikiElement {
 		return sb.toString();
 	}
 
-	public void addCell(Paragraph p, boolean header) {
-		if (p == null) return;
+    /**
+     *
+     * @param p
+     * @param header
+     */
+    public void addCell(Paragraph p, boolean header) {
+		if (p == null) {
+                    return;
+        }
 		if (currentRow == null) {
 			currentRow = new TableRow();
 			rows.add(currentRow);
@@ -42,19 +53,32 @@ public class Table extends AWikiElement {
 		currentRow.addCell(new TableCell(p, header));
 	}
 
-	public void nextRow() {
+    /**
+     *
+     */
+    public void nextRow() {
 		currentRow = null;
 	}
 
-	public List<TableRow> getRows() {
+    /**
+     *
+     * @return
+     */
+    public List<TableRow> getRows() {
 		return rows;
 	}
 
-	public int getColumnCount() {
+    /**
+     *
+     * @return
+     */
+    public int getColumnCount() {
 		int count = 0;
 		for (TableRow row : rows) {
 			int cells = row.getCells().size();
-			if (cells > count) count = cells;
+			if (cells > count) {
+                            count = cells;
+            }
 		}
 		return count;
 	}

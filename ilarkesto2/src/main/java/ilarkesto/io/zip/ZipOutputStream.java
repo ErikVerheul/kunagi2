@@ -34,7 +34,6 @@
 
 package ilarkesto.io.zip;
 
-import ilarkesto.core.time.Tm;
 import static ilarkesto.core.time.Tm.getCurrentTimeMillis;
 import static ilarkesto.io.zip.Deflater.DEFAULT_COMPRESSION;
 import java.io.IOException;

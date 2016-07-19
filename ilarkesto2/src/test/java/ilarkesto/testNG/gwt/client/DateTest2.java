@@ -6,9 +6,16 @@ import java.util.GregorianCalendar;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+/**
+ *
+ * @author erik
+ */
 public class DateTest2 extends Assert {
 
-	public void addDays() {
+    /**
+     *
+     */
+    public void addDays() {
 		Date date = new Date(2000, 1, 1);
 
 		assertEquals(date.addDays(1), new Date(2000, 1, 2));
@@ -20,7 +27,10 @@ public class DateTest2 extends Assert {
 		assertEquals(date.addDays(-31), new Date(1999, 11, 30));
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void nextDay() {
 		assertEquals(new Date(2009, 10, 26), new Date(2009, 10, 25).nextDay());
 		GregorianCalendar cal = new GregorianCalendar();

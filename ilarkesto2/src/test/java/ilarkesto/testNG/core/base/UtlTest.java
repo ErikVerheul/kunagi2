@@ -20,9 +20,16 @@ import ilarkesto.testng.ATest;
 import java.util.List;
 import org.testng.annotations.Test;
 
+/**
+ *
+ * @author erik
+ */
 public class UtlTest extends ATest {
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void equals() {
 		Object[] a = { "hello", "equals" };
 		Object[] b = { "hello", "equals" };
@@ -31,7 +38,10 @@ public class UtlTest extends ATest {
 		assertFalse(Utl.equalObjects(a, c));
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void removeDuplicates() {
 		List<String> list = toList("a", "b", "b", "a");
 		Utl.removeDuplicates(list);

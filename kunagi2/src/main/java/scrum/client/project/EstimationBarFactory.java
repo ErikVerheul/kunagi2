@@ -17,9 +17,18 @@ package scrum.client.project;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class EstimationBarFactory {
 
-	public static void createEstimationBars(List<Requirement> requirements, Integer velocity) {
+    /**
+     *
+     * @param requirements
+     * @param velocity
+     */
+    public static void createEstimationBars(List<Requirement> requirements, Integer velocity) {
 		int sprintOffset = 0;
 		float remainingCapacityInSprint = velocity == null ? 0 : velocity;
 		boolean unestimatedRequirementReached = false;
@@ -29,7 +38,9 @@ public class EstimationBarFactory {
 
 			if (velocity == null || velocity == 0) {
 				// no projection bars -> display as all work done in one sprint
-				if (workInRequirement != null) requirementWorkPerSprint.add(workInRequirement);
+				if (workInRequirement != null) {
+                                    requirementWorkPerSprint.add(workInRequirement);
+                }
 				requirement.setEstimationBar(new EstimationBar(0, requirementWorkPerSprint));
 				continue;
 			}
@@ -49,7 +60,9 @@ public class EstimationBarFactory {
 			float work = workInRequirement;
 
 			if (work > 0 && remainingCapacityInSprint == 0) {
-				if (!unestimatedRequirementReached) sprintOffset++;
+				if (!unestimatedRequirementReached) {
+                                    sprintOffset++;
+                }
 				remainingCapacityInSprint = velocity;
 			}
 
@@ -57,7 +70,9 @@ public class EstimationBarFactory {
 				// work is more then capacity in sprint -> add indicator to bar
 				requirementWorkPerSprint.add(remainingCapacityInSprint);
 				work -= remainingCapacityInSprint;
-				if (!unestimatedRequirementReached) sprintOffset++;
+                                if (!unestimatedRequirementReached) {
+                                    sprintOffset++;
+                }
 				remainingCapacityInSprint = velocity;
 			}
 

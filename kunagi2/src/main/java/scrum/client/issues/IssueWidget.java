@@ -14,6 +14,9 @@
  */
 package scrum.client.issues;
 
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.base.Str;
 import ilarkesto.gwt.client.AMultiSelectionViewEditWidget;
 import ilarkesto.gwt.client.AOutputViewEditWidget;
@@ -23,10 +26,8 @@ import ilarkesto.gwt.client.TableBuilder;
 import ilarkesto.gwt.client.editor.AFieldModel;
 import ilarkesto.gwt.client.editor.DropdownEditorWidget;
 import ilarkesto.gwt.client.editor.TextOutputWidget;
-
 import java.util.Collections;
 import java.util.List;
-
 import scrum.client.ScrumGwt;
 import scrum.client.collaboration.CommentsWidget;
 import scrum.client.collaboration.EmoticonSelectorWidget;
@@ -35,16 +36,20 @@ import scrum.client.common.ThemesWidget;
 import scrum.client.journal.ChangeHistoryWidget;
 import scrum.client.release.Release;
 
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class IssueWidget extends AScrumWidget {
 
 	private Issue issue;
 	private boolean fixedOnInitialization;
 
-	public IssueWidget(Issue issue) {
+    /**
+     *
+     * @param issue
+     */
+    public IssueWidget(Issue issue) {
 		super();
 		this.issue = issue;
 	}
@@ -173,7 +178,9 @@ public class IssueWidget extends AScrumWidget {
 						if (Str.isBlank(url)) {
 							setViewer(new Label("Yes"));
 						} else {
-							if (!url.endsWith("/")) url += "/";
+							if (!url.endsWith("/")) {
+                                                            url += "/";
+                            }
 							url += issue.getReference() + ".html";
 							setViewer(new HTML("<a href=\"" + url + "\" target=\"_blank\">" + url + "</a>"));
 						}

@@ -14,16 +14,29 @@
  */
 package ilarkesto.mda.legacy.model;
 
+/**
+ *
+ * @author erik
+ */
 public class CompositeModel extends AModel {
 
 	private String type;
 
-	public CompositeModel(String type, String name) {
+    /**
+     *
+     * @param type
+     * @param name
+     */
+    public CompositeModel(String type, String name) {
 		super(name);
 		this.type = type;
 	}
 
-	public String getType() {
+    /**
+     *
+     * @return
+     */
+    public String getType() {
 		return type;
 	}
 

@@ -31,6 +31,10 @@ import ilarkesto.mda.model.ModelProcessor;
 import ilarkesto.mda.model.Node;
 import ilarkesto.mda.model.NodeTypes;
 
+/**
+ *
+ * @author erik
+ */
 public class GwtClassesGenerator implements ModelProcessor, NodeTypes {
 
 	private static final Log LOG = Log.get(GwtClassesGenerator.class);
@@ -40,12 +44,19 @@ public class GwtClassesGenerator implements ModelProcessor, NodeTypes {
 
 	private GwtComponentsReflectorGenerator componentsReflectorGenerator;
 
-	public GwtClassesGenerator() {
+    /**
+     *
+     */
+    public GwtClassesGenerator() {
 		genSrcPath = "src/generated/java";
 		implSrcPath = "src/main/java";
 	}
 
-	@Override
+    /**
+     *
+     * @param model
+     */
+    @Override
 	public void processModel(Model model) {
 
 		for (Node module : model.getRoot().getChildrenByType(GwtModule)) {

@@ -23,16 +23,29 @@ import ilarkesto.mda.model.NodeTypes;
 import static java.util.Arrays.asList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class GwtServiceImplGenerator extends AJavaClassGenerator implements NodeTypes {
 
 	private final Node module;
 
-	public GwtServiceImplGenerator(String srcPath, Node module) {
+    /**
+     *
+     * @param srcPath
+     * @param module
+     */
+    public GwtServiceImplGenerator(String srcPath, Node module) {
 		super(srcPath, true);
 		this.module = module;
 	}
 
-	@Override
+    /**
+     *
+     * @param out
+     */
+    @Override
 	protected void printCode(JavaPrinter out) {
 		out.package_(getServerPackageName());
                 out.imports(asList("ilarkesto.webapp.GwtConversationDoesNotExist"));

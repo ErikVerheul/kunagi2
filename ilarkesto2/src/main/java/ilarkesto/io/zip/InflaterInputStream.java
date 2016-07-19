@@ -143,6 +143,7 @@ public class InflaterInputStream extends FilterInputStream
   /**
    * Returns 0 once the end of the stream (EOF) has been reached.
    * Otherwise returns 1.
+     * @return 
    */
   @Override
   public int available() throws IOException
@@ -154,6 +155,7 @@ public class InflaterInputStream extends FilterInputStream
 
   /**
    * Closes the input stream
+     * @throws java.io.IOException
    */
   @Override
   public synchronized void close() throws IOException
@@ -166,6 +168,7 @@ public class InflaterInputStream extends FilterInputStream
 
   /**
    * Fills the buffer with more data to decompress.
+     * @throws java.io.IOException
    */
   protected void fill() throws IOException
   {
@@ -186,6 +189,7 @@ public class InflaterInputStream extends FilterInputStream
    * Reads one byte of decompressed data.
    *
    * The byte is in the lower 8 bits of the int.
+     * @return 
    */
   @Override
   public int read() throws IOException
@@ -205,6 +209,7 @@ public class InflaterInputStream extends FilterInputStream
    * @param b the array to read and decompress data into
    * @param off the offset indicating where the data should be placed
    * @param len the number of bytes to decompress
+     * @return 
    */
   @SuppressWarnings("NS_DANGEROUS_NON_SHORT_CIRCUIT")
   @Override
@@ -246,6 +251,7 @@ public class InflaterInputStream extends FilterInputStream
    * Skip specified number of bytes of uncompressed data
    *
    * @param n number of bytes to skip
+     * @return 
    */
   @Override
   public long skip(long n) throws IOException

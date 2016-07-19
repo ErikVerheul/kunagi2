@@ -15,8 +15,8 @@
 package ilarkesto.mda.model;
 
 import ilarkesto.core.event.EventBus;
-import ilarkesto.logging.Log;
 import ilarkesto.core.scope.In;
+import ilarkesto.logging.Log;
 import ilarkesto.mda.model.processor.GwtClassesGenerator;
 import java.util.ArrayList;
 import java.util.List;

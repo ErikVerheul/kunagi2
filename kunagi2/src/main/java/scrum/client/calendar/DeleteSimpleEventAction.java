@@ -16,9 +16,17 @@ package scrum.client.calendar;
 
 import scrum.client.common.TooltipBuilder;
 
+/**
+ *
+ * @author erik
+ */
 public class DeleteSimpleEventAction extends GDeleteSimpleEventAction {
 
-	public DeleteSimpleEventAction(scrum.client.calendar.SimpleEvent simpleEvent) {
+    /**
+     *
+     * @param simpleEvent
+     */
+    public DeleteSimpleEventAction(scrum.client.calendar.SimpleEvent simpleEvent) {
 		super(simpleEvent);
 	}
 
@@ -27,10 +35,16 @@ public class DeleteSimpleEventAction extends GDeleteSimpleEventAction {
 		return "Delete";
 	}
 
-	@Override
+    /**
+     *
+     * @param tb
+     */
+    @Override
 	protected void updateTooltip(TooltipBuilder tb) {
 		tb.setText("Delete this Impediment permanently.");
-		if (!getCurrentProject().isScrumTeamMember(getCurrentUser())) tb.addRemark(TooltipBuilder.NOT_SCRUMTEAM);
+		if (!getCurrentProject().isScrumTeamMember(getCurrentUser())) {
+                    tb.addRemark(TooltipBuilder.NOT_SCRUMTEAM);
+        }
 	}
 
 	@Override
@@ -40,8 +54,7 @@ public class DeleteSimpleEventAction extends GDeleteSimpleEventAction {
 
 	@Override
 	public boolean isPermitted() {
-		if (!getCurrentProject().isScrumTeamMember(getCurrentUser())) return false;
-		return true;
+		return getCurrentProject().isScrumTeamMember(getCurrentUser());
 	}
 
 	@Override

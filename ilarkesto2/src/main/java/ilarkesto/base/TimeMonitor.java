@@ -27,10 +27,18 @@ public class TimeMonitor {
 
     private final long start = getCurrentTimeMillis();
 
+    /**
+     *
+     * @return
+     */
     public long getTime() {
         return getCurrentTimeMillis() - start;
     }
 
+    /**
+     *
+     * @param name
+     */
     public void debugOut(String name) {
         if (name == null) {
             name = "TimeMonitor";

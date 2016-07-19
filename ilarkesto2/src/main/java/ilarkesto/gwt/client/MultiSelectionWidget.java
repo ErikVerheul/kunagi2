@@ -27,13 +27,22 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ *
+ * @author erik
+ * @param <I>
+ */
 public class MultiSelectionWidget<I extends Object> extends AWidget {
 
 	private FlexTable table;
 	private final Map<I, CheckBox> items = new HashMap<I, CheckBox>();
 	private FocusPanel panel;
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected Widget onInitialization() {
 		table = new FlexTable();
 		table.setCellPadding(0);
@@ -45,14 +54,23 @@ public class MultiSelectionWidget<I extends Object> extends AWidget {
 		return panel;
 	}
 
-	public void add(I item) {
+    /**
+     *
+     * @param item
+     */
+    public void add(I item) {
 		initialize();
 		CheckBox checkbox = createCheckbox(item);
 		items.put(item, checkbox);
 		table.setWidget(table.getRowCount(), 0, checkbox);
 	}
 
-	protected CheckBox createCheckbox(I item) {
+    /**
+     *
+     * @param item
+     * @return
+     */
+    protected CheckBox createCheckbox(I item) {
 		CheckBox checkbox;
 		if (item instanceof HtmlLabelSupport) {
 			checkbox = new CheckBox(((HtmlLabelSupport) item).getHtmlLabel(), true);
@@ -62,7 +80,11 @@ public class MultiSelectionWidget<I extends Object> extends AWidget {
 		return checkbox;
 	}
 
-	public void setItems(Collection<I> items) {
+    /**
+     *
+     * @param items
+     */
+    public void setItems(Collection<I> items) {
 		initialize();
 		clear();
 		for (I item : items) {
@@ -70,29 +92,48 @@ public class MultiSelectionWidget<I extends Object> extends AWidget {
 		}
 	}
 
-	public List<I> getItems() {
+    /**
+     *
+     * @return
+     */
+    public List<I> getItems() {
 		return new ArrayList(items.keySet());
 	}
 
-	public void clear() {
+    /**
+     *
+     */
+    public void clear() {
 		items.clear();
 		table.clear();
 	}
 
-	public void setSelected(Collection<I> selectedItems) {
+    /**
+     *
+     * @param selectedItems
+     */
+    public void setSelected(Collection<I> selectedItems) {
 		for (Map.Entry<I, CheckBox> entry : items.entrySet()) {
 			entry.getValue().setValue((selectedItems.contains(entry.getKey())));
 		}
 	}
 
-	public void addSelected(I item) {
+    /**
+     *
+     * @param item
+     */
+    public void addSelected(I item) {
 		CheckBox checkBox = items.get(item);
 		if (checkBox != null) {
                         checkBox.setValue(true);
                 }
 	}
 
-	public List<I> getSelected() {
+    /**
+     *
+     * @return
+     */
+    public List<I> getSelected() {
 		List<I> ret = new LinkedList<I>();
 		for (Map.Entry<I, CheckBox> entry : items.entrySet()) {
 			if (entry.getValue().getValue()) {
@@ -102,17 +143,29 @@ public class MultiSelectionWidget<I extends Object> extends AWidget {
 		return ret;
 	}
 
-	public void addFocusListener(FocusListener focusListener) {
+    /**
+     *
+     * @param focusListener
+     */
+    public void addFocusListener(FocusListener focusListener) {
 		initialize();
 		panel.addFocusListener(focusListener);
 	}
 
-	public void addKeyDownHandler(KeyDownHandler handler) {
+    /**
+     *
+     * @param handler
+     */
+    public void addKeyDownHandler(KeyDownHandler handler) {
 		initialize();
 		panel.addKeyDownHandler(handler);
 	}
 
-	public void setFocus(boolean focus) {
+    /**
+     *
+     * @param focus
+     */
+    public void setFocus(boolean focus) {
 		initialize();
 		panel.setFocus(focus);
 	}

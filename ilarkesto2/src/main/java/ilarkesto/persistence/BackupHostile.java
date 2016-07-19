@@ -14,7 +14,10 @@
  */
 package ilarkesto.persistence;
 
-
+/**
+ *
+ * @author erik
+ */
 public interface BackupHostile {
 
 }

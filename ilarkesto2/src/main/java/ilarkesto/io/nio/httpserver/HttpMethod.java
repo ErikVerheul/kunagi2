@@ -14,6 +14,14 @@
  */
 package ilarkesto.io.nio.httpserver;
 
+/**
+ *
+ * @author erik
+ */
 public enum HttpMethod {
-	GET
+
+    /**
+     *
+     */
+    GET
 }

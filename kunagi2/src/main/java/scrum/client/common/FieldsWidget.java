@@ -14,17 +14,15 @@
  */
 package scrum.client.common;
 
-import ilarkesto.gwt.client.AWidget;
-import ilarkesto.gwt.client.Gwt;
-import ilarkesto.gwt.client.TableBuilder;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
+import ilarkesto.gwt.client.AWidget;
+import ilarkesto.gwt.client.Gwt;
+import ilarkesto.gwt.client.TableBuilder;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Widget, which displays fields. A field is a pair of a label and a value.
@@ -51,24 +49,40 @@ public class FieldsWidget extends AWidget {
 		Gwt.update(widgets);
 	}
 
-	public <W extends Widget> W add(String label, W value) {
+    /**
+     *
+     * @param <W>
+     * @param label
+     * @param value
+     * @return
+     */
+    public <W extends Widget> W add(String label, W value) {
 		widgets.add(value);
 		return addWidget(label, value);
 	}
 
-	public Label add(String label, Label value) {
+    /**
+     *
+     * @param label
+     * @param value
+     * @return
+     */
+    public Label add(String label, Label value) {
 		return addWidget(label, value);
 	}
 
 	/**
 	 * @param label Label of the field (left).
 	 * @param value Value widget of the field (right).
+     * @return 
 	 */
 	public <W extends Widget> W addWidget(String label, W value) {
 		assert value != null;
 		initialize();
 
-		if (label == null) label = "";
+		if (label == null) {
+                    label = "";
+        }
 		Label l = new Label(label);
 		l.setStyleName("FieldsWidget-fieldLabel");
 		value.addStyleName("FieldsWidget-fieldValue");

@@ -14,9 +14,7 @@
  */
 package ilarkesto.io.nio.httpserver;
 
-import ilarkesto.core.time.Tm;
 import static ilarkesto.core.time.Tm.getCurrentTimeMillis;
-import java.util.UUID;
 import static java.util.UUID.randomUUID;
 
 public class HttpSession<S> {

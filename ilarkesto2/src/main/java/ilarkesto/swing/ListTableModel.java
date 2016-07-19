@@ -21,66 +21,118 @@ import java.util.LinkedList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
+/**
+ *
+ * @author erik
+ * @param <E>
+ */
 @SuppressWarnings("EI_EXPOSE_REP")
 public final class ListTableModel<E> extends AbstractTableModel {
 
     private Column[] columns;
     private LinkedList<E> elements = new LinkedList<>();
 
+    /**
+     *
+     */
     public ListTableModel() {
         columns = new Column[] { new DefaultColumn() };
     }
 
+    /**
+     *
+     * @param element
+     */
     public void moveToBottom(E element) {
         elements.remove(element);
         elements.add(element);
         fireTableDataChanged();
     }
 
+    /**
+     *
+     * @param elements
+     */
     public void moveToTop(Collection<E> elements) {
         this.elements.removeAll(elements);
         this.elements.addAll(0, elements);
         fireTableDataChanged();
     }
 
+    /**
+     *
+     * @return
+     */
     public Column[] getColumns() {
         return columns;
     }
 
+    /**
+     *
+     * @param columns
+     */
     public void setColumns(Column... columns) {
         this.columns = columns;
         fireTableStructureChanged();
     }
 
+    /**
+     *
+     * @param elements
+     */
     public final void setElements(Collection<E> elements) {
         this.elements = new LinkedList<>(elements);
         fireTableDataChanged();
     }
 
+    /**
+     *
+     * @param elements
+     */
     public final void removeElements(Collection<E> elements) {
         this.elements.removeAll(elements);
         fireTableDataChanged();
     }
 
+    /**
+     *
+     */
     public void removeAllElements() {
         elements.clear();
         fireTableDataChanged();
     }
 
+    /**
+     *
+     * @param elements
+     */
     public final void addElements(Collection<E> elements) {
         this.elements.addAll(elements);
         fireTableDataChanged();
     }
 
+    /**
+     *
+     * @param element
+     */
     public final void addElement(E element) {
         elements.add(element);
         fireTableDataChanged();
     }
 
+    /**
+     *
+     * @param index
+     * @return
+     */
     public final E getElement(int index) {
         return elements.get(index);
     }
 
+    /**
+     *
+     * @return
+     */
     public int getElementsCount() {
         return elements.size();
     }
@@ -105,14 +157,32 @@ public final class ListTableModel<E> extends AbstractTableModel {
         return columns[columnIndex].getValue(getElement(rowIndex));
     }
 
+    /**
+     *
+     * @param <E>
+     */
     public static interface Column<E> {
 
+        /**
+         *
+         * @return
+         */
         String getLabel();
 
+        /**
+         *
+         * @param element
+         * @return
+         */
         Object getValue(E element);
 
     }
 
+    /**
+     *
+     * @param selectedRows
+     * @return
+     */
     public List<E> getElements(int[] selectedRows) {
         List<E> result = new ArrayList<>(selectedRows.length);
         for (int row : selectedRows) {

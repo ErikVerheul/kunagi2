@@ -14,15 +14,17 @@
  */
 package scrum.client.tasks;
 
+import com.google.gwt.user.client.Element;
+import com.google.gwt.user.client.ui.Grid;
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.ButtonWidget;
 import ilarkesto.gwt.client.Gwt;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import scrum.client.admin.User;
 import scrum.client.common.AScrumWidget;
 import scrum.client.common.BlockListSelectionManager;
@@ -36,11 +38,10 @@ import scrum.client.sprint.Sprint;
 import scrum.client.sprint.Task;
 import scrum.client.workspace.PagePanel;
 
-import com.google.gwt.user.client.Element;
-import com.google.gwt.user.client.ui.Grid;
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class WhiteboardWidget extends AScrumWidget implements TaskBlockContainer, UserHighlightSupport {
 
 	private Grid grid;
@@ -186,7 +187,9 @@ public class WhiteboardWidget extends AScrumWidget implements TaskBlockContainer
 	}
 
 	private void updateTaskLists(Requirement requirement) {
-		if (requirement == null) return;
+		if (requirement == null) {
+                    return;
+        }
 
 		TaskListWidget openTasksList = openTasks.get(requirement);
 		TaskListWidget ownedTasksList = ownedTasks.get(requirement);
@@ -213,12 +216,15 @@ public class WhiteboardWidget extends AScrumWidget implements TaskBlockContainer
 		ownedTasksList.setTasks(ownedTaskList);
 		closedTasksList.setTasks(closedTaskList);
 
-		if (selectedTaskInOpen != null && !openTaskList.contains(selectedTaskInOpen))
-			selectionManager.select(selectedTaskInOpen);
-		if (selectedTaskInOwned != null && !ownedTaskList.contains(selectedTaskInOwned))
-			selectionManager.select(selectedTaskInOwned);
-		if (selectedTaskInClosed != null && !closedTaskList.contains(selectedTaskInClosed))
-			selectionManager.select(selectedTaskInClosed);
+		if (selectedTaskInOpen != null && !openTaskList.contains(selectedTaskInOpen)) {
+                    selectionManager.select(selectedTaskInOpen);
+        }
+                if (selectedTaskInOwned != null && !ownedTaskList.contains(selectedTaskInOwned)) {
+                    selectionManager.select(selectedTaskInOwned);
+        }
+                if (selectedTaskInClosed != null && !closedTaskList.contains(selectedTaskInClosed)) {
+                    selectionManager.select(selectedTaskInClosed);
+        }
 	}
 
 	private void updateHighlighting() {
@@ -229,17 +235,28 @@ public class WhiteboardWidget extends AScrumWidget implements TaskBlockContainer
 		}
 	}
 
-	@Override
+    /**
+     *
+     * @param user
+     */
+    @Override
 	public void highlightUser(User user) {
 		setTaskHighlighting(user == null ? null : new ByUserPredicate(user));
 	}
 
-	public void setTaskHighlighting(ElementPredicate<Task> predicate) {
+    /**
+     *
+     * @param predicate
+     */
+    public void setTaskHighlighting(ElementPredicate<Task> predicate) {
 		this.predicate = predicate;
 		updateHighlighting();
 	}
 
-	public void clearTaskHighlighting() {
+    /**
+     *
+     */
+    public void clearTaskHighlighting() {
 		this.predicate = null;
 		updateHighlighting();
 	}
@@ -247,26 +264,46 @@ public class WhiteboardWidget extends AScrumWidget implements TaskBlockContainer
 	private void setWidget(int row, int col, Widget widget, String width, String className) {
 		grid.setWidget(row, col, widget);
 		if (width != null || className != null) {
-			Element td = grid.getCellFormatter().getElement(row, col);
-			if (width != null) td.setAttribute("width", width);
-			if (className != null) td.setClassName(className);
+                    Element td = grid.getCellFormatter().getElement(row, col);
+                    if (width != null) {
+                        td.setAttribute("width", width);
+            }
+			if (className != null) {
+                td.setClassName(className);
+            }
 		}
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public BlockListSelectionManager getSelectionManager() {
 		return selectionManager;
 	}
 
-	public void selectRequirement(Requirement requirement) {
-		if (requirement == null) return;
+    /**
+     *
+     * @param requirement
+     */
+        public void selectRequirement(Requirement requirement) {
+		if (requirement == null) {
+            return;
+        }
 		BlockListWidget<Requirement> list = getRequirementList(requirement);
 		list.showObject(requirement);
 	}
 
-	@Override
+    /**
+     *
+     * @param task
+     */
+    @Override
 	public void selectTask(Task task) {
-		if (task == null) return;
+		if (task == null) {
+            return;
+        }
 		Requirement requirement = task.getRequirement();
 		updateTaskLists(requirement);
 		selectionManager.select(task);
@@ -278,12 +315,20 @@ public class WhiteboardWidget extends AScrumWidget implements TaskBlockContainer
 		return sprint != getCurrentSprint();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public boolean isShowOwner() {
 		return true;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public boolean isShowRequirement() {
 		return false;
 	}

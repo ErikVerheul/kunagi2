@@ -15,13 +15,6 @@
 package ilarkesto.base;
 
 import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
-import static java.lang.Integer.valueOf;
-import static java.lang.Integer.valueOf;
-import static java.lang.Integer.valueOf;
-import static java.lang.Integer.valueOf;
-import static java.lang.Integer.valueOf;
 import static java.lang.Integer.valueOf;
 import java.util.StringTokenizer;
 

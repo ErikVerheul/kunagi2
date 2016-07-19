@@ -14,12 +14,10 @@
  */
 package ilarkesto.form;
 
-import ilarkesto.base.StrExtend;
 import static ilarkesto.base.StrExtend.fillUpLeft;
 import static java.lang.String.valueOf;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import static java.util.Collections.sort;
 import java.util.List;
 import java.util.Map;

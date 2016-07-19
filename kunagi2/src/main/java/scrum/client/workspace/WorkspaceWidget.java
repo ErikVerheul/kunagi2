@@ -14,11 +14,6 @@
  */
 package scrum.client.workspace;
 
-import ilarkesto.gwt.client.Gwt;
-import ilarkesto.gwt.client.LockWidget;
-import ilarkesto.gwt.client.SwitcherWidget;
-import scrum.client.common.AScrumWidget;
-
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.DialogBox;
@@ -28,6 +23,10 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 import static ilarkesto.core.logging.ClientLog.DEBUG;
+import ilarkesto.gwt.client.Gwt;
+import ilarkesto.gwt.client.LockWidget;
+import ilarkesto.gwt.client.SwitcherWidget;
+import scrum.client.common.AScrumWidget;
 
 public class WorkspaceWidget extends AScrumWidget {
 

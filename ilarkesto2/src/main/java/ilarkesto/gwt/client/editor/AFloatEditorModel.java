@@ -14,9 +14,17 @@
  */
 package ilarkesto.gwt.client.editor;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class AFloatEditorModel extends AEditorModel<Float> {
 
-	public boolean isMandatory() {
+    /**
+     *
+     * @return
+     */
+    public boolean isMandatory() {
 		return false;
 	}
 

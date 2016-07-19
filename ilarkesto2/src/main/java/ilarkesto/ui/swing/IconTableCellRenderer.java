@@ -14,7 +14,6 @@
  */
 package ilarkesto.ui.swing;
 
-import ilarkesto.swing.Swing;
 import static ilarkesto.swing.Swing.getIcon16;
 import javax.swing.Icon;
 import javax.swing.table.DefaultTableCellRenderer;

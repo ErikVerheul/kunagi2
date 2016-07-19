@@ -18,17 +18,36 @@ import static ilarkesto.base.UtlExtend.getRootCause;
 import java.util.Collection;
 import static java.util.Collections.emptyList;
 
+/**
+ *
+ * @author erik
+ * @param <E>
+ */
 public abstract class ACollectionTask<E> extends ATask {
 
 	private int count;
 	private int index;
 	private E element;
 
-	protected abstract Collection<E> prepare() throws InterruptedException;
+    /**
+     *
+     * @return
+     * @throws InterruptedException
+     */
+    protected abstract Collection<E> prepare() throws InterruptedException;
 
-	protected abstract void perform(E element) throws InterruptedException;
+    /**
+     *
+     * @param element
+     * @throws InterruptedException
+     */
+    protected abstract void perform(E element) throws InterruptedException;
 
-	@Override
+    /**
+     *
+     * @throws InterruptedException
+     */
+    @Override
 	protected final void perform() throws InterruptedException {
 		Collection<E> elements = prepare();
 		if (elements == null) {
@@ -54,26 +73,52 @@ public abstract class ACollectionTask<E> extends ATask {
 		cleanup();
 	}
 
-	protected void onElementError(E element, Exception ex) {
+    /**
+     *
+     * @param element
+     * @param ex
+     */
+    protected void onElementError(E element, Exception ex) {
 		throw new RuntimeException("Processing element failed: " + element, ex);
 	}
 
-	public final int getIndex() {
+    /**
+     *
+     * @return
+     */
+    public final int getIndex() {
 		return index;
 	}
 
-	protected void cleanup() throws InterruptedException {}
+    /**
+     *
+     * @throws InterruptedException
+     */
+    protected void cleanup() throws InterruptedException {}
 
-	protected String getProgressMessage(E element) {
+    /**
+     *
+     * @param element
+     * @return
+     */
+    protected String getProgressMessage(E element) {
 		return element.toString();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public final String getProgressMessage() {
 		return getProgressMessage(element);
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public final float getProgress() {
 		if (count == 0) {
                         return 1;

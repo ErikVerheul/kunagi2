@@ -14,7 +14,6 @@
  */
 package ilarkesto.mda.legacy.generator;
 
-import ilarkesto.base.StrExtend;
 import static ilarkesto.base.StrExtend.lowercaseFirstLetter;
 import ilarkesto.mda.legacy.model.ApplicationModel;
 import ilarkesto.mda.legacy.model.EntityModel;

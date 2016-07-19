@@ -14,9 +14,17 @@
  */
 package scrum.client.project;
 
+/**
+ *
+ * @author erik
+ */
 public class RejectRequirementAction extends GRejectRequirementAction {
 
-	public RejectRequirementAction(scrum.client.project.Requirement requirement) {
+    /**
+     *
+     * @param requirement
+     */
+    public RejectRequirementAction(scrum.client.project.Requirement requirement) {
 		super(requirement);
 	}
 
@@ -27,17 +35,21 @@ public class RejectRequirementAction extends GRejectRequirementAction {
 
 	@Override
 	public boolean isPermitted() {
-		if (!requirement.getProject().isProductOwner(getCurrentUser())) return false;
-		return true;
+		return requirement.getProject().isProductOwner(getCurrentUser());
 	}
 
 	@Override
 	public boolean isExecutable() {
-		if (!requirement.isInCurrentSprint()) return false;
-		if (!requirement.isTasksClosed()) return false;
-		if (requirement.isClosed()) return false;
-		if (requirement.isRejected()) return false;
-		return true;
+		if (!requirement.isInCurrentSprint()) {
+                    return false;
+        }
+		if (!requirement.isTasksClosed()) {
+                    return false;
+        }
+                if (requirement.isClosed()) {
+                    return false;
+        }
+		return !requirement.isRejected();
 	}
 
 	@Override

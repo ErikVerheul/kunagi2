@@ -15,13 +15,16 @@
 package scrum.server.project;
 
 import ilarkesto.concurrent.ACollectionTask;
-import ilarkesto.logging.Log;
 import ilarkesto.core.time.Date;
 import ilarkesto.core.time.DateAndTime;
+import ilarkesto.logging.Log;
 import ilarkesto.persistence.TransactionService;
-
 import java.util.Collection;
 
+/**
+ *
+ * @author erik
+ */
 public class DeleteOldProjectsTask extends ACollectionTask<Project> {
 
 	private static Log log = Log.get(DeleteOldProjectsTask.class);
@@ -31,11 +34,19 @@ public class DeleteOldProjectsTask extends ACollectionTask<Project> {
 	private TransactionService transactionService;
 	private ProjectDao projectDao;
 
-	public void setProjectDao(ProjectDao projectDao) {
+    /**
+     *
+     * @param projectDao
+     */
+    public void setProjectDao(ProjectDao projectDao) {
 		this.projectDao = projectDao;
 	}
 
-	public void setTransactionService(TransactionService transactionService) {
+    /**
+     *
+     * @param transactionService
+     */
+    public void setTransactionService(TransactionService transactionService) {
 		this.transactionService = transactionService;
 	}
 
@@ -51,7 +62,9 @@ public class DeleteOldProjectsTask extends ACollectionTask<Project> {
 		DateAndTime opened = project.getLastOpenedDateAndTime();
 		int timeToLiveInDays = project.containsParticipantWithVerifiedEmail() ? 4 : 2;
 		Date deadline = Date.beforeDays(timeToLiveInDays);
-		if (opened == null || opened.getDate().isAfter(deadline)) return;
+		if (opened == null || opened.getDate().isAfter(deadline)) {
+                    return;
+        }
 		log.info("Deleting old project:", project);
 		projectDao.deleteEntity(project);
 	}

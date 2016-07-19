@@ -17,43 +17,87 @@ package ilarkesto.ui.usermessage;
 import ilarkesto.core.time.DateAndTime;
 import static ilarkesto.core.time.DateAndTime.now;
 
+/**
+ *
+ * @author erik
+ */
 public class UserMessage {
 
-	public static final String INFO = "info";
-	public static final String ERROR = "error";
-	public static final String WARN = "warn";
+    /**
+     *
+     */
+    public static final String INFO = "info";
+
+    /**
+     *
+     */
+    public static final String ERROR = "error";
+
+    /**
+     *
+     */
+    public static final String WARN = "warn";
 
 	private DateAndTime dateAndTime;
 	private String type;
 	private String text;
 
-	public UserMessage(String type, String text) {
+    /**
+     *
+     * @param type
+     * @param text
+     */
+    public UserMessage(String type, String text) {
 		this.type = type;
 		this.text = text;
 		this.dateAndTime = now();
 	}
 
-	public boolean isError() {
+    /**
+     *
+     * @return
+     */
+    public boolean isError() {
 		return ERROR.equals(getType());
 	}
 
-	public boolean isWarn() {
+    /**
+     *
+     * @return
+     */
+    public boolean isWarn() {
 		return WARN.equals(getType());
 	}
 
-	public boolean isInfo() {
+    /**
+     *
+     * @return
+     */
+    public boolean isInfo() {
 		return INFO.equals(getType());
 	}
 
-	public String getText() {
+    /**
+     *
+     * @return
+     */
+    public String getText() {
 		return text;
 	}
 
-	public String getType() {
+    /**
+     *
+     * @return
+     */
+    public String getType() {
 		return type;
 	}
 
-	public DateAndTime getDateAndTime() {
+    /**
+     *
+     * @return
+     */
+    public DateAndTime getDateAndTime() {
 		return dateAndTime;
 	}
 

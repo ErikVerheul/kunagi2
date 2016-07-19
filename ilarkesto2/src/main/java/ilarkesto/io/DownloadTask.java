@@ -18,6 +18,10 @@ import ilarkesto.base.Bytes;
 import ilarkesto.concurrent.ATask;
 import static ilarkesto.io.IO.downloadUrlToFile;
 
+/**
+ *
+ * @author erik
+ */
 public class DownloadTask extends ATask {
 
 	private long totalBytes;
@@ -30,27 +34,48 @@ public class DownloadTask extends ATask {
 	private String password;
 	private String destinationPath;
 
-	public DownloadTask(String url, String destinationPath) {
+    /**
+     *
+     * @param url
+     * @param destinationPath
+     */
+    public DownloadTask(String url, String destinationPath) {
 		this.url = url;
 		this.destinationPath = destinationPath;
 	}
 
-	public void setUsername(String username) {
+    /**
+     *
+     * @param username
+     */
+    public void setUsername(String username) {
 		this.username = username;
 	}
 
-	public void setPassword(String password) {
+    /**
+     *
+     * @param password
+     */
+    public void setPassword(String password) {
 		this.password = password;
 	}
 
 	// --- ---
 
+    /**
+     *
+     */
+    
 	@Override
 	protected void perform() {
 		downloadUrlToFile(url, destinationPath, username, password, new Observer());
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public float getProgress() {
 		long downloaded = bytesDownloaded.toLong();
 		if (totalBytes > 0 && downloaded > 0) {
@@ -60,7 +85,11 @@ public class DownloadTask extends ATask {
 		}
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getProgressMessage() {
 		return url + " (" + bytesDownloaded.toRoundedString() + ")";
 	}

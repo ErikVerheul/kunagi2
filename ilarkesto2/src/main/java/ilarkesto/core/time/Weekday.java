@@ -16,9 +16,46 @@ package ilarkesto.core.time;
 
 import ilarkesto.core.base.Utl;
 
+/**
+ *
+ * @author erik
+ */
 public enum Weekday {
 
-	MONDAY(2), TUESDAY(3), WEDNESDAY(4), THURSDAY(5), FRIDAY(6), SATURDAY(7), SUNDAY(1);
+    /**
+     *
+     */
+    MONDAY(2), 
+
+    /**
+     *
+     */
+    TUESDAY(3), 
+
+    /**
+     *
+     */
+    WEDNESDAY(4), 
+
+    /**
+     *
+     */
+    THURSDAY(5), 
+
+    /**
+     *
+     */
+    FRIDAY(6), 
+
+    /**
+     *
+     */
+    SATURDAY(7), 
+
+    /**
+     *
+     */
+    SUNDAY(1);
 
 	private final int dayOfWeek;
 
@@ -26,11 +63,19 @@ public enum Weekday {
 		this.dayOfWeek = dayOfWeek;
 	}
 
-	public int getDayOfWeek() {
+    /**
+     *
+     * @return
+     */
+    public int getDayOfWeek() {
 		return dayOfWeek;
 	}
 
-	public int getDayOfWeekAssumeMondayIs1st() {
+    /**
+     *
+     * @return
+     */
+    public int getDayOfWeekAssumeMondayIs1st() {
 		int ret = dayOfWeek - 1;
 		if (ret == 0) {
                         ret = 7;
@@ -38,7 +83,12 @@ public enum Weekday {
 		return ret;
 	}
 
-	public static Weekday get(int dayOfWeek) {
+    /**
+     *
+     * @param dayOfWeek
+     * @return
+     */
+    public static Weekday get(int dayOfWeek) {
 		for (Weekday weekday : Weekday.values()) {
 			if (weekday.dayOfWeek == dayOfWeek) {
                                 return weekday;
@@ -47,23 +97,44 @@ public enum Weekday {
 		throw new RuntimeException("Weekday does not exist: " + dayOfWeek);
 	}
 
-	public boolean isWeekend() {
+    /**
+     *
+     * @return
+     */
+    public boolean isWeekend() {
 		return this == SATURDAY || this == SUNDAY;
 	}
 
-	public boolean isWorkday() {
+    /**
+     *
+     * @return
+     */
+    public boolean isWorkday() {
 		return !isWeekend();
 	}
 
-	public boolean isSunday() {
+    /**
+     *
+     * @return
+     */
+    public boolean isSunday() {
 		return this == SUNDAY;
 	}
 
-	public String toString(String language) {
+    /**
+     *
+     * @param language
+     * @return
+     */
+    public String toString(String language) {
 		return Tm.getLocalizer(language).full(this);
 	}
 
-	public String toLocalString() {
+    /**
+     *
+     * @return
+     */
+    public String toLocalString() {
 		return toString(Utl.getLanguage());
 	}
 

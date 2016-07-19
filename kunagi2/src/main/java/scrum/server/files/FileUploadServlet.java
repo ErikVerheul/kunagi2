@@ -17,8 +17,8 @@ package scrum.server.files;
 import gwtupload.server.UploadAction;
 import gwtupload.server.exceptions.UploadActionException;
 import ilarkesto.base.PermissionDeniedException;
-import ilarkesto.logging.Log;
 import ilarkesto.io.IO;
+import ilarkesto.logging.Log;
 import ilarkesto.webapp.Servlet;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +30,10 @@ import scrum.server.ScrumWebApplication;
 import scrum.server.WebSession;
 import scrum.server.project.Project;
 
+/**
+ *
+ * @author erik
+ */
 public class FileUploadServlet extends UploadAction {
 
 	private static final Log log = Log.get(FileUploadServlet.class);
@@ -43,17 +47,25 @@ public class FileUploadServlet extends UploadAction {
 			String fieldName = item.getFieldName();
 			if (item.isFormField()) {
 				sessionFiles.remove(item);
-				if (fieldName.equals("projectId")) projectId = item.getString();
+				if (fieldName.equals("projectId")) {
+                                    projectId = item.getString();
+                }
 			}
 		}
-		if (projectId == null) throw new RuntimeException("projectId == null");
-		if (sessionFiles.size() != 1) throw new IllegalStateException("sessionFiles.size() == " + sessionFiles.size());
+                if (projectId == null) {
+                    throw new RuntimeException("projectId == null");
+        }
+                if (sessionFiles.size() != 1) {
+                    throw new IllegalStateException("sessionFiles.size() == " + sessionFiles.size());
+        }
 
 		ScrumWebApplication webApp = ScrumWebApplication.get();
 		WebSession session = (WebSession) webApp.getWebSession(req);
 
 		Project project = (Project) ScrumWebApplication.get().getDaoService().getById(projectId);
-		if (!project.isVisibleFor(session.getUser())) throw new PermissionDeniedException();
+                if (!project.isVisibleFor(session.getUser())) {
+            throw new PermissionDeniedException();
+        }
 
 		FileItem item = sessionFiles.get(0);
 		try {
@@ -80,17 +92,23 @@ public class FileUploadServlet extends UploadAction {
 		}
 	}
 
-	private String insertSuffix(String name, int count) {
-		int idx = name.lastIndexOf('.');
-		if (idx > 0) return name.substring(0, idx) + "_" + count + name.substring(idx);
-		return name + "_" + count;
+        private String insertSuffix(String name, int count) {
+            int idx = name.lastIndexOf('.');
+            if (idx > 0) {
+                return name.substring(0, idx) + "_" + count + name.substring(idx);
+        }
+            return name + "_" + count;
 	}
 
 	private String getFilename(String name) {
-		if (name == null) return "unnamed.bin";
-		name = name.replace('\\', '/');
+		if (name == null) {
+                    return "unnamed.bin";
+                }
+                name = name.replace('\\', '/');
 		int idx = name.lastIndexOf('/');
-		if (idx >= 0) return name.substring(idx + 1);
+		if (idx >= 0) {
+            return name.substring(idx + 1);
+        }
 		return name;
 	}
 
@@ -102,7 +120,11 @@ public class FileUploadServlet extends UploadAction {
 		super.checkRequest(request);
 	}
 
-	@Override
+    /**
+     *
+     * @throws ServletException
+     */
+    @Override
 	public void init() throws ServletException {
 		super.init();
 	}

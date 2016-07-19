@@ -1,8 +1,18 @@
 package ilarkesto.core.json;
 
+/**
+ *
+ * @author erik
+ */
 public class ParseException extends RuntimeException {
 
-	public ParseException(String message, String json, int idx) {
+    /**
+     *
+     * @param message
+     * @param json
+     * @param idx
+     */
+    public ParseException(String message, String json, int idx) {
 		super(message + "\n" + idx + ":" + json);
 	}
 

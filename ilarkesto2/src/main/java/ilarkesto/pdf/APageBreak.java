@@ -14,9 +14,17 @@
  */
 package ilarkesto.pdf;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class APageBreak extends APdfElement {
 
-	public APageBreak(APdfElement parent) {
+    /**
+     *
+     * @param parent
+     */
+    public APageBreak(APdfElement parent) {
 		super(parent);
 	}
 

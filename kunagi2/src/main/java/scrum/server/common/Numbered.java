@@ -14,12 +14,28 @@
  */
 package scrum.server.common;
 
+/**
+ *
+ * @author erik
+ */
 public interface Numbered {
 
-	int getNumber();
+    /**
+     *
+     * @return
+     */
+    int getNumber();
 
-	boolean isNumber(int number);
+    /**
+     *
+     * @param number
+     * @return
+     */
+    boolean isNumber(int number);
 
-	void updateNumber();
+    /**
+     *
+     */
+    void updateNumber();
 
 }

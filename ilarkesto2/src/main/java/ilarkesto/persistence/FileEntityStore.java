@@ -14,7 +14,6 @@
  */
 package ilarkesto.persistence;
 import static ilarkesto.core.base.Str.isBlank;
-import ilarkesto.logging.Log;
 import ilarkesto.core.time.Date;
 import static ilarkesto.core.time.Date.beforeDays;
 import static ilarkesto.core.time.Date.today;
@@ -26,6 +25,7 @@ import static ilarkesto.io.IO.delete;
 import static ilarkesto.io.IO.loadProperties;
 import static ilarkesto.io.IO.move;
 import static ilarkesto.io.IO.saveProperties;
+import ilarkesto.logging.Log;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;

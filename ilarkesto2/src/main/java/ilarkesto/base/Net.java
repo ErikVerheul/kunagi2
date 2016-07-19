@@ -24,7 +24,12 @@ import java.net.UnknownHostException;
  */
 public abstract class Net {
 
-	public static final String getHostname(String ip) {
+    /**
+     *
+     * @param ip
+     * @return
+     */
+    public static final String getHostname(String ip) {
 		String host = null;
 		try {
 			for (InetAddress a : getAllByName(ip)) {
@@ -37,7 +42,12 @@ public abstract class Net {
 		return host;
 	}
 
-	public static String getHostnameOrIp(String ip) {
+    /**
+     *
+     * @param ip
+     * @return
+     */
+    public static String getHostnameOrIp(String ip) {
 		String host = getHostname(ip);
 		return host == null ? ip : host;
 	}

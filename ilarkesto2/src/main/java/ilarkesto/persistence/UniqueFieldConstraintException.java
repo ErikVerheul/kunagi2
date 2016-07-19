@@ -14,9 +14,19 @@
  */
 package ilarkesto.persistence;
 
+/**
+ *
+ * @author erik
+ */
 public class UniqueFieldConstraintException extends RuntimeException {
 
-	public UniqueFieldConstraintException(AEntity entity, String field, Object value) {
+    /**
+     *
+     * @param entity
+     * @param field
+     * @param value
+     */
+    public UniqueFieldConstraintException(AEntity entity, String field, Object value) {
 		super("\"" + value + "\" already exists.");
 	}
 

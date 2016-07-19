@@ -14,9 +14,16 @@
  */
 package scrum.client.wiki;
 
+/**
+ *
+ * @author erik
+ */
 public class LineBreak extends AWikiElement {
 
-	public static final LineBreak INSTANCE = new LineBreak();
+    /**
+     *
+     */
+    public static final LineBreak INSTANCE = new LineBreak();
 
 	@Override
 	String toHtml(HtmlContext context) {

@@ -22,6 +22,10 @@ import ilarkesto.id.Identifiable;
 import java.util.Map;
 import static java.util.UUID.randomUUID;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class AEntity extends ADatob implements Identifiable, Iconized {
 
 	private static final long serialVersionUID = 1L;
@@ -32,31 +36,57 @@ public abstract class AEntity extends ADatob implements Identifiable, Iconized {
 	private DateAndTime lastModified;
 	private String lastEditorId;
 
-	public abstract ADao getDao();
+    /**
+     *
+     * @return
+     */
+    public abstract ADao getDao();
 
 	// --- dependencies ---
 
+    /**
+     *
+     * @return
+     */
+    
 	public static DaoService getDaoService() {
 		return daoService;
 	}
 
-	public static void setDaoService(DaoService daoService) {
+    /**
+     *
+     * @param daoService
+     */
+    public static void setDaoService(DaoService daoService) {
 		AEntity.daoService = daoService;
 	}
 
 	// --- ---
 
+    /**
+     *
+     * @return
+     */
+    
 	@Override
 	protected final ADao getManager() {
 		return getDao();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getIcon() {
 		return getDao().getIcon();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public final String getId() {
 		if (id == null) {
                         id = randomUUID().toString();
@@ -68,7 +98,11 @@ public abstract class AEntity extends ADatob implements Identifiable, Iconized {
 		this.id = id;
 	}
 
-	public final DateAndTime getLastModified() {
+    /**
+     *
+     * @return
+     */
+    public final DateAndTime getLastModified() {
 		return lastModified;
 	}
 
@@ -76,14 +110,22 @@ public abstract class AEntity extends ADatob implements Identifiable, Iconized {
 		this.lastModified = value;
 	}
 
-	public final AUser getLastEditor() {
+    /**
+     *
+     * @return
+     */
+    public final AUser getLastEditor() {
 		if (this.lastEditorId == null) {
                         return null;
                 }
 		return (AUser) userDao.getById(this.lastEditorId);
 	}
 
-	public final void setLastEditor(AUser lastEditor) {
+    /**
+     *
+     * @param lastEditor
+     */
+    public final void setLastEditor(AUser lastEditor) {
 		if (isLastEditor(lastEditor)) {
                         return;
                 }
@@ -91,28 +133,47 @@ public abstract class AEntity extends ADatob implements Identifiable, Iconized {
 		fireModified("lastEditor=" + lastEditor);
 	}
 
-	public final boolean isLastEditor(AUser user) {
+    /**
+     *
+     * @param user
+     * @return
+     */
+    public final boolean isLastEditor(AUser user) {
 		if (this.lastEditorId == null && user == null) {
                         return true;
                 }
 		return user != null && user.getId().equals(this.lastEditorId);
 	}
 
-	public final boolean isLastEditorSet() {
+    /**
+     *
+     * @return
+     */
+    public final boolean isLastEditorSet() {
 		return lastEditorId != null;
 	}
 
-	@Override
+    /**
+     *
+     * @param comment
+     */
+    @Override
 	protected void fireModified(String comment) {
 		super.fireModified(comment);
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	public void updateLastModified() {
 		setLastModified(now());
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	public void ensureIntegrity() {
 		super.ensureIntegrity();
 		if (lastModified == null) {
@@ -120,7 +181,11 @@ public abstract class AEntity extends ADatob implements Identifiable, Iconized {
                 }
 	}
 
-	@Override
+    /**
+     *
+     * @param properties
+     */
+    @Override
 	protected void storeProperties(Map <String, String>properties) {
 		properties.put("@type", getDao().getEntityName());
 		properties.put("id", getId());

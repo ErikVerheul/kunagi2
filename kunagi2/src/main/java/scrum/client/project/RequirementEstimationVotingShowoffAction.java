@@ -16,9 +16,17 @@ package scrum.client.project;
 
 import scrum.client.common.TooltipBuilder;
 
+/**
+ *
+ * @author erik
+ */
 public class RequirementEstimationVotingShowoffAction extends GRequirementEstimationVotingShowoffAction {
 
-	public RequirementEstimationVotingShowoffAction(scrum.client.project.Requirement requirement) {
+    /**
+     *
+     * @param requirement
+     */
+    public RequirementEstimationVotingShowoffAction(scrum.client.project.Requirement requirement) {
 		super(requirement);
 	}
 
@@ -27,17 +35,24 @@ public class RequirementEstimationVotingShowoffAction extends GRequirementEstima
 		return "Show votes";
 	}
 
-	@Override
+    /**
+     *
+     * @param tb
+     */
+    @Override
 	protected void updateTooltip(TooltipBuilder tb) {
 		tb.setText("Expose all cards on the table.");
 	}
 
 	@Override
 	public boolean isExecutable() {
-		if (!requirement.isWorkEstimationVotingActive()) return false;
-		if (requirement.isWorkEstimationVotingShowoff()) return false;
-		if (!requirement.containsWorkEstimationVotes()) return false;
-		return true;
+		if (!requirement.isWorkEstimationVotingActive()) {
+                    return false;
+        }
+		if (requirement.isWorkEstimationVotingShowoff()) {
+                    return false;
+        }
+		return requirement.containsWorkEstimationVotes();
 	}
 
 	@Override

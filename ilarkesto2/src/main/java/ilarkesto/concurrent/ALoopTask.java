@@ -17,15 +17,31 @@ package ilarkesto.concurrent;
 import ilarkesto.logging.Log;
 import static ilarkesto.logging.Log.get;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class ALoopTask extends ATask {
 
 	private Log log = get(getClass());
 
-	protected abstract void iteration() throws InterruptedException;
+    /**
+     *
+     * @throws InterruptedException
+     */
+    protected abstract void iteration() throws InterruptedException;
 
-	protected void beforeLoop() throws InterruptedException {}
+    /**
+     *
+     * @throws InterruptedException
+     */
+    protected void beforeLoop() throws InterruptedException {}
 
-	@Override
+    /**
+     *
+     * @throws InterruptedException
+     */
+    @Override
 	protected final void perform() throws InterruptedException {
 		beforeLoop();
 		while (!isAbortRequested()) {
@@ -41,7 +57,12 @@ public abstract class ALoopTask extends ATask {
 		}
 	}
 
-	protected void onError(Exception ex) throws Exception {
+    /**
+     *
+     * @param ex
+     * @throws Exception
+     */
+    protected void onError(Exception ex) throws Exception {
 		log.error("Loop iteration failed:", ex);
 	}
 

@@ -14,10 +14,22 @@
  */
 package ilarkesto.ui.swing;
 
+/**
+ *
+ * @author erik
+ * @param <P>
+ */
 public abstract class ADialogAdapter<P> {
 
-	public abstract void onSubmit(P payload);
+    /**
+     *
+     * @param payload
+     */
+    public abstract void onSubmit(P payload);
 
-	public void onAbort() {}
+    /**
+     *
+     */
+    public void onAbort() {}
 
 }

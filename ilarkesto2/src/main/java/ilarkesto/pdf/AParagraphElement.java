@@ -14,9 +14,17 @@
  */
 package ilarkesto.pdf;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class AParagraphElement extends APdfElement {
 
-	public AParagraphElement(APdfElement parent) {
+    /**
+     *
+     * @param parent
+     */
+    public AParagraphElement(APdfElement parent) {
 		super(parent);
 	}
 

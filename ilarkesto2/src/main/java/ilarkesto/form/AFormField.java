@@ -17,6 +17,10 @@ package ilarkesto.form;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class AFormField implements FormField {
 
     private String name;
@@ -33,12 +37,21 @@ public abstract class AFormField implements FormField {
 
     private List<FormFieldChangeListener> listeners;
 
+    /**
+     *
+     * @param name
+     */
     public AFormField(String name) {
         this.name = name;
         this.label = name;
     }
 
-        @Override
+    /**
+     *
+     * @param listener
+     * @return
+     */
+    @Override
     public final FormField addFormFieldChangeListener(FormFieldChangeListener listener) {
         if (listeners == null) {
                 listeners = new ArrayList(1);
@@ -47,6 +60,9 @@ public abstract class AFormField implements FormField {
         return this;
     }
 
+    /**
+     *
+     */
     protected final void fireFieldValueChanged() {
         if (listeners == null) {
                 return;
@@ -56,59 +72,106 @@ public abstract class AFormField implements FormField {
         }
     }
 
-        @Override
+    /**
+     *
+     * @param value
+     * @return
+     */
+    @Override
     public final FormField setLabel(String value) {
         this.label = value;
         return this;
     }
 
-        @Override
+    /**
+     *
+     * @param value
+     * @return
+     */
+    @Override
     public final FormField setHintText(String value) {
         this.hintText = value;
         return this;
     }
 
-        @Override
+    /**
+     *
+     * @return
+     */
+    @Override
     public final String getErrorMessage() {
         return errorMessage;
     }
 
-        @Override
+    /**
+     *
+     * @param errorMessage
+     */
+    @Override
     public final void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
     }
 
-        @Override
+    /**
+     *
+     * @return
+     */
+    @Override
     public final String getLabel() {
         return label;
     }
 
-        @Override
+    /**
+     *
+     * @return
+     */
+    @Override
     public final String getHintText() {
         return hintText;
     }
 
-        @Override
+    /**
+     *
+     * @return
+     */
+    @Override
     public final boolean isRequired() {
         return required;
     }
 
-        @Override
+    /**
+     *
+     * @param required
+     * @return
+     */
+    @Override
     public final AFormField setRequired(boolean required) {
         this.required = required;
         return this;
     }
 
-        @Override
+    /**
+     *
+     * @return
+     */
+    @Override
     public final String getName() {
         return name;
     }
 
-        @Override
+    /**
+     *
+     * @return
+     */
+    @Override
     public final Form getForm() {
         return form;
     }
 
+    /**
+     *
+     * @param form
+     */
     public final void setForm(Form form) {
         this.form = form;
     }

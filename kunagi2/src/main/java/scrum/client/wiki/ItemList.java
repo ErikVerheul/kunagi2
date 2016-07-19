@@ -18,23 +18,43 @@ import ilarkesto.gwt.client.Gwt;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class ItemList extends AWikiElement {
 
 	private final List<Item> items = new ArrayList<Item>();
 	boolean ordered;
 	private int leadingSpacesLength;
 
-	public ItemList(boolean ordered, int leadingSpacesLenght) {
+    /**
+     *
+     * @param ordered
+     * @param leadingSpacesLenght
+     */
+    public ItemList(boolean ordered, int leadingSpacesLenght) {
 		super();
 		this.ordered = ordered;
 		this.leadingSpacesLength = leadingSpacesLenght;
 	}
 
-	public void add(Paragraph item) {
+    /**
+     *
+     * @param item
+     */
+    public void add(Paragraph item) {
 		items.add(new Item(item, -1));
 	}
 
-	public void add(Paragraph item, String leadingSpaces, boolean ordered, int numberValue) {
+    /**
+     *
+     * @param item
+     * @param leadingSpaces
+     * @param ordered
+     * @param numberValue
+     */
+    public void add(Paragraph item, String leadingSpaces, boolean ordered, int numberValue) {
 		if (leadingSpaces.length() > 0 && leadingSpaces.length() > leadingSpacesLength) {
 			Item lastItem = items.get(items.size() - 1);
 			if (lastItem.list == null) {
@@ -48,11 +68,21 @@ public class ItemList extends AWikiElement {
 		items.add(new Item(item, numberValue));
 	}
 
-	public void add(Paragraph item, String leadingSpaces, boolean ordered) {
+    /**
+     *
+     * @param item
+     * @param leadingSpaces
+     * @param ordered
+     */
+    public void add(Paragraph item, String leadingSpaces, boolean ordered) {
 		add(item, leadingSpaces, ordered, -1);
 	}
 
-	public void setLeadingSpacesLength(int leadingSpacesLength) {
+    /**
+     *
+     * @param leadingSpacesLength
+     */
+    public void setLeadingSpacesLength(int leadingSpacesLength) {
 		this.leadingSpacesLength = leadingSpacesLength;
 	}
 
@@ -72,11 +102,19 @@ public class ItemList extends AWikiElement {
 		return sb.toString();
 	}
 
-	public List<Item> getItems() {
+    /**
+     *
+     * @return
+     */
+    public List<Item> getItems() {
 		return items;
 	}
 
-	public boolean isOrdered() {
+    /**
+     *
+     * @return
+     */
+    public boolean isOrdered() {
 		return ordered;
 	}
 
@@ -85,31 +123,55 @@ public class ItemList extends AWikiElement {
 		return "ItemList(" + Gwt.toString(items) + ")";
 	}
 
-	public static class Item {
+    /**
+     *
+     */
+    public static class Item {
 
 		Paragraph p;
 		ItemList list;
 		int numberValue = -1;
 
-		public Item(Paragraph p, int numberValue) {
+        /**
+         *
+         * @param p
+         * @param numberValue
+         */
+        public Item(Paragraph p, int numberValue) {
 			super();
 			this.p = p;
 			this.numberValue = numberValue;
 		}
 
-		public int getNumberValue() {
+        /**
+         *
+         * @return
+         */
+        public int getNumberValue() {
 			return numberValue;
 		}
 
-		public Paragraph getParagraph() {
+        /**
+         *
+         * @return
+         */
+        public Paragraph getParagraph() {
 			return p;
 		}
 
-		public ItemList getList() {
+        /**
+         *
+         * @return
+         */
+        public ItemList getList() {
 			return list;
 		}
 
-		public boolean containsList() {
+        /**
+         *
+         * @return
+         */
+        public boolean containsList() {
 			return list != null;
 		}
 

@@ -14,15 +14,30 @@
  */
 package ilarkesto.pdf;
 
+/**
+ *
+ * @author erik
+ */
 public class APdfElement {
 
-	protected APdfElement parent;
+    /**
+     *
+     */
+    protected APdfElement parent;
 
-	public APdfElement(APdfElement parent) {
+    /**
+     *
+     * @param parent
+     */
+    public APdfElement(APdfElement parent) {
 		this.parent = parent;
 	}
 
-	protected APdfBuilder getPdf() {
+    /**
+     *
+     * @return
+     */
+    protected APdfBuilder getPdf() {
 		if (parent instanceof APdfBuilder) {
                         return (APdfBuilder) parent;
                 }

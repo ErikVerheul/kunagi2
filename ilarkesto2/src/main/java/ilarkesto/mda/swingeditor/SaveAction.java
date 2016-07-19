@@ -19,12 +19,19 @@ import ilarkesto.mda.model.ModellingSession;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 
+/**
+ *
+ * @author erik
+ */
 public class SaveAction extends AbstractAction {
 
 	@In
 	ModellingSession modellingSession;
 
-	public SaveAction() {
+    /**
+     *
+     */
+    public SaveAction() {
 		super("Save only");
 	}
 

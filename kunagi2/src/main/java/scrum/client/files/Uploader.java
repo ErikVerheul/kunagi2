@@ -17,19 +17,32 @@ package scrum.client.files;
 import com.google.gwt.user.client.ui.DialogBox;
 import static ilarkesto.core.logging.ClientLog.DEBUG;
 
+/**
+ *
+ * @author erik
+ */
 public class Uploader extends GUploader implements FileUploadedHandler {
 
 	private DialogBox dialog;
 	private UploadedFileHandler uploadedFileHandler;
 
-	public void showUploadDialog(Integer topPosition, UploadedFileHandler uploadedFileHandler) {
+    /**
+     *
+     * @param topPosition
+     * @param uploadedFileHandler
+     */
+    public void showUploadDialog(Integer topPosition, UploadedFileHandler uploadedFileHandler) {
 		DEBUG("Acitvating file upload dialog");
 		this.uploadedFileHandler = uploadedFileHandler;
 		UploadWidget uploadWidget = UploadWidget.showDialog(topPosition);
 		this.dialog = uploadWidget.getDialog();
 	}
 
-        @Override
+    /**
+     *
+     * @param event
+     */
+    @Override
 	public void onFileUploaded(FileUploadedEvent event) {
 		File file = event.getFile();
 		DEBUG("File received:", file);
@@ -43,9 +56,16 @@ public class Uploader extends GUploader implements FileUploadedHandler {
 		}
 	}
 
-	public static interface UploadedFileHandler {
+    /**
+     *
+     */
+    public static interface UploadedFileHandler {
 
-		void onFileUploaded(File file);
+        /**
+         *
+         * @param file
+         */
+        void onFileUploaded(File file);
 
 	}
 }

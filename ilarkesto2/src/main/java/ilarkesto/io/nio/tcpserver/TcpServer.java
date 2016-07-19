@@ -17,27 +17,48 @@ package ilarkesto.io.nio.tcpserver;
 import ilarkesto.concurrent.TaskManager;
 
 // http://rox-xmlrpc.sourceforge.net/niotut/
+
+/**
+ *
+ * @author erik
+ */
 public class TcpServer {
 
 	private SelectorTask selectorTask;
 	private WorkerTask workerTask;
 
-	public TcpServer(int port, DataHandler dataHandler) {
+    /**
+     *
+     * @param port
+     * @param dataHandler
+     */
+    public TcpServer(int port, DataHandler dataHandler) {
 		workerTask = new WorkerTask(dataHandler);
 		selectorTask = new SelectorTask(port, workerTask);
 	}
 
-	public void start(TaskManager taskManager) {
+    /**
+     *
+     * @param taskManager
+     */
+    public void start(TaskManager taskManager) {
 		taskManager.start(workerTask);
 		taskManager.start(selectorTask);
 	}
 
-	public void stop() {
+    /**
+     *
+     */
+    public void stop() {
 		selectorTask.abort();
 		workerTask.abort();
 	}
 
-	public int getPort() {
+    /**
+     *
+     * @return
+     */
+    public int getPort() {
 		return selectorTask.getPort();
 	}
 

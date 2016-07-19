@@ -14,10 +14,10 @@
  */
 package ilarkesto.io;
 
-import ilarkesto.logging.Log;
 import static ilarkesto.io.IO.loadImage;
 import static ilarkesto.io.IO.quadratizeAndLimitSize;
 import static ilarkesto.io.IO.writeImage;
+import ilarkesto.logging.Log;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;

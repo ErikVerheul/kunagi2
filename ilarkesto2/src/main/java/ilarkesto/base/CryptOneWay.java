@@ -21,7 +21,10 @@ import edu.umd.cs.findbugs.annotations.SuppressWarnings;
  */
 public abstract class CryptOneWay {
 
-	public static final String DEFAULT_SALT = "IN";
+    /**
+     *
+     */
+    public static final String DEFAULT_SALT = "IN";
 
 	private static final int ITERATIONS = 16;
 
@@ -346,15 +349,31 @@ public abstract class CryptOneWay {
 		return (out);
 	}
 
-	public static String crypt(String original) {
+    /**
+     *
+     * @param original
+     * @return
+     */
+    public static String crypt(String original) {
 		return crypt(DEFAULT_SALT, original);
 	}
 
-	public static String cryptWebPassword(String original) {
+    /**
+     *
+     * @param original
+     * @return
+     */
+    public static String cryptWebPassword(String original) {
 		return crypt(DEFAULT_SALT, original);
 	}
 
-        @SuppressWarnings("SBSC_USE_STRINGBUFFER_CONCATENATION")
+    /**
+     *
+     * @param salt
+     * @param original
+     * @return
+     */
+    @SuppressWarnings("SBSC_USE_STRINGBUFFER_CONCATENATION")
 	public static String crypt(String salt, String original) {
 		if (original == null) {
                         original = "";

@@ -14,6 +14,8 @@
  */
 package scrum.client.admin;
 
+import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.AOutputViewEditWidget;
 import ilarkesto.gwt.client.AnchorPanel;
@@ -23,9 +25,6 @@ import scrum.client.common.ABlockWidget;
 import scrum.client.common.BlockHeaderWidget;
 import scrum.client.common.BlockWidgetFactory;
 import scrum.client.img.Img;
-
-import com.google.gwt.user.client.ui.Image;
-import com.google.gwt.user.client.ui.Widget;
 
 public class UserBlock extends ABlockWidget<User> {
 

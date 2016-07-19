@@ -14,17 +14,27 @@
  */
 package scrum.client.dashboard;
 
-import ilarkesto.core.time.Tm;
-import scrum.client.common.AScrumWidget;
-
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
+import ilarkesto.core.time.Tm;
+import scrum.client.common.AScrumWidget;
 
+/**
+ *
+ * @author erik
+ */
 public class SprintBurndownWidget extends AScrumWidget {
 
-	public static final int CHART_WIDTH = 800;
-	public static final int CHART_HEIGHT = 270;
+    /**
+     *
+     */
+    public static final int CHART_WIDTH = 800;
+
+    /**
+     *
+     */
+    public static final int CHART_HEIGHT = 270;
 
 	private Image sprintChart;
 
@@ -48,7 +58,9 @@ public class SprintBurndownWidget extends AScrumWidget {
 	private int getChartWidth() {
 		int width = Window.getClientWidth() - 280;
 		width = width / 2;
-		if (width < 100) width = 100;
+		if (width < 100) {
+                    width = 100;
+        }
 		return width;
 	}
 }

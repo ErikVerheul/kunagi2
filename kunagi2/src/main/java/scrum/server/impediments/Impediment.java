@@ -21,8 +21,15 @@ import scrum.client.common.ReferenceSupport;
 import scrum.server.admin.User;
 import scrum.server.common.Numbered;
 
+/**
+ *
+ * @author erik
+ */
 public class Impediment extends GImpediment implements Numbered, ReferenceSupport, LabelSupport, Comparable<Impediment> {
 
+    /**
+     *
+     */
     @Override
     public void updateNumber() {
         if (getNumber() == 0) {
@@ -30,10 +37,18 @@ public class Impediment extends GImpediment implements Numbered, ReferenceSuppor
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String getReferenceAndLabel() {
         return getReference() + " " + getLabel();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getReference() {
         return scrum.client.impediments.Impediment.REFERENCE_PREFIX + getNumber();
@@ -44,6 +59,11 @@ public class Impediment extends GImpediment implements Numbered, ReferenceSuppor
         return getProject().isVisibleFor(user);
     }
 
+    /**
+     *
+     * @param user
+     * @return
+     */
     public boolean isEditableBy(User user) {
         return getProject().isEditableBy(user);
     }
@@ -57,7 +77,9 @@ public class Impediment extends GImpediment implements Numbered, ReferenceSuppor
         }
 
         // delete when closed and older than 4 weeks
-	if (isClosed() && getDate().getPeriodToToday().toWeeks() > 4) getDao().deleteEntity(this);
+	if (isClosed() && getDate().getPeriodToToday().toWeeks() > 4) {
+            getDao().deleteEntity(this);
+        }
 
     }
 

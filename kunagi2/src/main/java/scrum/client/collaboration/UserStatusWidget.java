@@ -14,18 +14,6 @@
  */
 package scrum.client.collaboration;
 
-import ilarkesto.core.scope.Scope;
-import ilarkesto.gwt.client.Gwt;
-
-import java.util.Collections;
-import java.util.List;
-
-import scrum.client.ScrumGwt;
-import scrum.client.admin.User;
-import scrum.client.common.AScrumGwtEntity;
-import scrum.client.common.AScrumWidget;
-import scrum.client.workspace.ProjectWorkspaceWidgets;
-
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.MouseMoveEvent;
@@ -37,6 +25,15 @@ import com.google.gwt.user.client.ui.FocusPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
+import ilarkesto.core.scope.Scope;
+import ilarkesto.gwt.client.Gwt;
+import java.util.Collections;
+import java.util.List;
+import scrum.client.ScrumGwt;
+import scrum.client.admin.User;
+import scrum.client.common.AScrumGwtEntity;
+import scrum.client.common.AScrumWidget;
+import scrum.client.workspace.ProjectWorkspaceWidgets;
 
 public class UserStatusWidget extends AScrumWidget {
 

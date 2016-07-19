@@ -14,16 +14,28 @@
  */
 package ilarkesto.cli;
 
+/**
+ *
+ * @author erik
+ */
 public class NoSuchCommandException extends Exception {
 
 	private String command;
 
-	public NoSuchCommandException(String command) {
+    /**
+     *
+     * @param command
+     */
+    public NoSuchCommandException(String command) {
 		super("No such command: " + command);
 		this.command = command;
 	}
 
-	public String getCommand() {
+    /**
+     *
+     * @return
+     */
+    public String getCommand() {
 		return command;
 	}
 

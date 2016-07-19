@@ -16,24 +16,43 @@ package ilarkesto.gwt.client;
 
 import static ilarkesto.gwt.client.Gwt.getSimpleName;
 
+/**
+ *
+ * @author erik
+ */
 public class AComponent {
 
 	private boolean initialized;
 	private boolean destroyed;
 
-	public AComponent() {}
+    /**
+     *
+     */
+    public AComponent() {}
 
-	protected void onInitialization() {}
+    /**
+     *
+     */
+    protected void onInitialization() {}
 
-	protected void onDestroy() {}
+    /**
+     *
+     */
+    protected void onDestroy() {}
 
-	public final void initialize() {
+    /**
+     *
+     */
+    public final void initialize() {
 		assert !initialized;
 		onInitialization();
 		initialized = true;
 	}
 
-	public final void destroy() {
+    /**
+     *
+     */
+    public final void destroy() {
 		assert !destroyed;
 		assert initialized;
 		onDestroy();

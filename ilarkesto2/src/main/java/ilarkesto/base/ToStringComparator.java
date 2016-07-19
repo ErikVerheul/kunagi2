@@ -17,14 +17,29 @@ package ilarkesto.base;
 import edu.umd.cs.findbugs.annotations.SuppressWarnings;
 import java.util.Comparator;
 
+/**
+ *
+ * @author erik
+ */
 public class ToStringComparator implements Comparator {
 
-	public static final ToStringComparator INSTANCE = new ToStringComparator(false);
-	public static final ToStringComparator INSTANCE_IGNORECASE = new ToStringComparator(true);
+    /**
+     *
+     */
+    public static final ToStringComparator INSTANCE = new ToStringComparator(false);
+
+    /**
+     *
+     */
+    public static final ToStringComparator INSTANCE_IGNORECASE = new ToStringComparator(true);
 
 	private boolean ignoreCase;
 
-	public ToStringComparator(boolean ignoreCase) {
+    /**
+     *
+     * @param ignoreCase
+     */
+    public ToStringComparator(boolean ignoreCase) {
 		this.ignoreCase = ignoreCase;
 	}
 

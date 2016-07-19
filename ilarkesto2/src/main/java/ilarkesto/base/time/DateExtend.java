@@ -32,65 +32,168 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 import static java.util.Locale.GERMANY;
 
+/**
+ *
+ * @author erik
+ */
 @SuppressWarnings("SE_NO_SERIALVERSIONID")
 public final class DateExtend extends ilarkesto.core.time.Date {
 
-	public static final transient SimpleDateFormat FORMAT_DAY_MONTH_SHORTYEAR = new SimpleDateFormat("dd.MM.yy");
-	public static final transient SimpleDateFormat FORMAT_DAY_MONTH_YEAR = new SimpleDateFormat("dd.MM.yyyy");
-	public static final transient SimpleDateFormat FORMAT_LONGMONTH_DAY_YEAR = new SimpleDateFormat("MMMM d, yyyy");
-	public static final transient SimpleDateFormat FORMAT_DAY_MONTH = new SimpleDateFormat("dd.MM.");
-	public static final transient SimpleDateFormat FORMAT_WEEKDAY_DAY_MONTH = new SimpleDateFormat("EEEE, dd.MM.");
-	public static final transient SimpleDateFormat FORMAT_DAY_LONGMONTH_YEAR = new SimpleDateFormat("dd. MMMM yyyy");
-	public static final transient SimpleDateFormat FORMAT_WEEKDAY_DAY_LONGMONTH_YEAR = new SimpleDateFormat(
+    /**
+     *
+     */
+    public static final transient SimpleDateFormat FORMAT_DAY_MONTH_SHORTYEAR = new SimpleDateFormat("dd.MM.yy");
+
+    /**
+     *
+     */
+    public static final transient SimpleDateFormat FORMAT_DAY_MONTH_YEAR = new SimpleDateFormat("dd.MM.yyyy");
+
+    /**
+     *
+     */
+    public static final transient SimpleDateFormat FORMAT_LONGMONTH_DAY_YEAR = new SimpleDateFormat("MMMM d, yyyy");
+
+    /**
+     *
+     */
+    public static final transient SimpleDateFormat FORMAT_DAY_MONTH = new SimpleDateFormat("dd.MM.");
+
+    /**
+     *
+     */
+    public static final transient SimpleDateFormat FORMAT_WEEKDAY_DAY_MONTH = new SimpleDateFormat("EEEE, dd.MM.");
+
+    /**
+     *
+     */
+    public static final transient SimpleDateFormat FORMAT_DAY_LONGMONTH_YEAR = new SimpleDateFormat("dd. MMMM yyyy");
+
+    /**
+     *
+     */
+    public static final transient SimpleDateFormat FORMAT_WEEKDAY_DAY_LONGMONTH_YEAR = new SimpleDateFormat(
 			"EEEE, dd. MMMM yyyy");
-	public static final transient SimpleDateFormat FORMAT_SHORTWEEKDAY_DAY_MONTH_YEAR = new SimpleDateFormat(
+
+    /**
+     *
+     */
+    public static final transient SimpleDateFormat FORMAT_SHORTWEEKDAY_DAY_MONTH_YEAR = new SimpleDateFormat(
 			"EE, dd.MM.yyyy");
-	public static final transient SimpleDateFormat FORMAT_SHORTWEEKDAY_SHORTMONTH_DAY = new SimpleDateFormat(
+
+    /**
+     *
+     */
+    public static final transient SimpleDateFormat FORMAT_SHORTWEEKDAY_SHORTMONTH_DAY = new SimpleDateFormat(
 			"EE, MMM dd");
-	public static final transient SimpleDateFormat FORMAT_LONGMONTH = new SimpleDateFormat("MMMM");
-	public static final transient SimpleDateFormat FORMAT_LONGMONTH_YEAR = new SimpleDateFormat("MMMM yyyy");
 
-	public static final transient SimpleDateFormat FORMAT_YEAR_MONTH_DAY = new SimpleDateFormat("yyyy-MM-dd");
-	public static final transient SimpleDateFormat FORMAT_YEAR_MONTH = new SimpleDateFormat("yyyy-MM");
-	public static final transient SimpleDateFormat FORMAT_YEAR_LONGMONTH = new SimpleDateFormat("yyyy-MMMM");
-	public static final transient SimpleDateFormat FORMAT_YEAR_MONTH_DAY_NOSEP = new SimpleDateFormat("yyyyMMdd");
+    /**
+     *
+     */
+    public static final transient SimpleDateFormat FORMAT_LONGMONTH = new SimpleDateFormat("MMMM");
 
-	public static final transient SimpleDateFormat FORMAT_WEEKDAY = new SimpleDateFormat("EEEE");
+    /**
+     *
+     */
+    public static final transient SimpleDateFormat FORMAT_LONGMONTH_YEAR = new SimpleDateFormat("MMMM yyyy");
 
-	public DateExtend() {
+    /**
+     *
+     */
+    public static final transient SimpleDateFormat FORMAT_YEAR_MONTH_DAY = new SimpleDateFormat("yyyy-MM-dd");
+
+    /**
+     *
+     */
+    public static final transient SimpleDateFormat FORMAT_YEAR_MONTH = new SimpleDateFormat("yyyy-MM");
+
+    /**
+     *
+     */
+    public static final transient SimpleDateFormat FORMAT_YEAR_LONGMONTH = new SimpleDateFormat("yyyy-MMMM");
+
+    /**
+     *
+     */
+    public static final transient SimpleDateFormat FORMAT_YEAR_MONTH_DAY_NOSEP = new SimpleDateFormat("yyyyMMdd");
+
+    /**
+     *
+     */
+    public static final transient SimpleDateFormat FORMAT_WEEKDAY = new SimpleDateFormat("EEEE");
+
+    /**
+     *
+     */
+    public DateExtend() {
 		super();
 	}
 
-	public DateExtend(java.util.Date javaDate) {
+    /**
+     *
+     * @param javaDate
+     */
+    public DateExtend(java.util.Date javaDate) {
 		super(javaDate);
 	}
 
-	public DateExtend(long millis) {
+    /**
+     *
+     * @param millis
+     */
+    public DateExtend(long millis) {
 		super(millis);
 	}
 
-	public DateExtend(int year, int month, int day) {
+    /**
+     *
+     * @param year
+     * @param month
+     * @param day
+     */
+    public DateExtend(int year, int month, int day) {
 		super(year, month, day);
 	}
 
-	public DateExtend(String date) {
+    /**
+     *
+     * @param date
+     */
+    public DateExtend(String date) {
 		super(date);
 	}
 
-	public DateExtend(GregorianCalendar calendar) {
+    /**
+     *
+     * @param calendar
+     */
+    public DateExtend(GregorianCalendar calendar) {
 		this(calendar.getTime());
 	}
 
-	@Override
+    /**
+     *
+     * @param javaDate
+     * @return
+     */
+    @Override
 	protected DateExtend newDate(java.util.Date javaDate) {
 		return new DateExtend(javaDate);
 	}
 
-	public GregorianCalendar getGregorianCalendar() {
+    /**
+     *
+     * @return
+     */
+    public GregorianCalendar getGregorianCalendar() {
 		return new GregorianCalendar(year, month - 1, day);
 	}
 
-        @Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public DateExtend getMondayOfWeek() {
 		if (getWeekday() == MONDAY) {
                         return this;
@@ -98,7 +201,11 @@ public final class DateExtend extends ilarkesto.core.time.Date {
 		return addDays(-1).getMondayOfWeek();
 	}
 
-        @Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public DateExtend getFirstDateOfMonth() {
 		GregorianCalendar c = new GregorianCalendar();
 		c.setTime(toJavaDate());
@@ -106,7 +213,11 @@ public final class DateExtend extends ilarkesto.core.time.Date {
 		return new DateExtend(c);
 	}
 
-        @Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public DateExtend getLastDateOfMonth() {
 		GregorianCalendar c = new GregorianCalendar();
 		c.setTime(toJavaDate());
@@ -114,7 +225,12 @@ public final class DateExtend extends ilarkesto.core.time.Date {
 		return new DateExtend(c);
 	}
 
-        @Override
+    /**
+     *
+     * @param count
+     * @return
+     */
+    @Override
 	public DateExtend addMonths(int count) {
 		GregorianCalendar c = new GregorianCalendar();
 		c.setTime(toJavaDate());
@@ -122,7 +238,12 @@ public final class DateExtend extends ilarkesto.core.time.Date {
 		return new DateExtend(c);
 	}
 
-        @Override
+    /**
+     *
+     * @param count
+     * @return
+     */
+    @Override
 	public DateExtend addYears(int count) {
 		GregorianCalendar c = new GregorianCalendar();
 		c.setTime(toJavaDate());
@@ -130,20 +251,38 @@ public final class DateExtend extends ilarkesto.core.time.Date {
 		return new DateExtend(c);
 	}
 
-        @Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public int getDaysInMonth() {
 		return getGregorianCalendar().getActualMaximum(DAY_OF_MONTH);
 	}
 
-	public TimePeriodExtend getPeriodTo(DateExtend other) {
+    /**
+     *
+     * @param other
+     * @return
+     */
+    public TimePeriodExtend getPeriodTo(DateExtend other) {
 		return new TimePeriodExtend(other.toMillis() - toMillis());
 	}
 
-	public TimePeriodExtend getPeriodToNow() {
+    /**
+     *
+     * @return
+     */
+    public TimePeriodExtend getPeriodToNow() {
 		return getPeriodTo(today());
 	}
 
-	public int getPeriodToInYears(DateExtend other) {
+    /**
+     *
+     * @param other
+     * @return
+     */
+    public int getPeriodToInYears(DateExtend other) {
 		int years = other.year - year;
 		if (month > other.month) {
 			years--;
@@ -153,13 +292,22 @@ public final class DateExtend extends ilarkesto.core.time.Date {
 		return years;
 	}
 
-	public int getPeriodToInMonths(DateExtend other) {
+    /**
+     *
+     * @param other
+     * @return
+     */
+    public int getPeriodToInMonths(DateExtend other) {
 		int years = other.year - year;
 		int months = other.month - month;
 		return (years * 12) + months;
 	}
 
-	public int getPeriodToNowInMonths() {
+    /**
+     *
+     * @return
+     */
+    public int getPeriodToNowInMonths() {
 		return getPeriodToInMonths(today());
 	}
 
@@ -183,28 +331,51 @@ public final class DateExtend extends ilarkesto.core.time.Date {
 		return toString();
 	}
 
-	public String toString(DateFormat format) {
+    /**
+     *
+     * @param format
+     * @return
+     */
+    public String toString(DateFormat format) {
 		return format.format(toJavaDate());
 	}
 
-	public String toString(Locale locale) {
+    /**
+     *
+     * @param locale
+     * @return
+     */
+    public String toString(Locale locale) {
 		if (locale.equals(GERMANY)) {
                         return toDe();
                 }
 		return toInt();
 	}
 
-	@Override
+    /**
+     *
+     * @param days
+     * @return
+     */
+    @Override
 	public DateExtend addDays(int days) {
 		return (DateExtend) super.addDays(days);
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public DateExtend prevDay() {
 		return addDays(-1);
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public DateExtend nextDay() {
 		return addDays(1);
 	}
@@ -215,7 +386,12 @@ public final class DateExtend extends ilarkesto.core.time.Date {
 
 	private static transient long todayInvalidTime;
 
-	public static DateExtend latest(DateExtend... dates) {
+    /**
+     *
+     * @param dates
+     * @return
+     */
+    public static DateExtend latest(DateExtend... dates) {
 		DateExtend latest = null;
 		for (DateExtend date : dates) {
 			if (latest == null || date.isAfter(latest)) {
@@ -225,7 +401,12 @@ public final class DateExtend extends ilarkesto.core.time.Date {
 		return latest;
 	}
 
-	public static DateExtend earliest(DateExtend... dates) {
+    /**
+     *
+     * @param dates
+     * @return
+     */
+    public static DateExtend earliest(DateExtend... dates) {
 		DateExtend earliest = null;
 		for (DateExtend date : dates) {
 			if (earliest == null || date.isBefore(earliest)) {
@@ -235,7 +416,11 @@ public final class DateExtend extends ilarkesto.core.time.Date {
 		return earliest;
 	}
 
-	public static DateExtend today() {
+    /**
+     *
+     * @return
+     */
+    public static DateExtend today() {
 		if (today == null || currentTimeMillis() > todayInvalidTime) {
 			today = new DateExtend();
 			todayInvalidTime = tomorrow().toJavaDate().getTime() - 1;
@@ -243,23 +428,48 @@ public final class DateExtend extends ilarkesto.core.time.Date {
 		return today;
 	}
 
-	public static DateExtend tomorrow() {
+    /**
+     *
+     * @return
+     */
+    public static DateExtend tomorrow() {
 		return new DateExtend(currentTimeMillis() + DAY);
 	}
 
-	public static DateExtend inDays(int numberOfDays) {
+    /**
+     *
+     * @param numberOfDays
+     * @return
+     */
+    public static DateExtend inDays(int numberOfDays) {
 		return new DateExtend(currentTimeMillis() + (DAY * numberOfDays));
 	}
 
-	public static DateExtend beforeDays(int numberOfDays) {
+    /**
+     *
+     * @param numberOfDays
+     * @return
+     */
+    public static DateExtend beforeDays(int numberOfDays) {
 		return new DateExtend(currentTimeMillis() - (DAY * numberOfDays));
 	}
 
-	public static DateExtend randomPast(int beforeMaxDays) {
+    /**
+     *
+     * @param beforeMaxDays
+     * @return
+     */
+    public static DateExtend randomPast(int beforeMaxDays) {
 		return beforeDays(randomInt(0, beforeMaxDays));
 	}
 
-	public static DateExtend parseTolerant(String s) throws ParseException {
+    /**
+     *
+     * @param s
+     * @return
+     * @throws ParseException
+     */
+    public static DateExtend parseTolerant(String s) throws ParseException {
 		s = s.trim();
 		String[] sa = tokenize(s, ".,- ");
 		if (sa.length == 0) {
@@ -297,6 +507,12 @@ public final class DateExtend extends ilarkesto.core.time.Date {
 
 	// --- Object ---
 
+    /**
+     *
+     * @param d
+     * @return
+     */
+    
 	public boolean equalsIgnoreYear(DateExtend d) {
 		if (d == null) {
                         return false;
@@ -304,7 +520,12 @@ public final class DateExtend extends ilarkesto.core.time.Date {
 		return d.day == day && d.month == month;
 	}
 
-	public boolean equalsIgnoreDay(DateExtend d) {
+    /**
+     *
+     * @param d
+     * @return
+     */
+    public boolean equalsIgnoreDay(DateExtend d) {
 		if (d == null) {
                         return false;
                 }

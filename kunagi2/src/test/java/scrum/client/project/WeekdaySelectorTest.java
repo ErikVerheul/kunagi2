@@ -15,9 +15,7 @@
 package scrum.client.project;
 
 import ilarkesto.testng.ATest;
-
 import org.testng.annotations.Test;
-
 import scrum.client.common.WeekdaySelector;
 
 public class WeekdaySelectorTest extends ATest {

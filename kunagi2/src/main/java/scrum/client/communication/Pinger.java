@@ -14,10 +14,11 @@
  */
 package scrum.client.communication;
 
+import com.google.gwt.user.client.Timer;
+import static ilarkesto.core.logging.ClientLog.DEBUG;
+import static ilarkesto.core.logging.ClientLog.INFO;
 import ilarkesto.core.time.Tm;
-
 import java.util.LinkedList;
-
 import scrum.client.DataTransferObject;
 import scrum.client.core.ApplicationStartedEvent;
 import scrum.client.core.ApplicationStartedHandler;
@@ -27,22 +28,33 @@ import scrum.client.workspace.BlockCollapsedHandler;
 import scrum.client.workspace.BlockExpandedEvent;
 import scrum.client.workspace.BlockExpandedHandler;
 
-import com.google.gwt.user.client.Timer;
-import static ilarkesto.core.logging.ClientLog.DEBUG;
-import static ilarkesto.core.logging.ClientLog.INFO;
-
+/**
+ *
+ * @author erik
+ */
 public class Pinger extends GPinger implements ServerDataReceivedHandler, BlockExpandedHandler, BlockCollapsedHandler,
 		ApplicationStartedHandler {
 
-	public static final int MIN_DELAY = 1000;
-	public static final int MAX_DELAY = 5000;
+    /**
+     *
+     */
+    public static final int MIN_DELAY = 1000;
+
+    /**
+     *
+     */
+    public static final int MAX_DELAY = 5000;
 
 	private Timer timer;
 	private int maxDelay = MAX_DELAY;
 	private long lastDataReceiveTime = Tm.getCurrentTimeMillis();
 	private LinkedList<Long> pingTimes = new LinkedList<Long>();
 
-	@Override
+    /**
+     *
+     * @param event
+     */
+    @Override
 	public void onApplicationStarted(ApplicationStartedEvent event) {
 		timer = new Timer() {
 
@@ -56,7 +68,9 @@ public class Pinger extends GPinger implements ServerDataReceivedHandler, BlockE
 						public void run() {
 							long time = Tm.getCurrentTimeMillis() - start;
 							pingTimes.add(time);
-							if (pingTimes.size() > 10) pingTimes.removeFirst();
+							if (pingTimes.size() > 10) {
+                                                            pingTimes.removeFirst();
+                            }
 						}
 					});
 				}
@@ -66,14 +80,23 @@ public class Pinger extends GPinger implements ServerDataReceivedHandler, BlockE
 		reschedule();
 	}
 
-	public void shutdown() {
+    /**
+     *
+     */
+    public void shutdown() {
 		INFO("Shutting down");
-		if (timer == null) return;
+                if (timer == null) {
+            return;
+        }
 		timer.cancel();
 		timer = null;
 	}
 
-	@Override
+    /**
+     *
+     * @param event
+     */
+    @Override
 	public void onServerDataReceived(ServerDataReceivedEvent event) {
 		DataTransferObject data = event.getData();
 		if (data.containsEntities()) {
@@ -82,43 +105,70 @@ public class Pinger extends GPinger implements ServerDataReceivedHandler, BlockE
 		}
 	}
 
-	@Override
+    /**
+     *
+     * @param event
+     */
+    @Override
 	public void onBlockCollapsed(BlockCollapsedEvent event) {
 		deactivatePowerPolling();
 	}
 
-	@Override
+    /**
+     *
+     * @param event
+     */
+    @Override
 	public void onBlockExpanded(BlockExpandedEvent event) {
 		Object object = event.getObject();
 		if (object instanceof Requirement) {
 			Requirement requirement = (Requirement) object;
-			if (requirement.isWorkEstimationVotingActive()) activatePowerPolling();
+                        if (requirement.isWorkEstimationVotingActive()) {
+                activatePowerPolling();
+            }
 		}
 	}
 
-	public void reschedule() {
-		if (timer == null) return;
+    /**
+     *
+     */
+        public void reschedule() {
+		if (timer == null) {
+            return;
+        }
 		long idle = Tm.getCurrentTimeMillis() - lastDataReceiveTime;
-		idle = (int) (idle * 0.15);
-		if (idle < MIN_DELAY) idle = MIN_DELAY;
-		if (idle > maxDelay) idle = maxDelay;
+                idle = (int) (idle * 0.15);
+                if (idle < MIN_DELAY) {
+                    idle = MIN_DELAY;
+        }
+		if (idle > maxDelay) {
+            idle = maxDelay;
+        }
 		timer.scheduleRepeating((int) idle);
 	}
 
 	private void activatePowerPolling() {
 		maxDelay = MIN_DELAY;
-		DEBUG("PowerPolling activated");
+                DEBUG("PowerPolling activated");
 	}
 
 	private void deactivatePowerPolling() {
-		if (maxDelay == MAX_DELAY) return;
+		if (maxDelay == MAX_DELAY) {
+            return;
+        }
 		maxDelay = MAX_DELAY;
 		lastDataReceiveTime = Tm.getCurrentTimeMillis();
 		DEBUG("PowerPolling deactivated");
 	}
 
-	public Long getAvaragePingTime() {
-		if (pingTimes.isEmpty()) return null;
+        /**
+         *
+     * @return
+     */
+    public Long getAvaragePingTime() {
+		if (pingTimes.isEmpty()) {
+            return null;
+        }
 		long sum = 0;
 		for (Long time : pingTimes) {
 			sum += time;
@@ -126,9 +176,15 @@ public class Pinger extends GPinger implements ServerDataReceivedHandler, BlockE
 		return sum / pingTimes.size();
 	}
 
-	public String getAvaragePingTimeMessage() {
+    /**
+     *
+     * @return
+     */
+    public String getAvaragePingTimeMessage() {
 		Long time = getAvaragePingTime();
-		if (time == null) return null;
+		if (time == null) {
+            return null;
+        }
 		return "Current response time: " + time + " ms.";
 	}
 

@@ -26,15 +26,27 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/**
+ *
+ * @author erik
+ */
 public class Cell extends ACell implements ItextElement {
 
 	private final Collection<ItextElement> elements = new ArrayList<>();
 
-	public Cell(APdfElement parent) {
+    /**
+     *
+     * @param parent
+     */
+    public Cell(APdfElement parent) {
 		super(parent);
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public AParagraph paragraph() {
 		Paragraph p = new Paragraph(this);
 		p.setDefaultFontStyle(getFontStyle());
@@ -42,14 +54,24 @@ public class Cell extends ACell implements ItextElement {
 		return p;
 	}
 
-	@Override
+    /**
+     *
+     * @param file
+     * @return
+     */
+    @Override
 	public AImage image(File file) {
 		Image i = new Image(this, file);
 		elements.add(i);
 		return i;
 	}
 
-	@Override
+    /**
+     *
+     * @param cellWidths
+     * @return
+     */
+    @Override
 	public ATable table(float... cellWidths) {
 		Table t = new Table(this);
 		t.setCellWidths(cellWidths);
@@ -57,7 +79,12 @@ public class Cell extends ACell implements ItextElement {
 		return t;
 	}
 
-	@Override
+    /**
+     *
+     * @param columnCount
+     * @return
+     */
+    @Override
 	public ATable table(int columnCount) {
 		Table t = new Table(this);
 		t.setColumnCount(columnCount);
@@ -65,14 +92,23 @@ public class Cell extends ACell implements ItextElement {
 		return t;
 	}
 
-	@Override
+    /**
+     *
+     * @param data
+     * @return
+     */
+    @Override
 	public AImage image(byte[] data) {
 		Image i = new Image(this, data);
 		elements.add(i);
 		return i;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public Element getITextElement() {
 		PdfPCell cell = new PdfPCell();
 

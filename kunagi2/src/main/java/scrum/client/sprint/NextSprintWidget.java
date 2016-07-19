@@ -14,6 +14,7 @@
  */
 package scrum.client.sprint;
 
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.ButtonWidget;
 import ilarkesto.gwt.client.TableBuilder;
 import ilarkesto.gwt.client.editor.RichtextEditorWidget;
@@ -24,8 +25,10 @@ import scrum.client.common.UserGuideWidget;
 import scrum.client.project.Project;
 import scrum.client.workspace.PagePanel;
 
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class NextSprintWidget extends AScrumWidget {
 
 	private Sprint sprint;
@@ -63,7 +66,9 @@ public class NextSprintWidget extends AScrumWidget {
 
 	private Sprint getSprint() {
 		Project project = getCurrentProject();
-		if (project == null) return null;
+		if (project == null) {
+                    return null;
+        }
 		return project.getNextSprint();
 	}
 

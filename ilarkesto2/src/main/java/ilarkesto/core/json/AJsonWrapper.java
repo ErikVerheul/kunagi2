@@ -18,22 +18,43 @@ import static ilarkesto.core.base.Str.isBlank;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class AJsonWrapper {
 
-	protected final JsonObject json;
+    /**
+     *
+     */
+    protected final JsonObject json;
 
-	public AJsonWrapper(JsonObject json) {
+    /**
+     *
+     * @param json
+     */
+    public AJsonWrapper(JsonObject json) {
 		if (json == null) {
                         throw new IllegalArgumentException("json == null");
                 }
 		this.json = json;
 	}
 
-	protected void putArray(String name, Iterable<? extends AJsonWrapper> wrappers) {
+    /**
+     *
+     * @param name
+     * @param wrappers
+     */
+    protected void putArray(String name, Iterable<? extends AJsonWrapper> wrappers) {
 		json.put(name, getJsonObjects(wrappers));
 	}
 
-	protected static List<JsonObject> getJsonObjects(Iterable<? extends AJsonWrapper> wrappers) {
+    /**
+     *
+     * @param wrappers
+     * @return
+     */
+    protected static List<JsonObject> getJsonObjects(Iterable<? extends AJsonWrapper> wrappers) {
 		List<JsonObject> ret = new ArrayList<JsonObject>();
 		for (AJsonWrapper wrapper : wrappers) {
                         ret.add(wrapper.getJson());
@@ -41,7 +62,12 @@ public abstract class AJsonWrapper {
 		return ret;
 	}
 
-	protected void putOrRemove(String name, String value) {
+    /**
+     *
+     * @param name
+     * @param value
+     */
+    protected void putOrRemove(String name, String value) {
 		if (isBlank(value)) {
 			json.remove(name);
 		} else {
@@ -49,7 +75,12 @@ public abstract class AJsonWrapper {
 		}
 	}
 
-	protected void putOrRemove(String name, boolean value) {
+    /**
+     *
+     * @param name
+     * @param value
+     */
+    protected void putOrRemove(String name, boolean value) {
 		if (value) {
 			json.put(name, value);
 		} else {
@@ -87,6 +118,11 @@ public abstract class AJsonWrapper {
 //		return wrapper;
 //	}
 
+    /**
+     *
+     * @return
+     */
+    
 	public JsonObject getJson() {
 		return json;
 	}

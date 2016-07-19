@@ -18,6 +18,10 @@ import java.io.File;
 import java.io.Serializable;
 import java.util.Comparator;
 
+/**
+ *
+ * @author erik
+ */
 public class FilenameComparator implements Comparator<File>, Serializable {
 
 	@Override

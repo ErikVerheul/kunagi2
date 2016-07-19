@@ -17,40 +17,71 @@ package ilarkesto.mda.legacy.generator;
 import ilarkesto.gwt.client.AGwtApplication;
 import ilarkesto.mda.legacy.model.ApplicationModel;
 
+/**
+ *
+ * @author erik
+ */
 public class GwtApplicationGenerator extends AClassGenerator {
 
 	private final ApplicationModel application;
 
-	public GwtApplicationGenerator(ApplicationModel application) {
+    /**
+     *
+     * @param application
+     */
+    public GwtApplicationGenerator(ApplicationModel application) {
 		super();
 		this.application = application;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected String getName() {
 		return "G" + application.getName() + "GwtApplication";
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected boolean isInterface() {
 		return false;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected boolean isOverwrite() {
 		return true;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected String getSuperclass() {
 		return AGwtApplication.class.getName();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected String getPackage() {
 		return application.getPackageName().replace(".server", ".client");
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void writeContent() {}
 }

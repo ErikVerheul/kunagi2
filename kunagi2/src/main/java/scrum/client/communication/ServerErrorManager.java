@@ -16,15 +16,22 @@ package scrum.client.communication;
 
 import static ilarkesto.core.logging.ClientLog.INFO;
 import ilarkesto.gwt.client.ErrorWrapper;
-
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class ServerErrorManager extends GServerErrorManager implements ServerDataReceivedHandler {
 
 	private List<ErrorWrapper> errors = new ArrayList<ErrorWrapper>();
 
-	@Override
+    /**
+     *
+     * @param event
+     */
+    @Override
 	public void onServerDataReceived(ServerDataReceivedEvent event) {
 		List<ErrorWrapper> serverErrors = event.getData().getErrors();
 		if (serverErrors != null) {
@@ -33,8 +40,14 @@ public class ServerErrorManager extends GServerErrorManager implements ServerDat
 		}
 	}
 
-	public String popErrorsAsString() {
-		if (errors.isEmpty()) return null;
+    /**
+     *
+     * @return
+     */
+    public String popErrorsAsString() {
+		if (errors.isEmpty()) {
+                    return null;
+        }
 		StringBuilder sb = new StringBuilder();
 		for (ErrorWrapper error : errors) {
 			sb.append(error).append("\n");

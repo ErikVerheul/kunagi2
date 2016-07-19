@@ -30,6 +30,11 @@ import java.util.Map;
 import java.util.Set;
 import org.apache.commons.fileupload.FileItem;
 
+/**
+ *
+ * @author erik
+ * @param <T>
+ */
 public class MultiItemFormField<T> extends AFormField {
 
 	private Set<T> value;
@@ -52,7 +57,11 @@ public class MultiItemFormField<T> extends AFormField {
 
 	private String noSelectionLabel;
 
-	public MultiItemFormField(String name) {
+    /**
+     *
+     * @param name
+     */
+    public MultiItemFormField(String name) {
 		super(name);
 
 		addButton = (AddButton) new AddButton().setValidateForm(false).setLabel("Hinzuf\u00FCgen...").setIcon("add");
@@ -60,74 +69,145 @@ public class MultiItemFormField<T> extends AFormField {
 				.setIcon("delete");
 	}
 
-	public MultiItemFormField<T> setNoSelectionLabel(String noSelectionLabel) {
+    /**
+     *
+     * @param noSelectionLabel
+     * @return
+     */
+    public MultiItemFormField<T> setNoSelectionLabel(String noSelectionLabel) {
 		this.noSelectionLabel = noSelectionLabel;
 		return this;
 	}
 
-	public String getNoSelectionLabel() {
+    /**
+     *
+     * @return
+     */
+    public String getNoSelectionLabel() {
 		return noSelectionLabel;
 	}
 
-	public MultiItemFormField<T> setItemLabelProvider(StringProvider<T> itemLabelProvider) {
+    /**
+     *
+     * @param itemLabelProvider
+     * @return
+     */
+    public MultiItemFormField<T> setItemLabelProvider(StringProvider<T> itemLabelProvider) {
 		this.itemLabelProvider = itemLabelProvider;
 		return this;
 	}
 
-	public StringProvider<T> getItemLabelProvider() {
+    /**
+     *
+     * @return
+     */
+    public StringProvider<T> getItemLabelProvider() {
 		return itemLabelProvider;
 	}
 
-	public void setItemImageUrlProvider(StringProvider<T> imageUrlProvider) {
+    /**
+     *
+     * @param imageUrlProvider
+     */
+    public void setItemImageUrlProvider(StringProvider<T> imageUrlProvider) {
 		this.itemImageUrlProvider = imageUrlProvider;
 	}
 
-	public StringProvider<T> getItemImageUrlProvider() {
+    /**
+     *
+     * @return
+     */
+    public StringProvider<T> getItemImageUrlProvider() {
 		return itemImageUrlProvider;
 	}
 
-	public MultiItemFormField<T> setItemTooltipProvider(StringProvider<T> itemTooltipProvider) {
+    /**
+     *
+     * @param itemTooltipProvider
+     * @return
+     */
+    public MultiItemFormField<T> setItemTooltipProvider(StringProvider<T> itemTooltipProvider) {
 		this.itemTooltipProvider = itemTooltipProvider;
 		return this;
 	}
 
-	public StringProvider<T> getItemTooltipProvider() {
+    /**
+     *
+     * @return
+     */
+    public StringProvider<T> getItemTooltipProvider() {
 		return itemTooltipProvider;
 	}
 
-	public MultiItemFormField<T> setSelectableItems(Collection<T> items) {
+    /**
+     *
+     * @param items
+     * @return
+     */
+    public MultiItemFormField<T> setSelectableItems(Collection<T> items) {
 		this.selectableItems = items == null ? new HashSet<T>() : items;
 		return this;
 	}
 
-	public Collection<T> getSelectableItems() {
+    /**
+     *
+     * @return
+     */
+    public Collection<T> getSelectableItems() {
 		Set<T> result = new HashSet<>(selectableItems);
 		result.removeAll(value);
 		return result;
 	}
 
-	public MultiItemFormField<T> setSelectableMultiItems(Collection<MultiItem<T>> multiItmes) {
+    /**
+     *
+     * @param multiItmes
+     * @return
+     */
+    public MultiItemFormField<T> setSelectableMultiItems(Collection<MultiItem<T>> multiItmes) {
 		this.selectableMultiItems = multiItmes;
 		return this;
 	}
 
-	public Collection<MultiItem<T>> getSelectableMultiItems() {
+    /**
+     *
+     * @return
+     */
+    public Collection<MultiItem<T>> getSelectableMultiItems() {
 		return selectableMultiItems;
 	}
 
-	public AddButton getAddButton() {
+    /**
+     *
+     * @return
+     */
+    public AddButton getAddButton() {
 		return addButton;
 	}
 
-	public RemoveAllButton getRemoveAllButton() {
+    /**
+     *
+     * @return
+     */
+    public RemoveAllButton getRemoveAllButton() {
 		return removeAllButton;
 	}
 
-	public RemoveButton<T> getRemoveButton(T item) {
+    /**
+     *
+     * @param item
+     * @return
+     */
+    public RemoveButton<T> getRemoveButton(T item) {
 		return removeButtons.get(item);
 	}
 
-	public RemoveButton<T> getRemoveButton(String id) {
+    /**
+     *
+     * @param id
+     * @return
+     */
+    public RemoveButton<T> getRemoveButton(String id) {
 		for (RemoveButton<T> button : removeButtons.values()) {
 			if (button.getId().equals(id)) {
                                 return button;
@@ -136,7 +216,12 @@ public class MultiItemFormField<T> extends AFormField {
 		throw new RuntimeException("button does not exist: " + id);
 	}
 
-	public MultiItemFormField<T> setValue(Collection<T> value) {
+    /**
+     *
+     * @param value
+     * @return
+     */
+    public MultiItemFormField<T> setValue(Collection<T> value) {
 		removeButtons.clear();
 		if (value == null) {
 			this.value = null;
@@ -150,78 +235,138 @@ public class MultiItemFormField<T> extends AFormField {
 		return this;
 	}
 
-	public void removeValueItem(T item) {
+    /**
+     *
+     * @param item
+     */
+    public void removeValueItem(T item) {
 		value.remove(item);
 		setValue(value);
 	}
 
-	public void removeAllItems() {
+    /**
+     *
+     */
+    public void removeAllItems() {
 		value.clear();
 		setValue(value);
 	}
 
-	public void addValueItem(T item) {
+    /**
+     *
+     * @param item
+     */
+    public void addValueItem(T item) {
 		value.add(item);
 		setValue(value);
 	}
 
-	public void addValueItems(Collection<T> items) {
+    /**
+     *
+     * @param items
+     */
+    public void addValueItems(Collection<T> items) {
 		value.addAll(items);
 		setValue(value);
 	}
 
-	public Set<T> getValue() {
+    /**
+     *
+     * @return
+     */
+    public Set<T> getValue() {
 		return value;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getValueAsString() {
 		return value == null ? "0" : valueOf(value.size());
 	}
 
-	@Override
+    /**
+     *
+     * @param data
+     * @param uploadedFiles
+     */
+    @Override
 	public void update(Map<String, String> data, Collection<FileItem> uploadedFiles) {
 		// nop
 	}
 
-	@Override
+    /**
+     *
+     * @throws ValidationException
+     */
+    @Override
 	public void validate() throws ValidationException {
 		if (isRequired() && (value == null || value.isEmpty())) {
                         throw new ValidationException("Hier ist eine Auswahl erforderlich.");
                 }
 	}
 
-	public class AddButton extends FormButton {
+    /**
+     *
+     */
+    public class AddButton extends FormButton {
 
-		public AddButton() {
+        /**
+         *
+         */
+        public AddButton() {
 			super(BUTTON_PREFIX + ADD_ITEM_BUTTON_NAME_PREFIX + MultiItemFormField.this.getName());
 		}
 
-		public MultiItemFormField getField() {
+        /**
+         *
+         * @return
+         */
+        public MultiItemFormField getField() {
 			return MultiItemFormField.this;
 		}
 
 	}
 
-	public class RemoveAllButton extends FormButton {
+    /**
+     *
+     */
+    public class RemoveAllButton extends FormButton {
 
-		public RemoveAllButton() {
+        /**
+         *
+         */
+        public RemoveAllButton() {
 			super(BUTTON_PREFIX + REMOVE_ALLITEMS_BUTTON_NAME_PREFIX + MultiItemFormField.this.getName());
 		}
 
-		public MultiItemFormField getField() {
+        /**
+         *
+         * @return
+         */
+        public MultiItemFormField getField() {
 			return MultiItemFormField.this;
 		}
 
 	}
 
-	public class RemoveButton<T> extends FormButton {
+    /**
+     *
+     * @param <T>
+     */
+    public class RemoveButton<T> extends FormButton {
 
 		private String id;
 
 		private T item;
 
-		public RemoveButton(T item) {
+        /**
+         *
+         * @param item
+         */
+        public RemoveButton(T item) {
 			this(item, buttonIdGenerator.generateId());
 		}
 
@@ -234,27 +379,47 @@ public class MultiItemFormField<T> extends AFormField {
 			setValidateForm(false);
 		}
 
-		public MultiItemFormField<T> getField() {
+        /**
+         *
+         * @return
+         */
+        public MultiItemFormField<T> getField() {
 			return (MultiItemFormField<T>) MultiItemFormField.this;
 		}
 
-		public T getItem() {
+        /**
+         *
+         * @return
+         */
+        public T getItem() {
 			return item;
 		}
 
-		public String getId() {
+        /**
+         *
+         * @return
+         */
+        public String getId() {
 			return id;
 		}
 
 	}
 
-	public class EditButton<T> extends FormButton {
+    /**
+     *
+     * @param <T>
+     */
+    public class EditButton<T> extends FormButton {
 
 		private String id;
 
 		private T item;
 
-		public EditButton(T item) {
+        /**
+         *
+         * @param item
+         */
+        public EditButton(T item) {
 			this(item, buttonIdGenerator.generateId());
 		}
 
@@ -267,15 +432,27 @@ public class MultiItemFormField<T> extends AFormField {
 			setValidateForm(false);
 		}
 
-		public MultiItemFormField<T> getField() {
+        /**
+         *
+         * @return
+         */
+        public MultiItemFormField<T> getField() {
 			return (MultiItemFormField<T>) MultiItemFormField.this;
 		}
 
-		public T getItem() {
+        /**
+         *
+         * @return
+         */
+        public T getItem() {
 			return item;
 		}
 
-		public String getId() {
+        /**
+         *
+         * @return
+         */
+        public String getId() {
 			return id;
 		}
 

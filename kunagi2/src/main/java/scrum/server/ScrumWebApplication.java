@@ -19,17 +19,17 @@ package scrum.server;
 
 import ilarkesto.auth.OpenId;
 import ilarkesto.base.Sys;
-import ilarkesto.core.time.Tm;
 import ilarkesto.base.UtlExtend;
 import ilarkesto.concurrent.TaskManager;
 import ilarkesto.core.base.Str;
-import ilarkesto.logging.Log;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.core.time.TimePeriod;
+import ilarkesto.core.time.Tm;
 import ilarkesto.di.app.BackupApplicationDataDirTask;
 import ilarkesto.di.app.WebApplicationStarter;
 import ilarkesto.gwt.server.AGwtConversation;
 import ilarkesto.io.IO;
+import ilarkesto.logging.Log;
 import ilarkesto.persistence.AEntity;
 import ilarkesto.webapp.AWebApplication;
 import ilarkesto.webapp.AWebSession;
@@ -57,6 +57,10 @@ import scrum.server.project.DeleteOldProjectsTask;
 import scrum.server.project.HomepageUpdaterTask;
 import scrum.server.project.Project;
 
+/**
+ *
+ * @author erik
+ */
 public class ScrumWebApplication extends GScrumWebApplication {
 
 	private static final int DATA_VERSION = 35;
@@ -68,21 +72,37 @@ public class ScrumWebApplication extends GScrumWebApplication {
 	private ScrumEntityfilePreparator entityfilePreparator;
 	private SystemMessage systemMessage;
 
-	public ScrumWebApplication(KunagiRootConfig config) {
+    /**
+     *
+     * @param config
+     */
+    public ScrumWebApplication(KunagiRootConfig config) {
 		this.config = config;
 	}
 
-	public ScrumWebApplication() {
+    /**
+     *
+     */
+    public ScrumWebApplication() {
 		this(null);
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected int getDataVersion() {
 		return DATA_VERSION;
 	}
 
 	// --- composites ---
 
+    /**
+     *
+     * @return
+     */
+    
 	public BurndownChart getBurndownChart() {
 		if (burndownChart == null) {
 			burndownChart = new BurndownChart();
@@ -91,16 +111,30 @@ public class ScrumWebApplication extends GScrumWebApplication {
 		return burndownChart;
 	}
 
-	public SystemConfig getSystemConfig() {
+    /**
+     *
+     * @return
+     */
+    public SystemConfig getSystemConfig() {
 		return getSystemConfigDao().getSystemConfig();
 	}
 
-	public KunagiRootConfig getConfig() {
-		if (config == null) config = new KunagiRootConfig(getApplicationName());
+    /**
+     *
+     * @return
+     */
+    public KunagiRootConfig getConfig() {
+		if (config == null) {
+                    config = new KunagiRootConfig(getApplicationName());
+        }
 		return config;
 	}
 
-	public ScrumEntityfilePreparator getEntityfilePreparator() {
+    /**
+     *
+     * @return
+     */
+    public ScrumEntityfilePreparator getEntityfilePreparator() {
 		if (entityfilePreparator == null) {
 			entityfilePreparator = new ScrumEntityfilePreparator();
 			entityfilePreparator.setBackupDir(getApplicationDataDir() + "/backup/entities");
@@ -108,21 +142,35 @@ public class ScrumWebApplication extends GScrumWebApplication {
 		return entityfilePreparator;
 	}
 
-	public ApplicationInfo getApplicationInfo() {
+    /**
+     *
+     * @return
+     */
+    public ApplicationInfo getApplicationInfo() {
 		boolean defaultAdminPassword = isAdminPasswordDefault();
 		return new ApplicationInfo(getApplicationLabel(), getReleaseLabel(), getBuild(), defaultAdminPassword,
 				getCurrentRelease(), getApplicationDataDir());
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getApplicationLabel() {
 		return "Kunagi";
 	}
 
 	private String currentRelease;
 
-	public String getCurrentRelease() {
-		if (!getSystemConfig().isVersionCheckEnabled()) return null;
+    /**
+     *
+     * @return
+     */
+    public String getCurrentRelease() {
+		if (!getSystemConfig().isVersionCheckEnabled()) {
+                    return null;
+        }
 		if (currentRelease == null) {
 			String url = "http://kunagi.org/current-release.properties";
 			log.info("Checking current release:", url);
@@ -139,6 +187,10 @@ public class ScrumWebApplication extends GScrumWebApplication {
 
 	// --- ---
 
+    /**
+     *
+     */
+    
 	@Override
 	public void ensureIntegrity() {
 		if (getConfig().isStartupDelete()) {
@@ -149,12 +201,17 @@ public class ScrumWebApplication extends GScrumWebApplication {
 		super.ensureIntegrity();
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void onStartWebApplication() {
 		Log.setDebugEnabled(isDevelopmentMode() || getConfig().isLoggingDebug());
 
 		String url = getConfig().getUrl();
-		if (!Str.isBlank(url)) getSystemConfig().setUrl(url);
+                if (!Str.isBlank(url)) {
+                    getSystemConfig().setUrl(url);
+        }
 
 		if (getUserDao().getEntities().isEmpty()) {
 			String password = getSystemConfig().getDefaultUserPassword();
@@ -178,32 +235,55 @@ public class ScrumWebApplication extends GScrumWebApplication {
 		}
 
 		// test data
-		if (getConfig().isCreateTestData() && getProjectDao().getEntities().isEmpty()) createTestData();
+                if (getConfig().isCreateTestData() && getProjectDao().getEntities().isEmpty()) {
+            createTestData();
+        }
 
 		for (ProjectUserConfig local_config : getProjectUserConfigDao().getEntities()) {
 			local_config.reset();
 		}
 	}
 
-	public String createUrl(String relativePath) {
-		if (relativePath == null) relativePath = "";
+    /**
+     *
+     * @param relativePath
+     * @return
+     */
+        public String createUrl(String relativePath) {
+            if (relativePath == null) {
+            relativePath = "";
+        }
 		String prefix = getBaseUrl();
 
-		// return relative path if base is not defined
-		if (Str.isBlank(prefix)) return relativePath;
+                // return relative path if base is not defined
+		if (Str.isBlank(prefix)) {
+            return relativePath;
+        }
 
 		// concat base and relative and return
-		if (prefix.endsWith("/")) {
-			if (relativePath.startsWith("/")) return Str.removeSuffix(prefix, "/") + relativePath;
-			return prefix + relativePath;
+                if (prefix.endsWith("/")) {
+                    if (relativePath.startsWith("/")) {
+                        return Str.removeSuffix(prefix, "/") + relativePath;
+                    }
+                    return prefix + relativePath;
 		}
-		if (relativePath.startsWith("/")) return prefix + relativePath;
+		if (relativePath.startsWith("/")) {
+            return prefix + relativePath;
+        }
 		return prefix + "/" + relativePath;
 	}
 
-	public String createUrl(Project project, AEntity entity) {
+    /**
+     *
+     * @param project
+     * @param entity
+     * @return
+     */
+        public String createUrl(Project project, AEntity entity) {
 		String hashtag = "project=" + project.getId();
-		if (entity != null) hashtag += "|entity=" + entity.getId();
+		if (entity != null) {
+            hashtag += "|entity=" + entity.getId();
+        }
 		return createUrl("#" + Str.encodeUrlParameter(hashtag));
 	}
 
@@ -221,35 +301,54 @@ public class ScrumWebApplication extends GScrumWebApplication {
 		getTransactionService().commit();
 	}
 
-	@Override
+    /**
+     *
+     * @param tm
+     */
+    @Override
 	protected void scheduleTasks(TaskManager tm) {
 		tm.scheduleWithFixedDelay(autowire(new BackupApplicationDataDirTask()), Tm.HOUR * 24 + (Tm.MINUTE));
 		tm.scheduleWithFixedDelay(autowire(new DestroyTimeoutedSessionsTask()), Tm.MINUTE);
 		tm.scheduleWithFixedDelay(autowire(new HomepageUpdaterTask()), Tm.HOUR);
-		tm.scheduleWithFixedDelay(autowire(getSubscriptionService().new Task()), Tm.MINUTE);
-
-		if (getConfig().isDisableUsersWithUnverifiedEmails())
-			tm.scheduleWithFixedDelay(autowire(new DisableUsersWithUnverifiedEmailsTask()), Tm.SECOND * 10, Tm.HOUR);
-		if (getConfig().isDisableInactiveUsers())
-			tm.scheduleWithFixedDelay(autowire(new DisableInactiveUsersTask()), Tm.SECOND * 20, Tm.HOUR);
-		if (getConfig().isDeleteOldProjects())
-			tm.scheduleWithFixedDelay(autowire(new DeleteOldProjectsTask()), Tm.SECOND * 30, Tm.HOUR * 25);
-		if (getConfig().isDeleteDisabledUsers())
-			tm.scheduleWithFixedDelay(autowire(new DeleteDisabledUsersTask()), Tm.MINUTE * 3, Tm.HOUR * 26);
+                tm.scheduleWithFixedDelay(autowire(getSubscriptionService().new Task()), Tm.MINUTE);
+                
+                if (getConfig().isDisableUsersWithUnverifiedEmails()) {
+                    tm.scheduleWithFixedDelay(autowire(new DisableUsersWithUnverifiedEmailsTask()), Tm.SECOND * 10, Tm.HOUR);
+        }
+                if (getConfig().isDisableInactiveUsers()) {
+                    tm.scheduleWithFixedDelay(autowire(new DisableInactiveUsersTask()), Tm.SECOND * 20, Tm.HOUR);
+                }
+                if (getConfig().isDeleteOldProjects()) {
+                    tm.scheduleWithFixedDelay(autowire(new DeleteOldProjectsTask()), Tm.SECOND * 30, Tm.HOUR * 25);
+        }
+		if (getConfig().isDeleteDisabledUsers()) {
+            tm.scheduleWithFixedDelay(autowire(new DeleteDisabledUsersTask()), Tm.MINUTE * 3, Tm.HOUR * 26);
+        }
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getApplicationDataDir() {
 		return getConfig().getDataPath();
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void onShutdownWebApplication() {
 		getSubscriptionService().flush();
 		getTransactionService().commit(); 
 	}
 
-	public void shutdown(final long delayInMillis) {
+    /**
+     *
+     * @param delayInMillis
+     */
+    public void shutdown(final long delayInMillis) {
 		updateSystemMessage(new SystemMessage("Service is going down for maintenance.", delayInMillis));
 		if (delayInMillis == 0) {
 			shutdown();
@@ -266,7 +365,10 @@ public class ScrumWebApplication extends GScrumWebApplication {
 		log.info("Shutdown scheduled in", new TimePeriod(delayInMillis), "ms.");
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	public void backupApplicationDataDir() {
 		updateSystemMessage(new SystemMessage(
 				"Data backup in progress. All your changes are delayed until backup finishes."));
@@ -286,76 +388,137 @@ public class ScrumWebApplication extends GScrumWebApplication {
 
 	private UserDao userDao;
 
-	public UserDao getUserDao() {
-		if (userDao == null) {
-			userDao = new UserDao();
+    /**
+     *
+     * @return
+     */
+    public UserDao getUserDao() {
+        if (userDao == null) {
+            userDao = new UserDao();
 			autowire(userDao);
 		}
 		return userDao;
 	}
 
-	public boolean isAdminPasswordDefault() {
+    /**
+     *
+     * @return
+     */
+    public boolean isAdminPasswordDefault() {
 		User admin = userDao.getUserByName("admin");
-		if (admin == null) return false;
+		if (admin == null) {
+            return false;
+        }
 		return admin.matchesPassword(getSystemConfig().getDefaultUserPassword());
 	}
 
-	public synchronized void postProjectEvent(Project project, String message, AEntity subject) {
+    /**
+     *
+     * @param project
+     * @param message
+     * @param subject
+     */
+    public synchronized void postProjectEvent(Project project, String message, AEntity subject) {
 		ProjectEvent event = getProjectEventDao().postEvent(project, message, subject);
 		sendToConversationsByProject(project, event);
 		sendToConversationsByProject(project, event.postChatMessage());
 		UtlExtend.sleep(100);
 	}
 
-	public void sendToConversationsByProject(GwtConversation conversation, AEntity entity) {
+    /**
+     *
+     * @param conversation
+     * @param entity
+     */
+    public void sendToConversationsByProject(GwtConversation conversation, AEntity entity) {
 		sendToConversationsByProject(conversation.getProject(), entity);
 	}
 
-	public void sendToOtherConversationsByProject(GwtConversation conversation, AEntity entity) {
+    /**
+     *
+     * @param conversation
+     * @param entity
+     */
+    public void sendToOtherConversationsByProject(GwtConversation conversation, AEntity entity) {
 		for (AGwtConversation c : getConversationsByProject(conversation.getProject(), conversation)) {
 			c.sendToClient(entity);
 		}
 	}
 
-	public void sendToConversationsByProject(Project project, AEntity entity) {
+    /**
+     *
+     * @param project
+     * @param entity
+     */
+    public void sendToConversationsByProject(Project project, AEntity entity) {
 		for (AGwtConversation c : getConversationsByProject(project, null)) {
 			c.sendToClient(entity);
 		}
 	}
 
-	public void sendToClients(AEntity entity) {
+    /**
+     *
+     * @param entity
+     */
+    public void sendToClients(AEntity entity) {
 		for (AGwtConversation c : getGwtConversations()) {
 			c.sendToClient(entity);
 		}
 	}
 
-	public Set<GwtConversation> getConversationsByProject(Project project, GwtConversation exception) {
+    /**
+     *
+     * @param project
+     * @param exception
+     * @return
+     */
+    public Set<GwtConversation> getConversationsByProject(Project project, GwtConversation exception) {
 		Set<GwtConversation> ret = new HashSet<GwtConversation>();
-		for (Object element : getGwtConversations()) {
-			if (element == exception) continue;
+                for (Object element : getGwtConversations()) {
+			if (element == exception) {
+                continue;
+            }
 			GwtConversation conversation = (GwtConversation) element;
-			if (project != null && project.equals(conversation.getProject())) ret.add(conversation);
+			if (project != null && project.equals(conversation.getProject())) {
+                ret.add(conversation);
+            }
 		}
 		return ret;
 	}
 
-	public Set<User> getConversationUsersByProject(Project project) {
+    /**
+     *
+     * @param project
+     * @return
+     */
+    public Set<User> getConversationUsersByProject(Project project) {
 		Set<User> ret = new HashSet<User>();
 		for (GwtConversation conversation : getConversationsByProject(project, null)) {
 			User user = conversation.getSession().getUser();
-			if (user != null) ret.add(user);
+			if (user != null) {
+                ret.add(user);
+            }
 		}
 		return ret;
 	}
 
-	@Override
+    /**
+     *
+     * @param httpRequest
+     * @return
+     */
+    @Override
 	protected AWebSession createWebSession(HttpServletRequest httpRequest) {
 		WebSession session = new WebSession(context, httpRequest);
 		autowire(session);
 		return session;
 	}
 
-	public void updateSystemMessage(SystemMessage systemMessage) {
+    /**
+     *
+     * @param systemMessage
+     */
+    public void updateSystemMessage(SystemMessage systemMessage) {
 		this.systemMessage = systemMessage;
 		for (AGwtConversation conversation : getGwtConversations()) {
 			log.debug("Sending SystemMessage to:", conversation);
@@ -363,21 +526,41 @@ public class ScrumWebApplication extends GScrumWebApplication {
 		}
 	}
 
-	public SystemMessage getSystemMessage() {
+    /**
+     *
+     * @return
+     */
+    public SystemMessage getSystemMessage() {
 		return systemMessage;
 	}
 
-	public static ScrumWebApplication get() {
+    /**
+     *
+     * @return
+     */
+    public static ScrumWebApplication get() {
 		return (ScrumWebApplication) AWebApplication.get();
 	}
 
-	public static synchronized ScrumWebApplication get(ServletConfig servletConfig) {
-		if (AWebApplication.isStarted()) return get();
+    /**
+     *
+     * @param servletConfig
+     * @return
+     */
+    public static synchronized ScrumWebApplication get(ServletConfig servletConfig) {
+		if (AWebApplication.isStarted()) {
+            return get();
+        }
 		return (ScrumWebApplication) WebApplicationStarter.startWebApplication(ScrumWebApplication.class.getName(),
 			Servlet.getContextPath(servletConfig));
 	}
 
-	public void triggerRegisterNotification(User user, String host) {
+    /**
+     *
+     * @param user
+     * @param host
+     */
+    public void triggerRegisterNotification(User user, String host) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Kunagi URL: ").append(createUrl(null)).append("\n");
 		sb.append("Name: ").append(user.getName()).append("\n");
@@ -387,23 +570,35 @@ public class ScrumWebApplication extends GScrumWebApplication {
 		sb.append("Host: ").append(host).append("\n");
 		String subject = user.getLabel() + " registered on " + getBaseUrl();
 		try {
-			getEmailSender().sendEmail((String) null, null, subject, sb.toString());
-		} catch (Exception ex) {
+                    getEmailSender().sendEmail((String) null, null, subject, sb.toString());
+                } catch (Exception ex) {
 			log.error("Sending notification email failed:", subject, ex);
 		}
 	}
 
 	private EmailSender emailSender;
 
-	public EmailSender getEmailSender() {
-		if (emailSender == null) emailSender = autowire(new EmailSender());
+    /**
+     *
+     * @return
+     */
+    public EmailSender getEmailSender() {
+        if (emailSender == null) {
+            emailSender = autowire(new EmailSender());
+        }
 		return emailSender;
 	}
 
 	private SubscriptionService subscriptionService;
 
-	public SubscriptionService getSubscriptionService() {
-		if (subscriptionService == null) subscriptionService = autowire(new SubscriptionService());
+    /**
+     *
+     * @return
+     */
+    public SubscriptionService getSubscriptionService() {
+		if (subscriptionService == null) {
+            subscriptionService = autowire(new SubscriptionService());
+        }
 		return subscriptionService;
 	}
 

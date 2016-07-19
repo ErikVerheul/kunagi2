@@ -14,6 +14,7 @@
  */
 package scrum.client.project;
 
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.ButtonWidget;
 import scrum.client.ScrumGwt;
 import scrum.client.common.AScrumWidget;
@@ -21,11 +22,16 @@ import scrum.client.common.BlockListWidget;
 import scrum.client.common.UserGuideWidget;
 import scrum.client.workspace.PagePanel;
 
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class QualityBacklogWidget extends AScrumWidget {
 
-	public BlockListWidget<Quality> list;
+    /**
+     *
+     */
+    public BlockListWidget<Quality> list;
 
 	@Override
 	protected Widget onInitialization() {
@@ -47,8 +53,15 @@ public class QualityBacklogWidget extends AScrumWidget {
 		super.onUpdate();
 	}
 
-	public boolean select(Quality quality) {
-		if (!list.contains(quality)) update();
+    /**
+     *
+     * @param quality
+     * @return
+     */
+    public boolean select(Quality quality) {
+		if (!list.contains(quality)) {
+                    update();
+        }
 		return list.showObject(quality);
 	}
 }

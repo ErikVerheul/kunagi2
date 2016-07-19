@@ -20,6 +20,10 @@ import scrum.client.common.TooltipBuilder;
 import scrum.client.files.Uploader.UploadedFileHandler;
 import scrum.client.workspace.ProjectWorkspaceWidgets;
 
+/**
+ *
+ * @author erik
+ */
 public class UploadFileAction extends AScrumAction {
 
 	@Override
@@ -27,7 +31,11 @@ public class UploadFileAction extends AScrumAction {
 		return "Upload file";
 	}
 
-	@Override
+    /**
+     *
+     * @param tb
+     */
+    @Override
 	protected void updateTooltip(TooltipBuilder tb) {
 		tb.setText("Upload a local file to the repository.");
 	}

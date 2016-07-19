@@ -14,6 +14,8 @@
  */
 package scrum.client.admin;
 
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.AFieldValueWidget;
 import ilarkesto.gwt.client.Gwt;
 import ilarkesto.gwt.client.TableBuilder;
@@ -24,9 +26,6 @@ import scrum.client.common.AScrumWidget;
 import scrum.client.common.UserGuideWidget;
 import scrum.client.project.Project;
 import scrum.client.workspace.PagePanel;
-
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.Widget;
 
 public class PunishmentsWidget extends AScrumWidget {
 

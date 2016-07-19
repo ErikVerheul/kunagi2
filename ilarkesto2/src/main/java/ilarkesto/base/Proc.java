@@ -14,10 +14,10 @@
  */
 package ilarkesto.base;
 
-import ilarkesto.logging.Log;
 import static ilarkesto.core.time.Tm.getCurrentTimeMillis;
 import static ilarkesto.io.IO.UTF_8;
 import static ilarkesto.io.IO.closeQuiet;
+import ilarkesto.logging.Log;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;

@@ -14,9 +14,19 @@
  */
 package ilarkesto.integration.links;
 
+/**
+ *
+ * @author erik
+ */
 public class YoutubeLinkConverter implements LinkConverter {
 
-	@Override
+    /**
+     *
+     * @param href
+     * @param maxWidth
+     * @return
+     */
+    @Override
 	public String convert(String href, int maxWidth) {
 		if (!isConvertable(href)) {
                         return href;

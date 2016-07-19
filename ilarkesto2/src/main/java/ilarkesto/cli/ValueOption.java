@@ -15,17 +15,31 @@
 // Copyright (c) 2005 Witoslaw Koczewski, http://www.koczewski.de
 package ilarkesto.cli;
 
+/**
+ *
+ * @author erik
+ */
 public class ValueOption extends AOption {
 
 	private String	value;
 	private String	valueLabel;
 
-	public ValueOption(String name, String valueLabel, String usageText) {
+    /**
+     *
+     * @param name
+     * @param valueLabel
+     * @param usageText
+     */
+    public ValueOption(String name, String valueLabel, String usageText) {
 		super(name, usageText);
 		this.valueLabel = valueLabel;
 	}
 
-        @Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getUsageSyntax() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("-");
@@ -34,24 +48,44 @@ public class ValueOption extends AOption {
 		return sb.toString();
 	}
 
-	public boolean isSet() {
+    /**
+     *
+     * @return
+     */
+    public boolean isSet() {
 		return value != null;
 	}
 
-	public String getValue() {
+    /**
+     *
+     * @return
+     */
+    public String getValue() {
 		return value;
 	}
 
-        @Override
+    /**
+     *
+     * @param value
+     */
+    @Override
 	public void setValue(String value) {
 		this.value = value;
 	}
 
-	public String getValueLabel() {
+    /**
+     *
+     * @return
+     */
+    public String getValueLabel() {
 		return valueLabel;
 	}
 
-	public void setValueLabel(String valueLabel) {
+    /**
+     *
+     * @param valueLabel
+     */
+    public void setValueLabel(String valueLabel) {
 		this.valueLabel = valueLabel;
 	}
 

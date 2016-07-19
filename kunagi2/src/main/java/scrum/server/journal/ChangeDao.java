@@ -19,13 +19,11 @@ import ilarkesto.base.Cache;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.fp.Predicate;
 import ilarkesto.persistence.AEntity;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import scrum.server.admin.User;
 
 public class ChangeDao extends GChangeDao {

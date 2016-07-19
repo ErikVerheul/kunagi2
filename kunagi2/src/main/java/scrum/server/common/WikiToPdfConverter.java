@@ -1,17 +1,4 @@
-/*
- * Copyright 2011 Witoslaw Koczewsi <wi@koczewski.de>, Artjom Kochtchi
- * 
- * This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero
- * General Public License as published by the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
- * implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public
- * License for more details.
- * 
- * You should have received a copy of the GNU General Public License along with this program. If not, see
- * <http://www.gnu.org/licenses/>.
- */
+
 package scrum.server.common;
 
 import com.itextpdf.text.BaseColor;
@@ -23,9 +10,6 @@ import ilarkesto.pdf.APdfContainerElement;
 import ilarkesto.pdf.ARow;
 import ilarkesto.pdf.ATable;
 import ilarkesto.pdf.FontStyle;
-
-import java.awt.Color;
-
 import scrum.client.wiki.AWikiElement;
 import scrum.client.wiki.Code;
 import scrum.client.wiki.EntityReference;
@@ -45,6 +29,10 @@ import scrum.client.wiki.Toc;
 import scrum.client.wiki.WikiModel;
 import scrum.client.wiki.WikiParser;
 
+/**
+ *
+ * @author erik
+ */
 public class WikiToPdfConverter extends APdfCreator {
 
 	private static final Log log = Log.get(WikiToPdfConverter.class);
@@ -54,16 +42,26 @@ public class WikiToPdfConverter extends APdfCreator {
 
 	private boolean firstParagraph = true;
 
-	public WikiToPdfConverter(WikiModel model, PdfContext pdfContext) {
+    /**
+     *
+     * @param model
+     * @param pdfContext
+     */
+    public WikiToPdfConverter(WikiModel model, PdfContext pdfContext) {
 		super(pdfContext.getProject());
 		this.model = model;
 		this.pdfContext = pdfContext;
 	}
 
-	@Override
+    /**
+     *
+     * @param parent
+     */
+    @Override
 	protected void build(APdfContainerElement parent) {
-		for (AWikiElement element : model.getElements())
-			processElement(element, parent);
+		for (AWikiElement element : model.getElements()) {
+                    processElement(element, parent);
+        }
 	}
 
 	private void processElement(AWikiElement element, APdfContainerElement parent) {
@@ -199,7 +197,9 @@ public class WikiToPdfConverter extends APdfCreator {
 			log.warn("Image processing failed:", image, ex);
 			return;
 		}
-		if (pdfImage == null) return;
+		if (pdfImage == null) {
+                    return;
+        }
 
 		if (image.isThumb()) {
 			if (image.isThumbAlignmentLeft()) {
@@ -226,8 +226,12 @@ public class WikiToPdfConverter extends APdfCreator {
 
 	private void processHighlight(Highlight highlight, AParagraph parent, FontStyle fontStyle) {
 		FontStyle newFontStyle = new FontStyle(fontStyle);
-		if (highlight.isEm()) newFontStyle.setItalic(true);
-		if (highlight.isStrong()) newFontStyle.setBold(true);
+                if (highlight.isEm()) {
+                    newFontStyle.setItalic(true);
+        }
+                if (highlight.isStrong()) {
+                    newFontStyle.setBold(true);
+        }
 		for (AWikiElement element : highlight.getElements()) {
 			processParagraphElement(element, parent, newFontStyle);
 		}
@@ -237,15 +241,27 @@ public class WikiToPdfConverter extends APdfCreator {
 		parent.text(text.getText(), fontStyle);
 	}
 
-	public static void buildPdf(APdfContainerElement parent, String code, PdfContext pdfContext) {
-		if (code == null) return;
+    /**
+     *
+     * @param parent
+     * @param code
+     * @param pdfContext
+     */
+        public static void buildPdf(APdfContainerElement parent, String code, PdfContext pdfContext) {
+		if (code == null) {
+            return;
+        }
 		WikiParser parser = new WikiParser(code);
 		WikiModel model = parser.parse(false);
 		WikiToPdfConverter converter = new WikiToPdfConverter(model, pdfContext);
 		converter.build(parent);
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected String getFilename() {
 		return "wiki";
 	}

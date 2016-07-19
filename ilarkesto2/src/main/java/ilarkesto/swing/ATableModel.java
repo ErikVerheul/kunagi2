@@ -15,7 +15,6 @@
 package ilarkesto.swing;
 
 import edu.umd.cs.findbugs.annotations.SuppressWarnings;
-import java.util.Collections;
 import static java.util.Collections.emptyList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;

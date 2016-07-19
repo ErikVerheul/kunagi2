@@ -18,6 +18,10 @@ import ilarkesto.core.scope.Scope;
 import scrum.client.common.TooltipBuilder;
 import scrum.client.workspace.UsersWorkspaceWidgets;
 
+/**
+ *
+ * @author erik
+ */
 public class CreateProjectAction extends GCreateProjectAction {
 
 	@Override
@@ -25,11 +29,16 @@ public class CreateProjectAction extends GCreateProjectAction {
 		return "Create Project";
 	}
 
-	@Override
+    /**
+     *
+     * @param tb
+     */
+    @Override
 	protected void updateTooltip(TooltipBuilder tb) {
 		tb.setText("Create a new Project.");
-		if (!getCurrentUser().isAdmin() && getDao().getSystemConfig().isProjectCreationDisabled())
-			tb.addRemark("Creating new projects is disabled.");
+		if (!getCurrentUser().isAdmin() && getDao().getSystemConfig().isProjectCreationDisabled()) {
+                    tb.addRemark("Creating new projects is disabled.");
+        }
 	}
 
 	@Override
@@ -39,8 +48,7 @@ public class CreateProjectAction extends GCreateProjectAction {
 
 	@Override
 	public boolean isPermitted() {
-		if (!getCurrentUser().isAdmin() && getDao().getSystemConfig().isProjectCreationDisabled()) return false;
-		return true;
+		return !(!getCurrentUser().isAdmin() && getDao().getSystemConfig().isProjectCreationDisabled());
 	}
 
 	@Override

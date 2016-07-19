@@ -32,9 +32,17 @@ import ilarkesto.mda.legacy.model.DatobModel;
 import ilarkesto.mda.legacy.model.EntityModel;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class ScrumModelApplication extends AGeneratorApplication {
 
-	public static void main(String[] args) {
+    /**
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
 		ScrumModeller.main(args);
 		// ApplicationStarter.startApplication(ScrumModelApplication.class).generateClasses().shutdown();
 	}
@@ -45,7 +53,11 @@ public class ScrumModelApplication extends AGeneratorApplication {
 
 	private ApplicationModel applicationModel;
 
-	public ApplicationModel getApplicationModel() {
+    /**
+     *
+     * @return
+     */
+    public ApplicationModel getApplicationModel() {
 		if (applicationModel == null) {
 			applicationModel = createWebApplicationModel("Scrum");
 			applicationModel.addDaosAsComposites(getFinalEntityModels(true));
@@ -71,7 +83,11 @@ public class ScrumModelApplication extends AGeneratorApplication {
 
 	private EntityModel systemConfigModel;
 
-	public EntityModel getSystemConfigModel() {
+    /**
+     *
+     * @return
+     */
+    public EntityModel getSystemConfigModel() {
 		if (systemConfigModel == null) {
 			systemConfigModel = createEntityModel("SystemConfig", "admin");
 			systemConfigModel.setGwtSupport(true);
@@ -140,7 +156,11 @@ public class ScrumModelApplication extends AGeneratorApplication {
 
 	private EntityModel simpleEventModel;
 
-	public EntityModel getSimpleEventModel() {
+    /**
+     *
+     * @return
+     */
+    public EntityModel getSimpleEventModel() {
 		if (simpleEventModel == null) {
 			simpleEventModel = createEntityModel("SimpleEvent", "calendar");
 			simpleEventModel.setGwtSupport(true);
@@ -162,7 +182,11 @@ public class ScrumModelApplication extends AGeneratorApplication {
 
 	private EntityModel projectModel;
 
-	public EntityModel getProjectModel() {
+    /**
+     *
+     * @return
+     */
+    public EntityModel getProjectModel() {
 		if (projectModel == null) {
 			projectModel = createEntityModel("Project", "project");
 			projectModel.setDeleteProtected(true);
@@ -275,7 +299,11 @@ public class ScrumModelApplication extends AGeneratorApplication {
 
 	private EntityModel fileModel;
 
-	public EntityModel getFileModel() {
+    /**
+     *
+     * @return
+     */
+    public EntityModel getFileModel() {
 		if (fileModel == null) {
 			fileModel = createEntityModel("File", "files");
 			fileModel.setGwtSupport(true);
@@ -304,7 +332,11 @@ public class ScrumModelApplication extends AGeneratorApplication {
 
 	private EntityModel releaseModel;
 
-	public EntityModel getReleaseModel() {
+    /**
+     *
+     * @return
+     */
+    public EntityModel getReleaseModel() {
 		if (releaseModel == null) {
 			releaseModel = createEntityModel("Release", "release");
 			releaseModel.setGwtSupport(true);
@@ -355,7 +387,11 @@ public class ScrumModelApplication extends AGeneratorApplication {
 
 	private EntityModel projectSprintSnapshotModel;
 
-	public EntityModel getProjectSprintSnapshotModel() {
+    /**
+     *
+     * @return
+     */
+    public EntityModel getProjectSprintSnapshotModel() {
 		if (projectSprintSnapshotModel == null) {
 			projectSprintSnapshotModel = createEntityModel("ProjectSprintSnapshot", "project");
 			projectSprintSnapshotModel.addReference("sprint", getSprintModel()).setMaster(true).setUnique(true);
@@ -367,7 +403,11 @@ public class ScrumModelApplication extends AGeneratorApplication {
 
 	private EntityModel requirementModel;
 
-	public EntityModel getRequirementModel() {
+    /**
+     *
+     * @return
+     */
+    public EntityModel getRequirementModel() {
 		if (requirementModel == null) {
 			requirementModel = createEntityModel("Requirement", "project");
 			requirementModel.setGwtSupport(true);
@@ -434,7 +474,11 @@ public class ScrumModelApplication extends AGeneratorApplication {
 
 	private EntityModel requirementEstimationVoteModel;
 
-	public EntityModel getRequirementEstimationVoteModel() {
+    /**
+     *
+     * @return
+     */
+    public EntityModel getRequirementEstimationVoteModel() {
 		if (requirementEstimationVoteModel == null) {
 			requirementEstimationVoteModel = createEntityModel("RequirementEstimationVote", "estimation");
 			requirementEstimationVoteModel.setGwtSupport(true);
@@ -447,7 +491,11 @@ public class ScrumModelApplication extends AGeneratorApplication {
 
 	private EntityModel qualityModel;
 
-	public EntityModel getQualityModel() {
+    /**
+     *
+     * @return
+     */
+    public EntityModel getQualityModel() {
 		if (qualityModel == null) {
 			qualityModel = createEntityModel("Quality", "project");
 			qualityModel.setGwtSupport(true);
@@ -480,7 +528,11 @@ public class ScrumModelApplication extends AGeneratorApplication {
 
 	private EntityModel sprintModel;
 
-	public EntityModel getSprintModel() {
+    /**
+     *
+     * @return
+     */
+    public EntityModel getSprintModel() {
 		if (sprintModel == null) {
 			sprintModel = createEntityModel("Sprint", "sprint");
 			sprintModel.setGwtSupport(true);
@@ -551,7 +603,11 @@ public class ScrumModelApplication extends AGeneratorApplication {
 
 	private EntityModel sprintReportModel;
 
-	public EntityModel getSprintReportModel() {
+    /**
+     *
+     * @return
+     */
+    public EntityModel getSprintReportModel() {
 		if (sprintReportModel == null) {
 			sprintReportModel = createEntityModel("SprintReport", "sprint");
 			sprintReportModel.setGwtSupport(true);
@@ -568,7 +624,11 @@ public class ScrumModelApplication extends AGeneratorApplication {
 
 	private EntityModel sprintDaySnapshotModel;
 
-	public EntityModel getSprintDaySnapshotModel() {
+    /**
+     *
+     * @return
+     */
+    public EntityModel getSprintDaySnapshotModel() {
 		if (sprintDaySnapshotModel == null) {
 			sprintDaySnapshotModel = createEntityModel("SprintDaySnapshot", "sprint");
 			sprintDaySnapshotModel.addReference("sprint", getSprintModel()).setMaster(true);
@@ -582,7 +642,11 @@ public class ScrumModelApplication extends AGeneratorApplication {
 
 	private EntityModel taskModel;
 
-	public EntityModel getTaskModel() {
+    /**
+     *
+     * @return
+     */
+    public EntityModel getTaskModel() {
 		if (taskModel == null) {
 			taskModel = createEntityModel("Task", "sprint");
 			taskModel.setGwtSupport(true);
@@ -627,7 +691,11 @@ public class ScrumModelApplication extends AGeneratorApplication {
 
 	private EntityModel impedimentModel;
 
-	public EntityModel getImpedimentModel() {
+    /**
+     *
+     * @return
+     */
+    public EntityModel getImpedimentModel() {
 		if (impedimentModel == null) {
 			impedimentModel = createEntityModel("Impediment", "impediments");
 			impedimentModel.setGwtSupport(true);
@@ -661,7 +729,11 @@ public class ScrumModelApplication extends AGeneratorApplication {
 
 	private EntityModel riskModel;
 
-	public EntityModel getRiskModel() {
+    /**
+     *
+     * @return
+     */
+    public EntityModel getRiskModel() {
 		if (riskModel == null) {
 			riskModel = createEntityModel("Risk", "risks");
 			riskModel.setGwtSupport(true);
@@ -714,7 +786,11 @@ public class ScrumModelApplication extends AGeneratorApplication {
 
 	private EntityModel userModel;
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public EntityModel getUserModel() {
 		if (userModel == null) {
 			userModel = createEntityModel("User", "admin");
@@ -763,7 +839,11 @@ public class ScrumModelApplication extends AGeneratorApplication {
 
 	private EntityModel projectUserConfigModel;
 
-	public EntityModel getProjectUserConfigModel() {
+    /**
+     *
+     * @return
+     */
+    public EntityModel getProjectUserConfigModel() {
 		if (projectUserConfigModel == null) {
 			projectUserConfigModel = createEntityModel("ProjectUserConfig", "admin");
 			projectUserConfigModel.setGwtSupport(true);
@@ -792,7 +872,11 @@ public class ScrumModelApplication extends AGeneratorApplication {
 
 	private EntityModel issueModel;
 
-	public EntityModel getIssueModel() {
+    /**
+     *
+     * @return
+     */
+    public EntityModel getIssueModel() {
 		if (issueModel == null) {
 			issueModel = createEntityModel("Issue", "issues");
 			issueModel.setGwtSupport(true);
@@ -865,7 +949,11 @@ public class ScrumModelApplication extends AGeneratorApplication {
 
 	private EntityModel chatMessageModel;
 
-	public EntityModel getChatMessageModel() {
+    /**
+     *
+     * @return
+     */
+    public EntityModel getChatMessageModel() {
 		if (chatMessageModel == null) {
 			chatMessageModel = createEntityModel("ChatMessage", "collaboration");
 			chatMessageModel.setGwtSupport(true);
@@ -879,7 +967,11 @@ public class ScrumModelApplication extends AGeneratorApplication {
 
 	private EntityModel subjectModel;
 
-	public EntityModel getSubjectModel() {
+    /**
+     *
+     * @return
+     */
+    public EntityModel getSubjectModel() {
 		if (subjectModel == null) {
 			subjectModel = createEntityModel("Subject", "collaboration");
 			subjectModel.setGwtSupport(true);
@@ -897,7 +989,11 @@ public class ScrumModelApplication extends AGeneratorApplication {
 
 	private EntityModel emoticonModel;
 
-	public EntityModel getEmoticonModel() {
+    /**
+     *
+     * @return
+     */
+    public EntityModel getEmoticonModel() {
 		if (emoticonModel == null) {
 			emoticonModel = createEntityModel("Emoticon", "collaboration");
 			emoticonModel.setGwtSupport(true);
@@ -910,7 +1006,11 @@ public class ScrumModelApplication extends AGeneratorApplication {
 
 	private EntityModel changeModel;
 
-	public EntityModel getChangeModel() {
+    /**
+     *
+     * @return
+     */
+    public EntityModel getChangeModel() {
 		if (changeModel == null) {
 			changeModel = createEntityModel("Change", "journal");
 			changeModel.setGwtSupport(true);
@@ -927,7 +1027,11 @@ public class ScrumModelApplication extends AGeneratorApplication {
 
 	private EntityModel commentModel;
 
-	public EntityModel getCommentModel() {
+    /**
+     *
+     * @return
+     */
+    public EntityModel getCommentModel() {
 		if (commentModel == null) {
 			commentModel = createEntityModel("Comment", "collaboration");
 			commentModel.setGwtSupport(true);
@@ -948,7 +1052,11 @@ public class ScrumModelApplication extends AGeneratorApplication {
 
 	private EntityModel wikipageModel;
 
-	public EntityModel getWikipageModel() {
+    /**
+     *
+     * @return
+     */
+    public EntityModel getWikipageModel() {
 		if (wikipageModel == null) {
 			wikipageModel = createEntityModel("Wikipage", "collaboration");
 			wikipageModel.setGwtSupport(true);
@@ -963,7 +1071,11 @@ public class ScrumModelApplication extends AGeneratorApplication {
 
 	private EntityModel projectEventModel;
 
-	public EntityModel getProjectEventModel() {
+    /**
+     *
+     * @return
+     */
+    public EntityModel getProjectEventModel() {
 		if (projectEventModel == null) {
 			projectEventModel = createEntityModel("ProjectEvent", "journal");
 			projectEventModel.setGwtSupport(true);
@@ -980,7 +1092,11 @@ public class ScrumModelApplication extends AGeneratorApplication {
 
 	private EntityModel blogEntryModel;
 
-	public EntityModel getBlogEntryModel() {
+    /**
+     *
+     * @return
+     */
+    public EntityModel getBlogEntryModel() {
 		if (blogEntryModel == null) {
 			blogEntryModel = createEntityModel("BlogEntry", "pr");
 			blogEntryModel.setGwtSupport(true);
@@ -1006,7 +1122,11 @@ public class ScrumModelApplication extends AGeneratorApplication {
 
 	private EntityModel subscriptionModel;
 
-	public EntityModel getSubscriptionModel() {
+    /**
+     *
+     * @return
+     */
+    public EntityModel getSubscriptionModel() {
 		if (subscriptionModel == null) {
 			subscriptionModel = createEntityModel("Subscription", "pr");
 			subscriptionModel.setGwtSupport(true);
@@ -1016,12 +1136,22 @@ public class ScrumModelApplication extends AGeneratorApplication {
 		return subscriptionModel;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected String getBasePackageName() {
 		return "scrum.server";
 	}
 
-	@Override
+    /**
+     *
+     * @param name
+     * @param packageName
+     * @return
+     */
+    @Override
 	protected EntityModel createEntityModel(String name, String packageName) {
 		EntityModel model = super.createEntityModel(name, packageName);
 		model.setViewProtected(true);
@@ -1029,7 +1159,11 @@ public class ScrumModelApplication extends AGeneratorApplication {
 		return model;
 	}
 
-	@Override
+    /**
+     *
+     * @param beanModel
+     */
+    @Override
 	protected void onBeanGeneration(BeanModel beanModel) {
 		super.onBeanGeneration(beanModel);
 		if (beanModel instanceof DatobModel) {
@@ -1045,7 +1179,10 @@ public class ScrumModelApplication extends AGeneratorApplication {
 		}
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void onGeneration() {
 		super.onGeneration();
 		generateActions(getApplicationModel().getActions());

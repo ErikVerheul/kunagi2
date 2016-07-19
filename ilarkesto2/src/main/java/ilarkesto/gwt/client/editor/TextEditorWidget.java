@@ -14,7 +14,6 @@
  */
 package ilarkesto.gwt.client.editor;
 
-import com.google.gwt.event.dom.client.KeyCodes;
 import static com.google.gwt.event.dom.client.KeyCodes.KEY_ENTER;
 import static com.google.gwt.event.dom.client.KeyCodes.KEY_ESCAPE;
 import com.google.gwt.event.dom.client.KeyDownEvent;
@@ -24,10 +23,8 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
-import ilarkesto.core.base.Str;
 import static ilarkesto.core.base.Str.isBlank;
 import ilarkesto.gwt.client.AViewEditWidget;
-import ilarkesto.gwt.client.Gwt;
 import static ilarkesto.gwt.client.Gwt.getDefaultRichtextFormater;
 import ilarkesto.gwt.client.RichtextFormater;
 

@@ -14,12 +14,11 @@
  */
 package scrum.client.journal;
 
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.AWidget;
 import ilarkesto.gwt.client.TableBuilder;
 import ilarkesto.gwt.client.editor.DateAndTimeEditorWidget;
 import scrum.client.ScrumGwt;
-
-import com.google.gwt.user.client.ui.Widget;
 
 public class ProjectEventWidget extends AWidget {
 

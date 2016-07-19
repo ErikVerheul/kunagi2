@@ -14,26 +14,31 @@
  */
 package scrum.client.collaboration;
 
-import ilarkesto.gwt.client.TableBuilder;
-
-import java.util.List;
-
-import scrum.client.common.AScrumGwtEntity;
-import scrum.client.common.AScrumWidget;
-
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
+import ilarkesto.gwt.client.TableBuilder;
+import java.util.List;
+import scrum.client.common.AScrumGwtEntity;
+import scrum.client.common.AScrumWidget;
 
+/**
+ *
+ * @author erik
+ */
 public class EmoticonsWidget extends AScrumWidget {
 
 	private AScrumGwtEntity entity;
 
 	private SimplePanel wrapper;
 
-	public EmoticonsWidget(AScrumGwtEntity entity) {
+    /**
+     *
+     * @param entity
+     */
+    public EmoticonsWidget(AScrumGwtEntity entity) {
 		super();
 		this.entity = entity;
 	}
@@ -70,7 +75,9 @@ public class EmoticonsWidget extends AScrumWidget {
 	}
 
 	private String getEmotionImage(String emotion) {
-		if (emotion == null) emotion = "none";
+		if (emotion == null) {
+                    emotion = "none";
+        }
 		return "emoticons/" + emotion + ".png";
 	}
 }

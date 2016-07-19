@@ -14,10 +14,8 @@
  */
 package scrum.client.files;
 
-import scrum.client.files.GFile;
 import java.util.Comparator;
 import java.util.Map;
-
 import scrum.client.ScrumGwt;
 import scrum.client.common.LabelSupport;
 import scrum.client.common.ReferenceSupport;

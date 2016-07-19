@@ -17,37 +17,73 @@ package ilarkesto.mda.legacy.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class ActionModel extends AModel {
 
 	private List<ParameterModel> parameters = new ArrayList<>();
 	private String packageName;
 
-	public ActionModel(String name, String packageName) {
+    /**
+     *
+     * @param name
+     * @param packageName
+     */
+    public ActionModel(String name, String packageName) {
 		super(name);
 		this.packageName = packageName;
 	}
 
-	public ActionModel addParameter(String name, String type) {
+    /**
+     *
+     * @param name
+     * @param type
+     * @return
+     */
+    public ActionModel addParameter(String name, String type) {
 		ParameterModel parameter = new ParameterModel(name, type);
 		parameters.add(parameter);
 		return this;
 	}
 
-	public List<ParameterModel> getParameters() {
+    /**
+     *
+     * @return
+     */
+    public List<ParameterModel> getParameters() {
 		return parameters;
 	}
 
-	public String getPackageName() {
+    /**
+     *
+     * @return
+     */
+    public String getPackageName() {
 		return packageName;
 	}
 
 	// --- helper ---
 
+    /**
+     *
+     * @param name
+     * @param type
+     * @return
+     */
+    
 	public ActionModel addParameter(String name, Class type) {
 		return addParameter(name, type.getName());
 	}
 
-	public ActionModel addParameter(String name, BeanModel bean) {
+    /**
+     *
+     * @param name
+     * @param bean
+     * @return
+     */
+    public ActionModel addParameter(String name, BeanModel bean) {
 		return addParameter(name, bean.getBeanClass());
 	}
 }

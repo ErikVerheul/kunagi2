@@ -16,21 +16,35 @@ package ilarkesto.gwt.client.editor;
 
 import ilarkesto.gwt.client.AIntegerViewEditWidget;
 
+/**
+ *
+ * @author erik
+ */
 public class IntegerEditorWidget extends AIntegerViewEditWidget {
 
 	private AIntegerEditorModel model;
 
-	public IntegerEditorWidget(AIntegerEditorModel editor) {
+    /**
+     *
+     * @param editor
+     */
+    public IntegerEditorWidget(AIntegerEditorModel editor) {
 		super();
 		this.model = editor;
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void onIntegerViewerUpdate() {
 		setViewerValue(model.getValue());
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void onMinusClicked() {
 		Integer value = model.getValue();
 		if (value == null || value <= model.getMin()) {
@@ -39,7 +53,10 @@ public class IntegerEditorWidget extends AIntegerViewEditWidget {
 		model.decrement();
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void onPlusClicked() {
 		Integer value = model.getValue();
 		if (value != null && value >= model.getMax()) {
@@ -51,27 +68,45 @@ public class IntegerEditorWidget extends AIntegerViewEditWidget {
 		model.increment();
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void onEditorSubmit() {
 		model.changeValue(getEditorValue());
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void onEditorUpdate() {
 		setEditorValue(model.getValue());
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public boolean isEditable() {
 		return model.isEditable();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getTooltip() {
 		return model.getTooltip();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getId() {
 		return model.getId();
 	}

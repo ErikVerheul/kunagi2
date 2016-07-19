@@ -9,9 +9,18 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+/**
+ *
+ * @author erik
+ */
 public class Json {
 
-	public static String valueToString(Object value) {
+    /**
+     *
+     * @param value
+     * @return
+     */
+    public static String valueToString(Object value) {
 		if (value == null) {
                         return "null";
                 }
@@ -37,7 +46,12 @@ public class Json {
 		return value.toString();
 	}
 
-	public static String escapeString(String s) {
+    /**
+     *
+     * @param s
+     * @return
+     */
+    public static String escapeString(String s) {
 		if (s == null) {
                         return "";
                 }
@@ -50,7 +64,12 @@ public class Json {
 		return s;
 	}
 
-	public static String parseString(String s) {
+    /**
+     *
+     * @param s
+     * @return
+     */
+    public static String parseString(String s) {
 		int idx = s.indexOf("\\u");
 		while (idx >= 0) {
 			String code = s.substring(idx + 2, idx + 6);
@@ -67,14 +86,25 @@ public class Json {
 		return s;
 	}
 
-	public static Number parseNumber(String s) throws NumberFormatException {
+    /**
+     *
+     * @param s
+     * @return
+     * @throws NumberFormatException
+     */
+    public static Number parseNumber(String s) throws NumberFormatException {
 		if (s.contains(".")) {
                         return parseDouble(s);
                 }
 		return parseLong(s);
 	}
 
-	public static boolean isWhitespace(char c) {
+    /**
+     *
+     * @param c
+     * @return
+     */
+    public static boolean isWhitespace(char c) {
 		return c == ' ' || c == '\t' || c == '\n' || c == '\r';
 	}
 

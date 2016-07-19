@@ -16,7 +16,10 @@ package ilarkesto.core.diff;
 
 import static ilarkesto.core.diff.LongestCommonSubsequenceString.execute;
 
-
+/**
+ *
+ * @author erik
+ */
 public class CharDiff {
 
 	private String left;
@@ -35,14 +38,24 @@ public class CharDiff {
 
 	private boolean skipBurn;
 
-	public CharDiff(String left, String right, DiffMarker marker) {
+    /**
+     *
+     * @param left
+     * @param right
+     * @param marker
+     */
+    public CharDiff(String left, String right, DiffMarker marker) {
 		super();
 		this.left = left == null ? "" : left;
 		this.right = right == null ? "" : right;
 		this.marker = marker;
 	}
 
-	public CharDiff diff() {
+    /**
+     *
+     * @return
+     */
+    public CharDiff diff() {
 		lcs = execute(left, right);
 		updateLengths();
 

@@ -29,17 +29,34 @@ import java.util.StringTokenizer;
  */
 public final class Money implements Comparable<Money> {
 
-	public static void main(String[] args) {
+    /**
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
 		out.println(new Money(12000000000d, USD).toString(GERMANY));
 	}
 
-	public static final transient String EUR = "EUR";
-	public static final transient String USD = "USD";
+    /**
+     *
+     */
+    public static final transient String EUR = "EUR";
+
+    /**
+     *
+     */
+    public static final transient String USD = "USD";
 
 	private long cent;
 	private String currency;
 
-	public Money(long value, long cent, String currency) {
+    /**
+     *
+     * @param value
+     * @param cent
+     * @param currency
+     */
+    public Money(long value, long cent, String currency) {
 		this.cent = (value * 100) + cent;
 		this.currency = currency;
 		if (this.currency == null) {
@@ -47,7 +64,11 @@ public final class Money implements Comparable<Money> {
                 }
 	}
 
-	public Money(String s) {
+    /**
+     *
+     * @param s
+     */
+    public Money(String s) {
 		StringTokenizer tokenizer = new StringTokenizer(s, " ");
 		if (!tokenizer.hasMoreTokens()) {
                         throw new RuntimeException("Illegal money format: " + s);
@@ -63,7 +84,12 @@ public final class Money implements Comparable<Money> {
                 }
 	}
 
-	public Money(String amount, String currency) {
+    /**
+     *
+     * @param amount
+     * @param currency
+     */
+    public Money(String amount, String currency) {
 		this.cent = round(parseDouble(amount.replace(',', '.')) * 100);
 		this.currency = currency;
 		if (this.currency == null) {
@@ -71,7 +97,12 @@ public final class Money implements Comparable<Money> {
                 }
 	}
 
-	public Money(double value, String currency) {
+    /**
+     *
+     * @param value
+     * @param currency
+     */
+    public Money(double value, String currency) {
 		this.cent = round(value * 100);
 		this.currency = currency;
 		if (this.currency == null) {
@@ -79,35 +110,68 @@ public final class Money implements Comparable<Money> {
                 }
 	}
 
-	public String getCurrency() {
+    /**
+     *
+     * @return
+     */
+    public String getCurrency() {
 		return currency;
 	}
 
-	public float getAmountAsFloat() {
+    /**
+     *
+     * @return
+     */
+    public float getAmountAsFloat() {
 		return cent / 100f;
 	}
 
-	public double getAmountAsDouble() {
+    /**
+     *
+     * @return
+     */
+    public double getAmountAsDouble() {
 		return cent / 100d;
 	}
 
-	public long getAmountAsCent() {
+    /**
+     *
+     * @return
+     */
+    public long getAmountAsCent() {
 		return cent;
 	}
 
-	public boolean isPositive() {
+    /**
+     *
+     * @return
+     */
+    public boolean isPositive() {
 		return cent >= 0;
 	}
 
-	public boolean isNegative() {
+    /**
+     *
+     * @return
+     */
+    public boolean isNegative() {
 		return cent < 0;
 	}
 
-	public Money negate() {
+    /**
+     *
+     * @return
+     */
+    public Money negate() {
 		return new Money(0, cent * -1, currency);
 	}
 
-	public Money substract(Money money) {
+    /**
+     *
+     * @param money
+     * @return
+     */
+    public Money substract(Money money) {
 		if (money == null) {
                         return this;
                 }
@@ -117,7 +181,12 @@ public final class Money implements Comparable<Money> {
 		return new Money(0, cent - money.cent, currency);
 	}
 
-	public Money add(Money money) {
+    /**
+     *
+     * @param money
+     * @return
+     */
+    public Money add(Money money) {
 		if (money == null) {
                         return this;
                 }
@@ -127,23 +196,48 @@ public final class Money implements Comparable<Money> {
 		return new Money(0, cent + money.cent, currency);
 	}
 
-	public Money invert() {
+    /**
+     *
+     * @return
+     */
+    public Money invert() {
 		return new Money(0, cent * -1, currency);
 	}
 
-	public Money multiply(float factor) {
+    /**
+     *
+     * @param factor
+     * @return
+     */
+    public Money multiply(float factor) {
 		return new Money(0, round((cent * factor)), currency);
 	}
 
-	public Money divide(float divisor) {
+    /**
+     *
+     * @param divisor
+     * @return
+     */
+    public Money divide(float divisor) {
 		return new Money(0, round((cent / divisor)), currency);
 	}
 
-	public String getAmountAsString(char decimalSeparator) {
+    /**
+     *
+     * @param decimalSeparator
+     * @return
+     */
+    public String getAmountAsString(char decimalSeparator) {
 		return getAmountAsString(decimalSeparator, null);
 	}
 
-	public String getAmountAsString(char decimalSeparator, String thousandsSeparator) {
+    /**
+     *
+     * @param decimalSeparator
+     * @param thousandsSeparator
+     * @return
+     */
+    public String getAmountAsString(char decimalSeparator, String thousandsSeparator) {
 		boolean neg = false;
 		long c = cent;
 		if (c < 0) {
@@ -165,7 +259,12 @@ public final class Money implements Comparable<Money> {
 		return sb.toString();
 	}
 
-	public String toString(Locale locale) {
+    /**
+     *
+     * @param locale
+     * @return
+     */
+    public String toString(Locale locale) {
 		if (locale != null) {
 			if (locale.equals(GERMAN) || locale.equals(GERMANY)) {
                                 return getAmountAsString(',', ".") + ' ' + currency;
@@ -174,23 +273,48 @@ public final class Money implements Comparable<Money> {
 		return toString('.');
 	}
 
-	public String toString(char decimalSeparator) {
+    /**
+     *
+     * @param decimalSeparator
+     * @return
+     */
+    public String toString(char decimalSeparator) {
 		return getAmountAsString(decimalSeparator) + ' ' + currency;
 	}
 
-	public boolean isLessThen(Money m) {
+    /**
+     *
+     * @param m
+     * @return
+     */
+    public boolean isLessThen(Money m) {
 		return cent < m.cent;
 	}
 
-	public boolean isLessThenOrEqualTo(Money m) {
+    /**
+     *
+     * @param m
+     * @return
+     */
+    public boolean isLessThenOrEqualTo(Money m) {
 		return cent <= m.cent;
 	}
 
-	public boolean isGreaterThen(Money m) {
+    /**
+     *
+     * @param m
+     * @return
+     */
+    public boolean isGreaterThen(Money m) {
 		return cent > m.cent;
 	}
 
-	public boolean isGreaterThenOrEqualTo(Money m) {
+    /**
+     *
+     * @param m
+     * @return
+     */
+    public boolean isGreaterThenOrEqualTo(Money m) {
 		return cent >= m.cent;
 	}
 
@@ -231,11 +355,24 @@ public final class Money implements Comparable<Money> {
 
 	// --- ---
 
+    /**
+     *
+     * @param moneys
+     * @param currency
+     * @return
+     */
+    
 	public static Money computeAvg(Money[] moneys, String currency) {
 		return computeSum(moneys, currency).divide(moneys.length);
 	}
 
-	public static Money computeSum(Money[] moneys, String currency) {
+    /**
+     *
+     * @param moneys
+     * @param currency
+     * @return
+     */
+    public static Money computeSum(Money[] moneys, String currency) {
 		Money sum = new Money(0, currency);
 		for (Money money : moneys) {
 			sum = sum.add(money);
@@ -243,7 +380,13 @@ public final class Money implements Comparable<Money> {
 		return sum;
 	}
 
-	public static Money[] createArray(int size, Money initialValue) {
+    /**
+     *
+     * @param size
+     * @param initialValue
+     * @return
+     */
+    public static Money[] createArray(int size, Money initialValue) {
 		Money[] moneys = new Money[size];
 		for (int i = 0; i < size; i++) {
                         moneys[i] = initialValue;

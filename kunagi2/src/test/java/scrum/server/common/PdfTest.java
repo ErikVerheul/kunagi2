@@ -44,11 +44,18 @@ import scrum.server.sprint.SprintBacklogPdfCreator;
 import scrum.server.sprint.SprintReportPdfCreator;
 import scrum.server.sprint.Task;
 
+/**
+ *
+ * @author erik
+ */
 public class PdfTest extends ATest {
     
     private static final Log LOG = Log.get(PdfTest.class);
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void calendar() {
 		Project project = TestUtil.createProject(TestUtil.getDuke());
 
@@ -59,7 +66,10 @@ public class PdfTest extends ATest {
 		createPdf(new CalendarPdfCreator(project, Date.today(), Date.inDays(30)));
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void riskList() {
 		Project project = TestUtil.createProject();
 
@@ -72,7 +82,10 @@ public class PdfTest extends ATest {
 		createPdf(new RiskListPdfCreator(project));
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void impedimentList() {
 		Project project = TestUtil.createProject();
 
@@ -92,7 +105,10 @@ public class PdfTest extends ATest {
 		createPdf(new ImpedimentListPdfCreator(project));
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void sprintBacklog() {
 		Project project = TestUtil.createProject();
 
@@ -115,7 +131,10 @@ public class PdfTest extends ATest {
 		createPdf(new SprintBacklogPdfCreator(project));
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void productBacklog() {
 		Project project = TestUtil.createProject();
 
@@ -125,7 +144,10 @@ public class PdfTest extends ATest {
 		createPdf(new ProductBacklogPdfCreator(project));
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void qualityBacklog() {
 		Project project = TestUtil.createProject();
 
@@ -136,7 +158,10 @@ public class PdfTest extends ATest {
 		createPdf(new QualityBacklogPdfCreator(project));
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void bugList() {
 		Project project = TestUtil.createProject();
 
@@ -150,7 +175,10 @@ public class PdfTest extends ATest {
 		createPdf(new BugListPdfCreator(project));
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void ideaList() {
 		Project project = TestUtil.createProject();
 
@@ -161,7 +189,10 @@ public class PdfTest extends ATest {
 		createPdf(new IdeaListPdfCreator(project));
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void releasePlan() {
 		Project project = TestUtil.createProject();
 
@@ -172,7 +203,10 @@ public class PdfTest extends ATest {
 		createPdf(new ReleasePlanPdfCreator(project));
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void releaseHistory() {
 		Project project = TestUtil.createProject();
 
@@ -183,7 +217,10 @@ public class PdfTest extends ATest {
 		createPdf(new ReleaseHistoryPdfCreator(project));
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void sprintReport() {
 		Project project = TestUtil.createProject();
 		project.addProductOwners(Arrays.asList(TestUtil.createUser("Cartman")));
@@ -217,7 +254,10 @@ public class PdfTest extends ATest {
 		createPdf(new SprintReportPdfCreator(sprint));
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void wikipage() {
 		Wikipage wikipage = new Wikipage();
 		wikipage.setName("wikipage");

@@ -15,24 +15,45 @@
 // Copyright (c) 2005 Witoslaw Koczewski, http://www.koczewski.de
 package ilarkesto.cli;
 
+/**
+ *
+ * @author erik
+ */
 public class ValueParameter extends AParameter {
 
 	private String	value;
 
-	public ValueParameter(String name, String description) {
+    /**
+     *
+     * @param name
+     * @param description
+     */
+    public ValueParameter(String name, String description) {
 		super(name, description);
 	}
 
-        @Override
+    /**
+     *
+     * @param value
+     */
+    @Override
 	public void setValue(String value) {
 		this.value = value;
 	}
 
-	public String getValue() {
+    /**
+     *
+     * @return
+     */
+    public String getValue() {
 		return value;
 	}
 
-	public boolean isSet() {
+    /**
+     *
+     * @return
+     */
+    public boolean isSet() {
 		return value != null;
 	}
 

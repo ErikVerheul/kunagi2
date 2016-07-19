@@ -28,20 +28,34 @@ import scrum.server.common.APdfCreator;
 import scrum.server.project.Project;
 import scrum.server.sprint.Task;
 
+/**
+ *
+ * @author erik
+ */
 public class ImpedimentListPdfCreator extends APdfCreator {
 
-	public ImpedimentListPdfCreator(Project project) {
+    /**
+     *
+     * @param project
+     */
+    public ImpedimentListPdfCreator(Project project) {
 		super(project);
 	}
 
-	@Override
+    /**
+     *
+     * @param pdf
+     */
+    @Override
 	protected void build(APdfContainerElement pdf) {
 		pdf.paragraph().text("Impediments", headerFonts[0]);
 
 		List<Impediment> impediments = new ArrayList<Impediment>(project.getImpediments());
 		Collections.sort(impediments);
 		for (Impediment imp : impediments) {
-			if (imp.isClosed()) continue;
+			if (imp.isClosed()) {
+                            continue;
+            }
 			impediment(pdf, imp);
 		}
 	}
@@ -58,7 +72,9 @@ public class ImpedimentListPdfCreator extends APdfCreator {
 
 		richtextRow(table, "Description", imp.getDescription());
 
-		if (imp.isSolutionSet()) richtextRow(table, "Solution", imp.getSolution());
+		if (imp.isSolutionSet()) {
+                    richtextRow(table, "Solution", imp.getSolution());
+        }
 
 		Set<Task> tasks = imp.getTasks();
 		if (!tasks.isEmpty()) {
@@ -72,7 +88,11 @@ public class ImpedimentListPdfCreator extends APdfCreator {
 		table.createCellBorders(BaseColor.GRAY, 0.2f);
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected String getFilename() {
 		return "impediments";
 	}

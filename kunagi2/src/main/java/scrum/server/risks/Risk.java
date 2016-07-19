@@ -14,7 +14,6 @@
  */
 package scrum.server.risks;
 
-import scrum.server.risks.GRisk;
 import ilarkesto.core.base.Utl;
 import scrum.client.risks.RiskComputer;
 import scrum.server.admin.User;

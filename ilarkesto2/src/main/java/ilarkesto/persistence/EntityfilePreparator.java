@@ -16,10 +16,26 @@ package ilarkesto.persistence;
 
 import java.io.File;
 
+/**
+ *
+ * @author erik
+ */
 public interface EntityfilePreparator {
 
-	public void prepareEntityfile(File file, Class type, String alias);
+    /**
+     *
+     * @param file
+     * @param type
+     * @param alias
+     */
+    public void prepareEntityfile(File file, Class type, String alias);
 
-	public void prepareClusterfile(File file, Class type, String alias);
+    /**
+     *
+     * @param file
+     * @param type
+     * @param alias
+     */
+    public void prepareClusterfile(File file, Class type, String alias);
 
 }

@@ -21,6 +21,10 @@ import ilarkesto.cli.CommandService;
 import ilarkesto.logging.Log;
 import static java.lang.System.out;
 
+/**
+ *
+ * @author erik
+ */
 public class CommandApplication extends ACommandLineApplication {
 
 	private static final Log LOG = Log.get(CommandApplication.class);
@@ -29,12 +33,22 @@ public class CommandApplication extends ACommandLineApplication {
 
 	private Class<? extends ACommand> commandClass;
 
-	public void setCommandClass(Class<? extends ACommand> commandClass) {
+    /**
+     *
+     * @param commandClass
+     */
+    public void setCommandClass(Class<? extends ACommand> commandClass) {
 		this.commandClass = commandClass;
 	}
 
 	// --- ---
 
+    /**
+     *
+     * @param args
+     * @return
+     */
+    
 	@Override
 	protected int execute(String[] args) {
 		ACommand command;

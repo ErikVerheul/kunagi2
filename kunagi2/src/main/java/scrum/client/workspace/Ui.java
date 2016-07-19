@@ -14,9 +14,8 @@
  */
 package scrum.client.workspace;
 
-import ilarkesto.gwt.client.Gwt;
-
 import com.google.gwt.user.client.ui.Widget;
+import ilarkesto.gwt.client.Gwt;
 
 public class Ui extends GUi implements VisibleDataChangedHandler {
 

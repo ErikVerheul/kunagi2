@@ -15,12 +15,12 @@
 package scrum.mda;
 
 import ilarkesto.base.StrExtend;
-import ilarkesto.logging.Log;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.core.time.Date;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.core.time.Time;
 import ilarkesto.di.app.ApplicationStarter;
+import ilarkesto.logging.Log;
 import ilarkesto.mda.legacy.model.EntityModel;
 import ilarkesto.mda.legacy.model.PropertyModel;
 import ilarkesto.mda.model.CsvFileModelSource;
@@ -34,13 +34,21 @@ import ilarkesto.mda.swingeditor.Workspace;
 import java.io.File;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class ScrumModeller extends Starter {
 
 	private static final Log log = Log.get(ScrumModeller.class);
 
 	private static ScrumModelApplication scrumModelApplication;
 
-	public static void main(String[] args) {
+    /**
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
 		scrumModelApplication = ApplicationStarter.startApplication(ScrumModelApplication.class);
 
 		Scope scope = createModellerScope();
@@ -58,7 +66,9 @@ public class ScrumModeller extends Starter {
 		Node nRoot = model.getRoot();
 		Node nScrum = nRoot.getChildOrCreate(NodeTypes.GwtModule, "Scrum");
 		for (EntityModel entity : scrumModelApplication.getEntityModels(false)) {
-			if (!entity.isGwtSupport()) continue;
+			if (!entity.isGwtSupport()) {
+                            continue;
+            }
 			log.info(entity.getName());
 			String packageName = StrExtend.removePrefix(entity.getPackageName(), "scrum.server.");
 			Node nPackage = nScrum.getChildOrCreate(NodeTypes.Package, packageName);
@@ -89,7 +99,6 @@ public class ScrumModeller extends Starter {
 					nProperty = nEntity.getChildOrCreate(NodeTypes.DateAndTimeProperty, property.getName());
 				} else {
 					log.error("Unsupported type:", property.getType());
-					continue;
 				}
 			}
 		}

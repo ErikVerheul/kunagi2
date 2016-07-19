@@ -14,9 +14,16 @@
  */
 package ilarkesto.id;
 
-
+/**
+ *
+ * @author erik
+ */
 public interface Identifiable {
 
-	String getId();
+    /**
+     *
+     * @return
+     */
+    String getId();
 
 }

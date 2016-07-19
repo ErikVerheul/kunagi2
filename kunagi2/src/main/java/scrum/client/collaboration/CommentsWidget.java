@@ -33,6 +33,10 @@ import java.util.Map;
 import scrum.client.common.AScrumGwtEntity;
 import scrum.client.common.AScrumWidget;
 
+/**
+ *
+ * @author erik
+ */
 public class CommentsWidget extends AScrumWidget {
 
 	private static final int COMMENTS_PER_PAGE = 5;
@@ -47,7 +51,11 @@ public class CommentsWidget extends AScrumWidget {
 
 	private int currentPage = 1;
 
-	public CommentsWidget(AScrumGwtEntity parent) {
+    /**
+     *
+     * @param parent
+     */
+    public CommentsWidget(AScrumGwtEntity parent) {
 		this.parent = parent;
 	}
 
@@ -84,7 +92,9 @@ public class CommentsWidget extends AScrumWidget {
 
 	private void updateCommentList() {
 		for (CommentWidget widget : widgets.values()) {
-			if (widget.isEditMode()) return;
+			if (widget.isEditMode()) {
+                            return;
+            }
 		}
 		commentListPanel.clear();
 		List<Comment> comments = parent.getComments();
@@ -122,7 +132,9 @@ public class CommentsWidget extends AScrumWidget {
 				tb.add(Gwt.createDiv("CommentsWidget-pageNavigator-page",
 					new HyperlinkWidget(new ShowPageAction(String.valueOf(page), page))));
 			}
-			if (endIdx >= commentCount - 1) break;
+			if (endIdx >= commentCount - 1) {
+                            break;
+            }
 			page++;
 			endIdx += COMMENTS_PER_PAGE;
 		}
@@ -140,7 +152,9 @@ public class CommentsWidget extends AScrumWidget {
 		List<Comment> ret = new ArrayList<Comment>(COMMENTS_PER_PAGE);
 		int startIdx = (currentPage - 1) * COMMENTS_PER_PAGE;
 		int endIdx = startIdx + COMMENTS_PER_PAGE - 1;
-		if (endIdx >= comments.size()) endIdx = comments.size() - 1;
+                if (endIdx >= comments.size()) {
+                    endIdx = comments.size() - 1;
+        }
 		for (int i = startIdx; i <= endIdx; i++) {
 			ret.add(comments.get(i));
 		}
@@ -156,15 +170,21 @@ public class CommentsWidget extends AScrumWidget {
 		return widget;
 	}
 
-	private void postComment(String text) {
-		if (Str.isBlank(text)) return;
+        private void postComment(String text) {
+		if (Str.isBlank(text)) {
+            return;
+        }
 		text = text.trim();
 		Comment comment = new Comment(parent, getAuth().getUser(), text);
 		getDao().createComment(comment);
 		update();
 	}
 
-	public boolean isEditorActive() {
+    /**
+     *
+     * @return
+     */
+    public boolean isEditorActive() {
 		return editor != null;
 	}
 

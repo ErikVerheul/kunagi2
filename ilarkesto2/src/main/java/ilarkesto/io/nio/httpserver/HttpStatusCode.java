@@ -14,8 +14,31 @@
  */
 package ilarkesto.io.nio.httpserver;
 
+/**
+ *
+ * @author erik
+ */
 public enum HttpStatusCode {
-	BAD_REQUEST(400, "Bad Request"), NOT_FOUND(404, "Not Found"), INTERNAL_SERVER_ERROR(500, "Internal Server Error"), NOT_IMPLEMENTED(
+
+    /**
+     *
+     */
+    BAD_REQUEST(400, "Bad Request"), 
+
+    /**
+     *
+     */
+    NOT_FOUND(404, "Not Found"), 
+
+    /**
+     *
+     */
+    INTERNAL_SERVER_ERROR(500, "Internal Server Error"), 
+
+    /**
+     *
+     */
+    NOT_IMPLEMENTED(
 			501, "Not Implemented");
 
 	private int code;
@@ -26,11 +49,19 @@ public enum HttpStatusCode {
 		this.text = text;
 	}
 
-	public int getCode() {
+    /**
+     *
+     * @return
+     */
+    public int getCode() {
 		return code;
 	}
 
-	public String getText() {
+    /**
+     *
+     * @return
+     */
+    public String getText() {
 		return text;
 	}
 

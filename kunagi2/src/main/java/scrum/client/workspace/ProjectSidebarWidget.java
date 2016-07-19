@@ -14,15 +14,18 @@
  */
 package scrum.client.workspace;
 
+import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.Gwt;
 import scrum.client.admin.SystemMessageWidget;
 import scrum.client.collaboration.ChatWidget;
 import scrum.client.collaboration.UsersStatusWidget;
 import scrum.client.common.AScrumWidget;
 
-import com.google.gwt.user.client.ui.FlowPanel;
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class ProjectSidebarWidget extends AScrumWidget {
 
 	private ScrumNavigatorWidget navigator;
@@ -43,18 +46,36 @@ public class ProjectSidebarWidget extends AScrumWidget {
 		return sidebar;
 	}
 
-	public ChatWidget getChat() {
-		if (chat == null) chat = new ChatWidget();
+    /**
+     *
+     * @return
+     */
+    public ChatWidget getChat() {
+		if (chat == null) {
+                    chat = new ChatWidget();
+        }
 		return chat;
 	}
 
-	public UsersStatusWidget getUsersStatus() {
-		if (usersStatus == null) usersStatus = new UsersStatusWidget();
+    /**
+     *
+     * @return
+     */
+    public UsersStatusWidget getUsersStatus() {
+		if (usersStatus == null) {
+                    usersStatus = new UsersStatusWidget();
+        }
 		return usersStatus;
 	}
 
-	public ScrumNavigatorWidget getNavigator() {
-		if (navigator == null) navigator = new ScrumNavigatorWidget();
+    /**
+     *
+     * @return
+     */
+    public ScrumNavigatorWidget getNavigator() {
+        if (navigator == null) {
+            navigator = new ScrumNavigatorWidget();
+        }
 		return navigator;
 	}
 

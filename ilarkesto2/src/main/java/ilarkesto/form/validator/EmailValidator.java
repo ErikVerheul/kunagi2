@@ -14,7 +14,6 @@
  */
 package ilarkesto.form.validator;
 
-import ilarkesto.email.EmailAddress;
 import static ilarkesto.email.EmailAddress.parseList;
 import ilarkesto.form.ValidationException;
 

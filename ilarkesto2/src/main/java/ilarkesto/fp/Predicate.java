@@ -14,8 +14,18 @@
  */
 package ilarkesto.fp;
 
+/**
+ *
+ * @author erik
+ * @param <T>
+ */
 public interface Predicate<T> {
 
-	public boolean test(T e);
+    /**
+     *
+     * @param e
+     * @return
+     */
+    public boolean test(T e);
 
 }

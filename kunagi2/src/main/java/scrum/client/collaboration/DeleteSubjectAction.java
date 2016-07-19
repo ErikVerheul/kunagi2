@@ -16,9 +16,17 @@ package scrum.client.collaboration;
 
 import scrum.client.common.TooltipBuilder;
 
+/**
+ *
+ * @author erik
+ */
 public class DeleteSubjectAction extends GDeleteSubjectAction {
 
-	public DeleteSubjectAction(scrum.client.collaboration.Subject subject) {
+    /**
+     *
+     * @param subject
+     */
+    public DeleteSubjectAction(scrum.client.collaboration.Subject subject) {
 		super(subject);
 	}
 
@@ -27,10 +35,16 @@ public class DeleteSubjectAction extends GDeleteSubjectAction {
 		return "Delete";
 	}
 
-	@Override
+    /**
+     *
+     * @param tb
+     */
+    @Override
 	protected void updateTooltip(TooltipBuilder tb) {
 		tb.setText("Delete this Subject and all it's comments permanently.");
-		if (!subject.getProject().isScrumMaster(getCurrentUser())) tb.addRemark(TooltipBuilder.NOT_SCRUMMASTER);
+		if (!subject.getProject().isScrumMaster(getCurrentUser())) {
+                    tb.addRemark(TooltipBuilder.NOT_SCRUMMASTER);
+        }
 	}
 
 	@Override
@@ -40,8 +54,7 @@ public class DeleteSubjectAction extends GDeleteSubjectAction {
 
 	@Override
 	public boolean isPermitted() {
-		if (!getCurrentProject().isScrumMaster(getCurrentUser())) return false;
-		return true;
+		return getCurrentProject().isScrumMaster(getCurrentUser());
 	}
 
 	@Override

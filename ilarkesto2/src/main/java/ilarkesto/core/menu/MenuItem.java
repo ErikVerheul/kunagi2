@@ -14,14 +14,32 @@
  */
 package ilarkesto.core.menu;
 
+/**
+ *
+ * @author erik
+ */
 public interface MenuItem {
 
-	String getLabel();
+    /**
+     *
+     * @return
+     */
+    String getLabel();
 
-	boolean isSelected();
+    /**
+     *
+     * @return
+     */
+    boolean isSelected();
 
-	void select();
+    /**
+     *
+     */
+    void select();
 
-	void deselect();
+    /**
+     *
+     */
+    void deselect();
 
 }

@@ -19,21 +19,37 @@ import scrum.server.common.APdfCreator;
 import scrum.server.common.ScrumPdfContext;
 import scrum.server.common.WikiToPdfConverter;
 
+/**
+ *
+ * @author erik
+ */
 public class WikipagePdfCreator extends APdfCreator {
 
 	private Wikipage wikipage;
 
-	public WikipagePdfCreator(Wikipage wikipage) {
+    /**
+     *
+     * @param wikipage
+     */
+    public WikipagePdfCreator(Wikipage wikipage) {
 		super(wikipage.getProject());
 		this.wikipage = wikipage;
 	}
 
-	@Override
+    /**
+     *
+     * @param pdf
+     */
+    @Override
 	protected void build(APdfContainerElement pdf) {
 		WikiToPdfConverter.buildPdf(pdf, wikipage.getText(), new ScrumPdfContext(wikipage.getProject()));
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected String getFilename() {
 		return wikipage.getName();
 	}

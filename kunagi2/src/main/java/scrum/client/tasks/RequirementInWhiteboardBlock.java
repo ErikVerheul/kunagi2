@@ -14,6 +14,8 @@
  */
 package scrum.client.tasks;
 
+import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.AnchorPanel;
 import scrum.client.collaboration.EmoticonsWidget;
 import scrum.client.common.ABlockWidget;
@@ -30,9 +32,6 @@ import scrum.client.project.Requirement;
 import scrum.client.project.RequirementWidget;
 import scrum.client.sprint.CreateTaskAction;
 import scrum.client.sprint.RequirementWorkIndicatorBarWidget;
-
-import com.google.gwt.user.client.ui.Image;
-import com.google.gwt.user.client.ui.Widget;
 
 public class RequirementInWhiteboardBlock extends ABlockWidget<Requirement> {
 

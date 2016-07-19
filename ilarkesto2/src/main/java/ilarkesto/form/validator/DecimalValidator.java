@@ -26,13 +26,25 @@ public class DecimalValidator implements Validator {
     private double min;
     private double max;
 
+    /**
+     *
+     * @param min
+     * @param max
+     */
     public DecimalValidator(double min, double max) {
         this.min = min;
         this.max = max;
     }
 
     // overriding
-    @Override
+
+    /**
+     *
+     * @param text
+     * @return
+     * @throws ValidationException
+     */
+        @Override
     public String validate(String text) throws ValidationException {
         text = text.trim();
         double i;
@@ -47,6 +59,10 @@ public class DecimalValidator implements Validator {
         return text;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getMessage() {
         return "Der Wert mu\u00DF zwischen " + min + " und " + max + " liegen.";
     }

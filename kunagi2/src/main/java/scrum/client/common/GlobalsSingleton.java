@@ -12,6 +12,10 @@ public class GlobalsSingleton {
     private static GlobalsSingleton _instance = null;
     private boolean dragging = false;
 
+    /**
+     *
+     * @return
+     */
     @SuppressWarnings("DC_DOUBLECHECK")
     public static GlobalsSingleton getInstance() {
         if (_instance == null) {
@@ -24,10 +28,18 @@ public class GlobalsSingleton {
         return _instance;
     }
 
+    /**
+     *
+     * @param dragging
+     */
     public void setDragging(boolean dragging) {
         this.dragging = dragging;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isDragging() {
         return dragging == true;
     }

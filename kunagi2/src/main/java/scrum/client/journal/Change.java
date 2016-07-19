@@ -21,10 +21,8 @@ import ilarkesto.core.scope.Scope;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.gwt.client.AGwtEntity;
 import ilarkesto.gwt.client.EntityDoesNotExistException;
-
 import java.util.Comparator;
 import java.util.Map;
-
 import scrum.client.ScrumGwt;
 import scrum.client.admin.User;
 import scrum.client.core.RequestEntityServiceCall;
@@ -34,36 +32,75 @@ import scrum.client.project.Requirement;
 import scrum.client.risks.Risk;
 import scrum.client.risks.RiskComputer;
 
+/**
+ *
+ * @author erik
+ */
 public class Change extends GChange {
 
-	public static final String CREATED = "@created";
-	public static final String REQ_COMPLETED_IN_SPRINT = "@completedInSprint";
-	public static final String REQ_REJECTED_IN_SPRINT = "@rejectedInSprint";
+    /**
+     *
+     */
+    public static final String CREATED = "@created";
 
-	public Change(Map data) {
+    /**
+     *
+     */
+    public static final String REQ_COMPLETED_IN_SPRINT = "@completedInSprint";
+
+    /**
+     *
+     */
+    public static final String REQ_REJECTED_IN_SPRINT = "@rejectedInSprint";
+
+    /**
+     *
+     * @param data
+     */
+    public Change(Map data) {
 		super(data);
 	}
 
-	public Change(AGwtEntity parent, String key) {
+    /**
+     *
+     * @param parent
+     * @param key
+     */
+    public Change(AGwtEntity parent, String key) {
 		setParent(parent);
 		setKey(key);
 		setDateAndTime(DateAndTime.now());
 		setUser(Scope.get().getComponent(User.class));
 	}
 
-	public String getLabel() {
+    /**
+     *
+     * @return
+     */
+    public String getLabel() {
 		String key = getKey();
 		AGwtEntity parent = getParent();
 		if (parent instanceof Requirement) {
-			if (CREATED.equals(key) && getNewValue() != null) return "splitted story from " + getNewValue();
-			if ("@split".equals(key)) return "splitted " + getNewValue();
-			if (REQ_COMPLETED_IN_SPRINT.equals(key))
-				return "Completed in " + getEntityReferenceAndLabel(getNewValue());
-			if (REQ_REJECTED_IN_SPRINT.equals(key)) return "Rejected in " + getEntityReferenceAndLabel(getNewValue());
+			if (CREATED.equals(key) && getNewValue() != null) {
+                            return "splitted story from " + getNewValue();
+            }
+			if ("@split".equals(key)) {
+                            return "splitted " + getNewValue();
+            }
+                        if (REQ_COMPLETED_IN_SPRINT.equals(key)) {
+                            return "Completed in " + getEntityReferenceAndLabel(getNewValue());
+            }
+                        if (REQ_REJECTED_IN_SPRINT.equals(key)) {
+                            return "Rejected in " + getEntityReferenceAndLabel(getNewValue());
+            }
 		}
-		if (CREATED.equals(key)) return "created entity";
-		if (parent instanceof Issue) {
-			if (key.equals("@reply")) return "emailed a reply";
+		if (CREATED.equals(key)) {
+            return "created entity";
+                }
+                if (parent instanceof Issue) {
+			if (key.equals("@reply")) {
+                return "emailed a reply";
+            }
 		}
 
 		return getFieldChangeLabel();
@@ -73,58 +110,95 @@ public class Change extends GChange {
 		String key = getKey();
 		AGwtEntity parent = getParent();
 		String oldValue = getOldValue();
-		String newValue = getNewValue();
-
-		if (parent instanceof Issue) {
-			if (key.equals("closeDate")) return Str.isBlank(newValue) ? "reopened issue" : "closed issue";
-			if (key.equals("storyId")) return "converted issue to story " + getEntityReferenceAndLabel(newValue);
+                String newValue = getNewValue();
+                
+                if (parent instanceof Issue) {
+                    if (key.equals("closeDate")) {
+                        return Str.isBlank(newValue) ? "reopened issue" : "closed issue";
+            }
+			if (key.equals("storyId")) {
+                            return "converted issue to story " + getEntityReferenceAndLabel(newValue);
+            }
 		} else if (parent instanceof Impediment) {
-			if (key.equals("closed")) return Str.isTrue(newValue) ? "closed impediment" : "reopened impediment";
-		} else if (parent instanceof Requirement) {
-			if (key.equals("closed")) return Str.isTrue(newValue) ? "accepted story" : "reopened story";
-			if (key.equals("sprintId"))
-				return newValue == null ? "kicked story from " + getEntityReferenceAndLabel(oldValue)
-						: "pulled story to " + getEntityReferenceAndLabel(newValue);
-			if (key.equals("issueId")) return "created story from issue " + getEntityReferenceAndLabel(newValue);
+			if (key.equals("closed")) {
+                            return Str.isTrue(newValue) ? "closed impediment" : "reopened impediment";
+            }
+                } else if (parent instanceof Requirement) {
+                    if (key.equals("closed")) {
+                        return Str.isTrue(newValue) ? "accepted story" : "reopened story";
+                    }
+                    if (key.equals("sprintId")) {
+                        return newValue == null ? "kicked story from " + getEntityReferenceAndLabel(oldValue)
+                                : "pulled story to " + getEntityReferenceAndLabel(newValue);
+                    }
+                    if (key.equals("issueId")) {
+                return "created story from issue " + getEntityReferenceAndLabel(newValue);
+                    }
 		}
 
-		if (Str.isBlank(oldValue)) return "created " + getFieldLabel();
-		if (Str.isBlank(newValue)) return "deleted " + getFieldLabel();
+		if (Str.isBlank(oldValue)) {
+            return "created " + getFieldLabel();
+        }
+		if (Str.isBlank(newValue)) {
+            return "deleted " + getFieldLabel();
+        }
 		return "changed " + getFieldLabel();
 	}
 
 	private String getEntityReferenceAndLabel(String id) {
-		if (id == null) return null;
+		if (id == null) {
+            return null;
+        }
 		try {
 			return ScrumGwt.getReferenceAndLabel(getDao().getEntity(id));
 		} catch (EntityDoesNotExistException ex) {
-			new RequestEntityServiceCall(id).execute();
+                    new RequestEntityServiceCall(id).execute();
 			return id;
 		}
 	}
 
-	public String getDiff() {
-		String key = getKey();
-		AGwtEntity parent = getParent();
+        /**
+         *
+         * @return
+     */
+        public String getDiff() {
+            String key = getKey();
+            AGwtEntity parent = getParent();
 		String oldValue = getOldValue();
-		String newValue = getNewValue();
+                String newValue = getNewValue();
 
 		if (parent instanceof Issue) {
-			if (key.equals("closeDate")) return null;
-			if (key.equals("storyId")) return null;
-			if (key.equals("@reply")) return Str.toHtml(newValue);
-		} else if (parent instanceof Impediment) {
-			if (key.equals("closed")) return null;
-		} else if (parent instanceof Risk) {
-			if (key.equals("impact"))
-				return createDiff(RiskComputer.getImpactLabel(oldValue), RiskComputer.getImpactLabel(newValue));
-			if (key.equals("probability"))
-				return createDiff(RiskComputer.getProbabilityLabel(oldValue),
+			if (key.equals("closeDate")) {
+                            return null;
+                        }
+                        if (key.equals("storyId")) {
+                            return null;
+                        }
+                        if (key.equals("@reply")) {
+                            return Str.toHtml(newValue);
+                        }
+                } else if (parent instanceof Impediment) {
+                    if (key.equals("closed")) {
+                return null;
+                    }
+                } else if (parent instanceof Risk) {
+                    if (key.equals("impact")) {
+                return createDiff(RiskComputer.getImpactLabel(oldValue), RiskComputer.getImpactLabel(newValue));
+            }
+			if (key.equals("probability")) {
+                return createDiff(RiskComputer.getProbabilityLabel(oldValue),
 					RiskComputer.getProbabilityLabel(newValue));
+            }
 		} else if (parent instanceof Requirement) {
-			if (key.equals("closed")) return null;
-			if (key.equals("sprintId")) return null;
-			if (key.equals("issueId")) return null;
+			if (key.equals("closed")) {
+                return null;
+            }
+			if (key.equals("sprintId")) {
+                return null;
+            }
+			if (key.equals("issueId")) {
+                return null;
+            }
 		}
 
 		return createDiff(oldValue, newValue);
@@ -146,7 +220,10 @@ public class Change extends GChange {
 		return getUser() + " on " + getDateAndTime() + ": " + parent + " ." + getKey();
 	}
 
-	public static transient final Comparator<Change> DATE_AND_TIME_COMPARATOR = new Comparator<Change>() {
+    /**
+     *
+     */
+        public static transient final Comparator<Change> DATE_AND_TIME_COMPARATOR = new Comparator<Change>() {
 
 		@Override
 		public int compare(Change a, Change b) {
@@ -159,10 +236,18 @@ public class Change extends GChange {
 		return s;
 	}
 
-	public boolean isDiffAvailable() {
+    /**
+     *
+     * @return
+     */
+    public boolean isDiffAvailable() {
 		if (getParent() instanceof Requirement) {
-			if (isKey(REQ_REJECTED_IN_SPRINT)) return false;
-			if (isKey(REQ_COMPLETED_IN_SPRINT)) return false;
+			if (isKey(REQ_REJECTED_IN_SPRINT)) {
+                return false;
+            }
+			if (isKey(REQ_COMPLETED_IN_SPRINT)) {
+                return false;
+            }
 		}
 		return true;
 	}

@@ -14,7 +14,6 @@
  */
 package ilarkesto.form;
 
-import ilarkesto.base.DateParser;
 import static ilarkesto.base.DateParser.parseDate;
 import ilarkesto.base.UtlExtend;
 import ilarkesto.core.time.Date;

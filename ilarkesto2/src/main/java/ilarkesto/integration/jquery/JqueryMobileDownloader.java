@@ -14,8 +14,8 @@
  */
 package ilarkesto.integration.jquery;
 
-import ilarkesto.logging.Log;
 import static ilarkesto.io.IO.downloadUrlToFile;
+import ilarkesto.logging.Log;
 import java.io.File;
 
 public class JqueryMobileDownloader {

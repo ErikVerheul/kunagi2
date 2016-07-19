@@ -17,10 +17,22 @@ package ilarkesto.net;
 import java.io.IOException;
 import java.net.Socket;
 
+/**
+ *
+ * @author erik
+ */
 public interface ClientHandler {
 
-	void handleClient(Socket socket);
+    /**
+     *
+     * @param socket
+     */
+    void handleClient(Socket socket);
 
-	void onIOException(IOException ex);
+    /**
+     *
+     * @param ex
+     */
+    void onIOException(IOException ex);
 
 }

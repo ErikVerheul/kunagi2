@@ -14,19 +14,30 @@
  */
 package ilarkesto.core.menu;
 
-
+/**
+ *
+ * @author erik
+ */
 public class StaticSubmenu extends StaticMenuItem implements Submenu<StaticMenuItem> {
 
 	private StaticMenu submenu = new StaticMenu();
 
-	public StaticSubmenu(String label) {
+    /**
+     *
+     * @param label
+     */
+    public StaticSubmenu(String label) {
 		super(label);
 		setOnSelect(new OnSelect());
 		setOnDeselect(new OnDeselect());
 		submenu.getChangeIndicator().addChangeListener(new SubmenuChangeListener());
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public StaticMenu getMenu() {
 		return submenu;
 	}

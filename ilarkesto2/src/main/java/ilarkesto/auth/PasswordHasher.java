@@ -20,11 +20,22 @@ import java.security.MessageDigest;
 import static java.security.MessageDigest.getInstance;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ *
+ * @author erik
+ */
 public class PasswordHasher {
 
 	private static final String ALGORITHM = "SHA-256";
 
-	public static String hashPassword(String password, String salt, String prefix) {
+    /**
+     *
+     * @param password
+     * @param salt
+     * @param prefix
+     * @return
+     */
+    public static String hashPassword(String password, String salt, String prefix) {
                 try {
                         if (salt == null) {
                                 salt = "";
@@ -52,7 +63,13 @@ public class PasswordHasher {
                 }
 	}
 
-	public static String hashPassword(String password, String salt) {
+    /**
+     *
+     * @param password
+     * @param salt
+     * @return
+     */
+    public static String hashPassword(String password, String salt) {
 		return hashPassword(password, salt, null);
 	}
 

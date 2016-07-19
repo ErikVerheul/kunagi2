@@ -17,15 +17,28 @@ package scrum.client.wiki;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class WikiModel {
 
 	private final List<AWikiElement> elements = new ArrayList<AWikiElement>();
 
-	public void add(AWikiElement element) {
+    /**
+     *
+     * @param element
+     */
+    public void add(AWikiElement element) {
 		elements.add(element);
 	}
 
-	public String toHtml(HtmlContext context) {
+    /**
+     *
+     * @param context
+     * @return
+     */
+    public String toHtml(HtmlContext context) {
 		StringBuilder sb = new StringBuilder();
 		for (AWikiElement element : elements) {
 			sb.append(element.toHtml(context));
@@ -33,7 +46,11 @@ public class WikiModel {
 		return sb.toString();
 	}
 
-	public List<AWikiElement> getElements() {
+    /**
+     *
+     * @return
+     */
+    public List<AWikiElement> getElements() {
 		return elements;
 	}
 

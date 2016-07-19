@@ -14,7 +14,6 @@
  */
 package ilarkesto.logging;
 import edu.umd.cs.findbugs.annotations.SuppressWarnings;
-import ilarkesto.core.base.Str;
 import static ilarkesto.core.base.Str.cutLeft;
 import static ilarkesto.core.base.Str.fillUpRight;
 import static ilarkesto.core.base.Str.format;

@@ -15,7 +15,6 @@
 package ilarkesto.swing;
 
 import static java.lang.Thread.currentThread;
-import javax.swing.SwingUtilities;
 import static javax.swing.SwingUtilities.invokeLater;
 
 /**

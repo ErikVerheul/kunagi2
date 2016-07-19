@@ -16,10 +16,23 @@ package ilarkesto.core.menu;
 
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ * @param <I>
+ */
 public interface Menu<I extends MenuItem> {
 
-	List<I> getItems();
+    /**
+     *
+     * @return
+     */
+    List<I> getItems();
 
-	I getSelectedItem();
+    /**
+     *
+     * @return
+     */
+    I getSelectedItem();
 
 }

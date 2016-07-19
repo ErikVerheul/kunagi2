@@ -14,21 +14,17 @@
  */
 package scrum.client.impediments;
 
-import scrum.client.impediments.GImpediment;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.time.Date;
 import ilarkesto.gwt.client.HyperlinkWidget;
-
 import java.util.Comparator;
 import java.util.Map;
-
 import scrum.client.ScrumGwt;
 import scrum.client.collaboration.ForumSupport;
 import scrum.client.common.LabelSupport;
 import scrum.client.common.ReferenceSupport;
 import scrum.client.common.ShowEntityAction;
 import scrum.client.project.Project;
-
-import com.google.gwt.user.client.ui.Widget;
 
 public class Impediment extends GImpediment implements ReferenceSupport, LabelSupport, ForumSupport {
 

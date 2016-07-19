@@ -14,11 +14,19 @@
  */
 package ilarkesto.mda.legacy.model;
 
+/**
+ *
+ * @author erik
+ */
 public class DependencyModel extends AModel {
 
 	private String type;
 
-	public String getType() {
+    /**
+     *
+     * @return
+     */
+    public String getType() {
 		return type;
 	}
 
@@ -37,6 +45,12 @@ public class DependencyModel extends AModel {
 
 	// --- dependencies ---
 
+    /**
+     *
+     * @param type
+     * @param name
+     */
+    
 	public DependencyModel(String type, String name) {
 		super(name);
 		this.type = type;

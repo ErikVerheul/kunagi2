@@ -22,13 +22,22 @@ import java.util.Arrays;
 import static java.util.Arrays.asList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class GwtComponentReflectorGenerator extends AJavaClassGenerator implements NodeTypes {
 
 	private final Node component;
 	private final Node package_;
 	private final Node gwtModule;
 
-	public GwtComponentReflectorGenerator(String srcPath, Node component) {
+    /**
+     *
+     * @param srcPath
+     * @param component
+     */
+    public GwtComponentReflectorGenerator(String srcPath, Node component) {
 		super(srcPath, true);
 		this.component = component;
 
@@ -39,7 +48,11 @@ public class GwtComponentReflectorGenerator extends AJavaClassGenerator implemen
 
 	}
 
-	@Override
+    /**
+     *
+     * @param out
+     */
+    @Override
 	protected void printCode(JavaPrinter out) {
 		out.package_(getPackageName());
 		out.beginClass(getClassName(), null, getInterfacesNames());

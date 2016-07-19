@@ -38,6 +38,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+/**
+ *
+ * @author erik
+ */
 public class SwingDialog {
 
 	private JDialog dialog;
@@ -53,40 +57,77 @@ public class SwingDialog {
 	private Component component;
 	private String icon128;
 
-	public void setUi(SwingUi ui) {
+    /**
+     *
+     * @param ui
+     */
+    public void setUi(SwingUi ui) {
 		this.ui = ui;
 	}
 
-	public void setDescription(String description) {
+    /**
+     *
+     * @param description
+     */
+    public void setDescription(String description) {
 		this.description = description;
 	}
 
-	public void setIcon128(String icon128) {
+    /**
+     *
+     * @param icon128
+     */
+    public void setIcon128(String icon128) {
 		this.icon128 = icon128;
 	}
 
-	public void setTitle(String title) {
+    /**
+     *
+     * @param title
+     */
+    public void setTitle(String title) {
 		this.title = title;
 	}
 
-	public void setOkLabel(String okLabel) {
+    /**
+     *
+     * @param okLabel
+     */
+    public void setOkLabel(String okLabel) {
 		this.okLabel = okLabel;
 	}
 
-	public void setOkHint(String okHint) {
+    /**
+     *
+     * @param okHint
+     */
+    public void setOkHint(String okHint) {
 		this.okHint = okHint;
 	}
 
-	public void setParentComponent(Component parentComponent) {
+    /**
+     *
+     * @param parentComponent
+     */
+    public void setParentComponent(Component parentComponent) {
 		this.parentComponent = parentComponent;
 	}
 
-	public void setComponent(Component component) {
+    /**
+     *
+     * @param component
+     */
+    public void setComponent(Component component) {
 		this.component = component;
 	}
 
 	// --- ---
 
+    /**
+     *
+     * @param adapter
+     */
+    
 	public void showDialog(ADialogAdapter adapter) {
 		JButton abortButton = new JButton(ui.getLocalizer().string("abort"));
 		abortButton.setIcon(getIcon16("abort"));
@@ -129,7 +170,10 @@ public class SwingDialog {
 		dialog = showModalDialogWithoutBlocking(parentComponent, title, panel);
 	}
 
-	public void closeDialog() {
+    /**
+     *
+     */
+    public void closeDialog() {
 		dialog.dispose();
 		synchronized (dialog) {
 			dialog.notifyAll();

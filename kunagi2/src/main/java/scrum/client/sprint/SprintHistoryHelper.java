@@ -15,36 +15,68 @@
 package scrum.client.sprint;
 
 import ilarkesto.core.base.Str;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class SprintHistoryHelper {
 
-	protected static final char SEPARATOR = ';';
-	protected static final String PREFIX = "#encoded-requirements ";
-	protected static final int VERSION = 1; // reference;work;label
+    /**
+     *
+     */
+    protected static final char SEPARATOR = ';';
 
-	public static List<StoryInfo> parseRequirementsAndTasks(String s) {
+    /**
+     *
+     */
+    protected static final String PREFIX = "#encoded-requirements ";
+
+    /**
+     *
+     */
+    protected static final int VERSION = 1; // reference;work;label
+
+    /**
+     *
+     * @param s
+     * @return
+     */
+    public static List<StoryInfo> parseRequirementsAndTasks(String s) {
 		List<StoryInfo> ret = new ArrayList<SprintHistoryHelper.StoryInfo>();
 		List<String[]> records = decodeRequirementsAndTasks(s);
 		StoryInfo story = null;
 		for (String[] record : records) {
 			if (record[0].startsWith(scrum.client.project.Requirement.REFERENCE_PREFIX)) {
-				if (story != null) ret.add(story);
+				if (story != null) {
+                                    ret.add(story);
+                }
 				story = new StoryInfo(record);
 			} else if (record[0].startsWith(scrum.client.sprint.Task.REFERENCE_PREFIX)) {
-				if (story != null) story.addTask(record);
+				if (story != null) {
+                                    story.addTask(record);
+                }
 			}
 		}
-		if (story != null) ret.add(story);
+                if (story != null) {
+            ret.add(story);
+        }
 		return ret;
 	}
 
-	public static List<String> parseLines(String s) {
-		if (s == null) return Collections.emptyList();
+    /**
+     *
+     * @param s
+     * @return
+     */
+    public static List<String> parseLines(String s) {
+        if (s == null) {
+            return Collections.emptyList();
+        }
 		LinkedList<String> ll = new LinkedList<String>();
 		int idx = s.indexOf('\n');
 		while (idx >= 0) {
@@ -58,10 +90,14 @@ public class SprintHistoryHelper {
 	}
 
 	static List<String[]> decodeRequirementsAndTasks(String s) {
-		List<String> lines = parseLines(s);
-		if (lines.isEmpty()) return Collections.emptyList();
-		List<String[]> records = new ArrayList<String[]>();
-		if (!lines.get(0).startsWith(PREFIX + VERSION)) throw new RuntimeException("Illegal format: " + s);
+            List<String> lines = parseLines(s);
+            if (lines.isEmpty()) {
+            return Collections.emptyList();
+        }
+            List<String[]> records = new ArrayList<String[]>();
+            if (!lines.get(0).startsWith(PREFIX + VERSION)) {
+            throw new RuntimeException("Illegal format: " + s);
+        }
 		lines.remove(0);
 		for (String line : lines) {
 			if (line.startsWith(scrum.client.project.Requirement.REFERENCE_PREFIX)) {
@@ -69,16 +105,23 @@ public class SprintHistoryHelper {
 			} else if (line.startsWith(scrum.client.sprint.Task.REFERENCE_PREFIX)) {
 				records.add(decodeTask(line));
 			}
-		}
-		return records;
+                }
+                return records;
 	}
 
 	boolean isDecodable(String s) {
-		if (Str.isBlank(s)) return true;
+		if (Str.isBlank(s)) {
+            return true;
+        }
 		return s.startsWith(PREFIX);
 	}
 
-	public static String[] decodeRequirement(String s) {
+    /**
+     *
+     * @param s
+     * @return
+     */
+    public static String[] decodeRequirement(String s) {
 		String[] ret = new String[3];
 		int idx = s.indexOf(SEPARATOR);
 		ret[0] = s.substring(0, idx);
@@ -89,7 +132,12 @@ public class SprintHistoryHelper {
 		return ret;
 	}
 
-	public static String[] decodeTask(String s) {
+    /**
+     *
+     * @param s
+     * @return
+     */
+    public static String[] decodeTask(String s) {
 		String[] ret = new String[4];
 		int idx = s.indexOf(SEPARATOR);
 		ret[0] = s.substring(0, idx);
@@ -103,45 +151,82 @@ public class SprintHistoryHelper {
 		return ret;
 	}
 
-	public static class StoryInfo {
+    /**
+     *
+     */
+    public static class StoryInfo {
 
 		private final String reference;
 		private final float estimatedWork;
 		private final String label;
 		private List<TaskInfo> tasks = new ArrayList<TaskInfo>();
 
-		public StoryInfo(String[] record) {
+        /**
+         *
+         * @param record
+         */
+        public StoryInfo(String[] record) {
 			reference = record[0];
 			estimatedWork = Float.parseFloat(record[1].replace(',', '.'));
 			label = record[2];
 		}
 
-		public void addTask(String[] record) {
+        /**
+         *
+         * @param record
+         */
+        public void addTask(String[] record) {
 			tasks.add(new TaskInfo(record));
 		}
 
-		public String getReference() {
+        /**
+         *
+         * @return
+         */
+        public String getReference() {
 			return reference;
 		}
 
-		public float getEstimatedWork() {
+        /**
+         *
+         * @return
+         */
+        public float getEstimatedWork() {
 			return estimatedWork;
 		}
 
-		public String getEstimatedWorkAsString() {
-			if (estimatedWork <= 0.5f) return String.valueOf(estimatedWork) + " SP";
+        /**
+         *
+         * @return
+         */
+        public String getEstimatedWorkAsString() {
+			if (estimatedWork <= 0.5f) {
+                return String.valueOf(estimatedWork) + " SP";
+            }
 			return String.valueOf((int) estimatedWork) + " SP";
 		}
 
-		public String getLabel() {
+        /**
+         *
+         * @return
+         */
+        public String getLabel() {
 			return label;
 		}
 
-		public List<TaskInfo> getTasks() {
+        /**
+         *
+         * @return
+         */
+        public List<TaskInfo> getTasks() {
 			return tasks;
 		}
 
-		public int getBurnedWork() {
+        /**
+         *
+         * @return
+         */
+        public int getBurnedWork() {
 			int ret = 0;
 			for (TaskInfo tsk : tasks) {
 				ret += tsk.getBurnedWork();
@@ -149,40 +234,67 @@ public class SprintHistoryHelper {
 			return ret;
 		}
 
-		public String getBurnedWorkAsString() {
+        /**
+         *
+         * @return
+         */
+        public String getBurnedWorkAsString() {
 			int work = getBurnedWork();
 			String suffix = work == 1 ? " hr." : " hrs.";
 			return String.valueOf(work) + suffix;
 		}
 	}
 
-	public static class TaskInfo {
+    /**
+     *
+     */
+    public static class TaskInfo {
 
 		private String reference;
 		private int burnedWork;
 		private int remainingWork;
 		private String label;
 
-		public TaskInfo(String[] record) {
+        /**
+         *
+         * @param record
+         */
+        public TaskInfo(String[] record) {
 			reference = record[0];
 			burnedWork = Integer.parseInt(record[1]);
 			remainingWork = Integer.parseInt(record[2]);
 			label = record[3];
 		}
 
-		public String getReference() {
+        /**
+         *
+         * @return
+         */
+        public String getReference() {
 			return reference;
 		}
 
-		public int getBurnedWork() {
+        /**
+         *
+         * @return
+         */
+        public int getBurnedWork() {
 			return burnedWork;
 		}
 
-		public int getRemainingWork() {
+        /**
+         *
+         * @return
+         */
+        public int getRemainingWork() {
 			return remainingWork;
 		}
 
-		public String getLabel() {
+        /**
+         *
+         * @return
+         */
+        public String getLabel() {
 			return label;
 		}
 

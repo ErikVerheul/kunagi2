@@ -14,10 +14,22 @@
  */
 package ilarkesto.mda.model;
 
+/**
+ *
+ * @author erik
+ */
 public interface ModelSource {
 
-	void load(Model model);
+    /**
+     *
+     * @param model
+     */
+    void load(Model model);
 
-	void save(Model model);
+    /**
+     *
+     * @param model
+     */
+    void save(Model model);
 
 }

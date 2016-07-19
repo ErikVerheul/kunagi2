@@ -16,16 +16,25 @@ package ilarkesto.base;
 
 /**
  * A simple factory implementation, which instantiates always the same class.
+ * @param <E>
  */
 public class NewInstanceFactory<E> implements Factory<E> {
 
 	private Class<? extends E> type;
 
-	public NewInstanceFactory(Class<? extends E> type) {
+    /**
+     *
+     * @param type
+     */
+    public NewInstanceFactory(Class<? extends E> type) {
 		this.type = type;
 	}
 
-        @Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public E getBean() {
 		try {
 			return type.newInstance();

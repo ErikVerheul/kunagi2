@@ -16,11 +16,24 @@ package ilarkesto.gwt.client.editor;
 
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ * @param <T>
+ */
 public abstract class AOptionEditorModel<T> extends AEditorModel<T> {
 
-	public abstract List<T> getOptions();
+    /**
+     *
+     * @return
+     */
+    public abstract List<T> getOptions();
 
-	public boolean isMandatory() {
+    /**
+     *
+     * @return
+     */
+    public boolean isMandatory() {
 		return false;
 	}
 

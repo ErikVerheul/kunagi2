@@ -14,8 +14,16 @@
  */
 package ilarkesto.core.menu;
 
+/**
+ *
+ * @author erik
+ */
 public interface HasChangeIndicator {
 
-	ChangeIndicator getChangeIndicator();
+    /**
+     *
+     * @return
+     */
+    ChangeIndicator getChangeIndicator();
 
 }

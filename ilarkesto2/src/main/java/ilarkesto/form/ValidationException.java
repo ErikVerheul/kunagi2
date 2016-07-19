@@ -14,13 +14,26 @@
  */
 package ilarkesto.form;
 
+/**
+ *
+ * @author erik
+ */
 public class ValidationException extends Exception {
 
-	public ValidationException(String message) {
+    /**
+     *
+     * @param message
+     */
+    public ValidationException(String message) {
 		super(message);
 	}
 
-	public ValidationException(String message, Exception cause) {
+    /**
+     *
+     * @param message
+     * @param cause
+     */
+    public ValidationException(String message, Exception cause) {
 		super(message, cause);
 	}
 

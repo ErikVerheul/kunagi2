@@ -16,9 +16,9 @@ package ilarkesto.testNG.core.diff;
 
 import ilarkesto.core.diff.LineTokenizer;
 import ilarkesto.core.diff.TokenDiff;
+import static ilarkesto.core.diff.TokenDiff.combinedDiff;
 import ilarkesto.core.diff.TxtDiffMarker;
 import ilarkesto.core.diff.WordTokenizer;
-import static ilarkesto.core.diff.TokenDiff.combinedDiff;
 import static ilarkesto.core.time.Tm.getCurrentTimeMillis;
 import ilarkesto.testng.ATest;
 import org.testng.annotations.Test;

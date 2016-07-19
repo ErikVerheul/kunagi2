@@ -14,6 +14,16 @@
  */
 package scrum.client.test;
 
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.SimplePanel;
+import com.google.gwt.user.client.ui.TextArea;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.AAction;
 import ilarkesto.gwt.client.ButtonWidget;
 import ilarkesto.gwt.client.DropdownMenuButtonWidget;
@@ -39,17 +49,6 @@ import scrum.client.common.TooltipBuilder;
 import scrum.client.img.Img;
 import scrum.client.project.SelectProjectServiceCall;
 import scrum.client.workspace.PagePanel;
-
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.FlowPanel;
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.Image;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.SimplePanel;
-import com.google.gwt.user.client.ui.TextArea;
-import com.google.gwt.user.client.ui.Widget;
 
 public class WidgetsTesterWidget extends AScrumWidget {
 

@@ -14,14 +14,11 @@
  */
 package scrum.client.collaboration;
 
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.TableBuilder;
-
 import java.util.Map;
-
 import scrum.client.ScrumGwt;
 import scrum.client.project.Project;
-
-import com.google.gwt.user.client.ui.Widget;
 
 public class Subject extends GSubject implements ForumSupport {
 

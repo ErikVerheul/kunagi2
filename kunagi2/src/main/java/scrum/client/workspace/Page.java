@@ -14,11 +14,14 @@
  */
 package scrum.client.workspace;
 
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.base.Str;
 import scrum.client.common.AScrumWidget;
 
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class Page {
 
 	private String name;
@@ -26,7 +29,14 @@ public class Page {
 	private String label;
 	private String groupKey;
 
-	public Page(String name, AScrumWidget widget, String label, String groupKey) {
+    /**
+     *
+     * @param name
+     * @param widget
+     * @param label
+     * @param groupKey
+     */
+    public Page(String name, AScrumWidget widget, String label, String groupKey) {
 		super();
 		this.name = name;
 		this.widget = widget;
@@ -34,23 +44,45 @@ public class Page {
 		this.groupKey = groupKey;
 	}
 
-	public Page(AScrumWidget widget, String label, String groupKey) {
+    /**
+     *
+     * @param widget
+     * @param label
+     * @param groupKey
+     */
+    public Page(AScrumWidget widget, String label, String groupKey) {
 		this(getPageName(widget), widget, label, groupKey);
 	}
 
-	public String getLabel() {
+    /**
+     *
+     * @return
+     */
+    public String getLabel() {
 		return label;
 	}
 
-	public String getName() {
+    /**
+     *
+     * @return
+     */
+    public String getName() {
 		return name;
 	}
 
-	public AScrumWidget getWidget() {
+    /**
+     *
+     * @return
+     */
+    public AScrumWidget getWidget() {
 		return widget;
 	}
 
-	public String getGroupKey() {
+    /**
+     *
+     * @return
+     */
+    public String getGroupKey() {
 		return groupKey;
 	}
 
@@ -59,12 +91,24 @@ public class Page {
 		return name;
 	}
 
-	public static String getPageName(Widget page) {
-		if (page == null) return null;
+    /**
+     *
+     * @param page
+     * @return
+     */
+    public static String getPageName(Widget page) {
+		if (page == null) {
+                    return null;
+        }
 		return getPageName(page.getClass());
 	}
 
-	public static String getPageName(Class<? extends Widget> pageClass) {
+    /**
+     *
+     * @param pageClass
+     * @return
+     */
+    public static String getPageName(Class<? extends Widget> pageClass) {
 		String name = Str.getSimpleName(pageClass);
 		return name.substring(0, name.length() - 6);
 	}

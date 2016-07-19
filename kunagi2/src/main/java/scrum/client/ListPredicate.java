@@ -16,29 +16,59 @@ package scrum.client;
 
 import scrum.client.common.ElementPredicate;
 
+/**
+ *
+ * @author erik
+ * @param <G>
+ */
 public abstract class ListPredicate<G> implements ElementPredicate<G> {
 
 	private final String name;
 	private boolean enabled = true;
 
-	public ListPredicate(String name, boolean enabled) {
+    /**
+     *
+     * @param name
+     * @param enabled
+     */
+    public ListPredicate(String name, boolean enabled) {
 		this.name = name;
 		setEnabled(enabled);
 	}
 
-        @Override
+    /**
+     *
+     * @param element
+     * @return
+     */
+    @Override
 	public boolean contains(G element) {
-		if (!isEnabled()) return false;
+		if (!isEnabled()) {
+                    return false;
+        }
 		return test(element);
 	}
 
-	protected abstract boolean test(G element);
+    /**
+     *
+     * @param element
+     * @return
+     */
+    protected abstract boolean test(G element);
 
-	public void setEnabled(boolean enabled) {
+    /**
+     *
+     * @param enabled
+     */
+    public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
 
-	public boolean isEnabled() {
+    /**
+     *
+     * @return
+     */
+    public boolean isEnabled() {
 		return enabled;
 	}
 

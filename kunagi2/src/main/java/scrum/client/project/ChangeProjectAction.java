@@ -16,11 +16,19 @@ package scrum.client.project;
 
 import scrum.client.common.TooltipBuilder;
 
+/**
+ *
+ * @author erik
+ */
 public class ChangeProjectAction extends GChangeProjectAction {
 
 	private Project project;
 
-	public ChangeProjectAction(Project project) {
+    /**
+     *
+     * @param project
+     */
+    public ChangeProjectAction(Project project) {
 		this.project = project;
 	}
 
@@ -29,7 +37,11 @@ public class ChangeProjectAction extends GChangeProjectAction {
 		return project.getLabel();
 	}
 
-	@Override
+    /**
+     *
+     * @param tb
+     */
+    @Override
 	protected void updateTooltip(TooltipBuilder tb) {
 		tb.setText("Switch to another Project.");
 	}

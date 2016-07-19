@@ -14,15 +14,18 @@
  */
 package scrum.client.workspace;
 
-import scrum.client.ScrumGwt;
-import scrum.client.common.AScrumWidget;
-
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
+import scrum.client.ScrumGwt;
+import scrum.client.common.AScrumWidget;
 
+/**
+ *
+ * @author erik
+ */
 public class LockInfoWidget extends AScrumWidget {
 
 	private HTML message;
@@ -47,18 +50,28 @@ public class LockInfoWidget extends AScrumWidget {
 		return panel;
 	}
 
-	public void showBug(String html) {
+    /**
+     *
+     * @param html
+     */
+    public void showBug(String html) {
 		initialize();
 		image.setUrl("bug.png");
 
-		if (html == null) html = "";
+		if (html == null) {
+                    html = "";
+        }
 
 		html += "<br><a href=\"" + ScrumGwt.getLoginUrl() + "\">Reload</a>";
 
 		message.setHTML(html);
 	}
 
-	public void showWait(String text) {
+    /**
+     *
+     * @param text
+     */
+    public void showWait(String text) {
 		initialize();
 		image.setUrl("spinner.gif");
 		message.setText(text);

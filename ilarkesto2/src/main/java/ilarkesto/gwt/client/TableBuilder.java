@@ -35,6 +35,10 @@ import ilarkesto.gwt.client.editor.YesNoEditorWidget;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class TableBuilder {
 
 	private Row currentRow = new Row();
@@ -46,9 +50,16 @@ public class TableBuilder {
 	private boolean centered;
 	private String styleName;
 
-	public TableBuilder() {}
+    /**
+     *
+     */
+    public TableBuilder() {}
 
-	public FlexTable createTable() {
+    /**
+     *
+     * @return
+     */
+    public FlexTable createTable() {
 		if (!currentRow.cells.isEmpty()) {
                         nextRow();
                 }
@@ -86,76 +97,151 @@ public class TableBuilder {
 		return table;
 	}
 
-	public boolean isEmpty() {
+    /**
+     *
+     * @return
+     */
+    public boolean isEmpty() {
 		return rows.isEmpty();
 	}
 
-	public void setColumnWidths(int... columnWidths) {
+    /**
+     *
+     * @param columnWidths
+     */
+    public void setColumnWidths(int... columnWidths) {
 		this.columnWidths = new String[columnWidths.length];
 		for (int i = 0; i < columnWidths.length; i++) {
 			this.columnWidths[i] = columnWidths[i] + "px";
 		}
 	}
 
-	public void setColumnWidths(String... columnWidths) {
+    /**
+     *
+     * @param columnWidths
+     */
+    public void setColumnWidths(String... columnWidths) {
 		this.columnWidths = columnWidths;
 	}
 
-	public TableBuilder addFieldRow(String label, ATextEditorModel model, int colspan) {
+    /**
+     *
+     * @param label
+     * @param model
+     * @param colspan
+     * @return
+     */
+    public TableBuilder addFieldRow(String label, ATextEditorModel model, int colspan) {
 		addField(label, model, colspan);
 		nextRow();
 		return this;
 	}
 
-	public TableBuilder addFieldRow(String label, Widget value, int colspan) {
+    /**
+     *
+     * @param label
+     * @param value
+     * @param colspan
+     * @return
+     */
+    public TableBuilder addFieldRow(String label, Widget value, int colspan) {
 		addField(label, value, colspan);
 		nextRow();
 		return this;
 	}
 
-	public TableBuilder addFieldRow(String label, ATextEditorModel model) {
+    /**
+     *
+     * @param label
+     * @param model
+     * @return
+     */
+    public TableBuilder addFieldRow(String label, ATextEditorModel model) {
 		addField(label, model, 1);
 		nextRow();
 		return this;
 	}
 
-	public TableBuilder addFieldRow(String label, AIntegerEditorModel model) {
+    /**
+     *
+     * @param label
+     * @param model
+     * @return
+     */
+    public TableBuilder addFieldRow(String label, AIntegerEditorModel model) {
 		addField(label, model, 1);
 		nextRow();
 		return this;
 	}
 
-	public TableBuilder addFieldRow(String label, ABooleanEditorModel model) {
+    /**
+     *
+     * @param label
+     * @param model
+     * @return
+     */
+    public TableBuilder addFieldRow(String label, ABooleanEditorModel model) {
 		addField(label, model, 1);
 		nextRow();
 		return this;
 	}
 
-	public TableBuilder addFieldRow(String label, ADateAndTimeEditorModel model) {
+    /**
+     *
+     * @param label
+     * @param model
+     * @return
+     */
+    public TableBuilder addFieldRow(String label, ADateAndTimeEditorModel model) {
 		addField(label, model, 1);
 		nextRow();
 		return this;
 	}
 
-	public TableBuilder addFieldRow(String label, ADateEditorModel model) {
+    /**
+     *
+     * @param label
+     * @param model
+     * @return
+     */
+    public TableBuilder addFieldRow(String label, ADateEditorModel model) {
 		addField(label, model, 1);
 		nextRow();
 		return this;
 	}
 
-	public TableBuilder addFieldRow(String label, Widget value) {
+    /**
+     *
+     * @param label
+     * @param value
+     * @return
+     */
+    public TableBuilder addFieldRow(String label, Widget value) {
 		addField(label, value);
 		nextRow();
 		return this;
 	}
 
-	public TableBuilder addField(String label, Widget value) {
+    /**
+     *
+     * @param label
+     * @param value
+     * @return
+     */
+    public TableBuilder addField(String label, Widget value) {
 		addFieldLabel(label);
 		add(value);
 		return this;
 	}
 
-	public TableBuilder addField(String label, ATextEditorModel model, int colspan) {
+    /**
+     *
+     * @param label
+     * @param model
+     * @param colspan
+     * @return
+     */
+    public TableBuilder addField(String label, ATextEditorModel model, int colspan) {
 		Widget editor;
 		if (model.isRichtext()) {
 			editor = new RichtextEditorWidget(model);
@@ -175,74 +261,166 @@ public class TableBuilder {
 		return addField(label, editor, colspan);
 	}
 
-	public TableBuilder addField(String label, ADateAndTimeEditorModel model, int colspan) {
+    /**
+     *
+     * @param label
+     * @param model
+     * @param colspan
+     * @return
+     */
+    public TableBuilder addField(String label, ADateAndTimeEditorModel model, int colspan) {
 		return addField(label, new DateAndTimeEditorWidget(model), colspan);
 	}
 
-	public TableBuilder addField(String label, ADateEditorModel model) {
+    /**
+     *
+     * @param label
+     * @param model
+     * @return
+     */
+    public TableBuilder addField(String label, ADateEditorModel model) {
 		return addField(label, model, 1);
 	}
 
-	public TableBuilder addField(String label, ADateEditorModel model, int colspan) {
+    /**
+     *
+     * @param label
+     * @param model
+     * @param colspan
+     * @return
+     */
+    public TableBuilder addField(String label, ADateEditorModel model, int colspan) {
 		return addField(label, new DateEditorWidget(model), colspan);
 	}
 
-	public TableBuilder addField(String label, AIntegerEditorModel model) {
+    /**
+     *
+     * @param label
+     * @param model
+     * @return
+     */
+    public TableBuilder addField(String label, AIntegerEditorModel model) {
 		return addField(label, new IntegerEditorWidget(model), 1);
 	}
 
-	public TableBuilder addField(String label, AIntegerEditorModel model, int colspan) {
+    /**
+     *
+     * @param label
+     * @param model
+     * @param colspan
+     * @return
+     */
+    public TableBuilder addField(String label, AIntegerEditorModel model, int colspan) {
 		return addField(label, new IntegerEditorWidget(model), colspan);
 	}
 
-	public TableBuilder addField(String label, ABooleanEditorModel model, int colspan) {
+    /**
+     *
+     * @param label
+     * @param model
+     * @param colspan
+     * @return
+     */
+    public TableBuilder addField(String label, ABooleanEditorModel model, int colspan) {
 		return addField(label, new YesNoEditorWidget(model), colspan);
 	}
 
-	public TableBuilder addField(String label, Widget value, int colspan) {
+    /**
+     *
+     * @param label
+     * @param value
+     * @param colspan
+     * @return
+     */
+    public TableBuilder addField(String label, Widget value, int colspan) {
 		addFieldLabel(label);
 		add(value, colspan, null);
 		return this;
 	}
 
-	public TableBuilder addFieldLabel(String text) {
+    /**
+     *
+     * @param text
+     * @return
+     */
+    public TableBuilder addFieldLabel(String text) {
 		add(createFieldLabel(text), 1, ALIGN_RIGHT);
 		return this;
 	}
 
-	public TableBuilder addRow(Widget widget, int colspan) {
+    /**
+     *
+     * @param widget
+     * @param colspan
+     * @return
+     */
+    public TableBuilder addRow(Widget widget, int colspan) {
 		add(widget, colspan, null);
 		nextRow();
 		return this;
 	}
 
-	public TableBuilder addRow(Widget... widgets) {
+    /**
+     *
+     * @param widgets
+     * @return
+     */
+    public TableBuilder addRow(Widget... widgets) {
 		add(widgets);
 		nextRow();
 		return this;
 	}
 
-	public TableBuilder addSpacer(int width, int height) {
+    /**
+     *
+     * @param width
+     * @param height
+     * @return
+     */
+    public TableBuilder addSpacer(int width, int height) {
 		add(createSpacer(width, height));
 		return this;
 	}
 
-	public TableBuilder add(Widget... widgets) {
+    /**
+     *
+     * @param widgets
+     * @return
+     */
+    public TableBuilder add(Widget... widgets) {
 		for (Widget widget : widgets) {
 			add(widget);
 		}
 		return this;
 	}
 
-	public TableBuilder add(Widget widget) {
+    /**
+     *
+     * @param widget
+     * @return
+     */
+    public TableBuilder add(Widget widget) {
 		return add(widget, 1, null);
 	}
 
-	public TableBuilder add(Widget widget, int colspan) {
+    /**
+     *
+     * @param widget
+     * @param colspan
+     * @return
+     */
+    public TableBuilder add(Widget widget, int colspan) {
 		return add(widget, colspan, null);
 	}
 
-	public TableBuilder add(Widget widget, int colspan, HorizontalAlignmentConstant align) {
+    /**
+     *
+     * @param widget
+     * @param colspan
+     * @param align
+     * @return
+     */
+    public TableBuilder add(Widget widget, int colspan, HorizontalAlignmentConstant align) {
 		Cell cell = new Cell();
 		cell.widget = widget;
 		cell.align = align;
@@ -251,32 +429,57 @@ public class TableBuilder {
 		return this;
 	}
 
-	public TableBuilder nextRow() {
+    /**
+     *
+     * @return
+     */
+    public TableBuilder nextRow() {
 		rows.add(currentRow);
 		currentRow = new Row();
 		return this;
 	}
 
-	public void setWidth(String width) {
+    /**
+     *
+     * @param width
+     */
+    public void setWidth(String width) {
 		this.width = width;
 	}
 
-	public void setCellSpacing(int cellSpacing) {
+    /**
+     *
+     * @param cellSpacing
+     */
+    public void setCellSpacing(int cellSpacing) {
 		this.cellSpacing = cellSpacing;
 	}
 
-	public void setCellPadding(int cellPadding) {
+    /**
+     *
+     * @param cellPadding
+     */
+    public void setCellPadding(int cellPadding) {
 		this.cellPadding = cellPadding;
 	}
 
-	public void setCentered(boolean centered) {
+    /**
+     *
+     * @param centered
+     */
+    public void setCentered(boolean centered) {
 		this.centered = centered;
 		if (centered) {
                         setWidth(null);
                 }
 	}
 
-	public TableBuilder setStyleName(String styleName) {
+    /**
+     *
+     * @param styleName
+     * @return
+     */
+    public TableBuilder setStyleName(String styleName) {
 		this.styleName = styleName;
 		return this;
 	}
@@ -295,11 +498,24 @@ public class TableBuilder {
 
 	}
 
-	public static FlexTable row(int spacing, Widget... widgets) {
+    /**
+     *
+     * @param spacing
+     * @param widgets
+     * @return
+     */
+    public static FlexTable row(int spacing, Widget... widgets) {
 		return row(true, spacing, widgets);
 	}
 
-	public static FlexTable row(boolean width100, int spacing, Widget... widgets) {
+    /**
+     *
+     * @param width100
+     * @param spacing
+     * @param widgets
+     * @return
+     */
+    public static FlexTable row(boolean width100, int spacing, Widget... widgets) {
 		assert widgets.length > 0;
 
 		TableBuilder tb = new TableBuilder();
@@ -338,7 +554,13 @@ public class TableBuilder {
 		return tb.createTable();
 	}
 
-	public static FlexTable column(int spacing, Widget... widgets) {
+    /**
+     *
+     * @param spacing
+     * @param widgets
+     * @return
+     */
+    public static FlexTable column(int spacing, Widget... widgets) {
 		assert widgets.length > 0;
 
 		TableBuilder tb = new TableBuilder();

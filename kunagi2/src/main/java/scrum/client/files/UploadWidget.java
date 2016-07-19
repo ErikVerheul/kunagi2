@@ -14,20 +14,6 @@
  */
 package scrum.client.files;
 
-import gwtupload.client.IFileInput.FileInputType;
-import gwtupload.client.IUploadStatus;
-import gwtupload.client.IUploadStatus.Status;
-import gwtupload.client.IUploader;
-import gwtupload.client.SingleUploader;
-import gwtupload.client.Uploader;
-import ilarkesto.core.scope.Scope;
-
-import java.util.Set;
-
-import scrum.client.common.AScrumWidget;
-import scrum.client.communication.PingServiceCall;
-import scrum.client.project.Project;
-
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.Window;
@@ -38,8 +24,19 @@ import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.Hidden;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
+import gwtupload.client.IFileInput.FileInputType;
+import gwtupload.client.IUploadStatus;
+import gwtupload.client.IUploadStatus.Status;
+import gwtupload.client.IUploader;
+import gwtupload.client.SingleUploader;
+import gwtupload.client.Uploader;
 import static ilarkesto.core.logging.ClientLog.ERROR;
+import ilarkesto.core.scope.Scope;
 import java.util.List;
+import java.util.Set;
+import scrum.client.common.AScrumWidget;
+import scrum.client.communication.PingServiceCall;
+import scrum.client.project.Project;
 
 public class UploadWidget extends AScrumWidget {
 

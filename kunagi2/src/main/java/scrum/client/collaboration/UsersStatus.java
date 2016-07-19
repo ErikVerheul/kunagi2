@@ -16,10 +16,8 @@ package scrum.client.collaboration;
 
 import ilarkesto.gwt.client.AGwtEntity;
 import ilarkesto.gwt.client.EntityDoesNotExistException;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import scrum.client.admin.User;
 import scrum.client.common.AScrumGwtEntity;
 import scrum.client.core.RequestEntityServiceCall;
@@ -28,9 +26,17 @@ import scrum.client.workspace.BlockCollapsedHandler;
 import scrum.client.workspace.BlockExpandedEvent;
 import scrum.client.workspace.BlockExpandedHandler;
 
+/**
+ *
+ * @author erik
+ */
 public class UsersStatus extends GUsersStatus implements BlockCollapsedHandler, BlockExpandedHandler {
 
-	@Override
+    /**
+     *
+     * @param event
+     */
+    @Override
 	public void onBlockExpanded(BlockExpandedEvent event) {
 		Object object = event.getObject();
 		if (object instanceof AGwtEntity) {
@@ -38,7 +44,11 @@ public class UsersStatus extends GUsersStatus implements BlockCollapsedHandler, 
 		}
 	}
 
-	@Override
+    /**
+     *
+     * @param event
+     */
+    @Override
 	public void onBlockCollapsed(BlockCollapsedEvent event) {
 		Object object = event.getObject();
 		if (object instanceof AGwtEntity) {
@@ -46,19 +56,35 @@ public class UsersStatus extends GUsersStatus implements BlockCollapsedHandler, 
 		}
 	}
 
-	public List<User> getOnlineUsers() {
+    /**
+     *
+     * @return
+     */
+    public List<User> getOnlineUsers() {
 		List<User> ret = new ArrayList<User>();
 		for (User user : project.getParticipants()) {
-			if (isOnline(user)) ret.add(user);
+			if (isOnline(user)) {
+                            ret.add(user);
+            }
 		}
 		return ret;
 	}
 
-	public boolean isOnline(User user) {
+    /**
+     *
+     * @param user
+     * @return
+     */
+    public boolean isOnline(User user) {
 		return project.getUserConfig(user).isOnline();
 	}
 
-	public boolean isIdle(User user) {
+    /**
+     *
+     * @param user
+     * @return
+     */
+    public boolean isIdle(User user) {
 		return project.getUserConfig(user).isIdle();
 	}
 
@@ -70,7 +96,12 @@ public class UsersStatus extends GUsersStatus implements BlockCollapsedHandler, 
 		project.getUserConfig(getCurrentUser()).removeSelectedEntityId(entity.getId());
 	}
 
-	public List<AScrumGwtEntity> getSelectedEntities(User user) {
+    /**
+     *
+     * @param user
+     * @return
+     */
+    public List<AScrumGwtEntity> getSelectedEntities(User user) {
 		List<String> ids = project.getUserConfig(user).getSelectedEntitysIds();
 		List<AScrumGwtEntity> ret = new ArrayList<AScrumGwtEntity>(ids.size());
 		for (String id : ids) {

@@ -16,9 +16,16 @@ package ilarkesto.logging;
 
 import java.lang.Thread.UncaughtExceptionHandler;
 
+/**
+ *
+ * @author erik
+ */
 public class LoggingUncaughtExceptionHandler implements UncaughtExceptionHandler {
 
-	public static final LoggingUncaughtExceptionHandler INSTANCE = new LoggingUncaughtExceptionHandler();
+    /**
+     *
+     */
+    public static final LoggingUncaughtExceptionHandler INSTANCE = new LoggingUncaughtExceptionHandler();
 
 	private static final Log LOG = Log.get(LoggingUncaughtExceptionHandler.class);
 

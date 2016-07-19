@@ -14,18 +14,20 @@
  */
 package scrum.client.dashboard;
 
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Widget;
 import java.util.Collections;
 import java.util.List;
-
 import scrum.client.common.AScrumWidget;
 import scrum.client.issues.Issue;
 import scrum.client.project.Project;
 import scrum.client.project.Requirement;
 import scrum.client.sprint.Sprint;
 
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class UpcomingPoWorkWidget extends AScrumWidget {
 
 	private HTML html;
@@ -61,7 +63,9 @@ public class UpcomingPoWorkWidget extends AScrumWidget {
 				sb.append("<li>");
 				sb.append(issue.toHtml());
 				sb.append("</li>");
-				if (count++ >= 5) break;
+				if (count++ >= 5) {
+                                    break;
+                }
 			}
 			sb.append("</ul>");
 		}

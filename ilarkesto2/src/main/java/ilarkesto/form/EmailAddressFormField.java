@@ -19,20 +19,38 @@ import java.util.Collection;
 import java.util.Map;
 import org.apache.commons.fileupload.FileItem;
 
+/**
+ *
+ * @author erik
+ */
 public class EmailAddressFormField extends AFormField {
 
 	private String value;
 
-	public EmailAddressFormField(String name) {
+    /**
+     *
+     * @param name
+     */
+    public EmailAddressFormField(String name) {
 		super(name);
 	}
 
-	public EmailAddressFormField setValue(EmailAddress value) {
+    /**
+     *
+     * @param value
+     * @return
+     */
+    public EmailAddressFormField setValue(EmailAddress value) {
 		this.value = value == null ? null : value.toString();
 		return this;
 	}
 
-        @Override
+    /**
+     *
+     * @param data
+     * @param uploadedFiles
+     */
+    @Override
 	public void update(Map<String, String> data, Collection<FileItem> uploadedFiles) {
 		String newValue = prepareValue(data.get(getName()));
 		if (value == null ? newValue == null : value.equals(newValue)) {
@@ -57,7 +75,11 @@ public class EmailAddressFormField extends AFormField {
 		}
 	}
 
-        @Override
+    /**
+     *
+     * @throws ValidationException
+     */
+    @Override
 	public void validate() throws ValidationException {
 		if (value == null) {
 			if (isRequired()) {
@@ -72,12 +94,20 @@ public class EmailAddressFormField extends AFormField {
 		}
 	}
 
-        @Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getValueAsString() {
 		return value;
 	}
 
-	public EmailAddress getValueAsEmailAddress() {
+    /**
+     *
+     * @return
+     */
+    public EmailAddress getValueAsEmailAddress() {
 		return value == null ? null : new EmailAddress(value);
 	}
 

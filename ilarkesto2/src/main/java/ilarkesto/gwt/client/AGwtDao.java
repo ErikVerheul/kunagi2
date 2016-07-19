@@ -19,32 +19,81 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class AGwtDao extends AComponent {
 
 	private String entityIdBase;
 	private int entityIdCounter;
 
-	protected abstract Collection<Map<String, ? extends AGwtEntity>> getEntityMaps();
+    /**
+     *
+     * @return
+     */
+    protected abstract Collection<Map<String, ? extends AGwtEntity>> getEntityMaps();
 
-	protected abstract AGwtEntity updateLocalEntity(String type, Map data);
+    /**
+     *
+     * @param type
+     * @param data
+     * @return
+     */
+    protected abstract AGwtEntity updateLocalEntity(String type, Map data);
 
-	protected abstract void onEntityModifiedRemotely(AGwtEntity entity);
+    /**
+     *
+     * @param entity
+     */
+    protected abstract void onEntityModifiedRemotely(AGwtEntity entity);
 
-	protected abstract void onEntityDeletedRemotely(AGwtEntity entity);
+    /**
+     *
+     * @param entity
+     */
+    protected abstract void onEntityDeletedRemotely(AGwtEntity entity);
 
-	protected abstract void onEntityCreatedLocaly(AGwtEntity entity, Runnable successAction);
+    /**
+     *
+     * @param entity
+     * @param successAction
+     */
+    protected abstract void onEntityCreatedLocaly(AGwtEntity entity, Runnable successAction);
 
-	protected abstract void onEntityDeletedLocaly(AGwtEntity entity);
+    /**
+     *
+     * @param entity
+     */
+    protected abstract void onEntityDeletedLocaly(AGwtEntity entity);
 
-	protected abstract void onEntityPropertyChangedLocaly(AGwtEntity entity, String property, Object value);
+    /**
+     *
+     * @param entity
+     * @param property
+     * @param value
+     */
+    protected abstract void onEntityPropertyChangedLocaly(AGwtEntity entity, String property, Object value);
 
-	public abstract Map<String, Integer> getEntityCounts();
+    /**
+     *
+     * @return
+     */
+    public abstract Map<String, Integer> getEntityCounts();
 
-	public String getEntityIdBase() {
+    /**
+     *
+     * @return
+     */
+    public String getEntityIdBase() {
 		return entityIdBase;
 	}
 
-	public int getEntityIdCounter() {
+    /**
+     *
+     * @return
+     */
+    public int getEntityIdCounter() {
 		return entityIdCounter;
 	}
 
@@ -55,7 +104,11 @@ public abstract class AGwtDao extends AComponent {
 		return entityIdBase + "-" + ++entityIdCounter;
 	}
 
-	public void handleDataFromServer(ADataTransferObject data) {
+    /**
+     *
+     * @param data
+     */
+    public void handleDataFromServer(ADataTransferObject data) {
 		if (data.entityIdBase != null) {
 			entityIdBase = data.entityIdBase;
 			DEBUG("entityIdBase received:", data.entityIdBase);
@@ -89,21 +142,42 @@ public abstract class AGwtDao extends AComponent {
 		}
 	}
 
-	protected final void entityCreated(AGwtEntity entity, Runnable successAction) {
+    /**
+     *
+     * @param entity
+     * @param successAction
+     */
+    protected final void entityCreated(AGwtEntity entity, Runnable successAction) {
 		entity.setCreated();
 		onEntityCreatedLocaly(entity, successAction);
 	}
 
-	protected final void entityDeleted(AGwtEntity entity) {
+    /**
+     *
+     * @param entity
+     */
+    protected final void entityDeleted(AGwtEntity entity) {
 		onEntityDeletedLocaly(entity);
 		entity.updateLocalModificationTime();
 	}
 
-	public final void entityPropertyChanged(AGwtEntity entity, String property, Object value) {
+    /**
+     *
+     * @param entity
+     * @param property
+     * @param value
+     */
+    public final void entityPropertyChanged(AGwtEntity entity, String property, Object value) {
 		onEntityPropertyChangedLocaly(entity, property, value);
 	}
 
-	public final AGwtEntity getEntity(String id) throws EntityDoesNotExistException {
+    /**
+     *
+     * @param id
+     * @return
+     * @throws EntityDoesNotExistException
+     */
+    public final AGwtEntity getEntity(String id) throws EntityDoesNotExistException {
 		for (Map<String, ? extends AGwtEntity> entityMap : getEntityMaps()) {
 			AGwtEntity entity = entityMap.get(id);
 			if (entity != null) {

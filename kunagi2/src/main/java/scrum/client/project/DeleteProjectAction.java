@@ -17,9 +17,17 @@ package scrum.client.project;
 import ilarkesto.gwt.client.Gwt;
 import scrum.client.common.TooltipBuilder;
 
+/**
+ *
+ * @author erik
+ */
 public class DeleteProjectAction extends GDeleteProjectAction {
 
-	public DeleteProjectAction(Project project) {
+    /**
+     *
+     * @param project
+     */
+    public DeleteProjectAction(Project project) {
 		super(project);
 	}
 
@@ -28,10 +36,16 @@ public class DeleteProjectAction extends GDeleteProjectAction {
 		return "Delete Project";
 	}
 
-	@Override
+    /**
+     *
+     * @param tb
+     */
+    @Override
 	protected void updateTooltip(TooltipBuilder tb) {
 		tb.setText("Delete this project and destroy all its data permanently.");
-		if (!getCurrentUser().isAdmin()) tb.addRemark(TooltipBuilder.NOT_SYS_ADMIN);
+		if (!getCurrentUser().isAdmin()) {
+                    tb.addRemark(TooltipBuilder.NOT_SYS_ADMIN);
+        }
 	}
 
 	@Override
@@ -41,13 +55,14 @@ public class DeleteProjectAction extends GDeleteProjectAction {
 
 	@Override
 	public boolean isPermitted() {
-		if (!getCurrentUser().isAdmin()) return false;
-		return true;
+		return getCurrentUser().isAdmin();
 	}
 
 	@Override
 	protected void onExecute() {
-		if (!Gwt.confirm("Delete project " + project.getLabel() + "?")) return;
+		if (!Gwt.confirm("Delete project " + project.getLabel() + "?")) {
+                    return;
+        }
 		getDao().deleteProject(project);
 		addUndo(new Undo());
 	}

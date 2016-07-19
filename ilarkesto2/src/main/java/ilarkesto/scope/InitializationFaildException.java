@@ -14,9 +14,19 @@
  */
 package ilarkesto.scope;
 
+/**
+ *
+ * @author erik
+ */
 public class InitializationFaildException extends RuntimeException {
 
-	public InitializationFaildException(Object component, String methodName, Exception cause) {
+    /**
+     *
+     * @param component
+     * @param methodName
+     * @param cause
+     */
+    public InitializationFaildException(Object component, String methodName, Exception cause) {
 		super("Component initialization failed: " + component.getClass().getSimpleName() + "." + methodName + "()",
 				cause);
 	}

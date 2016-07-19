@@ -22,9 +22,16 @@ import ilarkesto.testng.ATest;
 import java.util.List;
 import org.testng.annotations.Test;
 
+/**
+ *
+ * @author erik
+ */
 public class LineDiffTest extends ATest {
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void tokenizer() {
 		assertEquals(new LineTokenizer().tokenize("").size(), 1);
 		assertEquals(new LineTokenizer().tokenize("a").size(), 1);
@@ -36,56 +43,83 @@ public class LineDiffTest extends ATest {
 		assertEquals(new LineTokenizer().concat(tokens), "a\n");
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void same() {
 		assertDiff("a", "a", "a");
 		assertDiff("hello world", "hello world", "hello world");
 		assertDiff("hello world\n", "hello world\n", "hello world\n");
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void addedAtEnd() {
 		assertDiff("a", "a\nb", "a[+\nb]");
 		assertDiff("hello", "hello\nworld", "hello[+\nworld]");
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void removedAtEnd() {
 		assertDiff("a\nb", "a", "a[-\nb]");
 		assertDiff("hello\nworld", "hello", "hello[-\nworld]");
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void removedAtBeginning() {
 		assertDiff("a\nb", "b", "[-a\n]b");
 		assertDiff("hello\nworld", "world", "[-hello\n]world");
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void addedAtMiddle() {
 		assertDiff("a\nc", "a\nb\nc", "a\n[+b\n]c");
 		assertDiff("hello\nworld", "hello\nhappy\nworld", "hello\n[+happy\n]world");
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void addedFromNothing() {
 		assertDiff(null, "a", "[+a]");
 		assertDiff(null, "hello world", "[+hello world]");
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void removedToNothing() {
 		assertDiff("a", null, "[-a]");
 		assertDiff("hello world", null, "[-hello world]");
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void lineChange() {
 		assertDiff("hello world", "bye world", "[hello world|bye world]");
 		assertDiff("hello world\n", "bye world\n", "[hello world|bye world]\n");
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void complex() {
 		assertDiff(
 			"== Kunagi Developer Guide ==\n"

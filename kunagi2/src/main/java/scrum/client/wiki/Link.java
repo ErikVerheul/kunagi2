@@ -14,18 +14,31 @@
  */
 package scrum.client.wiki;
 
+/**
+ *
+ * @author erik
+ */
 public class Link extends AWikiElement {
 
 	private String href;
 	private String label;
 
-	public Link(String href, String label) {
+    /**
+     *
+     * @param href
+     * @param label
+     */
+    public Link(String href, String label) {
 		super();
 		this.href = enhance(href);
 		this.label = label;
 	}
 
-	public Link(String href) {
+    /**
+     *
+     * @param href
+     */
+    public Link(String href) {
 		this(href, shorten(href));
 	}
 
@@ -41,12 +54,24 @@ public class Link extends AWikiElement {
 	}
 
 	private String enhance(String s) {
-		if (s.startsWith("http://")) return s;
-		if (s.startsWith("https://")) return s;
-		if (s.startsWith("ftp://")) return s;
-		if (s.startsWith("mailto://")) return s;
-		if (s.startsWith("apt://")) return s;
-		if (s.startsWith("#")) return s;
+		if (s.startsWith("http://")) {
+                    return s;
+        }
+		if (s.startsWith("https://")) {
+                    return s;
+        }
+                if (s.startsWith("ftp://")) {
+                    return s;
+        }
+                if (s.startsWith("mailto://")) {
+            return s;
+                }
+                if (s.startsWith("apt://")) {
+                    return s;
+        }
+		if (s.startsWith("#")) {
+            return s;
+        }
 		return "http://" + s;
 	}
 
@@ -67,11 +92,19 @@ public class Link extends AWikiElement {
 		return s;
 	}
 
-	public String getHref() {
+    /**
+     *
+     * @return
+     */
+    public String getHref() {
 		return href;
 	}
 
-	public String getLabel() {
+    /**
+     *
+     * @return
+     */
+    public String getLabel() {
 		return label;
 	}
 

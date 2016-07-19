@@ -14,13 +14,13 @@
  */
 package ilarkesto.gwt.client;
 
-import static ilarkesto.core.logging.ClientLog.DEBUG;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
+import static ilarkesto.core.logging.ClientLog.DEBUG;
 import ilarkesto.core.menu.MenuItem;
 import ilarkesto.core.menu.StaticMenu;
 import ilarkesto.core.menu.StaticMenuItem;

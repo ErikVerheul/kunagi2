@@ -14,7 +14,6 @@
  */
 package scrum.server.admin;
 
-import scrum.server.admin.GSystemConfigDao;
 import java.util.ArrayList;
 import java.util.List;
 

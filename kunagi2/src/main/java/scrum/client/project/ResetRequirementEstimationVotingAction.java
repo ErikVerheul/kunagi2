@@ -17,9 +17,17 @@ package scrum.client.project;
 import scrum.client.common.TooltipBuilder;
 import scrum.client.estimation.ActivateRequirementEstimationVotingServiceCall;
 
+/**
+ *
+ * @author erik
+ */
 public class ResetRequirementEstimationVotingAction extends GResetRequirementEstimationVotingAction {
 
-	public ResetRequirementEstimationVotingAction(scrum.client.project.Requirement requirement) {
+    /**
+     *
+     * @param requirement
+     */
+    public ResetRequirementEstimationVotingAction(scrum.client.project.Requirement requirement) {
 		super(requirement);
 	}
 
@@ -28,16 +36,20 @@ public class ResetRequirementEstimationVotingAction extends GResetRequirementEst
 		return "Reset";
 	}
 
-	@Override
+    /**
+     *
+     * @param tb
+     */
+    @Override
 	protected void updateTooltip(TooltipBuilder tb) {
 		tb.setText("Remove all cards from the table to start a new round.");
 	}
 
 	@Override
 	public boolean isExecutable() {
-		if (!requirement.isWorkEstimationVotingActive()) return false;
-		// if (!requirement.containsWorkEstimationVotes()) return false;
-		return true;
+        // if (!requirement.containsWorkEstimationVotes()) return false;
+        
+		return requirement.isWorkEstimationVotingActive();
 	}
 
 	@Override

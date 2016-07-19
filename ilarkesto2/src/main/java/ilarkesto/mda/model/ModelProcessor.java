@@ -14,8 +14,16 @@
  */
 package ilarkesto.mda.model;
 
+/**
+ *
+ * @author erik
+ */
 public interface ModelProcessor {
 
-	void processModel(Model model);
+    /**
+     *
+     * @param model
+     */
+    void processModel(Model model);
 
 }

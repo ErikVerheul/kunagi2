@@ -26,26 +26,31 @@ public interface BeanProvider {
 
     /**
      * Provides a set of all existing bean names.
+     * @return 
      */
     public Set<String> beanNames();
 
     /**
      * Gets a bean by name.
+     * @return 
      */
     public <T> Object getBean(String beanName);
 
     /**
      * Gets a beans type by the beans name.
+     * @return 
      */
     public Class getBeanType(String beanName);
 
     /**
      * Gets all beans by their type. All beans instanceof the given type are returned.
+     * @return 
      */
     public <T> Set<T> getBeansByType(Class<T> type);
 
     /**
      * Gets all existing beans.
+     * @return 
      */
     public Map<String, Object> getAllBeans();
 
@@ -54,6 +59,7 @@ public interface BeanProvider {
     /**
      * Autowire the given class.
      * 
+     * @return 
      * @see Autowire#autowireClass(Class, BeanProvider, ObjectStringMapper)
      */
     public <T> Class<T> autowireClass(Class<T> type);
@@ -61,6 +67,7 @@ public interface BeanProvider {
     /**
      * Autowire the given bean.
      * 
+     * @return 
      * @see Autowire#autowire(Object, BeanProvider, ObjectStringMapper)
      */
     public <T> T autowire(T bean);

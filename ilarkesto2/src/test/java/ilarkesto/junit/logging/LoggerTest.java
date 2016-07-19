@@ -4,8 +4,15 @@ import static ilarkesto.base.Sys.isDevelopmentMode;
 import ilarkesto.logging.Log;
 import junit.framework.TestCase;
 
+/**
+ *
+ * @author erik
+ */
 public class LoggerTest extends TestCase {
 
+    /**
+     *
+     */
     public void testLogging() {
         Log logger = new Log("TestLogger");
 
@@ -16,6 +23,9 @@ public class LoggerTest extends TestCase {
         logger.fatal("test fatal log");
     }
     
+    /**
+     *
+     */
     public void testMode() {
         assertTrue(isDevelopmentMode());
     }

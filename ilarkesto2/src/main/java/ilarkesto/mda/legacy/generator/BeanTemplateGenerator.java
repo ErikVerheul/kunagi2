@@ -16,38 +16,70 @@ package ilarkesto.mda.legacy.generator;
 
 import ilarkesto.mda.legacy.model.BeanModel;
 
+/**
+ *
+ * @author erik
+ * @param <E>
+ */
 public class BeanTemplateGenerator<E extends BeanModel> extends ABeanGenerator<E> {
 
-	public BeanTemplateGenerator(E bean) {
+    /**
+     *
+     * @param bean
+     */
+    public BeanTemplateGenerator(E bean) {
 		super(bean);
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected final String getName() {
 		return bean.getName();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected final boolean isInterface() {
 		return false;
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void writeContent() {
 
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected final String getSuperclass() {
 		return "G" + bean.getName();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected final boolean isAbstract() {
 		return bean.isAbstract();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected boolean isOverwrite() {
 		return false;
 	}

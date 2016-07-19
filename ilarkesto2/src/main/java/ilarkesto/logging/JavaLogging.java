@@ -29,11 +29,18 @@ import static java.util.logging.Level.WARNING;
 import java.util.logging.LogRecord;
 import static java.util.logging.Logger.getLogger;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class JavaLogging {
 
 	private static final Log LOG = Log.get(JavaLogging.class);
 
-	public static void redirectToLoggers() {
+    /**
+     *
+     */
+    public static void redirectToLoggers() {
 		java.util.logging.Logger rootLogger = getLogger("");
 		Handler[] handlers = rootLogger.getHandlers();
 		for (Handler handler : handlers) {
@@ -43,11 +50,19 @@ public abstract class JavaLogging {
 		LOG.debug("Redirecting Java Logging to ilarkesto loggers");
 	}
 
-	public static void redirectToHomeFile(String name) {
+    /**
+     *
+     * @param name
+     */
+    public static void redirectToHomeFile(String name) {
 		redirectToFile(new File(getUsersHomePath() + "/" + name + ".java.log"));
 	}
 
-	public static void redirectToFile(File file) {
+    /**
+     *
+     * @param file
+     */
+    public static void redirectToFile(File file) {
 		java.util.logging.Logger rootLogger = getLogger("");
 		Handler[] handlers = rootLogger.getHandlers();
 		for (Handler handler : handlers) {
@@ -57,7 +72,12 @@ public abstract class JavaLogging {
 		LOG.info("Redirecting Java Logging to file: " + file.getAbsolutePath());
 	}
 
-	public static Log.Level toLevel(Level javaLevel) {
+    /**
+     *
+     * @param javaLevel
+     * @return
+     */
+    public static Log.Level toLevel(Level javaLevel) {
 		if (javaLevel == Level.FINE || javaLevel == Level.FINER || javaLevel == Level.FINEST || javaLevel == Level.OFF
 				|| javaLevel == Level.INFO) {
 			return Log.Level.DEBUG;
@@ -80,7 +100,12 @@ public abstract class JavaLogging {
 		logger.log(toLevel(record.getLevel()), getMessage(record));
 	}
 
-	public static String getMessage(LogRecord record) {
+    /**
+     *
+     * @param record
+     * @return
+     */
+    public static String getMessage(LogRecord record) {
 		String msg = record.getMessage();
 		Object[] parameters = record.getParameters();
 		if (parameters != null && parameters.length > 0) {

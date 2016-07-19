@@ -14,8 +14,16 @@
  */
 package ilarkesto.auth;
 
+/**
+ *
+ * @author erik
+ */
 public interface LoginDataProvider {
 
-	LoginData getLoginData();
+    /**
+     *
+     * @return
+     */
+    LoginData getLoginData();
 
 }

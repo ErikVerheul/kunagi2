@@ -16,9 +16,17 @@ package scrum.client.project;
 
 import scrum.client.common.TooltipBuilder;
 
+/**
+ *
+ * @author erik
+ */
 public class OpenProjectAction extends GOpenProjectAction {
 
-	public OpenProjectAction(Project project) {
+    /**
+     *
+     * @param project
+     */
+    public OpenProjectAction(Project project) {
 		super(project);
 	}
 
@@ -27,7 +35,11 @@ public class OpenProjectAction extends GOpenProjectAction {
 		return "Open Project";
 	}
 
-	@Override
+    /**
+     *
+     * @param tb
+     */
+    @Override
 	protected void updateTooltip(TooltipBuilder tb) {
 		tb.setText("Open this project.");
 	}

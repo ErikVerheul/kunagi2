@@ -14,6 +14,7 @@
  */
 package scrum.client.sprint;
 
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.ButtonWidget;
 import ilarkesto.gwt.client.Gwt;
 import scrum.client.ScrumGwt;
@@ -23,8 +24,10 @@ import scrum.client.common.UserGuideWidget;
 import scrum.client.project.Requirement;
 import scrum.client.workspace.PagePanel;
 
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class SprintBacklogWidget extends AScrumWidget {
 
 	private BlockListWidget<Requirement> requirementList;
@@ -50,7 +53,9 @@ public class SprintBacklogWidget extends AScrumWidget {
 
 	@Override
 	protected void onUpdate() {
-		if (sprint != getCurrentSprint()) reset();
+		if (sprint != getCurrentSprint()) {
+                    reset();
+        }
 		requirementList.setObjects(getCurrentSprint().getRequirements());
 		super.onUpdate();
 	}
@@ -60,11 +65,19 @@ public class SprintBacklogWidget extends AScrumWidget {
 		return sprint != getCurrentSprint();
 	}
 
-	public void selectRequirement(Requirement r) {
+    /**
+     *
+     * @param r
+     */
+    public void selectRequirement(Requirement r) {
 		requirementList.showObject(r);
 	}
 
-	public void selectTask(Task task) {
+    /**
+     *
+     * @param task
+     */
+    public void selectTask(Task task) {
 		update();
 		RequirementInSprintBlock rBlock = (RequirementInSprintBlock) requirementList.getBlock(task.getRequirement());
 		requirementList.extendBlock(rBlock, true);

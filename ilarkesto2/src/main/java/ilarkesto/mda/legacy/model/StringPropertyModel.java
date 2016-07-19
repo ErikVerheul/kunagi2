@@ -14,6 +14,10 @@
  */
 package ilarkesto.mda.legacy.model;
 
+/**
+ *
+ * @author erik
+ */
 public class StringPropertyModel extends SimplePropertyModel {
 
 	private boolean richtext;
@@ -21,47 +25,92 @@ public class StringPropertyModel extends SimplePropertyModel {
 	private boolean templateAvailable;
 	private boolean masked;
 
-	public StringPropertyModel(BeanModel entityModel, String name) {
+    /**
+     *
+     * @param entityModel
+     * @param name
+     */
+    public StringPropertyModel(BeanModel entityModel, String name) {
 		super(entityModel, name, false, false, String.class.getName());
 	}
 
-	public StringPropertyModel setMasked(boolean masked) {
+    /**
+     *
+     * @param masked
+     * @return
+     */
+    public StringPropertyModel setMasked(boolean masked) {
 		this.masked = masked;
 		return this;
 	}
 
-	public boolean isMasked() {
+    /**
+     *
+     * @return
+     */
+    public boolean isMasked() {
 		return masked;
 	}
 
-	public StringPropertyModel setRichtext(boolean multiline) {
+    /**
+     *
+     * @param multiline
+     * @return
+     */
+    public StringPropertyModel setRichtext(boolean multiline) {
 		this.richtext = multiline;
 		return this;
 	}
 
-	public boolean isRichtext() {
+    /**
+     *
+     * @return
+     */
+    public boolean isRichtext() {
 		return richtext;
 	}
 
-	public StringPropertyModel setMaxLenght(Integer maxLenght) {
+    /**
+     *
+     * @param maxLenght
+     * @return
+     */
+    public StringPropertyModel setMaxLenght(Integer maxLenght) {
 		this.maxLenght = maxLenght;
 		return this;
 	}
 
-	public Integer getMaxLenght() {
+    /**
+     *
+     * @return
+     */
+    public Integer getMaxLenght() {
 		return maxLenght;
 	}
 
-	public boolean isMaxLengthSet() {
+    /**
+     *
+     * @return
+     */
+    public boolean isMaxLengthSet() {
 		return maxLenght != null;
 	}
 
-	public StringPropertyModel setTemplateAvailable(boolean template) {
+    /**
+     *
+     * @param template
+     * @return
+     */
+    public StringPropertyModel setTemplateAvailable(boolean template) {
 		this.templateAvailable = template;
 		return this;
 	}
 
-	public boolean isTemplateAvailable() {
+    /**
+     *
+     * @return
+     */
+    public boolean isTemplateAvailable() {
 		return templateAvailable;
 	}
 

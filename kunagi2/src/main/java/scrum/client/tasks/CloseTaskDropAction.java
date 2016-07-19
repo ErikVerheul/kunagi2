@@ -23,24 +23,45 @@ import scrum.client.project.Requirement;
 import scrum.client.sprint.Task;
 import scrum.client.workspace.VisibleDataChangedEvent;
 
+/**
+ *
+ * @author erik
+ */
 public class CloseTaskDropAction implements BlockListDropAction<Task> {
 
 	private Requirement requirement;
 
-	public CloseTaskDropAction(Requirement requirement) {
+    /**
+     *
+     * @param requirement
+     */
+    public CloseTaskDropAction(Requirement requirement) {
 		this.requirement = requirement;
 	}
 
-	@Override
+    /**
+     *
+     * @param task
+     * @return
+     */
+    @Override
 	public boolean isDroppable(Task task) {
-		if (!task.getProject().isTeamMember(Scope.get().getComponent(User.class))) return false;
-		if (!task.getRequirement().equals(this.requirement)) return false;
-		return true;
+		if (!task.getProject().isTeamMember(Scope.get().getComponent(User.class))) {
+                    return false;
+        }
+		return task.getRequirement().equals(this.requirement);
 	}
 
-	@Override
+    /**
+     *
+     * @param task
+     * @return
+     */
+    @Override
 	public boolean onDrop(Task task) {
-		if (!task.isClosed()) task.setDone(Scope.get().getComponent(Auth.class).getUser());
+		if (!task.isClosed()) {
+                    task.setDone(Scope.get().getComponent(Auth.class).getUser());
+        }
 		Scope.get().getComponent(scrum.client.undo.Undo.class).getManager().add(new Undo(task, requirement));
 		return true;
 	}

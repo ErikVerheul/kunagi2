@@ -14,6 +14,9 @@
  */
 package scrum.client.workspace;
 
+import com.google.gwt.user.client.ui.Widget;
+import static ilarkesto.core.logging.ClientLog.DEBUG;
+import static ilarkesto.core.logging.ClientLog.WARN;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.AGwtEntity;
 import ilarkesto.gwt.client.AWidget;
@@ -69,10 +72,10 @@ import scrum.client.sprint.SprintHistoryWidget;
 import scrum.client.sprint.Task;
 import scrum.client.tasks.WhiteboardWidget;
 
-import com.google.gwt.user.client.ui.Widget;
-import static ilarkesto.core.logging.ClientLog.DEBUG;
-import static ilarkesto.core.logging.ClientLog.WARN;
-
+/**
+ *
+ * @author erik
+ */
 public class ProjectWorkspaceWidgets extends GProjectWorkspaceWidgets implements ProjectDataReceivedHandler {
 
 	private ProjectSidebarWidget sidebar = new ProjectSidebarWidget();
@@ -107,7 +110,10 @@ public class ProjectWorkspaceWidgets extends GProjectWorkspaceWidgets implements
 
 	private User highlightedUser;
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	public void initialize() {
 		projectOverview = new ProjectOverviewWidget();
 		dashboard = new DashboardWidget();
@@ -189,13 +195,23 @@ public class ProjectWorkspaceWidgets extends GProjectWorkspaceWidgets implements
 		}
 	}
 
-	@Override
+    /**
+     *
+     * @param event
+     */
+    @Override
 	public void onProjectDataReceived(ProjectDataReceivedEvent event) {
 		Scope.get().getComponent(Ui.class).show(sidebar, dashboard);
 	}
 
-	public void highlightUser(User user) {
-		if (highlightedUser == user) return;
+    /**
+     *
+     * @param user
+     */
+    public void highlightUser(User user) {
+		if (highlightedUser == user) {
+                    return;
+        }
 		Widget currentWidget = getWorkarea().getCurrentWidget();
 		if (currentWidget instanceof UserHighlightSupport) {
 			((UserHighlightSupport) currentWidget).highlightUser(user);
@@ -203,11 +219,19 @@ public class ProjectWorkspaceWidgets extends GProjectWorkspaceWidgets implements
 		highlightedUser = user;
 	}
 
-	public ProjectUserConfigWidget getProjectUserConfig() {
+    /**
+     *
+     * @return
+     */
+    public ProjectUserConfigWidget getProjectUserConfig() {
 		return projectUserConfig;
 	}
 
-	public void showEntityByReference(final String reference) {
+    /**
+     *
+     * @param reference
+     */
+    public void showEntityByReference(final String reference) {
 		DEBUG("Showing entity by reference:", reference);
 
 		AGwtEntity entity = dao.getEntityByReference(reference);
@@ -239,7 +263,11 @@ public class ProjectWorkspaceWidgets extends GProjectWorkspaceWidgets implements
 		});
 	}
 
-	public void showEntityById(final String entityId) {
+    /**
+     *
+     * @param entityId
+     */
+    public void showEntityById(final String entityId) {
 		DEBUG("Showing entity by id:", entityId);
 
 		AGwtEntity entity;
@@ -275,7 +303,11 @@ public class ProjectWorkspaceWidgets extends GProjectWorkspaceWidgets implements
 		});
 	}
 
-	public void showEntity(AGwtEntity entity) {
+    /**
+     *
+     * @param entity
+     */
+    public void showEntity(AGwtEntity entity) {
 		DEBUG("Showing entity:", entity);
 		if (entity instanceof Task) {
 			showTask((Task) entity);
@@ -316,7 +348,12 @@ public class ProjectWorkspaceWidgets extends GProjectWorkspaceWidgets implements
 		navigator.updateHistory(Page.getPageName(getWorkarea().getCurrentWidget()), entity);
 	}
 
-	public String getPageForEntity(String entityId) {
+    /**
+     *
+     * @param entityId
+     * @return
+     */
+    public String getPageForEntity(String entityId) {
 		try {
 			return getPageForEntity(dao.getEntityByReference(entityId));
 		} catch (EntityDoesNotExistException ex) {
@@ -324,55 +361,107 @@ public class ProjectWorkspaceWidgets extends GProjectWorkspaceWidgets implements
 		}
 	}
 
-	public String getPageForEntity(AGwtEntity entity) {
+    /**
+     *
+     * @param entity
+     * @return
+     */
+    public String getPageForEntity(AGwtEntity entity) {
 		return Page.getPageName(getWidgetForEntity(entity));
 	}
 
-	public AWidget getWidgetForEntity(AGwtEntity entity) {
+    /**
+     *
+     * @param entity
+     * @return
+     */
+    public AWidget getWidgetForEntity(AGwtEntity entity) {
 		// TODO only for subjects and entities with comments
-		if (getWorkarea().isShowing(forum)) return forum;
+		if (getWorkarea().isShowing(forum)) {
+                    return forum;
+        }
 
-		if (entity instanceof Task) return getWidgetForEntity(((Task) entity).getRequirement());
+                if (entity instanceof Task) {
+                    return getWidgetForEntity(((Task) entity).getRequirement());
+        }
 
 		if (entity instanceof Requirement) {
 			Requirement requirement = (Requirement) entity;
-			if (requirement.isClosed() && !requirement.isInCurrentSprint()) return sprintHistory;
+                        if (requirement.isClosed() && !requirement.isInCurrentSprint()) {
+                return sprintHistory;
+            }
 
 			if (getWorkarea().isShowing(sprintHistory)) {
 				// FIXME multiple requirements on same page
-				boolean existsInHistory = !dao.getSprintReportsByRejectedRequirement(requirement).isEmpty();
-				if (existsInHistory) return sprintHistory;
+                            boolean existsInHistory = !dao.getSprintReportsByRejectedRequirement(requirement).isEmpty();
+                            if (existsInHistory) {
+                    return sprintHistory;
+                }
 			}
 
-			boolean inCurrentSprint = requirement.isInCurrentSprint();
-			if (inCurrentSprint) {
-				if (getWorkarea().isShowing(sprintBacklog)) return sprintBacklog;
+                        boolean inCurrentSprint = requirement.isInCurrentSprint();
+                        if (inCurrentSprint) {
+				if (getWorkarea().isShowing(sprintBacklog)) {
+                    return sprintBacklog;
+                }
 				return whiteboard;
-			}
-			return productBacklog;
+                        }
+                        return productBacklog;
 		}
-		if (entity instanceof Sprint) {
-			Sprint sprint = (Sprint) entity;
-			if (sprint.isCurrent()) return whiteboard;
-			return sprintHistory;
-		}
-		if (entity instanceof Issue) return issueList;
-		if (entity instanceof Risk) return riskList;
-		if (entity instanceof Quality) return qualityBacklog;
-		if (entity instanceof Subject) return forum;
-		if (entity instanceof Impediment) return impedimentList;
-		if (entity instanceof File) return fileRepository;
-		if (entity instanceof Wikipage) return wiki;
-		if (entity instanceof SimpleEvent) return calendar;
-		if (entity instanceof Project) return dashboard;
-		if (entity instanceof ProjectEvent) return projectEventList;
-		if (entity instanceof Release) return releaseList;
-		if (entity instanceof BlogEntry) return blog;
-		if (entity instanceof User) return userList;
+                if (entity instanceof Sprint) {
+                    Sprint sprint = (Sprint) entity;
+                    if (sprint.isCurrent()) {
+                        return whiteboard;
+                    }
+                    return sprintHistory;
+                }
+                if (entity instanceof Issue) {
+                    return issueList;
+                }
+		if (entity instanceof Risk) {
+                    return riskList;
+        }
+		if (entity instanceof Quality) {
+                    return qualityBacklog;
+        }
+                if (entity instanceof Subject) {
+                    return forum;
+        }
+                if (entity instanceof Impediment) {
+                    return impedimentList;
+                }
+                if (entity instanceof File) {
+                    return fileRepository;
+        }
+                if (entity instanceof Wikipage) {
+                    return wiki;
+        }
+                if (entity instanceof SimpleEvent) {
+            return calendar;
+        }
+		if (entity instanceof Project) {
+            return dashboard;
+        }
+		if (entity instanceof ProjectEvent) {
+            return projectEventList;
+        }
+		if (entity instanceof Release) {
+            return releaseList;
+        }
+		if (entity instanceof BlogEntry) {
+            return blog;
+        }
+		if (entity instanceof User) {
+            return userList;
+        }
 		return null;
 	}
 
-	public void showPage(String pageName) {
+    /**
+     *
+     * @param pageName
+     */
+    public void showPage(String pageName) {
 		Page page = pages.getPageByName(pageName);
 		if (page == null) {
 			if (pageName.equals(Page.getPageName(SearchResultsWidget.class))) {
@@ -391,7 +480,10 @@ public class ProjectWorkspaceWidgets extends GProjectWorkspaceWidgets implements
 		select(page.getWidget());
 	}
 
-	public void showDashboard() {
+    /**
+     *
+     */
+    public void showDashboard() {
 		select(dashboard);
 	}
 
@@ -465,10 +557,10 @@ public class ProjectWorkspaceWidgets extends GProjectWorkspaceWidgets implements
 
 		AWidget widget = getWidgetForEntity(requirement);
 		if (widget == sprintHistory) {
-			showSprintHistory(requirement);
+                    showSprintHistory(requirement);
 		} else if (widget == whiteboard) {
 			showWhiteboard(requirement);
-		} else if (widget == sprintBacklog) {
+                } else if (widget == sprintBacklog) {
 			showSprintBacklog(requirement);
 		} else if (widget == productBacklog) {
 			showProductBacklog(requirement);
@@ -479,21 +571,25 @@ public class ProjectWorkspaceWidgets extends GProjectWorkspaceWidgets implements
 
 	private void showWiki(String page) {
 		select(wiki);
-		if (page != null) wiki.showPage(page);
+		if (page != null) {
+            wiki.showPage(page);
+        }
 	}
 
 	private void showWiki(Wikipage page) {
 		select(wiki);
-		if (page != null) wiki.showPage(page);
+		if (page != null) {
+            wiki.showPage(page);
+        }
 	}
 
 	private SwitcherWidget getWorkarea() {
 		return Scope.get().getComponent(Ui.class).getWorkspace().getWorkarea();
 	}
 
-	private void showWhiteboard(Task task) {
-		select(whiteboard);
-		whiteboard.selectTask(task);
+        private void showWhiteboard(Task task) {
+            select(whiteboard);
+            whiteboard.selectTask(task);
 	}
 
 	private void showWhiteboard(Requirement requirement) {
@@ -506,9 +602,15 @@ public class ProjectWorkspaceWidgets extends GProjectWorkspaceWidgets implements
 		sprintBacklog.selectTask(task);
 	}
 
-	public void showSprintBacklog(Requirement requirement) {
+    /**
+     *
+     * @param requirement
+     */
+    public void showSprintBacklog(Requirement requirement) {
 		select(sprintBacklog);
-		if (requirement != null) sprintBacklog.selectRequirement(requirement);
+		if (requirement != null) {
+            sprintBacklog.selectRequirement(requirement);
+        }
 	}
 
 	private void showProductBacklog(Requirement requirement) {
@@ -516,7 +618,11 @@ public class ProjectWorkspaceWidgets extends GProjectWorkspaceWidgets implements
 		productBacklog.select(requirement);
 	}
 
-	public void showForum(ForumSupport entity) {
+    /**
+     *
+     * @param entity
+     */
+    public void showForum(ForumSupport entity) {
 		select(forum);
 		forum.select(entity);
 	}
@@ -547,67 +653,131 @@ public class ProjectWorkspaceWidgets extends GProjectWorkspaceWidgets implements
 		Scope.get().getComponent(Ui.class).unlock();
 	}
 
-	public WikiWidget getWiki() {
+    /**
+     *
+     * @return
+     */
+    public WikiWidget getWiki() {
 		return wiki;
 	}
 
-	public SprintHistoryWidget getSprintHistory() {
+    /**
+     *
+     * @return
+     */
+    public SprintHistoryWidget getSprintHistory() {
 		return sprintHistory;
 	}
 
-	public CalendarWidget getCalendar() {
+    /**
+     *
+     * @return
+     */
+    public CalendarWidget getCalendar() {
 		return calendar;
 	}
 
-	public JournalWidget getProjectEventList() {
+    /**
+     *
+     * @return
+     */
+    public JournalWidget getProjectEventList() {
 		return projectEventList;
 	}
 
-	public ImpedimentListWidget getImpedimentList() {
+    /**
+     *
+     * @return
+     */
+    public ImpedimentListWidget getImpedimentList() {
 		return impedimentList;
 	}
 
-	public FileRepositoryWidget getFileRepository() {
+    /**
+     *
+     * @return
+     */
+    public FileRepositoryWidget getFileRepository() {
 		return fileRepository;
 	}
 
-	public IssueManagementWidget getIssueList() {
+    /**
+     *
+     * @return
+     */
+    public IssueManagementWidget getIssueList() {
 		return issueList;
 	}
 
-	public NextSprintWidget getNextSprint() {
+    /**
+     *
+     * @return
+     */
+    public NextSprintWidget getNextSprint() {
 		return nextSprint;
 	}
 
-	public ProductBacklogWidget getProductBacklog() {
+    /**
+     *
+     * @return
+     */
+    public ProductBacklogWidget getProductBacklog() {
 		return productBacklog;
 	}
 
-	public ProjectOverviewWidget getProjectOverview() {
+    /**
+     *
+     * @return
+     */
+    public ProjectOverviewWidget getProjectOverview() {
 		return projectOverview;
 	}
 
-	public QualityBacklogWidget getQualityBacklog() {
+    /**
+     *
+     * @return
+     */
+    public QualityBacklogWidget getQualityBacklog() {
 		return qualityBacklog;
 	}
 
-	public ForumWidget getForum() {
+    /**
+     *
+     * @return
+     */
+    public ForumWidget getForum() {
 		return forum;
 	}
 
-	public RiskListWidget getRiskList() {
+    /**
+     *
+     * @return
+     */
+    public RiskListWidget getRiskList() {
 		return riskList;
 	}
 
-	public ProjectSidebarWidget getSidebar() {
+    /**
+     *
+     * @return
+     */
+    public ProjectSidebarWidget getSidebar() {
 		return sidebar;
 	}
 
-	public SprintBacklogWidget getSprintBacklog() {
+    /**
+     *
+     * @return
+     */
+    public SprintBacklogWidget getSprintBacklog() {
 		return sprintBacklog;
 	}
 
-	public WhiteboardWidget getWhiteboard() {
+    /**
+     *
+     * @return
+     */
+    public WhiteboardWidget getWhiteboard() {
 		return whiteboard;
 	}
 

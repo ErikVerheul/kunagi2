@@ -74,6 +74,7 @@ public class CheckedOutputStream extends FilterOutputStream
   /**
    * Creates a new CheckInputStream on top of the supplied OutputStream
    * using the supplied Checksum.
+     * @param cksum
    */
   public CheckedOutputStream (OutputStream out, Checksum cksum)
   {
@@ -84,6 +85,7 @@ public class CheckedOutputStream extends FilterOutputStream
   /**
    * Returns the Checksum object used. To get the data checksum computed so
    * far call <code>getChecksum.getValue()</code>.
+     * @return 
    */
   public Checksum getChecksum ()
   {
@@ -92,6 +94,7 @@ public class CheckedOutputStream extends FilterOutputStream
 
   /**
    * Writes one byte to the OutputStream and updates the Checksum.
+     * @throws java.io.IOException
    */
   @Override
   public void write (int bval) throws IOException
@@ -102,6 +105,7 @@ public class CheckedOutputStream extends FilterOutputStream
 
   /**
    * Writes the byte array to the OutputStream and updates the Checksum.
+     * @throws java.io.IOException
    */
   @Override
   public void write (byte[] buf, int off, int len) throws IOException

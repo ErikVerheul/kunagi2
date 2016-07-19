@@ -14,12 +14,11 @@
  */
 package scrum.server.common;
 
-import ilarkesto.base.Sys;
 import ilarkesto.base.StrExtend;
+import ilarkesto.base.Sys;
 import ilarkesto.base.UtlExtend;
-import ilarkesto.logging.Log;
 import ilarkesto.core.time.Date;
-
+import ilarkesto.logging.Log;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.io.ByteArrayOutputStream;
@@ -30,7 +29,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
@@ -43,13 +41,16 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.xy.XYItemRenderer;
 import org.jfree.data.Range;
 import org.jfree.data.xy.DefaultXYDataset;
-
 import scrum.client.common.WeekdaySelector;
 import scrum.server.css.ScreenCssBuilder;
 import scrum.server.sprint.Sprint;
 import scrum.server.sprint.SprintDao;
 import scrum.server.sprint.SprintDaySnapshot;
 
+/**
+ *
+ * @author erik
+ */
 public class BurndownChart {
 
 	private static final Log LOG = Log.get(BurndownChart.class);
@@ -62,25 +63,53 @@ public class BurndownChart {
 
 	private SprintDao sprintDao;
 
-	public void setSprintDao(SprintDao sprintDao) {
+    /**
+     *
+     * @param sprintDao
+     */
+    public void setSprintDao(SprintDao sprintDao) {
 		this.sprintDao = sprintDao;
 	}
 
 	// --- ---
 
+    /**
+     *
+     * @param sprint
+     * @param width
+     * @param height
+     * @return
+     */
+    
 	public static byte[] createBurndownChartAsByteArray(Sprint sprint, int width, int height) {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		new BurndownChart().writeSprintBurndownChart(out, sprint, width, height);
 		return out.toByteArray();
 	}
 
-	public void writeSprintBurndownChart(OutputStream out, String sprintId, int width, int height) {
+    /**
+     *
+     * @param out
+     * @param sprintId
+     * @param width
+     * @param height
+     */
+    public void writeSprintBurndownChart(OutputStream out, String sprintId, int width, int height) {
 		Sprint sprint = sprintDao.getById(sprintId);
-		if (sprint == null) throw new IllegalArgumentException("Sprint " + sprintId + " does not exist.");
+		if (sprint == null) {
+                    throw new IllegalArgumentException("Sprint " + sprintId + " does not exist.");
+        }
 		writeSprintBurndownChart(out, sprint, width, height);
 	}
 
-	public void writeSprintBurndownChart(OutputStream out, Sprint sprint, int width, int height) {
+    /**
+     *
+     * @param out
+     * @param sprint
+     * @param width
+     * @param height
+     */
+    public void writeSprintBurndownChart(OutputStream out, Sprint sprint, int width, int height) {
 		List<SprintDaySnapshot> snapshots = sprint.getDaySnapshots();
 		if (snapshots.isEmpty()) {
 			Date date = Date.today();
@@ -128,15 +157,21 @@ public class BurndownChart {
 
 		while (max / tick > 25) {
 			tick *= 2;
-			if (max / tick <= 25) break;
+			if (max / tick <= 25) {
+                            break;
+            }
 			tick *= 2.5;
-			if (max / tick <= 25) break;
+                        if (max / tick <= 25) {
+                            break;
+            }
 			tick *= 2;
 		}
 		double valueLabelTickUnit = tick;
-		double upperBoundary = Math.min(max * 1.1f, max + 3);
-
-		if (!Sys.isHeadless()) LOG.warn("GraphicsEnvironment is not headless");
+                double upperBoundary = Math.min(max * 1.1f, max + 3);
+                
+                if (!Sys.isHeadless()) {
+                    LOG.warn("GraphicsEnvironment is not headless");
+        }
 		JFreeChart chart = ChartFactory.createXYLineChart("", "", "", data, PlotOrientation.VERTICAL, false, true,
 			false);
 
@@ -266,8 +301,10 @@ public class BurndownChart {
 			this.freeDays = freeDays;
 
 			date = firstDay;
-			while (date.isBeforeOrSame(lastDay)) {
-				if (!freeDays.isFree(date.getWeekday().getDayOfWeek())) totalWorkDays++;
+                        while (date.isBeforeOrSame(lastDay)) {
+				if (!freeDays.isFree(date.getWeekday().getDayOfWeek())) {
+                    totalWorkDays++;
+                }
 				date = date.nextDay();
 			}
 
@@ -282,12 +319,14 @@ public class BurndownChart {
 
 				if (workFinished) {
 					processSuffix();
-				} else if (workStarted) {
+                                } else if (workStarted) {
 					processCenter();
 				} else {
 					processPrefix();
 				}
-				if (date.equals(lastDay)) break;
+				if (date.equals(lastDay)) {
+                    break;
+                }
 				setDate(date.nextDay());
 				totalBefore = totalAfter;
 			}
@@ -300,10 +339,12 @@ public class BurndownChart {
 
 		private void setDate(Date newDate) {
 			date = newDate;
-			millisBegin = date.toMillis();
-			millisEnd = date.nextDay().toMillis();
+                        millisBegin = date.toMillis();
+                        millisEnd = date.nextDay().toMillis();
 			freeDay = freeDays.isFree(date.getWeekday().getDayOfWeek());
-			if (!workFinished) snapshot = getSnapshot();
+			if (!workFinished) {
+                snapshot = getSnapshot();
+            }
 		}
 
 		private void processPrefix() {
@@ -348,17 +389,21 @@ public class BurndownChart {
 				idealRemaining -= idealBurnPerDay;
 			}
 			if (!extrapolationFinished) {
-				extrapolationDates.add((double) millisEnd);
-				extrapolationValues.add(totalRemaining);
+                            extrapolationDates.add((double) millisEnd);
+                            extrapolationValues.add(totalRemaining);
 			}
 			idealDates.add((double) millisEnd);
 			idealValues.add(idealRemaining);
-			if (totalRemaining <= 0) extrapolationFinished = true;
+                        if (totalRemaining <= 0) {
+                extrapolationFinished = true;
+            }
 		}
 
 		private BurndownSnapshot getSnapshot() {
 			for (BurndownSnapshot snapshot : snapshots) {
-				if (snapshot.getDate().equals(date)) return snapshot;
+				if (snapshot.getDate().equals(date)) {
+                    return snapshot;
+                }
 			}
 			workFinished = true;
 			totalRemaining = totalAfter;

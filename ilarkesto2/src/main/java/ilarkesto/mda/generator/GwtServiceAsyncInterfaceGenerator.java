@@ -20,16 +20,29 @@ import ilarkesto.mda.model.Node;
 import ilarkesto.mda.model.NodeTypes;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class GwtServiceAsyncInterfaceGenerator extends AJavaClassGenerator implements NodeTypes {
 
 	private final Node module;
 
-	public GwtServiceAsyncInterfaceGenerator(String srcPath, Node module) {
+    /**
+     *
+     * @param srcPath
+     * @param module
+     */
+    public GwtServiceAsyncInterfaceGenerator(String srcPath, Node module) {
 		super(srcPath, true);
 		this.module = module;
 	}
 
-	@Override
+    /**
+     *
+     * @param out
+     */
+    @Override
 	protected void printCode(JavaPrinter out) {
 		out.package_(getPackageName());
 		out.beginInterface(module.getValue() + "ServiceAsync", null);

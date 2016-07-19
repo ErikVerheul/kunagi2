@@ -14,11 +14,10 @@
  */
 package scrum.client.project;
 
-import ilarkesto.core.time.Date;
-import ilarkesto.gwt.client.AWidget;
-
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
+import ilarkesto.core.time.Date;
+import ilarkesto.gwt.client.AWidget;
 
 public class SprintSwitchIndicatorWidget extends AWidget {
 

@@ -23,13 +23,22 @@ import static java.util.Arrays.asList;
 import static java.util.Collections.sort;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class GwtServiceCallGenerator extends AJavaClassGenerator implements NodeTypes {
 
 	private Node call;
 	private Node package_;
 	private Node gwtModule;
 
-	public GwtServiceCallGenerator(String srcPath, Node call) {
+    /**
+     *
+     * @param srcPath
+     * @param call
+     */
+    public GwtServiceCallGenerator(String srcPath, Node call) {
 		super(srcPath, true);
 		this.call = call;
 
@@ -40,7 +49,11 @@ public class GwtServiceCallGenerator extends AJavaClassGenerator implements Node
 
 	}
 
-	@Override
+    /**
+     *
+     * @param out
+     */
+    @Override
 	protected void printCode(JavaPrinter out) {
 		out.package_(getPackageName());
 		out.beginClass(call.getValue() + "ServiceCall", "scrum.client.core.AServiceCall", null);

@@ -14,10 +14,6 @@
  */
 package scrum.client.collaboration;
 
-import ilarkesto.core.scope.Scope;
-import scrum.client.admin.User;
-import scrum.client.common.AScrumWidget;
-
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.KeyboardListener;
@@ -25,7 +21,14 @@ import com.google.gwt.user.client.ui.KeyboardListenerAdapter;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
+import ilarkesto.core.scope.Scope;
+import scrum.client.admin.User;
+import scrum.client.common.AScrumWidget;
 
+/**
+ *
+ * @author erik
+ */
 public class ChatWidget extends AScrumWidget {
 
 	private Chat chat;
@@ -52,7 +55,9 @@ public class ChatWidget extends AScrumWidget {
 			@Override
 			public void onKeyPress(Widget sender, char keyCode, int modifiers) {
 				super.onKeyPress(sender, keyCode, modifiers);
-				if (keyCode == KeyboardListener.KEY_ENTER) postMessage();
+				if (keyCode == KeyboardListener.KEY_ENTER) {
+                                    postMessage();
+                }
 			}
 
 		});
@@ -76,7 +81,9 @@ public class ChatWidget extends AScrumWidget {
 
 	private void postMessage() {
 		String text = input.getText();
-		if (text.trim().length() == 0) return;
+                if (text.trim().length() == 0) {
+                    return;
+        }
 		chat.postMessage(text);
 		input.setText("");
 		input.setFocus(true);

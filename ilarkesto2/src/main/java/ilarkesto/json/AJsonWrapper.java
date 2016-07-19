@@ -22,26 +22,50 @@ import java.util.ArrayList;
 import static java.util.Collections.emptyList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class AJsonWrapper implements JsonWrapper {
 
-	protected final JsonObject json;
+    /**
+     *
+     */
+    protected final JsonObject json;
 
-	public AJsonWrapper(JsonObject json) {
+    /**
+     *
+     * @param json
+     */
+    public AJsonWrapper(JsonObject json) {
 		if (json == null) {
                         throw new IllegalArgumentException("json == null");
                 }
 		this.json = json;
 	}
 
-	public AJsonWrapper() {
+    /**
+     *
+     */
+    public AJsonWrapper() {
 		this(new JsonObject());
 	}
 
-	protected void putArray(String name, Iterable<? extends AJsonWrapper> wrappers) {
+    /**
+     *
+     * @param name
+     * @param wrappers
+     */
+    protected void putArray(String name, Iterable<? extends AJsonWrapper> wrappers) {
 		json.put(name, getJsonObjects(wrappers));
 	}
 
-	protected static List<JsonObject> getJsonObjects(Iterable<? extends AJsonWrapper> wrappers) {
+    /**
+     *
+     * @param wrappers
+     * @return
+     */
+    protected static List<JsonObject> getJsonObjects(Iterable<? extends AJsonWrapper> wrappers) {
 		List<JsonObject> ret = new ArrayList<>();
 		for (AJsonWrapper wrapper : wrappers) {
 			ret.add(wrapper.getJson());
@@ -49,7 +73,12 @@ public abstract class AJsonWrapper implements JsonWrapper {
 		return ret;
 	}
 
-	protected void putOrRemove(String name, String value) {
+    /**
+     *
+     * @param name
+     * @param value
+     */
+    protected void putOrRemove(String name, String value) {
 		if (isBlank(value)) {
 			json.remove(name);
 		} else {
@@ -57,7 +86,12 @@ public abstract class AJsonWrapper implements JsonWrapper {
 		}
 	}
 
-	protected void putOrRemove(String name, boolean value) {
+    /**
+     *
+     * @param name
+     * @param value
+     */
+    protected void putOrRemove(String name, boolean value) {
 		if (value) {
 			json.put(name, value);
 		} else {
@@ -65,7 +99,14 @@ public abstract class AJsonWrapper implements JsonWrapper {
 		}
 	}
 
-	protected <T extends AJsonWrapper> List<T> createFromArray(String name, Class<T> type) {
+    /**
+     *
+     * @param <T>
+     * @param name
+     * @param type
+     * @return
+     */
+    protected <T extends AJsonWrapper> List<T> createFromArray(String name, Class<T> type) {
 		List<JsonObject> array = json.getArrayOfObjects(name);
 		if (array == null || array.isEmpty()) {
                         return emptyList();
@@ -80,7 +121,14 @@ public abstract class AJsonWrapper implements JsonWrapper {
 		return wrappers;
 	}
 
-	protected <T extends AJsonWrapper> T createFromObject(String name, Class<T> type) {
+    /**
+     *
+     * @param <T>
+     * @param name
+     * @param type
+     * @return
+     */
+    protected <T extends AJsonWrapper> T createFromObject(String name, Class<T> type) {
 		JsonObject object = json.getObject(name);
 		if (object == null) {
                         return null;
@@ -104,7 +152,11 @@ public abstract class AJsonWrapper implements JsonWrapper {
 		return wrapper;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public JsonObject getJson() {
 		return json;
 	}

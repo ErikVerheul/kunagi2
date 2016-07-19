@@ -18,12 +18,19 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.SimplePanel;
 
+/**
+ *
+ * @author erik
+ */
 public class BlockDndMarkerWidget extends Composite {
 
 	private SimplePanel panel;
 	private boolean active;
 
-	public BlockDndMarkerWidget() {
+    /**
+     *
+     */
+    public BlockDndMarkerWidget() {
 		panel = new SimplePanel();
 		panel.setHeight("1px");
 		panel.setStyleName("BlockDndMarkerWidget");
@@ -32,8 +39,14 @@ public class BlockDndMarkerWidget extends Composite {
 		initWidget(panel);
 	}
 
-	public void setActive(boolean active) {
-		if (this.active == active) return;
+    /**
+     *
+     * @param active
+     */
+    public void setActive(boolean active) {
+		if (this.active == active) {
+                    return;
+        }
 		this.active = active;
 		panel.setStyleName(active ? "BlockDndMarkerWidget-active" : "BlockDndMarkerWidget");
 	}

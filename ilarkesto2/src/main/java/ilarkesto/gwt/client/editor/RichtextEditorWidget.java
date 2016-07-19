@@ -39,6 +39,10 @@ import ilarkesto.gwt.client.Initializer;
 import ilarkesto.gwt.client.RichtextFormater;
 import ilarkesto.gwt.client.ToolbarWidget;
 
+/**
+ *
+ * @author erik
+ */
 public class RichtextEditorWidget extends AViewEditWidget {
 
 	private HTML viewer;
@@ -52,12 +56,19 @@ public class RichtextEditorWidget extends AViewEditWidget {
 	private ATextEditorModel model;
 	private ToolbarWidget bottomToolbar;
 
-	public RichtextEditorWidget(ATextEditorModel model) {
+    /**
+     *
+     * @param model
+     */
+    public RichtextEditorWidget(ATextEditorModel model) {
 		super();
 		this.model = model;
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void onUpdate() {
 		if (editor != null && editor.isBurned()) {
 			editor = null;
@@ -67,12 +78,18 @@ public class RichtextEditorWidget extends AViewEditWidget {
 		super.onUpdate();
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void onViewerUpdate() {
 		setViewerText(model.getValue());
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void onEditorUpdate() {
 		if (editor != null && editor.isBurned()) {
                         editor = null;
@@ -111,14 +128,20 @@ public class RichtextEditorWidget extends AViewEditWidget {
 		bottomToolbar.update();
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void focusEditor() {
 		if (editor != null) {
                         editor.focus();
                 }
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void onEditorSubmit() {
 		String value = getEditorText();
 		// TODO check lenght
@@ -126,14 +149,22 @@ public class RichtextEditorWidget extends AViewEditWidget {
 		model.changeValue(value);
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected final Widget onViewerInitialization() {
 		viewer = new HTML();
 		viewer.setStyleName("ARichtextViewEditWidget-viewer");
 		return viewer;
 	}
 
-	protected void armToolbar(ToolbarWidget toolbar) {
+    /**
+     *
+     * @param toolbar
+     */
+    protected void armToolbar(ToolbarWidget toolbar) {
 		String syntaxInfoHtml = getSyntaxInfo();
 		if (syntaxInfoHtml != null) {
 			Label syntaxInfo = new Label("Syntax Info");
@@ -143,19 +174,35 @@ public class RichtextEditorWidget extends AViewEditWidget {
 		}
 	}
 
-	public void setApplyButtonLabel(String applyButtonLabel) {
+    /**
+     *
+     * @param applyButtonLabel
+     */
+    public void setApplyButtonLabel(String applyButtonLabel) {
 		this.applyButtonLabel = applyButtonLabel;
 	}
 
-	public void setAutosave(boolean autosave) {
+    /**
+     *
+     * @param autosave
+     */
+    public void setAutosave(boolean autosave) {
 		this.autosave = autosave;
 	}
 
-	public boolean isAutosave() {
+    /**
+     *
+     * @return
+     */
+    public boolean isAutosave() {
 		return autosave;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected final Widget onEditorInitialization() {
 		editorWrapper = new SimplePanel();
 
@@ -214,7 +261,10 @@ public class RichtextEditorWidget extends AViewEditWidget {
 		return editorPanel;
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void onEditorClose() {
 		super.onEditorClose();
 		editor = null;
@@ -225,15 +275,27 @@ public class RichtextEditorWidget extends AViewEditWidget {
 		}
 	}
 
-	public ToolbarWidget getEditorToolbar() {
+    /**
+     *
+     * @return
+     */
+    public ToolbarWidget getEditorToolbar() {
 		return editorToolbar;
 	}
 
-	public CodemirrorEditorWidget getEditor() {
+    /**
+     *
+     * @return
+     */
+    public CodemirrorEditorWidget getEditor() {
 		return editor;
 	}
 
-	public final void setViewerText(String text) {
+    /**
+     *
+     * @param text
+     */
+    public final void setViewerText(String text) {
 		if (isBlank(text)) {
 			viewer.setHTML(".");
 			return;
@@ -247,6 +309,10 @@ public class RichtextEditorWidget extends AViewEditWidget {
 	// viewer.setHTML(html);
 	// }
 
+    /**
+     *
+     */
+    
 	@Override
 	protected void closeEditor() {
 		if (autosave) {
@@ -256,7 +322,11 @@ public class RichtextEditorWidget extends AViewEditWidget {
 		}
 	}
 
-	public final String getEditorText() {
+    /**
+     *
+     * @return
+     */
+    public final String getEditorText() {
 		if (editor == null) {
                         return null;
                 }
@@ -267,35 +337,64 @@ public class RichtextEditorWidget extends AViewEditWidget {
 		return text;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public boolean isEditable() {
 		return model.isEditable();
 	}
 
-	protected String getSyntaxInfo() {
+    /**
+     *
+     * @return
+     */
+    protected String getSyntaxInfo() {
 		return getDefaultRichtextSyntaxInfo();
 	}
 
-	protected RichtextFormater getRichtextFormater() {
+    /**
+     *
+     * @return
+     */
+    protected RichtextFormater getRichtextFormater() {
 		return getDefaultRichtextFormater();
 	}
 
-	public RichtextEditorWidget setEditorHeight(int pixels) {
+    /**
+     *
+     * @param pixels
+     * @return
+     */
+    public RichtextEditorWidget setEditorHeight(int pixels) {
 		editorHeight = pixels + "px";
 		return this;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getTooltip() {
 		return model.getTooltip();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getId() {
 		return model.getId();
 	}
 
-	public ATextEditorModel getModel() {
+    /**
+     *
+     * @return
+     */
+    public ATextEditorModel getModel() {
 		return model;
 	}
 

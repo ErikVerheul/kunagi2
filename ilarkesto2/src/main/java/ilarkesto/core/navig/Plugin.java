@@ -14,10 +14,23 @@
  */
 package ilarkesto.core.navig;
 
+/**
+ *
+ * @author erik
+ */
 public interface Plugin {
 
-	void initialize(Navigator navigator);
+    /**
+     *
+     * @param navigator
+     */
+    void initialize(Navigator navigator);
 
-	void execute(Navigator navigator, Item item);
+    /**
+     *
+     * @param navigator
+     * @param item
+     */
+    void execute(Navigator navigator, Item item);
 
 }

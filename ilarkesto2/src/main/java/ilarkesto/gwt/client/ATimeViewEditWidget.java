@@ -26,18 +26,30 @@ import static ilarkesto.core.base.Str.isBlank;
 import static ilarkesto.core.logging.ClientLog.DEBUG;
 import ilarkesto.core.time.Time;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class ATimeViewEditWidget extends AViewEditWidget {
 
 	private Label viewer;
 	private TextBox editor;
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected final Widget onViewerInitialization() {
 		viewer = new Label();
 		return viewer;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected final Widget onEditorInitialization() {
 		editor = new TextBox();
 		editor.addFocusListener(new EditorFocusListener());
@@ -45,17 +57,29 @@ public abstract class ATimeViewEditWidget extends AViewEditWidget {
 		return editor;
 	}
 
-	public final void setViewerValue(Time value) {
+    /**
+     *
+     * @param value
+     */
+    public final void setViewerValue(Time value) {
 		viewer.setText(value == null ? "." : value.toString());
 	}
 
-	public final void setEditorValue(Time value) {
+    /**
+     *
+     * @param value
+     */
+    public final void setEditorValue(Time value) {
 		editor.setText(value == null ? null : value.toString());
 		editor.setSelectionRange(0, editor.getText().length());
 		editor.setFocus(true);
 	}
 
-	public final Time getEditorValue() {
+    /**
+     *
+     * @return
+     */
+    public final Time getEditorValue() {
 		String s = editor.getText();
 		if (isBlank(s)) {
                         return null;

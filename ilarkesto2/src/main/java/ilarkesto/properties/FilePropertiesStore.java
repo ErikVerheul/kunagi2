@@ -14,11 +14,11 @@
  */
 package ilarkesto.properties;
 
-import ilarkesto.logging.Log;
 import ilarkesto.io.IO;
 import static ilarkesto.io.IO.loadProperties;
 import static ilarkesto.io.IO.saveProperties;
 import static ilarkesto.io.IO.touch;
+import ilarkesto.logging.Log;
 import java.io.File;
 import java.util.Properties;
 

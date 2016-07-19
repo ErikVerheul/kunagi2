@@ -15,7 +15,6 @@
 package ilarkesto.persistence;
 
 import ilarkesto.auth.AUser;
-import ilarkesto.auth.Auth;
 import static ilarkesto.auth.Auth.isVisible;
 import ilarkesto.fp.Predicate;
 import ilarkesto.id.Identifiable;

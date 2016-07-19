@@ -1,30 +1,24 @@
-/*
- * Copyright 2011 Witoslaw Koczewsi <wi@koczewski.de>, Artjom Kochtchi
- * 
- * This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero
- * General Public License as published by the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
- * implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public
- * License for more details.
- * 
- * You should have received a copy of the GNU General Public License along with this program. If not, see
- * <http://www.gnu.org/licenses/>.
- */
+
 package scrum.server.release;
 
-import scrum.server.release.GReleaseDao;
 import ilarkesto.core.time.Date;
 import ilarkesto.fp.Predicate;
-
 import java.util.Set;
-
 import scrum.server.project.Project;
 
+/**
+ *
+ * @author erik
+ */
 public class ReleaseDao extends GReleaseDao {
 
-	public Release getReleaseByNumber(final int number, final Project project) {
+    /**
+     *
+     * @param number
+     * @param project
+     * @return
+     */
+    public Release getReleaseByNumber(final int number, final Project project) {
 		return getEntity(new Predicate<Release>() {
 
 			@Override
@@ -34,11 +28,18 @@ public class ReleaseDao extends GReleaseDao {
 		});
 	}
 
-	public Release getNextRelease(Project project) {
+    /**
+     *
+     * @param project
+     * @return
+     */
+    public Release getNextRelease(Project project) {
 		Release next = null;
 		Set<Release> releases = getReleasesByProject(project);
 		for (Release release : releases) {
-			if (release.isReleased()) continue;
+			if (release.isReleased()) {
+                            continue;
+            }
 			if (next == null || release.getReleaseDate().isBefore(next.getReleaseDate())) {
 				next = release;
 			}
@@ -46,11 +47,18 @@ public class ReleaseDao extends GReleaseDao {
 		return next;
 	}
 
-	public Release getCurrentRelease(Project project) {
+    /**
+     *
+     * @param project
+     * @return
+     */
+    public Release getCurrentRelease(Project project) {
 		Release latest = null;
 		Set<Release> releases = getReleasesByProject(project);
 		for (Release release : releases) {
-			if (!release.isReleased()) continue;
+			if (!release.isReleased()) {
+                            continue;
+            }
 			if (latest == null || release.getReleaseDate().isAfter(latest.getReleaseDate())) {
 				latest = release;
 			}
@@ -58,13 +66,23 @@ public class ReleaseDao extends GReleaseDao {
 		return latest;
 	}
 
-	public void resetScripts() {
+    /**
+     *
+     */
+    public void resetScripts() {
 		for (Release release : getEntities()) {
 			release.setScriptRunning(false);
 		}
 	}
 
-	public Release postRelease(Project project, Date releaseDate, String label) {
+    /**
+     *
+     * @param project
+     * @param releaseDate
+     * @param label
+     * @return
+     */
+    public Release postRelease(Project project, Date releaseDate, String label) {
 		Release release = newEntityInstance();
 		release.setProject(project);
 		release.setReleaseDate(releaseDate);

@@ -16,9 +16,17 @@ package ilarkesto.mda.model;
 
 import ilarkesto.core.event.AEvent;
 
+/**
+ *
+ * @author erik
+ */
 public class ModelChangedEvent extends AEvent {
 
-	@Override
+    /**
+     *
+     * @param handler
+     */
+    @Override
 	public void tryToGetHandled(Object handler) {
 //		LOG.info("Testing event handler:", handler);
 		if (handler instanceof ModelChangedHandler) {

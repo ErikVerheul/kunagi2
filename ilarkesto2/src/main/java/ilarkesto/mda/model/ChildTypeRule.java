@@ -16,8 +16,17 @@ package ilarkesto.mda.model;
 
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public interface ChildTypeRule {
 
-	List<String> getAllowedTypes(Node parent);
+    /**
+     *
+     * @param parent
+     * @return
+     */
+    List<String> getAllowedTypes(Node parent);
 
 }

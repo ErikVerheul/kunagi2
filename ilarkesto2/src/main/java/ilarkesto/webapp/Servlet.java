@@ -18,12 +18,12 @@ import static ilarkesto.base.Net.getHostnameOrIp;
 import static ilarkesto.base.TmExtend.toUtc;
 import static ilarkesto.core.base.Str.encodeUrlParameter;
 import static ilarkesto.core.base.Str.format;
-import ilarkesto.logging.Log;
 import ilarkesto.core.time.DateAndTime;
 import static ilarkesto.io.IO.UTF_8;
 import static ilarkesto.io.IO.copyFile;
 import static ilarkesto.io.IO.getHostName;
 import static ilarkesto.io.IO.readToString;
+import ilarkesto.logging.Log;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -42,17 +42,32 @@ import javax.servlet.http.HttpServletResponse;
 import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 import static javax.servlet.http.HttpServletResponse.SC_NOT_MODIFIED;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class Servlet {
 
 	private static final Log log = Log.get(Servlet.class);
 
-	public static final String ENCODING = UTF_8;
+    /**
+     *
+     */
+    public static final String ENCODING = UTF_8;
 
-	public static final String HTTP_DATE_FORMAT = "EEE, dd MMM yyyy, HH:mm:";
+    /**
+     *
+     */
+    public static final String HTTP_DATE_FORMAT = "EEE, dd MMM yyyy, HH:mm:";
 
 	private Servlet() {}
 
-	public static String readContentToString(HttpServletRequest request) {
+    /**
+     *
+     * @param request
+     * @return
+     */
+    public static String readContentToString(HttpServletRequest request) {
 		BufferedReader in;
 		try {
 			in = request.getReader();
@@ -65,7 +80,12 @@ public abstract class Servlet {
 		return readToString(in);
 	}
 
-	public static String getBaseUrl(HttpServletRequest request) {
+    /**
+     *
+     * @param request
+     * @return
+     */
+    public static String getBaseUrl(HttpServletRequest request) {
 		String context = request.getContextPath();
 		String url = request.getRequestURL().toString();
 		int offset = url.indexOf("//") + 2;
@@ -77,11 +97,23 @@ public abstract class Servlet {
 		return baseUrl;
 	}
 
-	public static String getEtag(HttpServletRequest request) {
+    /**
+     *
+     * @param request
+     * @return
+     */
+    public static String getEtag(HttpServletRequest request) {
 		return request.getHeader("If-None-Match");
 	}
 
-	public static String getWebappUrl(ServletConfig servletConfig, int port, boolean ssl) {
+    /**
+     *
+     * @param servletConfig
+     * @param port
+     * @param ssl
+     * @return
+     */
+    public static String getWebappUrl(ServletConfig servletConfig, int port, boolean ssl) {
 		String protocol = ssl ? "https" : "http";
 		String host = getHostName();
 		if (port != 80) {
@@ -91,37 +123,77 @@ public abstract class Servlet {
 		return protocol + "://" + host + "/" + context;
 	}
 
-	public static void writeCachingHeaders(HttpServletResponse httpResponse, DateAndTime lastModified) {
+    /**
+     *
+     * @param httpResponse
+     * @param lastModified
+     */
+    public static void writeCachingHeaders(HttpServletResponse httpResponse, DateAndTime lastModified) {
 		writeCachingHeaders(httpResponse, createEtag(lastModified), lastModified);
 	}
 
-	public static String createEtag(File file) {
+    /**
+     *
+     * @param file
+     * @return
+     */
+    public static String createEtag(File file) {
 		return toHexString(file.lastModified());
 	}
 
-	public static String createEtag(DateAndTime lastModified) {
+    /**
+     *
+     * @param lastModified
+     * @return
+     */
+    public static String createEtag(DateAndTime lastModified) {
 		return toHexString(lastModified.toMillis());
 	}
 
-	public static void writeCachingHeaders(HttpServletResponse httpResponse, String eTag, DateAndTime lastModified) {
+    /**
+     *
+     * @param httpResponse
+     * @param eTag
+     * @param lastModified
+     */
+    public static void writeCachingHeaders(HttpServletResponse httpResponse, String eTag, DateAndTime lastModified) {
 		setLastModified(httpResponse, lastModified);
 		setEtag(httpResponse, eTag);
 	}
 
-	public static void setLastModified(HttpServletResponse httpResponse, DateAndTime lastModified) {
+    /**
+     *
+     * @param httpResponse
+     * @param lastModified
+     */
+    public static void setLastModified(HttpServletResponse httpResponse, DateAndTime lastModified) {
 		httpResponse.setHeader("Last-Modified",
 			new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss").format(toUtc(lastModified.toJavaDate())) + " GMT");
 	}
 
-	public static void setEtag(HttpServletResponse httpResponse, String eTag) {
+    /**
+     *
+     * @param httpResponse
+     * @param eTag
+     */
+    public static void setEtag(HttpServletResponse httpResponse, String eTag) {
 		httpResponse.setHeader("ETag", eTag);
 	}
 
-	public static void writeCachingHeaders(HttpServletResponse httpResponse, File file) {
+    /**
+     *
+     * @param httpResponse
+     * @param file
+     */
+    public static void writeCachingHeaders(HttpServletResponse httpResponse, File file) {
 		writeCachingHeaders(httpResponse, new DateAndTime(file.lastModified()));
 	}
 
-	public static void preventCaching(HttpServletResponse httpResponse) {
+    /**
+     *
+     * @param httpResponse
+     */
+    public static void preventCaching(HttpServletResponse httpResponse) {
 		// prevent caching HTTP 1.1
 		httpResponse.setHeader("Cache-Control", "no-cache");
 
@@ -132,7 +204,15 @@ public abstract class Servlet {
 		httpResponse.setDateHeader("Expires", 0);
 	}
 
-	public static void serveFile(File file, HttpServletRequest httpRequest, HttpServletResponse httpResponse,
+    /**
+     *
+     * @param file
+     * @param httpRequest
+     * @param httpResponse
+     * @param setFilename
+     * @param enableCaching
+     */
+    public static void serveFile(File file, HttpServletRequest httpRequest, HttpServletResponse httpResponse,
 			boolean setFilename, boolean enableCaching) {
 		if (!file.exists()) {
 			try {
@@ -170,28 +250,60 @@ public abstract class Servlet {
 		}
 	}
 
-	public static void setFilename(String fileName, HttpServletResponse httpResponse) {
+    /**
+     *
+     * @param fileName
+     * @param httpResponse
+     */
+    public static void setFilename(String fileName, HttpServletResponse httpResponse) {
 		httpResponse.setHeader("Content-Disposition", "inline; filename=" + encodeUrlParameter(fileName) + ";");
 	}
 
-	public static String getContextPath(ServletConfig servletConfig) {
+    /**
+     *
+     * @param servletConfig
+     * @return
+     */
+    public static String getContextPath(ServletConfig servletConfig) {
 		return getContextPath(servletConfig.getServletContext());
 	}
 
-	public static String getContextPath(ServletContext servletContext) {
+    /**
+     *
+     * @param servletContext
+     * @return
+     */
+    public static String getContextPath(ServletContext servletContext) {
 		String path = servletContext.getContextPath();
-		if (path == null) return null;
+		if (path == null) {
+                    return null;
+        }
 		path = path.trim();
-		if (path.startsWith("/")) path = path.substring(1);
-		if (path.endsWith("/")) path = path.substring(0, path.length() - 1);
+		if (path.startsWith("/")) {
+                    path = path.substring(1);
+        }
+                if (path.endsWith("/")) {
+                    path = path.substring(0, path.length() - 1);
+        }
 		path = path.trim();
-		if (path.length() == 0) return null;
-		if (path.equals("ROOT")) return null;
-		if (ilarkesto.base.Sys.isDevelopmentMode() && path.equals("war")) return null;
+                if (path.length() == 0) {
+                    return null;
+                }
+                if (path.equals("ROOT")) {
+            return null;
+        }
+                if (ilarkesto.base.Sys.isDevelopmentMode() && path.equals("war")) {
+            return null;
+        }
 		return path;
 	}
 
-	public static String getUriWithoutContextWithParameters(HttpServletRequest httpRequest) {
+    /**
+     *
+     * @param httpRequest
+     * @return
+     */
+    public static String getUriWithoutContextWithParameters(HttpServletRequest httpRequest) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(getUriWithoutContext(httpRequest));
 		sb.append("?");
@@ -206,7 +318,12 @@ public abstract class Servlet {
 		return sb.toString();
 	}
 
-	public static String getUriWithoutContext(HttpServletRequest httpRequest) {
+    /**
+     *
+     * @param httpRequest
+     * @return
+     */
+    public static String getUriWithoutContext(HttpServletRequest httpRequest) {
 		String uri = httpRequest.getRequestURI();
 		String context = httpRequest.getContextPath();
 		if (uri.length() <= context.length() + 1) {
@@ -215,15 +332,31 @@ public abstract class Servlet {
 		return uri.substring(context.length() + 1);
 	}
 
-	public static String getRemoteHost(HttpServletRequest r) {
+    /**
+     *
+     * @param r
+     * @return
+     */
+    public static String getRemoteHost(HttpServletRequest r) {
 		return getHostnameOrIp(r.getRemoteAddr());
 	}
 
-	public static String getUserAgent(HttpServletRequest r) {
+    /**
+     *
+     * @param r
+     * @return
+     */
+    public static String getUserAgent(HttpServletRequest r) {
 		return r.getHeader("User-Agent");
 	}
 
-	public static String toString(HttpServletRequest r, String indent) {
+    /**
+     *
+     * @param r
+     * @param indent
+     * @return
+     */
+    public static String toString(HttpServletRequest r, String indent) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(indent).append("requestedURL:       ").append(r.getRequestURL()).append("\n");
 		sb.append(indent).append("requestedURI:       ").append(r.getRequestURI()).append("\n");
@@ -263,7 +396,12 @@ public abstract class Servlet {
 		return sb.toString();
 	}
 
-	public static Map<String, String> getHeaders(HttpServletRequest r) {
+    /**
+     *
+     * @param r
+     * @return
+     */
+    public static Map<String, String> getHeaders(HttpServletRequest r) {
 		Map<String, String> result = new HashMap<>();
 		Enumeration names = r.getHeaderNames();
 		while (names.hasMoreElements()) {
@@ -274,7 +412,12 @@ public abstract class Servlet {
 		return result;
 	}
 
-	public static Map<String, Object> getAttributes(HttpServletRequest r) {
+    /**
+     *
+     * @param r
+     * @return
+     */
+    public static Map<String, Object> getAttributes(HttpServletRequest r) {
 		Map<String, Object> result = new HashMap<>();
 		Enumeration names = r.getAttributeNames();
 		while (names.hasMoreElements()) {
@@ -285,20 +428,38 @@ public abstract class Servlet {
 		return result;
 	}
 
-	public static void removeCookie(HttpServletResponse response, String cookieName) {
+    /**
+     *
+     * @param response
+     * @param cookieName
+     */
+    public static void removeCookie(HttpServletResponse response, String cookieName) {
 		Cookie cookie = new Cookie(cookieName, "");
 		cookie.setMaxAge(1);
 		response.addCookie(cookie);
 	}
 
-	public static void setCookie(HttpServletResponse response, String cookieName, String cookieValue,
+    /**
+     *
+     * @param response
+     * @param cookieName
+     * @param cookieValue
+     * @param maxAgeInSeconds
+     */
+    public static void setCookie(HttpServletResponse response, String cookieName, String cookieValue,
 			int maxAgeInSeconds) {
 		Cookie cookie = new Cookie(cookieName, cookieValue);
 		cookie.setMaxAge(maxAgeInSeconds);
 		response.addCookie(cookie);
 	}
 
-	public static String getCookieValue(HttpServletRequest request, String cookieName) {
+    /**
+     *
+     * @param request
+     * @param cookieName
+     * @return
+     */
+    public static String getCookieValue(HttpServletRequest request, String cookieName) {
 		Cookie cookie = getCookie(request, cookieName);
 		if (cookie == null) {
                         return null;
@@ -306,7 +467,13 @@ public abstract class Servlet {
 		return cookie.getValue();
 	}
 
-	public static Cookie getCookie(HttpServletRequest request, String name) {
+    /**
+     *
+     * @param request
+     * @param name
+     * @return
+     */
+    public static Cookie getCookie(HttpServletRequest request, String name) {
 		Cookie[] cookies = request.getCookies();
 		if (cookies == null) {
                         return null;

@@ -14,6 +14,8 @@
  */
 package scrum.client.project;
 
+import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.time.Date;
 import ilarkesto.core.time.TimePeriod;
 import ilarkesto.gwt.client.AnchorPanel;
@@ -27,17 +29,25 @@ import scrum.client.img.Img;
 import scrum.client.journal.ActivateChangeHistoryAction;
 import scrum.client.sprint.Sprint;
 
-import com.google.gwt.user.client.ui.Image;
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class RequirementBlock extends ABlockWidget<Requirement> implements TrashSupport {
 
-	public RequirementBlock() {}
+    /**
+     *
+     */
+    public RequirementBlock() {}
 
 	private AnchorPanel statusIcon;
 	private SprintSwitchIndicatorWidget sprintBorderIndicator;
 
-	@Override
+    /**
+     *
+     * @param header
+     */
+    @Override
 	protected void onInitializationHeader(BlockHeaderWidget header) {
 		Requirement requirement = getObject();
 		statusIcon = header.addIconWrapper();
@@ -58,7 +68,11 @@ public class RequirementBlock extends ABlockWidget<Requirement> implements Trash
 		header.addMenuAction(new DeleteRequirementAction(requirement));
 	}
 
-	@Override
+    /**
+     *
+     * @param header
+     */
+    @Override
 	protected void onUpdateHeader(BlockHeaderWidget header) {
 		Requirement requirement = getObject();
 		header.setDragHandle(requirement.getReference());
@@ -95,7 +109,9 @@ public class RequirementBlock extends ABlockWidget<Requirement> implements Trash
 			TimePeriod sprintLength = sprint.getLength();
 			int sprintLengthInDays = sprintLength == null ? 14 : sprintLength.toDays();
 			Date begin = sprint.getBegin();
-			if (begin == null || begin.isPast()) begin = new Date();
+			if (begin == null || begin.isPast()) {
+                            begin = new Date();
+            }
 			int totalLength = sprintLengthInDays * (sprints + 1);
 			Date date = begin.addDays(totalLength);
 			sprintBorderIndicator.updateLabel(sprints + 1, date);
@@ -109,17 +125,28 @@ public class RequirementBlock extends ABlockWidget<Requirement> implements Trash
 		}
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected Widget onExtendedInitialization() {
 		return new RequirementWidget(getObject(), true, false, false, true, true, true, false);
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public AScrumAction getTrashAction() {
 		return new DeleteRequirementAction(getObject());
 	}
 
-	public static final BlockWidgetFactory<Requirement> FACTORY = new BlockWidgetFactory<Requirement>() {
+    /**
+     *
+     */
+    public static final BlockWidgetFactory<Requirement> FACTORY = new BlockWidgetFactory<Requirement>() {
 
 		@Override
 		public RequirementBlock createBlock() {

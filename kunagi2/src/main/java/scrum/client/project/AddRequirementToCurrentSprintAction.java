@@ -17,9 +17,17 @@ package scrum.client.project;
 import scrum.client.common.TooltipBuilder;
 import scrum.client.sprint.PullStoryToSprintServiceCall;
 
+/**
+ *
+ * @author erik
+ */
 public class AddRequirementToCurrentSprintAction extends GAddRequirementToCurrentSprintAction {
 
-	public AddRequirementToCurrentSprintAction(Requirement requirement) {
+    /**
+     *
+     * @param requirement
+     */
+    public AddRequirementToCurrentSprintAction(Requirement requirement) {
 		super(requirement);
 	}
 
@@ -28,30 +36,42 @@ public class AddRequirementToCurrentSprintAction extends GAddRequirementToCurren
 		return "Pull to Sprint";
 	}
 
-	@Override
+    /**
+     *
+     * @param tb
+     */
+    @Override
 	protected void updateTooltip(TooltipBuilder tb) {
 		tb.setText("Add this Story to the current Sprint Backlog.");
 		if (!getCurrentProject().isTeamMember(getCurrentUser())) {
 			tb.addRemark(TooltipBuilder.NOT_TEAM);
 		} else {
-			if (requirement.isClosed()) tb.addRemark("Story is already closed.");
-			if (!requirement.isEstimatedWorkValid()) tb.addRemark("Story has no confirmed estimation yet.");
-			if (isCurrentSprint(requirement.getSprint())) tb.addRemark("Story is already in current sprint.");
+			if (requirement.isClosed()) {
+                            tb.addRemark("Story is already closed.");
+            }
+			if (!requirement.isEstimatedWorkValid()) {
+                            tb.addRemark("Story has no confirmed estimation yet.");
+            }
+                        if (isCurrentSprint(requirement.getSprint())) {
+                            tb.addRemark("Story is already in current sprint.");
+            }
 		}
 	}
 
 	@Override
-	public boolean isExecutable() {
-		if (requirement.isClosed()) return false;
-		if (!requirement.isEstimatedWorkValid()) return false;
-		if (isCurrentSprint(requirement.getSprint())) return false;
-		return true;
+        public boolean isExecutable() {
+		if (requirement.isClosed()) {
+            return false;
+                }
+                if (!requirement.isEstimatedWorkValid()) {
+            return false;
+        }
+		return !isCurrentSprint(requirement.getSprint());
 	}
 
 	@Override
 	public boolean isPermitted() {
-		if (!getCurrentProject().isTeamMember(getCurrentUser())) return false;
-		return true;
+		return getCurrentProject().isTeamMember(getCurrentUser());
 	}
 
 	@Override

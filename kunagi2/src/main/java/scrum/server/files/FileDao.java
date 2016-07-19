@@ -14,7 +14,6 @@
  */
 package scrum.server.files;
 
-import scrum.server.files.GFileDao;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.fp.Predicate;
 import scrum.server.project.Project;

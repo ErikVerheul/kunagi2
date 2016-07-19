@@ -16,9 +16,16 @@ package ilarkesto.auth;
 
 import ilarkesto.base.PermissionDeniedException;
 
+/**
+ *
+ * @author erik
+ */
 public class LoginRequiredException extends PermissionDeniedException {
 
-	public LoginRequiredException() {
+    /**
+     *
+     */
+    public LoginRequiredException() {
 		super("Login erforderlich.");
 	}
 

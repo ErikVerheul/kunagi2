@@ -14,13 +14,12 @@
  */
 package scrum.client.journal;
 
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.Gwt;
 import scrum.client.common.AScrumWidget;
 import scrum.client.common.BlockListWidget;
 import scrum.client.common.UserGuideWidget;
 import scrum.client.workspace.PagePanel;
-
-import com.google.gwt.user.client.ui.Widget;
 
 public class JournalWidget extends AScrumWidget {
 

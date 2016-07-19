@@ -14,8 +14,19 @@
  */
 package ilarkesto.fp;
 
+/**
+ *
+ * @author erik
+ * @param <T>
+ * @param <R>
+ */
 public interface Function<T, R> {
 
-	public R eval(T e);
+    /**
+     *
+     * @param e
+     * @return
+     */
+    public R eval(T e);
 
 }

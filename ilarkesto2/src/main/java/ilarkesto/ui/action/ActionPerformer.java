@@ -15,9 +15,9 @@
 package ilarkesto.ui.action;
 
 import ilarkesto.concurrent.TaskManager;
-import ilarkesto.logging.Log;
 import ilarkesto.di.BeanProvider;
 import static ilarkesto.di.Context.get;
+import ilarkesto.logging.Log;
 import ilarkesto.ui.AUi;
 import static java.lang.Class.forName;
 import java.util.HashMap;

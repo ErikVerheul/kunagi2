@@ -14,6 +14,10 @@
  */
 package ilarkesto.base;
 
+/**
+ *
+ * @author erik
+ */
 public class OverrideExpectedException extends RuntimeException {
 
 }

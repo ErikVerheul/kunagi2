@@ -14,7 +14,6 @@
  */
 package scrum.client.risks;
 
-import scrum.client.risks.GRisk;
 import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.Gwt;

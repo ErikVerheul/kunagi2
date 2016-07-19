@@ -14,13 +14,14 @@
  */
 package scrum.client.dashboard;
 
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Widget;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-
 import scrum.client.ScrumGwt;
 import scrum.client.admin.User;
 import scrum.client.common.AScrumWidget;
@@ -28,9 +29,6 @@ import scrum.client.issues.Issue;
 import scrum.client.project.Project;
 import scrum.client.project.Requirement;
 import scrum.client.sprint.Task;
-
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.Widget;
 
 public class TeamTasksWidget extends AScrumWidget {
 

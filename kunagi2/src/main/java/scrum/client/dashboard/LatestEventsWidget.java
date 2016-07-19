@@ -14,19 +14,16 @@
  */
 package scrum.client.dashboard;
 
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.SimplePanel;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.Gwt;
 import ilarkesto.gwt.client.TableBuilder;
-
 import java.util.List;
-
 import scrum.client.admin.User;
 import scrum.client.common.AScrumWidget;
 import scrum.client.journal.ProjectEvent;
 import scrum.client.project.Project;
-
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.SimplePanel;
-import com.google.gwt.user.client.ui.Widget;
 
 public class LatestEventsWidget extends AScrumWidget {
 

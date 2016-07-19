@@ -16,21 +16,31 @@ package scrum.server.risks;
 
 import ilarkesto.pdf.APdfContainerElement;
 import ilarkesto.pdf.FieldList;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import scrum.server.common.APdfCreator;
 import scrum.server.project.Project;
 
+/**
+ *
+ * @author erik
+ */
 public class RiskListPdfCreator extends APdfCreator {
 
-	public RiskListPdfCreator(Project project) {
+    /**
+     *
+     * @param project
+     */
+    public RiskListPdfCreator(Project project) {
 		super(project);
 	}
 
-	@Override
+    /**
+     *
+     * @param pdf
+     */
+    @Override
 	protected void build(APdfContainerElement pdf) {
 		pdf.paragraph().text("Risks", headerFonts[0]);
 
@@ -43,14 +53,21 @@ public class RiskListPdfCreator extends APdfCreator {
 			FieldList fields = pdf.fieldList().setLabelFontStyle(fieldLabelFont);
 			fields.field("Priority").text(rsk.getPriorityLabel());
 			fields.field("Probability").text(rsk.getProbabilityLabel());
-			if (rsk.isProbabilityMitigationSet())
-				wiki(fields.field("Probability mitigation"), rsk.getProbabilityMitigation());
+			if (rsk.isProbabilityMitigationSet()) {
+                            wiki(fields.field("Probability mitigation"), rsk.getProbabilityMitigation());
+            }
 			fields.field("Impact").text(rsk.getImpactLabel());
-			if (rsk.isImpactMitigationSet()) wiki(fields.field("Impact mitigation"), rsk.getImpactMitigation());
+			if (rsk.isImpactMitigationSet()) {
+                            wiki(fields.field("Impact mitigation"), rsk.getImpactMitigation());
+            }
 		}
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected String getFilename() {
 		return "risks";
 	}

@@ -16,9 +16,17 @@ package scrum.client.project;
 
 import scrum.client.common.TooltipBuilder;
 
+/**
+ *
+ * @author erik
+ */
 public class SetRequirementCleanAction extends GSetRequirementCleanAction {
 
-	protected SetRequirementCleanAction(Requirement requirement) {
+    /**
+     *
+     * @param requirement
+     */
+    protected SetRequirementCleanAction(Requirement requirement) {
 		super(requirement);
 	}
 
@@ -27,33 +35,51 @@ public class SetRequirementCleanAction extends GSetRequirementCleanAction {
 		return "Confirm Estimation";
 	}
 
-	@Override
+    /**
+     *
+     * @param tb
+     */
+    @Override
 	public void updateTooltip(TooltipBuilder tb) {
 		tb.setText("Confirm that the estimation of the Story is still accurate.");
 		if (!requirement.getProject().isTeamMember(getCurrentUser())) {
 			tb.addRemark(TooltipBuilder.NOT_TEAM);
 		} else {
-			if (requirement.isClosed()) tb.addRemark("Story is already closed.");
-			if (!requirement.isDirty()) tb.addRemark("The estimation has already been confirmed.");
-			if (requirement.getEstimatedWork() == null) tb.addRemark("Story is not yet estimated.");
-			if (requirement.isInCurrentSprint()) tb.addRemark("Story is in current Sprint and cannot be changed.");
+			if (requirement.isClosed()) {
+                            tb.addRemark("Story is already closed.");
+            }
+			if (!requirement.isDirty()) {
+                            tb.addRemark("The estimation has already been confirmed.");
+            }
+                        if (requirement.getEstimatedWork() == null) {
+                            tb.addRemark("Story is not yet estimated.");
+            }
+                        if (requirement.isInCurrentSprint()) {
+                            tb.addRemark("Story is in current Sprint and cannot be changed.");
+            }
 		}
 	}
 
 	@Override
 	public boolean isPermitted() {
-		if (!requirement.getProject().isTeamMember(getCurrentUser())) return false;
-		return true;
-	}
-
-	@Override
+		return requirement.getProject().isTeamMember(getCurrentUser());
+        }
+        
+        @Override
 	public boolean isExecutable() {
-		if (requirement.isClosed()) return false;
-		if (!requirement.isDirty()) return false;
-		if (requirement.getEstimatedWork() == null) return false;
-		if (requirement.isInCurrentSprint()) return false;
-		if (requirement.isWorkEstimationVotingActive()) return false;
-		return true;
+            if (requirement.isClosed()) {
+            return false;
+        }
+            if (!requirement.isDirty()) {
+            return false;
+        }
+            if (requirement.getEstimatedWork() == null) {
+            return false;
+        }
+		if (requirement.isInCurrentSprint()) {
+            return false;
+        }
+		return !requirement.isWorkEstimationVotingActive();
 	}
 
 	@Override

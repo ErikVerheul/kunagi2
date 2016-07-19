@@ -20,6 +20,7 @@ import java.util.Iterator;
 
 /**
  * @author K. Grubalski
+ * @param <T>
  */
 public class EndlessList<T> implements Iterator<T>, Iterable<T> {
 
@@ -29,7 +30,10 @@ public class EndlessList<T> implements Iterator<T>, Iterable<T> {
 
 	private boolean reset = false;
 
-	public EndlessList() {
+    /**
+     *
+     */
+    public EndlessList() {
 		list = new ArrayList<>();
 	}
 
@@ -62,7 +66,11 @@ public class EndlessList<T> implements Iterator<T>, Iterable<T> {
 		return list.get(idx);
 	}
 
-	public void add(T value) {
+    /**
+     *
+     * @param value
+     */
+    public void add(T value) {
 		list.add(value);
 	}
 
@@ -79,7 +87,11 @@ public class EndlessList<T> implements Iterator<T>, Iterable<T> {
 		return this;
 	}
 
-	public static void main(String[] args) {
+    /**
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
 		EndlessList l = new EndlessList();
 		l.add("erstes");
 		l.add("zweites");

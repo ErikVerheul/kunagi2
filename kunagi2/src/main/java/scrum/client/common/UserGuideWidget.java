@@ -14,16 +14,19 @@
  */
 package scrum.client.common;
 
+import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.base.Str;
 import ilarkesto.gwt.client.AAction;
 import ilarkesto.gwt.client.Gwt;
 import ilarkesto.gwt.client.HyperlinkWidget;
 import ilarkesto.gwt.client.editor.ABooleanEditorModel;
 
-import com.google.gwt.user.client.ui.FlowPanel;
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class UserGuideWidget extends AScrumWidget {
 
 	private boolean enabled;
@@ -32,7 +35,13 @@ public class UserGuideWidget extends AScrumWidget {
 
 	private FlowPanel panel;
 
-	public UserGuideWidget(String text, boolean enabled, ABooleanEditorModel hideSwitch) {
+    /**
+     *
+     * @param text
+     * @param enabled
+     * @param hideSwitch
+     */
+    public UserGuideWidget(String text, boolean enabled, ABooleanEditorModel hideSwitch) {
 		super();
 		this.text = text;
 		this.enabled = enabled;
@@ -41,7 +50,9 @@ public class UserGuideWidget extends AScrumWidget {
 
 	@Override
 	protected Widget onInitialization() {
-		if (Str.isBlank(text)) return null;
+		if (Str.isBlank(text)) {
+                    return null;
+        }
 
 		boolean hide = hideSwitch != null && hideSwitch.isTrue();
 		boolean open = enabled && !hide;
@@ -67,7 +78,9 @@ public class UserGuideWidget extends AScrumWidget {
 		@Override
 		protected void onExecute() {
 			enabled = true;
-			if (hideSwitch != null) hideSwitch.setValue(false);
+			if (hideSwitch != null) {
+                            hideSwitch.setValue(false);
+            }
 			reset();
 		}
 
@@ -83,7 +96,9 @@ public class UserGuideWidget extends AScrumWidget {
 		@Override
 		protected void onExecute() {
 			enabled = false;
-			if (hideSwitch != null) hideSwitch.setValue(true);
+                        if (hideSwitch != null) {
+                            hideSwitch.setValue(true);
+            }
 			reset();
 		}
 

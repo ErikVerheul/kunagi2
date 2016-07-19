@@ -16,14 +16,17 @@ package scrum.server;
 
 import ilarkesto.base.Sys;
 import ilarkesto.base.UtlExtend;
-import ilarkesto.logging.Log;
 import ilarkesto.io.IO;
+import ilarkesto.logging.Log;
 import ilarkesto.properties.APropertiesStore;
 import ilarkesto.properties.FilePropertiesStore;
-
 import java.io.File;
 import java.util.Properties;
 
+/**
+ *
+ * @author erik
+ */
 public class KunagiRootConfig {
 
 	private static Log log = Log.get(KunagiRootConfig.class);
@@ -34,12 +37,23 @@ public class KunagiRootConfig {
 	private File configFile;
 
 	// used by TestUtil
-	public KunagiRootConfig(File configFile, File defaultsFile) {
+
+    /**
+     *
+     * @param configFile
+     * @param defaultsFile
+     */
+    	public KunagiRootConfig(File configFile, File defaultsFile) {
 		this(configFile, defaultsFile, "kunagi");
 	}
 
 	// used by web application
-	public KunagiRootConfig(String webappName) {
+
+    /**
+     *
+     * @param webappName
+     */
+    	public KunagiRootConfig(String webappName) {
 		this(determineConfigFile(webappName), determineDefaultConfigFile(webappName), webappName);
 	}
 
@@ -62,7 +76,11 @@ public class KunagiRootConfig {
 
 	private String dataPath;
 
-	public String getDataPath() {
+    /**
+     *
+     * @return
+     */
+    public String getDataPath() {
 		if (dataPath == null) {
 			dataPath = props.get("data.path");
 			if (dataPath != null) {
@@ -97,9 +115,13 @@ public class KunagiRootConfig {
 
 	private static String determineUsedDataPath(String webappName) {
 		String dataPath = System.getProperty("kunagi.data");
-		if (dataPath != null) return dataPath;
+		if (dataPath != null) {
+                    return dataPath;
+        }
 
-		if (Sys.isDevelopmentMode()) return new File("runtimedata").getAbsolutePath();
+		if (Sys.isDevelopmentMode()) {
+                    return new File("runtimedata").getAbsolutePath();
+        }
 
 		File legacyDataDir = determineLegacyDataDir(webappName);
 		if (legacyDataDir != null && legacyDataDir.exists()) {
@@ -113,10 +135,14 @@ public class KunagiRootConfig {
 	}
 
 	private static String determineDefaultDataPath(String webappName) {
-		if (Sys.isWindows()) return Sys.getUsersHomePath() + "/" + webappName;
+            if (Sys.isWindows()) {
+                return Sys.getUsersHomePath() + "/" + webappName;
+        }
 
 		String webappsDir = Sys.getWorkDir().getAbsolutePath() + "/webapps";
-		if (new File(webappsDir).exists()) return new File(webappsDir + "/" + webappName + "-data").getAbsolutePath();
+                if (new File(webappsDir).exists()) {
+                    return new File(webappsDir + "/" + webappName + "-data").getAbsolutePath();
+        }
 		return new File(Sys.getWorkDir().getAbsolutePath() + "/" + webappName + "-data").getAbsolutePath();
 	}
 
@@ -128,75 +154,147 @@ public class KunagiRootConfig {
 		return file == null ? null : file.getParentFile();
 	}
 
-	public String getUrl() {
+    /**
+     *
+     * @return
+     */
+    public String getUrl() {
 		return props.get("url", Sys.isDevelopmentMode() ? "http://localhost:8888/" : null);
 	}
         
-        public int getPort() {
+    /**
+     *
+     * @return
+     */
+    public int getPort() {
             return props.getInt("port", 8080);
         }
 
-	public void setUrl(String url) {
+    /**
+     *
+     * @param url
+     */
+    public void setUrl(String url) {
 		props.set("url", url);
 	}
 
-	public String getFileRepositoryPath() {
+    /**
+     *
+     * @return
+     */
+    public String getFileRepositoryPath() {
 		return props.get("fileRepository.path", getDataPath() + "/files");
 	}
 
-	public boolean isStartupDelete() {
+    /**
+     *
+     * @return
+     */
+    public boolean isStartupDelete() {
 		return props.getBoolean("startup.delete", false);
 	}
 
-	public boolean isDeleteOldProjects() {
+    /**
+     *
+     * @return
+     */
+    public boolean isDeleteOldProjects() {
 		return props.getBoolean("deleteOldProjects", false);
 	}
 
-	public boolean isDeleteDisabledUsers() {
+    /**
+     *
+     * @return
+     */
+    public boolean isDeleteDisabledUsers() {
 		return props.getBoolean("deleteDisabledUsers", false);
 	}
 
-	public boolean isDisableUsersWithUnverifiedEmails() {
+    /**
+     *
+     * @return
+     */
+    public boolean isDisableUsersWithUnverifiedEmails() {
 		return props.getBoolean("disableUsersWithUnverifiedEmails", false);
 	}
 
-	public boolean isDisableInactiveUsers() {
+    /**
+     *
+     * @return
+     */
+    public boolean isDisableInactiveUsers() {
 		return props.getBoolean("disableInactiveUsers", false);
 	}
 
-	public boolean isShowRelease() {
+    /**
+     *
+     * @return
+     */
+    public boolean isShowRelease() {
 		return props.getBoolean("showRelease", Sys.isDevelopmentMode());
 	}
 
-	public boolean isCreateTestData() {
+    /**
+     *
+     * @return
+     */
+    public boolean isCreateTestData() {
 		return props.getBoolean("createTestData", Sys.isDevelopmentMode());
 	}
 
-	public String getInitialPassword() {
+    /**
+     *
+     * @return
+     */
+    public String getInitialPassword() {
 		return props.get("initialPassword", "geheim");
 	}
 
-	public boolean isLoggingDebug() {
+    /**
+     *
+     * @return
+     */
+    public boolean isLoggingDebug() {
 		return props.getBoolean("logging.debug", false);
 	}
 
-	public String getHttpProxyHost() {
+    /**
+     *
+     * @return
+     */
+    public String getHttpProxyHost() {
 		return props.get("http.proxy.host");
 	}
 
-	public int getHttpProxyPort() {
+    /**
+     *
+     * @return
+     */
+    public int getHttpProxyPort() {
 		return props.getInt("http.proxy.port", 8080);
 	}
 
-	public String getSmtpServer() {
+    /**
+     *
+     * @return
+     */
+    public String getSmtpServer() {
 		return props.get("smtp.server");
 	}
 
-	public String getSmtpUser() {
+    /**
+     *
+     * @return
+     */
+    public String getSmtpUser() {
 		return props.get("smtp.user");
 	}
 
-	public String getSmtpPassword() {
+    /**
+     *
+     * @return
+     */
+    public String getSmtpPassword() {
 		return props.get("smtp.password");
 	}
 

@@ -25,11 +25,18 @@ import org.apache.log4j.spi.ErrorHandler;
 import org.apache.log4j.spi.Filter;
 import org.apache.log4j.spi.LoggingEvent;
 
+/**
+ *
+ * @author erik
+ */
 public class Log4jLogging {
 
 	private static final Log log = Log.get(Log4jLogging.class);
 
-	public static void redirectToLoggers() {
+    /**
+     *
+     */
+    public static void redirectToLoggers() {
 
 		Logger rootLogger = getRootLogger();
 		rootLogger.removeAllAppenders();
@@ -49,11 +56,21 @@ public class Log4jLogging {
 		logger.log(toLevel(event.getLevel()), getMessage(event));
 	}
 
-	public static String getMessage(LoggingEvent event) {
+    /**
+     *
+     * @param event
+     * @return
+     */
+    public static String getMessage(LoggingEvent event) {
 		return format(event.getMessage());
 	}
 
-	public static Log.Level toLevel(Level log4jLevel) {
+    /**
+     *
+     * @param log4jLevel
+     * @return
+     */
+    public static Log.Level toLevel(Level log4jLevel) {
 		if (log4jLevel == Level.TRACE || log4jLevel == Level.DEBUG || log4jLevel == Level.OFF
 				|| log4jLevel == Level.INFO) {
 			return Log.Level.DEBUG;

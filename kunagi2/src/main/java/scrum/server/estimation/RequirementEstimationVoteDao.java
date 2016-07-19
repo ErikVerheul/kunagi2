@@ -14,13 +14,10 @@
  */
 package scrum.server.estimation;
 
-import scrum.server.estimation.GRequirementEstimationVoteDao;
-import ilarkesto.logging.Log;
 import ilarkesto.fp.Predicate;
-
+import ilarkesto.logging.Log;
 import java.util.HashSet;
 import java.util.Set;
-
 import scrum.server.admin.User;
 import scrum.server.project.Requirement;
 

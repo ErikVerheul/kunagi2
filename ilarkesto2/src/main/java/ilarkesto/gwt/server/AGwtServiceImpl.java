@@ -15,9 +15,9 @@
 package ilarkesto.gwt.server;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
-import ilarkesto.logging.Log;
 import ilarkesto.di.Context;
 import ilarkesto.gwt.client.ErrorWrapper;
+import ilarkesto.logging.Log;
 import ilarkesto.persistence.DaoService;
 import ilarkesto.webapp.AWebApplication;
 import static ilarkesto.webapp.AWebApplication.get;

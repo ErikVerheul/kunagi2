@@ -14,6 +14,11 @@
  */
 package scrum.client.common;
 
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.SimplePanel;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.AGwtEntity;
 import ilarkesto.gwt.client.Gwt;
 import scrum.client.ScrumScopeManager;
@@ -21,12 +26,6 @@ import scrum.client.dnd.BlockDndMarkerWidget;
 import scrum.client.workspace.BlockCollapsedEvent;
 import scrum.client.workspace.BlockExpandedEvent;
 import scrum.client.workspace.Navigator;
-
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.ui.FlowPanel;
-import com.google.gwt.user.client.ui.SimplePanel;
-import com.google.gwt.user.client.ui.Widget;
 
 /**
  * Base class for a block widget, which can be added to a <code>BlockWidgetList</code>.

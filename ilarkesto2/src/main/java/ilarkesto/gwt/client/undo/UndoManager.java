@@ -18,29 +18,48 @@ import static ilarkesto.core.logging.ClientLog.INFO;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class UndoManager {
 
 	private final int maxOperations = 5;
 	private final List<AUndoOperation> operations = new LinkedList<AUndoOperation>();
 
-	public void add(AUndoOperation operation) {
+    /**
+     *
+     * @param operation
+     */
+    public void add(AUndoOperation operation) {
 		operations.add(0, operation);
 		while (operations.size() > maxOperations) {
 			operations.remove(operations.size() - 1);
 		}
 	}
 
-	public void undo(AUndoOperation operation) {
+    /**
+     *
+     * @param operation
+     */
+    public void undo(AUndoOperation operation) {
 		INFO("Undo:", operation);
 		operation.undo();
 		operations.remove(operation);
 	}
 
-	public List<AUndoOperation> getOperations() {
+    /**
+     *
+     * @return
+     */
+    public List<AUndoOperation> getOperations() {
 		return operations;
 	}
 
-	public void clear() {
+    /**
+     *
+     */
+    public void clear() {
 		operations.clear();
 	}
 }

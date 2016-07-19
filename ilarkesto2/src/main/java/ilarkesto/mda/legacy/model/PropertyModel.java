@@ -16,25 +16,65 @@ package ilarkesto.mda.legacy.model;
 
 import static ilarkesto.base.StrExtend.lowercaseFirstLetter;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class PropertyModel {
 
-	public abstract String getNameSingular();
+    /**
+     *
+     * @return
+     */
+    public abstract String getNameSingular();
 
-	public abstract String getType();
+    /**
+     *
+     * @return
+     */
+    public abstract String getType();
 
-	public abstract String getContentType();
+    /**
+     *
+     * @return
+     */
+    public abstract String getContentType();
 
-	public abstract String getCollectionType();
+    /**
+     *
+     * @return
+     */
+    public abstract String getCollectionType();
 
-	public abstract String getCollectionImpl();
+    /**
+     *
+     * @return
+     */
+    public abstract String getCollectionImpl();
 
-	public abstract boolean isCollection();
+    /**
+     *
+     * @return
+     */
+    public abstract boolean isCollection();
 
-	public abstract boolean isPrimitive();
+    /**
+     *
+     * @return
+     */
+    public abstract boolean isPrimitive();
 
-	public abstract boolean isBoolean();
+    /**
+     *
+     * @return
+     */
+    public abstract boolean isBoolean();
 
-	public abstract boolean isString();
+    /**
+     *
+     * @return
+     */
+    public abstract boolean isString();
 
 	private boolean mandatory;
 
@@ -46,72 +86,137 @@ public abstract class PropertyModel {
 
 	private boolean virtual;
 
-	public PropertyModel setTooltip(String tooltip) {
+    /**
+     *
+     * @param tooltip
+     * @return
+     */
+    public PropertyModel setTooltip(String tooltip) {
 		this.tooltip = tooltip;
 		return this;
 	}
 
-	public boolean isVirtual() {
+    /**
+     *
+     * @return
+     */
+    public boolean isVirtual() {
 		return virtual;
 	}
 
-	public PropertyModel setVirtual(boolean virtual) {
+    /**
+     *
+     * @param virtual
+     * @return
+     */
+    public PropertyModel setVirtual(boolean virtual) {
 		this.virtual = virtual;
 		return this;
 	}
 
-	public boolean isFireModified() {
+    /**
+     *
+     * @return
+     */
+    public boolean isFireModified() {
 		return fireModified;
 	}
 
-	public PropertyModel setFireModified(boolean fireModified) {
+    /**
+     *
+     * @param fireModified
+     * @return
+     */
+    public PropertyModel setFireModified(boolean fireModified) {
 		this.fireModified = fireModified;
 		return this;
 	}
 
-	public String getTooltip() {
+    /**
+     *
+     * @return
+     */
+    public String getTooltip() {
 		return tooltip;
 	}
 
-	public PropertyModel setEditablePredicate(String editablePredicate) {
+    /**
+     *
+     * @param editablePredicate
+     * @return
+     */
+    public PropertyModel setEditablePredicate(String editablePredicate) {
 		this.editablePredicate = editablePredicate;
 		return this;
 	}
 
-	public String getEditablePredicate() {
+    /**
+     *
+     * @return
+     */
+    public String getEditablePredicate() {
 		return editablePredicate;
 	}
 
-	public boolean isOptionRestricted() {
+    /**
+     *
+     * @return
+     */
+    public boolean isOptionRestricted() {
 		return false;
 	}
 
-	public boolean isMandatory() {
+    /**
+     *
+     * @return
+     */
+    public boolean isMandatory() {
 		return mandatory;
 	}
 
-	public PropertyModel setMandatory(boolean mandatory) {
+    /**
+     *
+     * @param mandatory
+     * @return
+     */
+    public PropertyModel setMandatory(boolean mandatory) {
 		this.mandatory = mandatory;
 		return this;
 	}
 
-	public final String getName() {
+    /**
+     *
+     * @return
+     */
+    public final String getName() {
 		return name;
 	}
 
 	private boolean reference;
 
-	public boolean isReference() {
+    /**
+     *
+     * @return
+     */
+    public boolean isReference() {
 		return reference;
 	}
 
 	private boolean valueObject;
 
-	public boolean isValueObject() {
+    /**
+     *
+     * @return
+     */
+    public boolean isValueObject() {
 		return valueObject;
 	}
 
-	public String getDaoName() {
+    /**
+     *
+     * @return
+     */
+    public String getDaoName() {
 		if (!isReference()) {
                         throw new UnsupportedOperationException("not a reference: " + getContentType());
                 }
@@ -119,25 +224,45 @@ public abstract class PropertyModel {
 		return lowercaseFirstLetter(getContentTypeName()) + "Dao";
 	}
 
-	public String getContentTypeName() {
+    /**
+     *
+     * @return
+     */
+    public String getContentTypeName() {
 		String type = getContentType();
 		int idx = type.lastIndexOf('.');
 		return type.substring(idx + 1);
 	}
 
-	public final boolean isSearchable() {
+    /**
+     *
+     * @return
+     */
+    public final boolean isSearchable() {
 		return searchable;
 	}
 
-	public boolean isAbstract() {
+    /**
+     *
+     * @return
+     */
+    public boolean isAbstract() {
 		return _abstract;
 	}
 
-	public BeanModel getBean() {
+    /**
+     *
+     * @return
+     */
+    public BeanModel getBean() {
 		return beanModel;
 	}
 
-	public EntityModel getEntity() {
+    /**
+     *
+     * @return
+     */
+    public EntityModel getEntity() {
 		return (EntityModel) getBean();
 	}
 
@@ -147,7 +272,14 @@ public abstract class PropertyModel {
 
 	private String name;
 
-	public PropertyModel(BeanModel beanModel, String name, boolean reference, boolean valueObject) {
+    /**
+     *
+     * @param beanModel
+     * @param name
+     * @param reference
+     * @param valueObject
+     */
+    public PropertyModel(BeanModel beanModel, String name, boolean reference, boolean valueObject) {
 		this.beanModel = beanModel;
 		this.name = name;
 		this.reference = reference;
@@ -156,24 +288,42 @@ public abstract class PropertyModel {
 
 	private boolean _abstract;
 
-	public void setAbstract(boolean _abstract) {
+    /**
+     *
+     * @param _abstract
+     */
+    public void setAbstract(boolean _abstract) {
 		this._abstract = _abstract;
 	}
 
 	private boolean searchable;
 
-	public PropertyModel setSearchable(boolean searchable) {
+    /**
+     *
+     * @param searchable
+     * @return
+     */
+    public PropertyModel setSearchable(boolean searchable) {
 		this.searchable = searchable;
 		return this;
 	}
 
 	private boolean unique;
 
-	public final boolean isUnique() {
+    /**
+     *
+     * @return
+     */
+    public final boolean isUnique() {
 		return unique;
 	}
 
-	public final PropertyModel setUnique(boolean unique) {
+    /**
+     *
+     * @param unique
+     * @return
+     */
+    public final PropertyModel setUnique(boolean unique) {
 		this.unique = unique;
 		return this;
 	}

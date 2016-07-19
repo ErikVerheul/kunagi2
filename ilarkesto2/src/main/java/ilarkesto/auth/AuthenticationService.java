@@ -14,9 +14,20 @@
  */
 package ilarkesto.auth;
 
+/**
+ *
+ * @author erik
+ * @param <U>
+ */
 public class AuthenticationService<U extends AUser> {
 
-	public U getUserByLoginAndPassword(String userName, String password) {
+    /**
+     *
+     * @param userName
+     * @param password
+     * @return
+     */
+    public U getUserByLoginAndPassword(String userName, String password) {
 		if (userName == null) {
                         return null;
                 }
@@ -33,7 +44,11 @@ public class AuthenticationService<U extends AUser> {
 
 	private AUserDao<U> userDao;
 
-	public void setUserDao(AUserDao<U> userDao) {
+    /**
+     *
+     * @param userDao
+     */
+    public void setUserDao(AUserDao<U> userDao) {
 		this.userDao = userDao;
 	}
 

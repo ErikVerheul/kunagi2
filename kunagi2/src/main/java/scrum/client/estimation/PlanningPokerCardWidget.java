@@ -14,14 +14,13 @@
  */
 package scrum.client.estimation;
 
-import ilarkesto.gwt.client.Gwt;
-import scrum.client.ScrumGwt;
-import scrum.client.common.AScrumWidget;
-
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.MouseOverHandler;
 import com.google.gwt.user.client.ui.FocusPanel;
 import com.google.gwt.user.client.ui.Widget;
+import ilarkesto.gwt.client.Gwt;
+import scrum.client.ScrumGwt;
+import scrum.client.common.AScrumWidget;
 
 public class PlanningPokerCardWidget extends AScrumWidget {
 

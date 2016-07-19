@@ -14,8 +14,16 @@
  */
 package ilarkesto.base;
 
+/**
+ *
+ * @author erik
+ */
 public class MissingDependencyException extends NullPointerException {
 
+    /**
+     *
+     * @param name
+     */
     public MissingDependencyException(String name) {
         super(name);
     }

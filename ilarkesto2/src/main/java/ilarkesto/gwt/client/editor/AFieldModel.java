@@ -16,15 +16,32 @@ package ilarkesto.gwt.client.editor;
 
 import static ilarkesto.core.base.Str.getSimpleName;
 
+/**
+ *
+ * @author erik
+ * @param <T>
+ */
 public abstract class AFieldModel<T> {
 
-	public abstract T getValue();
+    /**
+     *
+     * @return
+     */
+    public abstract T getValue();
 
-	public String getTooltip() {
+    /**
+     *
+     * @return
+     */
+    public String getTooltip() {
 		return null;
 	}
 
-	public String getId() {
+    /**
+     *
+     * @return
+     */
+    public String getId() {
 		return getSimpleName(getClass()).replace('$', '_');
 	}
 

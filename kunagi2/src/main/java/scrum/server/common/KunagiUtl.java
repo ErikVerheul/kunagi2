@@ -19,9 +19,18 @@ import ilarkesto.persistence.AEntity;
 import scrum.client.common.LabelSupport;
 import scrum.client.common.ReferenceSupport;
 
+/**
+ *
+ * @author erik
+ */
 public class KunagiUtl {
 
-	public static String createExternalRelativeHtmlAnchor(AEntity entity) {
+    /**
+     *
+     * @param entity
+     * @return
+     */
+    public static String createExternalRelativeHtmlAnchor(AEntity entity) {
 		String reference = entity.toString();
 		if (entity instanceof ReferenceSupport) {
 			reference = ((ReferenceSupport) entity).getReference();

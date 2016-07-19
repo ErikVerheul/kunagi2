@@ -18,11 +18,18 @@ import ilarkesto.form.Form;
 import ilarkesto.form.TextFormField;
 import ilarkesto.form.validator.Validator;
 
+/**
+ *
+ * @author erik
+ */
 public class InputAction extends AAction {
 
 	private TextFormField inputField;
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void performAction() {
 		setAutoShowInfoDone(false);
 		Form form = autowire(new Form());
@@ -38,24 +45,39 @@ public class InputAction extends AAction {
 		showFormDialog(form);
 	}
 
-	public String getInputString() {
+    /**
+     *
+     * @return
+     */
+    public String getInputString() {
 		return inputField.getValueAsString();
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void assertPermissions() {}
 
 	// --- dependencies ---
 
 	private String initialValue;
 
-	public void setInitialValue(String initialValue) {
+    /**
+     *
+     * @param initialValue
+     */
+    public void setInitialValue(String initialValue) {
 		this.initialValue = initialValue;
 	}
 
 	private Validator validator;
 
-	public void setValidator(Validator validator) {
+    /**
+     *
+     * @param validator
+     */
+    public void setValidator(Validator validator) {
 		this.validator = validator;
 	}
 

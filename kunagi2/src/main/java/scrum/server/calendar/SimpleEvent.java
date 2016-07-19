@@ -19,16 +19,31 @@ import ilarkesto.core.time.Date;
 import scrum.server.admin.User;
 import scrum.server.common.Numbered;
 
+/**
+ *
+ * @author erik
+ */
 public class SimpleEvent extends GSimpleEvent implements Numbered, Comparable<SimpleEvent> {
 
+    /**
+     *
+     * @return
+     */
     public String getReferenceAndLabel() {
         return getReference() + " " + getLabel();
     }
 
+    /**
+     *
+     * @return
+     */
     public String getReference() {
         return scrum.client.calendar.SimpleEvent.REFERENCE_PREFIX + getNumber();
     }
 
+    /**
+     *
+     */
     @Override
     public void updateNumber() {
         if (getNumber() == 0) {

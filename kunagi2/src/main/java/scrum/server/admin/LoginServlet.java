@@ -1,44 +1,39 @@
-/*
- * Copyright 2011 Witoslaw Koczewsi <wi@koczewski.de>, Artjom Kochtchi
- * 
- * This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero
- * General Public License as published by the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
- * implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public
- * License for more details.
- * 
- * You should have received a copy of the GNU General Public License along with this program. If not, see
- * <http://www.gnu.org/licenses/>.
- */
+
 package scrum.server.admin;
 
 import ilarkesto.auth.AuthenticationFailedException;
 import ilarkesto.auth.OpenId;
 import ilarkesto.base.StrExtend;
 import ilarkesto.base.UtlExtend;
-import ilarkesto.logging.Log;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.integration.ldap.Ldap;
 import ilarkesto.io.IO;
+import ilarkesto.logging.Log;
 import ilarkesto.ui.web.HtmlRenderer;
 import ilarkesto.webapp.RequestWrapper;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import javax.servlet.http.HttpSession;
 import org.openid4java.consumer.VerificationResult;
 import scrum.client.ScrumGwtApplication;
 import scrum.server.WebSession;
 import scrum.server.common.AKunagiServlet;
 
+/**
+ *
+ * @author erik
+ */
 public class LoginServlet extends AKunagiServlet {
 
 	private static final long serialVersionUID = 1;
 
 	private static Log log = Log.get(LoginServlet.class);
 
-	@Override
+    /**
+     *
+     * @param req
+     * @throws IOException
+     */
+    @Override
 	protected void onRequest(RequestWrapper<WebSession> req) throws IOException {
 		String historyToken = req.get("historyToken");
 
@@ -127,9 +122,15 @@ public class LoginServlet extends AKunagiServlet {
 			return;
 		}
 
-		if (StrExtend.isBlank(username)) username = null;
-		if (StrExtend.isBlank(email)) email = null;
-		if (StrExtend.isBlank(password)) password = null;
+		if (StrExtend.isBlank(username)) {
+                    username = null;
+        }
+		if (StrExtend.isBlank(email)) {
+                    email = null;
+        }
+                if (StrExtend.isBlank(password)) {
+                    password = null;
+        }
 
 		if (username != null) {
 			renderLoginPage(req, username, email, historyToken, "Creating account failed. Username required.", false,
@@ -186,7 +187,9 @@ public class LoginServlet extends AKunagiServlet {
 
 	private String getStartPage(String historyToken) {
 		String url = getDefaultStartPage();
-		if (historyToken != null) url += "#" + historyToken;
+                if (historyToken != null) {
+            url += "#" + historyToken;
+        }
 		url = webApplication.createUrl(url);
 		return url;
 	}
@@ -259,19 +262,24 @@ public class LoginServlet extends AKunagiServlet {
 			return;
 		}
 
-		user.setLastLoginDateAndTime(DateAndTime.now());
-		if (!user.isEmailSet()) user.setEmail(email);
-		req.getSession().setUser(user);
-
-		if (keepmeloggedin)
-			req.setCookie(ScrumGwtApplication.LOGIN_TOKEN_COOKIE, user.getLoginToken(), LOGIN_TOKEN_COOKIE_MAXAGE);
+                user.setLastLoginDateAndTime(DateAndTime.now());
+                if (!user.isEmailSet()) {
+            user.setEmail(email);
+                }
+                req.getSession().setUser(user);
+                
+                if (keepmeloggedin) {
+                    req.setCookie(ScrumGwtApplication.LOGIN_TOKEN_COOKIE, user.getLoginToken(), LOGIN_TOKEN_COOKIE_MAXAGE);
+        }
 
 		req.sendRedirect(getStartPage(historyToken));
 	}
 
-	private void redirectOpenId(String openId, boolean keepmeloggedin, String historyToken,
-			RequestWrapper<WebSession> req) throws UnsupportedEncodingException, IOException {
-		if (StrExtend.isBlank(openId)) openId = null;
+        private void redirectOpenId(String openId, boolean keepmeloggedin, String historyToken,
+                RequestWrapper<WebSession> req) throws UnsupportedEncodingException, IOException {
+		if (StrExtend.isBlank(openId)) {
+            openId = null;
+        }
 
 		if (openId == null) {
 			renderLoginPage(req, null, null, historyToken, "Login failed. OpenID required.", false, true);
@@ -300,11 +308,15 @@ public class LoginServlet extends AKunagiServlet {
 		req.sendRedirect(openIdUrl);
 	}
 
-	private void login(String username, String password, boolean keepmeloggedin, String historyToken,
-			RequestWrapper<WebSession> req) throws UnsupportedEncodingException, IOException {
-		User user = null;
-		if (username.contains("@")) user = userDao.getUserByEmail(username.toLowerCase());
-		if (user == null) user = userDao.getUserByName(username);
+        private void login(String username, String password, boolean keepmeloggedin, String historyToken,
+                RequestWrapper<WebSession> req) throws UnsupportedEncodingException, IOException {
+            User user = null;
+            if (username.contains("@")) {
+            user = userDao.getUserByEmail(username.toLowerCase());
+        }
+		if (user == null) {
+            user = userDao.getUserByName(username);
+        }
 
 		boolean admin = user != null && user.isAdmin();
 		boolean authenticated;
@@ -342,11 +354,13 @@ public class LoginServlet extends AKunagiServlet {
 					user = userDao.postUser(email, username, StrExtend.generatePassword(23));
 				} catch (Exception ex) {
 					log.warn(ex);
-					renderLoginPage(req, username, null, historyToken, "Creating a new user <" + username
+                                        renderLoginPage(req, username, null, historyToken, "Creating a new user <" + username
 							+ "> with email <" + email + "> failed: " + StrExtend.getRootCauseMessage(ex), false, false);
 					return;
 				}
-				if (StrExtend.isEmail(email)) user.setEmail(email);
+				if (StrExtend.isEmail(email)) {
+                    user.setEmail(email);
+                }
 				webApplication.triggerRegisterNotification(user, req.getRemoteHost());
 			}
 		} else {
@@ -359,51 +373,68 @@ public class LoginServlet extends AKunagiServlet {
 			return;
 		}
 
-		if (user.isDisabled()) {
-			renderLoginPage(req, username, null, historyToken, "User is disabled.", false, false);
-			return;
+                if (user.isDisabled()) {
+                    renderLoginPage(req, username, null, historyToken, "User is disabled.", false, false);
+                    return;
 		}
 
 		user.setLastLoginDateAndTime(DateAndTime.now());
 		req.getSession().setUser(user);
 
-		if (keepmeloggedin)
-			req.setCookie(ScrumGwtApplication.LOGIN_TOKEN_COOKIE, user.getLoginToken(), LOGIN_TOKEN_COOKIE_MAXAGE);
+		if (keepmeloggedin) {
+            req.setCookie(ScrumGwtApplication.LOGIN_TOKEN_COOKIE, user.getLoginToken(), LOGIN_TOKEN_COOKIE_MAXAGE);
+        }
 
 		req.sendRedirect(getStartPage(historyToken));
 	}
 
-	private void renderLoginPage(RequestWrapper<WebSession> req, String username, String email, String historyToken,
+        private void renderLoginPage(RequestWrapper<WebSession> req, String username, String email, String historyToken,
 			String message, boolean passwordRequest, boolean createAccount) throws UnsupportedEncodingException,
 			IOException {
-		if (webApplication.getSystemConfig().isRegistrationDisabled()) createAccount = false;
-
-		String charset = IO.UTF_8;
-		req.setContentTypeHtml();
-
-		HtmlRenderer html = new HtmlRenderer(req.getWriter(), charset);
+		if (webApplication.getSystemConfig().isRegistrationDisabled()) {
+                    createAccount = false;
+                }
+                
+                String charset = IO.UTF_8;
+                req.setContentTypeHtml();
+                
+                HtmlRenderer html = new HtmlRenderer(req.getWriter(), charset);
 		html.startHTMLstandard();
 
 		String title = "Kunagi2 Login";
-		if (webApplication.getConfig().isShowRelease()) title += " " + applicationInfo.getRelease();
-		if (systemConfig.isInstanceNameSet()) title += " @ " + systemConfig.getInstanceName();
-		html.startHEAD(title, "EN");
+		if (webApplication.getConfig().isShowRelease()) {
+            title += " " + applicationInfo.getRelease();
+        }
+		if (systemConfig.isInstanceNameSet()) {
+                    title += " @ " + systemConfig.getInstanceName();
+                }
+                html.startHEAD(title, "EN");
 		html.META("X-UA-Compatible", "IE=edge");
 		html.LINKfavicon();
-		html.LINKcss("scrum.Kunagi2/screen.css");
+                html.LINKcss("scrum.Kunagi2/screen.css");
 		html.endHEAD();
 
 		html.startBODY();
-		html.startDIV("loginPage");
-		html.startDIV("panel");
-		String logoUrl = webApplication.getSystemConfig().getLoginPageLogoUrl();
-		if (StrExtend.isBlank(logoUrl)) logoUrl = "kunagi.png";
+                html.startDIV("loginPage");
+                html.startDIV("panel");
+                String logoUrl = webApplication.getSystemConfig().getLoginPageLogoUrl();
+                if (StrExtend.isBlank(logoUrl)) {
+                    logoUrl = "kunagi.png";
+                }
 		html.IMG(logoUrl, "Kunagi2", null, null, null, null);
 		html.DIV("separator", null);
-		if (message != null) renderMessage(html, message);
-		if (!createAccount && !passwordRequest) renderLogin(html, username, historyToken);
-		if (passwordRequest) renderPasswordRequest(html, username, historyToken);
-		if (createAccount) renderCreateAccount(html, username, email, historyToken);
+		if (message != null) {
+            renderMessage(html, message);
+        }
+		if (!createAccount && !passwordRequest) {
+            renderLogin(html, username, historyToken);
+        }
+		if (passwordRequest) {
+            renderPasswordRequest(html, username, historyToken);
+        }
+		if (createAccount) {
+                    renderCreateAccount(html, username, email, historyToken);
+                }
 		html.DIV("separator", null);
 		html.startDIV("kunagiLink");
 		html.text("Kunagi2 " + webApplication.getReleaseLabel() + " | ");
@@ -417,7 +448,9 @@ public class LoginServlet extends AKunagiServlet {
 		html.SCRIPTjavascript(null, "document.getElementById('username').focus();");
 
 		String analyticsId = systemConfig.getGoogleAnalyticsId();
-		if (analyticsId != null) html.googleAnalytics(analyticsId);
+		if (analyticsId != null) {
+            html.googleAnalytics(analyticsId);
+        }
 		html.endBODY();
 		html.endHTML();
 		html.flush();
@@ -456,7 +489,13 @@ public class LoginServlet extends AKunagiServlet {
 		}
 	}
 
-	public void renderRetroLoginForm(HtmlRenderer html, String username, String historyToken) {
+    /**
+     *
+     * @param html
+     * @param username
+     * @param historyToken
+     */
+    public void renderRetroLoginForm(HtmlRenderer html, String username, String historyToken) {
 		html.startFORM(null, "loginForm", false);
 		html.INPUThidden("historyToken", historyToken);
 		html.startTABLE().setAlignCenter();
@@ -493,7 +532,12 @@ public class LoginServlet extends AKunagiServlet {
 		html.endFORM();
 	}
 
-	public void renderOpenIdLoginForm(HtmlRenderer html, String historyToken) {
+    /**
+     *
+     * @param html
+     * @param historyToken
+     */
+    public void renderOpenIdLoginForm(HtmlRenderer html, String historyToken) {
 		renderOpenIdLink(OpenId.MYOPENID, "MyOpenID", historyToken, html);
 		renderOpenIdLink(OpenId.GOOGLE, "Google", historyToken, html);
 		renderOpenIdLink(OpenId.YAHOO, "Yahoo!", historyToken, html);
@@ -529,10 +573,10 @@ public class LoginServlet extends AKunagiServlet {
 		html.INPUTcheckbox("keepmeloggedinOpenId", "keepmeloggedin", true);
 		html.LABEL("keepmeloggedinOpenId", "Keep me logged in");
 		html.endTD();
-		html.startTD().setAlignRight();
-		html.INPUTsubmit("login", "Login", null, 's');
-		html.endTD();
-		html.endTR();
+                html.startTD().setAlignRight();
+                html.INPUTsubmit("login", "Login", null, 's');
+                html.endTD();
+                html.endTR();
 
 		html.endTABLE();
 		html.BR();
@@ -544,7 +588,9 @@ public class LoginServlet extends AKunagiServlet {
 		StringBuilder sb = new StringBuilder();
 		sb.append("login.html?openid=").append(StrExtend.encodeUrlParameter(openId));
 		sb.append("&login=Login");
-		if (historyToken != null) sb.append("&historyToken=").append(StrExtend.encodeUrlParameter(historyToken));
+		if (historyToken != null) {
+            sb.append("&historyToken=").append(StrExtend.encodeUrlParameter(historyToken));
+        }
 		html.startA("openid", sb.toString());
 		html.startDIV("button");
 		html.text(label);
@@ -581,10 +627,10 @@ public class LoginServlet extends AKunagiServlet {
 		html.A("login.html", "Back to Login");
 	}
 
-	private void renderCreateAccount(HtmlRenderer html, String username, String email, String historyToken) {
+        private void renderCreateAccount(HtmlRenderer html, String username, String email, String historyToken) {
 		html.H2("Create account");
 		html.startDIV("createAccount");
-		html.startFORM(null, "loginForm", false);
+                html.startFORM(null, "loginForm", false);
 		html.INPUThidden("historyToken", historyToken);
 		html.startTABLE().setAlignCenter();
 
@@ -599,9 +645,13 @@ public class LoginServlet extends AKunagiServlet {
 
 		html.startTR();
 		html.startTD();
-		if (!webApplication.getSystemConfig().isUserEmailMandatory()) html.startDIV("optionalLabel");
+		if (!webApplication.getSystemConfig().isUserEmailMandatory()) {
+            html.startDIV("optionalLabel");
+        }
 		html.LABEL("email", "E-Mail");
-		if (!webApplication.getSystemConfig().isUserEmailMandatory()) html.endDIV();
+		if (!webApplication.getSystemConfig().isUserEmailMandatory()) {
+            html.endDIV();
+        }
 		html.endTD();
 		html.startTD();
 		html.INPUTtext("email", "email", email, 80);

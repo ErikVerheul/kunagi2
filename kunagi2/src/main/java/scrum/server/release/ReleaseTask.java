@@ -5,14 +5,16 @@ import ilarkesto.concurrent.ATask;
 import ilarkesto.logging.Log;
 import ilarkesto.persistence.AEntity;
 import ilarkesto.persistence.TransactionService;
-
 import java.io.File;
-
 import scrum.server.ScrumWebApplication;
 import scrum.server.admin.User;
 import scrum.server.collaboration.ChatMessageDao;
 import scrum.server.project.Project;
 
+/**
+ *
+ * @author erik
+ */
 public class ReleaseTask extends ATask {
 
 	private static Log log = Log.get(ReleaseTask.class);
@@ -26,30 +28,54 @@ public class ReleaseTask extends ATask {
 	private User user;
 	private Release release;
 
-	public ReleaseTask(User user, Release release) {
+    /**
+     *
+     * @param user
+     * @param release
+     */
+    public ReleaseTask(User user, Release release) {
 		this.user = user;
 		this.release = release;
 	}
 
-	public void setTransactionService(TransactionService transactionService) {
+    /**
+     *
+     * @param transactionService
+     */
+    public void setTransactionService(TransactionService transactionService) {
 		this.transactionService = transactionService;
 	}
 
-	public void setWebApplication(ScrumWebApplication webApplication) {
+    /**
+     *
+     * @param webApplication
+     */
+    public void setWebApplication(ScrumWebApplication webApplication) {
 		this.webApplication = webApplication;
 	}
 
-	public void setChatMessageDao(ChatMessageDao chatMessageDao) {
+    /**
+     *
+     * @param chatMessageDao
+     */
+    public void setChatMessageDao(ChatMessageDao chatMessageDao) {
 		this.chatMessageDao = chatMessageDao;
 	}
 
 	// --- ---
 
+    /**
+     *
+     * @throws InterruptedException
+     */
+    
 	@Override
 	protected void perform() throws InterruptedException {
 		Project project = release.getProject();
 		File script = new File(project.getReleaseScriptPath());
-		if (!script.exists()) throw new RuntimeException("Release script does not exist: " + script.getAbsolutePath());
+		if (!script.exists()) {
+                    throw new RuntimeException("Release script does not exist: " + script.getAbsolutePath());
+        }
 		File dir = script.getParentFile();
 		release.setScriptRunning(true);
 		webApplication.sendToConversationsByProject(project, release);

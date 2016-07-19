@@ -20,47 +20,83 @@ import ilarkesto.core.scope.Scope;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.core.time.TimePeriod;
 import ilarkesto.gwt.client.editor.AFieldModel;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import scrum.client.common.ThemesContainer;
 
+/**
+ *
+ * @author erik
+ */
 public class ProjectUserConfig extends GProjectUserConfig {
 
 	private transient AFieldModel<String> themesAsStringModel;
 	private transient PblFilter pblFilter = new PblFilter();
 
-	public ProjectUserConfig() {}
+    /**
+     *
+     */
+    public ProjectUserConfig() {}
 
-	public ProjectUserConfig(Map data) {
+    /**
+     *
+     * @param data
+     */
+    public ProjectUserConfig(Map data) {
 		super(data);
 	}
 
-	public boolean isIdle() {
-		if (!isOnline()) return false;
+    /**
+     *
+     * @return
+     */
+    public boolean isIdle() {
+		if (!isOnline()) {
+                    return false;
+        }
 		DateAndTime time = getLastActivityDateAndTime();
-		if (time == null) return true;
+		if (time == null) {
+                    return true;
+        }
 		TimePeriod idle = time.getPeriodToNow();
 		return (idle.toSeconds() > 180);
 	}
 
-	public String getIdleTimeAsString() {
+    /**
+     *
+     * @return
+     */
+    public String getIdleTimeAsString() {
 		TimePeriod idle = getIdleTime();
 		return idle == null ? "-" : idle.toShortestString();
 	}
 
-	public TimePeriod getIdleTime() {
-		if (!isOnline()) return null;
+    /**
+     *
+     * @return
+     */
+    public TimePeriod getIdleTime() {
+        if (!isOnline()) {
+            return null;
+        }
 		DateAndTime time = getLastActivityDateAndTime();
-		if (time == null) return null;
-		TimePeriod idle = time.getPeriodToNow();
-		if (idle.toSeconds() < 10) return null;
+                if (time == null) {
+                    return null;
+        }
+                TimePeriod idle = time.getPeriodToNow();
+                if (idle.toSeconds() < 10) {
+            return null;
+        }
 		return idle;
 	}
 
-	public boolean addSelectedEntityId(String entityId) {
+    /**
+     *
+     * @param entityId
+     * @return
+     */
+    public boolean addSelectedEntityId(String entityId) {
 		// List<String> ids = getSelectedEntitysIds();
 		// if (ids.contains(entityId)) return false;
 		// ids.add(entityId);
@@ -69,7 +105,12 @@ public class ProjectUserConfig extends GProjectUserConfig {
 		return true;
 	}
 
-	public boolean removeSelectedEntityId(String entityId) {
+    /**
+     *
+     * @param entityId
+     * @return
+     */
+    public boolean removeSelectedEntityId(String entityId) {
 		// List<String> ids = getSelectedEntitysIds();
 		// if (!ids.contains(entityId)) return false;
 		// ids.remove(entityId);
@@ -78,7 +119,11 @@ public class ProjectUserConfig extends GProjectUserConfig {
 		return true;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public boolean isMisconductsEditable() {
 		return getProject().isScrumMaster(Scope.get().getComponent(Auth.class).getUser());
 	}
@@ -88,48 +133,85 @@ public class ProjectUserConfig extends GProjectUserConfig {
 		return getProject() + " " + getUser();
 	}
 
-	public PblFilter getPblFilter() {
+    /**
+     *
+     * @return
+     */
+    public PblFilter getPblFilter() {
 		return pblFilter;
 	}
 
-	public String getPblFilterThemesAsString() {
+    /**
+     *
+     * @return
+     */
+    public String getPblFilterThemesAsString() {
 		return Str.concat(getPblFilterThemes(), ", ");
 	}
 
-	public AFieldModel<String> getThemesAsStringModel() {
-		if (themesAsStringModel == null) themesAsStringModel = new AFieldModel<String>() {
-
-			@Override
-			public String getValue() {
+    /**
+     *
+     * @return
+     */
+    public AFieldModel<String> getThemesAsStringModel() {
+        if (themesAsStringModel == null) {
+            themesAsStringModel = new AFieldModel<String>() {
+                
+                @Override
+                public String getValue() {
 				return getPblFilterThemesAsString();
 			}
 		};
+        }
 		return themesAsStringModel;
 	}
 
-	public class PblFilter implements ThemesContainer {
+    /**
+     *
+     */
+    public class PblFilter implements ThemesContainer {
 
-		@Override
+        /**
+         *
+         * @return
+         */
+        @Override
 		public List<String> getThemes() {
 			return getPblFilterThemes();
 		}
 
-		@Override
+        /**
+         *
+         * @param editorSelectedItems
+         */
+        @Override
 		public void setThemes(java.util.List<String> editorSelectedItems) {
 			setPblFilterThemes(editorSelectedItems);
 		}
 
-		@Override
+        /**
+         *
+         * @return
+         */
+        @Override
 		public List<String> getAvailableThemes() {
 			return getProject().getThemes();
 		}
 
-		@Override
+        /**
+         *
+         * @return
+         */
+        @Override
 		public boolean isThemesEditable() {
 			return true;
 		}
 
-		@Override
+        /**
+         *
+         * @return
+         */
+        @Override
 		public boolean isThemesCreatable() {
 			return false;
 		}

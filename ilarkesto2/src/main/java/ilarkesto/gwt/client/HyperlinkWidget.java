@@ -17,12 +17,20 @@ package ilarkesto.gwt.client;
 import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.Widget;
 
+/**
+ *
+ * @author erik
+ */
 public class HyperlinkWidget extends AWidget {
 
 	private Widget hyperlink;
 	private AAction action;
 
-	public HyperlinkWidget(AAction action) {
+    /**
+     *
+     * @param action
+     */
+    public HyperlinkWidget(AAction action) {
 		this.action = action;
 		String token = action.getTargetHistoryToken();
 		if (token == null) {
@@ -35,12 +43,19 @@ public class HyperlinkWidget extends AWidget {
 		}
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected Widget onInitialization() {
 		return hyperlink;
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void onUpdate() {
 		hyperlink.getElement().setId("hyperlink_" + action.getId());
 		if (hyperlink instanceof HyperlinkWithoutHistory) {

@@ -19,20 +19,38 @@ import java.util.Collection;
 import java.util.Map;
 import org.apache.commons.fileupload.FileItem;
 
+/**
+ *
+ * @author erik
+ */
 public class TimePeriodFormField extends AFormField {
 
 	private String value;
 
-	public TimePeriodFormField(String name) {
+    /**
+     *
+     * @param name
+     */
+    public TimePeriodFormField(String name) {
 		super(name);
 	}
 
-	public TimePeriodFormField setValue(TimePeriod value) {
+    /**
+     *
+     * @param value
+     * @return
+     */
+    public TimePeriodFormField setValue(TimePeriod value) {
 		this.value = value == null ? null : value.toHoursAndMinutesString();
 		return this;
 	}
 
-	@Override
+    /**
+     *
+     * @param data
+     * @param uploadedFiles
+     */
+    @Override
 	public void update(Map<String, String> data, Collection<FileItem> uploadedFiles) {
 		String newValue = prepareValue(data.get(getName()));
 		if (value == null ? newValue == null : value.equals(newValue)) {
@@ -61,7 +79,11 @@ public class TimePeriodFormField extends AFormField {
 		}
 	}
 
-	@Override
+    /**
+     *
+     * @throws ValidationException
+     */
+    @Override
 	public void validate() throws ValidationException {
 		if (value == null) {
 			if (isRequired()) { throw new ValidationException("Eingabe erforderlich"); }
@@ -75,12 +97,20 @@ public class TimePeriodFormField extends AFormField {
 
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getValueAsString() {
 		return value;
 	}
 
-	public TimePeriod getValueAsTimePeriod() {
+    /**
+     *
+     * @return
+     */
+    public TimePeriod getValueAsTimePeriod() {
 		return value == null ? null : new TimePeriod(value);
 	}
 

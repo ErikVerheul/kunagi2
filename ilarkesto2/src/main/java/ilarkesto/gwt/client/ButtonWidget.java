@@ -19,17 +19,29 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Widget;
 import static ilarkesto.gwt.client.Gwt.addTooltipHtml;
 
+/**
+ *
+ * @author erik
+ */
 public class ButtonWidget extends AWidget {
 
 	private Button button;
 	private AAction action;
 	private HTML tooltip;
 
-	public ButtonWidget(AAction action) {
+    /**
+     *
+     * @param action
+     */
+    public ButtonWidget(AAction action) {
 		this.action = action;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected Widget onInitialization() {
 		setStyleName("ButtonWidget");
 		button = new Button(action.getLabel(), action);
@@ -37,7 +49,10 @@ public class ButtonWidget extends AWidget {
 		return button;
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void onUpdate() {
 		button.getElement().setId("button_" + action.getId());
 		button.setText(action.getLabel());

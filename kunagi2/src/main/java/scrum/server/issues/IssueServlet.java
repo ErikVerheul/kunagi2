@@ -15,8 +15,8 @@
 package scrum.server.issues;
 
 import ilarkesto.base.StrExtend;
-import ilarkesto.logging.Log;
 import ilarkesto.io.IO;
+import ilarkesto.logging.Log;
 import ilarkesto.persistence.TransactionService;
 import ilarkesto.webapp.RequestWrapper;
 import ilarkesto.webapp.Servlet;
@@ -32,6 +32,10 @@ import scrum.server.pr.SubscriptionService;
 import scrum.server.project.Project;
 import scrum.server.project.ProjectDao;
 
+/**
+ *
+ * @author erik
+ */
 public class IssueServlet extends AKunagiServlet {
 
 	private static final long serialVersionUID = 1;
@@ -44,7 +48,12 @@ public class IssueServlet extends AKunagiServlet {
 	private transient TransactionService transactionService;
 	private transient SubscriptionService subscriptionService;
 
-	@Override
+    /**
+     *
+     * @param req
+     * @throws IOException
+     */
+    @Override
 	protected void onRequest(RequestWrapper<WebSession> req) throws IOException {
 		req.setRequestEncoding(IO.UTF_8);
 
@@ -52,9 +61,13 @@ public class IssueServlet extends AKunagiServlet {
 		String subject = req.get("subject");
 		String text = req.get("text");
 		String name = StrExtend.cutRight(req.get("name"), 33);
-		if (StrExtend.isBlank(name)) name = null;
+		if (StrExtend.isBlank(name)) {
+                    name = null;
+        }
 		String email = StrExtend.cutRight(req.get("email"), 66);
-		if (StrExtend.isBlank(email)) email = null;
+		if (StrExtend.isBlank(email)) {
+                    email = null;
+        }
 		boolean publish = StrExtend.isTrue(req.get("publish"));
 
 		log.info("Message from the internets");
@@ -78,27 +91,38 @@ public class IssueServlet extends AKunagiServlet {
 		}
 
 		String returnUrl = req.get("returnUrl");
-		if (returnUrl == null) returnUrl = "http://kunagi.org/message.html#{message}";
+                if (returnUrl == null) {
+                    returnUrl = "http://kunagi.org/message.html#{message}";
+        }
 		returnUrl = returnUrl.replace("{message}", StrExtend.encodeUrlParameter(message));
 
 		req.sendRedirect(returnUrl);
 	}
 
 	private String submitIssue(String projectId, String label, String text, String name, String email, boolean publish) {
-		if (projectId == null) throw new RuntimeException("projectId == null");
-		if (StrExtend.isBlank(label) && StrExtend.isBlank(text))
-			throw new RuntimeException("Subject and Description are empty. At least one required.");
-		if (StrExtend.isBlank(label)) label = "Message from the Internets";
+            if (projectId == null) {
+                throw new RuntimeException("projectId == null");
+        }
+            if (StrExtend.isBlank(label) && StrExtend.isBlank(text)) {
+                throw new RuntimeException("Subject and Description are empty. At least one required.");
+            }
+            if (StrExtend.isBlank(label)) {
+            label = "Message from the Internets";
+        }
 		Project project = projectDao.getById(projectId);
 		Issue issue = issueDao.postIssue(project, label, "<nowiki>" + text + "</nowiki>", name, email, publish);
 		if (publish) {
 			project.updateHomepage(issue, true);
 		}
-		String issuer = issue.getIssuer();
-		if (StrExtend.isBlank(issuer)) issuer = "anonymous";
-		ProjectEvent event = projectEventDao.postEvent(project, issuer + " submitted " + issue.getReferenceAndLabel(),
-			issue);
-		if (StrExtend.isEmail(email)) subscriptionService.subscribe(email, issue);
+                String issuer = issue.getIssuer();
+		if (StrExtend.isBlank(issuer)) {
+            issuer = "anonymous";
+        }
+                ProjectEvent event = projectEventDao.postEvent(project, issuer + " submitted " + issue.getReferenceAndLabel(),
+                        issue);
+		if (StrExtend.isEmail(email)) {
+            subscriptionService.subscribe(email, issue);
+        }
 		transactionService.commit();
 
 		webApplication.sendToConversationsByProject(project, issue);

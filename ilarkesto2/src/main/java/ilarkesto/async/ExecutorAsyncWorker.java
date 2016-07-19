@@ -15,7 +15,6 @@
 package ilarkesto.async;
 
 import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 import static java.util.concurrent.Executors.newCachedThreadPool;
 import static java.util.concurrent.Executors.newSingleThreadExecutor;
 

@@ -1,31 +1,23 @@
-/*
- * Copyright 2011 Witoslaw Koczewsi <wi@koczewski.de>, Artjom Kochtchi
- * 
- * This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public
- * License as published by the Free Software Foundation, either version 3 of the License, or (at your option)
- * any later version.
- * 
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
- * implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License
- * for more details.
- * 
- * You should have received a copy of the GNU General Public License along with this program. If not, see
- * <http://www.gnu.org/licenses/>.
- */
+
 package scrum.client.collaboration;
 
-import scrum.client.collaboration.RequestForumServiceCall;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.ButtonWidget;
 import scrum.client.common.AScrumWidget;
 import scrum.client.common.BlockListWidget;
 import scrum.client.common.UserGuideWidget;
 import scrum.client.workspace.PagePanel;
 
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class ForumWidget extends AScrumWidget {
 
-	public BlockListWidget<ForumSupport> list;
+    /**
+     *
+     */
+    public BlockListWidget<ForumSupport> list;
 
 	@Override
 	protected Widget onInitialization() {
@@ -48,9 +40,18 @@ public class ForumWidget extends AScrumWidget {
 		super.onUpdate();
 	}
 
-	public boolean select(ForumSupport entity) {
-		if (entity == null) return false;
-		if (!list.contains(entity)) update();
+    /**
+     *
+     * @param entity
+     * @return
+     */
+    public boolean select(ForumSupport entity) {
+		if (entity == null) {
+                    return false;
+        }
+		if (!list.contains(entity)) {
+                    update();
+        }
 		return list.showObject(entity);
 	}
 }

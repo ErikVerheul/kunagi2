@@ -14,6 +14,7 @@
  */
 package scrum.client.dashboard;
 
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.HyperlinkWidget;
 import ilarkesto.gwt.client.TableBuilder;
@@ -21,8 +22,6 @@ import scrum.client.common.AScrumWidget;
 import scrum.client.workspace.PagePanel;
 import scrum.client.workspace.ProjectWorkspaceWidgets;
 import scrum.client.workspace.ScrumNavigatorWidget;
-
-import com.google.gwt.user.client.ui.Widget;
 
 public class DashboardWidget extends AScrumWidget {
 

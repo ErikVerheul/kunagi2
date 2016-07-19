@@ -4,6 +4,10 @@ import ilarkesto.auth.Auth;
 import ilarkesto.core.time.TimePeriod;
 import scrum.server.admin.User;
 
+/**
+ *
+ * @author erik
+ */
 public class Subscription extends GSubscription {
 
 	private static final TimePeriod TTL = TimePeriod.hours(12);

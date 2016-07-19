@@ -18,197 +18,412 @@ import ilarkesto.json.AJsonWrapper;
 import ilarkesto.json.JsonObject;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class Profile extends AJsonWrapper {
 
-	public Profile(JsonObject json) {
+    /**
+     *
+     * @param json
+     */
+    public Profile(JsonObject json) {
 		super(json);
 	}
 
-	public String getId() {
+    /**
+     *
+     * @return
+     */
+    public String getId() {
 		return json.getString("id");
 	}
 
-	public String getHash() {
+    /**
+     *
+     * @return
+     */
+    public String getHash() {
 		return json.getString("hash");
 	}
 
-	public String getRequestHash() {
+    /**
+     *
+     * @return
+     */
+    public String getRequestHash() {
 		return json.getString("requestHash");
 	}
 
-	public String getProfileUrl() {
+    /**
+     *
+     * @return
+     */
+    public String getProfileUrl() {
 		return json.getString("profileUrl");
 	}
 
-	public String getPreferredUsername() {
+    /**
+     *
+     * @return
+     */
+    public String getPreferredUsername() {
 		return json.getString("preferredUsername");
 	}
 
-	public String getThumbnailUrl() {
+    /**
+     *
+     * @return
+     */
+    public String getThumbnailUrl() {
 		return json.getString("thumbnailUrl");
 	}
 
-	public List<Photo> getPhotos() {
+    /**
+     *
+     * @return
+     */
+    public List<Photo> getPhotos() {
 		return createFromArray("photos", Photo.class);
 	}
 
-	public Name getName() {
+    /**
+     *
+     * @return
+     */
+    public Name getName() {
 		return createFromObject("name", Name.class);
 	}
 
-	public String getDisplayName() {
+    /**
+     *
+     * @return
+     */
+    public String getDisplayName() {
 		return json.getString("displayName");
 	}
 
-	public String getAboutMe() {
+    /**
+     *
+     * @return
+     */
+    public String getAboutMe() {
 		return json.getString("aboutMe");
 	}
 
-	public String getCurrentLocation() {
+    /**
+     *
+     * @return
+     */
+    public String getCurrentLocation() {
 		return json.getString("currentLocation");
 	}
 
-	public List<Email> getEmails() {
+    /**
+     *
+     * @return
+     */
+    public List<Email> getEmails() {
 		return createFromArray("emails", Email.class);
 	}
 
-	public List<Im> getIms() {
+    /**
+     *
+     * @return
+     */
+    public List<Im> getIms() {
 		return createFromArray("ims", Im.class);
 	}
 
-	public List<Url> getUrls() {
+    /**
+     *
+     * @return
+     */
+    public List<Url> getUrls() {
 		return createFromArray("urls", Url.class);
 	}
 
-	public List<Account> getAccounts() {
+    /**
+     *
+     * @return
+     */
+    public List<Account> getAccounts() {
 		return createFromArray("accounts", Account.class);
 	}
 
-	public static class Account extends AJsonWrapper {
+    /**
+     *
+     */
+    public static class Account extends AJsonWrapper {
 
-		public static final String SHORTNAME_TWITTER = "twitter";
-		public static final String SHORTNAME_LINKEDIN = "linkedin";
-		public static final String SHORTNAME_YAHOO = "yahoo";
-		public static final String SHORTNAME_GOOGLE = "google";
-		public static final String SHORTNAME_FRIENDFEED = "friendfeed";
-		public static final String SHORTNAME_FACEBOOK = "facebook";
+        /**
+         *
+         */
+        public static final String SHORTNAME_TWITTER = "twitter";
 
-		public Account(JsonObject json) {
+        /**
+         *
+         */
+        public static final String SHORTNAME_LINKEDIN = "linkedin";
+
+        /**
+         *
+         */
+        public static final String SHORTNAME_YAHOO = "yahoo";
+
+        /**
+         *
+         */
+        public static final String SHORTNAME_GOOGLE = "google";
+
+        /**
+         *
+         */
+        public static final String SHORTNAME_FRIENDFEED = "friendfeed";
+
+        /**
+         *
+         */
+        public static final String SHORTNAME_FACEBOOK = "facebook";
+
+        /**
+         *
+         * @param json
+         */
+        public Account(JsonObject json) {
 			super(json);
 		}
 
-		public String getDomain() {
+        /**
+         *
+         * @return
+         */
+        public String getDomain() {
 			return json.getString("domain");
 		}
 
-		public String getDisplay() {
+        /**
+         *
+         * @return
+         */
+        public String getDisplay() {
 			return json.getString("display");
 		}
 
-		public String getUrl() {
+        /**
+         *
+         * @return
+         */
+        public String getUrl() {
 			return json.getString("url");
 		}
 
-		public String getUserId() {
+        /**
+         *
+         * @return
+         */
+        public String getUserId() {
 			return json.getString("userid");
 		}
 
-		public String getUsername() {
+        /**
+         *
+         * @return
+         */
+        public String getUsername() {
 			return json.getString("username");
 		}
 
-		public String getShortname() {
+        /**
+         *
+         * @return
+         */
+        public String getShortname() {
 			return json.getString("shortname");
 		}
 
 	}
 
-	public static class Url extends AJsonWrapper {
+    /**
+     *
+     */
+    public static class Url extends AJsonWrapper {
 
-		public Url(JsonObject json) {
+        /**
+         *
+         * @param json
+         */
+        public Url(JsonObject json) {
 			super(json);
 		}
 
-		public String getValue() {
+        /**
+         *
+         * @return
+         */
+        public String getValue() {
 			return json.getString("value");
 		}
 
-		public String getTitle() {
+        /**
+         *
+         * @return
+         */
+        public String getTitle() {
 			return json.getString("title");
 		}
 
 	}
 
-	public static class Im extends AJsonWrapper {
+    /**
+     *
+     */
+    public static class Im extends AJsonWrapper {
 
-		public static final String TYPE_ICQ = "icq";
-		public static final String TYPE_YAHOO = "yahoo";
-		public static final String TYPE_SKYPE = "skype";
+        /**
+         *
+         */
+        public static final String TYPE_ICQ = "icq";
 
-		public Im(JsonObject json) {
+        /**
+         *
+         */
+        public static final String TYPE_YAHOO = "yahoo";
+
+        /**
+         *
+         */
+        public static final String TYPE_SKYPE = "skype";
+
+        /**
+         *
+         * @param json
+         */
+        public Im(JsonObject json) {
 			super(json);
 		}
 
-		public String getType() {
+        /**
+         *
+         * @return
+         */
+        public String getType() {
 			return json.getString("type");
 		}
 
-		public String getValue() {
+        /**
+         *
+         * @return
+         */
+        public String getValue() {
 			return json.getString("value");
 		}
 
 	}
 
-	public static class Email extends AJsonWrapper {
+    /**
+     *
+     */
+    public static class Email extends AJsonWrapper {
 
-		public Email(JsonObject json) {
+        /**
+         *
+         * @param json
+         */
+        public Email(JsonObject json) {
 			super(json);
 		}
 
-		public String getValue() {
+        /**
+         *
+         * @return
+         */
+        public String getValue() {
 			return json.getString("value");
 		}
 
-		public boolean isPrimary() {
+        /**
+         *
+         * @return
+         */
+        public boolean isPrimary() {
 			String value = json.getString("primary");
 			return "true".equals(value);
 		}
 
 	}
 
-	public static class Name extends AJsonWrapper {
+    /**
+     *
+     */
+    public static class Name extends AJsonWrapper {
 
-		public Name(JsonObject json) {
+        /**
+         *
+         * @param json
+         */
+        public Name(JsonObject json) {
 			super(json);
 		}
 
-		public String getGivenName() {
+        /**
+         *
+         * @return
+         */
+        public String getGivenName() {
 			return json.getString("givenName");
 		}
 
-		public String getFamilyName() {
+        /**
+         *
+         * @return
+         */
+        public String getFamilyName() {
 			return json.getString("familyName");
 		}
 
-		public String getFormatted() {
+        /**
+         *
+         * @return
+         */
+        public String getFormatted() {
 			return json.getString("formatted");
 		}
 
 	}
 
-	public static class Photo extends AJsonWrapper {
+    /**
+     *
+     */
+    public static class Photo extends AJsonWrapper {
 
-		public static final String TYPE_THUMBNAIL = "thumbnail";
+        /**
+         *
+         */
+        public static final String TYPE_THUMBNAIL = "thumbnail";
 
-		public Photo(JsonObject json) {
+        /**
+         *
+         * @param json
+         */
+        public Photo(JsonObject json) {
 			super(json);
 		}
 
-		public String getValue() {
+        /**
+         *
+         * @return
+         */
+        public String getValue() {
 			return json.getString("value");
 		}
 
-		public String getType() {
+        /**
+         *
+         * @return
+         */
+        public String getType() {
 			return json.getString("type");
 		}
 

@@ -15,14 +15,12 @@
 package ilarkesto.ui.swing;
 
 import edu.umd.cs.findbugs.annotations.SuppressWarnings;
-import ilarkesto.base.StrExtend;
 import static ilarkesto.core.base.Str.removeSuffix;
 import ilarkesto.di.app.AApplication;
 import ilarkesto.locale.LearningLocalizer;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import static java.lang.System.exit;
-import java.util.Locale;
 import static java.util.Locale.GERMANY;
 
 public abstract class ASwingApplication extends AApplication {

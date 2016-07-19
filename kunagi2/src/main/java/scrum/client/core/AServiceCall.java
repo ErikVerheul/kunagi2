@@ -1,35 +1,51 @@
 package scrum.client.core;
 
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import ilarkesto.core.base.Utl;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.core.service.ServiceCall;
 import ilarkesto.gwt.client.ErrorWrapper;
-
 import java.util.List;
-
 import scrum.client.DataTransferObject;
 
-import com.google.gwt.user.client.rpc.AsyncCallback;
-
+/**
+ *
+ * @author erik
+ */
 public abstract class AServiceCall implements ServiceCall {
 
-	protected ServiceCaller serviceCaller = Scope.get().getComponent(ServiceCaller.class);
+    /**
+     *
+     */
+    protected ServiceCaller serviceCaller = Scope.get().getComponent(ServiceCaller.class);
 
 	@Override
 	public void execute() {
 		execute(null);
 	}
 
-	public boolean isDispensable() {
+    /**
+     *
+     * @return
+     */
+    public boolean isDispensable() {
 		return false;
 	}
 
-	protected class DefaultCallback implements AsyncCallback<DataTransferObject> {
+    /**
+     *
+     */
+    protected class DefaultCallback implements AsyncCallback<DataTransferObject> {
 
 		private final Runnable returnHandler;
 		private final AServiceCall serviceCall;
 
-		public DefaultCallback(AServiceCall serviceCall, Runnable returnHandler) {
+        /**
+         *
+         * @param serviceCall
+         * @param returnHandler
+         */
+        public DefaultCallback(AServiceCall serviceCall, Runnable returnHandler) {
 			this.returnHandler = returnHandler;
 			this.serviceCall = serviceCall;
 		}
@@ -43,7 +59,9 @@ public abstract class AServiceCall implements ServiceCall {
 			}
 			serviceCaller.onServiceCallReturn(serviceCall);
 			serviceCaller.onServiceCallSuccess(data);
-			if (returnHandler != null) returnHandler.run();
+			if (returnHandler != null) {
+                            returnHandler.run();
+            }
 		}
 
 		@Override

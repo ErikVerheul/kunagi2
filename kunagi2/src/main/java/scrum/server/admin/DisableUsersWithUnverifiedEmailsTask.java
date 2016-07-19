@@ -17,9 +17,12 @@ package scrum.server.admin;
 import ilarkesto.concurrent.ACollectionTask;
 import ilarkesto.logging.Log;
 import ilarkesto.persistence.TransactionService;
-
 import java.util.Collection;
 
+/**
+ *
+ * @author erik
+ */
 public class DisableUsersWithUnverifiedEmailsTask extends ACollectionTask<User> {
 
 	private static Log log = Log.get(DisableUsersWithUnverifiedEmailsTask.class);
@@ -29,11 +32,19 @@ public class DisableUsersWithUnverifiedEmailsTask extends ACollectionTask<User> 
 	private UserDao userDao;
 	private TransactionService transactionService;
 
-	public void setUserDao(UserDao userDao) {
+    /**
+     *
+     * @param userDao
+     */
+    public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
 	}
 
-	public void setTransactionService(TransactionService transactionService) {
+    /**
+     *
+     * @param transactionService
+     */
+    public void setTransactionService(TransactionService transactionService) {
 		this.transactionService = transactionService;
 	}
 
@@ -46,8 +57,12 @@ public class DisableUsersWithUnverifiedEmailsTask extends ACollectionTask<User> 
 
 	@Override
 	protected void perform(User user) throws InterruptedException {
-		if (user.isDisabled()) return;
-		if (user.isAdmin()) return;
+		if (user.isDisabled()) {
+                    return;
+        }
+		if (user.isAdmin()) {
+                    return;
+        }
 		if (user.isEmailVerificationOverdue()) {
 			log.warn("Disabling user:", user);
 			user.setDisabled(true);

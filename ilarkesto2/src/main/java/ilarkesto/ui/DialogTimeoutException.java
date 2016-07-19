@@ -14,9 +14,17 @@
  */
 package ilarkesto.ui;
 
+/**
+ *
+ * @author erik
+ */
 public class DialogTimeoutException extends RuntimeException {
 
-	public DialogTimeoutException(String dialogLabel) {
+    /**
+     *
+     * @param dialogLabel
+     */
+    public DialogTimeoutException(String dialogLabel) {
 		super("Dialog timeout: " + dialogLabel);
 	}
 

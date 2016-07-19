@@ -14,10 +14,16 @@
  */
 package ilarkesto.auth;
 
-
+/**
+ *
+ * @author erik
+ */
 public class WrongPasswordException extends AuthenticationFailedException {
 
-	public WrongPasswordException() {
+    /**
+     *
+     */
+    public WrongPasswordException() {
 		super("Wrong password.");
 	}
 

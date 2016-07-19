@@ -14,23 +14,42 @@
  */
 package ilarkesto.mda.legacy.model;
 
+/**
+ *
+ * @author erik
+ */
 public class ReferencePropertyModel extends SimplePropertyModel {
 
 	private final EntityModel referencedEntity;
 	private boolean master;
 	private BackReferenceModel backReference;
 
-	public ReferencePropertyModel(BeanModel entityModel, String name, EntityModel referencedEntity) {
+    /**
+     *
+     * @param entityModel
+     * @param name
+     * @param referencedEntity
+     */
+    public ReferencePropertyModel(BeanModel entityModel, String name, EntityModel referencedEntity) {
 		super(entityModel, name, true, false, referencedEntity.getPackageName() + "." + referencedEntity.getName());
 		this.referencedEntity = referencedEntity;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public EntityModel getReferencedEntity() {
 		return referencedEntity;
 	}
 
-	public ReferencePropertyModel createBackReference(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public ReferencePropertyModel createBackReference(String name) {
 		if (!getBean().isEntity()) {
                         return this;
                 }
@@ -39,12 +58,22 @@ public class ReferencePropertyModel extends SimplePropertyModel {
 		return this;
 	}
 
-	public ReferencePropertyModel setBackReferenceName(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public ReferencePropertyModel setBackReferenceName(String name) {
 		backReference.setName(name);
 		return this;
 	}
 
-	public ReferencePropertyModel setMaster(boolean master) {
+    /**
+     *
+     * @param master
+     * @return
+     */
+    public ReferencePropertyModel setMaster(boolean master) {
 		if (master && (!isReference() || isCollection())) {
                         throw new RuntimeException("Only a simple reference property can be a master");
                 }
@@ -53,7 +82,11 @@ public class ReferencePropertyModel extends SimplePropertyModel {
 		return this;
 	}
 
-	public boolean isMaster() {
+    /**
+     *
+     * @return
+     */
+    public boolean isMaster() {
 		return master;
 	}
 

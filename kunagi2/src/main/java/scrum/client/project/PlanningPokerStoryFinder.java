@@ -6,22 +6,36 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-
 import scrum.client.ScrumGwt;
 
+/**
+ *
+ * @author erik
+ */
 public class PlanningPokerStoryFinder {
 
 	private final Project project;
 	private final Requirement story;
 	private final static int MAX_RESULTS = 3;
 
-	public PlanningPokerStoryFinder(Requirement story) {
+    /**
+     *
+     * @param story
+     */
+    public PlanningPokerStoryFinder(Requirement story) {
 		this.project = story.getProject();
 		this.story = story;
 	}
 
-	public List<Set<Requirement>> getByEstimation(Float estimation) {
-		if (estimation < 0.5f) return Collections.emptyList();
+    /**
+     *
+     * @param estimation
+     * @return
+     */
+    public List<Set<Requirement>> getByEstimation(Float estimation) {
+		if (estimation < 0.5f) {
+                    return Collections.emptyList();
+        }
 
 		// other Stories with the same estimation
 		List<Set<Requirement>> results = getSame(estimation);
@@ -60,15 +74,25 @@ public class PlanningPokerStoryFinder {
 	}
 
 	private List<Set<Requirement>> getSame(Float estimation) {
-		if (estimation < 0.5f) return Collections.emptyList();
+		if (estimation < 0.5f) {
+                    return Collections.emptyList();
+        }
 		List<Requirement> stories = project.getRequirements();
 		Collections.sort(stories, project.getRequirementsOrderComparator());
 		List<Set<Requirement>> results = new ArrayList<Set<Requirement>>();
 		for (Requirement story : stories) {
-			if (story.equals(this.story)) continue;
-			if (story.isClosed()) continue;
-			if (!story.isEstimatedWorkValid()) continue;
-			if (!estimation.equals(story.getEstimatedWork())) continue;
+			if (story.equals(this.story)) {
+                            continue;
+            }
+                        if (story.isClosed()) {
+                continue;
+            }
+                        if (!story.isEstimatedWorkValid()) {
+                continue;
+            }
+                        if (!estimation.equals(story.getEstimatedWork())) {
+                continue;
+            }
 			results.add(Collections.singleton(story));
 		}
 		return results;

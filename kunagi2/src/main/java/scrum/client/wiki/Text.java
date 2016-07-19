@@ -14,11 +14,19 @@
  */
 package scrum.client.wiki;
 
+/**
+ *
+ * @author erik
+ */
 public class Text extends AWikiElement {
 
 	private String text;
 
-	public Text(String text) {
+    /**
+     *
+     * @param text
+     */
+    public Text(String text) {
 		super();
 		this.text = text;
 	}
@@ -28,7 +36,11 @@ public class Text extends AWikiElement {
 		return escapeHtml(text).replace("\n", "<br>");
 	}
 
-	public String getText() {
+    /**
+     *
+     * @return
+     */
+    public String getText() {
 		return text;
 	}
 
@@ -37,6 +49,9 @@ public class Text extends AWikiElement {
 		return "Text(\"" + text + "\")";
 	}
 
-	public static final Text SPACE = new Text(" ");
+    /**
+     *
+     */
+    public static final Text SPACE = new Text(" ");
 
 }

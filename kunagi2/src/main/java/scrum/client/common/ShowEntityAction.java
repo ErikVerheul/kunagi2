@@ -20,13 +20,23 @@ import ilarkesto.gwt.client.AWidget;
 import scrum.client.workspace.Navigator;
 import scrum.client.workspace.ProjectWorkspaceWidgets;
 
+/**
+ *
+ * @author erik
+ */
 public class ShowEntityAction extends AScrumAction {
 
 	private String page;
 	private AScrumGwtEntity entity;
 	private String label;
 
-	public ShowEntityAction(Class<? extends AWidget> page, AScrumGwtEntity entity, String label) {
+    /**
+     *
+     * @param page
+     * @param entity
+     * @param label
+     */
+    public ShowEntityAction(Class<? extends AWidget> page, AScrumGwtEntity entity, String label) {
 		this(Str.removeSuffix(Str.getSimpleName(page), "Widget"), entity, label);
 	}
 

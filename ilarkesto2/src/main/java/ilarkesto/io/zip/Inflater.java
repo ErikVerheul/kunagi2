@@ -52,9 +52,9 @@ package ilarkesto.io.zip;
 
 import edu.umd.cs.findbugs.annotations.SuppressWarnings;
 import static ilarkesto.io.zip.Deflater.DEFLATED;
-import static ilarkesto.io.zip.DeflaterConstants.STORED_BLOCK;
-import static ilarkesto.io.zip.DeflaterConstants.STATIC_TREES;
 import static ilarkesto.io.zip.DeflaterConstants.DYN_TREES;
+import static ilarkesto.io.zip.DeflaterConstants.STATIC_TREES;
+import static ilarkesto.io.zip.DeflaterConstants.STORED_BLOCK;
 import static ilarkesto.io.zip.InflaterHuffmanTree.defDistTree;
 import static ilarkesto.io.zip.InflaterHuffmanTree.defLitLenTree;
 import static java.lang.Integer.toHexString;

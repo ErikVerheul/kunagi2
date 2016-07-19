@@ -18,13 +18,17 @@ import static ilarkesto.base.StrExtend.uppercaseFirstLetter;
 import static ilarkesto.core.base.Str.concat;
 import static ilarkesto.core.logging.ClientLog.DEBUG;
 import static ilarkesto.core.logging.ClientLog.INFO;
-import ilarkesto.logging.Log;
 import static ilarkesto.io.IO.UTF_8;
 import static ilarkesto.io.IO.writeFileIfChanged;
+import ilarkesto.logging.Log;
 import java.io.File;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class JavaPrinter {
 
 	private static final Log LOG = Log.get(JavaPrinter.class);
@@ -37,44 +41,90 @@ public class JavaPrinter {
 	private int depth;
 	private boolean lineStart = true;
 
-	public void commentGenerated() {
+    /**
+     *
+     */
+    public void commentGenerated() {
 		comment("// ----------> GENERATED FILE - DON'T TOUCH! <----------");
 		ln();
 	}
 
-	public void comment(String text) {
+    /**
+     *
+     * @param text
+     */
+    public void comment(String text) {
 		ln("// " + text);
 	}
 
-	public void logDebug(String params) {
+    /**
+     *
+     * @param params
+     */
+    public void logDebug(String params) {
 		DEBUG(params);
 	}
 
-	public void logInfo(String params) {
+    /**
+     *
+     * @param params
+     */
+    public void logInfo(String params) {
 		INFO(params);
 	}
 
-	public void assignment(String var, String value) {
+    /**
+     *
+     * @param var
+     * @param value
+     */
+    public void assignment(String var, String value) {
 		statement(var + " = " + value);
 	}
 
-	public void returnStatement(String statement) {
+    /**
+     *
+     * @param statement
+     */
+    public void returnStatement(String statement) {
 		statement("return " + statement);
 	}
 
-	public void statement(String statement) {
+    /**
+     *
+     * @param statement
+     */
+    public void statement(String statement) {
 		ln(statement + ";");
 	}
 
-	public void protectedField(String type, String name) {
+    /**
+     *
+     * @param type
+     * @param name
+     */
+    public void protectedField(String type, String name) {
 		protectedField(type, name, null);
 	}
 
-	public void protectedField(String type, String name, String value) {
+    /**
+     *
+     * @param type
+     * @param name
+     * @param value
+     */
+    public void protectedField(String type, String name, String value) {
 		field("protected", type, name, value);
 	}
 
-	public void field(String modifiers, String type, String name, String value) {
+    /**
+     *
+     * @param modifiers
+     * @param type
+     * @param name
+     * @param value
+     */
+    public void field(String modifiers, String type, String name, String value) {
 		s(modifiers + " " + type + " " + name);
 		if (value != null) {
                         s(" = " + value);
@@ -83,38 +133,71 @@ public class JavaPrinter {
 		ln();
 	}
 
-	public void getter(String type, String name) {
+    /**
+     *
+     * @param type
+     * @param name
+     */
+    public void getter(String type, String name) {
 		beginMethod(false, type, "get" + uppercaseFirstLetter(name), null);
 		returnStatement(name);
 		endMethod();
 	}
 
-	public void annotationOverride() {
+    /**
+     *
+     */
+    public void annotationOverride() {
 		annotation("Override");
 	}
 
-	public void annotation(String name) {
+    /**
+     *
+     * @param name
+     */
+    public void annotation(String name) {
 		s("@");
 		ln(name);
 	}
 
-	public void toStringMethod(String returnStatement) {
+    /**
+     *
+     * @param returnStatement
+     */
+    public void toStringMethod(String returnStatement) {
 		annotationOverride();
 		beginToStringMethod();
 		returnStatement(returnStatement);
 		endMethod();
 	}
 
-	public void beginProcedure(String name, List<String> parameters) {
+    /**
+     *
+     * @param name
+     * @param parameters
+     */
+    public void beginProcedure(String name, List<String> parameters) {
 		beginMethod(true, "void", name, parameters);
 	}
 
-	public void beginToStringMethod() {
+    /**
+     *
+     */
+    public void beginToStringMethod() {
 		beginMethod(false, "String", "toString", null);
 	}
 
-	public void beginMethod(boolean override, String returnType, String name, List<String> parameters) {
-                if (override) ln("@Override");
+    /**
+     *
+     * @param override
+     * @param returnType
+     * @param name
+     * @param parameters
+     */
+    public void beginMethod(boolean override, String returnType, String name, List<String> parameters) {
+                if (override) {
+                    ln("@Override");
+        }
 		s("public " + returnType + " " + name + "(");
 		if (parameters != null && !parameters.isEmpty()) {
                         s(concat(parameters, ", "));
@@ -123,7 +206,13 @@ public class JavaPrinter {
 		in();
 	}
 
-	public void abstractMethod(String returnType, String name, List<String> parameters) {
+    /**
+     *
+     * @param returnType
+     * @param name
+     * @param parameters
+     */
+    public void abstractMethod(String returnType, String name, List<String> parameters) {
 		if (returnType == null) {
                         returnType = "void";
                 }
@@ -135,7 +224,13 @@ public class JavaPrinter {
 		ln();
 	}
 
-	public void interfaceMethod(String returnType, String name, List<String> parameters) {
+    /**
+     *
+     * @param returnType
+     * @param name
+     * @param parameters
+     */
+    public void interfaceMethod(String returnType, String name, List<String> parameters) {
 		if (returnType == null) {
                         returnType = "void";
                 }
@@ -147,17 +242,28 @@ public class JavaPrinter {
 		ln();
 	}
 
-	public void endProcedure() {
+    /**
+     *
+     */
+    public void endProcedure() {
 		endMethod();
 	}
 
-	public void endMethod() {
+    /**
+     *
+     */
+    public void endMethod() {
 		out();
 		ln("}");
 		ln();
 	}
 
-	public void beginInterface(String name, Collection<String> interfaces) {
+    /**
+     *
+     * @param name
+     * @param interfaces
+     */
+    public void beginInterface(String name, Collection<String> interfaces) {
 		if (className == null) {
                         className = name;
                 }
@@ -179,55 +285,98 @@ public class JavaPrinter {
 		ln();
 	}
 
-	public void beginIf(String condition) {
+    /**
+     *
+     * @param condition
+     */
+    public void beginIf(String condition) {
 		ln("if (" + condition + ") {");
 		in();
 	}
 
-	public void endIf() {
+    /**
+     *
+     */
+    public void endIf() {
 		out();
 		ln("}");
 	}
 
-	public void beginSynchronized(String lock) {
+    /**
+     *
+     * @param lock
+     */
+    public void beginSynchronized(String lock) {
 		ln("synchronized (" + lock + ") {");
 		in();
 	}
 
-	public void endSynchronized() {
+    /**
+     *
+     */
+    public void endSynchronized() {
 		out();
 		ln("}");
 	}
 
-	public void beginTry() {
+    /**
+     *
+     */
+    public void beginTry() {
 		ln("try {");
 		in();
 	}
 
-	public void beginCatchRuntimeException() {
+    /**
+     *
+     */
+    public void beginCatchRuntimeException() {
 		beginCatch("RuntimeException");
 	}
         
-        public void catchConversationDoesNotExist() {
+    /**
+     *
+     */
+    public void catchConversationDoesNotExist() {
 		beginCatch("GwtConversationDoesNotExist");
 	}
 
-	public void beginCatch(String exceptionType) {
+    /**
+     *
+     * @param exceptionType
+     */
+    public void beginCatch(String exceptionType) {
 		out();
 		ln("} catch (" + exceptionType + " ex) {");
 		in();
 	}
 
-	public void endCatch() {
+    /**
+     *
+     */
+    public void endCatch() {
 		out();
 		ln("}");
 	}
 
-	public void beginClass(String name, String superclassName, Collection<String> interfaces) {
+    /**
+     *
+     * @param name
+     * @param superclassName
+     * @param interfaces
+     */
+    public void beginClass(String name, String superclassName, Collection<String> interfaces) {
 		beginClass(false, name, superclassName, interfaces);
 	}
 
-	public void beginClass(boolean abstract_, String name, String superclassName, Collection<String> interfaces) {
+    /**
+     *
+     * @param abstract_
+     * @param name
+     * @param superclassName
+     * @param interfaces
+     */
+    public void beginClass(boolean abstract_, String name, String superclassName, Collection<String> interfaces) {
 		if (className == null) {
                         className = name;
                 }
@@ -247,27 +396,44 @@ public class JavaPrinter {
 		ln();
 	}
 
-	public void endInterface() {
+    /**
+     *
+     */
+    public void endInterface() {
 		endClass();
 	}
 
-	public void endClass() {
+    /**
+     *
+     */
+    public void endClass() {
 		out();
 		ln("}");
 		ln();
 	}
 
-	public void beginConstructor(List<String> parameters) {
+    /**
+     *
+     * @param parameters
+     */
+    public void beginConstructor(List<String> parameters) {
 		beginMethod(false, "", className, parameters);
 	}
 
-	public void endConstructor() {
+    /**
+     *
+     */
+    public void endConstructor() {
 		out();
 		ln("}");
 		ln();
 	}
 
-	public void package_(String name) {
+    /**
+     *
+     * @param name
+     */
+    public void package_(String name) {
 		if (packageName == null) {
                         packageName = name;
                 }
@@ -275,19 +441,31 @@ public class JavaPrinter {
 		ln();
 	}
 
-	public void imports(Collection<String> imports) {
+    /**
+     *
+     * @param imports
+     */
+    public void imports(Collection<String> imports) {
 		for (String imp : imports) {
 			ln("import " + imp + ";");
 		}
 		ln();
 	}
 
-	public void ln(String s) {
+    /**
+     *
+     * @param s
+     */
+    public void ln(String s) {
 		s(s);
 		ln();
 	}
 
-	public void s(String s) {
+    /**
+     *
+     * @param s
+     */
+    public void s(String s) {
 		if (lineStart) {
 			indentation();
 			lineStart = false;
@@ -295,21 +473,30 @@ public class JavaPrinter {
 		sb.append(s);
 	}
 
-	public void in() {
+    /**
+     *
+     */
+    public void in() {
 		if (!lineStart) {
                         throw new IllegalStateException("lineStart == false");
                 }
 		depth++;
 	}
 
-	public void out() {
+    /**
+     *
+     */
+    public void out() {
 		if (depth == 0) {
                         throw new IllegalStateException("depth == 0");
                 }
 		depth--;
 	}
 
-	public void ln() {
+    /**
+     *
+     */
+    public void ln() {
 		sb.append("\n");
 		lineStart = true;
 	}
@@ -320,7 +507,12 @@ public class JavaPrinter {
 		}
 	}
 
-	public void writeToFile(String basePath, boolean overwrite) {
+    /**
+     *
+     * @param basePath
+     * @param overwrite
+     */
+    public void writeToFile(String basePath, boolean overwrite) {
 		if (packageName == null) {
                         throw new IllegalStateException("packageName == null");
                 }
@@ -332,7 +524,12 @@ public class JavaPrinter {
 		writeToFile(file, overwrite);
 	}
 
-	public void writeToFile(File file, boolean overwrite) {
+    /**
+     *
+     * @param file
+     * @param overwrite
+     */
+    public void writeToFile(File file, boolean overwrite) {
 		if (file.exists()) {
 			if (!overwrite) {
 				LOG.debug("File already exists:", file.getPath());

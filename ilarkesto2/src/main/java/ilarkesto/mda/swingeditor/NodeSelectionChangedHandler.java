@@ -14,8 +14,16 @@
  */
 package ilarkesto.mda.swingeditor;
 
+/**
+ *
+ * @author erik
+ */
 public interface NodeSelectionChangedHandler {
 
-	void onNodeSelectionChanged(NodeSelectionChangedEvent event);
+    /**
+     *
+     * @param event
+     */
+    void onNodeSelectionChanged(NodeSelectionChangedEvent event);
 
 }

@@ -15,12 +15,12 @@
 package ilarkesto.webapp;
 
 import static ilarkesto.core.base.Utl.compare;
-import ilarkesto.logging.Log;
 import ilarkesto.core.time.DateAndTime;
 import static ilarkesto.core.time.DateAndTime.now;
 import ilarkesto.core.time.TimePeriod;
 import ilarkesto.di.Context;
 import ilarkesto.gwt.server.AGwtConversation;
+import ilarkesto.logging.Log;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;

@@ -15,32 +15,48 @@
 package scrum.server.project;
 
 import ilarkesto.pdf.APdfContainerElement;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import scrum.server.common.APdfCreator;
 
+/**
+ *
+ * @author erik
+ */
 public class ProductBacklogPdfCreator extends APdfCreator {
 
-	public ProductBacklogPdfCreator(Project project) {
+    /**
+     *
+     * @param project
+     */
+    public ProductBacklogPdfCreator(Project project) {
 		super(project);
 	}
 
-	@Override
+    /**
+     *
+     * @param pdf
+     */
+    @Override
 	protected void build(APdfContainerElement pdf) {
 		reportHeader(pdf, "Product Backlog", project.getLabel());
 
 		List<Requirement> requirements = new ArrayList<Requirement>(project.getRequirements());
 		Collections.sort(requirements, project.getRequirementsOrderComparator());
 		for (Requirement req : requirements) {
-			if (req.isClosed()) continue;
+			if (req.isClosed()) {
+                            continue;
+            }
 			requirement(pdf, req, null, null);
 		}
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected String getFilename() {
 		return "productbacklog";
 	}

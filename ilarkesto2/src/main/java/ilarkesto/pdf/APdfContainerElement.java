@@ -16,37 +16,87 @@ package ilarkesto.pdf;
 
 import java.io.File;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class APdfContainerElement extends APdfElement {
 
-	public abstract AParagraph paragraph();
+    /**
+     *
+     * @return
+     */
+    public abstract AParagraph paragraph();
 
-	public abstract AImage image(File file);
+    /**
+     *
+     * @param file
+     * @return
+     */
+    public abstract AImage image(File file);
 
-	public abstract AImage image(byte[] data);
+    /**
+     *
+     * @param data
+     * @return
+     */
+    public abstract AImage image(byte[] data);
 
-	public abstract ATable table(float... cellWidths);
+    /**
+     *
+     * @param cellWidths
+     * @return
+     */
+    public abstract ATable table(float... cellWidths);
 
-	public abstract ATable table(int columnCount);
+    /**
+     *
+     * @param columnCount
+     * @return
+     */
+    public abstract ATable table(int columnCount);
 
-	public APdfContainerElement(APdfElement parent) {
+    /**
+     *
+     * @param parent
+     */
+    public APdfContainerElement(APdfElement parent) {
 		super(parent);
 	}
 
-	public FieldList fieldList() {
+    /**
+     *
+     * @return
+     */
+    public FieldList fieldList() {
 		return new FieldList(this);
 	}
 
-	public APdfContainerElement text(Object text) {
+    /**
+     *
+     * @param text
+     * @return
+     */
+    public APdfContainerElement text(Object text) {
 		paragraph().text(text);
 		return this;
 	}
 
-	public APdfContainerElement nl(FontStyle fontStyle) {
+    /**
+     *
+     * @param fontStyle
+     * @return
+     */
+    public APdfContainerElement nl(FontStyle fontStyle) {
 		paragraph().nl(fontStyle);
 		return this;
 	}
 
-	public APdfContainerElement nl() {
+    /**
+     *
+     * @return
+     */
+    public APdfContainerElement nl() {
 		paragraph().nl();
 		return this;
 	}

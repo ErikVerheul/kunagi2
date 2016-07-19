@@ -31,11 +31,20 @@ import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+/**
+ *
+ * @author erik
+ */
 public class GwtDaoGenerator extends AClassGenerator {
 
     private final ApplicationModel application;
     private final Collection<EntityModel> entities;
 
+    /**
+     *
+     * @param application
+     * @param entities
+     */
     public GwtDaoGenerator(ApplicationModel application, Collection<EntityModel> entities) {
         super();
         this.application = application;
@@ -47,31 +56,55 @@ public class GwtDaoGenerator extends AClassGenerator {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected String getName() {
         return "GDao";
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected String getPackage() {
         return application.getPackageName().replace(".server", ".client");
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected boolean isInterface() {
         return false;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected boolean isOverwrite() {
         return true;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected String getSuperclass() {
         return AGwtDao.class.getName();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected Set<String> getStaticImports() {
         Set<String> ret = new LinkedHashSet<>(super.getStaticImports());
@@ -80,6 +113,10 @@ public class GwtDaoGenerator extends AClassGenerator {
         return ret;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected Set<String> getImports() {
         Set<String> ret = new LinkedHashSet<>(super.getImports());
@@ -88,6 +125,9 @@ public class GwtDaoGenerator extends AClassGenerator {
         return ret;
     }
 
+    /**
+     *
+     */
     @Override
     protected void writeContent() {
         for (EntityModel entity : entities) {

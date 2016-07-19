@@ -14,7 +14,10 @@
  */
 package ilarkesto.core.event;
 
-
+/**
+ *
+ * @author erik
+ */
 public interface Quiet {
 
 }

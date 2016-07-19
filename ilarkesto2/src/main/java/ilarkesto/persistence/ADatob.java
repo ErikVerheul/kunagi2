@@ -33,20 +33,40 @@ public abstract class ADatob implements Searchable {
 
 	// --- dependencies ---
 
+    /**
+     *
+     */
+    
         @SuppressWarnings(value = "MS_PKGPROTECT", justification = "Sorry, can not make this member package protected.")
 	protected static AUserDao userDao;
 
-	public static void setUserDao(AUserDao userDao) {
+    /**
+     *
+     * @param userDao
+     */
+    public static void setUserDao(AUserDao userDao) {
 		ADatob.userDao = userDao;
 	}
 
 	// --- ---
 
+    /**
+     *
+     * @return
+     */
+    
 	protected abstract ADatobManager getManager();
 
-	public abstract void updateProperties(Map<?, ?> properties);
+    /**
+     *
+     * @param properties
+     */
+    public abstract void updateProperties(Map<?, ?> properties);
 
-	protected void updateLastModified() {
+    /**
+     *
+     */
+    protected void updateLastModified() {
 		ADatobManager manager = getManager();
 		if (manager == null) {
                         return;
@@ -54,7 +74,11 @@ public abstract class ADatob implements Searchable {
 		manager.updateLastModified(this);
 	}
 
-	protected void fireModified(String comment) {
+    /**
+     *
+     * @param comment
+     */
+    protected void fireModified(String comment) {
 		ADatobManager manager = getManager();
 		if (manager == null) {
                         return;
@@ -62,7 +86,10 @@ public abstract class ADatob implements Searchable {
 		manager.onDatobModified(this, comment);
 	}
 
-	protected final void repairMissingMaster() {
+    /**
+     *
+     */
+    protected final void repairMissingMaster() {
 		ADatobManager manager = getManager();
 		if (manager == null) {
                         return;
@@ -70,14 +97,26 @@ public abstract class ADatob implements Searchable {
 		manager.onMissingMaster(this);
 	}
 
-	@Override
+    /**
+     *
+     * @param key
+     * @return
+     */
+    @Override
 	public boolean matchesKey(String key) {
 		return false;
 	}
 
-	protected void repairDeadReferences(String entityId) {}
+    /**
+     *
+     * @param entityId
+     */
+    protected void repairDeadReferences(String entityId) {}
 
-	public void ensureIntegrity() {}
+    /**
+     *
+     */
+    public void ensureIntegrity() {}
 
 	@Override
 	public String toString() {
@@ -86,13 +125,22 @@ public abstract class ADatob implements Searchable {
 
 	// --- properties as map ---
 
+    /**
+     *
+     * @return
+     */
+    
 	public final HashMap createPropertiesMap() {
 		HashMap properties = new HashMap();
 		storeProperties(properties);
 		return properties;
 	}
 
-	protected void storeProperties(Map <String, String>properties) {}
+    /**
+     *
+     * @param properties
+     */
+    protected void storeProperties(Map <String, String>properties) {}
 
 	// public final void updateProperties(Map<?, ?> properties) {
 	// for (Map.Entry entry : properties.entrySet()) {
@@ -120,13 +168,26 @@ public abstract class ADatob implements Searchable {
 
 	// --- helper ---
 
+    /**
+     *
+     * @param valueObjects
+     * @param entityId
+     */
+    
 	protected static void repairDeadReferencesOfValueObjects(Collection<? extends ADatob> valueObjects, String entityId) {
 		for (ADatob vo : valueObjects) {
                         vo.repairDeadReferences(entityId);
                 }
 	}
 
-	protected final <S extends AStructure> Set<S> cloneValueObjects(Collection<S> strucktures,
+    /**
+     *
+     * @param <S>
+     * @param strucktures
+     * @param manager
+     * @return
+     */
+    protected final <S extends AStructure> Set<S> cloneValueObjects(Collection<S> strucktures,
 			StructureManager<S> manager) {
 		Set<S> ret = new HashSet<>();
 		for (S s : strucktures) {
@@ -135,7 +196,12 @@ public abstract class ADatob implements Searchable {
 		return ret;
 	}
 
-	protected static Set<String> getIdsAsSet(Collection<? extends AEntity> entities) {
+    /**
+     *
+     * @param entities
+     * @return
+     */
+    protected static Set<String> getIdsAsSet(Collection<? extends AEntity> entities) {
 		Set<String> result = new HashSet<>(entities.size());
 		for (AEntity entity : entities) {
                         result.add(entity.getId());
@@ -143,7 +209,12 @@ public abstract class ADatob implements Searchable {
 		return result;
 	}
 
-	protected static List<String> getIdsAsList(Collection<? extends AEntity> entities) {
+    /**
+     *
+     * @param entities
+     * @return
+     */
+    protected static List<String> getIdsAsList(Collection<? extends AEntity> entities) {
 		List<String> result = new ArrayList<>(entities.size());
 		for (AEntity entity : entities) {
                         result.add(entity.getId());
@@ -151,7 +222,13 @@ public abstract class ADatob implements Searchable {
 		return result;
 	}
 
-	protected static boolean matchesKey(Object object, String key) {
+    /**
+     *
+     * @param object
+     * @param key
+     * @return
+     */
+    protected static boolean matchesKey(Object object, String key) {
 		if (object == null) {
                         return false;
                 }
@@ -159,7 +236,13 @@ public abstract class ADatob implements Searchable {
 		return object.toString().toLowerCase().indexOf(key) >= 0;
 	}
 
-	protected static boolean matchesKey(Collection objects, String key) {
+    /**
+     *
+     * @param objects
+     * @param key
+     * @return
+     */
+    protected static boolean matchesKey(Collection objects, String key) {
 		for (Iterator iter = objects.iterator(); iter.hasNext();) {
 			if (matchesKey(iter.next(), key)) {
                                 return true;
@@ -168,28 +251,48 @@ public abstract class ADatob implements Searchable {
 		return false;
 	}
 
-	protected void repairDeadDatob(ADatob datob) {
+    /**
+     *
+     * @param datob
+     */
+    protected void repairDeadDatob(ADatob datob) {
 		throw new OverrideExpectedException();
 	}
 
-	public class StructureManager<D extends ADatob> extends ADatobManager<D> {
+    /**
+     *
+     * @param <D>
+     */
+    public class StructureManager<D extends ADatob> extends ADatobManager<D> {
 
 		@Override
 		public void onDatobModified(D datob, String comment) {
 			fireModified(comment);
 		}
 
-		@Override
+        /**
+         *
+         * @param datob
+         */
+        @Override
 		public void updateLastModified(D datob) {
 			ADatob.this.updateLastModified();
 		}
 
-		@Override
+        /**
+         *
+         * @param datob
+         */
+        @Override
 		public void onMissingMaster(D datob) {
 			repairDeadDatob(datob);
 		}
 
-		public void ensureIntegrityOfStructures(Collection<? extends AStructure> structures) {
+        /**
+         *
+         * @param structures
+         */
+        public void ensureIntegrityOfStructures(Collection<? extends AStructure> structures) {
 			for (AStructure structure : new ArrayList<>(structures)) {
 				structure.setManager(this);
 				structure.ensureIntegrity();

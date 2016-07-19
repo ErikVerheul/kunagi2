@@ -24,7 +24,6 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
 import java.io.StringReader;
-import static java.lang.Character.isWhitespace;
 import static java.lang.Character.toUpperCase;
 import static java.lang.Integer.parseInt;
 import static java.lang.Integer.valueOf;

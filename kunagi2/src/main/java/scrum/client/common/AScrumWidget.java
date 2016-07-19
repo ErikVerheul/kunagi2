@@ -26,6 +26,10 @@ import scrum.client.project.Project;
 import scrum.client.sprint.Sprint;
 import scrum.client.workspace.Ui;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class AScrumWidget extends AWidget {
 
 	// --- helper ---
@@ -34,37 +38,70 @@ public abstract class AScrumWidget extends AWidget {
 	// return Scope.get().getComponent(Navigator.class);
 	// }
 
+    /**
+     *
+     * @return
+     */
+    
 	protected static User getCurrentUser() {
 		assert getAuth().isUserLoggedIn();
 		return getAuth().getUser();
 	}
 
-	public static Localizer getLocalizer() {
+    /**
+     *
+     * @return
+     */
+    public static Localizer getLocalizer() {
 		return Scope.get().getComponent(Localizer.class);
 	}
 
-	protected static Auth getAuth() {
+    /**
+     *
+     * @return
+     */
+    protected static Auth getAuth() {
 		return Scope.get().getComponent(Auth.class);
 	}
 
-	protected static Project getCurrentProject() {
+    /**
+     *
+     * @return
+     */
+    protected static Project getCurrentProject() {
 		assert ScrumScopeManager.isProjectScope();
 		return ScrumScopeManager.getProject();
 	}
 
-	protected static Sprint getCurrentSprint() {
+    /**
+     *
+     * @return
+     */
+    protected static Sprint getCurrentSprint() {
 		return getCurrentProject().getCurrentSprint();
 	}
 
-	protected static Ui getUi() {
+    /**
+     *
+     * @return
+     */
+    protected static Ui getUi() {
 		return Scope.get().getComponent(Ui.class);
 	}
 
-	protected static ScrumGwtApplication getApp() {
+    /**
+     *
+     * @return
+     */
+    protected static ScrumGwtApplication getApp() {
 		return (ScrumGwtApplication) Scope.get().getComponent("app");
 	}
 
-	protected static Dao getDao() {
+    /**
+     *
+     * @return
+     */
+    protected static Dao getDao() {
 		return Dao.get();
 	}
 }

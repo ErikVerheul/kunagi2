@@ -16,9 +16,7 @@ package scrum.server.journal;
 
 import ilarkesto.io.IO;
 import ilarkesto.webapp.RequestWrapper;
-
 import java.io.IOException;
-import java.io.Serializable;
 import javax.servlet.ServletConfig;
 import scrum.server.WebSession;
 import scrum.server.common.AKunagiServlet;

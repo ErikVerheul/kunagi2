@@ -59,6 +59,10 @@ import scrum.server.sprint.SprintReportDao;
 import scrum.server.sprint.Task;
 import scrum.server.sprint.TaskDao;
 
+/**
+ *
+ * @author erik
+ */
 public class Project extends GProject {
 
     private transient Comparator<Requirement> requirementsOrderComparator;
@@ -72,32 +76,61 @@ public class Project extends GProject {
     private static transient SprintReportDao sprintReportDao;
     private static transient ScrumWebApplication webApplication;
 
+    /**
+     *
+     * @param webApplication
+     */
     public static void setWebApplication(ScrumWebApplication webApplication) {
         Project.webApplication = webApplication;
     }
 
+    /**
+     *
+     * @param sprintReportDao
+     */
     public static void setSprintReportDao(SprintReportDao sprintReportDao) {
         Project.sprintReportDao = sprintReportDao;
     }
 
+    /**
+     *
+     * @param commentDao
+     */
     public static void setCommentDao(CommentDao commentDao) {
         Project.commentDao = commentDao;
     }
 
+    /**
+     *
+     * @param config
+     */
     public static void setConfig(KunagiRootConfig config) {
         Project.config = config;
     }
 
+    /**
+     *
+     * @param taskDao
+     */
     public static void setTaskDao(TaskDao taskDao) {
         Project.taskDao = taskDao;
     }
 
+    /**
+     *
+     * @param projectSprintSnapshotDao
+     */
     public static void setProjectSprintSnapshotDao(ProjectSprintSnapshotDao projectSprintSnapshotDao) {
         Project.projectSprintSnapshotDao = projectSprintSnapshotDao;
     }
 
     // --- ---
-    public Set<Requirement> getProductBacklogRequirements() {
+
+    /**
+     *
+     * @return
+     */
+        public Set<Requirement> getProductBacklogRequirements() {
         Set<Requirement> requirements = getRequirements();
         Iterator<Requirement> iterator = requirements.iterator();
         while (iterator.hasNext()) {
@@ -109,10 +142,18 @@ public class Project extends GProject {
         return requirements;
     }
 
+    /**
+     *
+     * @return
+     */
     public Set<SprintReport> getSprintReports() {
         return sprintReportDao.getSprintReportsByProject(this);
     }
 
+    /**
+     *
+     * @param requirement
+     */
     public void moveRequirementToTop(Requirement requirement) {
         List<String> orderIds = getRequirementsOrderIds();
         String id = requirement.getId();
@@ -121,16 +162,32 @@ public class Project extends GProject {
         setRequirementsOrderIds(orderIds);
     }
 
+    /**
+     *
+     * @param index
+     * @param id
+     */
     public void addRequirementsOrderId(int index, String id) {
         List<String> ids = getRequirementsOrderIds();
         ids.add(index, id);
         setRequirementsOrderIds(ids);
     }
 
+    /**
+     *
+     * @return
+     */
     public WeekdaySelector getFreeDaysAsWeekdaySelector() {
         return new WeekdaySelector(getFreeDays());
     }
 
+    /**
+     *
+     * @param user
+     * @param prefix
+     * @param suffix
+     * @return
+     */
     public String getUsersRolesAsString(User user, String prefix, String suffix) {
         StringBuilder sb = new StringBuilder();
         List<String> roles = new ArrayList<String>();
@@ -163,6 +220,10 @@ public class Project extends GProject {
         return sb.toString();
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean containsParticipantWithVerifiedEmail() {
         for (User user : getParticipants()) {
             if (user.isEmailVerified()) {
@@ -172,10 +233,17 @@ public class Project extends GProject {
         return false;
     }
 
+    /**
+     *
+     * @param requirements
+     */
     public void updateRequirementsOrder(List<Requirement> requirements) {
         setRequirementsOrderIds(Persist.getIdsAsList(requirements));
     }
 
+    /**
+     *
+     */
     public synchronized void updateHomepage() {
         if (!isHomepageDirSet()) {
             return;
@@ -183,6 +251,11 @@ public class Project extends GProject {
         getHomepageUpdater().processAll();
     }
 
+    /**
+     *
+     * @param entity
+     * @param forceUpdate
+     */
     public synchronized void updateHomepage(AEntity entity, boolean forceUpdate) {
         if (!isHomepageDirSet()) {
             return;
@@ -193,6 +266,10 @@ public class Project extends GProject {
         getHomepageUpdater().processEntityTemplate(entity);
     }
 
+    /**
+     *
+     * @return
+     */
     public java.io.File getHomepageDirFile() {
         if (!isHomepageDirSet()) {
             return null;
@@ -200,6 +277,10 @@ public class Project extends GProject {
         return new java.io.File(getHomepageDir());
     }
 
+    /**
+     *
+     * @return
+     */
     public String getHomepageVelocityDir() {
         if (!isHomepageDirSet()) {
             return null;
@@ -207,6 +288,10 @@ public class Project extends GProject {
         return getHomepageDir() + "/velocity";
     }
 
+    /**
+     *
+     * @return
+     */
     public String getHomepageScriptsDir() {
         if (!isHomepageDirSet()) {
             return null;
@@ -214,10 +299,17 @@ public class Project extends GProject {
         return getHomepageDir() + "/scripts";
     }
 
+    /**
+     *
+     * @return
+     */
     public HomepageUpdater getHomepageUpdater() {
         return new HomepageUpdater(this);
     }
 
+    /**
+     *
+     */
     public void scanFiles() {
         java.io.File dir = new java.io.File(getFileRepositoryPath());
         java.io.File[] files = dir.listFiles();
@@ -233,6 +325,11 @@ public class Project extends GProject {
         }
     }
 
+    /**
+     *
+     * @param text
+     * @return
+     */
     @SuppressWarnings("unchecked")
     public ArrayList<AEntity> search(String text) {
         String[] keys = StrExtend.tokenize(text, " ");
@@ -269,6 +366,11 @@ public class Project extends GProject {
         return true;
     }
 
+    /**
+     *
+     * @param out
+     * @param encoding
+     */
     public void writeJournalAsRss(OutputStream out, String encoding) {
         Rss20Builder rss = new Rss20Builder();
         rss.setTitle(getLabel() + " Event Journal");
@@ -287,14 +389,27 @@ public class Project extends GProject {
         rss.write(out, encoding);
     }
 
+    /**
+     *
+     * @return
+     */
     public String getFileRepositoryPath() {
         return config.getFileRepositoryPath() + "/" + getId();
     }
 
+    /**
+     *
+     * @return
+     */
     public Set<SimpleEvent> getCalendarEvents() {
         return simpleEventDao.getSimpleEventsByProject(this);
     }
 
+    /**
+     *
+     * @param min
+     * @return
+     */
     public List<ProjectEvent> getLatestProjectEvents(int min) {
         List<ProjectEvent> events = UtlExtend.sort(projectEventDao.getProjectEventsByProject(this));
 
@@ -312,6 +427,10 @@ public class Project extends GProject {
         return ret;
     }
 
+    /**
+     *
+     * @return
+     */
     public Set<ProjectUserConfig> getUserConfigs() {
         Set<ProjectUserConfig> configs = new HashSet<ProjectUserConfig>();
         for (User user : getParticipants()) {
@@ -320,14 +439,28 @@ public class Project extends GProject {
         return configs;
     }
 
+    /**
+     *
+     * @param user
+     * @return
+     */
     public ProjectUserConfig getUserConfig(User user) {
         return projectUserConfigDao.getProjectUserConfig(this, user);
     }
 
+    /**
+     *
+     * @return
+     */
     public Set<Task> getTasks() {
         return taskDao.getTasksByProject(this);
     }
 
+    /**
+     *
+     * @param reference
+     * @return
+     */
     public AEntity getEntityByReference(String reference) {
         if (reference.length() > 4 && reference.startsWith("[[")) {
             String pageName = reference.substring(2, reference.length() - 2);
@@ -363,138 +496,263 @@ public class Project extends GProject {
         return null;
     }
 
+    /**
+     *
+     * @param number
+     * @return
+     */
     public Requirement getRequirementByNumber(int number) {
         return requirementDao.getRequirementByNumber(number, this);
     }
 
+    /**
+     *
+     * @param number
+     * @return
+     */
     public Task getTaskByNumber(int number) {
         return taskDao.getTaskByNumber(number, this);
     }
 
+    /**
+     *
+     * @param number
+     * @return
+     */
     public Quality getQualityByNumber(int number) {
         return qualityDao.getQualityByNumber(number, this);
     }
 
+    /**
+     *
+     * @param number
+     * @return
+     */
     public Issue getIssueByNumber(int number) {
         return issueDao.getIssueByNumber(number, this);
     }
 
+    /**
+     *
+     * @param number
+     * @return
+     */
     public Sprint getSprintByNumber(int number) {
         return sprintDao.getSprintByNumber(number, this);
     }
 
+    /**
+     *
+     * @param number
+     * @return
+     */
     public Impediment getImpedimentByNumber(int number) {
         return impedimentDao.getImpedimentByNumber(number, this);
     }
 
+    /**
+     *
+     * @param number
+     * @return
+     */
     public Subject getSubjectByNumber(int number) {
         return subjectDao.getSubjectsByNumber(number, this);
     }
 
+    /**
+     *
+     * @param number
+     * @return
+     */
     public File getFileByNumber(int number) {
         return fileDao.getFileByNumber(number, this);
     }
 
+    /**
+     *
+     * @param reference
+     * @return
+     */
     public File getFileByReference(String reference) {
         return getFileByNumber(Integer.parseInt(reference.substring(3)));
     }
 
+    /**
+     *
+     * @param number
+     * @return
+     */
     public SimpleEvent getSimpleEventByNumber(int number) {
         return simpleEventDao.getSimpleEventByNumber(number, this);
     }
 
+    /**
+     *
+     * @param number
+     * @return
+     */
     public Release getReleaseByNumber(int number) {
         return releaseDao.getReleaseByNumber(number, this);
     }
 
+    /**
+     *
+     * @param number
+     * @return
+     */
     public BlogEntry getBlogEntryByNumber(int number) {
         return blogEntryDao.getBlogEntryByNumber(number, this);
     }
 
+    /**
+     *
+     * @param name
+     * @return
+     */
     public Wikipage getWikipageByName(String name) {
         return wikipageDao.getWikipageByName(name, this);
     }
 
+    /**
+     *
+     * @return
+     */
     public synchronized int generateTaskNumber() {
         int number = getLastTaskNumber() + 1;
         setLastTaskNumber(number);
         return number;
     }
 
+    /**
+     *
+     * @return
+     */
     public synchronized int generateEventNumber() {
         int number = getLastEventNumber() + 1;
         setLastEventNumber(number);
         return number;
     }
 
+    /**
+     *
+     * @return
+     */
     public synchronized int generateFileNumber() {
         int number = getLastFileNumber() + 1;
         setLastFileNumber(number);
         return number;
     }
 
+    /**
+     *
+     * @return
+     */
     public synchronized int generateRequirementNumber() {
         int number = getLastRequirementNumber() + 1;
         setLastRequirementNumber(number);
         return number;
     }
 
+    /**
+     *
+     * @return
+     */
     public synchronized int generateImpedimentNumber() {
         int number = getLastImpedimentNumber() + 1;
         setLastImpedimentNumber(number);
         return number;
     }
 
+    /**
+     *
+     * @return
+     */
     public synchronized int generateSubjectNumber() {
         int number = getLastSubjectNumber() + 1;
         setLastSubjectNumber(number);
         return number;
     }
 
+    /**
+     *
+     * @return
+     */
     public synchronized int generateRiskNumber() {
         int number = getLastRiskNumber() + 1;
         setLastRiskNumber(number);
         return number;
     }
 
+    /**
+     *
+     * @return
+     */
     public synchronized int generateIssueNumber() {
         int number = getLastIssueNumber() + 1;
         setLastIssueNumber(number);
         return number;
     }
 
+    /**
+     *
+     * @return
+     */
     public synchronized int generateSprintNumber() {
         int number = getLastSprintNumber() + 1;
         setLastSprintNumber(number);
         return number;
     }
 
+    /**
+     *
+     * @return
+     */
     public synchronized int generateReleaseNumber() {
         int number = getLastReleaseNumber() + 1;
         setLastReleaseNumber(number);
         return number;
     }
 
+    /**
+     *
+     * @return
+     */
     public synchronized int generateQualityNumber() {
         int number = getLastQualityNumber() + 1;
         setLastQualityNumber(number);
         return number;
     }
 
+    /**
+     *
+     * @return
+     */
     public synchronized int generateBlogEntryNumber() {
         int number = getLastBlogEntryNumber() + 1;
         setLastBlogEntryNumber(number);
         return number;
     }
 
+    /**
+     *
+     * @return
+     */
     public Release getCurrentRelease() {
         return releaseDao.getCurrentRelease(this);
     }
 
+    /**
+     *
+     * @return
+     */
     public Release getNextRelease() {
         return releaseDao.getNextRelease(this);
     }
 
+    /**
+     *
+     * @return
+     */
     public ProjectSprintSnapshot getCurrentSprintSnapshot() {
         ProjectSprintSnapshot snapshot = projectSprintSnapshotDao.getProjectSprintSnapshotBySprint(getCurrentSprint());
         if (snapshot == null) {
@@ -522,10 +780,19 @@ public class Project extends GProject {
     // }
     // return sum;
     // }
-    public List<ProjectSprintSnapshot> getSprintSnapshots() {
+
+    /**
+     *
+     * @return
+     */
+        public List<ProjectSprintSnapshot> getSprintSnapshots() {
         return projectSprintSnapshotDao.getProjectSprintSnapshotsByProject(this);
     }
 
+    /**
+     *
+     * @return
+     */
     public Sprint switchToNextSprint() {
         Sprint oldSprint = getCurrentSprint();
         oldSprint.close();
@@ -569,6 +836,10 @@ public class Project extends GProject {
         return snapshot;
     }
 
+    /**
+     *
+     * @return
+     */
     public Sprint createNextSprint() {
         Sprint sprint = sprintDao.newEntityInstance();
         sprint.setProject(this);
@@ -585,22 +856,42 @@ public class Project extends GProject {
         return sprint;
     }
 
+    /**
+     *
+     * @return
+     */
     public Set<Issue> getAcceptedIssues() {
         return issueDao.getAcceptedIssues(this);
     }
 
+    /**
+     *
+     * @return
+     */
     public Set<Issue> getClosedIssues() {
         return issueDao.getClosedIssues(this);
     }
 
+    /**
+     *
+     * @return
+     */
     public Set<Issue> getOpenIssues() {
         return issueDao.getOpenIssues(this);
     }
 
+    /**
+     *
+     * @return
+     */
     public Set<Issue> getPublishedIssues() {
         return issueDao.getPublishedIssues(this);
     }
 
+    /**
+     *
+     * @return
+     */
     public Set<Issue> getBugsInCurrentRelease() {
         Release release = getCurrentRelease();
         Release nextRelease = getNextRelease();
@@ -617,14 +908,26 @@ public class Project extends GProject {
         return ret;
     }
 
+    /**
+     *
+     * @return
+     */
     public Set<Issue> getOpenBugs() {
         return issueDao.getOpenBugs(this);
     }
 
+    /**
+     *
+     * @return
+     */
     public Set<Issue> getOpenIdeas() {
         return issueDao.getOpenIdeas(this);
     }
 
+    /**
+     *
+     * @return
+     */
     public Set<RequirementEstimationVote> getRequirementEstimationVotes() {
         Set<RequirementEstimationVote> ret = new HashSet<RequirementEstimationVote>();
         for (Requirement requirement : getRequirements()) {
@@ -633,6 +936,10 @@ public class Project extends GProject {
         return ret;
     }
 
+    /**
+     *
+     * @return
+     */
     public Set<SprintDaySnapshot> getSprintDaySnapshots() {
         Set<SprintDaySnapshot> ret = new HashSet<SprintDaySnapshot>();
         for (Sprint sprint : getSprints()) {
@@ -641,6 +948,10 @@ public class Project extends GProject {
         return ret;
     }
 
+    /**
+     *
+     * @return
+     */
     public Set<SprintDaySnapshot> getExistingSprintDaySnapshots() {
         Set<SprintDaySnapshot> ret = new HashSet<SprintDaySnapshot>();
         for (Sprint sprint : getSprints()) {
@@ -649,10 +960,18 @@ public class Project extends GProject {
         return ret;
     }
 
+    /**
+     *
+     * @return
+     */
     public Set<Comment> getAllComments() {
         return getComments(false);
     }
 
+    /**
+     *
+     * @return
+     */
     public Set<Comment> getLatestComments() {
         return getComments(true);
     }
@@ -777,6 +1096,11 @@ public class Project extends GProject {
         return (user != null && user.isAdmin()) || containsParticipant(user) || containsAdmin(user);
     }
 
+    /**
+     *
+     * @param user
+     * @return
+     */
     public boolean isEditableBy(User user) {
         return isVisibleFor(user);
     }
@@ -790,7 +1114,11 @@ public class Project extends GProject {
     }
 
     // --- test data ---
-    public void addTestImpediments() {
+
+    /**
+     *
+     */
+        public void addTestImpediments() {
         Impediment imp;
 
         // no documentation
@@ -810,6 +1138,9 @@ public class Project extends GProject {
 		return Date.beforeDays(UtlExtend.randomInt(0, beforeMaxDays));
     }
 
+    /**
+     *
+     */
     public void addTestRisks() {
         Risk rsk;
 
@@ -827,14 +1158,23 @@ public class Project extends GProject {
         rsk.setImpactMitigation("Go to the roof if it's by rising sea level.");
     }
 
+    /**
+     *
+     */
     public void addTestSimpleEvents() {
         // let people generate their own events
     }
 
+    /**
+     *
+     */
     public void addTestEvents() {
         // no test events
     }
 
+    /**
+     *
+     */
     public void addTestIssues() {
         Issue iss;
 
@@ -889,6 +1229,9 @@ public class Project extends GProject {
         iss.setCloseDate(Date.today());
     }
 
+    /**
+     *
+     */
     public void addTestReleases() {
         Release r1 = releaseDao.postRelease(this, Date.beforeDays(30), "1.0");
         r1.setReleased(true);
@@ -897,6 +1240,9 @@ public class Project extends GProject {
         r2.addSprint(getCurrentSprint());
     }
 
+    /**
+     *
+     */
     public void addTestRequirements() {
         Requirement req;
         List<Requirement> reqOrder = new LinkedList<Requirement>();
@@ -997,6 +1343,9 @@ public class Project extends GProject {
         updateRequirementsOrder(reqOrder);
     }
 
+    /**
+     *
+     */
     public void addTestQualitys() {
         Quality qly = null;
 
@@ -1008,11 +1357,18 @@ public class Project extends GProject {
         qly = qualityDao.postQuality(this, "Flawless Integration");
     }
 
+    /**
+     *
+     */
     public void addTestSprints() {
         sprintDao.createTestHistorySprint(this, Date.beforeDays(45), Date.beforeDays(15));
         sprintDao.createTestSprint(this);
     }
 
+    /**
+     *
+     * @return
+     */
     public Comparator<Requirement> getRequirementsOrderComparator() {
         if (requirementsOrderComparator == null) {
             requirementsOrderComparator = new Comparator<Requirement>() {

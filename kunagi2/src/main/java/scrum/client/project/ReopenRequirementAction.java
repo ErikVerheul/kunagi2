@@ -16,9 +16,17 @@ package scrum.client.project;
 
 import scrum.client.common.TooltipBuilder;
 
+/**
+ *
+ * @author erik
+ */
 public class ReopenRequirementAction extends GReopenRequirementAction {
 
-	public ReopenRequirementAction(scrum.client.project.Requirement requirement) {
+    /**
+     *
+     * @param requirement
+     */
+    public ReopenRequirementAction(scrum.client.project.Requirement requirement) {
 		super(requirement);
 	}
 
@@ -27,26 +35,30 @@ public class ReopenRequirementAction extends GReopenRequirementAction {
 		return "Reopen";
 	}
 
-	@Override
+    /**
+     *
+     * @param tb
+     */
+    @Override
 	protected void updateTooltip(TooltipBuilder tb) {
 		tb.setText("Reopen this Story, stating that it is not yet done.");
 		if (!requirement.getProject().isProductOwnerOrTeamMember(getCurrentUser())) {
 			tb.addRemark(TooltipBuilder.NOT_TEAM_NOR_PRODUCT_OWNER);
 		} else {
-			if (!requirement.isClosed()) tb.addRemark("Story is not yet closed.");
+			if (!requirement.isClosed()) {
+                            tb.addRemark("Story is not yet closed.");
+            }
 		}
 	}
 
 	@Override
 	public boolean isExecutable() {
-		if (!requirement.isClosed()) return false;
-		return true;
+		return requirement.isClosed();
 	}
 
 	@Override
 	public boolean isPermitted() {
-		if (!requirement.getProject().isProductOwnerOrTeamMember(getCurrentUser())) return false;
-		return true;
+		return requirement.getProject().isProductOwnerOrTeamMember(getCurrentUser());
 	}
 
 	@Override

@@ -14,12 +14,6 @@
  */
 package scrum.client.search;
 
-import ilarkesto.core.base.Str;
-import ilarkesto.core.scope.Scope;
-import ilarkesto.gwt.client.Gwt;
-import scrum.client.common.AScrumWidget;
-import scrum.client.workspace.Navigator;
-
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyDownEvent;
 import com.google.gwt.event.dom.client.KeyDownHandler;
@@ -28,7 +22,16 @@ import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
+import ilarkesto.core.base.Str;
+import ilarkesto.core.scope.Scope;
+import ilarkesto.gwt.client.Gwt;
+import scrum.client.common.AScrumWidget;
+import scrum.client.workspace.Navigator;
 
+/**
+ *
+ * @author erik
+ */
 public class SearchInputWidget extends AScrumWidget {
 
 	private Search search;
@@ -53,7 +56,9 @@ public class SearchInputWidget extends AScrumWidget {
 
 	@Override
 	protected void onUpdate() {
-		if (!Str.isBlank(input.getText())) input.setFocus(true);
+		if (!Str.isBlank(input.getText())) {
+                    input.setFocus(true);
+        }
 	}
 
 	private void submitSearch() {
@@ -61,8 +66,13 @@ public class SearchInputWidget extends AScrumWidget {
 		search.search(input.getText());
 	}
 
-	public void clear() {
-		if (input != null) input.setText(null);
+    /**
+     *
+     */
+    public void clear() {
+		if (input != null) {
+                    input.setText(null);
+        }
 	}
 
 	class InputHandler implements KeyUpHandler {
@@ -78,7 +88,9 @@ public class SearchInputWidget extends AScrumWidget {
 
 		@Override
 		public void onKeyDown(KeyDownEvent event) {
-			if (event.getNativeKeyCode() == KeyCodes.KEY_ENTER) submitSearch();
+			if (event.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
+                            submitSearch();
+            }
 		}
 	}
 

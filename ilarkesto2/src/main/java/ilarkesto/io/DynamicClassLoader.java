@@ -14,8 +14,8 @@
  */
 package ilarkesto.io;
 
-import ilarkesto.logging.Log;
 import static ilarkesto.io.IO.readFileToByteArray;
+import ilarkesto.logging.Log;
 import java.io.File;
 import java.net.URL;
 import java.util.HashMap;

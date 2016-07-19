@@ -16,14 +16,12 @@ package scrum.server.release;
 
 import ilarkesto.concurrent.TaskManager;
 import ilarkesto.core.base.Utl;
-import ilarkesto.logging.Log;
 import ilarkesto.core.time.Date;
-
+import ilarkesto.logging.Log;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-
 import scrum.client.common.ReferenceSupport;
 import scrum.server.ScrumWebApplication;
 import scrum.server.admin.User;
@@ -34,6 +32,10 @@ import scrum.server.project.Requirement;
 import scrum.server.sprint.Sprint;
 import scrum.server.sprint.SprintReport;
 
+/**
+ *
+ * @author erik
+ */
 public class Release extends GRelease implements Numbered, ReferenceSupport {
 
 	private static Log log = Log.get(Release.class);
@@ -42,12 +44,21 @@ public class Release extends GRelease implements Numbered, ReferenceSupport {
 
 	private static transient TaskManager taskManager;
 
-	public static void setTaskManager(TaskManager taskManager) {
+    /**
+     *
+     * @param taskManager
+     */
+    public static void setTaskManager(TaskManager taskManager) {
 		Release.taskManager = taskManager;
 	}
 
 	// --- ---
 
+    /**
+     *
+     * @return
+     */
+    
 	public List<Requirement> getClosedRequirements() {
 		List<Requirement> requirements = new ArrayList<Requirement>();
 		for (Sprint sprint : Utl.sort(getSprints(), Sprint.END_DATE_COMPARATOR)) {
@@ -61,15 +72,22 @@ public class Release extends GRelease implements Numbered, ReferenceSupport {
 		return requirements;
 	}
 
-	public void release(Project project, User user, ScrumWebApplication webApplication) {
+    /**
+     *
+     * @param project
+     * @param user
+     * @param webApplication
+     */
+    public void release(Project project, User user, ScrumWebApplication webApplication) {
 		if (isReleased()) {
 			log.warn("Already released:", this);
 			return;
 		}
 		if (isScriptAvailable()) {
 			File scriptFile = new File(getProject().getReleaseScriptPath());
-			if (!scriptFile.exists())
-				throw new RuntimeException("Release script does not exist: " + scriptFile.getAbsolutePath());
+			if (!scriptFile.exists()) {
+                            throw new RuntimeException("Release script does not exist: " + scriptFile.getAbsolutePath());
+            }
 			ReleaseTask task = new ReleaseTask(user, this);
 			webApplication.autowire(task);
 			taskManager.start(task);
@@ -78,11 +96,21 @@ public class Release extends GRelease implements Numbered, ReferenceSupport {
 		}
 	}
 
-	public boolean isScriptAvailable() {
+    /**
+     *
+     * @return
+     */
+    public boolean isScriptAvailable() {
 		return getProject().isReleaseScriptPathSet();
 	}
 
-	public void markReleased(Project project, User user, ScrumWebApplication webApplication) {
+    /**
+     *
+     * @param project
+     * @param user
+     * @param webApplication
+     */
+    public void markReleased(Project project, User user, ScrumWebApplication webApplication) {
 		setReleaseDate(Date.today());
 		setReleased(true);
 		webApplication.postProjectEvent(project, user.getName() + " released " + getReferenceAndLabel(), this);
@@ -91,32 +119,57 @@ public class Release extends GRelease implements Numbered, ReferenceSupport {
 		log.debug("Release published:", this);
 	}
 
-	public boolean isMajor() {
+    /**
+     *
+     * @return
+     */
+    public boolean isMajor() {
 		return !isBugfix();
 	}
 
-	public boolean isBugfix() {
+    /**
+     *
+     * @return
+     */
+    public boolean isBugfix() {
 		return isParentReleaseSet();
 	}
 
-	public List<Issue> getIssues() {
+    /**
+     *
+     * @return
+     */
+    public List<Issue> getIssues() {
 		List<Issue> ret = new ArrayList<Issue>();
 		ret.addAll(getAffectedIssues());
 		ret.addAll(getFixIssues());
 		return ret;
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	public void updateNumber() {
-		if (getNumber() == 0) setNumber(getProject().generateReleaseNumber());
+		if (getNumber() == 0) {
+                    setNumber(getProject().generateReleaseNumber());
+        }
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getReference() {
 		return scrum.client.release.Release.REFERENCE_PREFIX + getNumber();
 	}
 
-	public String getReferenceAndLabel() {
+    /**
+     *
+     * @return
+     */
+    public String getReferenceAndLabel() {
 		return getReference() + " " + getLabel();
 	}
 
@@ -125,7 +178,12 @@ public class Release extends GRelease implements Numbered, ReferenceSupport {
 		return getProject().isVisibleFor(user);
 	}
 
-	public boolean isEditableBy(User user) {
+    /**
+     *
+     * @param user
+     * @return
+     */
+    public boolean isEditableBy(User user) {
 		return getProject().isEditableBy(user);
 	}
 
@@ -140,20 +198,32 @@ public class Release extends GRelease implements Numbered, ReferenceSupport {
 		updateNumber();
 	}
 
-	public static final Comparator<Release> DATE_COMPARATOR = new Comparator<Release>() {
+    /**
+     *
+     */
+    public static final Comparator<Release> DATE_COMPARATOR = new Comparator<Release>() {
 
 		@Override
 		public int compare(Release ra, Release rb) {
 			Date a = ra.getReleaseDate();
 			Date b = rb.getReleaseDate();
-			if (a == null && b == null) return Utl.compare(ra.getLabel(), rb.getLabel());
-			if (a == null) return 1;
-			if (b == null) return -1;
+                        if (a == null && b == null) {
+                            return Utl.compare(ra.getLabel(), rb.getLabel());
+                        }
+			if (a == null) {
+                            return 1;
+            }
+			if (b == null) {
+                return -1;
+            }
 			return a.compareTo(b);
 		}
 	};
 
-	public static final Comparator<Release> DATE_REVERSE_COMPARATOR = new Comparator<Release>() {
+    /**
+     *
+     */
+    public static final Comparator<Release> DATE_REVERSE_COMPARATOR = new Comparator<Release>() {
 
 		@Override
 		public int compare(Release ra, Release rb) {

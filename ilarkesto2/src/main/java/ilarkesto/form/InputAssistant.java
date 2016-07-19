@@ -16,10 +16,25 @@ package ilarkesto.form;
 
 import java.util.Set;
 
+/**
+ *
+ * @author erik
+ * @param <T>
+ */
 public interface InputAssistant<T> {
 
-	Set<T> getOptions();
+    /**
+     *
+     * @return
+     */
+    Set<T> getOptions();
 
-	String applyToInput(String input, T selectedOption);
+    /**
+     *
+     * @param input
+     * @param selectedOption
+     * @return
+     */
+    String applyToInput(String input, T selectedOption);
 
 }

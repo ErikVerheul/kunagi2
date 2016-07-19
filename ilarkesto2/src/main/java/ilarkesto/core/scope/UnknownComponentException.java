@@ -14,9 +14,17 @@
  */
 package ilarkesto.core.scope;
 
+/**
+ *
+ * @author erik
+ */
 public class UnknownComponentException extends RuntimeException {
 
-	public UnknownComponentException(String name) {
+    /**
+     *
+     * @param name
+     */
+    public UnknownComponentException(String name) {
 		super("Unknown component: " + name);
 	}
 

@@ -27,20 +27,40 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+/**
+ *
+ * @author erik
+ */
 public class Utl {
 
     private static String language = "en";
 
+    /**
+     *
+     * @param exceptionType
+     * @param ex
+     * @return
+     */
     public static boolean isRootCause(Class<? extends Exception> exceptionType, Exception ex) {
         Exception cause = getRootCause(ex);
         return cause.getClass().equals(exceptionType);
     }
 
+    /**
+     *
+     * @param ex
+     * @return
+     */
     public static Exception getRootCause(Exception ex) {
         Throwable cause = ex.getCause();
         return cause == null ? ex : getRootCause((Exception) cause);
     }
 
+    /**
+     *
+     * @param ex
+     * @return
+     */
     public static String getUserMessage(Exception ex) {
         if (ex instanceof NullPointerException) {
             return "NullPointerException";
@@ -51,10 +71,21 @@ public class Utl {
         return Str.getSimpleName(ex.getClass()) + ": " + ex.getMessage();
     }
 
+    /**
+     *
+     * @param ex
+     * @return
+     */
     public static String getUserMessageStack(Exception ex) {
         return getUserMessageStack(ex, " -> ");
     }
 
+    /**
+     *
+     * @param ex
+     * @param separator
+     * @return
+     */
     public static String getUserMessageStack(Exception ex, String separator) {
         StringBuilder sb = null;
         while (ex != null) {
@@ -69,6 +100,11 @@ public class Utl {
         return sb == null ? null : sb.toString();
     }
 
+    /**
+     *
+     * @param arrays
+     * @return
+     */
     public static String[] concat(String[]... arrays) {
         int len = 0;
         for (String[] array : arrays) {
@@ -83,18 +119,36 @@ public class Utl {
         return ret;
     }
 
+    /**
+     *
+     * @param <T>
+     * @param collection
+     * @return
+     */
     public static <T extends Comparable> List<T> sort(Collection<T> collection) {
         List<T> result = new ArrayList<T>(collection);
         Collections.sort(result);
         return result;
     }
 
+    /**
+     *
+     * @param <T>
+     * @param collection
+     * @param comparator
+     * @return
+     */
     public static <T> List<T> sort(Collection<T> collection, Comparator<T> comparator) {
         List<T> result = new ArrayList<T>(collection);
         Collections.sort(result, comparator);
         return result;
     }
 
+    /**
+     *
+     * @param objects
+     * @return
+     */
     public static int hashCode(Object... objects) {
         int hashCode = 23;
         for (Object object : objects) {
@@ -110,14 +164,26 @@ public class Utl {
         return hashCode;
     }
 
+    /**
+     *
+     * @param language
+     */
     public static void setLanguage(String language) {
         Utl.language = language;
     }
 
+    /**
+     *
+     * @return
+     */
     public static String getLanguage() {
         return language;
     }
 
+    /**
+     *
+     * @param collection
+     */
     public static void removeDuplicates(Collection collection) {
         Set set = new HashSet(collection.size());
         Iterator iterator = collection.iterator();
@@ -129,10 +195,22 @@ public class Utl {
         }
     }
 
+    /**
+     *
+     * @param <T>
+     * @param collection
+     * @return
+     */
     public static <T> T getFirstElement(Collection<T> collection) {
         return collection.iterator().next();
     }
 
+    /**
+     *
+     * @param <T>
+     * @param elements
+     * @return
+     */
     public static <T> List<T> toList(T... elements) {
         if (elements == null) {
             return null;
@@ -149,6 +227,7 @@ public class Utl {
 
     /**
      * Check if the first given parameter equalObjects at least one of the other parameters
+     * @return 
      */
     public static boolean equalsAny(Object o, Object... others) {
         for (Object other : others) {
@@ -196,6 +275,12 @@ public class Utl {
         return a.equals(b);
     }
 
+    /**
+     *
+     * @param i1
+     * @param i2
+     * @return
+     */
     public static int compare(int i1, int i2) {
         if (i1 > i2) {
             return 1;
@@ -206,6 +291,12 @@ public class Utl {
         return 0;
     }
 
+    /**
+     *
+     * @param a
+     * @param b
+     * @return
+     */
     public static int compare(Comparable a, Comparable b) {
         if (a == null && b == null) {
             return 0;
@@ -219,10 +310,21 @@ public class Utl {
         return a.compareTo(b);
     }
 
+    /**
+     *
+     * @param hex
+     * @return
+     */
     public static int parseHex(String hex) {
         return parseInt(hex, 16);
     }
 
+    /**
+     *
+     * @param items
+     * @param separator
+     * @return
+     */
     public static String concatToHtml(Collection<? extends ToHtmlSupport> items, String separator) {
         StringBuilder sb = new StringBuilder();
         boolean first = true;
@@ -237,11 +339,23 @@ public class Utl {
         return sb.toString();
     }
 
+    /**
+     *
+     * @param type
+     * @return
+     * @deprecated
+     */
     @Deprecated
     public static String getSimpleName(Class type) {
         return Str.getSimpleName(type);
     }
 
+    /**
+     *
+     * @param <T>
+     * @param e
+     * @return
+     */
     public static <T> List<T> toList(Enumeration<T> e) {
         if (e == null) {
             return null;
@@ -253,17 +367,32 @@ public class Utl {
         return ret;
     }
 
+    /**
+     *
+     * @param <T>
+     * @param list
+     * @param count
+     */
     public static <T> void removeFirstElements(List<T> list, int count) {
         for (int i = 0; i < count; i++) {
             list.remove(0);
         }
     }
 
+    /**
+     *
+     * @param <T>
+     * @param list
+     * @return
+     */
     public static final <T extends Comparable> List<T> sortReverse(List<T> list) {
         Collections.sort(list, REVERSE_COMPARATOR);
         return list;
     }
 
+    /**
+     *
+     */
     public static final Comparator REVERSE_COMPARATOR = new Comparator<Comparable>() {
 
         @Override

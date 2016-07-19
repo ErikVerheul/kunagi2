@@ -16,25 +16,49 @@ package ilarkesto.gwt.client.editor;
 
 import static java.lang.Integer.MAX_VALUE;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class ATextEditorModel extends AEditorModel<String> {
 
-	public boolean isRichtext() {
+    /**
+     *
+     * @return
+     */
+    public boolean isRichtext() {
 		return false;
 	}
 
-	public int getMaxLenght() {
+    /**
+     *
+     * @return
+     */
+    public int getMaxLenght() {
 		return isRichtext() ? MAX_VALUE : 256;
 	}
 
-	public boolean isMandatory() {
+    /**
+     *
+     * @return
+     */
+    public boolean isMandatory() {
 		return false;
 	}
 
-	public String getTemplate() {
+    /**
+     *
+     * @return
+     */
+    public String getTemplate() {
 		return null;
 	}
 
-	public boolean isMasked() {
+    /**
+     *
+     * @return
+     */
+    public boolean isMasked() {
 		return false;
 	}
 

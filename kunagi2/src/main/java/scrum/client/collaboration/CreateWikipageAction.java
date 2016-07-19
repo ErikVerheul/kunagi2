@@ -14,11 +14,19 @@
  */
 package scrum.client.collaboration;
 
+/**
+ *
+ * @author erik
+ */
 public class CreateWikipageAction extends GCreateWikipageAction {
 
 	private String pageName;
 
-	public CreateWikipageAction(String pageName) {
+    /**
+     *
+     * @param pageName
+     */
+    public CreateWikipageAction(String pageName) {
 		this.pageName = pageName;
 	}
 

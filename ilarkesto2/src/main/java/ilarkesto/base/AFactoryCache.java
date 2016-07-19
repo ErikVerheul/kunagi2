@@ -14,9 +14,18 @@
  */
 package ilarkesto.base;
 
+/**
+ *
+ * @author erik
+ * @param <K>
+ * @param <V>
+ */
 public abstract class AFactoryCache<K, V> extends Cache<K, V> implements Cache.Factory<K, V> {
 
-	public AFactoryCache() {
+    /**
+     *
+     */
+    public AFactoryCache() {
 		setFactory(this);
 	}
 

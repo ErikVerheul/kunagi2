@@ -14,12 +14,12 @@
  */
 package scrum.client.tasks;
 
+import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.ButtonWidget;
 import ilarkesto.gwt.client.Gwt;
 import ilarkesto.gwt.client.animation.AnimatingFlowPanel.InsertCallback;
-
 import java.util.List;
-
 import scrum.client.common.AScrumWidget;
 import scrum.client.common.BlockListWidget;
 import scrum.client.common.ElementPredicate;
@@ -28,9 +28,10 @@ import scrum.client.project.Requirement;
 import scrum.client.sprint.CreateTaskAction;
 import scrum.client.sprint.Task;
 
-import com.google.gwt.user.client.ui.FlowPanel;
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class TaskListWidget extends AScrumWidget {
 
 	private BlockListWidget<Task> list;
@@ -40,7 +41,14 @@ public class TaskListWidget extends AScrumWidget {
 	private final Requirement requirement;
 	private final boolean createTaskButton;
 
-	public TaskListWidget(Requirement requirement, TaskBlockContainer container, BlockListDropAction<Task> dropAction,
+    /**
+     *
+     * @param requirement
+     * @param container
+     * @param dropAction
+     * @param createTaskButton
+     */
+    public TaskListWidget(Requirement requirement, TaskBlockContainer container, BlockListDropAction<Task> dropAction,
 			boolean createTaskButton) {
 		this.requirement = requirement;
 		this.container = container;
@@ -48,7 +56,11 @@ public class TaskListWidget extends AScrumWidget {
 		this.createTaskButton = createTaskButton;
 	}
 
-	public Task getSelectedTask() {
+    /**
+     *
+     * @return
+     */
+    public Task getSelectedTask() {
 		return list == null ? null : list.getExtendedObject();
 	}
 
@@ -65,28 +77,47 @@ public class TaskListWidget extends AScrumWidget {
 
 		FlowPanel panel = new FlowPanel();
 		panel.add(list);
-		if (createTaskButton)
-			panel.add(Gwt.createDiv("CreateTaskButtonWrapper",
-				new ButtonWidget(new CreateTaskAction(requirement)).update()));
+		if (createTaskButton) {
+                    panel.add(Gwt.createDiv("CreateTaskButtonWrapper",
+                            new ButtonWidget(new CreateTaskAction(requirement)).update()));
+        }
 
 		return panel;
 	}
 
-	public boolean selectTask(Task task) {
-		if (!list.contains(task)) update();
+    /**
+     *
+     * @param task
+     * @return
+     */
+    public boolean selectTask(Task task) {
+        if (!list.contains(task)) {
+            update();
+        }
 		return list.showObject(task);
 	}
 
-	public void setTasks(List<Task> tasks) {
+    /**
+     *
+     * @param tasks
+     */
+    public void setTasks(List<Task> tasks) {
 		initialize();
 		list.setObjects(tasks);
 	}
 
-	public void setTaskHighlighting(ElementPredicate<Task> predicate) {
+    /**
+     *
+     * @param predicate
+     */
+    public void setTaskHighlighting(ElementPredicate<Task> predicate) {
 		list.setTaskHighlighting(predicate);
 	}
 
-	public void clearTaskHighlighting() {
+    /**
+     *
+     */
+    public void clearTaskHighlighting() {
 		list.clearTaskHighlighting();
 	}
 

@@ -17,9 +17,17 @@ package ilarkesto.logging;
 import static com.google.gwt.core.client.GWT.isScript;
 import static java.lang.System.out;
 
+/**
+ *
+ * @author erik
+ */
 public class GwtLogRecordHandler implements LogRecordHandler {
 
-	@Override
+    /**
+     *
+     * @param record
+     */
+    @Override
 	public void log(LogRecord record) {
 		if (isScript()) {
                         return;

@@ -14,12 +14,6 @@
  */
 package scrum.client.collaboration;
 
-import ilarkesto.gwt.client.Gwt;
-import ilarkesto.gwt.client.TableBuilder;
-import scrum.client.common.AScrumGwtEntity;
-import scrum.client.common.AScrumWidget;
-import scrum.client.workspace.VisibleDataChangedEvent;
-
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -28,14 +22,27 @@ import com.google.gwt.user.client.ui.FocusPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
+import ilarkesto.gwt.client.Gwt;
+import ilarkesto.gwt.client.TableBuilder;
+import scrum.client.common.AScrumGwtEntity;
+import scrum.client.common.AScrumWidget;
+import scrum.client.workspace.VisibleDataChangedEvent;
 
+/**
+ *
+ * @author erik
+ */
 public class EmoticonSelectorWidget extends AScrumWidget {
 
 	private AScrumGwtEntity entity;
 
 	private SimplePanel wrapper;
 
-	public EmoticonSelectorWidget(AScrumGwtEntity entity) {
+    /**
+     *
+     * @param entity
+     */
+    public EmoticonSelectorWidget(AScrumGwtEntity entity) {
 		super();
 		this.entity = entity;
 	}
@@ -79,7 +86,9 @@ public class EmoticonSelectorWidget extends AScrumWidget {
 	}
 
 	private String getEmotionImage(String emotion) {
-		if (emotion == null) emotion = "none";
+		if (emotion == null) {
+                    emotion = "none";
+        }
 		return "emoticons/" + emotion + ".png";
 	}
 

@@ -6,22 +6,37 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ *
+ * @author erik
+ */
 public class JsonObject {
 
 	private Map<String, Object> elements = new LinkedHashMap<String, Object>();
 	private int idx = -1;
 
-	public JsonObject() {}
+    /**
+     *
+     */
+    public JsonObject() {}
 
 	private JsonObject(String json, int offset) {
 		parse(json, offset);
 	}
 
-	public JsonObject(String json) {
+    /**
+     *
+     * @param json
+     */
+    public JsonObject(String json) {
 		this(json, 0);
 	}
 
-	public JsonObject(Map<?, ?> map) {
+    /**
+     *
+     * @param map
+     */
+    public JsonObject(Map<?, ?> map) {
 		for (Map.Entry entry : map.entrySet()) {
 			String name = entry.getKey().toString();
 			Object value = convertValue(entry.getValue());
@@ -31,48 +46,105 @@ public class JsonObject {
 
 	// --- inspecting ---
 
+    /**
+     *
+     * @param name
+     * @return
+     */
+    
 	public Object get(String name) {
 		return elements.get(name);
 	}
 
-	public boolean contains(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public boolean contains(String name) {
 		return elements.containsKey(name);
 	}
 
-	public boolean containsString(String name, String expected) {
+    /**
+     *
+     * @param name
+     * @param expected
+     * @return
+     */
+    public boolean containsString(String name, String expected) {
 		String value = getString(name);
 		return (value == null ? expected == null : value.equals(expected)) || (value != null && value.equals(expected));
 	}
 
-	public String getString(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public String getString(String name) {
 		return (String) get(name);
 	}
 
-	public JsonObject getObject(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public JsonObject getObject(String name) {
 		return (JsonObject) get(name);
 	}
 
-	public List getArray(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public List getArray(String name) {
 		return (List) get(name);
 	}
 
-	public List getNumber(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public List getNumber(String name) {
 		return (List) get(name);
 	}
 
-	public Integer getInteger(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public Integer getInteger(String name) {
 		return (Integer) get(name);
 	}
 
-	public Long getLong(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public Long getLong(String name) {
 		return (Long) get(name);
 	}
 
-	public Boolean getBoolean(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public Boolean getBoolean(String name) {
 		return (Boolean) get(name);
 	}
 
-	public boolean isTrue(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public boolean isTrue(String name) {
 		Boolean value = getBoolean(name);
 		if (value == null) {
                         return false;
@@ -80,16 +152,34 @@ public class JsonObject {
 		return value;
 	}
 
-	public List<String> getArrayOfStrings(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public List<String> getArrayOfStrings(String name) {
 		return (List<String>) get(name);
 	}
 
-	public List<JsonObject> getArrayOfObjects(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public List<JsonObject> getArrayOfObjects(String name) {
 		return (List<JsonObject>) get(name);
 	}
 
 	// --- manipulating ---
 
+    /**
+     *
+     * @param <V>
+     * @param name
+     * @param value
+     * @return
+     */
+    
 	public <V> V put(String name, V value) {
 		if (name == null || name.length() == 0) {
                         throw new RuntimeException("name required");
@@ -98,7 +188,13 @@ public class JsonObject {
 		return value;
 	}
 
-	public List addToArray(String name, Object value) {
+    /**
+     *
+     * @param name
+     * @param value
+     * @return
+     */
+    public List addToArray(String name, Object value) {
 		List array = getArray(name);
 		if (array == null) {
 			array = new ArrayList();
@@ -108,7 +204,12 @@ public class JsonObject {
 		return array;
 	}
 
-	public Object remove(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public Object remove(String name) {
 		if (name == null || name.length() == 0) {
                         throw new RuntimeException("name required");
                 }
@@ -117,12 +218,22 @@ public class JsonObject {
 
 	// --- formating ---
 
+    /**
+     *
+     * @param indentation
+     * @return
+     */
+    
 	public String toFormatedString(int indentation) {
 		// TODO
 		return toString();
 	}
 
-	public String toFormatedString() {
+    /**
+     *
+     * @return
+     */
+    public String toFormatedString() {
 		return toFormatedString(0);
 	}
 

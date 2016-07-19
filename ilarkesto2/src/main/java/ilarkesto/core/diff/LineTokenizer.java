@@ -17,9 +17,18 @@ package ilarkesto.core.diff;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class LineTokenizer implements DiffTokenizer {
 
-	@Override
+    /**
+     *
+     * @param s
+     * @return
+     */
+    @Override
 	public List<String> tokenize(String s) {
 		List<String> ret = new LinkedList<String>();
 		if (s == null) {
@@ -41,7 +50,12 @@ public class LineTokenizer implements DiffTokenizer {
 		return ret;
 	}
 
-	@Override
+    /**
+     *
+     * @param tokens
+     * @return
+     */
+    @Override
 	public String concat(List<String> tokens) {
 		StringBuilder sb = new StringBuilder();
 		for (String token : tokens) {

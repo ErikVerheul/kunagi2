@@ -14,14 +14,13 @@
  */
 package scrum.client.admin;
 
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.Gwt;
 import ilarkesto.gwt.client.TableBuilder;
 import ilarkesto.gwt.client.editor.TextEditorWidget;
 import scrum.client.ScrumGwt;
 import scrum.client.common.AScrumWidget;
 import scrum.client.workspace.PagePanel;
-
-import com.google.gwt.user.client.ui.Widget;
 
 public class ProjectUserConfigWidget extends AScrumWidget {
 

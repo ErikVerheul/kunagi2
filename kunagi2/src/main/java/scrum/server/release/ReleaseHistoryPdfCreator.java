@@ -15,33 +15,49 @@
 package scrum.server.release;
 
 import ilarkesto.pdf.APdfContainerElement;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import scrum.server.common.APdfCreator;
 import scrum.server.project.Project;
 
+/**
+ *
+ * @author erik
+ */
 public class ReleaseHistoryPdfCreator extends APdfCreator {
 
-	public ReleaseHistoryPdfCreator(Project project) {
+    /**
+     *
+     * @param project
+     */
+    public ReleaseHistoryPdfCreator(Project project) {
 		super(project);
 	}
 
-	@Override
+    /**
+     *
+     * @param pdf
+     */
+    @Override
 	protected void build(APdfContainerElement pdf) {
 		reportHeader(pdf, "Release history", project.getLabel());
 
 		List<Release> releases = new ArrayList<Release>(project.getReleases());
 		Collections.sort(releases, Release.DATE_REVERSE_COMPARATOR);
 		for (Release release : releases) {
-			if (!release.isReleased()) continue;
+			if (!release.isReleased()) {
+                            continue;
+            }
 			release(pdf, release);
 		}
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected String getFilename() {
 		return "releasehistory";
 	}

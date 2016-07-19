@@ -1,99 +1,141 @@
-/*
- * Copyright 2011 Witoslaw Koczewsi <wi@koczewski.de>, Artjom Kochtchi
- * 
- * This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public
- * License as published by the Free Software Foundation, either version 3 of the License, or (at your option)
- * any later version.
- * 
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
- * implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License
- * for more details.
- * 
- * You should have received a copy of the GNU General Public License along with this program. If not, see
- * <http://www.gnu.org/licenses/>.
- */
+
 package scrum.server.issues;
 
-import scrum.server.issues.GIssueDao;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.fp.Predicate;
-
 import java.util.Set;
-
 import scrum.server.project.Project;
 
+/**
+ *
+ * @author erik
+ */
 public class IssueDao extends GIssueDao {
 
-	public Set<Issue> getAcceptedIssues(final Project project) {
+    /**
+     *
+     * @param project
+     * @return
+     */
+    public Set<Issue> getAcceptedIssues(final Project project) {
 		return getEntities(new Predicate<Issue>() {
 
 			@Override
 			public boolean test(Issue issue) {
-				if (!issue.isProject(project)) return false;
-				if (issue.isClosed()) return false;
+				if (!issue.isProject(project)) {
+                                    return false;
+                }
+				if (issue.isClosed()) {
+                                    return false;
+                }
 				return issue.isAccepted();
 			}
 		});
 	}
 
-	public Set<Issue> getClosedIssues(final Project project) {
+    /**
+     *
+     * @param project
+     * @return
+     */
+    public Set<Issue> getClosedIssues(final Project project) {
 		return getEntities(new Predicate<Issue>() {
 
 			@Override
 			public boolean test(Issue issue) {
-				if (!issue.isProject(project)) return false;
+                            if (!issue.isProject(project)) {
+                                return false;
+                }
 				return issue.isClosed();
 			}
 		});
 	}
 
-	public Set<Issue> getOpenIssues(final Project project) {
+    /**
+     *
+     * @param project
+     * @return
+     */
+    public Set<Issue> getOpenIssues(final Project project) {
 		return getEntities(new Predicate<Issue>() {
 
 			@Override
-			public boolean test(Issue issue) {
-				if (!issue.isProject(project)) return false;
+                        public boolean test(Issue issue) {
+                            if (!issue.isProject(project)) {
+                    return false;
+                }
 				return issue.isOpen();
 			}
 		});
 	}
 
-	public Set<Issue> getPublishedIssues(final Project project) {
-		return getEntities(new Predicate<Issue>() {
-
-			@Override
+    /**
+     *
+     * @param project
+     * @return
+     */
+    public Set<Issue> getPublishedIssues(final Project project) {
+        return getEntities(new Predicate<Issue>() {
+            
+            @Override
 			public boolean test(Issue issue) {
-				if (!issue.isProject(project)) return false;
+				if (!issue.isProject(project)) {
+                    return false;
+                }
 				return issue.isPublished();
 			}
 		});
 	}
 
-	public Set<Issue> getOpenBugs(final Project project) {
-		return getEntities(new Predicate<Issue>() {
+    /**
+     *
+     * @param project
+     * @return
+     */
+    public Set<Issue> getOpenBugs(final Project project) {
+        return getEntities(new Predicate<Issue>() {
 
 			@Override
-			public boolean test(Issue issue) {
-				if (!issue.isProject(project)) return false;
-				if (issue.isClosed()) return false;
+                        public boolean test(Issue issue) {
+                            if (!issue.isProject(project)) {
+                    return false;
+                }
+				if (issue.isClosed()) {
+                    return false;
+                }
 				return issue.isBug();
 			}
 		});
 	}
 
-	public Set<Issue> getOpenIdeas(final Project project) {
-		return getEntities(new Predicate<Issue>() {
-
-			@Override
+    /**
+     *
+     * @param project
+     * @return
+     */
+    public Set<Issue> getOpenIdeas(final Project project) {
+        return getEntities(new Predicate<Issue>() {
+            
+            @Override
 			public boolean test(Issue issue) {
-				if (!issue.isProject(project)) return false;
-				if (issue.isClosed()) return false;
+				if (!issue.isProject(project)) {
+                    return false;
+                }
+				if (issue.isClosed()) {
+                    return false;
+                }
 				return issue.isIdea();
 			}
 		});
 	}
 
-	public Issue getIssueByNumber(final int number, final Project project) {
+    /**
+     *
+     * @param number
+     * @param project
+     * @return
+     */
+    public Issue getIssueByNumber(final int number, final Project project) {
 		return getEntity(new Predicate<Issue>() {
 
 			@Override
@@ -103,7 +145,17 @@ public class IssueDao extends GIssueDao {
 		});
 	}
 
-	public Issue postIssue(Project project, String label, String text, String issuerName, String issuerEmail,
+    /**
+     *
+     * @param project
+     * @param label
+     * @param text
+     * @param issuerName
+     * @param issuerEmail
+     * @param publish
+     * @return
+     */
+    public Issue postIssue(Project project, String label, String text, String issuerName, String issuerEmail,
 			boolean publish) {
 		Issue issue = newEntityInstance();
 		issue.setProject(project);
@@ -118,7 +170,13 @@ public class IssueDao extends GIssueDao {
 		return issue;
 	}
 
-	public Issue postIssue(Project project, String label) {
+    /**
+     *
+     * @param project
+     * @param label
+     * @return
+     */
+    public Issue postIssue(Project project, String label) {
 		Issue issue = newEntityInstance();
 		issue.setProject(project);
 		issue.setLabel(label);

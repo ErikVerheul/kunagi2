@@ -26,13 +26,25 @@ public class LengthValidator implements Validator {
 	private int	min;
 	private int	max;
 
-	public LengthValidator(int min, int max) {
+    /**
+     *
+     * @param min
+     * @param max
+     */
+    public LengthValidator(int min, int max) {
 		this.min = min;
 		this.max = max;
 	}
 
 	// overriding
-        @Override
+
+    /**
+     *
+     * @param text
+     * @return
+     * @throws ValidationException
+     */
+            @Override
 	public String validate(String text) throws ValidationException {
 		int len = text.length();
 		if (len < min || len > max) {
@@ -41,7 +53,11 @@ public class LengthValidator implements Validator {
 		return text;
 	}
 
-	public String getMessage() {
+    /**
+     *
+     * @return
+     */
+    public String getMessage() {
 		return "Die L\u00E4nge Ihrer Eingabe mu\u00DF zwischen " + min + " und " + max
 				+ " Zeichen betragen.";
 	}

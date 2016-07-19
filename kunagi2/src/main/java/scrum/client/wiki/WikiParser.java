@@ -15,10 +15,8 @@
 package scrum.client.wiki;
 
 import ilarkesto.core.base.Str;
-
 import java.util.HashMap;
 import java.util.Map;
-
 import scrum.client.ScrumGwt;
 
 /**
@@ -32,7 +30,11 @@ public class WikiParser {
 
 	private Map<String, Integer> listIdentifierValues;
 
-	public WikiParser(String input) {
+    /**
+     *
+     * @param input
+     */
+    public WikiParser(String input) {
 		assert input != null;
 		this.input = input;
 	}
@@ -51,22 +53,30 @@ public class WikiParser {
 		StringBuilder suffix = null;
 		for (int i = word.length() - 1; i >= 0; i--) {
 			if (isIgnorableWordSuffix(word.charAt(i))) {
-				if (suffix == null) suffix = new StringBuilder();
+				if (suffix == null) {
+                                    suffix = new StringBuilder();
+                }
 				suffix.insert(0, word.charAt(i));
 			} else {
 				break;
 			}
 		}
-		if (suffix != null) word = word.substring(0, word.length() - suffix.length());
+                if (suffix != null) {
+                    word = word.substring(0, word.length() - suffix.length());
+        }
 
 		if (ScrumGwt.isEntityReference(word)) {
 			p.add(new EntityReference(word));
-			if (suffix != null) p.add(new Text(suffix.toString()));
-			return;
-		}
-
-		p.add(new Text(word));
-		if (suffix != null) p.add(new Text(suffix.toString()));
+                        if (suffix != null) {
+                            p.add(new Text(suffix.toString()));
+            }
+                        return;
+                }
+                
+                p.add(new Text(word));
+		if (suffix != null) {
+            p.add(new Text(suffix.toString()));
+        }
 	}
 
 	private Paragraph appendText(Paragraph p, String text) {
@@ -376,33 +386,35 @@ public class WikiParser {
 							String enumValueString = Str.cutFromTo(input, "#=", " ");
 							try {
 								if (!Str.isBlank(enumValueString)) {
-									numberValue = Integer.parseInt(enumValueString);
-								}
-							} catch (NumberFormatException e) {
-								if (listIdentifierValues == null)
-									listIdentifierValues = new HashMap<String, Integer>();
+                                                                    numberValue = Integer.parseInt(enumValueString);
+                                                                }
+                                                        } catch (NumberFormatException e) {
+								if (listIdentifierValues == null) {
+                                    listIdentifierValues = new HashMap<String, Integer>();
+                                }
 								if (listIdentifierValues.containsKey(enumValueString)) {
 									numberValue = listIdentifierValues.get(enumValueString);
 								} else {
 									listIdentifierValues.put(enumValueString, 1);
 								}
 								currentListIdentifier = enumValueString;
-							}
-						}
-					}
-					appendText(item, Str.cutFrom(lineTrimmed, " "));
-					list.add(item, leadingSpaces, lineTrimmed.startsWith("#"), numberValue);
+                                                        }
+                                                }
+                                        }
+                                        appendText(item, Str.cutFrom(lineTrimmed, " "));
+                                        list.add(item, leadingSpaces, lineTrimmed.startsWith("#"), numberValue);
 				} else {
 					item.add(LineBreak.INSTANCE);
 					appendText(item, line);
 				}
-				if (currentListIdentifier != null)
-					listIdentifierValues.put(currentListIdentifier,
+				if (currentListIdentifier != null) {
+                    listIdentifierValues.put(currentListIdentifier,
 						(numberValue == -1) ? listIdentifierValues.get(currentListIdentifier) + 1 : numberValue + 1);
+                }
 				burn(line.length() + 1);
 				line = getNextLine();
 				leadingSpaces = Str.getLeadingSpaces(line);
-				lineTrimmed = leadingSpaces.length() == 0 ? line : line.substring(leadingSpaces.length());
+                                lineTrimmed = leadingSpaces.length() == 0 ? line : line.substring(leadingSpaces.length());
 				numberValue = -1;
 			}
 			model.add(list);
@@ -422,7 +434,9 @@ public class WikiParser {
 				boolean lastLine = false;
 				String line = getNextLine();
 				burn(line.length() + 1);
-				if (line.length() == 0 && input.length() == 0) return;
+				if (line.length() == 0 && input.length() == 0) {
+                    return;
+                }
 				int closeTagIndex = line.indexOf("|}");
 				if (closeTagIndex >= 0) {
 					line = line.substring(0, closeTagIndex);
@@ -486,22 +500,27 @@ public class WikiParser {
 		model.add(appendText(new Paragraph(!oneliner), cutParagraph()));
 	}
 
-	public WikiModel parse(boolean onelinerWithoutP) {
-		model = new WikiModel();
+    /**
+     *
+     * @param onelinerWithoutP
+     * @return
+     */
+    public WikiModel parse(boolean onelinerWithoutP) {
+        model = new WikiModel();
 
 		input = input.replace("\r", "");
-		input = input.replace("\t", "    ");
+                input = input.replace("\t", "    ");
 
-		oneliner = onelinerWithoutP && input.indexOf('\n') < 0;
+                oneliner = onelinerWithoutP && input.indexOf('\n') < 0;
 
-		while (input != null) {
+                while (input != null) {
 			nextPart();
 		}
 
-		return model;
-	}
-
-	private boolean isIgnorableWordPrefix(char c) {
+                return model;
+    }
+    
+    private boolean isIgnorableWordPrefix(char c) {
 		return c == '(';
 	}
 
@@ -510,18 +529,27 @@ public class WikiParser {
 	}
 
 	private boolean isUrl(String s) {
-		if (s.startsWith("http://")) return true;
-		if (s.startsWith("https://")) return true;
-		if (s.startsWith("www.")) return true;
-		if (s.startsWith("ftp://")) return true;
-		if (s.startsWith("apt://")) return true;
-		if (s.startsWith("mailto://")) return true;
-		return false;
+		if (s.startsWith("http://")) {
+            return true;
+        }
+		if (s.startsWith("https://")) {
+            return true;
+        }
+		if (s.startsWith("www.")) {
+            return true;
+        }
+		if (s.startsWith("ftp://")) {
+            return true;
+        }
+		if (s.startsWith("apt://")) {
+            return true;
+        }
+		return s.startsWith("mailto://");
 	}
 
 	private String cutParagraph() {
 		StringBuilder sb = new StringBuilder();
-		boolean first = true;
+                boolean first = true;
 		while (input.length() > 0) {
 			String line = getNextLine();
 			if (line.trim().length() == 0) {
@@ -552,13 +580,18 @@ public class WikiParser {
 	private String getNextLine() {
 		if (nextLine == null) {
 			int idx = input.indexOf('\n');
-			if (idx < 0) return input;
+			if (idx < 0) {
+                return input;
+            }
 			nextLine = input.substring(0, idx);
 		}
 		return nextLine;
 	}
 
-	public static final String SYNTAX_INFO_HTML = "<table class='WikiParser-syntax-table' cellpadding='5px'>"
+    /**
+     *
+     */
+    public static final String SYNTAX_INFO_HTML = "<table class='WikiParser-syntax-table' cellpadding='5px'>"
 			+ "<tr><td><i>Italic text</i></td>            <td><code>''italic text''</code></td></tr>"
 			+ "<tr><td><b>Bold text</b></td>              <td><code>'''bold text'''</code></td></tr>"
 			+ "<tr><td><b><i>Bold and italic</i></b></td> <td><code>'''''bold and italic'''''</td></tr>"

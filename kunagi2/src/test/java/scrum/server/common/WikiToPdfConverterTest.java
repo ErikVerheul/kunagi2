@@ -28,9 +28,17 @@ import scrum.client.wiki.WikiModel;
 import scrum.client.wiki.WikiParser;
 import scrum.server.project.Project;
 
+/**
+ *
+ * @author erik
+ */
 public class WikiToPdfConverterTest extends ATest {
 
-	@Test
+    /**
+     *
+     * @throws IOException
+     */
+    @Test
 	public void test() throws IOException {
 		StringBuilder sb = new StringBuilder();
 

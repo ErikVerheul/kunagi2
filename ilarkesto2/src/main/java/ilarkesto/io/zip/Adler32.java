@@ -215,6 +215,7 @@ public class Adler32 implements Checksum
 
   /**
    * Returns the Adler32 data checksum computed so far.
+     * @return 
    */
   @Override
   public long getValue()

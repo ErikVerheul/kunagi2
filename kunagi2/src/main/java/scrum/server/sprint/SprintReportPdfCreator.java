@@ -33,16 +33,28 @@ import scrum.server.common.ScrumPdfContext;
 import scrum.server.common.WikiToPdfConverter;
 import scrum.server.project.Requirement;
 
+/**
+ *
+ * @author erik
+ */
 public class SprintReportPdfCreator extends APdfCreator {
 
 	private Sprint sprint;
 
-	public SprintReportPdfCreator(Sprint sprint) {
+    /**
+     *
+     * @param sprint
+     */
+    public SprintReportPdfCreator(Sprint sprint) {
 		super(sprint.getProject());
 		this.sprint = sprint;
 	}
 
-	@Override
+    /**
+     *
+     * @param pdf
+     */
+    @Override
 	protected void build(APdfContainerElement pdf) {
 		reportHeader(pdf, "Sprint Report", sprint.getProject().getLabel());
 
@@ -94,7 +106,9 @@ public class SprintReportPdfCreator extends APdfCreator {
 
 	private int getBurnedWork(String requirementsData) {
 		List<StoryInfo> requirements = SprintHistoryHelper.parseRequirementsAndTasks(requirementsData);
-		if (requirements.isEmpty()) return 0;
+		if (requirements.isEmpty()) {
+                    return 0;
+        }
 		int sum = 0;
 		for (StoryInfo req : requirements) {
 			sum += req.getBurnedWork();
@@ -104,7 +118,9 @@ public class SprintReportPdfCreator extends APdfCreator {
 
 	private void requirements(APdfContainerElement pdf, String title, List<Requirement> requirements,
 			SprintReport report) {
-		if (requirements.isEmpty()) return;
+		if (requirements.isEmpty()) {
+                    return;
+        }
 		sectionHeader(pdf, title);
 		for (Requirement req : requirements) {
 			requirement(pdf, req, report.getOpenTasks(req), report.getClosedTasks(req));
@@ -114,7 +130,9 @@ public class SprintReportPdfCreator extends APdfCreator {
 	@Deprecated
 	private void requirements(APdfContainerElement pdf, String title, String requirementsData) {
 		List<StoryInfo> requirements = SprintHistoryHelper.parseRequirementsAndTasks(requirementsData);
-		if (requirements.isEmpty()) return;
+                if (requirements.isEmpty()) {
+                    return;
+        }
 		sectionHeader(pdf, title);
 		for (StoryInfo req : requirements) {
 			requirement(pdf, req);
@@ -149,7 +167,11 @@ public class SprintReportPdfCreator extends APdfCreator {
 		pdf.paragraph().nl().text(label, headerFonts[1]).nl();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected String getFilename() {
 		return "report-" + sprint.getReference();
 	}

@@ -20,16 +20,28 @@ import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.user.client.ui.TextArea;
 
+/**
+ *
+ * @author erik
+ */
 public class BetterTextArea extends TextArea {
 
 	private int cursorPosition;
 
-	public BetterTextArea() {
+    /**
+     *
+     */
+    public BetterTextArea() {
 		addClickHandler(new MyClickHandler());
 		addKeyUpHandler(new MyKeyUpHandler());
 	}
 
-	public void wrapSelection(String prefix, String suffix) {
+    /**
+     *
+     * @param prefix
+     * @param suffix
+     */
+    public void wrapSelection(String prefix, String suffix) {
 		String text = getText();
 		int from = getCursorPos();
 		int to = from + getSelectionLength();
@@ -70,7 +82,10 @@ public class BetterTextArea extends TextArea {
 		return cursorPosition >= len - 500;
 	}
 
-	public void scrollToBottom() {
+    /**
+     *
+     */
+    public void scrollToBottom() {
 		getElement().setScrollTop(getElement().getScrollHeight());
 	}
 

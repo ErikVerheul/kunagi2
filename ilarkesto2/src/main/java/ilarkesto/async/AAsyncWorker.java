@@ -14,13 +14,29 @@
  */
 package ilarkesto.async;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class AAsyncWorker implements AsyncWorker {
 
-	public abstract void runJob(Runnable job);
+    /**
+     *
+     * @param job
+     */
+    public abstract void runJob(Runnable job);
 
-	public abstract void runCallback(Runnable callback);
+    /**
+     *
+     * @param callback
+     */
+    public abstract void runCallback(Runnable callback);
 
-	@Override
+    /**
+     *
+     * @param job
+     */
+    @Override
 	public final void start(Job job) {
 		runJob(new JobRunner(job));
 	}

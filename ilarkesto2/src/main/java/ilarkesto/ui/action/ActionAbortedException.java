@@ -14,10 +14,21 @@
  */
 package ilarkesto.ui.action;
 
+/**
+ *
+ * @author erik
+ */
 public class ActionAbortedException extends RuntimeException {
 
+    /**
+     *
+     */
     public ActionAbortedException() {}
 
+    /**
+     *
+     * @param message
+     */
     public ActionAbortedException(String message) {
         super(message);
     }

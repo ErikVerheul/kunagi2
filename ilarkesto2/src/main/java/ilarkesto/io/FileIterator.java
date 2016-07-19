@@ -30,12 +30,20 @@ public class FileIterator implements Iterator<File> {
 	private File currentFile;
 	private FileIterator iterator;
 
-        @SuppressWarnings("EI_EXPOSE_REP2")
+    /**
+     *
+     * @param files
+     */
+    @SuppressWarnings("EI_EXPOSE_REP2")
 	public void setFiles(File[] files) {
 		this.files = files;
 	}
 
-	public void setDir(File file) {
+    /**
+     *
+     * @param file
+     */
+    public void setDir(File file) {
 		setFiles(file.listFiles());
 	}
 

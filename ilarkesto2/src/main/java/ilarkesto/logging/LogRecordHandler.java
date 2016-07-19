@@ -14,7 +14,15 @@
  */
 package ilarkesto.logging;
 
+/**
+ *
+ * @author erik
+ */
 public interface LogRecordHandler {
 
-	void log(LogRecord record);
+    /**
+     *
+     * @param record
+     */
+    void log(LogRecord record);
 }

@@ -17,14 +17,28 @@ package ilarkesto.integration.xstream;
 import com.thoughtworks.xstream.converters.basic.AbstractSingleValueConverter;
 import ilarkesto.base.Money;
 
+/**
+ *
+ * @author erik
+ */
 public class MoneyConverter extends AbstractSingleValueConverter {
 
-	@Override
+    /**
+     *
+     * @param type
+     * @return
+     */
+    @Override
 	public boolean canConvert(Class type) {
 		return type.isAssignableFrom(Money.class);
 	}
 
-	@Override
+    /**
+     *
+     * @param str
+     * @return
+     */
+    @Override
 	public Object fromString(String str) {
 		if (str == null || str.length() == 0) {
                         return null;

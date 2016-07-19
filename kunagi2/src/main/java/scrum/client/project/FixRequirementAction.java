@@ -14,22 +14,28 @@
  */
 package scrum.client.project;
 
+/**
+ *
+ * @author erik
+ */
 public class FixRequirementAction extends GFixRequirementAction {
 
-	public FixRequirementAction(scrum.client.project.Requirement requirement) {
+    /**
+     *
+     * @param requirement
+     */
+    public FixRequirementAction(scrum.client.project.Requirement requirement) {
 		super(requirement);
 	}
 
 	@Override
 	public boolean isPermitted() {
-		if (!requirement.getProject().isTeamMember(getCurrentUser())) return false;
-		return true;
+		return requirement.getProject().isTeamMember(getCurrentUser());
 	}
 
 	@Override
 	public boolean isExecutable() {
-		if (!requirement.isRejected()) return false;
-		return true;
+		return requirement.isRejected();
 	}
 
 	@Override

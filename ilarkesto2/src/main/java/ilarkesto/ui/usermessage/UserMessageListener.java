@@ -16,8 +16,16 @@ package ilarkesto.ui.usermessage;
 
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public interface UserMessageListener {
 
-	void onUserMessages(List<UserMessage> message);
+    /**
+     *
+     * @param message
+     */
+    void onUserMessages(List<UserMessage> message);
 
 }

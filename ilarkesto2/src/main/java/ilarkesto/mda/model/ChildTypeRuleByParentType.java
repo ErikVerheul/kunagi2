@@ -14,7 +14,6 @@
  */
 package ilarkesto.mda.model;
 
-import java.util.Collections;
 import static java.util.Collections.emptyList;
 import java.util.List;
 

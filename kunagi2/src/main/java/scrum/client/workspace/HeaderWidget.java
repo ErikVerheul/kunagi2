@@ -14,16 +14,18 @@
  */
 package scrum.client.workspace;
 
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.SimplePanel;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.DropdownMenuButtonWidget;
 import ilarkesto.gwt.client.Gwt;
 import ilarkesto.gwt.client.HyperlinkWidget;
 import ilarkesto.gwt.client.TableBuilder;
 import ilarkesto.gwt.client.undo.UndoButtonWidget;
-
 import java.util.Collections;
 import java.util.List;
-
 import scrum.client.ApplicationInfo;
 import scrum.client.ScrumScopeManager;
 import scrum.client.admin.LogoutAction;
@@ -35,11 +37,10 @@ import scrum.client.project.Project;
 import scrum.client.search.SearchInputWidget;
 import scrum.client.undo.Undo;
 
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.SimplePanel;
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class HeaderWidget extends AScrumWidget {
 
 	private SimplePanel wrapper;
@@ -71,8 +72,9 @@ public class HeaderWidget extends AScrumWidget {
 	private HTML createLinksHtml() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("<a href='http://kunagi.org/support.html' target='_blank'>Support/Feedback</a>");
-		if (getAuth().isUserLoggedIn() && getCurrentUser().isAdmin())
-			sb.append(" <a href='admin.html' target='_blank'>Administration/Monitoring</a>");
+		if (getAuth().isUserLoggedIn() && getCurrentUser().isAdmin()) {
+                    sb.append(" <a href='admin.html' target='_blank'>Administration/Monitoring</a>");
+        }
 		return new HTML(sb.toString());
 	}
 
@@ -110,7 +112,9 @@ public class HeaderWidget extends AScrumWidget {
 			List<Project> projects = getDao().getProjects();
 			Collections.sort(projects, Project.LAST_OPENED_COMPARATOR);
 			for (Project p : projects) {
-				if (p == getCurrentProject()) continue;
+				if (p == getCurrentProject()) {
+                                    continue;
+                }
 				switchProjectButton.addAction("QuickLinks", new ChangeProjectAction(p));
 			}
 		}
@@ -132,10 +136,14 @@ public class HeaderWidget extends AScrumWidget {
 
 	private Widget createCurrentUserWidget() {
 		boolean loggedIn = getAuth().isUserLoggedIn();
-		if (!loggedIn) return Gwt.createEmptyDiv();
+                if (!loggedIn) {
+                    return Gwt.createEmptyDiv();
+        }
 
 		ProjectWorkspaceWidgets widgets = Scope.get().getComponent(ProjectWorkspaceWidgets.class);
-		if (!ScrumScopeManager.isProjectScope()) return new Label(createCurrentUserText());
+                if (!ScrumScopeManager.isProjectScope()) {
+                    return new Label(createCurrentUserText());
+        }
 
 		ScrumNavigatorWidget.SwitchAction action = widgets.getSidebar().getNavigator()
 				.createSwitchAction(widgets.getProjectUserConfig());
@@ -159,8 +167,10 @@ public class HeaderWidget extends AScrumWidget {
 
 	private Widget createLogo() {
 		SimplePanel div = Gwt.createDiv("HeaderWidget-logo", Img.bundle.logo25().createImage());
-		ApplicationInfo applicationInfo = getApp().getApplicationInfo();
-		if (applicationInfo != null) div.setTitle(applicationInfo.getVersionDescription());
+                ApplicationInfo applicationInfo = getApp().getApplicationInfo();
+                if (applicationInfo != null) {
+            div.setTitle(applicationInfo.getVersionDescription());
+        }
 		return div;
 	}
 

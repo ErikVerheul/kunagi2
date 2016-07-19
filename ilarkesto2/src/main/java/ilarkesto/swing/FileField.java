@@ -29,9 +29,17 @@ import static javax.swing.JFileChooser.FILES_ONLY;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ *
+ * @author erik
+ */
 public class FileField extends JPanel {
 
-	public static void main(String[] args) {
+    /**
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
 		FileField ff = createForDirectory();
 		showInJFrame(ff);
 	}
@@ -40,7 +48,10 @@ public class FileField extends JPanel {
 	private JTextField textField;
 	private FileSelectionListener fileSelectionListener;
 
-	public FileField() {
+    /**
+     *
+     */
+    public FileField() {
 		super(new BorderLayout());
 
 		textField = new JTextField(30);
@@ -53,26 +64,41 @@ public class FileField extends JPanel {
 		fileChooser = new JFileChooser();
 	}
 
-	public void addFileSelectionListener(FileSelectionListener listener) {
+    /**
+     *
+     * @param listener
+     */
+    public void addFileSelectionListener(FileSelectionListener listener) {
 		if (fileSelectionListener != null) {
                         throw new IllegalStateException("fileSelectionListener already set");
                 }
 		fileSelectionListener = listener;
 	}
 
-	public static FileField createForDirectory() {
+    /**
+     *
+     * @return
+     */
+    public static FileField createForDirectory() {
 		FileField f = new FileField();
 		f.fileChooser.setFileSelectionMode(DIRECTORIES_ONLY);
 		return f;
 	}
 
-	public static FileField createForFile() {
+    /**
+     *
+     * @return
+     */
+    public static FileField createForFile() {
 		FileField f = new FileField();
 		f.fileChooser.setFileSelectionMode(FILES_ONLY);
 		return f;
 	}
 
-	public void select() {
+    /**
+     *
+     */
+    public void select() {
 		File file = getFile();
 		if (file != null) {
                         fileChooser.setSelectedFile(file);
@@ -86,16 +112,28 @@ public class FileField extends JPanel {
 		}
 	}
 
-	public void setFile(File file) {
+    /**
+     *
+     * @param file
+     */
+    public void setFile(File file) {
 		textField.setText(file == null ? null : file.getPath());
 	}
 
-	public File getFile() {
+    /**
+     *
+     * @return
+     */
+    public File getFile() {
 		String path = getPath();
 		return path == null ? null : new File(path);
 	}
 
-	public String getPath() {
+    /**
+     *
+     * @return
+     */
+    public String getPath() {
 		String path = textField.getText().trim();
 		if (path.length() == 0) {
                         return null;
@@ -103,7 +141,11 @@ public class FileField extends JPanel {
 		return path;
 	}
 
-	public JFileChooser getFileChooser() {
+    /**
+     *
+     * @return
+     */
+    public JFileChooser getFileChooser() {
 		return fileChooser;
 	}
 
@@ -115,9 +157,16 @@ public class FileField extends JPanel {
 		}
 	}
 
-	public static interface FileSelectionListener {
+    /**
+     *
+     */
+    public static interface FileSelectionListener {
 
-		void onFileSelected(File file);
+        /**
+         *
+         * @param file
+         */
+        void onFileSelected(File file);
 
 	}
 

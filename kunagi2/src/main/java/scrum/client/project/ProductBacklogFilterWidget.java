@@ -14,34 +14,41 @@
  */
 package scrum.client.project;
 
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.AAction;
 import ilarkesto.gwt.client.ADropdownViewEditWidget;
 import ilarkesto.gwt.client.AMultiSelectionViewEditWidget;
 import ilarkesto.gwt.client.ButtonWidget;
 import ilarkesto.gwt.client.TableBuilder;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-
 import scrum.client.ScrumGwt;
 import scrum.client.admin.ProjectUserConfig;
 import scrum.client.common.AScrumWidget;
 import scrum.client.common.ThemesWidget;
 import scrum.client.search.Search;
 
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class ProductBacklogFilterWidget extends AScrumWidget {
 
 	private ProjectUserConfig userConfig;
 
-	public List<Requirement> getRequirements() {
+    /**
+     *
+     * @return
+     */
+    public List<Requirement> getRequirements() {
 		initialize();
 		List<Requirement> ret = new ArrayList<Requirement>();
 		for (Requirement req : getCurrentProject().getProductBacklogRequirements()) {
-			if (matches(req)) ret.add(req);
+			if (matches(req)) {
+                            ret.add(req);
+            }
 		}
 		return ret;
 	}
@@ -49,24 +56,34 @@ public class ProductBacklogFilterWidget extends AScrumWidget {
 	private boolean matches(Requirement req) {
 		if (!userConfig.getPblFilterThemes().isEmpty()) {
 			for (String theme : userConfig.getPblFilterThemes()) {
-				if (!req.containsTheme(theme)) return false;
+				if (!req.containsTheme(theme)) {
+                                    return false;
+                }
 			}
 		}
 		if (!userConfig.getPblFilterQualitys().isEmpty()) {
 			for (Quality quality : userConfig.getPblFilterQualitys()) {
-				if (!req.containsQuality(quality)) return false;
+                            if (!req.containsQuality(quality)) {
+                                return false;
+                }
 			}
 		}
 		if (userConfig.getPblFilterEstimationFrom() != null) {
 			Float estimatedWork = req.getEstimatedWork();
-			if (estimatedWork == null || estimatedWork < userConfig.getPblFilterEstimationFrom()) return false;
+                        if (estimatedWork == null || estimatedWork < userConfig.getPblFilterEstimationFrom()) {
+                return false;
+            }
 		}
 		if (userConfig.getPblFilterEstimationTo() != null) {
 			Float estimatedWork = req.getEstimatedWork();
-			if (estimatedWork == null || estimatedWork > userConfig.getPblFilterEstimationTo()) return false;
+                        if (estimatedWork == null || estimatedWork > userConfig.getPblFilterEstimationTo()) {
+                return false;
+            }
 		}
-		if (userConfig.getPblFilterText() != null) {
-			if (!Search.matchesQuery(req, userConfig.getPblFilterText())) return false;
+                if (userConfig.getPblFilterText() != null) {
+			if (!Search.matchesQuery(req, userConfig.getPblFilterText())) {
+                return false;
+            }
 		}
 		// if (userConfig.getPblFilterDateFrom()!=null) {
 		// if (!req.getlastM)

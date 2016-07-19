@@ -18,13 +18,30 @@ import ilarkesto.auth.AUser;
 import ilarkesto.persistence.AEntity;
 import java.util.Set;
 
+/**
+ *
+ * @author erik
+ */
 public interface SearchResultsConsumer {
 
-	AUser getSearcher();
+    /**
+     *
+     * @return
+     */
+    AUser getSearcher();
 
-	Set<String> getKeys();
+    /**
+     *
+     * @return
+     */
+    Set<String> getKeys();
 
 	// TODO abstract from entity
-	void addEntity(AEntity entity);
+
+    /**
+     *
+     * @param entity
+     */
+    	void addEntity(AEntity entity);
 
 }

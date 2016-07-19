@@ -16,11 +16,22 @@ package ilarkesto.di.app;
 
 import ilarkesto.properties.APropertiesStore;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class AApplicationConfig {
 
-	protected APropertiesStore p;
+    /**
+     *
+     */
+    protected APropertiesStore p;
 
-	public AApplicationConfig(APropertiesStore p) {
+    /**
+     *
+     * @param p
+     */
+    public AApplicationConfig(APropertiesStore p) {
 		this.p = p;
 	}
 }

@@ -14,12 +14,31 @@
  */
 package ilarkesto.core.scope;
 
+/**
+ *
+ * @author erik
+ * @param <C>
+ */
 public interface ComponentReflector<C> {
 
-	void injectComponents(C component, Scope scope);
+    /**
+     *
+     * @param component
+     * @param scope
+     */
+    void injectComponents(C component, Scope scope);
 
-	void callInitializationMethods(C component);
+    /**
+     *
+     * @param component
+     */
+    void callInitializationMethods(C component);
 
-	void outjectComponents(C component, Scope scope);
+    /**
+     *
+     * @param component
+     * @param scope
+     */
+    void outjectComponents(C component, Scope scope);
 
 }

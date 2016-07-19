@@ -88,19 +88,49 @@ import javax.swing.ImageIcon;
 @SuppressWarnings(value = "DM_DEFAULT_ENCODING", justification = "Used only when default encoding is needed")
 public abstract class IO {
 
+    /**
+     *
+     */
     public static final String MD5 = "MD5";
+
+    /**
+     *
+     */
     public static final String SHA1 = "SHA-1";
 
+    /**
+     *
+     */
     public static final int CR_INT = 13;
+
+    /**
+     *
+     */
     public static final char CR = (char) CR_INT;
 
+    /**
+     *
+     */
     public static final String ISO_LATIN_1 = "ISO-8859-1";
+
+    /**
+     *
+     */
     public static final String UTF_8 = "UTF-8";
+
+    /**
+     *
+     */
     public static final String WINDOWS_1252 = "WINDOWS-1252";
 
     private static final LinkedList<Properties> properties = new LinkedList<>();
     private static final LinkedList<File> propertiesFiles = new LinkedList<>();
 
+    /**
+     *
+     * @param prefix
+     * @return
+     */
     public static File createTempDir(String prefix) {
         File file = createTempFile(prefix, "");
         delete(file);
@@ -108,6 +138,12 @@ public abstract class IO {
         return file;
     }
 
+    /**
+     *
+     * @param prefix
+     * @param suffix
+     * @return
+     */
     public static File createTempFile(String prefix, String suffix) {
         try {
             return File.createTempFile(prefix, suffix);
@@ -116,6 +152,11 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param file
+     * @return
+     */
     public static long getSize(File file) {
         if (file.isFile()) {
             return file.length();
@@ -133,6 +174,11 @@ public abstract class IO {
         return 0;
     }
 
+    /**
+     *
+     * @param files
+     * @return
+     */
     public static File getFirstExistingFile(File... files) {
         for (File file : files) {
             if (file.exists()) {
@@ -142,6 +188,11 @@ public abstract class IO {
         return null;
     }
 
+    /**
+     *
+     * @param filePaths
+     * @return
+     */
     public static File getFirstExistingFile(String... filePaths) {
         for (String path : filePaths) {
             File file = new File(path);
@@ -152,6 +203,11 @@ public abstract class IO {
         return null;
     }
 
+    /**
+     *
+     * @param filePaths
+     * @return
+     */
     public static String getFirstExistingFilePath(String... filePaths) {
         for (String path : filePaths) {
             if (new File(path).exists()) {
@@ -161,6 +217,12 @@ public abstract class IO {
         return null;
     }
 
+    /**
+     *
+     * @param algorithm
+     * @param input
+     * @return
+     */
     public static byte[] hash(String algorithm, byte[] input) {
         MessageDigest md;
         try {
@@ -173,6 +235,12 @@ public abstract class IO {
         return md.digest();
     }
 
+    /**
+     *
+     * @param algorithm
+     * @param in
+     * @return
+     */
     public static byte[] hash(String algorithm, InputStream in) {
         MessageDigest md;
         try {
@@ -199,6 +267,12 @@ public abstract class IO {
         return md.digest();
     }
 
+    /**
+     *
+     * @param algorithm
+     * @param file
+     * @return
+     */
     public static byte[] hash(String algorithm, File file) {
         BufferedInputStream in;
         try {
@@ -211,6 +285,11 @@ public abstract class IO {
         return hash;
     }
 
+    /**
+     *
+     * @param files
+     * @return
+     */
     public static String[] getFilenames(File... files) {
         if (files == null) {
             return null;
@@ -222,10 +301,20 @@ public abstract class IO {
         return names;
     }
 
+    /**
+     *
+     * @param path
+     * @param processor
+     */
     public static void process(String path, FileProcessor processor) {
         process(new File(path), processor);
     }
 
+    /**
+     *
+     * @param root
+     * @param processor
+     */
     public static void process(File root, FileProcessor processor) {
         if (root.isDirectory()) {
             boolean continu = processor.onFolderBegin(root);
@@ -244,6 +333,12 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param root
+     * @param filter
+     * @return
+     */
     public static List<File> findFiles(File root, FileFilter filter) {
         List<File> ret = new LinkedList<>();
         File[] files = root.listFiles();
@@ -260,6 +355,12 @@ public abstract class IO {
         return ret;
     }
 
+    /**
+     *
+     * @param root
+     * @param filter
+     * @return
+     */
     public static File findFile(File root, FileFilter filter) {
         File[] files = root.listFiles();
         if (files == null) {
@@ -279,18 +380,43 @@ public abstract class IO {
         return null;
     }
 
+    /**
+     *
+     */
     public static interface FileProcessor {
 
+        /**
+         *
+         * @param folder
+         * @return
+         */
         boolean onFolderBegin(File folder);
 
+        /**
+         *
+         * @param folder
+         */
         void onFolderEnd(File folder);
 
+        /**
+         *
+         * @param file
+         */
         void onFile(File file);
 
+        /**
+         *
+         * @return
+         */
         boolean isAbortRequested();
 
     }
 
+    /**
+     *
+     * @param data
+     * @return
+     */
     public static String toHexString(byte[] data) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < data.length; i++) {
@@ -306,6 +432,10 @@ public abstract class IO {
         return sb.toString();
     }
 
+    /**
+     *
+     * @param in
+     */
     public static void closeQuiet(InputStream in) {
         try {
             in.close();
@@ -313,6 +443,10 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param out
+     */
     public static void closeQuiet(OutputStream out) {
         try {
             out.close();
@@ -320,6 +454,10 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param socket
+     */
     public static void closeQuiet(Socket socket) {
         try {
             socket.close();
@@ -327,6 +465,10 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param socket
+     */
     public static void close(Socket socket) {
         try {
             socket.close();
@@ -335,6 +477,10 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param in
+     */
     public static void close(InputStream in) {
         if (in == null) {
             return;
@@ -346,6 +492,10 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param out
+     */
     public static void close(OutputStream out) {
         if (out == null) {
             return;
@@ -357,6 +507,10 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param out
+     */
     public static void close(Writer out) {
         if (out == null) {
             return;
@@ -368,6 +522,10 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param out
+     */
     public static void closeQuiet(Writer out) {
         if (out == null) {
             return;
@@ -378,6 +536,10 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param in
+     */
     public static void close(Reader in) {
         if (in == null) {
             return;
@@ -389,6 +551,10 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param in
+     */
     public static void closeQuiet(Reader in) {
         if (in == null) {
             return;
@@ -399,10 +565,18 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param path
+     */
     public static void createDirectory(String path) {
         createDirectory(new File(path));
     }
 
+    /**
+     *
+     * @param dir
+     */
     public static synchronized void createDirectory(File dir) {
         if (dir.exists()) {
             if (dir.isDirectory()) {
@@ -415,6 +589,11 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param filename
+     * @return
+     */
     public static String getFileExtension(String filename) {
         int idx = filename.lastIndexOf('.');
         if (idx < 0 || idx == filename.length() - 1) {
@@ -423,14 +602,30 @@ public abstract class IO {
         return filename.substring(idx + 1);
     }
 
+    /**
+     *
+     * @param filename
+     * @return
+     */
     public static String getFileMimeType(String filename) {
         return "application/" + getFileExtension(filename);
     }
 
+    /**
+     *
+     * @param from
+     * @param to
+     */
     public static void move(File from, File to) {
         move(from, to, false);
     }
 
+    /**
+     *
+     * @param from
+     * @param to
+     * @param overwrite
+     */
     public static void move(File from, File to, boolean overwrite) {
         if (from.getAbsolutePath().equals(to.getAbsolutePath())) {
             return;
@@ -472,6 +667,10 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public static boolean isHttpAvailable() {
         try {
             downloadUrl("http://www.google.com", null, null);
@@ -481,6 +680,10 @@ public abstract class IO {
         return true;
     }
 
+    /**
+     *
+     * @return
+     */
     public static String getHostName() {
         String[] hostnames = new String[0];
         hostnames = getLocalHostNames(false, true).toArray(hostnames);
@@ -498,6 +701,12 @@ public abstract class IO {
         return hostnames[0];
     }
 
+    /**
+     *
+     * @param includeIps
+     * @param includeNames
+     * @return
+     */
     public static Set<String> getLocalHostNames(boolean includeIps, boolean includeNames) {
         if (!includeIps && !includeNames) {
             throw new IllegalArgumentException("includeIps=false && includeNames==false");
@@ -536,14 +745,41 @@ public abstract class IO {
         return ret;
     }
 
+    /**
+     *
+     * @param url
+     * @param username
+     * @param password
+     * @param body
+     * @param response
+     * @return
+     */
     public static int httpPOST(String url, String username, String password, InputStream body, OutputStream response) {
         return httpRequest("POST", url, username, password, body, response);
     }
 
+    /**
+     *
+     * @param url
+     * @param username
+     * @param password
+     * @param response
+     * @return
+     */
     public static int httpDELETE(String url, String username, String password, OutputStream response) {
         return httpRequest("DELETE", url, username, password, null, response);
     }
 
+    /**
+     *
+     * @param method
+     * @param url
+     * @param username
+     * @param password
+     * @param body
+     * @param response
+     * @return
+     */
     public static int httpRequest(String method, String url, String username, String password, InputStream body,
             OutputStream response) {
         URL javaUrl;
@@ -617,22 +853,49 @@ public abstract class IO {
         return responseCode;
     }
 
+    /**
+     *
+     * @param resourceName
+     * @return
+     */
     public static URL getResource(String resourceName) {
         return IO.class.getClassLoader().getResource(resourceName);
     }
 
+    /**
+     *
+     * @param relative
+     * @param resourceName
+     * @return
+     */
     public static URL getResource(Class relative, String resourceName) {
         return relative.getResource(resourceName);
     }
 
+    /**
+     *
+     * @param resourceName
+     * @return
+     */
     public static boolean existResource(String resourceName) {
         return getResource(resourceName) != null;
     }
 
+    /**
+     *
+     * @param resourceName
+     * @return
+     */
     public static Icon getIcon(String resourceName) {
         return new ImageIcon(getResource(resourceName));
     }
 
+    /**
+     *
+     * @param file
+     * @param line
+     * @throws IOException
+     */
     public static void appendLine(String file, String line) throws IOException {
         File f = new File(file);
         if (!f.exists()) {
@@ -643,6 +906,11 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param p
+     * @return
+     */
     public static boolean isFinished(Process p) {
         try {
             p.exitValue();
@@ -652,6 +920,12 @@ public abstract class IO {
         return true;
     }
 
+    /**
+     *
+     * @param data
+     * @param file
+     * @param position
+     */
     public static void write(byte[] data, File file, long position) {
         try {
             try (RandomAccessFile f = new RandomAccessFile(file, "rw")) {
@@ -663,6 +937,13 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param file
+     * @param offset
+     * @param size
+     * @return
+     */
     public static byte[] readBytes(File file, int offset, int size) {
         RandomAccessFile f;
         try {
@@ -681,6 +962,12 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param out
+     * @param bytes
+     * @throws IOException
+     */
     public static void write2Bytes(OutputStream out, int bytes) throws IOException {
         int high = bytes / 0x100;
         int low = bytes - high * 0x100;
@@ -688,6 +975,12 @@ public abstract class IO {
         out.write(low);
     }
 
+    /**
+     *
+     * @param in
+     * @return
+     * @throws IOException
+     */
     public static int read4Bytes(InputStream in) throws IOException {
         int value = 0;
         int i;
@@ -719,6 +1012,12 @@ public abstract class IO {
         return value;
     }
 
+    /**
+     *
+     * @param in
+     * @return
+     * @throws IOException
+     */
     public static int read3Bytes(InputStream in) throws IOException {
         int value = 0;
         int i;
@@ -744,6 +1043,12 @@ public abstract class IO {
         return value;
     }
 
+    /**
+     *
+     * @param in
+     * @return
+     * @throws IOException
+     */
     public static int read2Bytes(InputStream in) throws IOException {
         int value = 0;
         int i;
@@ -763,6 +1068,11 @@ public abstract class IO {
         return value;
     }
 
+    /**
+     *
+     * @param parent
+     * @return
+     */
     public static List<File> listFiles(File parent) {
         List<File> ret = new ArrayList<>();
         if (parent == null) {
@@ -776,10 +1086,22 @@ public abstract class IO {
         return ret;
     }
 
+    /**
+     *
+     * @param parent
+     * @param filter
+     * @return
+     */
     public static List<File> listFiles(File parent, FileFilter filter) {
         return filterFiles(parent.listFiles(), filter);
     }
 
+    /**
+     *
+     * @param files
+     * @param filter
+     * @return
+     */
     public static List<File> filterFiles(File[] files, FileFilter filter) {
         ArrayList<File> al = new ArrayList<>();
         if (files != null) {
@@ -792,6 +1114,11 @@ public abstract class IO {
         return al;
     }
 
+    /**
+     *
+     * @param c
+     * @return
+     */
     public static File[] toFileArray(Collection c) {
         Object[] oa = c.toArray();
         File[] fa = new File[oa.length];
@@ -799,6 +1126,12 @@ public abstract class IO {
         return fa;
     }
 
+    /**
+     *
+     * @param command
+     * @return
+     * @throws IOException
+     */
     public static int executeProcessAndWait(String command) throws IOException {
         Process p = getRuntime().exec(command);
         int result;
@@ -810,34 +1143,81 @@ public abstract class IO {
         return result;
     }
 
+    /**
+     *
+     * @param file
+     * @param time
+     */
     public static void setLastModified(File file, long time) {
         if (!file.setLastModified(time)) {
             throw new RuntimeException("Settring lastModified on " + file + " failed.");
         }
     }
 
+    /**
+     *
+     */
     public static interface UnzipObserver {
 
+        /**
+         *
+         * @param count
+         */
         void onFileCountAvailable(int count);
 
+        /**
+         *
+         * @param f
+         */
         void onFileBegin(File f);
 
+        /**
+         *
+         * @param f
+         */
         void onFileEnd(File f);
 
+        /**
+         *
+         * @param f
+         * @param ex
+         */
         void onFileError(File f, IOException ex);
 
+        /**
+         *
+         * @return
+         */
         boolean isAbortRequested();
 
     }
 
+    /**
+     *
+     * @param zipfile
+     * @param files
+     */
     public static void zip(File zipfile, File... files) {
         zip(zipfile, files, null);
     }
 
+    /**
+     *
+     * @param zipfile
+     * @param files
+     * @param filter
+     */
     public static void zip(File zipfile, File[] files, FileFilter filter) {
         zip(zipfile, files, filter, null);
     }
 
+    /**
+     *
+     * @param zipfile
+     * @param files
+     * @param filter
+     * @param observer
+     */
     public static void zip(File zipfile, File[] files, FileFilter filter, ZipObserver observer) {
         if (zipfile.exists()) {
             delete(zipfile);
@@ -858,10 +1238,22 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param os
+     * @param files
+     */
     public static void zip(OutputStream os, File... files) {
         zip(os, files, null, null);
     }
 
+    /**
+     *
+     * @param os
+     * @param files
+     * @param filter
+     * @param observer
+     */
     public static void zip(OutputStream os, File[] files, FileFilter filter, ZipObserver observer) {
         ZipOutputStream zipout;
         try {
@@ -879,6 +1271,14 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param zipout
+     * @param zippath
+     * @param f
+     * @param filter
+     * @param observer
+     */
     public static void addZipEntry(ZipOutputStream zipout, String zippath, File f, FileFilter filter,
             ZipObserver observer) {
         if (filter != null && !filter.accept(f)) {
@@ -915,22 +1315,50 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     */
     public static interface ZipObserver {
 
+        /**
+         *
+         * @param f
+         */
         void onFileBegin(File f);
 
+        /**
+         *
+         * @param f
+         */
         void onFileEnd(File f);
 
+        /**
+         *
+         * @param f
+         * @param ex
+         */
         void onFileError(File f, IOException ex);
 
+        /**
+         *
+         * @return
+         */
         boolean isAbortRequested();
 
     }
 
+    /**
+     *
+     * @param folder
+     */
     public static void deleteContents(String folder) {
         deleteContents(new File(folder));
     }
 
+    /**
+     *
+     * @param folder
+     */
     public static void deleteContents(File folder) {
         if (!folder.exists()) {
             return;
@@ -943,10 +1371,18 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param file
+     */
     public static void delete(String file) {
         delete(new File(file));
     }
 
+    /**
+     *
+     * @param files
+     */
     public static void delete(File... files) {
         if (files == null || files.length == 0) {
             return;
@@ -956,6 +1392,10 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param f
+     */
     public static void delete(File f) {
         if (!f.exists()) {
             return;
@@ -971,6 +1411,10 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param f
+     */
     public static void deleteQuiet(File f) {
         try {
             delete(f);
@@ -978,10 +1422,22 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param image
+     * @param type
+     * @param file
+     */
     public static void writeImage(Image image, String type, String file) {
         writeImage(image, type, new File(file));
     }
 
+    /**
+     *
+     * @param image
+     * @param type
+     * @param file
+     */
     public static void writeImage(Image image, String type, File file) {
         createDirectory(file.getParentFile());
         try {
@@ -991,12 +1447,26 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param image
+     * @param width
+     * @param height
+     * @param type
+     * @param file
+     * @throws IOException
+     */
     public static void writeImage(Image image, int width, int height, String type, String file) throws IOException {
         File f = new File(file);
         createDirectory(f.getParentFile());
         ImageIO.write(toBufferedImage(image, width, height), type, f);
     }
 
+    /**
+     *
+     * @param img
+     * @return
+     */
     public static BufferedImage toBufferedImage(Image img) {
         if (img instanceof BufferedImage) {
             return (BufferedImage) img;
@@ -1004,6 +1474,13 @@ public abstract class IO {
         return toBufferedImage(img, img.getWidth(null), img.getHeight(null));
     }
 
+    /**
+     *
+     * @param img
+     * @param width
+     * @param height
+     * @return
+     */
     public static BufferedImage toBufferedImage(Image img, int width, int height) {
         if (img instanceof BufferedImage) {
             return (BufferedImage) img;
@@ -1015,6 +1492,11 @@ public abstract class IO {
         return image;
     }
 
+    /**
+     *
+     * @param file
+     * @return
+     */
     public static BufferedImage loadImage(File file) {
         BufferedImage image;
         try {
@@ -1028,6 +1510,11 @@ public abstract class IO {
         return image;
     }
 
+    /**
+     *
+     * @param data
+     * @return
+     */
     public static BufferedImage loadImage(byte[] data) {
         BufferedImage image;
         try {
@@ -1043,6 +1530,11 @@ public abstract class IO {
         return image;
     }
 
+    /**
+     *
+     * @param resourcePath
+     * @return
+     */
     public static BufferedImage loadImage(String resourcePath) {
         try {
             return ImageIO.read(IO.class.getClassLoader().getResource(resourcePath));
@@ -1051,17 +1543,42 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param image
+     * @param type
+     * @param file
+     * @param maxWidth
+     * @param maxHeight
+     * @throws IOException
+     */
     public static void saveScaled(BufferedImage image, String type, String file, int maxWidth, int maxHeight)
             throws IOException {
         Image scaled = getScaled(image, maxWidth, maxHeight);
         writeImage(scaled, type, file);
     }
 
+    /**
+     *
+     * @param sourceFile
+     * @param destinationFile
+     * @param destinationType
+     * @param maxWidth
+     * @param maxHeight
+     * @throws IOException
+     */
     public static void scaleImage(String sourceFile, String destinationFile, String destinationType, int maxWidth,
             int maxHeight) throws IOException {
         saveScaled(loadImage(new File(sourceFile)), destinationType, destinationFile, maxWidth, maxHeight);
     }
 
+    /**
+     *
+     * @param image
+     * @param maxWidth
+     * @param maxHeight
+     * @return
+     */
     public static Image getScaled(BufferedImage image, int maxWidth, int maxHeight) {
         int width = image.getWidth();
         int height = image.getHeight();
@@ -1087,6 +1604,12 @@ public abstract class IO {
         return image.getScaledInstance(w, h, SCALE_SMOOTH);
     }
 
+    /**
+     *
+     * @param image
+     * @param targetWidth
+     * @return
+     */
     public static Image scaledToWidth(BufferedImage image, int targetWidth) {
         int width = image.getWidth();
         int height = image.getHeight();
@@ -1100,6 +1623,12 @@ public abstract class IO {
         return image.getScaledInstance(width, height, SCALE_SMOOTH);
     }
 
+    /**
+     *
+     * @param image
+     * @param targetHeight
+     * @return
+     */
     public static Image scaledToHeight(BufferedImage image, int targetHeight) {
         int width = image.getWidth();
         int height = image.getHeight();
@@ -1113,6 +1642,11 @@ public abstract class IO {
         return image.getScaledInstance(width, height, SCALE_SMOOTH);
     }
 
+    /**
+     *
+     * @param image
+     * @return
+     */
     public static BufferedImage quadratize(BufferedImage image) {
         int width = image.getWidth();
         int height = image.getHeight();
@@ -1129,6 +1663,12 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param image
+     * @param maxSize
+     * @return
+     */
     public static Image quadratizeAndLimitSize(BufferedImage image, int maxSize) {
         image = quadratize(image);
         if (image.getWidth() <= maxSize) {
@@ -1137,12 +1677,22 @@ public abstract class IO {
         return image.getScaledInstance(maxSize, maxSize, SCALE_SMOOTH);
     }
 
+    /**
+     *
+     * @param data
+     * @param file
+     */
     public static void copyDataToFile(byte[] data, File file) {
         ByteArrayInputStream in = new ByteArrayInputStream(data);
         copyDataToFile(in, file);
         close(in);
     }
 
+    /**
+     *
+     * @param connection
+     * @param file
+     */
     public static void downloadToFile(URLConnection connection, File file) {
         InputStream is;
         try {
@@ -1157,10 +1707,21 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param is
+     * @param file
+     */
     public static void copyDataToFile(InputStream is, File file) {
         copyDataToFile(is, file, null);
     }
 
+    /**
+     *
+     * @param is
+     * @param dst
+     * @param observer
+     */
     public static void copyDataToFile(InputStream is, File dst, CopyObserver observer) {
         createDirectory(dst.getParentFile());
         File tmp = new File(dst.getPath() + "~" + System.currentTimeMillis());
@@ -1192,6 +1753,11 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param source
+     * @param destination
+     */
     public static void copyFile(File source, File destination) {
         if (source.getAbsolutePath().equals(destination.getAbsolutePath())) {
             return;
@@ -1213,14 +1779,29 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param sourceFile
+     * @param dst
+     */
     public static void copyFile(File sourceFile, OutputStream dst) {
         copyFile(sourceFile.getPath(), dst);
     }
 
+    /**
+     *
+     * @param sourceFile
+     * @param destinationFile
+     */
     public static void copyFile(String sourceFile, String destinationFile) {
         copyFile(new File(sourceFile), new File(destinationFile));
     }
 
+    /**
+     *
+     * @param src
+     * @param dst
+     */
     public static void copyFile(String src, OutputStream dst) {
         BufferedInputStream in;
         try {
@@ -1235,10 +1816,21 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param files
+     * @param destinationDir
+     */
     public static void copyFiles(File[] files, File destinationDir) {
         copyFiles(files, destinationDir, null);
     }
 
+    /**
+     *
+     * @param files
+     * @param destinationDir
+     * @param filter
+     */
     public static void copyFiles(File[] files, File destinationDir, FileFilter filter) {
         createDirectory(destinationDir);
         for (File f : files) {
@@ -1253,10 +1845,21 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param files
+     * @param destinationDir
+     */
     public static void copyFiles(Collection<File> files, File destinationDir) {
         copyFiles(files, destinationDir, null);
     }
 
+    /**
+     *
+     * @param files
+     * @param destinationDir
+     * @param filter
+     */
     public static void copyFiles(Collection<File> files, File destinationDir, FileFilter filter) {
         createDirectory(destinationDir);
         for (File f : files) {
@@ -1271,6 +1874,11 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param files
+     * @param destinationDir
+     */
     public static void copyFiles(String[] files, String destinationDir) {
         createDirectory(destinationDir);
         for (String file : files) {
@@ -1283,6 +1891,11 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param file
+     * @param out
+     */
     public static void copyData(File file, OutputStream out) {
         BufferedInputStream in;
         try {
@@ -1294,10 +1907,21 @@ public abstract class IO {
         close(in);
     }
 
+    /**
+     *
+     * @param in
+     * @param out
+     */
     public static void copyData(InputStream in, OutputStream out) {
         copyData(in, out, null);
     }
 
+    /**
+     *
+     * @param in
+     * @param out
+     * @param observer
+     */
     public static void copyData(InputStream in, OutputStream out, CopyObserver observer) {
         byte[] block = new byte[1000];
         try {
@@ -1322,12 +1946,27 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     */
     public interface CopyObserver {
 
+        /**
+         *
+         * @return
+         */
         boolean isAbortRequested();
 
+        /**
+         *
+         * @param bytes
+         */
         void totalSizeDetermined(long bytes);
 
+        /**
+         *
+         * @param bytes
+         */
         void dataCopied(long bytes);
 
     }
@@ -1346,6 +1985,11 @@ public abstract class IO {
         out.flush();
     }
 
+    /**
+     *
+     * @param in
+     * @return
+     */
     public static byte[] readToByteArray(InputStream in) {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         copyData(in, out);
@@ -1354,6 +1998,11 @@ public abstract class IO {
         return out.toByteArray();
     }
 
+    /**
+     *
+     * @param file
+     * @return
+     */
     public static byte[] readToByteArray(File file) {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         copyData(file, out);
@@ -1362,6 +2011,12 @@ public abstract class IO {
         return data;
     }
 
+    /**
+     *
+     * @param in
+     * @param data
+     * @throws IOException
+     */
     public static void readToByteArray(InputStream in, byte[] data) throws IOException {
         int read = 0;
         while (read < data.length) {
@@ -1370,6 +2025,12 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param name
+     * @return
+     * @throws IOException
+     */
     public static String readResource(String name) throws IOException {
         URL url = IO.class.getClassLoader().getResource(name);
         if (url == null) {
@@ -1379,6 +2040,11 @@ public abstract class IO {
         return readToString(connection.getInputStream(), UTF_8);
     }
 
+    /**
+     *
+     * @param name
+     * @param dst
+     */
     public static void copyResource(String name, String dst) {
         File dstFile = new File(dst);
         if (dstFile.isDirectory()) {
@@ -1406,10 +2072,23 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param fileName
+     * @param data
+     * @param charset
+     */
     public static void writeFile(String fileName, String data, String charset) {
         writeFile(new File(fileName), data, charset);
     }
 
+    /**
+     *
+     * @param file
+     * @param data
+     * @param charset
+     * @return
+     */
     public static boolean writeFileIfChanged(File file, String data, String charset) {
         if (file.exists() && readFile(file, charset).equals(data)) {
             return false;
@@ -1418,6 +2097,12 @@ public abstract class IO {
         return true;
     }
 
+    /**
+     *
+     * @param file
+     * @param data
+     * @param charset
+     */
     public static void writeFile(File file, String data, String charset) {
         File parent = file.getParentFile();
         if (parent != null) {
@@ -1433,6 +2118,12 @@ public abstract class IO {
         out.close();
     }
 
+    /**
+     *
+     * @param out
+     * @param text
+     * @param charset
+     */
     public static void writeText(OutputStream out, String text, String charset) {
         PrintWriter writer;
         try {
@@ -1444,6 +2135,12 @@ public abstract class IO {
         writer.flush();
     }
 
+    /**
+     *
+     * @param file
+     * @param lines
+     * @throws IOException
+     */
     public static void writeFile(String file, Collection<String> lines) throws IOException {
         File f = new File(file);
         createDirectory(f.getParentFile());
@@ -1455,6 +2152,11 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param in
+     * @return
+     */
     public static List<String> readLines(BufferedReader in) {
         List<String> ret = new ArrayList<>();
         String line;
@@ -1468,6 +2170,12 @@ public abstract class IO {
         return ret;
     }
 
+    /**
+     *
+     * @param is
+     * @param encoding
+     * @return
+     */
     public static String readToString(InputStream is, String encoding) {
         try {
             return readToString(new InputStreamReader(is, encoding));
@@ -1476,6 +2184,11 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param reader
+     * @return
+     */
     public static String readToString(Reader reader) {
         StringBuilder sb = new StringBuilder();
         BufferedReader in;
@@ -1491,6 +2204,11 @@ public abstract class IO {
         return sb.toString();
     }
 
+    /**
+     *
+     * @param file
+     * @return
+     */
     public static byte[] readFileToByteArray(File file) {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         copyData(file, out);
@@ -1498,10 +2216,21 @@ public abstract class IO {
         return out.toByteArray();
     }
 
+    /**
+     *
+     * @param file
+     * @return
+     */
     public static String readFile(File file) {
         return readFile(file, getFileEncoding());
     }
 
+    /**
+     *
+     * @param file
+     * @param encoding
+     * @return
+     */
     public static String readFile(File file, String encoding) {
         try {
             return readToString(new FileInputStream(file), encoding);
@@ -1510,10 +2239,20 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param fileName
+     * @param encoding
+     * @return
+     */
     public static String readFile(String fileName, String encoding) {
         return readFile(new File(fileName), encoding);
     }
 
+    /**
+     *
+     * @param f
+     */
     public static void touch(File f) {
         File parent = f.getParentFile();
         if (parent != null && !parent.exists()) {
@@ -1547,10 +2286,21 @@ public abstract class IO {
         return p;
     }
 
+    /**
+     *
+     * @param content
+     * @return
+     */
     public static Properties loadProperties(String content) {
         return loadProperties(new StringReader(content));
     }
 
+    /**
+     *
+     * @param f
+     * @param encoding
+     * @return
+     */
     public static Properties loadProperties(File f, String encoding) {
         try {
             Properties p;
@@ -1569,6 +2319,12 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param is
+     * @param encoding
+     * @return
+     */
     public static Properties loadProperties(InputStream is, String encoding) {
         InputStreamReader in;
         try {
@@ -1583,6 +2339,11 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param in
+     * @return
+     */
     public static Properties loadProperties(Reader in) {
         Properties p = new Properties();
         try {
@@ -1593,6 +2354,12 @@ public abstract class IO {
         return p;
     }
 
+    /**
+     *
+     * @param url
+     * @param encoding
+     * @return
+     */
     public static Properties loadPropertiesFromUrl(String url, String encoding) {
         try {
             return loadProperties(new URL(url), encoding);
@@ -1601,6 +2368,12 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param url
+     * @param encoding
+     * @return
+     */
     public static Properties loadProperties(URL url, String encoding) {
         if (url == null) {
             return new Properties();
@@ -1622,6 +2395,11 @@ public abstract class IO {
         return p;
     }
 
+    /**
+     *
+     * @param p
+     * @param header
+     */
     public static void saveLoadedProperties(Properties p, String header) {
         int index = properties.indexOf(p);
         File f = index < 0 ? null : (File) propertiesFiles.get(properties.indexOf(p));
@@ -1631,10 +2409,22 @@ public abstract class IO {
         saveProperties(p, header, f);
     }
 
+    /**
+     *
+     * @param p
+     * @param header
+     * @param filepath
+     */
     public static void saveProperties(Properties p, String header, String filepath) {
         saveProperties(p, header, new File(filepath));
     }
 
+    /**
+     *
+     * @param p
+     * @param header
+     * @param f
+     */
     public static void saveProperties(Properties p, String header, File f) {
         File parent = f.getParentFile();
         if (parent != null) {
@@ -1647,6 +2437,12 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param p
+     * @param header
+     * @param os
+     */
     public static void saveProperties(Properties p, String header, OutputStream os) {
         BufferedOutputStream out;
         try {
@@ -1659,12 +2455,22 @@ public abstract class IO {
 
     }
 
+    /**
+     *
+     * @param p
+     * @return
+     */
     public static String toString(Properties p) {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         saveProperties(p, null, out);
         return new String(out.toByteArray());
     }
 
+    /**
+     *
+     * @param data
+     * @return
+     */
     public static String detectEncoding(byte[] data) {
         String encoding = UTF_8;
         BufferedReader in = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(data)), 100);
@@ -1688,6 +2494,12 @@ public abstract class IO {
         return encoding;
     }
 
+    /**
+     *
+     * @param data
+     * @param encoding
+     * @return
+     */
     public static String toString(byte[] data, String encoding) {
         BufferedReader in;
         try {
@@ -1704,14 +2516,33 @@ public abstract class IO {
         return s;
     }
 
+    /**
+     *
+     * @param url
+     * @return
+     */
     public static String downloadUrlToString(String url) {
         return downloadUrlToString(url, UTF_8);
     }
 
+    /**
+     *
+     * @param url
+     * @param charset
+     * @return
+     */
     public static String downloadUrlToString(String url, String charset) {
         return downloadUrlToString(url, charset, null, null);
     }
 
+    /**
+     *
+     * @param url
+     * @param charset
+     * @param username
+     * @param password
+     * @return
+     */
     public static String downloadUrlToString(String url, String charset, String username, String password) {
         InputStreamReader urlReader = openUrlReader(url, charset, username, password);
         if (urlReader == null) {
@@ -1723,6 +2554,13 @@ public abstract class IO {
         return s;
     }
 
+    /**
+     *
+     * @param url
+     * @param username
+     * @param password
+     * @return
+     */
     public static byte[] downloadUrlToByteArray(String url, String username, String password) {
         BufferedInputStream in = new BufferedInputStream(openUrlInputStream(url, username, password));
         byte[] data = readToByteArray(in);
@@ -1730,6 +2568,13 @@ public abstract class IO {
         return data;
     }
 
+    /**
+     *
+     * @param url
+     * @param username
+     * @param password
+     * @return
+     */
     public static byte[] downloadUrl(String url, String username, String password) {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         BufferedInputStream in = new BufferedInputStream(openUrlInputStream(url, username, password));
@@ -1738,6 +2583,13 @@ public abstract class IO {
         return out.toByteArray();
     }
 
+    /**
+     *
+     * @param url
+     * @param username
+     * @param password
+     * @return
+     */
     public static URLConnection openUrlConnection(String url, String username, String password) {
         URLConnection connection;
         try {
@@ -1767,6 +2619,13 @@ public abstract class IO {
         return connection;
     }
 
+    /**
+     *
+     * @param url
+     * @param username
+     * @param password
+     * @return
+     */
     public static InputStream openUrlInputStream(String url, String username, String password) {
         try {
             return openUrlConnection(url, username, password).getInputStream();
@@ -1775,6 +2634,14 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param url
+     * @param defaultEncoding
+     * @param username
+     * @param password
+     * @return
+     */
     public static InputStreamReader openUrlReader(String url, String defaultEncoding, String username, String password) {
         URLConnection connection = openUrlConnection(url, username, password);
         String connectionEncoding = connection.getContentEncoding();
@@ -1795,14 +2662,33 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     * @param url
+     * @param file
+     */
     public static void downloadUrlToFile(String url, String file) {
         downloadUrlToFile(url, file, null);
     }
 
+    /**
+     *
+     * @param url
+     * @param file
+     * @param observer
+     */
     public static void downloadUrlToFile(String url, String file, CopyObserver observer) {
         downloadUrlToFile(url, file, null, null, observer);
     }
 
+    /**
+     *
+     * @param url
+     * @param file
+     * @param username
+     * @param password
+     * @param observer
+     */
     public static void downloadUrlToFile(String url, String file, String username, String password,
             CopyObserver observer) {
         InputStream in;
@@ -1829,12 +2715,19 @@ public abstract class IO {
         }
     }
 
+    /**
+     *
+     */
     public static class StringInputStream extends InputStream {
 
         String s;
         int len;
         int index;
 
+        /**
+         *
+         * @param s
+         */
         public StringInputStream(String s) {
             this.s = s;
             len = s.length();
@@ -1847,8 +2740,16 @@ public abstract class IO {
 
     }
 
+    /**
+     *
+     */
     public static class FileList extends ArrayList {
 
+        /**
+         *
+         * @param index
+         * @return
+         */
         public File getFile(int index) {
             return (File) get(index);
         }
@@ -1862,6 +2763,10 @@ public abstract class IO {
 
     private static File workDir;
 
+    /**
+     *
+     * @return
+     */
     @SuppressWarnings(value = "LI_LAZY_INIT_STATIC", justification = "Used only at startup, so is not called by multiple threads")
     public static File getWorkDir() {
         if (workDir == null) {
@@ -1872,6 +2777,10 @@ public abstract class IO {
 
     private static File tempDir;
 
+    /**
+     *
+     * @return
+     */
     @SuppressWarnings(value = "LI_LAZY_INIT_STATIC", justification = "Used only at startup, so is not called by multiple threads")
     public static File getTempDir() {
         if (tempDir == null) {
@@ -1884,6 +2793,11 @@ public abstract class IO {
         return tempDir;
     }
 
+    /**
+     *
+     * @param dir
+     * @return
+     */
     @SuppressWarnings("RV_RETURN_VALUE_IGNORED_BAD_PRACTICE")
     public static boolean isDirWritable(String dir) {
         File testfile = new File(dir + "/.writetest.deleteme");
@@ -1897,6 +2811,11 @@ public abstract class IO {
         return true;
     }
 
+    /**
+     *
+     * @param file
+     * @return
+     */
     public static boolean isFileWritable(File file) {
         if (file.exists()) {
             return file.canWrite();

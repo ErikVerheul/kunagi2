@@ -17,13 +17,22 @@ package ilarkesto.gwt.client.animation;
 import com.google.gwt.animation.client.Animation;
 import com.google.gwt.user.client.ui.Widget;
 
+/**
+ *
+ * @author erik
+ */
 public class AppearAnimation extends Animation {
 
 	private Widget widget;
 	private int totalHeight;
 	private int minHeight = 3;
 
-	public AppearAnimation(Integer height, Widget widget) {
+    /**
+     *
+     * @param height
+     * @param widget
+     */
+    public AppearAnimation(Integer height, Widget widget) {
 		this.totalHeight = height == null ? 25 : height;
 		this.widget = widget;
 		widget.getElement().getStyle().setProperty("height", minHeight + "px");

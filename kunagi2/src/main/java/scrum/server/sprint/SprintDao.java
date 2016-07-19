@@ -19,12 +19,15 @@ import ilarkesto.base.UtlExtend;
 import ilarkesto.core.scope.In;
 import ilarkesto.core.time.Date;
 import ilarkesto.fp.Predicate;
-
 import java.util.Arrays;
 import scrum.server.project.Project;
 import scrum.server.project.Requirement;
 import scrum.server.project.RequirementDao;
 
+/**
+ *
+ * @author erik
+ */
 public class SprintDao extends GSprintDao {
 
 	@In
@@ -33,7 +36,13 @@ public class SprintDao extends GSprintDao {
 	@In
 	private TaskDao taskDao;
 
-	public Sprint getSprintByNumber(final int number, final Project project) {
+    /**
+     *
+     * @param number
+     * @param project
+     * @return
+     */
+    public Sprint getSprintByNumber(final int number, final Project project) {
 		return getEntity(new Predicate<Sprint>() {
 
 			@Override
@@ -43,7 +52,11 @@ public class SprintDao extends GSprintDao {
 		});
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public Sprint newEntityInstance() {
 		Sprint sprint = super.newEntityInstance();
 		sprint.setLabel("New Sprint");
@@ -52,6 +65,12 @@ public class SprintDao extends GSprintDao {
 
 	// --- test data ---
 
+    /**
+     *
+     * @param project
+     * @return
+     */
+    
 	public Sprint createTestSprint(Project project) {
 		Date begin = Date.beforeDays(15);
 		Date end = Date.inDays(15);
@@ -61,7 +80,9 @@ public class SprintDao extends GSprintDao {
 		sprint.setLabel("Our first Sprint!");
 		sprint.setBegin(begin);
 		sprint.setEnd(end);
-		if (end.isPast()) sprint.setVelocity(20f);
+		if (end.isPast()) {
+                    sprint.setVelocity(20f);
+        }
 		saveEntity(sprint);
 
 		project.setCurrentSprint(sprint);
@@ -69,7 +90,13 @@ public class SprintDao extends GSprintDao {
 		return sprint;
 	}
 
-	public void createTestHistorySprint(Project project, Date begin, Date end) {
+    /**
+     *
+     * @param project
+     * @param begin
+     * @param end
+     */
+    public void createTestHistorySprint(Project project, Date begin, Date end) {
 		Sprint sprint = newEntityInstance();
 		sprint.setProject(project);
 		sprint.setLabel(StrExtend.generateRandomSentence());

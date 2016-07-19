@@ -37,11 +37,18 @@ public class MultiValidator implements Validator {
 
         private Collection validators = new ArrayList(3);
 
-        public MultiValidator() {
+    /**
+     *
+     */
+    public MultiValidator() {
         }
 
-
-	public MultiValidator(Validator v1, Validator v2) {
+    /**
+     *
+     * @param v1
+     * @param v2
+     */
+    public MultiValidator(Validator v1, Validator v2) {
                 add(v1);
                 add(v2);
         }
@@ -50,7 +57,13 @@ public class MultiValidator implements Validator {
                 validators.add(validator);
         }
 
-        @Override
+    /**
+     *
+     * @param text
+     * @return
+     * @throws ValidationException
+     */
+    @Override
         public String validate(String text) throws ValidationException {
                 for (Iterator iter = validators.iterator(); iter.hasNext();) {
                         Validator validator = (Validator) iter.next();

@@ -18,17 +18,30 @@ import scrum.server.admin.User;
 import scrum.server.collaboration.ChatMessage;
 import scrum.server.collaboration.ChatMessageDao;
 
+/**
+ *
+ * @author erik
+ */
 public class ProjectEvent extends GProjectEvent implements Comparable<ProjectEvent> {
 
     // --- dependencies ---
     private static ChatMessageDao chatMessageDao;
 
+    /**
+     *
+     * @param chatMessageDao
+     */
     public static void setChatMessageDao(ChatMessageDao chatMessageDao) {
         ProjectEvent.chatMessageDao = chatMessageDao;
     }
 
     // --- ---
-    public ChatMessage postChatMessage() {
+
+    /**
+     *
+     * @return
+     */
+        public ChatMessage postChatMessage() {
         return chatMessageDao.postChatMessage(getProject(), getLabel(), getDateAndTime());
     }
 
@@ -58,6 +71,11 @@ public class ProjectEvent extends GProjectEvent implements Comparable<ProjectEve
         return getProject().isVisibleFor(user);
     }
 
+    /**
+     *
+     * @param user
+     * @return
+     */
     public boolean isEditableBy(User user) {
         return false;
     }

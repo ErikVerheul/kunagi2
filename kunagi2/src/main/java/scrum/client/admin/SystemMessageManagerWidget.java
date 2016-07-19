@@ -14,6 +14,7 @@
  */
 package scrum.client.admin;
 
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.ButtonWidget;
 import ilarkesto.gwt.client.editor.DateAndTimeEditorWidget;
@@ -21,8 +22,6 @@ import ilarkesto.gwt.client.editor.TextEditorWidget;
 import scrum.client.common.AScrumWidget;
 import scrum.client.common.FieldsWidget;
 import scrum.client.workspace.PagePanel;
-
-import com.google.gwt.user.client.ui.Widget;
 
 public class SystemMessageManagerWidget extends AScrumWidget {
 

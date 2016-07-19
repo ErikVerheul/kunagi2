@@ -17,23 +17,50 @@ package ilarkesto.mda.legacy.model;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ *
+ * @author erik
+ */
 public class SetPropertyModel extends ACollectionPropertyModel {
 
-	public SetPropertyModel(BeanModel entityModel, String name, boolean reference, Class contentType) {
+    /**
+     *
+     * @param entityModel
+     * @param name
+     * @param reference
+     * @param contentType
+     */
+    public SetPropertyModel(BeanModel entityModel, String name, boolean reference, Class contentType) {
 		super(entityModel, name, reference, false, contentType);
 	}
 
-	public SetPropertyModel(BeanModel entityModel, String name, boolean reference, boolean valueObject,
+    /**
+     *
+     * @param entityModel
+     * @param name
+     * @param reference
+     * @param valueObject
+     * @param contentType
+     */
+    public SetPropertyModel(BeanModel entityModel, String name, boolean reference, boolean valueObject,
 			String contentType) {
 		super(entityModel, name, reference, valueObject, contentType);
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected Class getCollectionTypeClass() {
 		return Set.class;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected Class getCollectionImplClass() {
 		return HashSet.class;
 	}

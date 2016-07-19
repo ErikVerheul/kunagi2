@@ -18,27 +18,51 @@ import ilarkesto.core.time.Date;
 import scrum.server.admin.User;
 import scrum.server.common.BurndownSnapshot;
 
+/**
+ *
+ * @author erik
+ */
 public class ProjectSprintSnapshot extends GProjectSprintSnapshot implements Comparable<ProjectSprintSnapshot>,
         BurndownSnapshot {
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getBurnedWorkTotal() {
         return getBurnedWork();
     }
 
+    /**
+     *
+     */
     public void update() {
         // setRemainingWork(getProject().getRemainingWork());
         // setBurnedWork(getProject().getBurnedWork());
     }
 
+    /**
+     *
+     * @param project
+     * @return
+     */
     public boolean isProject(Project project) {
         return isSprintSet() && getSprint().isProject(project);
     }
 
+    /**
+     *
+     * @return
+     */
     public Project getProject() {
         return getSprint().getProject();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Date getDate() {
         if (getSprint() == null) {
@@ -68,6 +92,11 @@ public class ProjectSprintSnapshot extends GProjectSprintSnapshot implements Com
         return getProject().isVisibleFor(user);
     }
 
+    /**
+     *
+     * @param user
+     * @return
+     */
     public boolean isEditableBy(User user) {
         return false;
     }

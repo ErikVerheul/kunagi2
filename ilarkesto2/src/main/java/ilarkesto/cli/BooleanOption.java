@@ -15,15 +15,28 @@
 // Copyright (c) 2005 Witoslaw Koczewski, http://www.koczewski.de
 package ilarkesto.cli;
 
+/**
+ *
+ * @author erik
+ */
 public class BooleanOption extends AOption {
 
 	private boolean	set;
 
-	public BooleanOption(String name, String usageText) {
+    /**
+     *
+     * @param name
+     * @param usageText
+     */
+    public BooleanOption(String name, String usageText) {
 		super(name, usageText);
 	}
 
-        @Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getUsageSyntax() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("-");
@@ -31,12 +44,20 @@ public class BooleanOption extends AOption {
 		return sb.toString();
 	}
 
-        @Override
+    /**
+     *
+     * @param value
+     */
+    @Override
 	public void setValue(String value) {
 		set = true;
 	}
 
-	public boolean isSet() {
+    /**
+     *
+     * @return
+     */
+    public boolean isSet() {
 		return set;
 	}
 

@@ -23,26 +23,51 @@ import static ilarkesto.logging.Log.Level.WARN;
 import org.apache.velocity.runtime.RuntimeServices;
 import org.apache.velocity.runtime.log.LogChute;
 
+/**
+ *
+ * @author erik
+ */
 public class VelocityLogging implements LogChute {
 
 	private static final Log log = Log.get(VelocityLogging.class);
 
-	@Override
+    /**
+     *
+     * @param rs
+     * @throws Exception
+     */
+    @Override
 	public void init(RuntimeServices rs) throws Exception {
 		log.info("init", rs);
 	}
 
-	@Override
+    /**
+     *
+     * @param level
+     * @param message
+     */
+    @Override
 	public void log(int level, String message) {
 		log.log(mapLevel(level), message);
 	}
 
-	@Override
+    /**
+     *
+     * @param level
+     * @param message
+     * @param t
+     */
+    @Override
 	public void log(int level, String message, Throwable t) {
 		log.log(mapLevel(level), message, t);
 	}
 
-	@Override
+    /**
+     *
+     * @param level
+     * @return
+     */
+    @Override
 	public boolean isLevelEnabled(int level) {
 		if (level > DEBUG_ID) {
                         return true;

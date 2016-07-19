@@ -23,6 +23,10 @@ import com.google.gwt.user.datepicker.client.DatePicker;
 import ilarkesto.core.time.Date;
 import ilarkesto.gwt.client.AViewEditWidget;
 
+/**
+ *
+ * @author erik
+ */
 public class DateEditorWidget extends AViewEditWidget {
 
 	private ADateEditorModel model;
@@ -30,34 +34,55 @@ public class DateEditorWidget extends AViewEditWidget {
 	private DatePicker editor;
 	private FocusPanel editorWrapper;
 
-	public DateEditorWidget(ADateEditorModel model) {
+    /**
+     *
+     * @param model
+     */
+    public DateEditorWidget(ADateEditorModel model) {
 		super();
 		this.model = model;
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void onViewerUpdate() {
 		setViewerValue(model.getValue());
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void onEditorUpdate() {
 		setEditorValue(model.getValue());
 		editorWrapper.setFocus(true);
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void onEditorSubmit() {
 		model.changeValue(getEditorValue());
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected final Widget onViewerInitialization() {
 		viewer = new Label();
 		return viewer;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected final Widget onEditorInitialization() {
 		editor = new DatePicker();
 		editor.addValueChangeHandler(new DateChangeHandler());
@@ -70,11 +95,19 @@ public class DateEditorWidget extends AViewEditWidget {
 		return editorWrapper;
 	}
 
-	public final void setViewerValue(Date value) {
+    /**
+     *
+     * @param value
+     */
+    public final void setViewerValue(Date value) {
 		viewer.setText(value == null ? "." : value.toString());
 	}
 
-	public final void setEditorValue(Date value) {
+    /**
+     *
+     * @param value
+     */
+    public final void setEditorValue(Date value) {
 		java.util.Date javaDate = value == null ? null : value.toJavaDate();
 		editor.setValue(javaDate);
 		if (javaDate != null) {
@@ -82,22 +115,38 @@ public class DateEditorWidget extends AViewEditWidget {
                 }
 	}
 
-	public final Date getEditorValue() {
+    /**
+     *
+     * @return
+     */
+    public final Date getEditorValue() {
 		java.util.Date javaDate = editor.getValue();
 		return javaDate == null ? null : new Date(javaDate);
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public boolean isEditable() {
 		return model.isEditable();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getTooltip() {
 		return model.getTooltip();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getId() {
 		return model.getId();
 	}

@@ -44,6 +44,7 @@ public class Autowire {
 	 * <code>beanProvider</code> a <em>static</em> setter is called on the given class <code>clazz</code>.
 	 * 
 	 * @param objectStringMapper optional
+     * @param beanProvider
 	 * @return the given <code>clazz</code>
 	 */
 	public static <T> Class<T> autowireClass(Class<T> clazz, BeanProvider beanProvider,
@@ -80,6 +81,7 @@ public class Autowire {
 	 * <code>beanProvider</code> a setter is called on the given object <code>bean</code>.
 	 * 
 	 * @param objectStringMapper optional
+     * @param beanProvider
 	 * @return the given <code>bean</code>
 	 */
 	public static <T> T autowire(T bean, final BeanProvider beanProvider, final ObjectStringMapper objectStringMapper) {
@@ -211,6 +213,10 @@ public class Autowire {
 
 	// --- dependencies ---
 
+    /**
+     *
+     */
+    
 	public final static HashMap defaultTransformers = new HashMap();
 
 	static {
@@ -272,9 +278,17 @@ public class Autowire {
 		});
 	}
 
-	public interface ITransformer {
+    /**
+     *
+     */
+    public interface ITransformer {
 
-		public Object transform(Object input);
+        /**
+         *
+         * @param input
+         * @return
+         */
+        public Object transform(Object input);
 
 	}
 

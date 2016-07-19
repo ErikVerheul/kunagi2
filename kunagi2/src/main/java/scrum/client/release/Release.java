@@ -1,30 +1,15 @@
-/*
- * Copyright 2011 Witoslaw Koczewsi <wi@koczewski.de>, Artjom Kochtchi
- * 
- * This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero
- * General Public License as published by the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
- * implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public
- * License for more details.
- * 
- * You should have received a copy of the GNU General Public License along with this program. If not, see
- * <http://www.gnu.org/licenses/>.
- */
+
 package scrum.client.release;
 
-import scrum.client.release.GRelease;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.base.Utl;
 import ilarkesto.core.time.Date;
 import ilarkesto.gwt.client.HyperlinkWidget;
 import ilarkesto.gwt.client.editor.AFieldModel;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-
 import scrum.client.ScrumGwt;
 import scrum.client.collaboration.ForumSupport;
 import scrum.client.common.ReferenceSupport;
@@ -34,71 +19,128 @@ import scrum.client.project.Project;
 import scrum.client.project.Requirement;
 import scrum.client.sprint.Sprint;
 
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class Release extends GRelease implements ReferenceSupport, ForumSupport {
 
-	public static final String REFERENCE_PREFIX = "rel";
+    /**
+     *
+     */
+    public static final String REFERENCE_PREFIX = "rel";
 
-	public Release(Project project) {
+    /**
+     *
+     * @param project
+     */
+    public Release(Project project) {
 		setProject(project);
 	}
 
-	public Release(Map data) {
+    /**
+     *
+     * @param data
+     */
+    public Release(Map data) {
 		super(data);
 	}
 
-	public boolean isMajor() {
+    /**
+     *
+     * @return
+     */
+    public boolean isMajor() {
 		return !isBugfix();
 	}
 
-	public boolean isBugfix() {
+    /**
+     *
+     * @return
+     */
+    public boolean isBugfix() {
 		return isParentReleaseSet();
 	}
 
-	public List<Release> getBugfixReleases() {
+    /**
+     *
+     * @return
+     */
+    public List<Release> getBugfixReleases() {
 		return getDao().getReleasesByParentRelease(this);
 	}
 
-	public List<Issue> getAffectedByIssues() {
+    /**
+     *
+     * @return
+     */
+    public List<Issue> getAffectedByIssues() {
 		List<Issue> ret = new ArrayList<Issue>();
 		for (Issue issue : getDao().getIssues()) {
-			if (issue.getAffectedReleases().contains(this)) ret.add(issue);
+			if (issue.getAffectedReleases().contains(this)) {
+                            ret.add(issue);
+            }
 		}
 		return ret;
 	}
 
-	public List<Issue> getFixedIssues() {
+    /**
+     *
+     * @return
+     */
+    public List<Issue> getFixedIssues() {
 		List<Issue> ret = new ArrayList<Issue>();
 		for (Issue issue : getDao().getIssues()) {
-			if (issue.isClosed() && issue.containsFixRelease(this)) ret.add(issue);
+			if (issue.isClosed() && issue.containsFixRelease(this)) {
+                            ret.add(issue);
+            }
 		}
 		return ret;
 	}
 
-	public List<Issue> getPlannedIssues() {
+    /**
+     *
+     * @return
+     */
+    public List<Issue> getPlannedIssues() {
 		List<Issue> ret = new ArrayList<Issue>();
 		for (Issue issue : getDao().getIssues()) {
-			if (!issue.isClosed() && issue.getFixReleases().contains(this)) ret.add(issue);
+                    if (!issue.isClosed() && issue.getFixReleases().contains(this)) {
+                        ret.add(issue);
+            }
 		}
 		return ret;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getReference() {
 		return REFERENCE_PREFIX + getNumber();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public Widget createForumItemWidget() {
 		return new HyperlinkWidget(new ShowEntityAction(ReleaseManagementWidget.class, this, getLabel()));
 	}
 
-	public String createIzemizedReleaseNotes() {
+    /**
+     *
+     * @return
+     */
+    public String createIzemizedReleaseNotes() {
 		StringBuilder sb = new StringBuilder();
 
-		String releaseNotes = getReleaseNotes();
-		if (releaseNotes != null) sb.append(releaseNotes).append("\n\n");
+                String releaseNotes = getReleaseNotes();
+                if (releaseNotes != null) {
+                    sb.append(releaseNotes).append("\n\n");
+        }
 
 		// add Stories from all Sprints that are part of this Release
 		if (someSprintHasStories()) {
@@ -136,8 +178,10 @@ public class Release extends GRelease implements ReferenceSupport, ForumSupport 
 	}
 
 	private boolean someSprintHasStories() {
-		for (Sprint sprint : getSprints()) {
-			if (!sprint.getRequirements().isEmpty()) return true;
+            for (Sprint sprint : getSprints()) {
+			if (!sprint.getRequirements().isEmpty()) {
+                return true;
+            }
 		}
 		return false;
 	}
@@ -152,20 +196,32 @@ public class Release extends GRelease implements ReferenceSupport, ForumSupport 
 		return getReference() + " " + getLabel() + "-> " + isReleased();
 	}
 
-	public static final Comparator<Release> DATE_COMPARATOR = new Comparator<Release>() {
+    /**
+     *
+     */
+    public static final Comparator<Release> DATE_COMPARATOR = new Comparator<Release>() {
 
 		@Override
 		public int compare(Release ra, Release rb) {
-			Date a = ra.getReleaseDate();
-			Date b = rb.getReleaseDate();
-			if (a == null && b == null) return Utl.compare(ra.getLabel(), rb.getLabel());
-			if (a == null) return 1;
-			if (b == null) return -1;
+                    Date a = ra.getReleaseDate();
+                    Date b = rb.getReleaseDate();
+                    if (a == null && b == null) {
+                        return Utl.compare(ra.getLabel(), rb.getLabel());
+            }
+			if (a == null) {
+                return 1;
+            }
+			if (b == null) {
+                return -1;
+            }
 			return a.compareTo(b);
 		}
 	};
 
-	public static final Comparator<Release> DATE_REVERSE_COMPARATOR = new Comparator<Release>() {
+    /**
+     *
+     */
+    public static final Comparator<Release> DATE_REVERSE_COMPARATOR = new Comparator<Release>() {
 
 		@Override
 		public int compare(Release ra, Release rb) {
@@ -173,7 +229,11 @@ public class Release extends GRelease implements ReferenceSupport, ForumSupport 
 		}
 	};
 
-	public List<Requirement> getRequirements() {
+    /**
+     *
+     * @return
+     */
+    public List<Requirement> getRequirements() {
 		List<Requirement> ret = new ArrayList<Requirement>();
 		for (Sprint sprint : getSprints()) {
 			ret.addAll(sprint.getRequirements());
@@ -182,15 +242,21 @@ public class Release extends GRelease implements ReferenceSupport, ForumSupport 
 	}
 
 	private transient AFieldModel<String> parentReleaseLabelModel;
-
-	public AFieldModel<String> getParentReleaseLabelModel() {
-		if (parentReleaseLabelModel == null) parentReleaseLabelModel = new AFieldModel<String>() {
+        
+        /**
+         *
+         * @return
+         */
+        public AFieldModel<String> getParentReleaseLabelModel() {
+            if (parentReleaseLabelModel == null) {
+                parentReleaseLabelModel = new AFieldModel<String>() {
 
 			@Override
 			public String getValue() {
 				return isBugfix() ? "Bugfix for " + getParentRelease().getLabel() : "";
 			};
 		};
+        }
 		return parentReleaseLabelModel;
 	}
 

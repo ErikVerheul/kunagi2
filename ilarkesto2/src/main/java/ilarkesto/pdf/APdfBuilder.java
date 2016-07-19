@@ -14,15 +14,41 @@
  */
 package ilarkesto.pdf;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class APdfBuilder extends APdfContainerElement {
 
-	protected FontStyle defaultFontStyle;
-	protected float marginTop = 15f;
-	protected float marginBottom = 20f;
-	protected float marginLeft = 20f;
-	protected float marginRight = 20f;
+    /**
+     *
+     */
+    protected FontStyle defaultFontStyle;
 
-	public APdfBuilder() {
+    /**
+     *
+     */
+    protected float marginTop = 15f;
+
+    /**
+     *
+     */
+    protected float marginBottom = 20f;
+
+    /**
+     *
+     */
+    protected float marginLeft = 20f;
+
+    /**
+     *
+     */
+    protected float marginRight = 20f;
+
+    /**
+     *
+     */
+    public APdfBuilder() {
 		super(null);
 	}
 
@@ -30,44 +56,90 @@ public abstract class APdfBuilder extends APdfContainerElement {
 		LEFT, RIGHT, CENTER, JUSTIFIED
 	}
 
-	public abstract APdfBuilder newPage();
+    /**
+     *
+     * @return
+     */
+    public abstract APdfBuilder newPage();
 
-	public abstract boolean isNewPage();
+    /**
+     *
+     * @return
+     */
+    public abstract boolean isNewPage();
 
-	public APdfBuilder setDefaultFontStyle(FontStyle defaultFontStyle) {
+    /**
+     *
+     * @param defaultFontStyle
+     * @return
+     */
+    public APdfBuilder setDefaultFontStyle(FontStyle defaultFontStyle) {
 		this.defaultFontStyle = defaultFontStyle;
 		return this;
 	}
 
-	public FontStyle getDefaultFontStyle() {
+    /**
+     *
+     * @return
+     */
+    public FontStyle getDefaultFontStyle() {
 		return defaultFontStyle;
 	}
 
-	public APdfBuilder setMarginTop(float marginTop) {
+    /**
+     *
+     * @param marginTop
+     * @return
+     */
+    public APdfBuilder setMarginTop(float marginTop) {
 		this.marginTop = marginTop;
 		return this;
 	}
 
-	public APdfBuilder setMarginBottom(float marginBottom) {
+    /**
+     *
+     * @param marginBottom
+     * @return
+     */
+    public APdfBuilder setMarginBottom(float marginBottom) {
 		this.marginBottom = marginBottom;
 		return this;
 	}
 
-	public APdfBuilder setMarginLeft(float marginLeft) {
+    /**
+     *
+     * @param marginLeft
+     * @return
+     */
+    public APdfBuilder setMarginLeft(float marginLeft) {
 		this.marginLeft = marginLeft;
 		return this;
 	}
 
-	public APdfBuilder setMarginRight(float marginRight) {
+    /**
+     *
+     * @param marginRight
+     * @return
+     */
+    public APdfBuilder setMarginRight(float marginRight) {
 		this.marginRight = marginRight;
 		return this;
 	}
 
 	// --- helper ---
 
+    /**
+     *
+     */
+    
 	protected static final int dpi = 72;
 
-	public static float mmToPoints(double mm) {
+    /**
+     *
+     * @param mm
+     * @return
+     */
+    public static float mmToPoints(double mm) {
 		return (float) ((mm / 25.4f) * dpi);
 	}
 

@@ -16,9 +16,17 @@ package scrum.client.pr;
 
 import scrum.client.common.TooltipBuilder;
 
+/**
+ *
+ * @author erik
+ */
 public class DeleteBlogEntryAction extends GDeleteBlogEntryAction {
 
-	public DeleteBlogEntryAction(scrum.client.pr.BlogEntry blogEntry) {
+    /**
+     *
+     * @param blogEntry
+     */
+    public DeleteBlogEntryAction(scrum.client.pr.BlogEntry blogEntry) {
 		super(blogEntry);
 	}
 
@@ -27,22 +35,26 @@ public class DeleteBlogEntryAction extends GDeleteBlogEntryAction {
 		return "Delete";
 	}
 
-	@Override
+    /**
+     *
+     * @param tb
+     */
+    @Override
 	protected void updateTooltip(TooltipBuilder tb) {
 		tb.setText("Delete this Blog entry permanently.");
-		if (!getCurrentProject().isScrumTeamMember(getCurrentUser())) tb.addRemark(TooltipBuilder.NOT_SCRUMTEAM);
+		if (!getCurrentProject().isScrumTeamMember(getCurrentUser())) {
+                    tb.addRemark(TooltipBuilder.NOT_SCRUMTEAM);
+        }
 	}
 
 	@Override
 	public boolean isExecutable() {
-		if (blogEntry.isPublished()) return false;
-		return true;
+		return !blogEntry.isPublished();
 	}
 
 	@Override
 	public boolean isPermitted() {
-		if (!getCurrentProject().isScrumTeamMember(getCurrentUser())) return false;
-		return true;
+		return getCurrentProject().isScrumTeamMember(getCurrentUser());
 	}
 
 	@Override

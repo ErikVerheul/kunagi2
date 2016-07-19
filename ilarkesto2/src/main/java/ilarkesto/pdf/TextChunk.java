@@ -14,15 +14,28 @@
  */
 package ilarkesto.pdf;
 
+/**
+ *
+ * @author erik
+ */
 public class TextChunk extends AParagraphElement {
 
 	private StringBuilder text;
 
-	public TextChunk(APdfElement parent) {
+    /**
+     *
+     * @param parent
+     */
+    public TextChunk(APdfElement parent) {
 		super(parent);
 	}
 
-	public TextChunk text(Object s) {
+    /**
+     *
+     * @param s
+     * @return
+     */
+    public TextChunk text(Object s) {
 		if (s == null) {
                         return this;
                 }
@@ -33,7 +46,11 @@ public class TextChunk extends AParagraphElement {
 		return this;
 	}
 
-	public String getText() {
+    /**
+     *
+     * @return
+     */
+    public String getText() {
 		if (text == null) {
                         return null;
                 }
@@ -42,17 +59,30 @@ public class TextChunk extends AParagraphElement {
 
 	private FontStyle fontStyle = DEFAULT_FONT_STYLE;
 
-	public TextChunk setFontStyle(FontStyle fontStyle) {
+    /**
+     *
+     * @param fontStyle
+     * @return
+     */
+    public TextChunk setFontStyle(FontStyle fontStyle) {
 		this.fontStyle = fontStyle == null ? DEFAULT_FONT_STYLE : fontStyle;
 		return this;
 	}
 
-	public FontStyle getFontStyle() {
+    /**
+     *
+     * @return
+     */
+    public FontStyle getFontStyle() {
 		return fontStyle;
 	}
 
 	// --- dependencies ---
 
+    /**
+     *
+     */
+    
 	public static final FontStyle DEFAULT_FONT_STYLE = new FontStyle();
 
 }

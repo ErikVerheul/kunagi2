@@ -14,12 +14,11 @@
  */
 package scrum.client.sprint;
 
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.FloatingFlowPanel;
 import ilarkesto.gwt.client.Gwt;
 import scrum.client.common.AScrumWidget;
 import scrum.client.project.Requirement;
-
-import com.google.gwt.user.client.ui.Widget;
 
 public class RequirementWorkIndicatorBarWidget extends AScrumWidget {
 

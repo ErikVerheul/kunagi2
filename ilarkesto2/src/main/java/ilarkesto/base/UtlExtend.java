@@ -37,18 +37,32 @@ import java.util.Set;
  */
 public class UtlExtend extends ilarkesto.core.base.Utl {
 
-	public static void main(String[] args) {
+    /**
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
 		for (int i = 0; i < 100; i++) {
 			out.println(randomInt(3, 5));
 		}
 	}
 
-	public static String getFirstNonDefaultElementAsString(StackTraceElement[] elements) {
+    /**
+     *
+     * @param elements
+     * @return
+     */
+    public static String getFirstNonDefaultElementAsString(StackTraceElement[] elements) {
 		StackTraceElement element = getFirstNonDefaultElement(elements);
 		return element == null ? null : element.getClassName() + "." + element.getMethodName();
 	}
 
-	public static StackTraceElement getFirstNonDefaultElement(StackTraceElement[] elements) {
+    /**
+     *
+     * @param elements
+     * @return
+     */
+    public static StackTraceElement getFirstNonDefaultElement(StackTraceElement[] elements) {
 		if (elements == null || elements.length == 0) {
                         return null;
                 }
@@ -65,7 +79,13 @@ public class UtlExtend extends ilarkesto.core.base.Utl {
 		return elements[elements.length - 1];
 	}
 
-	public static String formatStackTrace(StackTraceElement[] elements, String separator) {
+    /**
+     *
+     * @param elements
+     * @param separator
+     * @return
+     */
+    public static String formatStackTrace(StackTraceElement[] elements, String separator) {
 		StringBuilder sb = new StringBuilder();
 		boolean first = true;
 		int len = elements.length;
@@ -85,11 +105,20 @@ public class UtlExtend extends ilarkesto.core.base.Utl {
 		return sb.toString();
 	}
 
-	public static Set<Thread> getAllThreads() {
+    /**
+     *
+     * @return
+     */
+    public static Set<Thread> getAllThreads() {
 		return getAllStackTraces().keySet();
 	}
 
-	public static File getFirstExistingFile(String... paths) {
+    /**
+     *
+     * @param paths
+     * @return
+     */
+    public static File getFirstExistingFile(String... paths) {
 		for (String path : paths) {
 			File file = new File(path);
 			if (file.exists()) {
@@ -99,7 +128,14 @@ public class UtlExtend extends ilarkesto.core.base.Utl {
 		return null;
 	}
 
-	public static <T> T getElement(Collection<T> collection, int index) {
+    /**
+     *
+     * @param <T>
+     * @param collection
+     * @param index
+     * @return
+     */
+    public static <T> T getElement(Collection<T> collection, int index) {
 		int i = 0;
 		for (T t : collection) {
 			if (i == index) {
@@ -110,18 +146,33 @@ public class UtlExtend extends ilarkesto.core.base.Utl {
 		return null;
 	}
 
-	public static Color parseHtmlColor(String color) {
+    /**
+     *
+     * @param color
+     * @return
+     */
+    public static Color parseHtmlColor(String color) {
 		return new Color(parseHex(color.substring(1)));
 	}
 
-	public static Exception getRootCause(Exception ex) {
+    /**
+     *
+     * @param ex
+     * @return
+     */
+    public static Exception getRootCause(Exception ex) {
 		Throwable cause = ex.getCause();
 		return cause == null ? ex : getRootCause((Exception) cause);
 	}
 
 	private static final Random random = new Random(currentTimeMillis());
 
-	public static boolean isEmpty(String s) {
+    /**
+     *
+     * @param s
+     * @return
+     */
+    public static boolean isEmpty(String s) {
 		if (s == null) {
                         return true;
                 }
@@ -131,7 +182,15 @@ public class UtlExtend extends ilarkesto.core.base.Utl {
 		return s.trim().length() == 0;
 	}
 
-	public static <K, V> Map<K, V> subMap(Map<K, V> source, K... keys) {
+    /**
+     *
+     * @param <K>
+     * @param <V>
+     * @param source
+     * @param keys
+     * @return
+     */
+    public static <K, V> Map<K, V> subMap(Map<K, V> source, K... keys) {
 		Map<K, V> ret = new HashMap<>();
 		for (K key : keys) {
                         ret.put(key, source.get(key));
@@ -139,11 +198,21 @@ public class UtlExtend extends ilarkesto.core.base.Utl {
 		return ret;
 	}
 
-	public static String toStringWithType(Object o) {
+    /**
+     *
+     * @param o
+     * @return
+     */
+    public static String toStringWithType(Object o) {
 		return o == null ? "?: null" : o.getClass().getSimpleName() + ": " + toString(o);
 	}
 
-	public static String toString(Object o) {
+    /**
+     *
+     * @param o
+     * @return
+     */
+    public static String toString(Object o) {
 		if (o == null) {
                         return null;
                 }
@@ -154,46 +223,94 @@ public class UtlExtend extends ilarkesto.core.base.Utl {
 		}
 	}
 
-	public static String randomElement(String... elements) {
+    /**
+     *
+     * @param elements
+     * @return
+     */
+    public static String randomElement(String... elements) {
 		return elements[random.nextInt(elements.length)];
 	}
 
-	public static <T> T randomElement(List<T> elements) {
+    /**
+     *
+     * @param <T>
+     * @param elements
+     * @return
+     */
+    public static <T> T randomElement(List<T> elements) {
 		return elements.get(random.nextInt(elements.size()));
 	}
 
-	public static boolean randomBoolean() {
+    /**
+     *
+     * @return
+     */
+    public static boolean randomBoolean() {
 		return random.nextBoolean();
 	}
 
-	public static int randomInt(int min, int max) {
+    /**
+     *
+     * @param min
+     * @param max
+     * @return
+     */
+    public static int randomInt(int min, int max) {
 		return random.nextInt(max - min + 1) + min;
 	}
 
-	public static char randomChar(String charSet) {
+    /**
+     *
+     * @param charSet
+     * @return
+     */
+    public static char randomChar(String charSet) {
 		int index = randomInt(0, charSet.length() - 1);
 		return charSet.charAt(index);
 	}
 
-	public static File[] toFileArray(Collection<File> elements) {
+    /**
+     *
+     * @param elements
+     * @return
+     */
+    public static File[] toFileArray(Collection<File> elements) {
 		File[] ret = new File[elements.size()];
 		arraycopy(elements.toArray(), 0, ret, 0, ret.length);
 		return ret;
 	}
 
-	public static String[] toStringArray(Collection<String> elements) {
+    /**
+     *
+     * @param elements
+     * @return
+     */
+    public static String[] toStringArray(Collection<String> elements) {
 		String[] ret = new String[elements.size()];
 		arraycopy(elements.toArray(), 0, ret, 0, ret.length);
 		return ret;
 	}
 
-	public static <E> Set<E> toSet(E... elements) {
+    /**
+     *
+     * @param <E>
+     * @param elements
+     * @return
+     */
+    public static <E> Set<E> toSet(E... elements) {
 		Set<E> ret = new HashSet<>(elements.length);
                 ret.addAll(asList(elements));
 		return ret;
 	}
 
-	public static <T> List<T> toList(Enumeration<T> enumeration) {
+    /**
+     *
+     * @param <T>
+     * @param enumeration
+     * @return
+     */
+    public static <T> List<T> toList(Enumeration<T> enumeration) {
 		List<T> ret = new ArrayList<>();
 		while (enumeration.hasMoreElements()) {
 			ret.add(enumeration.nextElement());
@@ -201,7 +318,15 @@ public class UtlExtend extends ilarkesto.core.base.Utl {
 		return ret;
 	}
 
-	public static <T> List<T> getHighest(Collection<T> collection, int count, Comparator<T> comparator) {
+    /**
+     *
+     * @param <T>
+     * @param collection
+     * @param count
+     * @param comparator
+     * @return
+     */
+    public static <T> List<T> getHighest(Collection<T> collection, int count, Comparator<T> comparator) {
 		// TODO performance optimization: sort not necessary
 		List<T> list = sort(collection, comparator);
 		List<T> result = new ArrayList<>(count);
@@ -211,7 +336,11 @@ public class UtlExtend extends ilarkesto.core.base.Utl {
 		return result;
 	}
 
-	public static void sleep(long millis) {
+    /**
+     *
+     * @param millis
+     */
+    public static void sleep(long millis) {
 		try {
 			Thread.sleep(millis);
 		} catch (InterruptedException ex) {

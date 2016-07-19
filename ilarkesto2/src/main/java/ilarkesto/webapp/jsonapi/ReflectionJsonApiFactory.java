@@ -14,9 +14,7 @@
  */
 package ilarkesto.webapp.jsonapi;
 
-import ilarkesto.base.Reflect;
 import static ilarkesto.base.Reflect.newInstance;
-import ilarkesto.base.StrExtend;
 import static ilarkesto.base.StrExtend.uppercaseFirstLetter;
 import ilarkesto.webapp.AWebApplication;
 import ilarkesto.webapp.AWebSession;

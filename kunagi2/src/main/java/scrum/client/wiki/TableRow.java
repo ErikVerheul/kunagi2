@@ -17,6 +17,10 @@ package scrum.client.wiki;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class TableRow extends AWikiElement {
 
 	private final List<TableCell> cells = new ArrayList<TableCell>();
@@ -34,11 +38,19 @@ public class TableRow extends AWikiElement {
 		return sb.toString();
 	}
 
-	public void addCell(TableCell cell) {
+    /**
+     *
+     * @param cell
+     */
+    public void addCell(TableCell cell) {
 		cells.add(cell);
 	}
 
-	public List<TableCell> getCells() {
+    /**
+     *
+     * @return
+     */
+    public List<TableCell> getCells() {
 		return cells;
 	}
 

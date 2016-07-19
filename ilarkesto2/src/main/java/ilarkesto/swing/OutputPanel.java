@@ -14,7 +14,6 @@
  */
 package ilarkesto.swing;
 
-import ilarkesto.base.StrExtend;
 import static ilarkesto.base.StrExtend.replaceForHtml;
 import static ilarkesto.swing.Swing.invokeInEventDispatchThreadLater;
 import static ilarkesto.swing.Swing.showInJFrame;

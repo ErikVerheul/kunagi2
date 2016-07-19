@@ -16,6 +16,10 @@ package ilarkesto.io;
 
 import java.io.OutputStream;
 
+/**
+ *
+ * @author erik
+ */
 public class StringOutputStream extends OutputStream {
 
 	private StringBuilder sb = new StringBuilder();

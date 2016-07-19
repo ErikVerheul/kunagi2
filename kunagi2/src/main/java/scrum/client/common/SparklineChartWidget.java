@@ -14,15 +14,17 @@
  */
 package scrum.client.common;
 
-import ilarkesto.gwt.client.AWidget;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Widget;
+import ilarkesto.gwt.client.AWidget;
+import java.util.ArrayList;
+import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class SparklineChartWidget extends AWidget {
 
 	private int height;
@@ -31,13 +33,23 @@ public class SparklineChartWidget extends AWidget {
 	private String barColor = "darkgray";
 	private float heightFactor;
 
-	public SparklineChartWidget(int height, int barWidth) {
+    /**
+     *
+     * @param height
+     * @param barWidth
+     */
+    public SparklineChartWidget(int height, int barWidth) {
 		super();
 		this.height = height;
 		this.barWidth = barWidth;
 	}
 
-	public void addItem(float value, String text) {
+    /**
+     *
+     * @param value
+     * @param text
+     */
+    public void addItem(float value, String text) {
 		items.add(new Item(value, text));
 	}
 
@@ -70,17 +82,27 @@ public class SparklineChartWidget extends AWidget {
 	private float computeFactor() {
 		float max = 0;
 		for (Item item : items) {
-			if (item.value > max) max = item.value;
+			if (item.value > max) {
+                            max = item.value;
+            }
 		}
 		return height / max;
 	}
 
-	public static class Item {
+    /**
+     *
+     */
+    public static class Item {
 
 		private float value;
 		private String text;
 
-		public Item(float value, String text) {
+        /**
+         *
+         * @param value
+         * @param text
+         */
+        public Item(float value, String text) {
 			super();
 			this.value = value;
 			this.text = text;

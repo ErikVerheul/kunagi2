@@ -16,13 +16,24 @@ package ilarkesto.auth;
 
 import ilarkesto.base.PermissionDeniedException;
 
+/**
+ *
+ * @author erik
+ */
 public class AuthenticationFailedException extends PermissionDeniedException {
 
-	public AuthenticationFailedException(String message) {
+    /**
+     *
+     * @param message
+     */
+    public AuthenticationFailedException(String message) {
 		super(message);
 	}
 
-	public AuthenticationFailedException() {
+    /**
+     *
+     */
+    public AuthenticationFailedException() {
 		super("Authentication failed.");
 	}
 

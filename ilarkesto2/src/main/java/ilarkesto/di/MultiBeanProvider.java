@@ -33,7 +33,11 @@ public final class MultiBeanProvider extends ABeanProvider {
 	private final Set<BeanProvider> beanProviders = new HashSet<>();
 	private final Map<String, BeanProvider> beanToBeanProvider = new HashMap<>();
 
-	public synchronized void addBeanProvider(Object object) {
+    /**
+     *
+     * @param object
+     */
+    public synchronized void addBeanProvider(Object object) {
 		if (object == null) {
                         throw new IllegalArgumentException("object == null");
                 }

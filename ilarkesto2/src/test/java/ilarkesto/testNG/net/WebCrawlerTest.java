@@ -19,9 +19,17 @@ import ilarkesto.testng.ATest;
 import java.io.File;
 import org.testng.annotations.Test;
 
+/**
+ *
+ * @author erik
+ */
 public class WebCrawlerTest extends ATest {
 
-	public static void main(String[] args) {
+    /**
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
 		WebCrawler wc = new WebCrawler();
 		// wc.setDefaultEncoding("iso-8859-2");
 		wc.setFilter(new WebCrawler.Filter() {
@@ -38,7 +46,10 @@ public class WebCrawlerTest extends ATest {
 
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void normalizeUrl() {
 		assertEquals(WebCrawler.normalizeUrl("http://koczewski.de/#a"), "http://koczewski.de/");
 		assertEquals(WebCrawler.normalizeUrl("http://koczewski.de/./index.html"), "http://koczewski.de/index.html");
@@ -46,7 +57,10 @@ public class WebCrawlerTest extends ATest {
 			"http://koczewski.de/index.html");
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void getBaseUrl() {
 		assertEquals("http://koczewski.de/", WebCrawler.getBaseUrl("http://koczewski.de"));
 		assertEquals("http://koczewski.de/", WebCrawler.getBaseUrl("http://koczewski.de/"));
@@ -54,7 +68,10 @@ public class WebCrawlerTest extends ATest {
 		assertEquals("http://koczewski.de/", WebCrawler.getBaseUrl("http://koczewski.de/start"));
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void isProbablyHtml() {
 		assertTrue(WebCrawler.isProbablyHtml("http://koczewski.de"));
 		assertTrue(WebCrawler.isProbablyHtml("http://koczewski.de/"));
@@ -64,13 +81,19 @@ public class WebCrawlerTest extends ATest {
 		assertFalse(WebCrawler.isProbablyHtml("http://koczewski.de/image.png"));
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void crawl() {
 		WebCrawler wc = new WebCrawler();
 		wc.crawl(new File("etc/WebCrawler.html").toURI().toString());
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void download() {
 		WebCrawler.download("http://servisto.de", OUTPUT_DIR + "/webcrawler");
 	}

@@ -14,8 +14,15 @@
  */
 package ilarkesto;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class Servers {
 
-	public static final String SERVISTO = "servisto.de";
+    /**
+     *
+     */
+    public static final String SERVISTO = "servisto.de";
 
 }

@@ -14,17 +14,14 @@
  */
 package scrum.client.workspace;
 
-import scrum.client.workspace.GDndManager;
+import com.google.gwt.user.client.ui.Widget;
 import java.util.HashMap;
 import java.util.Map;
-
 import scrum.client.common.ABlockWidget;
 import scrum.client.common.BlockListWidget;
 import scrum.client.dnd.BlockDropController;
 import scrum.client.dnd.BlockListDropController;
 import scrum.client.dnd.ScrumDragController;
-
-import com.google.gwt.user.client.ui.Widget;
 
 public class DndManager extends GDndManager {
 

@@ -14,7 +14,6 @@
  */
 package ilarkesto.core.time;
 
-import ilarkesto.core.base.Utl;
 import static ilarkesto.core.base.Utl.getLanguage;
 import static ilarkesto.core.time.Tm.DAY;
 import static ilarkesto.core.time.Tm.HOUR;
@@ -25,8 +24,6 @@ import static ilarkesto.core.time.Tm.WEEK;
 import static ilarkesto.core.time.Tm.YEAR;
 import static ilarkesto.core.time.Tm.getLocalizer;
 import java.io.Serializable;
-import static java.lang.Long.parseLong;
-import static java.lang.Long.parseLong;
 import static java.lang.Long.parseLong;
 import static java.lang.String.valueOf;
 

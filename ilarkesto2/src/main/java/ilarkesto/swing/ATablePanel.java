@@ -26,6 +26,11 @@ import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+/**
+ *
+ * @author erik
+ * @param <T>
+ */
 public abstract class ATablePanel<T> extends JPanel {
 
 	private Model model;
@@ -33,7 +38,11 @@ public abstract class ATablePanel<T> extends JPanel {
 	private DefaultListSelectionModel selectionModel;
 	private JScrollPane scroller;
 
-	public ATablePanel(String... columnNames) {
+    /**
+     *
+     * @param columnNames
+     */
+    public ATablePanel(String... columnNames) {
 
 		model = new Model(columnNames);
 
@@ -49,29 +58,61 @@ public abstract class ATablePanel<T> extends JPanel {
 		add(scroller, CENTER);
 	}
 
-	protected abstract List<T> loadItems();
+    /**
+     *
+     * @return
+     */
+    protected abstract List<T> loadItems();
 
-	protected abstract Object getValueAt(int column, T item);
+    /**
+     *
+     * @param column
+     * @param item
+     * @return
+     */
+    protected abstract Object getValueAt(int column, T item);
 
-	protected abstract void onSelectionChanged();
+    /**
+     *
+     */
+    protected abstract void onSelectionChanged();
 
-	public void update() {
+    /**
+     *
+     */
+    public void update() {
 		setItems(loadItems());
 	}
 
-	public boolean isItemSelected() {
+    /**
+     *
+     * @return
+     */
+    public boolean isItemSelected() {
 		return !selectionModel.isSelectionEmpty();
 	}
 
-	public boolean isSelectionEmpty() {
+    /**
+     *
+     * @return
+     */
+    public boolean isSelectionEmpty() {
 		return selectionModel.isSelectionEmpty();
 	}
 
-	public int getSelectedItemsCount() {
+    /**
+     *
+     * @return
+     */
+    public int getSelectedItemsCount() {
 		return table.getSelectedRowCount();
 	}
 
-	public List<T> getSelectedItems() {
+    /**
+     *
+     * @return
+     */
+    public List<T> getSelectedItems() {
 		List<T> items = model.getItems();
 		int[] selectedRows = table.getSelectedRows();
 		List<T> ret = new ArrayList<>(selectedRows.length);
@@ -82,7 +123,11 @@ public abstract class ATablePanel<T> extends JPanel {
 		return ret;
 	}
 
-	public void setSelectedItems(Collection<T> itemsToSelect) {
+    /**
+     *
+     * @param itemsToSelect
+     */
+    public void setSelectedItems(Collection<T> itemsToSelect) {
 		selectionModel.clearSelection();
 		List<T> items = model.getItems();
 		for (T item : itemsToSelect) {
@@ -94,23 +139,43 @@ public abstract class ATablePanel<T> extends JPanel {
 		}
 	}
 
-	public List<T> getItems() {
+    /**
+     *
+     * @return
+     */
+    public List<T> getItems() {
 		return model.getItems();
 	}
 
-	public void setItems(List<T> items) {
+    /**
+     *
+     * @param items
+     */
+    public void setItems(List<T> items) {
 		model.setItems(items);
 	}
 
-	public JTable getTable() {
+    /**
+     *
+     * @return
+     */
+    public JTable getTable() {
 		return table;
 	}
 
-	public JScrollPane getScroller() {
+    /**
+     *
+     * @return
+     */
+    public JScrollPane getScroller() {
 		return scroller;
 	}
 
-	public ATableModel<T> getModel() {
+    /**
+     *
+     * @return
+     */
+    public ATableModel<T> getModel() {
 		return model;
 	}
 

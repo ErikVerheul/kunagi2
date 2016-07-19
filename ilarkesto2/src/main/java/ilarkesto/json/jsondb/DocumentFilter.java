@@ -16,8 +16,17 @@ package ilarkesto.json.jsondb;
 
 import ilarkesto.json.JsonObject;
 
+/**
+ *
+ * @author erik
+ */
 public interface DocumentFilter {
 
-	boolean matches(JsonObject document);
+    /**
+     *
+     * @param document
+     * @return
+     */
+    boolean matches(JsonObject document);
 
 }

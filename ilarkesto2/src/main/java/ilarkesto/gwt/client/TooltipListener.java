@@ -17,7 +17,6 @@ package ilarkesto.gwt.client;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.MouseListenerAdapter;
 import com.google.gwt.user.client.ui.Widget;
-import ilarkesto.core.base.Str;
 import static ilarkesto.core.base.Str.isBlank;
 
 public class TooltipListener extends MouseListenerAdapter {

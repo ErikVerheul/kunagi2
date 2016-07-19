@@ -24,17 +24,30 @@ import java.util.Arrays;
 import static java.util.Arrays.asList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class GwtComponentsReflectorGenerator extends AJavaClassGenerator implements NodeTypes {
 
 	private final Node gwtModule;
 	private final List<Node> components = new ArrayList<>();
 
-	public GwtComponentsReflectorGenerator(String srcPath, Node gwtModule) {
+    /**
+     *
+     * @param srcPath
+     * @param gwtModule
+     */
+    public GwtComponentsReflectorGenerator(String srcPath, Node gwtModule) {
 		super(srcPath, true);
 		this.gwtModule = gwtModule;
 	}
 
-	@Override
+    /**
+     *
+     * @param out
+     */
+    @Override
 	protected void printCode(JavaPrinter out) {
 		out.package_(getBasePackageName());
 		out.beginClass(getClassName(), null, Arrays.asList(ComponentReflector.class.getName()));
@@ -107,7 +120,11 @@ public class GwtComponentsReflectorGenerator extends AJavaClassGenerator impleme
 		return gwtModule.getValue().toLowerCase() + ".client";
 	}
 
-	public void addComponent(Node component) {
+    /**
+     *
+     * @param component
+     */
+    public void addComponent(Node component) {
 		components.add(component);
 	}
 

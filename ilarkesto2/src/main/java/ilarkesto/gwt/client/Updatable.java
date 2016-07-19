@@ -14,8 +14,16 @@
  */
 package ilarkesto.gwt.client;
 
+/**
+ *
+ * @author erik
+ */
 public interface Updatable {
 
-	Updatable update();
+    /**
+     *
+     * @return
+     */
+    Updatable update();
 
 }

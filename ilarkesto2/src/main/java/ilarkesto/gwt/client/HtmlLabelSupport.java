@@ -14,8 +14,16 @@
  */
 package ilarkesto.gwt.client;
 
+/**
+ *
+ * @author erik
+ */
 public interface HtmlLabelSupport {
 
-	String getHtmlLabel();
+    /**
+     *
+     * @return
+     */
+    String getHtmlLabel();
 
 }

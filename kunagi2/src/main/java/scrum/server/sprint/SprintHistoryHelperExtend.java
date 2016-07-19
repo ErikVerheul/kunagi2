@@ -17,9 +17,18 @@ package scrum.server.sprint;
 import java.util.Collection;
 import scrum.server.project.Requirement;
 
+/**
+ *
+ * @author erik
+ */
 public class SprintHistoryHelperExtend extends scrum.client.sprint.SprintHistoryHelper {
 
-	public static String encodeRequirementsAndTasks(Collection<Requirement> requirements) {
+    /**
+     *
+     * @param requirements
+     * @return
+     */
+    public static String encodeRequirementsAndTasks(Collection<Requirement> requirements) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(PREFIX).append(VERSION).append("\n");
 		for (Requirement req : requirements) {

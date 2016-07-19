@@ -14,7 +14,6 @@
  */
 package scrum.server.pr;
 
-import scrum.server.pr.GBlogEntry;
 import ilarkesto.base.UtlExtend;
 import ilarkesto.core.time.DateAndTime;
 import scrum.client.common.LabelSupport;

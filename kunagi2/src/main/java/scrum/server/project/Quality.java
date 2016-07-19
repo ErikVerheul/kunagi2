@@ -20,17 +20,32 @@ import scrum.client.common.ReferenceSupport;
 import scrum.server.admin.User;
 import scrum.server.common.Numbered;
 
+/**
+ *
+ * @author erik
+ */
 public class Quality extends GQuality implements Numbered, ReferenceSupport, LabelSupport, Comparable<Quality> {
 
+    /**
+     *
+     * @return
+     */
     public String getReferenceAndLabel() {
         return getReference() + " " + getLabel();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getReference() {
         return scrum.client.project.Quality.REFERENCE_PREFIX + getNumber();
     }
 
+    /**
+     *
+     */
     @Override
     public void updateNumber() {
         if (getNumber() == 0) {
@@ -43,6 +58,11 @@ public class Quality extends GQuality implements Numbered, ReferenceSupport, Lab
         return getProject().isVisibleFor(user);
     }
 
+    /**
+     *
+     * @param user
+     * @return
+     */
     public boolean isEditableBy(User user) {
         return getProject().isEditableBy(user);
     }

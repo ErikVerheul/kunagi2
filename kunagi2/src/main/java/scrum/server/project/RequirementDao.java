@@ -17,16 +17,30 @@ package scrum.server.project;
 import ilarkesto.fp.Predicate;
 import scrum.server.issues.Issue;
 
+/**
+ *
+ * @author erik
+ */
 public class RequirementDao extends GRequirementDao {
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public Requirement newEntityInstance() {
 		Requirement requirement = super.newEntityInstance();
 		requirement.setLabel("New Story");
 		return requirement;
 	}
 
-	public Requirement getRequirementByNumber(final int number, final Project project) {
+    /**
+     *
+     * @param number
+     * @param project
+     * @return
+     */
+    public Requirement getRequirementByNumber(final int number, final Project project) {
 		return getEntity(new Predicate<Requirement>() {
 
 			@Override
@@ -38,6 +52,14 @@ public class RequirementDao extends GRequirementDao {
 
 	// --- test data ---
 
+    /**
+     *
+     * @param project
+     * @param label
+     * @param estimation
+     * @return
+     */
+    
 	public Requirement postRequirement(Project project, String label, Float estimation) {
 		Requirement requirement = newEntityInstance();
 		requirement.setProject(project);
@@ -48,7 +70,12 @@ public class RequirementDao extends GRequirementDao {
 		return requirement;
 	}
 
-	public Requirement postRequirement(Issue issue) {
+    /**
+     *
+     * @param issue
+     * @return
+     */
+    public Requirement postRequirement(Issue issue) {
 		Requirement requirement = newEntityInstance();
 		requirement.setProject(issue.getProject());
 		requirement.setLabel(issue.getLabel());

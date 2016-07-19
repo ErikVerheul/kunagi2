@@ -19,20 +19,38 @@ import java.util.Collection;
 import java.util.Map;
 import org.apache.commons.fileupload.FileItem;
 
+/**
+ *
+ * @author erik
+ */
 public class TimeFormField extends AFormField {
 
 	private String value;
 
-	public TimeFormField(String name) {
+    /**
+     *
+     * @param name
+     */
+    public TimeFormField(String name) {
 		super(name);
 	}
 
-	public TimeFormField setValue(Time value) {
+    /**
+     *
+     * @param value
+     * @return
+     */
+    public TimeFormField setValue(Time value) {
 		this.value = value == null ? null : value.toString();
 		return this;
 	}
 
-        @Override
+    /**
+     *
+     * @param data
+     * @param uploadedFiles
+     */
+    @Override
 	public void update(Map<String, String> data, Collection<FileItem> uploadedFiles) {
 		String newValue = prepareValue(data.get(getName()));
 		if (value == null ? newValue == null : value.equals(newValue)) {
@@ -58,7 +76,11 @@ public class TimeFormField extends AFormField {
 		}
 	}
 
-        @Override
+    /**
+     *
+     * @throws ValidationException
+     */
+    @Override
 	public void validate() throws ValidationException {
 		if (value == null) {
 			if (isRequired()) { throw new ValidationException("Eingabe erforderlich"); }
@@ -72,12 +94,20 @@ public class TimeFormField extends AFormField {
 
 	}
 
-        @Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getValueAsString() {
 		return value;
 	}
 
-	public Time getValueAsTime() {
+    /**
+     *
+     * @return
+     */
+    public Time getValueAsTime() {
 		return value == null ? null : new Time(value);
 	}
 

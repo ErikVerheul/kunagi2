@@ -26,6 +26,10 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public final class CsvParser {
 
 	private boolean isSeperator(int c) {
@@ -36,7 +40,11 @@ public final class CsvParser {
 		return c == 13 || c == 10 || c == -1;
 	}
 
-	public List<String> nextRecord() {
+    /**
+     *
+     * @return
+     */
+    public List<String> nextRecord() {
 		List<String> result = new ArrayList<>();
 		int c = readNextChar();
 		if (c == -1) {
@@ -204,11 +212,18 @@ public final class CsvParser {
 		}
 	}
 
-	public void skipLine() {
+    /**
+     *
+     */
+    public void skipLine() {
 		skipLines(1);
 	}
 
-	public void skipLines(int count) {
+    /**
+     *
+     * @param count
+     */
+    public void skipLines(int count) {
 		for (int i = 0; i < count; i++) {
 			try {
 				in.readLine();
@@ -222,13 +237,25 @@ public final class CsvParser {
                 //TODO ?
 	}
 
-	public static class ParseException extends RuntimeException {
+    /**
+     *
+     */
+    public static class ParseException extends RuntimeException {
 
-		public ParseException(String message, Exception cause) {
+        /**
+         *
+         * @param message
+         * @param cause
+         */
+        public ParseException(String message, Exception cause) {
 			super(message, cause);
 		}
 
-		public ParseException(String message) {
+        /**
+         *
+         * @param message
+         */
+        public ParseException(String message) {
 			super(message);
 		}
 	}
@@ -238,19 +265,36 @@ public final class CsvParser {
 	private boolean quoted;
 	private BufferedReader in;
 
-	public CsvParser(Reader in, boolean quoted) {
+    /**
+     *
+     * @param in
+     * @param quoted
+     */
+    public CsvParser(Reader in, boolean quoted) {
 		this.in = new BufferedReader(in);
 		this.quoted = quoted;
 	}
 
-	public CsvParser(File file, String encoding, boolean quoted) throws FileNotFoundException,
+    /**
+     *
+     * @param file
+     * @param encoding
+     * @param quoted
+     * @throws FileNotFoundException
+     * @throws UnsupportedEncodingException
+     */
+    public CsvParser(File file, String encoding, boolean quoted) throws FileNotFoundException,
 			UnsupportedEncodingException {
 		this(new InputStreamReader(new FileInputStream(file), encoding), quoted);
 	}
 
 	private char separator = ',';
 
-	public void setSeparator(char separator) {
+    /**
+     *
+     * @param separator
+     */
+    public void setSeparator(char separator) {
 		this.separator = separator;
 	}
 

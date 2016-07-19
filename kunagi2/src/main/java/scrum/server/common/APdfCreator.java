@@ -15,8 +15,8 @@
 package scrum.server.common;
 
 import com.itextpdf.text.BaseColor;
-import ilarkesto.base.TmExtend;
 import ilarkesto.base.StrExtend;
+import ilarkesto.base.TmExtend;
 import ilarkesto.core.time.Date;
 import ilarkesto.pdf.ACell;
 import ilarkesto.pdf.AParagraph;
@@ -35,25 +35,79 @@ import scrum.server.release.Release;
 import scrum.server.sprint.Sprint;
 import scrum.server.sprint.Task;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class APdfCreator {
 
-	protected FontStyle defaultFont;
-	protected FontStyle smallerFont;
-	protected FontStyle tableHeaderFont;
-	protected FontStyle codeFont;
-	protected FontStyle referenceFont;
-	protected FontStyle fieldLabelFont;
-	protected FontStyle miniLabelFont;
-	protected FontStyle[] headerFonts = new FontStyle[4];
-	protected BaseColor tableHeaderBackground = BaseColor.LIGHT_GRAY;
+    /**
+     *
+     */
+    protected FontStyle defaultFont;
 
-	protected Project project;
+    /**
+     *
+     */
+    protected FontStyle smallerFont;
 
-	protected abstract void build(APdfContainerElement pdf);
+    /**
+     *
+     */
+    protected FontStyle tableHeaderFont;
 
-	protected abstract String getFilename();
+    /**
+     *
+     */
+    protected FontStyle codeFont;
 
-	public APdfCreator(Project project) {
+    /**
+     *
+     */
+    protected FontStyle referenceFont;
+
+    /**
+     *
+     */
+    protected FontStyle fieldLabelFont;
+
+    /**
+     *
+     */
+    protected FontStyle miniLabelFont;
+
+    /**
+     *
+     */
+    protected FontStyle[] headerFonts = new FontStyle[4];
+
+    /**
+     *
+     */
+    protected BaseColor tableHeaderBackground = BaseColor.LIGHT_GRAY;
+
+    /**
+     *
+     */
+    protected Project project;
+
+    /**
+     *
+     * @param pdf
+     */
+    protected abstract void build(APdfContainerElement pdf);
+
+    /**
+     *
+     * @return
+     */
+    protected abstract String getFilename();
+
+    /**
+     *
+     * @param project
+     */
+    public APdfCreator(Project project) {
 		this.project = project;
 
 		defaultFont = new FontStyle().setSize(3);
@@ -70,29 +124,60 @@ public abstract class APdfCreator {
 		headerFonts[0] = new FontStyle(defaultFont).setSize(headerFonts[1].getSize() + 1.5f).setBold(true);
 	}
 
-	public void createPdf(APdfBuilder pdf) {
+    /**
+     *
+     * @param pdf
+     */
+    public void createPdf(APdfBuilder pdf) {
 		pdf.setDefaultFontStyle(defaultFont);
 		build(pdf);
 	}
 
 	// --- helper ---
 
+    /**
+     *
+     * @param pdf
+     * @param title
+     * @param projectLabel
+     */
+    
 	protected void reportHeader(APdfContainerElement pdf, String title, String projectLabel) {
 		pdf.paragraph().setDefaultFontStyle(headerFonts[0]).text(projectLabel);
 		pdf.paragraph().setDefaultFontStyle(miniLabelFont).text(title + ", ")
 				.text(TmExtend.FORMAT_LONGMONTH_DAY_YEAR.format(Date.today()));
 	}
 
-	protected void wiki(APdfContainerElement parent, String wikiCode) {
+    /**
+     *
+     * @param parent
+     * @param wikiCode
+     */
+    protected void wiki(APdfContainerElement parent, String wikiCode) {
 		WikiToPdfConverter.buildPdf(parent, wikiCode, new ScrumPdfContext(project));
 	}
 
-	protected void requirement(APdfContainerElement pdf, Requirement req, Collection<Task> openTasks,
+    /**
+     *
+     * @param pdf
+     * @param req
+     * @param openTasks
+     * @param closedTasks
+     */
+    protected void requirement(APdfContainerElement pdf, Requirement req, Collection<Task> openTasks,
 			Collection<Task> closedTasks) {
 		requirement(pdf, req, openTasks, closedTasks, null);
 	}
 
-	protected void requirement(APdfContainerElement pdf, Requirement req, Collection<Task> openTasks,
+    /**
+     *
+     * @param pdf
+     * @param req
+     * @param openTasks
+     * @param closedTasks
+     * @param pastSprint
+     */
+    protected void requirement(APdfContainerElement pdf, Requirement req, Collection<Task> openTasks,
 			Collection<Task> closedTasks, Sprint pastSprint) {
 		pdf.nl();
 
@@ -113,7 +198,9 @@ public abstract class APdfCreator {
 	}
 
 	private void tasksRow(ATable table, String label, Collection<Task> tasks) {
-		if (tasks == null || tasks.isEmpty()) return;
+		if (tasks == null || tasks.isEmpty()) {
+                    return;
+        }
 		ARow row = table.row();
 
 		ACell valueCell = row.cell().setColspan(3);
@@ -132,7 +219,9 @@ public abstract class APdfCreator {
 			rowHeader.cell().setFontStyle(referenceFont).text(task.getReference());
 			rowHeader.cell().setFontStyle(new FontStyle(defaultFont).setBold(true)).text(task.getLabel());
 
-			if (task.isDescriptionSet()) richtextRow(table, "Description", task.getDescription());
+			if (task.isDescriptionSet()) {
+                            richtextRow(table, "Description", task.getDescription());
+            }
 
 			Impediment impediment = task.getImpediment();
 			if (impediment != null && !impediment.isClosed()) {
@@ -147,7 +236,12 @@ public abstract class APdfCreator {
 
 	}
 
-	protected void quality(APdfContainerElement pdf, Quality quality) {
+    /**
+     *
+     * @param pdf
+     * @param quality
+     */
+    protected void quality(APdfContainerElement pdf, Quality quality) {
 		pdf.nl();
 
 		ATable table = pdf.table(3, 20, 6);
@@ -162,7 +256,12 @@ public abstract class APdfCreator {
 		table.createCellBorders(BaseColor.GRAY, 0.2f);
 	}
 
-	protected void release(APdfContainerElement pdf, Release release) {
+    /**
+     *
+     * @param pdf
+     * @param release
+     */
+    protected void release(APdfContainerElement pdf, Release release) {
 		pdf.nl();
 
 		ATable table = pdf.table(3, 20, 3);
@@ -178,7 +277,12 @@ public abstract class APdfCreator {
 		table.createCellBorders(BaseColor.GRAY, 0.2f);
 	}
 
-	protected void issue(APdfContainerElement pdf, Issue issue) {
+    /**
+     *
+     * @param pdf
+     * @param issue
+     */
+    protected void issue(APdfContainerElement pdf, Issue issue) {
 		pdf.nl();
 
 		ATable table = pdf.table(3, 20, 6);
@@ -207,13 +311,24 @@ public abstract class APdfCreator {
 		table.createCellBorders(BaseColor.GRAY, 0.2f);
 	}
 
-	protected ACell richtextRow(ATable table, String label, String value) {
+    /**
+     *
+     * @param table
+     * @param label
+     * @param value
+     * @return
+     */
+    protected ACell richtextRow(ATable table, String label, String value) {
 		int colspan = table.getColumnCount();
 		ARow row = table.row();
 
 		ACell valueCell = row.cell().setColspan(colspan);
-		if (!StrExtend.isBlank(label)) valueCell.paragraph().setDefaultFontStyle(miniLabelFont).text(label);
-		if (value != null) wiki(valueCell, value);
+                if (!StrExtend.isBlank(label)) {
+                    valueCell.paragraph().setDefaultFontStyle(miniLabelFont).text(label);
+                }
+                if (value != null) {
+            wiki(valueCell, value);
+        }
 		valueCell.setPaddingBottom(3);
 		return valueCell;
 	}

@@ -15,16 +15,29 @@
 // Copyright (c) 2006 Witoslaw Koczewski, http://www.koczewski.de
 package ilarkesto.cli;
 
+/**
+ *
+ * @author erik
+ */
 public class CommandExecutionFailedException extends Exception {
 
 	private ACommand	command;
 
-	public CommandExecutionFailedException(ACommand command, String message) {
+    /**
+     *
+     * @param command
+     * @param message
+     */
+    public CommandExecutionFailedException(ACommand command, String message) {
 		super(message);
 		this.command = command;
 	}
 
-	public ACommand getCommand() {
+    /**
+     *
+     * @return
+     */
+    public ACommand getCommand() {
 		return this.command;
 	}
 

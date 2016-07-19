@@ -14,14 +14,26 @@
  */
 package ilarkesto.io.nio.tcpserver;
 
+/**
+ *
+ * @author erik
+ */
 public class EchoDataHandler implements DataHandler {
 
-	@Override
+    /**
+     *
+     * @param event
+     */
+    @Override
 	public void onDataReceived(ServerDataEvent event) {
 		event.getConnection().sendData(event.getData());
 	}
 
-	@Override
+    /**
+     *
+     * @param connection
+     */
+    @Override
 	public void onConnectionClosed(TcpConnection connection) {}
 
 }

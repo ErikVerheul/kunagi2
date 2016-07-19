@@ -23,12 +23,24 @@ import static ilarkesto.ui.Option.KEY_CANCEL;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/**
+ *
+ * @author erik
+ * @param <T>
+ */
 public final class OptionAction<T> extends AAction {
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void assertPermissions() {}
 
-	@Override
+    /**
+     *
+     * @throws InterruptedException
+     */
+    @Override
 	protected void performAction() throws InterruptedException {
 		setAutoShowInfoDone(false);
 		showDialog(getOptions(), getMessage());
@@ -37,24 +49,43 @@ public final class OptionAction<T> extends AAction {
                 }
 	}
 
-	public void addOption(Option<T> option) {
+    /**
+     *
+     * @param option
+     */
+    public void addOption(Option<T> option) {
 		if (options == null) {
                         options = new ArrayList<>();
                 }
 		options.add(option);
 	}
 
-	public Option<T> getSelectedOption() {
+    /**
+     *
+     * @return
+     */
+    public Option<T> getSelectedOption() {
 		return selectedOption;
 	}
 
 	// --- helper ---
 
+    /**
+     *
+     * @param key
+     * @return
+     */
+    
 	public boolean isOption(String key) {
 		return key.equals(selectedOption.getKey());
 	}
 
-	public Option<T> getOption(String key) {
+    /**
+     *
+     * @param key
+     * @return
+     */
+    public Option<T> getOption(String key) {
 		if (KEY_CANCEL.equals(key)) {
                         return null;
                 }
@@ -68,7 +99,11 @@ public final class OptionAction<T> extends AAction {
 
 	private IdGenerator payloadIdGenerator;
 
-	public void addPayloads(Collection<T> payloads) {
+    /**
+     *
+     * @param payloads
+     */
+    public void addPayloads(Collection<T> payloads) {
 		if (payloadIdGenerator == null) {
                         payloadIdGenerator = new CountingIdGenerator("p");
                 }
@@ -79,11 +114,25 @@ public final class OptionAction<T> extends AAction {
 		horizontal = false;
 	}
 
-	public T getSelectedPayload() {
+    /**
+     *
+     * @return
+     */
+    public T getSelectedPayload() {
 		return getSelectedOption().getPayload();
 	}
 
-	public static <T> T showDialog(BeanProvider beanProvider, ActionPerformer actionPerformer, AAction waitingAction,
+    /**
+     *
+     * @param <T>
+     * @param beanProvider
+     * @param actionPerformer
+     * @param waitingAction
+     * @param message
+     * @param payloads
+     * @return
+     */
+    public static <T> T showDialog(BeanProvider beanProvider, ActionPerformer actionPerformer, AAction waitingAction,
 			String message, Collection<T> payloads) {
 		OptionAction<T> action = beanProvider.autowire(new OptionAction());
 		action.setHorizontal(false);
@@ -98,37 +147,65 @@ public final class OptionAction<T> extends AAction {
 
 	private Option<T> selectedOption;
 
-	public final void setSelectedOptionKey(String option) {
+    /**
+     *
+     * @param option
+     */
+    public final void setSelectedOptionKey(String option) {
 		this.selectedOption = getOption(option);
 	}
 
 	private Collection<Option<T>> options = new ArrayList<>();
 
-	public final Collection<Option<T>> getOptions() {
+    /**
+     *
+     * @return
+     */
+    public final Collection<Option<T>> getOptions() {
 		return options;
 	}
 
-	public final void setOptions(Collection<Option<T>> options) {
+    /**
+     *
+     * @param options
+     */
+    public final void setOptions(Collection<Option<T>> options) {
 		this.options = options;
 	}
 
 	private String message;
 
-	public final String getMessage() {
+    /**
+     *
+     * @return
+     */
+    public final String getMessage() {
 		return message;
 	}
 
-	public final void setMessage(String message) {
+    /**
+     *
+     * @param message
+     */
+    public final void setMessage(String message) {
 		this.message = message;
 	}
 
 	private boolean horizontal = true;
 
-	public boolean isHorizontal() {
+    /**
+     *
+     * @return
+     */
+    public boolean isHorizontal() {
 		return horizontal;
 	}
 
-	public void setHorizontal(boolean horizontal) {
+    /**
+     *
+     * @param horizontal
+     */
+    public void setHorizontal(boolean horizontal) {
 		this.horizontal = horizontal;
 	}
 

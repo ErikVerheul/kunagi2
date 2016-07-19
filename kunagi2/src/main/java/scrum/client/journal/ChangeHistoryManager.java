@@ -19,11 +19,19 @@ import static ilarkesto.core.logging.ClientLog.INFO;
 import java.util.List;
 import scrum.client.common.AScrumGwtEntity;
 
+/**
+ *
+ * @author erik
+ */
 public class ChangeHistoryManager extends GChangeHistoryManager {
 
 	private AScrumGwtEntity currentChangeHistoryParent;
 
-	public void activateChangeHistory(AScrumGwtEntity entity) {
+    /**
+     *
+     * @param entity
+     */
+    public void activateChangeHistory(AScrumGwtEntity entity) {
 		if (currentChangeHistoryParent == entity) {
 			DEBUG("ChangeHistory already active for", entity);
 			return;
@@ -31,25 +39,46 @@ public class ChangeHistoryManager extends GChangeHistoryManager {
 		deactivateChangeHistory();
 		currentChangeHistoryParent = entity;
 		INFO("ChangeHistory activated for", entity);
-		if (currentChangeHistoryParent != null)
-			new RequestChangesServiceCall(currentChangeHistoryParent.getId()).execute();
+		if (currentChangeHistoryParent != null) {
+                    new RequestChangesServiceCall(currentChangeHistoryParent.getId()).execute();
+        }
 	}
 
-	public void deactivateChangeHistory() {
+    /**
+     *
+     */
+    public void deactivateChangeHistory() {
 		currentChangeHistoryParent = null;
 		// dao.clearChanges();
 	}
 
-	public boolean isChangeHistoryActive(AScrumGwtEntity entity) {
+    /**
+     *
+     * @param entity
+     * @return
+     */
+    public boolean isChangeHistoryActive(AScrumGwtEntity entity) {
 		return currentChangeHistoryParent == entity;
 	}
 
-	public boolean isChangeHistoryActive(String entityId) {
-		if (currentChangeHistoryParent == null) return false;
+    /**
+     *
+     * @param entityId
+     * @return
+     */
+    public boolean isChangeHistoryActive(String entityId) {
+		if (currentChangeHistoryParent == null) {
+                    return false;
+        }
 		return currentChangeHistoryParent.getId().equals(entityId);
 	}
 
-	public List<Change> getChanges(AScrumGwtEntity entity) {
+    /**
+     *
+     * @param entity
+     * @return
+     */
+    public List<Change> getChanges(AScrumGwtEntity entity) {
 		return dao.getChangesByParent(entity);
 	}
 

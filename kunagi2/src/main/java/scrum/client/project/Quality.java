@@ -28,24 +28,47 @@ import scrum.client.common.ReferenceSupport;
 import scrum.client.common.ShowEntityAction;
 import scrum.client.issues.Issue;
 
+/**
+ *
+ * @author erik
+ */
 public class Quality extends GQuality implements ReferenceSupport, LabelSupport, ForumSupport, Comparable<Quality> {
 
+    /**
+     *
+     */
     public static final String REFERENCE_PREFIX = "qlt";
 
+    /**
+     *
+     * @param project
+     */
     public Quality(Project project) {
         setProject(project);
     }
 
+    /**
+     *
+     * @param issue
+     */
     public Quality(Issue issue) {
         setProject(issue.getProject());
         setLabel(issue.getLabel());
         setDescription(issue.getDescription());
     }
 
+    /**
+     *
+     * @param data
+     */
     public Quality(Map data) {
         super(data);
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getReference() {
         return REFERENCE_PREFIX + getNumber();
@@ -82,18 +105,27 @@ public class Quality extends GQuality implements ReferenceSupport, LabelSupport,
         return hash;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public boolean isEditable() {
-        if (!getProject().isProductOwner(Scope.get().getComponent(Auth.class).getUser())) {
-            return false;
-        }
-        return true;
+        return getProject().isProductOwner(Scope.get().getComponent(Auth.class).getUser());
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Widget createForumItemWidget() {
         return new HyperlinkWidget(new ShowEntityAction(QualityBacklogWidget.class, this, getLabel()));
     }
+
+    /**
+     *
+     */
     public static final Comparator<Quality> LABEL_COMPARATOR = new Comparator<Quality>() {
 
         @Override

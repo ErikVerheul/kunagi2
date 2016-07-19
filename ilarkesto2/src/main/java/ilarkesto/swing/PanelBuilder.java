@@ -43,6 +43,10 @@ import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
+/**
+ *
+ * @author erik
+ */
 public class PanelBuilder {
 
 	private List<Cell> cells = new ArrayList<>();
@@ -54,11 +58,19 @@ public class PanelBuilder {
 	private Dimension preferredSize;
 	private Color background;
 
-	public PanelBuilder() {
+    /**
+     *
+     */
+    public PanelBuilder() {
 		defaultConstraints.weightx = 1;
 	}
 
-	public PanelBuilder setupAsButtonMenu(String title) {
+    /**
+     *
+     * @param title
+     * @return
+     */
+    public PanelBuilder setupAsButtonMenu(String title) {
 		setDefaultPadding(2, 2, 2, 2);
 		setDefaultFillToHorizontal();
 		if (title != null) {
@@ -67,7 +79,13 @@ public class PanelBuilder {
 		return this;
 	}
 
-	@SuppressWarnings("unchecked")
+    /**
+     *
+     * @param <C>
+     * @param component
+     * @return
+     */
+    @SuppressWarnings("unchecked")
 	public <C extends Component> Cell<C> add(C component) {
 		lastCell = new Cell<>(component);
 		cells.add(lastCell);
@@ -78,15 +96,32 @@ public class PanelBuilder {
 	// return add(button.toJButton());
 	// }
 
+    /**
+     *
+     * @return
+     */
+    
 	public Cell<JLabel> addEmpty() {
 		return add("");
 	}
 
-	public Cell<JLabel> add(String label) {
+    /**
+     *
+     * @param label
+     * @return
+     */
+    public Cell<JLabel> add(String label) {
 		return add(new JLabel(label));
 	}
 
-	public <C extends Component> Cell<C> addLn(String label, C component) {
+    /**
+     *
+     * @param <C>
+     * @param label
+     * @param component
+     * @return
+     */
+    public <C extends Component> Cell<C> addLn(String label, C component) {
 		Insets insets = new Insets(defaultConstraints.insets.top, defaultConstraints.insets.left,
 				defaultConstraints.insets.bottom, defaultConstraints.insets.right + 3);
 		add(label).setInsets(insets);
@@ -95,75 +130,141 @@ public class PanelBuilder {
 		return cell;
 	}
 
-	public void nl() {
+    /**
+     *
+     */
+    public void nl() {
 		if (lastCell == null) {
                         return;
                 }
 		lastCell.constraints.gridwidth = REMAINDER;
 	}
 
-	public PanelBuilder setBackground(Color background) {
+    /**
+     *
+     * @param background
+     * @return
+     */
+    public PanelBuilder setBackground(Color background) {
 		this.background = background;
 		this.opaque = true;
 		return this;
 	}
 
-	public PanelBuilder setPreferredSize(Dimension preferredSize) {
+    /**
+     *
+     * @param preferredSize
+     * @return
+     */
+    public PanelBuilder setPreferredSize(Dimension preferredSize) {
 		this.preferredSize = preferredSize;
 		return this;
 	}
 
-	public PanelBuilder setOpaque(boolean opaque) {
+    /**
+     *
+     * @param opaque
+     * @return
+     */
+    public PanelBuilder setOpaque(boolean opaque) {
 		this.opaque = opaque;
 		return this;
 	}
 
-	public PanelBuilder setBackgroundImage(BufferedImage backgroundImage) {
+    /**
+     *
+     * @param backgroundImage
+     * @return
+     */
+    public PanelBuilder setBackgroundImage(BufferedImage backgroundImage) {
 		this.backgroundImage = backgroundImage;
 		return this;
 	}
 
-	public PanelBuilder setBorder(Border border) {
+    /**
+     *
+     * @param border
+     * @return
+     */
+    public PanelBuilder setBorder(Border border) {
 		this.border = border;
 		return this;
 	}
 
-	public PanelBuilder setDefaultWeightX(double value) {
+    /**
+     *
+     * @param value
+     * @return
+     */
+    public PanelBuilder setDefaultWeightX(double value) {
 		defaultConstraints.weightx = value;
 		return this;
 	}
 
-	public PanelBuilder setDefaultWeightY(double value) {
+    /**
+     *
+     * @param value
+     * @return
+     */
+    public PanelBuilder setDefaultWeightY(double value) {
 		defaultConstraints.weightx = value;
 		return this;
 	}
 
-	public PanelBuilder setDefaultAnchorToNorthWest() {
+    /**
+     *
+     * @return
+     */
+    public PanelBuilder setDefaultAnchorToNorthWest() {
 		defaultConstraints.anchor = NORTHWEST;
 		return this;
 	}
 
-	public PanelBuilder setDefaultAnchorToNorth() {
+    /**
+     *
+     * @return
+     */
+    public PanelBuilder setDefaultAnchorToNorth() {
 		defaultConstraints.anchor = NORTH;
 		return this;
 	}
 
-	public PanelBuilder setDefaultPadding(int top, int bottom, int left, int right) {
+    /**
+     *
+     * @param top
+     * @param bottom
+     * @param left
+     * @param right
+     * @return
+     */
+    public PanelBuilder setDefaultPadding(int top, int bottom, int left, int right) {
 		defaultConstraints.insets = new Insets(top, left, bottom, right);
 		return this;
 	}
 
-	public PanelBuilder setDefaultFillToHorizontal() {
+    /**
+     *
+     * @return
+     */
+    public PanelBuilder setDefaultFillToHorizontal() {
 		defaultConstraints.fill = HORIZONTAL;
 		return this;
 	}
 
-	public PanelBuilder setDefaultFillToBoth() {
+    /**
+     *
+     * @return
+     */
+    public PanelBuilder setDefaultFillToBoth() {
 		defaultConstraints.fill = BOTH;
 		return this;
 	}
 
-	public JPanel toPanel() {
+    /**
+     *
+     * @return
+     */
+    public JPanel toPanel() {
 		GridBagLayout layout = new GridBagLayout();
 		JPanel panel = backgroundImage == null ? new JPanel(layout) : new MyPanel(layout, backgroundImage);
 		for (Cell cell : cells) {
@@ -183,12 +284,20 @@ public class PanelBuilder {
 		return panel;
 	}
 
-	public class Cell<C extends Component> {
+    /**
+     *
+     * @param <C>
+     */
+    public class Cell<C extends Component> {
 
 		private C component;
 		private GridBagConstraints constraints;
 
-		public Cell(C component) {
+        /**
+         *
+         * @param component
+         */
+        public Cell(C component) {
 			if (component == null) {
                                 throw new NullPointerException("component");
                         }
@@ -197,81 +306,152 @@ public class PanelBuilder {
 			setAnchorToNorthWest();
 		}
 
-		public Cell setInsets(Insets insets) {
+        /**
+         *
+         * @param insets
+         * @return
+         */
+        public Cell setInsets(Insets insets) {
 			constraints.insets = insets;
 			return this;
 		}
 
-		public Cell setAnchorToCenter() {
+        /**
+         *
+         * @return
+         */
+        public Cell setAnchorToCenter() {
 			constraints.anchor = CENTER;
 			return this;
 		}
 
-		public Cell setAnchorToNorthEast() {
+        /**
+         *
+         * @return
+         */
+        public Cell setAnchorToNorthEast() {
 			constraints.anchor = NORTHEAST;
 			return this;
 		}
 
-		public Cell setAnchorToEast() {
+        /**
+         *
+         * @return
+         */
+        public Cell setAnchorToEast() {
 			constraints.anchor = EAST;
 			return this;
 		}
 
-		public Cell setAnchorToWest() {
+        /**
+         *
+         * @return
+         */
+        public Cell setAnchorToWest() {
 			constraints.anchor = WEST;
 			return this;
 		}
 
-		public final Cell setAnchorToNorthWest() {
+        /**
+         *
+         * @return
+         */
+        public final Cell setAnchorToNorthWest() {
 			constraints.anchor = NORTHWEST;
 			return this;
 		}
 
-		public Cell setFillToHorizontal() {
+        /**
+         *
+         * @return
+         */
+        public Cell setFillToHorizontal() {
 			constraints.fill = HORIZONTAL;
 			return this;
 		}
 
-		public Cell setFillToVertical() {
+        /**
+         *
+         * @return
+         */
+        public Cell setFillToVertical() {
 			constraints.fill = VERTICAL;
 			return this;
 		}
 
-		public Cell setFillToBoth() {
+        /**
+         *
+         * @return
+         */
+        public Cell setFillToBoth() {
 			constraints.fill = BOTH;
 			return this;
 		}
 
-		public Cell setFillToNone() {
+        /**
+         *
+         * @return
+         */
+        public Cell setFillToNone() {
 			constraints.fill = NONE;
 			return this;
 		}
 
-		public Cell setPadding(int top, int bottom, int left, int right) {
+        /**
+         *
+         * @param top
+         * @param bottom
+         * @param left
+         * @param right
+         * @return
+         */
+        public Cell setPadding(int top, int bottom, int left, int right) {
 			constraints.insets = new Insets(top, left, bottom, right);
 			return this;
 		}
 
-		public Cell setWeightX(double value) {
+        /**
+         *
+         * @param value
+         * @return
+         */
+        public Cell setWeightX(double value) {
 			constraints.weightx = value;
 			return this;
 		}
 
-		public Cell setWeightY(double value) {
+        /**
+         *
+         * @param value
+         * @return
+         */
+        public Cell setWeightY(double value) {
 			constraints.weighty = value;
 			return this;
 		}
 
-		public Cell span(int columns) {
+        /**
+         *
+         * @param columns
+         * @return
+         */
+        public Cell span(int columns) {
 			constraints.gridwidth = columns;
 			return this;
 		}
 
-		public void nl() {
+        /**
+         *
+         */
+        public void nl() {
 			PanelBuilder.this.nl();
 		}
 
-		public C getComponent() {
+        /**
+         *
+         * @return
+         */
+        public C getComponent() {
 			return component;
 		}
 

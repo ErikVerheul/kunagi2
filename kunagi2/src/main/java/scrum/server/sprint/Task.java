@@ -20,36 +20,72 @@ import scrum.server.admin.User;
 import scrum.server.common.Numbered;
 import scrum.server.project.Project;
 
+/**
+ *
+ * @author erik
+ */
 public class Task extends GTask implements Numbered, ReferenceSupport, LabelSupport {
 
-	public String getReferenceAndLabel() {
+    /**
+     *
+     * @return
+     */
+    public String getReferenceAndLabel() {
 		return getReference() + " " + getLabel();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getReference() {
 		return scrum.client.sprint.Task.REFERENCE_PREFIX + getNumber();
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	public void updateNumber() {
-		if (getNumber() == 0) setNumber(getRequirement().getProject().generateTaskNumber());
+		if (getNumber() == 0) {
+                    setNumber(getRequirement().getProject().generateTaskNumber());
+        }
 	}
 
-	public boolean isProject(Project project) {
+    /**
+     *
+     * @param project
+     * @return
+     */
+    public boolean isProject(Project project) {
 		return getRequirement().isProject(project);
 	}
 
-	public boolean isClosed() {
+    /**
+     *
+     * @return
+     */
+    public boolean isClosed() {
 		return getRemainingWork() == 0;
 	}
 
-	public boolean isSprint(Sprint sprint) {
-		if (isClosedInPastSprintSet()) return false;
+    /**
+     *
+     * @param sprint
+     * @return
+     */
+    public boolean isSprint(Sprint sprint) {
+		if (isClosedInPastSprintSet()) {
+                    return false;
+        }
 		return getRequirement().isSprint(sprint);
 	}
 
-	public void reset() {
+    /**
+     *
+     */
+    public void reset() {
 		setOwner(null);
 		setBurnedWork(0);
 	}
@@ -60,7 +96,11 @@ public class Task extends GTask implements Numbered, ReferenceSupport, LabelSupp
 		updateNumber();
 	}
 
-	public Project getProject() {
+    /**
+     *
+     * @return
+     */
+    public Project getProject() {
 		return getRequirement().getProject();
 	}
 

@@ -9,9 +9,16 @@ import java.util.List;
 import java.util.Map;
 import junit.framework.TestCase;
 
+/**
+ *
+ * @author erik
+ */
 public class FPTest extends TestCase {
 
-	public void testGroup() {
+    /**
+     *
+     */
+    public void testGroup() {
 		Collection<String> elements = new ArrayList<>();
 		elements.add("abc");
 		elements.add("123");

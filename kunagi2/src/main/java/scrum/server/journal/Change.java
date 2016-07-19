@@ -24,6 +24,10 @@ import java.util.List;
 import scrum.server.admin.User;
 import scrum.server.project.Requirement;
 
+/**
+ *
+ * @author erik
+ */
 public class Change extends GChange implements Comparable<Change> {
 
     private static final Log log = Log.get(Change.class);
@@ -33,10 +37,19 @@ public class Change extends GChange implements Comparable<Change> {
         return Auth.isVisible(getParent(), user);
     }
 
+    /**
+     *
+     * @param user
+     * @return
+     */
     public boolean isEditableBy(User user) {
         return false;
     }
 
+    /**
+     *
+     * @param other
+     */
     public void mergeTo(Change other) {
         log.info("Merging", this, "to", other);
         other.setOldValue(getOldValue());
@@ -50,6 +63,11 @@ public class Change extends GChange implements Comparable<Change> {
         getDao().deleteEntity(this);
     }
 
+    /**
+     *
+     * @param other
+     * @return
+     */
     public boolean isMergableWith(Change other) {
         if (getParent() instanceof Requirement && isKey("sprintId")) {
             return false;
@@ -95,6 +113,10 @@ public class Change extends GChange implements Comparable<Change> {
         return "Change(" + getUser() + "," + getDateAndTime() + ", " + parent + "." + getKey() + ")";
     }
 
+    /**
+     *
+     * @param changes
+     */
     public static void merge(Collection<Change> changes) {
         List<Change> list = new ArrayList<Change>(changes);
         Collections.sort(list);

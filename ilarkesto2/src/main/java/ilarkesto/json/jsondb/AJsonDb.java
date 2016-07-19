@@ -20,17 +20,43 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class AJsonDb {
 
-	public abstract JsonObject loadDocumentById(String id);
+    /**
+     *
+     * @param id
+     * @return
+     */
+    public abstract JsonObject loadDocumentById(String id);
 
-	public abstract List<DocumentReference> listAllDocuments();
+    /**
+     *
+     * @return
+     */
+    public abstract List<DocumentReference> listAllDocuments();
 
-	public abstract void saveDocument(JsonObject document);
+    /**
+     *
+     * @param document
+     */
+    public abstract void saveDocument(JsonObject document);
 
-	public abstract void deleteDocument(JsonObject document);
+    /**
+     *
+     * @param document
+     */
+    public abstract void deleteDocument(JsonObject document);
 
-	public List<JsonObject> loadDocumentsByFilter(DocumentFilter filter) {
+    /**
+     *
+     * @param filter
+     * @return
+     */
+    public List<JsonObject> loadDocumentsByFilter(DocumentFilter filter) {
 		List<DocumentReference> references = listAllDocuments();
 		List<JsonObject> result = new ArrayList<>();
 		for (DocumentReference reference : references) {
@@ -42,21 +68,38 @@ public abstract class AJsonDb {
 		return result;
 	}
 
-	public List<JsonObject> loadAllDocuments() {
+    /**
+     *
+     * @return
+     */
+    public List<JsonObject> loadAllDocuments() {
 		List<DocumentReference> references = listAllDocuments();
 		return loadDocumentsByReferences(references);
 	}
 
-	public void deleteDocumentById(String id) {
+    /**
+     *
+     * @param id
+     */
+    public void deleteDocumentById(String id) {
 		JsonObject document = loadDocumentById(id);
 		deleteDocument(document);
 	}
 
-	public List<String> listAllDocumentIds() {
+    /**
+     *
+     * @return
+     */
+    public List<String> listAllDocumentIds() {
 		return getIds(listAllDocuments());
 	}
 
-	public List<JsonObject> loadDocumentsByIds(Collection<String> ids) {
+    /**
+     *
+     * @param ids
+     * @return
+     */
+    public List<JsonObject> loadDocumentsByIds(Collection<String> ids) {
 		List<JsonObject> documents = new ArrayList<>(ids.size());
 		for (String id : ids) {
 			JsonObject document = loadDocumentById(id);
@@ -65,11 +108,21 @@ public abstract class AJsonDb {
 		return documents;
 	}
 
-	public JsonObject loadDocumentByReference(DocumentReference reference) {
+    /**
+     *
+     * @param reference
+     * @return
+     */
+    public JsonObject loadDocumentByReference(DocumentReference reference) {
 		return loadDocumentById(reference.getId());
 	}
 
-	public List<JsonObject> loadDocumentsByReferences(Collection<DocumentReference> references) {
+    /**
+     *
+     * @param references
+     * @return
+     */
+    public List<JsonObject> loadDocumentsByReferences(Collection<DocumentReference> references) {
 		return loadDocumentsByIds(getIds(references));
 	}
 

@@ -14,6 +14,7 @@
  */
 package scrum.client.sprint;
 
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.AFieldValueWidget;
 import ilarkesto.gwt.client.TableBuilder;
 import ilarkesto.gwt.client.editor.RichtextEditorWidget;
@@ -21,13 +22,19 @@ import ilarkesto.gwt.client.editor.TextOutputWidget;
 import scrum.client.ScrumGwt;
 import scrum.client.common.AScrumWidget;
 
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class SprintWidget extends AScrumWidget {
 
 	private Sprint sprint;
 
-	public SprintWidget(Sprint sprint) {
+    /**
+     *
+     * @param sprint
+     */
+    public SprintWidget(Sprint sprint) {
 		super();
 		this.sprint = sprint;
 	}
@@ -40,7 +47,9 @@ public class SprintWidget extends AScrumWidget {
 		tb.setColumnWidths("80px", "100px", "80px", "100px", "80px");
 
 		int cols = 6;
-		if (!completed) tb.addFieldRow("Label", sprint.getLabelModel(), cols - 1);
+		if (!completed) {
+                    tb.addFieldRow("Label", sprint.getLabelModel(), cols - 1);
+        }
 		tb.addFieldRow("Goal", new RichtextEditorWidget(sprint.getGoalModel()), cols - 1);
 		tb.addFieldRow("Releases", new AFieldValueWidget() {
 
@@ -107,7 +116,11 @@ public class SprintWidget extends AScrumWidget {
 		return TableBuilder.row(10, tb.createTable(), ScrumGwt.createEmoticonsAndComments(sprint));
 	}
 
-	public Sprint getSprint() {
+    /**
+     *
+     * @return
+     */
+    public Sprint getSprint() {
 		return sprint;
 	}
 

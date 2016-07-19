@@ -14,8 +14,18 @@
  */
 package ilarkesto.auth;
 
+/**
+ *
+ * @author erik
+ * @param <U>
+ */
 public interface DeleteProtected<U extends AUser> {
 
-	boolean isDeletableBy(U user);
+    /**
+     *
+     * @param user
+     * @return
+     */
+    boolean isDeletableBy(U user);
 
 }

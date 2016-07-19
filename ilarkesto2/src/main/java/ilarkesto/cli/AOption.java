@@ -14,33 +14,67 @@
  */
 package ilarkesto.cli;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class AOption {
 
-	public abstract void setValue(String value) throws BadSyntaxException;
+    /**
+     *
+     * @param value
+     * @throws BadSyntaxException
+     */
+    public abstract void setValue(String value) throws BadSyntaxException;
 
-	public abstract String getUsageSyntax();
+    /**
+     *
+     * @return
+     */
+    public abstract String getUsageSyntax();
 
 	private String name;
 	private String usageText;
 
-	public AOption(String name, String usageText) {
+    /**
+     *
+     * @param name
+     * @param usageText
+     */
+    public AOption(String name, String usageText) {
 		this.name = name;
 		this.usageText = usageText;
 	}
 
-	public String getUsageDescription() {
+    /**
+     *
+     * @return
+     */
+    public String getUsageDescription() {
 		return usageText;
 	}
 
-	public void setUsageText(String usageText) {
+    /**
+     *
+     * @param usageText
+     */
+    public void setUsageText(String usageText) {
 		this.usageText = usageText;
 	}
 
-	public String getName() {
+    /**
+     *
+     * @return
+     */
+    public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
+    /**
+     *
+     * @param name
+     */
+    public void setName(String name) {
 		this.name = name;
 	}
 

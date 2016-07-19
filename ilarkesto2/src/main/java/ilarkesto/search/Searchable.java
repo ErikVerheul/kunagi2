@@ -14,8 +14,17 @@
  */
 package ilarkesto.search;
 
+/**
+ *
+ * @author erik
+ */
 public interface Searchable {
 
-	boolean matchesKey(String key);
+    /**
+     *
+     * @param key
+     * @return
+     */
+    boolean matchesKey(String key);
 
 }

@@ -18,13 +18,25 @@ import ilarkesto.mda.legacy.model.ApplicationModel;
 import ilarkesto.ui.swing.ASwingApplication;
 import ilarkesto.webapp.AWebApplication;
 
+/**
+ *
+ * @author erik
+ */
 public class ApplicationGenerator extends ABeanGenerator<ApplicationModel> {
 
-	public ApplicationGenerator(ApplicationModel bean) {
+    /**
+     *
+     * @param bean
+     */
+    public ApplicationGenerator(ApplicationModel bean) {
 		super(bean);
 	}
 
-        @Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected String getSuperclass() {
 		switch (bean.getType()) {
 			case SWING:
@@ -35,7 +47,11 @@ public class ApplicationGenerator extends ABeanGenerator<ApplicationModel> {
 		throw new RuntimeException("Unsupported application type: " + bean.getType());
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected String getName() {
 		String suffix = "";
 		switch (bean.getType()) {

@@ -14,8 +14,16 @@
  */
 package scrum.client.common;
 
+/**
+ *
+ * @author erik
+ */
 public interface LabelSupport {
 
-	String getLabel();
+    /**
+     *
+     * @return
+     */
+    String getLabel();
 
 }

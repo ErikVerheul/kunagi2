@@ -19,11 +19,19 @@ import scrum.client.common.AScrumAction;
 import scrum.client.common.AScrumGwtEntity;
 import scrum.client.workspace.ProjectWorkspaceWidgets;
 
+/**
+ *
+ * @author erik
+ */
 public class ActivateChangeHistoryAction extends AScrumAction {
 
 	private AScrumGwtEntity entity;
 
-	public ActivateChangeHistoryAction(AScrumGwtEntity entity) {
+    /**
+     *
+     * @param entity
+     */
+    public ActivateChangeHistoryAction(AScrumGwtEntity entity) {
 		super();
 		this.entity = entity;
 	}

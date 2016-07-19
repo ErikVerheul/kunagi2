@@ -26,13 +26,25 @@ public class IntegerValidator implements Validator {
     private int min;
     private int max;
 
+    /**
+     *
+     * @param min
+     * @param max
+     */
     public IntegerValidator(int min, int max) {
         this.min = min;
         this.max = max;
     }
 
     // overriding
-    @Override
+
+    /**
+     *
+     * @param text
+     * @return
+     * @throws ValidationException
+     */
+        @Override
     public String validate(String text) throws ValidationException {
         text = text.trim();
         int i;
@@ -47,6 +59,10 @@ public class IntegerValidator implements Validator {
         return text;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getMessage() {
         return "Der Wert mu\u00DF zwischen " + min + " und " + max + " liegen.";
     }

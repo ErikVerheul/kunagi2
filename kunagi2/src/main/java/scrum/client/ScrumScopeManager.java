@@ -46,6 +46,10 @@ import scrum.client.workspace.ProjectWorkspaceWidgets;
 import scrum.client.workspace.Ui;
 import scrum.client.workspace.UsersWorkspaceWidgets;
 
+/**
+ *
+ * @author erik
+ */
 public class ScrumScopeManager {
 
     private static NonConcurrentScopeManager scopeManager;
@@ -75,6 +79,10 @@ public class ScrumScopeManager {
         appScope.wireComponents();
     }
 
+    /**
+     *
+     * @param user
+     */
     public static void createUserScope(User user) {
         if (user == null) {
             ERROR("user == null!");
@@ -91,6 +99,10 @@ public class ScrumScopeManager {
         userScope.wireComponents();
     }
 
+    /**
+     *
+     * @param project
+     */
     public static void createProjectScope(Project project) {
         if (project == null) {
             ERROR("project == null!");
@@ -128,6 +140,9 @@ public class ScrumScopeManager {
         projectScope.wireComponents();
     }
 
+    /**
+     *
+     */
     public static void destroyProjectScope() {
         Scope.get().getComponent(Ui.class).lock("Closing project...");
         new CloseProjectServiceCall().execute();
@@ -137,10 +152,18 @@ public class ScrumScopeManager {
         scopeManager.setScope(userScope);
     }
 
+    /**
+     *
+     * @return
+     */
     public static boolean isProjectScope() {
         return projectScope != null;
     }
 
+    /**
+     *
+     * @return
+     */
     public static Project getProject() {
         return (Project) projectScope.getComponent("project");
     }

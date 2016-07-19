@@ -16,8 +16,16 @@ package scrum.client.context;
 
 import scrum.client.admin.User;
 
+/**
+ *
+ * @author erik
+ */
 public interface UserHighlightSupport {
 
-	void highlightUser(User user);
+    /**
+     *
+     * @param user
+     */
+    void highlightUser(User user);
 
 }

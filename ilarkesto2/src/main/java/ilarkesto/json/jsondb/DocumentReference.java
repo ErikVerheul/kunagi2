@@ -18,16 +18,28 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class DocumentReference {
 
 	private String id;
 
-	public DocumentReference(String id) {
+    /**
+     *
+     * @param id
+     */
+    public DocumentReference(String id) {
 		super();
 		this.id = id;
 	}
 
-	public String getId() {
+    /**
+     *
+     * @return
+     */
+    public String getId() {
 		return id;
 	}
 
@@ -36,7 +48,12 @@ public class DocumentReference {
 		return id;
 	}
 
-	public static List<String> getIds(Collection<DocumentReference> references) {
+    /**
+     *
+     * @param references
+     * @return
+     */
+    public static List<String> getIds(Collection<DocumentReference> references) {
 		List<String> ids = new ArrayList<>(references.size());
 		for (DocumentReference reference : references) {
 			ids.add(reference.getId());

@@ -31,69 +31,241 @@ import static java.util.TimeZone.getTimeZone;
  */
 public final class TmExtend extends ilarkesto.core.time.Tm {
 
-	public static final Format FORMAT_HOUR_MINUTE_SECOND = new Format("HH:mm:ss");
-	public static final Format FORMAT_HOUR_MINUTE_SECOND_NOSEP = new Format("HHmmss");
-	public static final Format FORMAT_DAY_MONTH_SHORTYEAR = new Format("dd.MM.yy");
-	public static final Format FORMAT_DAY_MONTH_YEAR = new Format("dd.MM.yyyy");
-	public static final Format FORMAT_LONGMONTH_DAY_YEAR = new Format("MMMM d, yyyy");
-	public static final Format FORMAT_DAY_MONTH = new Format("dd.MM.");
-	public static final Format FORMAT_WEEKDAY_DAY_MONTH = new Format("EEEE, dd.MM.");
-	public static final Format FORMAT_DAY_LONGMONTH_YEAR = new Format("dd. MMMM yyyy");
-	public static final Format FORMAT_WEEKDAY_DAY_LONGMONTH_YEAR = new Format("EEEE, dd. MMMM yyyy");
-	public static final Format FORMAT_SHORTWEEKDAY_DAY_MONTH_YEAR = new Format("EE, dd.MM.yyyy");
-	public static final Format FORMAT_SHORTWEEKDAY_SHORTMONTH_DAY = new Format("EE, MMM dd");
-	public static final Format FORMAT_LONGMONTH = new Format("MMMM");
-	public static final Format FORMAT_LONGMONTH_YEAR = new Format("MMMM yyyy");
-	public static final Format FORMAT_YEAR_MONTH_DAY = new Format("yyyy-MM-dd");
-	public static final Format FORMAT_YEAR_MONTH = new Format("yyyy-MM");
-	public static final Format FORMAT_YEAR_LONGMONTH = new Format("yyyy-MMMM");
-	public static final Format FORMAT_YEAR_MONTH_DAY_NOSEP = new Format("yyyyMMdd");
-	public static final Format FORMAT_WEEKDAY = new Format("EEEE");
-	public static final Format DATE_DE = new Format("dd.MM.yyyy");
-	public static final Format DATE_WITH_SHORT_WEEKDAY_DE = new Format("EE, dd.MM.yyyy");
-	public static final Format DATE_LONG_DE = new Format("dd. MMMM yyyy");
-	public static final Format DATE_VERY_LONG_DE = new Format("EEEE, dd. MMMM yyyy");
-	public static final Format DATE_TIME_DE = new Format("dd.MM.yyyy HH:mm:ss");
-	public static final Format DATE_ISO = new Format("yyyy-MM-dd");
-	public static final Format DATE_TIME_ISO = new Format("yyyy-MM-dd HH:mm:ss");
-	public static final Format DATE_TIME_LOGFILE = new Format("yyyy-MM-dd_HH-mm-ss");
-	public static final Format TIME_SHORT_DE = new Format("HH:mm");
-	public static final TimeZone TZ_BERLIN = getTimeZone("Europe/Berlin");
-	public static final TimeZone TZ_GMT = getTimeZone("GMT");
-	public static final transient Format FORMAT_WEEKDAY_DAY_LONGMONTH_YEAR_HOUR_MINUTE = new Format(
+    /**
+     *
+     */
+    public static final Format FORMAT_HOUR_MINUTE_SECOND = new Format("HH:mm:ss");
+
+    /**
+     *
+     */
+    public static final Format FORMAT_HOUR_MINUTE_SECOND_NOSEP = new Format("HHmmss");
+
+    /**
+     *
+     */
+    public static final Format FORMAT_DAY_MONTH_SHORTYEAR = new Format("dd.MM.yy");
+
+    /**
+     *
+     */
+    public static final Format FORMAT_DAY_MONTH_YEAR = new Format("dd.MM.yyyy");
+
+    /**
+     *
+     */
+    public static final Format FORMAT_LONGMONTH_DAY_YEAR = new Format("MMMM d, yyyy");
+
+    /**
+     *
+     */
+    public static final Format FORMAT_DAY_MONTH = new Format("dd.MM.");
+
+    /**
+     *
+     */
+    public static final Format FORMAT_WEEKDAY_DAY_MONTH = new Format("EEEE, dd.MM.");
+
+    /**
+     *
+     */
+    public static final Format FORMAT_DAY_LONGMONTH_YEAR = new Format("dd. MMMM yyyy");
+
+    /**
+     *
+     */
+    public static final Format FORMAT_WEEKDAY_DAY_LONGMONTH_YEAR = new Format("EEEE, dd. MMMM yyyy");
+
+    /**
+     *
+     */
+    public static final Format FORMAT_SHORTWEEKDAY_DAY_MONTH_YEAR = new Format("EE, dd.MM.yyyy");
+
+    /**
+     *
+     */
+    public static final Format FORMAT_SHORTWEEKDAY_SHORTMONTH_DAY = new Format("EE, MMM dd");
+
+    /**
+     *
+     */
+    public static final Format FORMAT_LONGMONTH = new Format("MMMM");
+
+    /**
+     *
+     */
+    public static final Format FORMAT_LONGMONTH_YEAR = new Format("MMMM yyyy");
+
+    /**
+     *
+     */
+    public static final Format FORMAT_YEAR_MONTH_DAY = new Format("yyyy-MM-dd");
+
+    /**
+     *
+     */
+    public static final Format FORMAT_YEAR_MONTH = new Format("yyyy-MM");
+
+    /**
+     *
+     */
+    public static final Format FORMAT_YEAR_LONGMONTH = new Format("yyyy-MMMM");
+
+    /**
+     *
+     */
+    public static final Format FORMAT_YEAR_MONTH_DAY_NOSEP = new Format("yyyyMMdd");
+
+    /**
+     *
+     */
+    public static final Format FORMAT_WEEKDAY = new Format("EEEE");
+
+    /**
+     *
+     */
+    public static final Format DATE_DE = new Format("dd.MM.yyyy");
+
+    /**
+     *
+     */
+    public static final Format DATE_WITH_SHORT_WEEKDAY_DE = new Format("EE, dd.MM.yyyy");
+
+    /**
+     *
+     */
+    public static final Format DATE_LONG_DE = new Format("dd. MMMM yyyy");
+
+    /**
+     *
+     */
+    public static final Format DATE_VERY_LONG_DE = new Format("EEEE, dd. MMMM yyyy");
+
+    /**
+     *
+     */
+    public static final Format DATE_TIME_DE = new Format("dd.MM.yyyy HH:mm:ss");
+
+    /**
+     *
+     */
+    public static final Format DATE_ISO = new Format("yyyy-MM-dd");
+
+    /**
+     *
+     */
+    public static final Format DATE_TIME_ISO = new Format("yyyy-MM-dd HH:mm:ss");
+
+    /**
+     *
+     */
+    public static final Format DATE_TIME_LOGFILE = new Format("yyyy-MM-dd_HH-mm-ss");
+
+    /**
+     *
+     */
+    public static final Format TIME_SHORT_DE = new Format("HH:mm");
+
+    /**
+     *
+     */
+    public static final TimeZone TZ_BERLIN = getTimeZone("Europe/Berlin");
+
+    /**
+     *
+     */
+    public static final TimeZone TZ_GMT = getTimeZone("GMT");
+
+    /**
+     *
+     */
+    public static final transient Format FORMAT_WEEKDAY_DAY_LONGMONTH_YEAR_HOUR_MINUTE = new Format(
 			"EEE, dd. MMMM yyyy, HH:mm");
-	public static final Format FORMAT_WEEKDAY_LONGMONTH_DAY_YEAR_HOUR_MINUTE = new Format("EEE, MMM d, yyyy, HH:mm");
-	public static final Format FORMAT_DAY_MONTH_YEAR_HOUR_MINUTE = new Format("dd.MM.yyyy, HH:mm");
-	public static final Format FORMAT_YEAR_MONTH_DAY_HOUR_MINUTE_SECOND = new Format("yyyy-MM-dd HH:mm:ss");
-	public static final Format FORMAT_LOG = new Format("yyyy-MM-dd_HH-mm-ss");
 
-	public static final Format FORMAT_RFC822 = new Format("EEE, d MMM yyyy HH:mm:ss z", ENGLISH);
+    /**
+     *
+     */
+    public static final Format FORMAT_WEEKDAY_LONGMONTH_DAY_YEAR_HOUR_MINUTE = new Format("EEE, MMM d, yyyy, HH:mm");
 
-	public static Date toUtc(Date date) {
+    /**
+     *
+     */
+    public static final Format FORMAT_DAY_MONTH_YEAR_HOUR_MINUTE = new Format("dd.MM.yyyy, HH:mm");
+
+    /**
+     *
+     */
+    public static final Format FORMAT_YEAR_MONTH_DAY_HOUR_MINUTE_SECOND = new Format("yyyy-MM-dd HH:mm:ss");
+
+    /**
+     *
+     */
+    public static final Format FORMAT_LOG = new Format("yyyy-MM-dd_HH-mm-ss");
+
+    /**
+     *
+     */
+    public static final Format FORMAT_RFC822 = new Format("EEE, d MMM yyyy HH:mm:ss z", ENGLISH);
+
+    /**
+     *
+     * @param date
+     * @return
+     */
+    public static Date toUtc(Date date) {
 		return toUtc(date, getDefault());
 	}
 
-	public static Date toUtc(Date date, TimeZone timeZone) {
+    /**
+     *
+     * @param date
+     * @param timeZone
+     * @return
+     */
+    public static Date toUtc(Date date, TimeZone timeZone) {
 		long millis = date.getTime();
 		int offset = timeZone.getOffset(millis);
 		return new Date(millis - offset);
 	}
 
-	public static Date toTimeZone(Date date, TimeZone timeZone) {
+    /**
+     *
+     * @param date
+     * @param timeZone
+     * @return
+     */
+    public static Date toTimeZone(Date date, TimeZone timeZone) {
 		long millis = date.getTime();
 		int offset = timeZone.getOffset(millis);
 		return new Date(millis + offset);
 	}
 
-	public static Date toLocalTime(Date date) {
+    /**
+     *
+     * @param date
+     * @return
+     */
+    public static Date toLocalTime(Date date) {
 		return toTimeZone(date, TZ_GMT);
 	}
 
-	public static boolean isSameDay(Date day1, Date day2) {
+    /**
+     *
+     * @param day1
+     * @param day2
+     * @return
+     */
+    public static boolean isSameDay(Date day1, Date day2) {
 		return getDayBegin(day1).equals(getDayBegin(day2));
 	}
 
-	public static boolean isSameDayIgnoreYear(Date day1, Date day2) {
+    /**
+     *
+     * @param day1
+     * @param day2
+     * @return
+     */
+    public static boolean isSameDayIgnoreYear(Date day1, Date day2) {
 		GregorianCalendar cal = new GregorianCalendar();
 
 		cal.setTime(day1);
@@ -107,7 +279,12 @@ public final class TmExtend extends ilarkesto.core.time.Tm {
 		return getDayBegin(day1).equals(getDayBegin(day2));
 	}
 
-	public static Date getDayBegin(Date day) {
+    /**
+     *
+     * @param day
+     * @return
+     */
+    public static Date getDayBegin(Date day) {
 		GregorianCalendar cal = new GregorianCalendar();
 		cal.setTime(day);
 		cal.set(GregorianCalendar.HOUR_OF_DAY, 0);
@@ -117,7 +294,12 @@ public final class TmExtend extends ilarkesto.core.time.Tm {
 		return cal.getTime();
 	}
 
-	public static Date getDayEnd(Date day) {
+    /**
+     *
+     * @param day
+     * @return
+     */
+    public static Date getDayEnd(Date day) {
 		GregorianCalendar cal = new GregorianCalendar();
 		cal.setTime(day);
 		cal.set(GregorianCalendar.HOUR_OF_DAY, 23);
@@ -127,7 +309,12 @@ public final class TmExtend extends ilarkesto.core.time.Tm {
 		return cal.getTime();
 	}
 
-	public static String formatDateTimeShortDe(Date time) {
+    /**
+     *
+     * @param time
+     * @return
+     */
+    public static String formatDateTimeShortDe(Date time) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(DATE_DE.format(time));
 		if (getMillisInDay(time) > 0) {
@@ -136,21 +323,39 @@ public final class TmExtend extends ilarkesto.core.time.Tm {
 		return sb.toString();
 	}
 
-	public static long getMillisInDay(Date time) {
+    /**
+     *
+     * @param time
+     * @return
+     */
+    public static long getMillisInDay(Date time) {
 		return time.getTime() - getDayBegin(time).getTime();
 	}
 
-	public static int getCurrentYear() {
+    /**
+     *
+     * @return
+     */
+    public static int getCurrentYear() {
 		GregorianCalendar gc = new GregorianCalendar();
 		return gc.get(GregorianCalendar.YEAR);
 	}
 
-	public static int getCurrentMonth() {
+    /**
+     *
+     * @return
+     */
+    public static int getCurrentMonth() {
 		GregorianCalendar gc = new GregorianCalendar();
 		return gc.get(GregorianCalendar.MONTH) + 1;
 	}
 
-	public static int year(int year) {
+    /**
+     *
+     * @param year
+     * @return
+     */
+    public static int year(int year) {
 		if (year < (getCurrentYear() + 23 - 2000)) {
                         return year + 2000;
                 }
@@ -160,53 +365,94 @@ public final class TmExtend extends ilarkesto.core.time.Tm {
 		return year;
 	}
 
-	public static int countYearsSince(Date date) {
+    /**
+     *
+     * @param date
+     * @return
+     */
+    public static int countYearsSince(Date date) {
 		GregorianCalendar cal = new GregorianCalendar();
 		cal.setTime(date);
 		return getCurrentYear() - cal.get(GregorianCalendar.YEAR);
 	}
 
-	public static class Format {
+    /**
+     *
+     */
+    public static class Format {
 
 		private SimpleDateFormat format;
 
-		public Format(String pattern) {
+        /**
+         *
+         * @param pattern
+         */
+        public Format(String pattern) {
 			this.format = new SimpleDateFormat(pattern);
 		}
 
-		public Format(String pattern, Locale locale) {
+        /**
+         *
+         * @param pattern
+         * @param locale
+         */
+        public Format(String pattern, Locale locale) {
 			this.format = new SimpleDateFormat(pattern, locale);
 		}
 
-		public synchronized String format(Date date) {
+        /**
+         *
+         * @param date
+         * @return
+         */
+        public synchronized String format(Date date) {
 			if (date == null) {
                                 return null;
                         }
 			return format.format(date);
 		}
 
-		public String format(ilarkesto.core.time.Date date) {
+        /**
+         *
+         * @param date
+         * @return
+         */
+        public String format(ilarkesto.core.time.Date date) {
 			if (date == null) {
                                 return null;
                         }
 			return format(date.toJavaDate());
 		}
 
-		public String format(DateAndTime dateAndTime) {
+        /**
+         *
+         * @param dateAndTime
+         * @return
+         */
+        public String format(DateAndTime dateAndTime) {
 			if (dateAndTime == null) {
                                 return null;
                         }
 			return format(dateAndTime.toJavaDate());
 		}
 
-		public String format(Time time) {
+        /**
+         *
+         * @param time
+         * @return
+         */
+        public String format(Time time) {
 			if (time == null) {
                                 return null;
                         }
 			return format(time.getJavaDateOn(today()));
 		}
 
-		public SimpleDateFormat getFormat() {
+        /**
+         *
+         * @return
+         */
+        public SimpleDateFormat getFormat() {
 			return format;
 		}
 

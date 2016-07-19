@@ -14,7 +14,6 @@
  */
 package ilarkesto.io;
 
-import ilarkesto.base.StrExtend;
 import static ilarkesto.base.StrExtend.escapeEscapeSequences;
 import java.io.PrintWriter;
 import java.io.Writer;

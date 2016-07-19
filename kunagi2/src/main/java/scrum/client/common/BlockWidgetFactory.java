@@ -14,8 +14,17 @@
  */
 package scrum.client.common;
 
+/**
+ *
+ * @author erik
+ * @param <O>
+ */
 public interface BlockWidgetFactory<O extends Object> {
 
-	public abstract ABlockWidget<O> createBlock();
+    /**
+     *
+     * @return
+     */
+    public abstract ABlockWidget<O> createBlock();
 
 }

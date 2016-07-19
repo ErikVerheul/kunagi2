@@ -14,12 +14,12 @@
  */
 package scrum.client.collaboration;
 
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.AFieldValueWidget;
 import ilarkesto.gwt.client.TableBuilder;
-
 import java.util.List;
-
 import scrum.client.ScrumGwt;
 import scrum.client.admin.ProjectUserConfig;
 import scrum.client.admin.User;
@@ -28,14 +28,19 @@ import scrum.client.issues.Issue;
 import scrum.client.project.Project;
 import scrum.client.sprint.Task;
 
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class UserStatusDetailsWidget extends AScrumWidget {
 
 	private User user;
 
-	public UserStatusDetailsWidget(User user) {
+    /**
+     *
+     * @param user
+     */
+    public UserStatusDetailsWidget(User user) {
 		super();
 		this.user = user;
 	}
@@ -45,7 +50,9 @@ public class UserStatusDetailsWidget extends AScrumWidget {
 		final Project project = Scope.get().getComponent(Project.class);
 		TableBuilder tb = ScrumGwt.createFieldTable();
 		tb.setColumnWidths(40);
-		if (user.getFullName() != null) tb.addRow(new Label(user.getFullName()), 2);
+		if (user.getFullName() != null) {
+                    tb.addRow(new Label(user.getFullName()), 2);
+        }
 		if (user != getCurrentUser()) {
 			tb.addFieldRow("Idle", new AFieldValueWidget() {
 

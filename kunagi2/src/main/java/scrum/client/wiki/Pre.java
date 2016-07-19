@@ -14,11 +14,19 @@
  */
 package scrum.client.wiki;
 
+/**
+ *
+ * @author erik
+ */
 public class Pre extends AWikiElement {
 
 	private String text;
 
-	public Pre(String text) {
+    /**
+     *
+     * @param text
+     */
+    public Pre(String text) {
 		super();
 		this.text = text;
 	}
@@ -33,7 +41,11 @@ public class Pre extends AWikiElement {
 		return sb.toString();
 	}
 
-	public String getText() {
+    /**
+     *
+     * @return
+     */
+    public String getText() {
 		return text;
 	}
 

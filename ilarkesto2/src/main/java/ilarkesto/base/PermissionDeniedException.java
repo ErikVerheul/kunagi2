@@ -14,12 +14,23 @@
  */
 package ilarkesto.base;
 
+/**
+ *
+ * @author erik
+ */
 public class PermissionDeniedException extends RuntimeException {
 
-	public PermissionDeniedException(String message) {
+    /**
+     *
+     * @param message
+     */
+    public PermissionDeniedException(String message) {
 		super(message);
 	}
 
-	public PermissionDeniedException() {}
+    /**
+     *
+     */
+    public PermissionDeniedException() {}
 
 }

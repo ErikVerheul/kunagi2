@@ -15,8 +15,8 @@
 package scrum.server.collaboration;
 
 import ilarkesto.base.StrExtend;
-import ilarkesto.logging.Log;
 import ilarkesto.io.IO;
+import ilarkesto.logging.Log;
 import ilarkesto.persistence.AEntity;
 import ilarkesto.persistence.DaoService;
 import ilarkesto.persistence.TransactionService;
@@ -36,6 +36,10 @@ import scrum.server.pr.SubscriptionService;
 import scrum.server.project.Project;
 import scrum.server.project.ProjectDao;
 
+/**
+ *
+ * @author erik
+ */
 public class CommentServlet extends AKunagiServlet {
 
 	private static final long serialVersionUID = 1;
@@ -49,7 +53,12 @@ public class CommentServlet extends AKunagiServlet {
 	private transient TransactionService transactionService;
 	private transient SubscriptionService subscriptionService;
 
-	@Override
+    /**
+     *
+     * @param req
+     * @throws IOException
+     */
+    @Override
 	protected void onRequest(RequestWrapper<WebSession> req) throws IOException {
 		req.setRequestEncoding(IO.UTF_8);
 
@@ -57,9 +66,13 @@ public class CommentServlet extends AKunagiServlet {
 		String entityId = req.get("entityId");
 		String text = req.get("text");
 		String name = StrExtend.cutRight(req.get("name"), 33);
-		if (StrExtend.isBlank(name)) name = null;
+		if (StrExtend.isBlank(name)) {
+                    name = null;
+        }
 		String email = StrExtend.cutRight(req.get("email"), 33);
-		if (StrExtend.isBlank(email)) email = null;
+		if (StrExtend.isBlank(email)) {
+                    email = null;
+        }
 
 		log.info("Comment from the internets");
 		log.info("    projectId: " + projectId);
@@ -81,29 +94,39 @@ public class CommentServlet extends AKunagiServlet {
 		}
 
 		String returnUrl = req.get("returnUrl");
-		if (returnUrl == null) returnUrl = "http://kunagi.org/message.html?#{message}";
+                if (returnUrl == null) {
+                    returnUrl = "http://kunagi.org/message.html?#{message}";
+        }
 		returnUrl = returnUrl.replace("{message}", StrExtend.encodeUrlParameter(message));
 
 		req.sendRedirect(returnUrl);
 	}
 
 	private String postComment(String projectId, String entityId, String text, String name, String email) {
-		if (projectId == null) throw new RuntimeException("projectId == null");
-		if (StrExtend.isBlank(text)) throw new RuntimeException("Comment is empty.");
+            if (projectId == null) {
+                throw new RuntimeException("projectId == null");
+            }
+            if (StrExtend.isBlank(text)) {
+                throw new RuntimeException("Comment is empty.");
+        }
 		Project project = projectDao.getById(projectId);
 		AEntity entity = daoService.getById(entityId);
 		Comment comment = commentDao.postComment(entity, "<nowiki>" + text + "</nowiki>", name, email, true);
 
-		String message = "New comment posted";
-		if (!StrExtend.isBlank(name)) message += " by " + name;
+                String message = "New comment posted";
+                if (!StrExtend.isBlank(name)) {
+            message += " by " + name;
+        }
 		subscriptionService.notifySubscribers(entity, message, project, email);
 
 		project.updateHomepage(entity, true);
 		String reference = ((ReferenceSupport) entity).getReference();
 		String label = ((LabelSupport) entity).getLabel();
-		ProjectEvent event = projectEventDao.postEvent(project, comment.getAuthorName() + " commented on " + reference
-				+ " " + label, entity);
-		if (StrExtend.isEmail(email)) subscriptionService.subscribe(email, entity);
+                ProjectEvent event = projectEventDao.postEvent(project, comment.getAuthorName() + " commented on " + reference
+                        + " " + label, entity);
+		if (StrExtend.isEmail(email)) {
+            subscriptionService.subscribe(email, entity);
+        }
 		transactionService.commit();
 
 		webApplication.sendToConversationsByProject(project, event);

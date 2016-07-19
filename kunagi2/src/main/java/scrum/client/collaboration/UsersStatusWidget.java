@@ -14,21 +14,23 @@
  */
 package scrum.client.collaboration;
 
+import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.Widget;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import scrum.client.admin.ProjectUserConfig;
 import scrum.client.admin.User;
 import scrum.client.common.AScrumWidget;
 import scrum.client.project.Project;
 
-import com.google.gwt.user.client.ui.FlowPanel;
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class UsersStatusWidget extends AScrumWidget {
 
 	private FlowPanel containerPanel;
@@ -50,7 +52,9 @@ public class UsersStatusWidget extends AScrumWidget {
 			return;
 		}
 		Project project = getCurrentProject();
-		if (project == null) return;
+		if (project == null) {
+                    return;
+        }
 		List<User> users = new ArrayList<User>(project.getParticipants());
 		Collections.sort(users, CUSTOM_COMPARATOR);
 		containerPanel.clear();
@@ -65,7 +69,10 @@ public class UsersStatusWidget extends AScrumWidget {
 		}
 	}
 
-	public transient static final Comparator<User> CUSTOM_COMPARATOR = new Comparator<User>() {
+    /**
+     *
+     */
+    public transient static final Comparator<User> CUSTOM_COMPARATOR = new Comparator<User>() {
 
 		@Override
 		public int compare(User a, User b) {
@@ -77,14 +84,22 @@ public class UsersStatusWidget extends AScrumWidget {
 			boolean aOnline = aConfig.isOnline();
 			boolean bOnline = bConfig.isOnline();
 
-			if (aOnline && !bOnline) return -1;
-			if (!aOnline && bOnline) return 1;
+			if (aOnline && !bOnline) {
+                            return -1;
+            }
+                        if (!aOnline && bOnline) {
+                            return 1;
+            }
 
 			boolean aScrumTeam = project.isScrumTeamMember(a);
 			boolean bScrumTeam = project.isScrumTeamMember(b);
-
-			if (aScrumTeam && !bScrumTeam) return -1;
-			if (!aScrumTeam && bScrumTeam) return 1;
+                        
+                        if (aScrumTeam && !bScrumTeam) {
+                            return -1;
+            }
+			if (!aScrumTeam && bScrumTeam) {
+                return 1;
+            }
 
 			return User.NAME_COMPARATOR.compare(a, b);
 		}

@@ -58,9 +58,17 @@ public abstract class ABeanProvider implements BeanProvider {
                 return Autowire.autowireClass(type, this, objectStringMapper);
         }
         // --- dependencies ---
-        protected ObjectStringMapper objectStringMapper;
 
-        public final void setObjectStringMapper(ObjectStringMapper objectStringMapper) {
+    /**
+     *
+     */
+            protected ObjectStringMapper objectStringMapper;
+
+    /**
+     *
+     * @param objectStringMapper
+     */
+    public final void setObjectStringMapper(ObjectStringMapper objectStringMapper) {
                 this.objectStringMapper = objectStringMapper;
         }
 }

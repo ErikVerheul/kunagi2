@@ -14,9 +14,17 @@
  */
 package ilarkesto.di;
 
+/**
+ *
+ * @author erik
+ */
 public class BeanDoesNotExisException extends RuntimeException {
 
-	public BeanDoesNotExisException(String beanName) {
+    /**
+     *
+     * @param beanName
+     */
+    public BeanDoesNotExisException(String beanName) {
 		super("Bean does not exist: " + beanName);
 	}
 

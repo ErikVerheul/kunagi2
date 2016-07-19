@@ -16,9 +16,7 @@ package scrum.client.calendar;
 
 import ilarkesto.core.scope.Scope;
 import ilarkesto.core.time.Date;
-
 import java.util.List;
-
 import scrum.client.common.AScrumAction;
 
 public class YearSelectorWidget extends ADateSelectorWidget {

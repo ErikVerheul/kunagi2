@@ -17,28 +17,40 @@ package scrum.client.project;
 import ilarkesto.core.base.Str;
 import scrum.client.common.TooltipBuilder;
 
+/**
+ *
+ * @author erik
+ */
 public class UpdateProjectHomepageAction extends GUpdateProjectHomepageAction {
 
-	public UpdateProjectHomepageAction(scrum.client.project.Project project) {
+    /**
+     *
+     * @param project
+     */
+    public UpdateProjectHomepageAction(scrum.client.project.Project project) {
 		super(project);
 	}
 
-	@Override
+    /**
+     *
+     * @param tb
+     */
+    @Override
 	protected void updateTooltip(TooltipBuilder tb) {
 		tb.setText("Export project data, thereby updating the public homepage for this project.");
-		if (!project.isScrumTeamMember(getCurrentUser())) tb.addRemark(TooltipBuilder.NOT_SCRUMTEAM);
+		if (!project.isScrumTeamMember(getCurrentUser())) {
+                    tb.addRemark(TooltipBuilder.NOT_SCRUMTEAM);
+        }
 	}
 
 	@Override
 	public boolean isExecutable() {
-		if (Str.isBlank(project.getHomepageDir())) return false;
-		return true;
+		return !Str.isBlank(project.getHomepageDir());
 	}
 
 	@Override
 	public boolean isPermitted() {
-		if (!project.isScrumTeamMember(getCurrentUser())) return false;
-		return true;
+		return project.isScrumTeamMember(getCurrentUser());
 	}
 
 	@Override

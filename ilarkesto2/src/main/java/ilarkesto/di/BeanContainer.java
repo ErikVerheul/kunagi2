@@ -46,36 +46,64 @@ public final class BeanContainer extends ABeanProvider implements BeanStorage<Ob
 		return bean.getClass();
 	}
 
-        @Override
+    /**
+     *
+     * @param name
+     * @param bean
+     * @return
+     */
+    @Override
 	public BeanContainer put(String name, Object bean) {
 		beans.put(name, bean);
 		return this;
 	}
 
-        @Override
+    /**
+     *
+     * @param map
+     * @return
+     */
+    @Override
 	public BeanContainer putAll(Map<String, ? extends Object> map) {
 		beans.putAll(map);
 		return this;
 	}
 
-	public BeanContainer putAll(BeanProvider beanProvider) {
+    /**
+     *
+     * @param beanProvider
+     * @return
+     */
+    public BeanContainer putAll(BeanProvider beanProvider) {
 		for (String bean : beanProvider.beanNames()) {
 			beans.put(bean, beanProvider.getBean(bean));
 		}
 		return this;
 	}
 
-	public Map<String, Object> getBeans() {
+    /**
+     *
+     * @return
+     */
+    public Map<String, Object> getBeans() {
 		return beans;
 	}
 
 	// --- dependencies ---
 
+    /**
+     *
+     * @param beans
+     */
+    
 	public BeanContainer(Map<String, Object> beans) {
 		this.beans = beans;
 	}
 
-	public BeanContainer() {
+    /**
+     *
+     */
+    public BeanContainer() {
 		this.beans = new HashMap<>();
 	}
 

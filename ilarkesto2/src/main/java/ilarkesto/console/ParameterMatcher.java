@@ -19,9 +19,19 @@ import java.math.BigInteger;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ *
+ * @author erik
+ */
 public class ParameterMatcher {
 
-	public static Object[] match(String input, Class<?>[] parameterTypes) {
+    /**
+     *
+     * @param input
+     * @param parameterTypes
+     * @return
+     */
+    public static Object[] match(String input, Class<?>[] parameterTypes) {
 		input = input.trim();
 		int n = (input.isEmpty()) ? 0 : input.split(" ").length;
 		if (n != parameterTypes.length) {

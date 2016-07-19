@@ -14,8 +14,17 @@
  */
 package ilarkesto.io.nio.httpserver;
 
+/**
+ *
+ * @author erik
+ */
 public interface HttpRequestHandler {
 
-	boolean onHttpRequest(HttpRequest request);
+    /**
+     *
+     * @param request
+     * @return
+     */
+    boolean onHttpRequest(HttpRequest request);
 
 }

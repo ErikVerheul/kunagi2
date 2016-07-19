@@ -16,10 +16,72 @@ package ilarkesto.core.time;
 
 import ilarkesto.core.base.Utl;
 
+/**
+ *
+ * @author erik
+ */
 public enum Month {
 
-	JANUARY(1), FEBRUARY(2), MARCH(3), APRIL(4), MAY(5), JUNE(6), JULY(7), AUGUST(8), SEPTEMBER(9), OCTOBER(10), NOVEMBER(
-			11), DECEMBER(12);
+    /**
+     *
+     */
+    JANUARY(1), 
+
+    /**
+     *
+     */
+    FEBRUARY(2), 
+
+    /**
+     *
+     */
+    MARCH(3), 
+
+    /**
+     *
+     */
+    APRIL(4), 
+
+    /**
+     *
+     */
+    MAY(5), 
+
+    /**
+     *
+     */
+    JUNE(6), 
+
+    /**
+     *
+     */
+    JULY(7), 
+
+    /**
+     *
+     */
+    AUGUST(8), 
+
+    /**
+     *
+     */
+    SEPTEMBER(9), 
+
+    /**
+     *
+     */
+    OCTOBER(10), 
+
+    /**
+     *
+     */
+    NOVEMBER(
+			11), 
+
+    /**
+     *
+     */
+    DECEMBER(12);
 
 	private final int monthOfYear;
 
@@ -27,11 +89,20 @@ public enum Month {
 		this.monthOfYear = monthOfYear;
 	}
 
-	public int getMonthOfYear() {
+    /**
+     *
+     * @return
+     */
+    public int getMonthOfYear() {
 		return monthOfYear;
 	}
 
-	public static Month get(int monthOfYear) {
+    /**
+     *
+     * @param monthOfYear
+     * @return
+     */
+    public static Month get(int monthOfYear) {
 		for (Month month : Month.values()) {
 			if (month.monthOfYear == monthOfYear) {
                                 return month;
@@ -40,11 +111,20 @@ public enum Month {
 		throw new RuntimeException("Month does not exist: " + monthOfYear);
 	}
 
-	public String toString(String language) {
+    /**
+     *
+     * @param language
+     * @return
+     */
+    public String toString(String language) {
 		return Tm.getLocalizer(language).full(this);
 	}
 
-	public String toLocalString() {
+    /**
+     *
+     * @return
+     */
+    public String toLocalString() {
 		return toString(Utl.getLanguage());
 	}
 

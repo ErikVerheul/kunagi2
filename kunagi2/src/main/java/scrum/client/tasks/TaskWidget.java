@@ -14,16 +14,15 @@
  */
 package scrum.client.tasks;
 
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.base.Str;
 import ilarkesto.gwt.client.ADropdownViewEditWidget;
 import ilarkesto.gwt.client.AFieldValueWidget;
 import ilarkesto.gwt.client.AIntegerViewEditWidget;
 import ilarkesto.gwt.client.Gwt;
 import ilarkesto.gwt.client.TableBuilder;
-
 import java.util.HashMap;
 import java.util.Map;
-
 import scrum.client.ScrumGwt;
 import scrum.client.collaboration.CommentsWidget;
 import scrum.client.common.AScrumWidget;
@@ -31,13 +30,19 @@ import scrum.client.impediments.Impediment;
 import scrum.client.journal.ChangeHistoryWidget;
 import scrum.client.sprint.Task;
 
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class TaskWidget extends AScrumWidget {
 
 	private Task task;
 
-	public TaskWidget(Task task) {
+    /**
+     *
+     * @param task
+     */
+    public TaskWidget(Task task) {
 		this.task = task;
 	}
 
@@ -47,11 +52,15 @@ public class TaskWidget extends AScrumWidget {
 
 		TableBuilder tb = ScrumGwt.createFieldTable();
 
-		if (inCurrentSprint) tb.addFieldRow("Label", task.getLabelModel(), 3);
+		if (inCurrentSprint) {
+                    tb.addFieldRow("Label", task.getLabelModel(), 3);
+        }
 
 		tb.addFieldRow("Description", task.getDescriptionModel(), 3);
 
-		if (inCurrentSprint) appendCurrentSprintFields(tb);
+		if (inCurrentSprint) {
+                    appendCurrentSprintFields(tb);
+        }
 
 		Widget comments = inCurrentSprint ? ScrumGwt.createEmoticonsAndComments(task) : new CommentsWidget(task);
 		ChangeHistoryWidget changeHistory = new ChangeHistoryWidget(task);
@@ -74,7 +83,9 @@ public class TaskWidget extends AScrumWidget {
 			@Override
 			protected void onEditorSubmit() {
 				Integer value = getEditorValue(0);
-				if (value == null) value = 0;
+				if (value == null) {
+                                    value = 0;
+                }
 				int previous = task.getBurnedWork();
 				int diff = value - previous;
 				task.setBurnedWork(value);

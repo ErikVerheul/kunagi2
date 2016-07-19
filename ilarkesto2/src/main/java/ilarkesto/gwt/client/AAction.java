@@ -24,11 +24,22 @@ import static ilarkesto.core.logging.ClientLog.DEBUG;
 import static ilarkesto.gwt.client.Gwt.getRootWidget;
 import static ilarkesto.gwt.client.Gwt.update;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class AAction implements Command, ClickHandler {
 
-	public abstract String getLabel();
+    /**
+     *
+     * @return
+     */
+    public abstract String getLabel();
 
-	protected abstract void onExecute();
+    /**
+     *
+     */
+    protected abstract void onExecute();
 
 	@Override
 	public final void execute() {
@@ -43,7 +54,11 @@ public abstract class AAction implements Command, ClickHandler {
 		update(getRootWidget());
 	}
 
-	public String getTargetHistoryToken() {
+    /**
+     *
+     * @return
+     */
+    public String getTargetHistoryToken() {
 		return null;
 	}
 
@@ -53,27 +68,51 @@ public abstract class AAction implements Command, ClickHandler {
 		execute();
 	}
 
-	public Image getIcon() {
+    /**
+     *
+     * @return
+     */
+    public Image getIcon() {
 		return null;
 	}
 
-	public boolean isExecutable() {
+    /**
+     *
+     * @return
+     */
+    public boolean isExecutable() {
 		return true;
 	}
 
-	public boolean isPermitted() {
+    /**
+     *
+     * @return
+     */
+    public boolean isPermitted() {
 		return true;
 	}
 
-	public String getTooltip() {
+    /**
+     *
+     * @return
+     */
+    public String getTooltip() {
 		return null;
 	}
 
-	public String getTooltipAsHtml() {
+    /**
+     *
+     * @return
+     */
+    public String getTooltipAsHtml() {
 		return toHtml(getTooltip());
 	}
 
-	public String getId() {
+    /**
+     *
+     * @return
+     */
+    public String getId() {
 		return getSimpleName(getClass()).replace('$', '_');
 	}
 

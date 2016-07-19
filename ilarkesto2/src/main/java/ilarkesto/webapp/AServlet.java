@@ -24,23 +24,53 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ *
+ * @author erik
+ * @param <A>
+ * @param <S>
+ */
 public abstract class AServlet<A extends AWebApplication, S extends AWebSession> extends HttpServlet {
 
 	private static final Log log = Log.get(AServlet.class);
 
-	protected A webApplication;
+    /**
+     *
+     */
+    protected A webApplication;
 
-	protected void onGet(RequestWrapper<S> req) throws IOException {
+    /**
+     *
+     * @param req
+     * @throws IOException
+     */
+    protected void onGet(RequestWrapper<S> req) throws IOException {
 		req.sendErrorNoContent();
 	}
 
-	protected void onPost(RequestWrapper<S> req) throws IOException {
+    /**
+     *
+     * @param req
+     * @throws IOException
+     */
+    protected void onPost(RequestWrapper<S> req) throws IOException {
 		req.sendErrorNoContent();
 	}
 
-	protected void onInit(ServletConfig config) {}
+    /**
+     *
+     * @param config
+     */
+    protected void onInit(ServletConfig config) {}
 
-	@Override
+    /**
+     *
+     * @param httpRequest
+     * @param httpResponse
+     * @throws ServletException
+     * @throws IOException
+     */
+    @Override
 	protected final void doGet(HttpServletRequest httpRequest, HttpServletResponse httpResponse)
 			throws ServletException, IOException {
 		RequestWrapper<S> req = new RequestWrapper<>(httpRequest, httpResponse);
@@ -54,7 +84,14 @@ public abstract class AServlet<A extends AWebApplication, S extends AWebSession>
 		}
 	}
 
-	@Override
+    /**
+     *
+     * @param httpRequest
+     * @param httpResponse
+     * @throws ServletException
+     * @throws IOException
+     */
+    @Override
 	protected final void doPost(HttpServletRequest httpRequest, HttpServletResponse httpResponse)
 			throws ServletException, IOException {
 		RequestWrapper<S> req = new RequestWrapper<>(httpRequest, httpResponse);
@@ -90,9 +127,18 @@ public abstract class AServlet<A extends AWebApplication, S extends AWebSession>
 		req.sendErrorInternal(format(ex));
 	}
 
-	protected void onPreInit(ServletConfig config) {}
+    /**
+     *
+     * @param config
+     */
+    protected void onPreInit(ServletConfig config) {}
 
-	@Override
+    /**
+     *
+     * @param config
+     * @throws ServletException
+     */
+    @Override
 	public final void init(ServletConfig config) throws ServletException {
 		super.init(config);
 		try {
@@ -107,7 +153,11 @@ public abstract class AServlet<A extends AWebApplication, S extends AWebSession>
 		}
 	}
 
-	@Override
+    /**
+     *
+     * @throws ServletException
+     */
+    @Override
 	public final void init() throws ServletException {
 		super.init();
 	}

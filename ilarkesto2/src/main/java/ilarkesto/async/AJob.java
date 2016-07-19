@@ -14,7 +14,6 @@
  */
 package ilarkesto.async;
 
-import ilarkesto.core.base.Str;
 import static ilarkesto.core.base.Str.concat;
 
 public abstract class AJob<R> implements Job<R> {

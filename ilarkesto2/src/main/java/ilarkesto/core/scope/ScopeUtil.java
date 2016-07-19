@@ -14,7 +14,6 @@
  */
 package ilarkesto.core.scope;
 
-import ilarkesto.core.base.Utl;
 import static ilarkesto.core.base.Utl.getSimpleName;
 import static java.lang.Character.toLowerCase;
 import static java.lang.Character.toUpperCase;

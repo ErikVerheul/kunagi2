@@ -16,12 +16,21 @@ package ilarkesto.mda.legacy.model;
 
 import ilarkesto.persistence.AEntity;
 
+/**
+ *
+ * @author erik
+ */
 public class ModelUtils {
 
     private ModelUtils() {
     // permits instanciation
     }
 
+    /**
+     *
+     * @param className
+     * @return
+     */
     public static boolean isEntity(String className) {
         Class clazz;
         try {

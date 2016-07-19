@@ -14,8 +14,18 @@
  */
 package ilarkesto.base;
 
+/**
+ *
+ * @author erik
+ * @param <T>
+ */
 public interface StringProvider<T> {
 
-	public String getString(T o);
+    /**
+     *
+     * @param o
+     * @return
+     */
+    public String getString(T o);
 
 }

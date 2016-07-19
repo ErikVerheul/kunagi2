@@ -14,16 +14,45 @@
  */
 package scrum.client.wiki;
 
+/**
+ *
+ * @author erik
+ */
 public interface HtmlContext {
 
-	String getDownloadUrlByReference(String reference);
+    /**
+     *
+     * @param reference
+     * @return
+     */
+    String getDownloadUrlByReference(String reference);
 
-	String getEntityLabelByReference(String reference);
+    /**
+     *
+     * @param reference
+     * @return
+     */
+    String getEntityLabelByReference(String reference);
 
-	String getEntityReferenceHrefOrOnclickAParameter(String reference);
+    /**
+     *
+     * @param reference
+     * @return
+     */
+    String getEntityReferenceHrefOrOnclickAParameter(String reference);
 
-	String getTocHrefOrOnclickAParameter(Header h);
+    /**
+     *
+     * @param h
+     * @return
+     */
+    String getTocHrefOrOnclickAParameter(Header h);
 
-	boolean isEntityReferenceAvailable(String reference);
+    /**
+     *
+     * @param reference
+     * @return
+     */
+    boolean isEntityReferenceAvailable(String reference);
 
 }

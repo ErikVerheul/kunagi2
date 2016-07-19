@@ -15,8 +15,8 @@
 package scrum.server.pr;
 
 import ilarkesto.base.StrExtend;
-import ilarkesto.logging.Log;
 import ilarkesto.io.IO;
+import ilarkesto.logging.Log;
 import ilarkesto.persistence.AEntity;
 import ilarkesto.persistence.DaoService;
 import ilarkesto.persistence.TransactionService;
@@ -28,6 +28,10 @@ import scrum.server.WebSession;
 import scrum.server.common.AKunagiServlet;
 import scrum.server.common.KunagiUtl;
 
+/**
+ *
+ * @author erik
+ */
 public class UnsubscribeServlet extends AKunagiServlet {
 
 	private static final long serialVersionUID = 1;
@@ -38,13 +42,20 @@ public class UnsubscribeServlet extends AKunagiServlet {
 	private transient DaoService daoService;
 	private transient TransactionService transactionService;
 
-	@Override
+    /**
+     *
+     * @param req
+     * @throws IOException
+     */
+    @Override
 	protected void onRequest(RequestWrapper<WebSession> req) throws IOException {
 		req.setRequestEncoding(IO.UTF_8);
 
 		String subjectId = req.get("subject");
 		String email = StrExtend.cutRight(req.get("email"), 64);
-		if (StrExtend.isBlank(email)) email = "";
+		if (StrExtend.isBlank(email)) {
+                    email = "";
+        }
 		String key = req.get("key");
 
 		log.info("Unsubscription from the internet");
@@ -81,7 +92,9 @@ public class UnsubscribeServlet extends AKunagiServlet {
 
 	private void sendResponse(RequestWrapper<WebSession> req, String message) throws IOException {
 		String returnUrl = req.get("returnUrl");
-		if (returnUrl == null) returnUrl = "http://kunagi.org/message.html?#{message}";
+		if (returnUrl == null) {
+                    returnUrl = "http://kunagi.org/message.html?#{message}";
+        }
 		returnUrl = returnUrl.replace("{message}", StrExtend.encodeUrlParameter(message));
 
 		req.sendRedirect(returnUrl);

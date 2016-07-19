@@ -14,11 +14,19 @@
  */
 package ilarkesto.id;
 
+/**
+ *
+ * @author erik
+ */
 public class CountingIdGenerator implements IdGenerator {
 
         private int count;
 
-        @Override
+    /**
+     *
+     * @return
+     */
+    @Override
         public synchronized String generateId() {
                 return prefix + (++count);
         }
@@ -26,7 +34,11 @@ public class CountingIdGenerator implements IdGenerator {
         // --- dependencies ---
         private final String prefix;
 
-        public CountingIdGenerator(String prefix) {
+    /**
+     *
+     * @param prefix
+     */
+    public CountingIdGenerator(String prefix) {
                 this.prefix = prefix;
         }
 }

@@ -21,16 +21,30 @@ import scrum.client.wiki.Image;
 import scrum.server.files.File;
 import scrum.server.project.Project;
 
+/**
+ *
+ * @author erik
+ */
 public class ScrumPdfContext implements PdfContext {
 
 	private Project project;
 
-	public ScrumPdfContext(Project project) {
+    /**
+     *
+     * @param project
+     */
+    public ScrumPdfContext(Project project) {
 		super();
 		this.project = project;
 	}
 
-	@Override
+    /**
+     *
+     * @param p
+     * @param wikiImage
+     * @return
+     */
+    @Override
 	public AImage appendImage(AParagraph p, Image wikiImage) {
 		if (wikiImage.isExternal()) {
 			byte[] data = IO.downloadUrl(wikiImage.getReference(), null, null);
@@ -38,12 +52,18 @@ public class ScrumPdfContext implements PdfContext {
 		}
 
 		File file = project == null ? null : project.getFileByReference(wikiImage.getReference());
-		if (file == null) return null;
+		if (file == null) {
+                    return null;
+        }
 		java.io.File javaFile = file.getJavaFile();
 		return p.image(javaFile);
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public Project getProject() {
 		return project;
 	}

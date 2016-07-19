@@ -23,18 +23,30 @@ import ilarkesto.core.base.ToHtmlSupport;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class ADropdownViewEditWidget extends AViewEditWidget {
 
 	private HTML viewer;
 	private ListBox editor;
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected final Widget onViewerInitialization() {
 		viewer = new HTML();
 		return viewer;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected final Widget onEditorInitialization() {
 		editor = new ListBox();
 		editor.addChangeHandler(new EditorChangeListener());
@@ -43,12 +55,19 @@ public abstract class ADropdownViewEditWidget extends AViewEditWidget {
 		return editor;
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void onEditorUpdate() {
 		editor.setFocus(true);
 	}
 
-	public final void setOptions(String... options) {
+    /**
+     *
+     * @param options
+     */
+    public final void setOptions(String... options) {
 		Map<String, String> optionsAsKeyLabelMap = new LinkedHashMap<String, String>();
 		for (String option : options) {
 			optionsAsKeyLabelMap.put(option, option);
@@ -56,7 +75,11 @@ public abstract class ADropdownViewEditWidget extends AViewEditWidget {
 		setOptions(optionsAsKeyLabelMap);
 	}
 
-	public final void setOptions(Map<String, String> optionsAsKeyLabelMap) {
+    /**
+     *
+     * @param optionsAsKeyLabelMap
+     */
+    public final void setOptions(Map<String, String> optionsAsKeyLabelMap) {
 		ensureEditorInitialized();
 		editor.clear();
 		for (Map.Entry<String, String> entry : optionsAsKeyLabelMap.entrySet()) {
@@ -64,7 +87,11 @@ public abstract class ADropdownViewEditWidget extends AViewEditWidget {
 		}
 	}
 
-	public final void setSelectedOption(String key) {
+    /**
+     *
+     * @param key
+     */
+    public final void setSelectedOption(String key) {
 		for (int i = 0; i < editor.getItemCount(); i++) {
 			if (editor.getValue(i).equals(key)) {
 				editor.setItemSelected(i, true);
@@ -73,15 +100,27 @@ public abstract class ADropdownViewEditWidget extends AViewEditWidget {
 		}
 	}
 
-	public final String getSelectedOption() {
+    /**
+     *
+     * @return
+     */
+    public final String getSelectedOption() {
 		return editor.getValue(editor.getSelectedIndex());
 	}
 
-	public final void setViewerText(String text) {
+    /**
+     *
+     * @param text
+     */
+    public final void setViewerText(String text) {
 		viewer.setText(text);
 	}
 
-	public final void setViewerItem(Object item) {
+    /**
+     *
+     * @param item
+     */
+    public final void setViewerItem(Object item) {
 		if (item == null) {
 			setViewerText(null);
 			return;

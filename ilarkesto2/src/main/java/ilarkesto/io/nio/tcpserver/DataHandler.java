@@ -14,10 +14,22 @@
  */
 package ilarkesto.io.nio.tcpserver;
 
+/**
+ *
+ * @author erik
+ */
 public interface DataHandler {
 
-	void onDataReceived(ServerDataEvent event);
+    /**
+     *
+     * @param event
+     */
+    void onDataReceived(ServerDataEvent event);
 
-	void onConnectionClosed(TcpConnection connection);
+    /**
+     *
+     * @param connection
+     */
+    void onConnectionClosed(TcpConnection connection);
 
 }

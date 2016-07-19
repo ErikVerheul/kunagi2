@@ -14,6 +14,10 @@
  */
 package scrum.client.journal;
 
+import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.AAction;
 import ilarkesto.gwt.client.ATextWidget;
 import ilarkesto.gwt.client.Gwt;
@@ -24,18 +28,21 @@ import scrum.client.admin.User;
 import scrum.client.collaboration.Wiki;
 import scrum.client.common.AScrumWidget;
 
-import com.google.gwt.user.client.ui.FlowPanel;
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class ChangeWidget extends AScrumWidget {
 
 	private Change change;
 	private Label date;
 	private FlowPanel payloadPanel;
 
-	public ChangeWidget(Change change) {
+    /**
+     *
+     * @param change
+     */
+    public ChangeWidget(Change change) {
 		super();
 		this.change = change;
 	}
@@ -58,7 +65,9 @@ public class ChangeWidget extends AScrumWidget {
 		FlowPanel header = new FlowPanel();
 		header.setStyleName("ChangeWidget-header");
 		header.add(date);
-		if (changerLabel != null) header.add(changerLabel);
+		if (changerLabel != null) {
+                    header.add(changerLabel);
+        }
 
 		FlowPanel panel = new FlowPanel();
 		panel.setStyleName("ChangeWidget");
@@ -84,7 +93,10 @@ public class ChangeWidget extends AScrumWidget {
 		return panel;
 	}
 
-	public void expand() {
+    /**
+     *
+     */
+    public void expand() {
 		payloadPanel.clear();
 		if (change.isDiffAvailable()) {
 			ATextWidget diffWidget = new ATextWidget() {

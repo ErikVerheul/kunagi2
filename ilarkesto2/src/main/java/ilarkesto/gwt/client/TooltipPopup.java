@@ -17,7 +17,6 @@ package ilarkesto.gwt.client;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.PopupPanel;
-import com.google.gwt.user.client.ui.RootPanel;
 import static com.google.gwt.user.client.ui.RootPanel.getBodyElement;
 import com.google.gwt.user.client.ui.Widget;
 

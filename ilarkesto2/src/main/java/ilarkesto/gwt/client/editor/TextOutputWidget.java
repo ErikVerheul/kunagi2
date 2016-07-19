@@ -16,10 +16,8 @@ package ilarkesto.gwt.client.editor;
 
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Widget;
-import ilarkesto.core.base.Str;
 import static ilarkesto.core.base.Str.isBlank;
 import ilarkesto.gwt.client.AWidget;
-import ilarkesto.gwt.client.Gwt;
 import static ilarkesto.gwt.client.Gwt.addTooltipHtml;
 import static java.lang.String.valueOf;
 

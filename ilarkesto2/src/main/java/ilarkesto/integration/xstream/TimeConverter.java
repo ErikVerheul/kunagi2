@@ -17,14 +17,28 @@ package ilarkesto.integration.xstream;
 import com.thoughtworks.xstream.converters.basic.AbstractSingleValueConverter;
 import ilarkesto.core.time.Time;
 
+/**
+ *
+ * @author erik
+ */
 public class TimeConverter extends AbstractSingleValueConverter {
 
-	@Override
+    /**
+     *
+     * @param type
+     * @return
+     */
+    @Override
 	public boolean canConvert(Class type) {
 		return type.isAssignableFrom(Time.class);
 	}
 
-	@Override
+    /**
+     *
+     * @param str
+     * @return
+     */
+    @Override
 	public Object fromString(String str) {
 		if (str == null || str.length() == 0) {
                         return null;

@@ -14,6 +14,16 @@
  */
 package scrum.client.collaboration;
 
+import com.google.gwt.event.dom.client.KeyCodes;
+import com.google.gwt.event.dom.client.KeyPressEvent;
+import com.google.gwt.event.dom.client.KeyPressHandler;
+import com.google.gwt.event.logical.shared.SelectionEvent;
+import com.google.gwt.event.logical.shared.SelectionHandler;
+import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.SuggestBox;
+import com.google.gwt.user.client.ui.SuggestOracle.Suggestion;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.ButtonWidget;
 import ilarkesto.gwt.client.DropdownMenuButtonWidget;
@@ -31,17 +41,10 @@ import scrum.client.journal.ChangeHistoryWidget;
 import scrum.client.workspace.Navigator;
 import scrum.client.workspace.PagePanel;
 
-import com.google.gwt.event.dom.client.KeyCodes;
-import com.google.gwt.event.dom.client.KeyPressEvent;
-import com.google.gwt.event.dom.client.KeyPressHandler;
-import com.google.gwt.event.logical.shared.SelectionEvent;
-import com.google.gwt.event.logical.shared.SelectionHandler;
-import com.google.gwt.user.client.History;
-import com.google.gwt.user.client.ui.FlowPanel;
-import com.google.gwt.user.client.ui.SuggestBox;
-import com.google.gwt.user.client.ui.SuggestOracle.Suggestion;
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class WikiWidget extends AScrumWidget {
 
 	private static final String START_PAGE_NAME = "Start";
@@ -65,10 +68,16 @@ public class WikiWidget extends AScrumWidget {
 
 	@Override
 	protected void onUpdate() {
-		if (editor != null && editor.isEditMode()) return;
-		if (commentsWidget != null && commentsWidget.isEditorActive()) return;
+		if (editor != null && editor.isEditMode()) {
+                    return;
+        }
+		if (commentsWidget != null && commentsWidget.isEditorActive()) {
+                    return;
+        }
 
-		if (pageName == null || pageName.trim().length() == 0) pageName = START_PAGE_NAME;
+                if (pageName == null || pageName.trim().length() == 0) {
+                    pageName = START_PAGE_NAME;
+        }
 
 		Wikipage newWikipage = getCurrentProject().getWikipage(pageName);
 		if (newWikipage != null && wikipage != newWikipage) {
@@ -140,13 +149,21 @@ public class WikiWidget extends AScrumWidget {
 			dropdown);
 	}
 
-	public void showPage(String name) {
+    /**
+     *
+     * @param name
+     */
+    public void showPage(String name) {
 		this.pageName = name;
 		update();
 		new TouchLastActivityServiceCall().execute();
 	}
 
-	public void showPage(Wikipage page) {
+    /**
+     *
+     * @param page
+     */
+    public void showPage(Wikipage page) {
 		showPage(page == null ? null : page.getName());
 	}
 
@@ -182,7 +199,9 @@ public class WikiWidget extends AScrumWidget {
 		@Override
 		public void onKeyPress(KeyPressEvent event) {
 			SuggestBox pageNameBox = (SuggestBox) event.getSource();
-			if (pageNameBox.isSuggestionListShowing()) return;
+                        if (pageNameBox.isSuggestionListShowing()) {
+                return;
+            }
 			if (event.getCharCode() == KeyCodes.KEY_ENTER) {
 				event.stopPropagation();
 				showPage(pageNameBox.getText());

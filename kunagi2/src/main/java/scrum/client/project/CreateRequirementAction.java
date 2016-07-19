@@ -19,13 +19,21 @@ import scrum.client.common.TooltipBuilder;
 import scrum.client.project.ProductBacklogWidget.FilterToggleAction;
 import scrum.client.workspace.ProjectWorkspaceWidgets;
 
+/**
+ *
+ * @author erik
+ */
 public class CreateRequirementAction extends GCreateRequirementAction {
 
 	private Requirement relative;
 	private boolean before;
 	private FilterToggleAction filterToggleAction;
 
-	public CreateRequirementAction(FilterToggleAction filterToggleAction) {
+    /**
+     *
+     * @param filterToggleAction
+     */
+    public CreateRequirementAction(FilterToggleAction filterToggleAction) {
 		this.filterToggleAction = filterToggleAction;
 	}
 
@@ -36,20 +44,24 @@ public class CreateRequirementAction extends GCreateRequirementAction {
 
 	@Override
 	public boolean isExecutable() {
-		if (filterToggleAction.filterActive) return false;
-		return true;
+		return !filterToggleAction.filterActive;
 	}
 
-	@Override
+    /**
+     *
+     * @param tb
+     */
+    @Override
 	protected void updateTooltip(TooltipBuilder tb) {
 		tb.setText("Create a new Story.");
-		if (!getCurrentProject().isProductOwner(getCurrentUser())) tb.addRemark(TooltipBuilder.NOT_PRODUCT_OWNER);
+		if (!getCurrentProject().isProductOwner(getCurrentUser())) {
+                    tb.addRemark(TooltipBuilder.NOT_PRODUCT_OWNER);
+        }
 	}
 
 	@Override
 	public boolean isPermitted() {
-		if (!getCurrentProject().isProductOwner(getCurrentUser())) return false;
-		return true;
+		return getCurrentProject().isProductOwner(getCurrentUser());
 	}
 
 	@Override
@@ -58,11 +70,19 @@ public class CreateRequirementAction extends GCreateRequirementAction {
 		Scope.get().getComponent(ProjectWorkspaceWidgets.class).showEntity(requirement);
 	}
 
-	public void setRelative(Requirement nextRequirement) {
+    /**
+     *
+     * @param nextRequirement
+     */
+    public void setRelative(Requirement nextRequirement) {
 		this.relative = nextRequirement;
 	}
 
-	public void setBefore(boolean before) {
+    /**
+     *
+     * @param before
+     */
+    public void setBefore(boolean before) {
 		this.before = before;
 	}
 

@@ -14,11 +14,12 @@
  */
 package scrum.client.search;
 
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.scope.Scope;
-
 import java.util.List;
 import java.util.Map;
-
 import scrum.client.collaboration.Wikipage;
 import scrum.client.common.AScrumGwtEntity;
 import scrum.client.common.AScrumWidget;
@@ -30,10 +31,6 @@ import scrum.client.project.Requirement;
 import scrum.client.risks.Risk;
 import scrum.client.sprint.Task;
 import scrum.client.workspace.PagePanel;
-
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.Widget;
 
 public class SearchResultsWidget extends AScrumWidget {
 

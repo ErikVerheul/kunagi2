@@ -1,25 +1,19 @@
-/*
- * Copyright 2011 Witoslaw Koczewsi <wi@koczewski.de>, Artjom Kochtchi
- * 
- * This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero
- * General Public License as published by the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
- * implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public
- * License for more details.
- * 
- * You should have received a copy of the GNU General Public License along with this program. If not, see
- * <http://www.gnu.org/licenses/>.
- */
+
 package scrum.client.impediments;
 
-import scrum.client.impediments.GCloseImpedimentAction;
 import scrum.client.common.TooltipBuilder;
 
+/**
+ *
+ * @author erik
+ */
 public class ReopenImpedimentAction extends GCloseImpedimentAction {
 
-	public ReopenImpedimentAction(scrum.client.impediments.Impediment impediment) {
+    /**
+     *
+     * @param impediment
+     */
+    public ReopenImpedimentAction(scrum.client.impediments.Impediment impediment) {
 		super(impediment);
 	}
 
@@ -28,7 +22,11 @@ public class ReopenImpedimentAction extends GCloseImpedimentAction {
 		return "Reopen";
 	}
 
-	@Override
+    /**
+     *
+     * @param tb
+     */
+    @Override
 	protected void updateTooltip(TooltipBuilder tb) {
 		tb.setText("Reopen this Impediment, marking it as impeding.");
 		if (!impediment.getProject().isScrumTeamMember(getCurrentUser())) {
@@ -38,14 +36,12 @@ public class ReopenImpedimentAction extends GCloseImpedimentAction {
 
 	@Override
 	public boolean isExecutable() {
-		if (!impediment.isClosed()) return false;
-		return true;
+		return impediment.isClosed();
 	}
 
 	@Override
 	public boolean isPermitted() {
-		if (!impediment.getProject().isScrumTeamMember(getCurrentUser())) return false;
-		return true;
+		return impediment.getProject().isScrumTeamMember(getCurrentUser());
 	}
 
 	@Override

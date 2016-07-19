@@ -16,17 +16,39 @@ package ilarkesto.gwt.client.editor;
 
 import ilarkesto.core.base.Utl;
 
+/**
+ *
+ * @author erik
+ * @param <T>
+ */
 public abstract class AEditorModel<T> extends AFieldModel<T> {
 
-	public abstract void setValue(T value);
+    /**
+     *
+     * @param value
+     */
+    public abstract void setValue(T value);
 
-	protected void onChangeValue(T oldValue, T newValue) {}
+    /**
+     *
+     * @param oldValue
+     * @param newValue
+     */
+    protected void onChangeValue(T oldValue, T newValue) {}
 
-	public boolean isEditable() {
+    /**
+     *
+     * @return
+     */
+    public boolean isEditable() {
 		return true;
 	}
 
-	public void changeValue(T newValue) {
+    /**
+     *
+     * @param newValue
+     */
+    public void changeValue(T newValue) {
 		T oldValue = getValue();
 		if (Utl.equalObjects(oldValue, newValue)) {
                         return;

@@ -26,32 +26,64 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 @SuppressWarnings("SE_NO_SERIALVERSIONID")
 public class Date implements Comparable<Date>, Serializable {
 
-	protected int year;
-	protected int month;
-	protected int day;
+    /**
+     *
+     */
+    protected int year;
+
+    /**
+     *
+     */
+    protected int month;
+
+    /**
+     *
+     */
+    protected int day;
 
 	private transient int hashCode;
 
-	public Date() {
+    /**
+     *
+     */
+    public Date() {
 		this(getNowAsDate());
 	}
 
-	public Date(java.util.Date javaDate) {
+    /**
+     *
+     * @param javaDate
+     */
+    public Date(java.util.Date javaDate) {
 		this.year = Tm.getYear(javaDate);
 		this.month = Tm.getMonth(javaDate);
 		this.day = Tm.getDay(javaDate);
 	}
 
-	public Date(int year, int month, int day) {
+    /**
+     *
+     * @param year
+     * @param month
+     * @param day
+     */
+    public Date(int year, int month, int day) {
 		this.year = year;
 		this.month = month;
 		this.day = day;
 	}
 
-	public Date(String date) {
+    /**
+     *
+     * @param date
+     */
+    public Date(String date) {
 		if (date.length() != 10) {
                         throw new RuntimeException("Illegal date format: " + date);
                 }
@@ -65,53 +97,109 @@ public class Date implements Comparable<Date>, Serializable {
 		this.day = d;
 	}
 
-	public Date(long millis) {
+    /**
+     *
+     * @param millis
+     */
+    public Date(long millis) {
 		this(createDate(millis));
 	}
 
-	protected Date newDate(java.util.Date javaDate) {
+    /**
+     *
+     * @param javaDate
+     * @return
+     */
+    protected Date newDate(java.util.Date javaDate) {
 		return new Date(javaDate);
 	}
 
-	protected Date newDate(int year, int month, int day) {
+    /**
+     *
+     * @param year
+     * @param month
+     * @param day
+     * @return
+     */
+    protected Date newDate(int year, int month, int day) {
 		return new Date(year, month, day);
 	}
 
 	// ---
 
+    /**
+     *
+     * @return
+     */
+    
 	public int getDaysInMonth() {
 		return Tm.getDaysInMonth(year, month);
 	}
 
-	public final int getWeek() {
+    /**
+     *
+     * @return
+     */
+    public final int getWeek() {
 		return Tm.getWeek(toJavaDate());
 	}
 
-	public TimePeriod getPeriodTo(Date other) {
+    /**
+     *
+     * @param other
+     * @return
+     */
+    public TimePeriod getPeriodTo(Date other) {
 		return new TimePeriod(DAY * getDaysBetweenDates(toJavaDate(), other.toJavaDate()));
 	}
 
-	public TimePeriod getPeriodToToday() {
+    /**
+     *
+     * @return
+     */
+    public TimePeriod getPeriodToToday() {
 		return getPeriodTo(today());
 	}
 
-	public Date getFirstDateOfMonth() {
+    /**
+     *
+     * @return
+     */
+    public Date getFirstDateOfMonth() {
 		return newDate(year, month, 1);
 	}
 
-	public Date getLastDateOfMonth() {
+    /**
+     *
+     * @return
+     */
+    public Date getLastDateOfMonth() {
 		return newDate(year, month, Tm.getDaysInMonth(year, month));
 	}
 
-	public Weekday getWeekday() {
+    /**
+     *
+     * @return
+     */
+    public Weekday getWeekday() {
 		return Weekday.get(Tm.getWeekday(toJavaDate()));
 	}
 
-	public Date addDays(int days) {
+    /**
+     *
+     * @param days
+     * @return
+     */
+    public Date addDays(int days) {
 		return newDate(Tm.addDays(toJavaDate(), days));
 	}
 
-	public Date addMonths(int months) {
+    /**
+     *
+     * @param months
+     * @return
+     */
+    public Date addMonths(int months) {
 		int years = months / 12;
 		months = months - (years * 12);
 		int newMonth = month + months;
@@ -128,29 +216,53 @@ public class Date implements Comparable<Date>, Serializable {
 		return newDate(newYear, newMonth, newDay);
 	}
 
-	public Date addYears(int years) {
+    /**
+     *
+     * @param years
+     * @return
+     */
+    public Date addYears(int years) {
 		int newYear = year + years;
 		int daysInNewMonth = Tm.getDaysInMonth(newYear, month);
 		int newDay = daysInNewMonth < day ? daysInNewMonth : day;
 		return newDate(newYear, month, newDay);
 	}
 
-	public Date prevDay() {
+    /**
+     *
+     * @return
+     */
+    public Date prevDay() {
 		return addDays(-1);
 	}
 
-	public Date nextDay() {
+    /**
+     *
+     * @return
+     */
+    public Date nextDay() {
 		return addDays(1);
 	}
 
-	public Date getMondayOfWeek() {
+    /**
+     *
+     * @return
+     */
+    public Date getMondayOfWeek() {
 		if (getWeekday() == MONDAY) {
                         return this;
                 }
 		return addDays(-1).getMondayOfWeek();
 	}
 
-	public final boolean isBetween(Date begin, Date end, boolean includingBoundaries) {
+    /**
+     *
+     * @param begin
+     * @param end
+     * @param includingBoundaries
+     * @return
+     */
+    public final boolean isBetween(Date begin, Date end, boolean includingBoundaries) {
 		if (includingBoundaries) {
 			return isSameOrAfter(begin) && isSameOrBefore(end);
 		} else {
@@ -158,87 +270,180 @@ public class Date implements Comparable<Date>, Serializable {
 		}
 	}
 
-	public final boolean isSameMonthAndYear(Date other) {
+    /**
+     *
+     * @param other
+     * @return
+     */
+    public final boolean isSameMonthAndYear(Date other) {
 		return month == other.month && year == other.year;
 	}
 
-	public final boolean isSameOrAfter(Date other) {
+    /**
+     *
+     * @param other
+     * @return
+     */
+    public final boolean isSameOrAfter(Date other) {
 		return compareTo(other) >= 0;
 	}
 
-	public final boolean isAfter(Date other) {
+    /**
+     *
+     * @param other
+     * @return
+     */
+    public final boolean isAfter(Date other) {
 		return compareTo(other) > 0;
 	}
 
-	public final boolean isSameOrBefore(Date other) {
+    /**
+     *
+     * @param other
+     * @return
+     */
+    public final boolean isSameOrBefore(Date other) {
 		return compareTo(other) <= 0;
 	}
 
-	public final boolean isBefore(Date other) {
+    /**
+     *
+     * @param other
+     * @return
+     */
+    public final boolean isBefore(Date other) {
 		return compareTo(other) < 0;
 	}
 
-	public final boolean isBeforeOrSame(Date other) {
+    /**
+     *
+     * @param other
+     * @return
+     */
+    public final boolean isBeforeOrSame(Date other) {
 		return compareTo(other) <= 0;
 	}
 
-	public final boolean isPast() {
+    /**
+     *
+     * @return
+     */
+    public final boolean isPast() {
 		return isBefore(today());
 	}
 
-	public final boolean isAfterOrSame(Date other) {
+    /**
+     *
+     * @param other
+     * @return
+     */
+    public final boolean isAfterOrSame(Date other) {
 		return compareTo(other) >= 0;
 	}
 
-	public final boolean isTomorrow() {
+    /**
+     *
+     * @return
+     */
+    public final boolean isTomorrow() {
 		return equals(today().addDays(1));
 	}
 
-	public final boolean isYesterday() {
+    /**
+     *
+     * @return
+     */
+    public final boolean isYesterday() {
 		return equals(today().addDays(-1));
 	}
 
-	public final boolean isFuture() {
+    /**
+     *
+     * @return
+     */
+    public final boolean isFuture() {
 		return isAfter(today());
 	}
 
-	public final boolean isFutureOrToday() {
+    /**
+     *
+     * @return
+     */
+    public final boolean isFutureOrToday() {
 		return isAfterOrSame(today());
 	}
 
-	public final boolean isPastOrToday() {
+    /**
+     *
+     * @return
+     */
+    public final boolean isPastOrToday() {
 		return isBeforeOrSame(today());
 	}
 
-	public final java.util.Date toJavaDate() {
+    /**
+     *
+     * @return
+     */
+    public final java.util.Date toJavaDate() {
 		return createDate(year, month, day);
 	}
 
-	public final java.util.Date toJavaDate(Time time) {
+    /**
+     *
+     * @param time
+     * @return
+     */
+    public final java.util.Date toJavaDate(Time time) {
 		return createDate(year, month, day, time.hour, time.minute, time.second);
 	}
 
-	public final long toMillis(Time time) {
+    /**
+     *
+     * @param time
+     * @return
+     */
+    public final long toMillis(Time time) {
 		return toJavaDate(time).getTime();
 	}
 
-	public final long toMillis() {
+    /**
+     *
+     * @return
+     */
+    public final long toMillis() {
 		return toJavaDate().getTime();
 	}
 
-	public final boolean isToday() {
+    /**
+     *
+     * @return
+     */
+    public final boolean isToday() {
 		return equals(today());
 	}
 
-	public final int getDay() {
+    /**
+     *
+     * @return
+     */
+    public final int getDay() {
 		return day;
 	}
 
-	public final int getMonth() {
+    /**
+     *
+     * @return
+     */
+    public final int getMonth() {
 		return month;
 	}
 
-	public final int getYear() {
+    /**
+     *
+     * @return
+     */
+    public final int getYear() {
 		return year;
 	}
 
@@ -263,14 +468,24 @@ public class Date implements Comparable<Date>, Serializable {
 		return other.day == day && other.month == month && other.year == year;
 	}
 
-	public boolean equalsIgnoreYear(Date d) {
+    /**
+     *
+     * @param d
+     * @return
+     */
+    public boolean equalsIgnoreYear(Date d) {
 		if (d == null) {
                         return false;
                 }
 		return d.day == day && d.month == month;
 	}
 
-	public boolean equalsIgnoreDay(Date d) {
+    /**
+     *
+     * @param d
+     * @return
+     */
+    public boolean equalsIgnoreDay(Date d) {
 		if (d == null) {
                         return false;
                 }
@@ -303,7 +518,11 @@ public class Date implements Comparable<Date>, Serializable {
 		return 0;
 	}
 
-	public String formatDayMonth() {
+    /**
+     *
+     * @return
+     */
+    public String formatDayMonth() {
 		StringBuilder sb = new StringBuilder();
 		formatDay(sb);
 		sb.append(".");
@@ -312,7 +531,11 @@ public class Date implements Comparable<Date>, Serializable {
 		return sb.toString();
 	}
 
-	public String formatDayLongMonthYear() {
+    /**
+     *
+     * @return
+     */
+    public String formatDayLongMonthYear() {
 		StringBuilder sb = new StringBuilder();
 		formatDay(sb);
 		sb.append(". ");
@@ -322,15 +545,27 @@ public class Date implements Comparable<Date>, Serializable {
 		return sb.toString();
 	}
 
-	public String formatLongMonthYear() {
+    /**
+     *
+     * @return
+     */
+    public String formatLongMonthYear() {
 		return formatLongMonth() + " " + year;
 	}
 
-	public String formatLongMonth() {
+    /**
+     *
+     * @return
+     */
+    public String formatLongMonth() {
 		return Month.get(month).toLocalString();
 	}
 
-	public String formatDayMonthYear() {
+    /**
+     *
+     * @return
+     */
+    public String formatDayMonthYear() {
 		StringBuilder sb = new StringBuilder();
 		formatDay(sb);
 		sb.append('.');
@@ -340,7 +575,11 @@ public class Date implements Comparable<Date>, Serializable {
 		return sb.toString();
 	}
 
-	public String formatYearMonthDay() {
+    /**
+     *
+     * @return
+     */
+    public String formatYearMonthDay() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(year);
 		sb.append('-');
@@ -355,14 +594,22 @@ public class Date implements Comparable<Date>, Serializable {
 		return formatYearMonthDay();
 	}
 
-	public void formatDay(StringBuilder sb) {
+    /**
+     *
+     * @param sb
+     */
+    public void formatDay(StringBuilder sb) {
 		if (day < 10) {
                         sb.append('0');
                 }
 		sb.append(day);
 	}
 
-	public void formatMonth(StringBuilder sb) {
+    /**
+     *
+     * @param sb
+     */
+    public void formatMonth(StringBuilder sb) {
 		if (month < 10) {
                         sb.append('0');
                 }
@@ -371,11 +618,21 @@ public class Date implements Comparable<Date>, Serializable {
 
 	// --- static ---
 
+    /**
+     *
+     * @return
+     */
+    
 	public static Date today() {
 		return new Date();
 	}
 
-	public static Date latest(Date... dates) {
+    /**
+     *
+     * @param dates
+     * @return
+     */
+    public static Date latest(Date... dates) {
 		Date latest = null;
 		for (Date date : dates) {
 			if (latest == null || date.isAfter(latest)) {
@@ -385,7 +642,12 @@ public class Date implements Comparable<Date>, Serializable {
 		return latest;
 	}
 
-	public static Date earliest(Date... dates) {
+    /**
+     *
+     * @param dates
+     * @return
+     */
+    public static Date earliest(Date... dates) {
 		Date earliest = null;
 		for (Date date : dates) {
 			if (earliest == null || date.isBefore(earliest)) {
@@ -395,19 +657,39 @@ public class Date implements Comparable<Date>, Serializable {
 		return earliest;
 	}
 
-	public static Date tomorrow() {
+    /**
+     *
+     * @return
+     */
+    public static Date tomorrow() {
 		return today().nextDay();
 	}
 
-	public static Date inDays(int numberOfDays) {
+    /**
+     *
+     * @param numberOfDays
+     * @return
+     */
+    public static Date inDays(int numberOfDays) {
 		return today().addDays(numberOfDays);
 	}
 
-	public static Date beforeDays(int numberOfDays) {
+    /**
+     *
+     * @param numberOfDays
+     * @return
+     */
+    public static Date beforeDays(int numberOfDays) {
 		return today().addDays(-numberOfDays);
 	}
 
-	public static List<Date> getDaysInMonth(int year, int month) {
+    /**
+     *
+     * @param year
+     * @param month
+     * @return
+     */
+    public static List<Date> getDaysInMonth(int year, int month) {
 		List<Date> dates = new ArrayList<Date>();
 		Date d = new Date(year, month, 1);
 
@@ -419,7 +701,10 @@ public class Date implements Comparable<Date>, Serializable {
 		return dates;
 	}
 
-	public static Comparator<Date> COMPARATOR = new Comparator<Date>() {
+    /**
+     *
+     */
+    public static Comparator<Date> COMPARATOR = new Comparator<Date>() {
 
 		@Override
 		public int compare(Date a, Date b) {
@@ -428,7 +713,10 @@ public class Date implements Comparable<Date>, Serializable {
 
 	};
 
-	public static Comparator<Date> REVERSE_COMPARATOR = new Comparator<Date>() {
+    /**
+     *
+     */
+    public static Comparator<Date> REVERSE_COMPARATOR = new Comparator<Date>() {
 
 		@Override
 		public int compare(Date a, Date b) {

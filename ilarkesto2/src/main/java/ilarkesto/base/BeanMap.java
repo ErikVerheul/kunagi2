@@ -160,6 +160,7 @@ public class BeanMap<T> extends AbstractMap<String, Object> implements Cloneable
 	 * map.
 	 * <li>If anything fails along the way, throw a CloneNotSupportedException.
 	 * <ul>
+     * @return 
 	 */
 	@Override
 	public Object clone() throws CloneNotSupportedException {
@@ -552,13 +553,28 @@ public class BeanMap<T> extends AbstractMap<String, Object> implements Cloneable
 		}
 	}
 
-	protected void firePropertyChange(Object key, Object oldValue, Object newValue) {}
+    /**
+     *
+     * @param key
+     * @param oldValue
+     * @param newValue
+     */
+    protected void firePropertyChange(Object key, Object oldValue, Object newValue) {}
 
-	protected class MyMapEntry extends AbstractMapEntry {
+    /**
+     *
+     */
+    protected class MyMapEntry extends AbstractMapEntry {
 
 		private BeanMap owner;
 
-		protected MyMapEntry(BeanMap owner, Object key, Object value) {
+        /**
+         *
+         * @param owner
+         * @param key
+         * @param value
+         */
+        protected MyMapEntry(BeanMap owner, Object key, Object value) {
 			super(key, value);
 			this.owner = owner;
 		}
@@ -575,7 +591,15 @@ public class BeanMap<T> extends AbstractMap<String, Object> implements Cloneable
 		}
 	}
 
-	protected Object[] createWriteMethodArguments(Method method, Object value) throws IllegalAccessException,
+    /**
+     *
+     * @param method
+     * @param value
+     * @return
+     * @throws IllegalAccessException
+     * @throws ClassCastException
+     */
+    protected Object[] createWriteMethodArguments(Method method, Object value) throws IllegalAccessException,
 			ClassCastException {
 		try {
 			if (value != null) {
@@ -594,7 +618,17 @@ public class BeanMap<T> extends AbstractMap<String, Object> implements Cloneable
 		}
 	}
 
-	protected Object convertType(Class newType, Object value) throws InstantiationException, IllegalAccessException,
+    /**
+     *
+     * @param newType
+     * @param value
+     * @return
+     * @throws InstantiationException
+     * @throws IllegalAccessException
+     * @throws IllegalArgumentException
+     * @throws InvocationTargetException
+     */
+    protected Object convertType(Class newType, Object value) throws InstantiationException, IllegalAccessException,
 			IllegalArgumentException, InvocationTargetException {
 
 		// try call constructor
@@ -650,22 +684,45 @@ public class BeanMap<T> extends AbstractMap<String, Object> implements Cloneable
 
 	}
 
-	public abstract class AbstractKeyValue {
+    /**
+     *
+     */
+    public abstract class AbstractKeyValue {
 
-		protected Object key;
-		protected Object value;
+        /**
+         *
+         */
+        protected Object key;
 
-		protected AbstractKeyValue(Object key, Object value) {
+        /**
+         *
+         */
+        protected Object value;
+
+        /**
+         *
+         * @param key
+         * @param value
+         */
+        protected AbstractKeyValue(Object key, Object value) {
 			super();
 			this.key = key;
 			this.value = value;
 		}
 
-		public Object getKey() {
+        /**
+         *
+         * @return
+         */
+        public Object getKey() {
 			return key;
 		}
 
-		public Object getValue() {
+        /**
+         *
+         * @return
+         */
+        public Object getValue() {
 			return value;
 		}
 

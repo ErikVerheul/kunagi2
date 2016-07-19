@@ -16,12 +16,16 @@ package scrum.server.admin;
 
 import ilarkesto.auth.OpenId;
 import ilarkesto.base.StrExtend;
-import ilarkesto.logging.Log;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.integration.gravatar.Gravatar;
 import ilarkesto.integration.gravatar.Profile;
+import ilarkesto.logging.Log;
 import scrum.server.ScrumWebApplication;
 
+/**
+ *
+ * @author erik
+ */
 public class UserDao extends GUserDao {
 
 	private static Log log = Log.get(UserDao.class);
@@ -31,7 +35,14 @@ public class UserDao extends GUserDao {
 		return postUser(null, name, password);
 	}
 
-	public User postUser(String email, String name, String password) {
+    /**
+     *
+     * @param email
+     * @param name
+     * @param password
+     * @return
+     */
+    public User postUser(String email, String name, String password) {
 		User user = newEntityInstance();
 		user.setEmail(email);
 		user.setName(name);
@@ -42,20 +53,37 @@ public class UserDao extends GUserDao {
 		return user;
 	}
 
-	public User postUserWithDefaultPassword(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public User postUserWithDefaultPassword(String name) {
 		return postUser(name, getDefaultPassword());
 	}
 
-	public User postUserWithOpenId(String openId, String nickname, String fullname, String email) {
+    /**
+     *
+     * @param openId
+     * @param nickname
+     * @param fullname
+     * @param email
+     * @return
+     */
+    public User postUserWithOpenId(String openId, String nickname, String fullname, String email) {
 		String name = null;
 
 		if (nickname != null) {
-			if (getUserByName(nickname) == null) name = nickname;
+			if (getUserByName(nickname) == null) {
+                            name = nickname;
+            }
 		}
 
 		if (name == null && email != null) {
 			Profile profile = Gravatar.loadProfile(email);
-			if (profile != null) name = profile.getPreferredUsername();
+			if (profile != null) {
+                            name = profile.getPreferredUsername();
+            }
 		}
 
 		if (name == null && email != null) {
@@ -65,7 +93,9 @@ public class UserDao extends GUserDao {
 		if (name == null) {
 			name = OpenId.cutUsername(openId);
 			name = StrExtend.removePrefix(name, "AItOaw");
-			if (name.length() > 10) name = name.substring(0, 9);
+                        if (name.length() > 10) {
+                            name = name.substring(0, 9);
+            }
 		}
 
 		String namePrefix = name;
@@ -90,7 +120,11 @@ public class UserDao extends GUserDao {
 		return user;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public User newEntityInstance() {
 		User user = super.newEntityInstance();
 		user.setPassword(getDefaultPassword());
@@ -104,9 +138,17 @@ public class UserDao extends GUserDao {
 
 	// --- test data ---
 
+    /**
+     *
+     * @param name
+     * @return
+     */
+    
 	public User getTestUser(String name) {
-		User user = getUserByName(name);
-		if (user == null) user = postUserWithDefaultPassword(name);
+            User user = getUserByName(name);
+            if (user == null) {
+            user = postUserWithDefaultPassword(name);
+        }
 		return user;
 	}
 

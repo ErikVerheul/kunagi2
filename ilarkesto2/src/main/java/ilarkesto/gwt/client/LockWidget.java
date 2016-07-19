@@ -17,38 +17,66 @@ package ilarkesto.gwt.client;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 
+/**
+ *
+ * @author erik
+ */
 public class LockWidget extends SwitcherWidget {
 
 	private Widget content;
 	private Widget locker;
 
-	public LockWidget(Widget content) {
+    /**
+     *
+     * @param content
+     */
+    public LockWidget(Widget content) {
 		super(false);
 		this.content = content;
 		show(content);
 	}
 
-	public final void lock(Widget locker) {
+    /**
+     *
+     * @param locker
+     */
+    public final void lock(Widget locker) {
 		this.locker = locker;
 		show(locker);
 	}
 
-	public final void lock(String message) {
+    /**
+     *
+     * @param message
+     */
+    public final void lock(String message) {
 		lock(createMessageLocker(message));
 	}
 
-	public final void unlock() {
+    /**
+     *
+     */
+    public final void unlock() {
 		if (!isLocked()) {
                         return;
                 }
 		show(content);
 	}
 
-	public final boolean isLocked() {
+    /**
+     *
+     * @return
+     */
+    public final boolean isLocked() {
 		return locker != null;
 	}
 
-	protected Widget createMessageLocker(String message) {
+    /**
+     *
+     * @param message
+     * @return
+     */
+    protected Widget createMessageLocker(String message) {
 		return new Label(message);
 	}
 

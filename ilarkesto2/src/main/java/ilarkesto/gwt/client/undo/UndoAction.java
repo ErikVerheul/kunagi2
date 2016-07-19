@@ -18,22 +18,38 @@ import ilarkesto.gwt.client.AAction;
 import static ilarkesto.gwt.client.Gwt.getRootWidget;
 import static ilarkesto.gwt.client.Gwt.update;
 
+/**
+ *
+ * @author erik
+ */
 public class UndoAction extends AAction {
 
 	private final UndoManager undoManager;
 	private final AUndoOperation operation;
 
-	public UndoAction(UndoManager undoManager, AUndoOperation operation) {
+    /**
+     *
+     * @param undoManager
+     * @param operation
+     */
+    public UndoAction(UndoManager undoManager, AUndoOperation operation) {
 		this.undoManager = undoManager;
 		this.operation = operation;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getLabel() {
 		return operation.getLongLabel();
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void onExecute() {
 		undoManager.undo(operation);
 		update(getRootWidget());

@@ -15,41 +15,95 @@
 package scrum.client.common;
 
 import ilarkesto.core.base.Str;
-
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class TooltipBuilder {
 
 	private String text;
 	private List<String> remarks = new ArrayList<String>();
 
-	public final static String NOT_TEAM = "You are not Team Member.";
-	public final static String NOT_SCRUMMASTER = "You are not ScrumMaster.";
-	public final static String NOT_PRODUCT_OWNER = "You are not Product Owner.";
-	public final static String NOT_PRODUCT_OWNER_NOR_SCRUMMASTER = "You are not Product Owner nor ScrumMaster.";
-	public final static String NOT_SCRUMTEAM = "You are neither Product Owner nor ScrumMaster nor Team Member.";
-	public final static String NOT_TEAM_NOR_PRODUCT_OWNER = "You are neither Team Member nor Product Owner.";
-	public final static String NOT_ADMIN = "You are not Project Admin.";
-	public final static String NOT_SYS_ADMIN = "You are not System Admin.";
+    /**
+     *
+     */
+    public final static String NOT_TEAM = "You are not Team Member.";
 
-	public TooltipBuilder() {}
+    /**
+     *
+     */
+    public final static String NOT_SCRUMMASTER = "You are not ScrumMaster.";
 
-	public void setText(String mainTooltip) {
+    /**
+     *
+     */
+    public final static String NOT_PRODUCT_OWNER = "You are not Product Owner.";
+
+    /**
+     *
+     */
+    public final static String NOT_PRODUCT_OWNER_NOR_SCRUMMASTER = "You are not Product Owner nor ScrumMaster.";
+
+    /**
+     *
+     */
+    public final static String NOT_SCRUMTEAM = "You are neither Product Owner nor ScrumMaster nor Team Member.";
+
+    /**
+     *
+     */
+    public final static String NOT_TEAM_NOR_PRODUCT_OWNER = "You are neither Team Member nor Product Owner.";
+
+    /**
+     *
+     */
+    public final static String NOT_ADMIN = "You are not Project Admin.";
+
+    /**
+     *
+     */
+    public final static String NOT_SYS_ADMIN = "You are not System Admin.";
+
+    /**
+     *
+     */
+    public TooltipBuilder() {}
+
+    /**
+     *
+     * @param mainTooltip
+     */
+    public void setText(String mainTooltip) {
 		this.text = mainTooltip;
 	}
 
-	public boolean isBlank() {
-		if (!Str.isBlank(text)) return false;
-		if (!remarks.isEmpty()) return false;
-		return true;
+    /**
+     *
+     * @return
+     */
+    public boolean isBlank() {
+		if (!Str.isBlank(text)) {
+                    return false;
+        }
+		return remarks.isEmpty();
 	}
 
-	public void addRemark(String remark) {
+    /**
+     *
+     * @param remark
+     */
+    public void addRemark(String remark) {
 		remarks.add(remark);
 	}
 
-	public String getTooltip() {
+    /**
+     *
+     * @return
+     */
+    public String getTooltip() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(text);
 
@@ -69,7 +123,11 @@ public class TooltipBuilder {
 		return sb.toString();
 	}
 
-	public String getTooltipAsHtml() {
+    /**
+     *
+     * @return
+     */
+    public String getTooltipAsHtml() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("<p>").append(text).append("</p>");
 

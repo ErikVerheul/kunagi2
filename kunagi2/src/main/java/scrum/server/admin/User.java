@@ -18,10 +18,10 @@ import ilarkesto.auth.PasswordHasher;
 import ilarkesto.base.CryptOneWay;
 import ilarkesto.base.StrExtend;
 import ilarkesto.base.UtlExtend;
-import ilarkesto.logging.Log;
 import ilarkesto.integration.gravatar.Gravatar;
 import ilarkesto.integration.gravatar.Profile;
 import ilarkesto.integration.gravatar.Profile.Name;
+import ilarkesto.logging.Log;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -29,6 +29,10 @@ import java.util.UUID;
 import scrum.server.ScrumWebApplication;
 import scrum.server.pr.EmailSender;
 
+/**
+ *
+ * @author erik
+ */
 public class User extends GUser {
 
 	private static final int HOURS_FOR_EMAIL_VERIFICATION = 48;
@@ -43,16 +47,28 @@ public class User extends GUser {
 	private static ScrumWebApplication webApplication;
 	private static EmailSender emailSender;
 
-	public static void setEmailSender(EmailSender emailSender) {
+    /**
+     *
+     * @param emailSender
+     */
+    public static void setEmailSender(EmailSender emailSender) {
 		User.emailSender = emailSender;
 	}
 
-	public static void setWebApplication(ScrumWebApplication webApplication) {
+    /**
+     *
+     * @param webApplication
+     */
+    public static void setWebApplication(ScrumWebApplication webApplication) {
 		User.webApplication = webApplication;
 	}
 
 	// --- ---
 
+    /**
+     *
+     */
+    
 	public void tryUpdateByGravatar() {
 		try {
 			updateByGravatar();
@@ -61,28 +77,49 @@ public class User extends GUser {
 		}
 	}
 
-	public void updateByGravatar() {
+    /**
+     *
+     */
+    public void updateByGravatar() {
 		Profile profile = Gravatar.loadProfile(getEmail());
-		if (profile == null) return;
+		if (profile == null) {
+                    return;
+        }
 		Name name = profile.getName();
 		if (name != null) {
-			if (!isFullNameSet()) setFullName(name.getFormatted());
+			if (!isFullNameSet()) {
+                            setFullName(name.getFormatted());
+            }
 		}
 	}
 
-	@Override
+    /**
+     *
+     * @param email
+     * @return
+     */
+    @Override
 	protected String prepareEmail(String email) {
 		return super.prepareEmail(email == null ? null : email.toLowerCase());
 	}
 
-	public String getLabel() {
-		if (isEmailSet()) return getName() + " (" + getEmail() + ")";
+    /**
+     *
+     * @return
+     */
+    public String getLabel() {
+        if (isEmailSet()) {
+            return getName() + " (" + getEmail() + ")";
+        }
 		return getName();
 	}
 
 	private String password;
 
-	public void triggerEmailVerification() {
+    /**
+     *
+     */
+    public void triggerEmailVerification() {
 		if (!isEmailSet()) {
 			log.info("User has no email. Skipping email verification:", this);
 			return;
@@ -106,7 +143,10 @@ public class User extends GUser {
 		}
 	}
 
-	public void triggerNewPasswordRequest() {
+    /**
+     *
+     */
+    public void triggerNewPasswordRequest() {
 		if (!isEmailSet()) {
 			log.info("User has no email. Skipping new password request:", this);
 			return;
@@ -129,7 +169,10 @@ public class User extends GUser {
 		log.info("Password changed for", this);
 	}
 
-	public void triggerPasswordReset() {
+    /**
+     *
+     */
+    public void triggerPasswordReset() {
 		String urlBase = webApplication.createUrl(null);
 
 		String newPassword = StrExtend.generatePassword(8);
@@ -155,7 +198,9 @@ public class User extends GUser {
 	public boolean matchesPassword(String password) {
 		if (this.password != null && this.password.startsWith(CryptOneWay.DEFAULT_SALT)) {
 			boolean success = CryptOneWay.cryptWebPassword(password).equals(this.password);
-			if (!success) return false;
+                        if (!success) {
+                            return false;
+            }
 			log.warn("Converting old password hash into new:", this);
 			setPassword(password);
 			return true;
@@ -182,17 +227,28 @@ public class User extends GUser {
 		return getLoginToken();
 	}
 
-	public void createLoginToken() {
+    /**
+     *
+     */
+    public void createLoginToken() {
 		setLoginToken(UUID.randomUUID().toString());
 	}
 
 	@Override
 	public void ensureIntegrity() {
-		super.ensureIntegrity();
-		if (StrExtend.isBlank(this.password)) setPassword(webApplication.getSystemConfig().getDefaultUserPassword());
-		if (!isPublicNameSet()) setPublicName(getName());
-		if (!isColorSet()) setColor(getDefaultColor());
-		if (!isLoginTokenSet()) createLoginToken();
+            super.ensureIntegrity();
+            if (StrExtend.isBlank(this.password)) {
+                setPassword(webApplication.getSystemConfig().getDefaultUserPassword());
+        }
+		if (!isPublicNameSet()) {
+                    setPublicName(getName());
+        }
+		if (!isColorSet()) {
+                    setColor(getDefaultColor());
+        }
+		if (!isLoginTokenSet()) {
+            createLoginToken();
+        }
 	}
 
 	@Override
@@ -210,11 +266,19 @@ public class User extends GUser {
 		return getName();
 	}
 
-	public static String getDefaultColor() {
+    /**
+     *
+     * @return
+     */
+    public static String getDefaultColor() {
 		return UtlExtend.randomElement(getDefaultColors());
 	}
 
-	public static List<String> getDefaultColors() {
+    /**
+     *
+     * @return
+     */
+    public static List<String> getDefaultColors() {
 		List<String> colors = new ArrayList<String>();
 		colors.add("black");
 		colors.add("darkred");
@@ -232,7 +296,12 @@ public class User extends GUser {
 		return colors;
 	}
 
-	public static List<String> getNames(Collection<User> users) {
+    /**
+     *
+     * @param users
+     * @return
+     */
+    public static List<String> getNames(Collection<User> users) {
 		List<String> names = new ArrayList<String>(users.size());
 		for (User user : users) {
 			names.add(user.getName());
@@ -240,14 +309,28 @@ public class User extends GUser {
 		return names;
 	}
 
-	public boolean isEmailVerificationOverdue() {
-		if (!isRegistrationDateAndTimeSet()) return false;
-		if (isEmailVerified()) return false;
+    /**
+     *
+     * @return
+     */
+    public boolean isEmailVerificationOverdue() {
+        if (!isRegistrationDateAndTimeSet()) {
+            return false;
+        }
+		if (isEmailVerified()) {
+            return false;
+        }
 		return getRegistrationDateAndTime().getPeriodToNow().abs().toHours() > HOURS_FOR_EMAIL_VERIFICATION;
 	}
 
-	public boolean isInactive() {
-		if (!isLastLoginDateAndTimeSet()) return false;
+    /**
+     *
+     * @return
+     */
+    public boolean isInactive() {
+		if (!isLastLoginDateAndTimeSet()) {
+            return false;
+        }
 		return getLastLoginDateAndTime().getPeriodToNow().abs().toDays() > DAYS_FOR_INACTIVITY;
 	}
 

@@ -14,13 +14,22 @@
  */
 package scrum.client.wiki;
 
+/**
+ *
+ * @author erik
+ */
 public class Header extends AWikiElement {
 
 	private int depth;
 	private String text;
 	private String anchor;
 
-	public Header(String text, int depth) {
+    /**
+     *
+     * @param text
+     * @param depth
+     */
+    public Header(String text, int depth) {
 		super();
 		this.text = text;
 		this.depth = depth;
@@ -37,15 +46,27 @@ public class Header extends AWikiElement {
 		return "Text(\"" + text + "\")";
 	}
 
-	public int getDepth() {
+    /**
+     *
+     * @return
+     */
+    public int getDepth() {
 		return depth;
 	}
 
-	public String getText() {
+    /**
+     *
+     * @return
+     */
+    public String getText() {
 		return text;
 	}
 
-	public String getAnchor() {
+    /**
+     *
+     * @return
+     */
+    public String getAnchor() {
 		if (anchor == null) {
 			StringBuilder sb = new StringBuilder();
 			sb.append("wiki_h").append(depth).append("_");

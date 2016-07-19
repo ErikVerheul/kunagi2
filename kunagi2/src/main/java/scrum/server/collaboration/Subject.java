@@ -15,34 +15,59 @@
 package scrum.server.collaboration;
 
 import java.util.Set;
-
 import scrum.server.admin.User;
 
+/**
+ *
+ * @author erik
+ */
 public class Subject extends GSubject {
 
 	// --- dependencies ---
 
 	private static CommentDao commentDao;
 
-	public static void setCommentDao(CommentDao commentDao) {
+    /**
+     *
+     * @param commentDao
+     */
+    public static void setCommentDao(CommentDao commentDao) {
 		Subject.commentDao = commentDao;
 	}
 
 	// --- ---
 
+    /**
+     *
+     * @return
+     */
+    
 	public Set<Comment> getComments() {
 		return commentDao.getCommentsByParent(this);
 	}
 
-	public void updateNumber() {
-		if (getNumber() == 0) setNumber(getProject().generateSubjectNumber());
+    /**
+     *
+     */
+    public void updateNumber() {
+		if (getNumber() == 0) {
+                    setNumber(getProject().generateSubjectNumber());
+        }
 	}
 
-	public String getReferenceAndLabel() {
+    /**
+     *
+     * @return
+     */
+    public String getReferenceAndLabel() {
 		return getReference() + " " + getLabel();
 	}
 
-	public String getReference() {
+    /**
+     *
+     * @return
+     */
+    public String getReference() {
 		return scrum.client.collaboration.Subject.REFERENCE_PREFIX + getNumber();
 	}
 

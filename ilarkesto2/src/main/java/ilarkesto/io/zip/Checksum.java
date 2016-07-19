@@ -74,6 +74,7 @@ public interface Checksum
 {
   /**
    * Returns the data checksum computed so far.
+     * @return 
    */
   long getValue();
 

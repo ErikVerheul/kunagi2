@@ -16,33 +16,48 @@ package scrum.server.files;
 
 import ilarkesto.base.PermissionDeniedException;
 import ilarkesto.webapp.RequestWrapper;
-
 import java.io.IOException;
-
 import scrum.server.ScrumWebApplication;
 import scrum.server.WebSession;
 import scrum.server.common.AKunagiServlet;
 import scrum.server.project.Project;
 
+/**
+ *
+ * @author erik
+ */
 public class FileDownloadServlet extends AKunagiServlet {
 
-	@Override
+    /**
+     *
+     * @param req
+     * @throws IOException
+     */
+    @Override
 	protected void onRequest(RequestWrapper<WebSession> req) throws IOException {
 		String fileId = req.get("fileId");
 		String reference = req.get("reference");
-		if (fileId == null && reference == null) throw new RuntimeException("fileId==null && reference==null");
+		if (fileId == null && reference == null) {
+                    throw new RuntimeException("fileId==null && reference==null");
+        }
 
 		Project project = getProject(req);
 		File file;
 
 		if (fileId != null) {
 			file = ScrumWebApplication.get().getFileDao().getById(fileId);
-			if (file == null) throw new RuntimeException("File does not exist: " + fileId);
-			if (!file.isProject(project)) throw new PermissionDeniedException();
+			if (file == null) {
+                            throw new RuntimeException("File does not exist: " + fileId);
+            }
+                        if (!file.isProject(project)) {
+                            throw new PermissionDeniedException();
+            }
 		} else {
 			int number = Integer.parseInt(reference.substring(3));
-			file = project.getFileByNumber(number);
-			if (file == null) throw new RuntimeException("File does not exist: " + reference);
+                        file = project.getFileByNumber(number);
+                        if (file == null) {
+                            throw new RuntimeException("File does not exist: " + reference);
+            }
 		}
 
 		req.serve(file.getJavaFile(), false, false);

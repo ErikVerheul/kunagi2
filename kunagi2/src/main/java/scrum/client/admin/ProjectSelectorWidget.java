@@ -14,6 +14,7 @@
  */
 package scrum.client.admin;
 
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.AWidget;
 import ilarkesto.gwt.client.ButtonWidget;
 import scrum.client.Dao;
@@ -23,8 +24,10 @@ import scrum.client.project.CreateProjectAction;
 import scrum.client.project.Project;
 import scrum.client.workspace.PagePanel;
 
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class ProjectSelectorWidget extends AWidget {
 
 	private BlockListWidget<Project> list;
@@ -48,12 +51,23 @@ public class ProjectSelectorWidget extends AWidget {
 		super.onUpdate();
 	}
 
-	public BlockListWidget<Project> getList() {
+    /**
+     *
+     * @return
+     */
+    public BlockListWidget<Project> getList() {
 		return this.list;
 	}
 
-	public boolean select(Project project) {
-		if (!list.contains(project)) update();
+    /**
+     *
+     * @param project
+     * @return
+     */
+    public boolean select(Project project) {
+		if (!list.contains(project)) {
+                    update();
+        }
 		return list.showObject(project);
 	}
 

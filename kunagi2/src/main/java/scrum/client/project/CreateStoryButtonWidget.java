@@ -14,17 +14,16 @@
  */
 package scrum.client.project;
 
+import com.google.gwt.dom.client.Style.Display;
+import com.google.gwt.user.client.ui.FocusPanel;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.ButtonWidget;
 import ilarkesto.gwt.client.Gwt;
 import scrum.client.common.AScrumWidget;
 import scrum.client.project.ProductBacklogWidget.FilterToggleAction;
 import scrum.client.workspace.DndManager;
-
-import com.google.gwt.dom.client.Style.Display;
-import com.google.gwt.user.client.ui.FocusPanel;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.Widget;
 
 public class CreateStoryButtonWidget extends AScrumWidget {
 

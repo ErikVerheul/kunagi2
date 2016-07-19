@@ -14,10 +14,8 @@
  */
 package scrum.server.sprint;
 
-import scrum.server.sprint.GSprintDaySnapshotDao;
 import ilarkesto.core.time.Date;
 import ilarkesto.fp.Predicate;
-
 import java.util.LinkedList;
 import java.util.List;
 

@@ -17,23 +17,44 @@ package ilarkesto.gwt.client.undo;
 import ilarkesto.core.time.DateAndTime;
 import static ilarkesto.core.time.DateAndTime.now;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class AUndoOperation {
 
 	private DateAndTime dateAndTime;
 
-	protected abstract void onUndo();
+    /**
+     *
+     */
+    protected abstract void onUndo();
 
-	public abstract String getLabel();
+    /**
+     *
+     * @return
+     */
+    public abstract String getLabel();
 
-	public AUndoOperation() {
+    /**
+     *
+     */
+    public AUndoOperation() {
 		dateAndTime = now();
 	}
 
-	public final void undo() {
+    /**
+     *
+     */
+    public final void undo() {
 		onUndo();
 	}
 
-	public String getLongLabel() {
+    /**
+     *
+     * @return
+     */
+    public String getLongLabel() {
 		return getLabel() + " (" + dateAndTime.getPeriodToNow().toShortestString() + " ago)";
 	}
 

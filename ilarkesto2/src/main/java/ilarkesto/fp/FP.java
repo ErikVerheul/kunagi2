@@ -31,7 +31,16 @@ import java.util.Set;
  */
 public abstract class FP {
 
-	public static <I, K, V> Map<K, V> map(Collection<I> elements, Function<I, Tuple<K, V>> mapFunction) {
+    /**
+     *
+     * @param <I>
+     * @param <K>
+     * @param <V>
+     * @param elements
+     * @param mapFunction
+     * @return
+     */
+    public static <I, K, V> Map<K, V> map(Collection<I> elements, Function<I, Tuple<K, V>> mapFunction) {
 		Map<K, V> ret = new HashMap<>();
 		for (I e : elements) {
 			Tuple<K, V> keyValue = mapFunction.eval(e);
@@ -43,6 +52,7 @@ public abstract class FP {
 	/**
 	 * Executes a function on each element in a list. The function results are returned in a list.
 	 * 
+     * @param <O>
 	 * @param elements Elements to execute the function on.
 	 * @param mapFunction The function to execute on each element.
 	 * @return The function results.
@@ -91,7 +101,13 @@ public abstract class FP {
 		return result;
 	}
 
-	public static <T> Predicate<T> and(Predicate<T>... predicates) {
+    /**
+     *
+     * @param <T>
+     * @param predicates
+     * @return
+     */
+    public static <T> Predicate<T> and(Predicate<T>... predicates) {
 		return new And<>(predicates);
 	}
 
@@ -101,6 +117,7 @@ public abstract class FP {
 	 * @param <T> The type of the elements.
 	 * @param predicate The filter predicate.
 	 * @param list The collection of elements.
+     * @return 
 	 */
 	public static <T> List<T> filterList(Predicate<T> predicate, Collection<T> list) {
 		List<T> result = new ArrayList<>();
@@ -118,6 +135,7 @@ public abstract class FP {
 	 * @param <T> The type of the elements.
 	 * @param predicate The filter predicate.
 	 * @param list The collection of elements.
+     * @return 
 	 */
 	public static <T> Set<T> filterSet(Predicate<T> predicate, Collection<T> list) {
 		Set<T> result = new HashSet<>();
@@ -136,6 +154,7 @@ public abstract class FP {
 	 * @param <V> Type of the values.
 	 * @param keys The keys for which to return the values.
 	 * @param map The map with the values to return.
+     * @return 
 	 */
 	public static <K, V> List<V> values(Collection<K> keys, Map<K, V> map) {
 		List<V> result = new ArrayList<>();
@@ -147,6 +166,10 @@ public abstract class FP {
 
 	// --- functions / predicates ---
 
+    /**
+     *
+     */
+    
 	public static final Function<File, String> FILE_PATH = new Function<File, String>() {
 
 		@Override
@@ -156,11 +179,19 @@ public abstract class FP {
 
 	};
 
-	public static List<String> filePaths(Collection<File> files) {
+    /**
+     *
+     * @param files
+     * @return
+     */
+    public static List<String> filePaths(Collection<File> files) {
 		return foreach(files, FILE_PATH);
 	}
 
-	public static final Predicate<File> FILE_EXISTS = new Predicate<File>() {
+    /**
+     *
+     */
+    public static final Predicate<File> FILE_EXISTS = new Predicate<File>() {
 
 		@Override
 		public boolean test(File e) {
@@ -169,15 +200,31 @@ public abstract class FP {
 
 	};
 
-	public static List<File> existingFilesList(Collection<File> files) {
+    /**
+     *
+     * @param files
+     * @return
+     */
+    public static List<File> existingFilesList(Collection<File> files) {
 		return filterList(FILE_EXISTS, files);
 	}
 
-	public static Set<File> existingFilesSet(Collection<File> files) {
+    /**
+     *
+     * @param files
+     * @return
+     */
+    public static Set<File> existingFilesSet(Collection<File> files) {
 		return filterSet(FILE_EXISTS, files);
 	}
 
-	public static List<File> filterFilesList(Collection<File> files, final FileFilter filter) {
+    /**
+     *
+     * @param files
+     * @param filter
+     * @return
+     */
+    public static List<File> filterFilesList(Collection<File> files, final FileFilter filter) {
 		return filterList(new Predicate<File>() {
 
 			@Override

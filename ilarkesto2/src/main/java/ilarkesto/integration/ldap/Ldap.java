@@ -36,16 +36,36 @@ import javax.naming.directory.SearchControls;
 import static javax.naming.directory.SearchControls.SUBTREE_SCOPE;
 import javax.naming.directory.SearchResult;
 
+/**
+ *
+ * @author erik
+ */
 public class Ldap {
 
 	private static final Log log = Log.get(Ldap.class);
 
-	public static void main(String[] args) {
+    /**
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
 		out.println(authenticateUserGetEmail("ldap://adcsv10:389/", "bind user", "bind password", "base dn",
 			"user filter", "user", "password"));
 	}
 
-	public static String authenticateUserGetEmail(String url, String bindUser, String bindPassword, String baseDn,
+    /**
+     *
+     * @param url
+     * @param bindUser
+     * @param bindPassword
+     * @param baseDn
+     * @param userFilterRegex
+     * @param user
+     * @param password
+     * @return
+     * @throws AuthenticationFailedException
+     */
+    public static String authenticateUserGetEmail(String url, String bindUser, String bindPassword, String baseDn,
 			String userFilterRegex, String user, String password) throws AuthenticationFailedException {
 		log.info("LDAP authentication for ", user, "on", url);
 		NamingEnumeration<SearchResult> searchResultEnum;
@@ -81,7 +101,15 @@ public class Ldap {
 		return null;
 	}
 
-	public static DirContext createDirContext(String url, String user, String password) throws AuthenticationException {
+    /**
+     *
+     * @param url
+     * @param user
+     * @param password
+     * @return
+     * @throws AuthenticationException
+     */
+    public static DirContext createDirContext(String url, String user, String password) throws AuthenticationException {
 		Hashtable <String, String> env = new Hashtable<>();
 
 		env.put(INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");

@@ -18,9 +18,16 @@ import static ilarkesto.core.base.Str.getSimpleName;
 import static ilarkesto.core.event.AEventBus.DEFAULT_COMPONENT_NAME;
 import static ilarkesto.core.scope.Scope.get;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class AEvent implements Event {
 
-	public final void fireInCurrentScope() {
+    /**
+     *
+     */
+    public final void fireInCurrentScope() {
 		AEventBus eventBus = (AEventBus) get().getComponent(DEFAULT_COMPONENT_NAME);
 		if (eventBus == null) {
                         throw new IllegalStateException("Missing component in scope: " + DEFAULT_COMPONENT_NAME);

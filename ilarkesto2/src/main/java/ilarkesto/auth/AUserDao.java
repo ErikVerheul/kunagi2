@@ -16,10 +16,26 @@ package ilarkesto.auth;
 
 import ilarkesto.persistence.ADao;
 
+/**
+ *
+ * @author erik
+ * @param <U>
+ */
 public abstract class AUserDao<U extends AUser> extends ADao<U> {
 
-	public abstract AUser postUser(String name, String password);
+    /**
+     *
+     * @param name
+     * @param password
+     * @return
+     */
+    public abstract AUser postUser(String name, String password);
 
-	public abstract AUser getUserByName(String name);
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public abstract AUser getUserByName(String name);
 
 }

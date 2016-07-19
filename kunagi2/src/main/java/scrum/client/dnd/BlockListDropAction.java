@@ -14,10 +14,25 @@
  */
 package scrum.client.dnd;
 
+/**
+ *
+ * @author erik
+ * @param <O>
+ */
 public interface BlockListDropAction<O> {
 
-	boolean isDroppable(O object);
+    /**
+     *
+     * @param object
+     * @return
+     */
+    boolean isDroppable(O object);
 
-	boolean onDrop(O object);
+    /**
+     *
+     * @param object
+     * @return
+     */
+    boolean onDrop(O object);
 
 }

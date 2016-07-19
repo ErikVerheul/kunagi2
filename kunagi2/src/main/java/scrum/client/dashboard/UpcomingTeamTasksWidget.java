@@ -14,9 +14,10 @@
  */
 package scrum.client.dashboard;
 
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Widget;
 import java.util.Collections;
 import java.util.List;
-
 import scrum.client.ScrumGwt;
 import scrum.client.common.AScrumWidget;
 import scrum.client.issues.Issue;
@@ -25,9 +26,10 @@ import scrum.client.project.Requirement;
 import scrum.client.sprint.Sprint;
 import scrum.client.sprint.Task;
 
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class UpcomingTeamTasksWidget extends AScrumWidget {
 
 	private HTML html;
@@ -73,7 +75,9 @@ public class UpcomingTeamTasksWidget extends AScrumWidget {
 
 		int maxTasks = project.getTeamMembers().size() - criticalBugs.size() - severeBugs.size();
 		int minTasks = 10 - criticalBugs.size();
-		if (maxTasks < minTasks) maxTasks = minTasks;
+		if (maxTasks < minTasks) {
+                    maxTasks = minTasks;
+        }
 		int taskCount = 0;
 		Sprint sprint = project.getCurrentSprint();
 		List<Task> tasks = sprint.getUnclaimedTasks(false);
@@ -83,12 +87,16 @@ public class UpcomingTeamTasksWidget extends AScrumWidget {
 			sb.append("<ul>");
 			for (Task task : tasks) {
 				Requirement req = null;
-				if (!task.isRequirement(req) && taskCount > 0) break;
+				if (!task.isRequirement(req) && taskCount > 0) {
+                                    break;
+                }
 				req = task.getRequirement();
 				sb.append("<li>").append(task.toHtml()).append(" (").append(ScrumGwt.createHtmlReference(req))
 						.append(")</li>");
 				taskCount++;
-				if (taskCount == maxTasks) break;
+                                if (taskCount == maxTasks) {
+                                    break;
+                }
 			}
 			sb.append("</ul></div>");
 		}
@@ -103,8 +111,10 @@ public class UpcomingTeamTasksWidget extends AScrumWidget {
 					sb.append("<li>");
 					sb.append(issue.toHtml());
 					sb.append("</li>");
-					taskCount++;
-					if (taskCount == maxTasks) break;
+                                        taskCount++;
+					if (taskCount == maxTasks) {
+                        break;
+                    }
 				}
 				sb.append("</ul>");
 			}
@@ -118,10 +128,12 @@ public class UpcomingTeamTasksWidget extends AScrumWidget {
 				sb.append("<ul>");
 				for (Issue issue : minorBugs) {
 					sb.append("<li>");
-					sb.append(issue.toHtml());
-					sb.append("</li>");
+                                        sb.append(issue.toHtml());
+                                        sb.append("</li>");
 					taskCount++;
-					if (taskCount == maxTasks) break;
+					if (taskCount == maxTasks) {
+                        break;
+                    }
 				}
 				sb.append("</ul>");
 			}

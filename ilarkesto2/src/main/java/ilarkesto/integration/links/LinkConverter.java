@@ -14,8 +14,18 @@
  */
 package ilarkesto.integration.links;
 
+/**
+ *
+ * @author erik
+ */
 public interface LinkConverter {
 
-	String convert(String href, int maxWidth);
+    /**
+     *
+     * @param href
+     * @param maxWidth
+     * @return
+     */
+    String convert(String href, int maxWidth);
 
 }

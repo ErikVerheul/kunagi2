@@ -16,9 +16,17 @@ package scrum.client.collaboration;
 
 import ilarkesto.gwt.client.Gwt;
 
+/**
+ *
+ * @author erik
+ */
 public class DeleteWikipageAction extends GDeleteWikipageAction {
 
-	public DeleteWikipageAction(scrum.client.collaboration.Wikipage wikipage) {
+    /**
+     *
+     * @param wikipage
+     */
+    public DeleteWikipageAction(scrum.client.collaboration.Wikipage wikipage) {
 		super(wikipage);
 	}
 
@@ -29,7 +37,9 @@ public class DeleteWikipageAction extends GDeleteWikipageAction {
 
 	@Override
 	protected void onExecute() {
-		if (!Gwt.confirm("Delete wiki page " + wikipage.getName() + "?")) return;
+		if (!Gwt.confirm("Delete wiki page " + wikipage.getName() + "?")) {
+                    return;
+        }
 		getDao().deleteWikipage(wikipage);
 		addUndo(new Undo());
 	}

@@ -14,8 +14,16 @@
  */
 package ilarkesto.async;
 
+/**
+ *
+ * @author erik
+ */
 public interface AsyncWorker {
 
-	void start(Job job);
+    /**
+     *
+     * @param job
+     */
+    void start(Job job);
 
 }

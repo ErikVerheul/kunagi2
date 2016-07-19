@@ -22,7 +22,6 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.base.Str;
 import ilarkesto.core.base.ToHtmlSupport;
-import ilarkesto.core.base.Utl;
 import static ilarkesto.core.base.Utl.concatToHtml;
 import java.util.Collection;
 import java.util.List;

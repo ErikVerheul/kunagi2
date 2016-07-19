@@ -16,17 +16,29 @@ package ilarkesto.io;
 
 import java.io.File;
 
+/**
+ *
+ * @author erik
+ */
 public class FileWatcher {
 
 	private File file;
 	private long lastModified;
 
-	public FileWatcher(File file) {
+    /**
+     *
+     * @param file
+     */
+    public FileWatcher(File file) {
 		super();
 		this.file = file;
 	}
 
-	public boolean checkIfChanged() {
+    /**
+     *
+     * @return
+     */
+    public boolean checkIfChanged() {
 		long fileLastModified = file.lastModified();
 		if (fileLastModified == lastModified) {
                         return false;

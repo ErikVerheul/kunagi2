@@ -16,11 +16,9 @@ package ilarkesto.gwt.client;
 
 import com.google.gwt.dom.client.AnchorElement;
 import static com.google.gwt.dom.client.AnchorElement.as;
-import com.google.gwt.event.dom.client.ClickEvent;
 import static com.google.gwt.event.dom.client.ClickEvent.getType;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.user.client.DOM;
 import static com.google.gwt.user.client.DOM.createAnchor;
 import com.google.gwt.user.client.ui.ComplexPanel;
 import com.google.gwt.user.client.ui.Widget;

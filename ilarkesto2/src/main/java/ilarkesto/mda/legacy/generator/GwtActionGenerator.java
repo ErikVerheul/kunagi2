@@ -20,31 +20,54 @@ import ilarkesto.mda.legacy.model.ParameterModel;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class GwtActionGenerator extends AClassGenerator {
 
 	private final ActionModel action;
 
-	public GwtActionGenerator(ActionModel action) {
+    /**
+     *
+     * @param action
+     */
+    public GwtActionGenerator(ActionModel action) {
 		super();
 		this.action = action;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected final String getName() {
 		return "G" + action.getName() + "Action";
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected final String getPackage() {
 		return action.getPackageName().replace(".server", ".client");
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected final boolean isInterface() {
 		return false;
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void writeContent() {
 		writeInstanceVariables();
 		writeConstructor();
@@ -108,17 +131,29 @@ public class GwtActionGenerator extends AClassGenerator {
 		ln("    }");
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected final String getSuperclass() {
 		return "scrum.client.common.AScrumAction";
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected final boolean isAbstract() {
 		return true;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected boolean isOverwrite() {
 		return true;
 	}

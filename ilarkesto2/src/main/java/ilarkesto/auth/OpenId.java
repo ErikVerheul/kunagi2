@@ -47,24 +47,79 @@ import org.openid4java.util.ProxyProperties;
  */
 public class OpenId {
 
-	public static final String MYOPENID = "http://myopenid.com/";
-	public static final String GOOGLE = "https://www.google.com/accounts/o8/id";
-	public static final String YAHOO = "https://me.yahoo.com/";
-	public static final String LAUNCHPAD = "http://login.launchpad.net";
-	public static final String VERISIGN = "https://pip.verisignlabs.com/";
-	public static final String BLOGSPOT = "https://www.blogspot.com/";
-	public static final String AOL = "http://openid.aol.com/";
-	public static final String FLICKR = "http://www.flickr.com/";
-	public static final String MYVIDOOP = "https://myvidoop.com/";
-	public static final String WORDPRESS = "https://wordpress.com/";
+    /**
+     *
+     */
+    public static final String MYOPENID = "http://myopenid.com/";
 
-	public static final String LIVEJOURNAL_TEMPLATE = "http://${username}.livejournal.com/";
-	public static final String CLAIMID_TEMPLATE = "https://claimid.com/$(username)";
-	public static final String TECHNORATI_TEMPLATE = "https://technorati.com/people/technorati/$(username)/";
+    /**
+     *
+     */
+    public static final String GOOGLE = "https://www.google.com/accounts/o8/id";
+
+    /**
+     *
+     */
+    public static final String YAHOO = "https://me.yahoo.com/";
+
+    /**
+     *
+     */
+    public static final String LAUNCHPAD = "http://login.launchpad.net";
+
+    /**
+     *
+     */
+    public static final String VERISIGN = "https://pip.verisignlabs.com/";
+
+    /**
+     *
+     */
+    public static final String BLOGSPOT = "https://www.blogspot.com/";
+
+    /**
+     *
+     */
+    public static final String AOL = "http://openid.aol.com/";
+
+    /**
+     *
+     */
+    public static final String FLICKR = "http://www.flickr.com/";
+
+    /**
+     *
+     */
+    public static final String MYVIDOOP = "https://myvidoop.com/";
+
+    /**
+     *
+     */
+    public static final String WORDPRESS = "https://wordpress.com/";
+
+    /**
+     *
+     */
+    public static final String LIVEJOURNAL_TEMPLATE = "http://${username}.livejournal.com/";
+
+    /**
+     *
+     */
+    public static final String CLAIMID_TEMPLATE = "https://claimid.com/$(username)";
+
+    /**
+     *
+     */
+    public static final String TECHNORATI_TEMPLATE = "https://technorati.com/people/technorati/$(username)/";
 
 	private static Log log = Log.get(OpenId.class);
 
-	public static String cutUsername(String openId) {
+    /**
+     *
+     * @param openId
+     * @return
+     */
+    public static String cutUsername(String openId) {
 		if (openId == null) {
                         return null;
                 }
@@ -96,14 +151,32 @@ public class OpenId {
 		return name;
 	}
 
-	public static boolean isOpenIdCallback(HttpServletRequest request) {
+    /**
+     *
+     * @param request
+     * @return
+     */
+    public static boolean isOpenIdCallback(HttpServletRequest request) {
 		if (request.getParameter("openid.ns") != null) {
                         return true;
                 }
 		return request.getParameter("openid.identity") != null;
 	}
 
-	public static String createAuthenticationRequestUrl(String openId, String returnUrl, HttpSession session,
+    /**
+     *
+     * @param openId
+     * @param returnUrl
+     * @param session
+     * @param fetchNickname
+     * @param nicknameRequired
+     * @param fetchFullname
+     * @param fullnameRequired
+     * @param fetchEmail
+     * @param emailRequired
+     * @return
+     */
+    public static String createAuthenticationRequestUrl(String openId, String returnUrl, HttpSession session,
 			boolean fetchNickname, boolean nicknameRequired, boolean fetchFullname, boolean fullnameRequired,
 			boolean fetchEmail, boolean emailRequired) {
 		AuthRequest authReq = createAuthenticationRequest(openId, returnUrl, session);
@@ -146,17 +219,36 @@ public class OpenId {
 		return "http://schema.openid.net/namePerson";
 	}
 
-	public static boolean isAxProvider(String openId) {
+    /**
+     *
+     * @param openId
+     * @return
+     */
+    public static boolean isAxProvider(String openId) {
 		return !openId.contains("myopenid.com");
 	}
 
-	public static String createAuthenticationRequestUrl(String openId, String returnUrl, HttpSession session)
+    /**
+     *
+     * @param openId
+     * @param returnUrl
+     * @param session
+     * @return
+     * @throws RuntimeException
+     */
+    public static String createAuthenticationRequestUrl(String openId, String returnUrl, HttpSession session)
 			throws RuntimeException {
 		AuthRequest authReq = createAuthenticationRequest(openId, returnUrl, session);
 		return authReq.getDestinationUrl(true);
 	}
 
-	public static void appendFetchRequest(AuthRequest authReq, boolean required, String... attributes) {
+    /**
+     *
+     * @param authReq
+     * @param required
+     * @param attributes
+     */
+    public static void appendFetchRequest(AuthRequest authReq, boolean required, String... attributes) {
 		FetchRequest fetch = createFetchRequest();
 		for (String attribute : attributes) {
 			addAttribute(fetch, attribute, attribute, required);
@@ -164,7 +256,12 @@ public class OpenId {
 		addExtension(authReq, fetch);
 	}
 
-	public static void addExtension(AuthRequest authReq, FetchRequest fetch) {
+    /**
+     *
+     * @param authReq
+     * @param fetch
+     */
+    public static void addExtension(AuthRequest authReq, FetchRequest fetch) {
 		try {
 			authReq.addExtension(fetch);
 		} catch (MessageException ex) {
@@ -172,7 +269,14 @@ public class OpenId {
 		}
 	}
 
-	public static void addAttribute(FetchRequest fetch, String alias, String attribute, boolean required) {
+    /**
+     *
+     * @param fetch
+     * @param alias
+     * @param attribute
+     * @param required
+     */
+    public static void addAttribute(FetchRequest fetch, String alias, String attribute, boolean required) {
 		try {
 			fetch.addAttribute(alias, attribute, required);
 		} catch (MessageException ex) {
@@ -181,7 +285,14 @@ public class OpenId {
 		}
 	}
 
-	public static AuthRequest createAuthenticationRequest(String openId, String returnUrl, HttpSession session) {
+    /**
+     *
+     * @param openId
+     * @param returnUrl
+     * @param session
+     * @return
+     */
+    public static AuthRequest createAuthenticationRequest(String openId, String returnUrl, HttpSession session) {
 		ConsumerManager manager = getConsumerManager(session);
 		List discoveries;
 		try {
@@ -204,18 +315,33 @@ public class OpenId {
 		return authReq;
 	}
 
-	public static String getIdentifierIdFromCallback(HttpServletRequest request) {
+    /**
+     *
+     * @param request
+     * @return
+     */
+    public static String getIdentifierIdFromCallback(HttpServletRequest request) {
 		Identifier verifiedId = getIdentifierFromCallback(request);
 		return verifiedId == null ? null : verifiedId.getIdentifier();
 	}
 
-	public static Identifier getIdentifierFromCallback(HttpServletRequest request) {
+    /**
+     *
+     * @param request
+     * @return
+     */
+    public static Identifier getIdentifierFromCallback(HttpServletRequest request) {
 		VerificationResult verification = getVerificationFromCallback(request);
 		Identifier verifiedId = verification.getVerifiedId();
 		return verifiedId;
 	}
 
-	public static VerificationResult getVerificationFromCallback(HttpServletRequest request) {
+    /**
+     *
+     * @param request
+     * @return
+     */
+    public static VerificationResult getVerificationFromCallback(HttpServletRequest request) {
 		log.info("Reading OpenID response");
 		ParameterList openidResp = new ParameterList(request.getParameterMap());
 		for (Iterator iterator = openidResp.getParameters().iterator(); iterator.hasNext();) {
@@ -242,12 +368,22 @@ public class OpenId {
 		return verification;
 	}
 
-	public static String getEmail(VerificationResult verification) {
+    /**
+     *
+     * @param verification
+     * @return
+     */
+    public static String getEmail(VerificationResult verification) {
 		String value = getFetchResponseAttribute(verification, "email");
 		return isBlank(value) ? null : value;
 	}
 
-	public static String getFullname(VerificationResult verification) {
+    /**
+     *
+     * @param verification
+     * @return
+     */
+    public static String getFullname(VerificationResult verification) {
 		String value = getFetchResponseAttribute(verification, "fullname");
 		if (isBlank(value)) {
                         return null;
@@ -258,7 +394,12 @@ public class OpenId {
 		return value;
 	}
 
-	public static String getNickname(VerificationResult verification) {
+    /**
+     *
+     * @param verification
+     * @return
+     */
+    public static String getNickname(VerificationResult verification) {
 		String value = getFetchResponseAttribute(verification, "nickname");
 		if (isBlank(value)) {
                         return null;
@@ -269,7 +410,12 @@ public class OpenId {
 		return value;
 	}
 
-	public static String getOpenId(VerificationResult verification) {
+    /**
+     *
+     * @param verification
+     * @return
+     */
+    public static String getOpenId(VerificationResult verification) {
 		if (verification == null) {
                         return null;
                 }
@@ -284,7 +430,13 @@ public class OpenId {
 		return cutTo(id, "#");
 	}
 
-	public static String getFetchResponseAttribute(VerificationResult verification, String attributeAlias) {
+    /**
+     *
+     * @param verification
+     * @param attributeAlias
+     * @return
+     */
+    public static String getFetchResponseAttribute(VerificationResult verification, String attributeAlias) {
 		if (verification == null) {
                         return null;
                 }
@@ -305,12 +457,22 @@ public class OpenId {
 		return (String) values.get(0);
 	}
 
-	public static String getOpenIdFromCallback(HttpServletRequest request) {
+    /**
+     *
+     * @param request
+     * @return
+     */
+    public static String getOpenIdFromCallback(HttpServletRequest request) {
 		VerificationResult verification = getVerificationFromCallback(request);
 		return getOpenId(verification);
 	}
 
-	public static ConsumerManager getConsumerManager(HttpSession session) {
+    /**
+     *
+     * @param session
+     * @return
+     */
+    public static ConsumerManager getConsumerManager(HttpSession session) {
 		String sessionAttribute = "openIdConsumerManager";
 		ConsumerManager manager = (ConsumerManager) session.getAttribute(sessionAttribute);
 		if (manager == null) {
@@ -320,7 +482,12 @@ public class OpenId {
 		return manager;
 	}
 
-	public static void setHttpProxy(String hostname, int port) {
+    /**
+     *
+     * @param hostname
+     * @param port
+     */
+    public static void setHttpProxy(String hostname, int port) {
 		ProxyProperties proxyProps = new ProxyProperties();
 		proxyProps.setProxyHostName(hostname);
 		proxyProps.setProxyPort(port);

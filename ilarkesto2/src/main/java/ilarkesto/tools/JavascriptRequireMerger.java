@@ -14,9 +14,9 @@
  */
 package ilarkesto.tools;
 
-import ilarkesto.logging.Log;
 import static ilarkesto.io.IO.listFiles;
 import static ilarkesto.io.IO.readFile;
+import ilarkesto.logging.Log;
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.ArrayList;

@@ -14,6 +14,13 @@
  */
 package scrum.client.collaboration;
 
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
+import com.google.gwt.user.client.ui.PushButton;
+import com.google.gwt.user.client.ui.SuggestOracle;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.CodemirrorEditorWidget;
 import ilarkesto.gwt.client.Gwt;
 import ilarkesto.gwt.client.Initializer;
@@ -27,24 +34,28 @@ import scrum.client.wiki.ScrumHtmlContext;
 import scrum.client.wiki.WikiModel;
 import scrum.client.wiki.WikiParser;
 
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.ui.Image;
-import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
-import com.google.gwt.user.client.ui.PushButton;
-import com.google.gwt.user.client.ui.SuggestOracle;
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class Wiki extends GWiki implements RichtextFormater {
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	public void initialize() {
 		Gwt.setDefaultRichtextFormater(this);
 		Gwt.setRichtextEditorEditInitializer(new RichtextEditorEditInitializer());
 		Gwt.setDefaultRichtextSyntaxInfo(WikiParser.SYNTAX_INFO_HTML);
 	}
 
-	public String getTemplate(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public String getTemplate(String name) {
 		Wikipage page = project.getWikipage("template:" + name);
 		return page == null ? null : page.getText();
 	}
@@ -54,15 +65,28 @@ public class Wiki extends GWiki implements RichtextFormater {
 		return toHtml(text);
 	}
 
-	public static String toHtml(String wiki) {
-		if (wiki == null) return null;
-		if (wiki.trim().length() == 0) return "";
+    /**
+     *
+     * @param wiki
+     * @return
+     */
+    public static String toHtml(String wiki) {
+		if (wiki == null) {
+                    return null;
+        }
+		if (wiki.trim().length() == 0) {
+                    return "";
+        }
 		WikiParser parser = new WikiParser(wiki);
 		WikiModel model = parser.parse(true);
 		return model.toHtml(new ScrumHtmlContext());
 	}
 
-	public SuggestOracle createPagesSuggestOracle() {
+    /**
+     *
+     * @return
+     */
+    public SuggestOracle createPagesSuggestOracle() {
 		MultiWordSuggestOracle oracle = new MultiWordSuggestOracle();
 		for (Wikipage page : project.getWikipages()) {
 			oracle.add(page.getName());
@@ -202,7 +226,14 @@ public class Wiki extends GWiki implements RichtextFormater {
 		}
 	}
 
-	protected final Widget createToolbarButton(Image icon, String tooltip, ClickHandler clickHandler) {
+    /**
+     *
+     * @param icon
+     * @param tooltip
+     * @param clickHandler
+     * @return
+     */
+    protected final Widget createToolbarButton(Image icon, String tooltip, ClickHandler clickHandler) {
 		PushButton button = new PushButton(icon, clickHandler);
 		button.setTitle(tooltip);
 		return button;

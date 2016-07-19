@@ -14,15 +14,17 @@
  */
 package scrum.client.dashboard;
 
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Widget;
 import java.util.List;
-
 import scrum.client.common.AScrumWidget;
 import scrum.client.impediments.Impediment;
 import scrum.client.project.Project;
 
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class OpenImpedimentsWidget extends AScrumWidget {
 
 	private HTML html;
@@ -44,9 +46,13 @@ public class OpenImpedimentsWidget extends AScrumWidget {
 			for (Impediment impediment : impediments) {
 				sb.append("<li>");
 				boolean blocking = impediment.isBlockingTasksFromCurrentSprint();
-				if (blocking) sb.append("<span style='color: red;'>");
+				if (blocking) {
+                                    sb.append("<span style='color: red;'>");
+                }
 				sb.append(impediment.toHtml());
-				if (blocking) sb.append("</span>");
+				if (blocking) {
+                                    sb.append("</span>");
+                }
 				sb.append("</li>");
 			}
 		}

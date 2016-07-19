@@ -14,6 +14,11 @@
  */
 package scrum.client.common;
 
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.ui.FocusPanel;
+import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.AAction;
 import ilarkesto.gwt.client.AWidget;
 import ilarkesto.gwt.client.AnchorPanel;
@@ -21,16 +26,13 @@ import ilarkesto.gwt.client.ButtonWidget;
 import ilarkesto.gwt.client.DropdownMenuButtonWidget;
 import ilarkesto.gwt.client.editor.AFieldModel;
 import ilarkesto.gwt.client.editor.TextOutputWidget;
-
 import java.util.ArrayList;
 import java.util.Collection;
 
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.ui.FocusPanel;
-import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class BlockHeaderWidget extends AWidget {
 
 	private HorizontalPanel outerFramePanel;
@@ -71,26 +73,55 @@ public class BlockHeaderWidget extends AWidget {
 		centerAnchorPanel.setFocus(false);
 	}
 
-	public void addText(AFieldModel<?> model) {
+    /**
+     *
+     * @param model
+     */
+    public void addText(AFieldModel<?> model) {
 		addText(model, null, false, false);
 	}
 
-	public void addText(AFieldModel<?> model, boolean secondary) {
+    /**
+     *
+     * @param model
+     * @param secondary
+     */
+    public void addText(AFieldModel<?> model, boolean secondary) {
 		addText(model, null, secondary, secondary);
 	}
 
-	public void addText(AFieldModel<?> model, boolean secondary, boolean small) {
+    /**
+     *
+     * @param model
+     * @param secondary
+     * @param small
+     */
+    public void addText(AFieldModel<?> model, boolean secondary, boolean small) {
 		addText(model, null, secondary, small);
 	}
 
-	public void addText(AFieldModel<?> model, String width, boolean secondary, boolean small) {
+    /**
+     *
+     * @param model
+     * @param width
+     * @param secondary
+     * @param small
+     */
+    public void addText(AFieldModel<?> model, String width, boolean secondary, boolean small) {
 		AnchorPanel cell = createCell(new TextOutputWidget(model).setForceEmptyChar(true), secondary, small, null);
-		if (width != null) cell.setWidth(width);
+		if (width != null) {
+                    cell.setWidth(width);
+        }
 		centerTable.add(cell);
 	}
 
 	// ---
 
+    /**
+     *
+     * @return
+     */
+    
 	public AnchorPanel addIconWrapper() {
 		AnchorPanel cell = createCell(null, false, false, "BlockHeaderWidget-prefixIcon");
 		cell.setHeight("16px");
@@ -99,10 +130,20 @@ public class BlockHeaderWidget extends AWidget {
 		return cell;
 	}
 
-	public void appendOuterCell(Widget widget, String width, boolean alignRight) {
+    /**
+     *
+     * @param widget
+     * @param width
+     * @param alignRight
+     */
+    public void appendOuterCell(Widget widget, String width, boolean alignRight) {
 		outerFramePanel.add(widget);
-		if (alignRight) outerFramePanel.setCellHorizontalAlignment(widget, HorizontalPanel.ALIGN_RIGHT);
-		if (width != null) outerFramePanel.setCellWidth(widget, width);
+		if (alignRight) {
+                    outerFramePanel.setCellHorizontalAlignment(widget, HorizontalPanel.ALIGN_RIGHT);
+        }
+                if (width != null) {
+                    outerFramePanel.setCellWidth(widget, width);
+        }
 	}
 
 	private AnchorPanel createCell(Widget widget, boolean secondary, boolean small, String additionalStyleName) {
@@ -112,16 +153,26 @@ public class BlockHeaderWidget extends AWidget {
 		wrapper.setWidth("100%");
 		wrapper.setHeight("100%");
 
-		anchorPanels.add(wrapper);
-
-		if (secondary) wrapper.addStyleName("BlockHeaderWidget-cell-secondary");
-		if (small) wrapper.addStyleName("BlockHeaderWidget-cell-small");
-		if (additionalStyleName != null) wrapper.addStyleName(additionalStyleName);
+                anchorPanels.add(wrapper);
+                
+                if (secondary) {
+                    wrapper.addStyleName("BlockHeaderWidget-cell-secondary");
+        }
+		if (small) {
+                    wrapper.addStyleName("BlockHeaderWidget-cell-small");
+                }
+                if (additionalStyleName != null) {
+            wrapper.addStyleName(additionalStyleName);
+        }
 		wrapper.add(widget);
 		return wrapper;
 	}
 
-	public void addMenuAction(AScrumAction action) {
+    /**
+     *
+     * @param action
+     */
+    public void addMenuAction(AScrumAction action) {
 		if (menu == null) {
 			menu = new DropdownMenuButtonWidget();
 			appendOuterCell(menu, "30px", true);
@@ -129,11 +180,19 @@ public class BlockHeaderWidget extends AWidget {
 		menu.addAction(action);
 	}
 
-	public void addToolbarAction(AAction action) {
+    /**
+     *
+     * @param action
+     */
+    public void addToolbarAction(AAction action) {
 		appendOuterCell(new ButtonWidget(action), "5px", true);
 	}
 
-	public void setDragHandle(String text) {
+    /**
+     *
+     * @param text
+     */
+    public void setDragHandle(String text) {
 		if (dragHandle == null) {
 			dragHandle = new Label();
 			setDragHandle(dragHandle);
@@ -141,11 +200,19 @@ public class BlockHeaderWidget extends AWidget {
 		dragHandle.setText(text);
 	}
 
-	public void setDragHandle(Widget widget) {
+    /**
+     *
+     * @param widget
+     */
+    public void setDragHandle(Widget widget) {
 		dragHandleWrapper.setWidget(widget);
 	}
 
-	public void addClickHandler(ClickHandler handler) {
+    /**
+     *
+     * @param handler
+     */
+    public void addClickHandler(ClickHandler handler) {
 		centerAnchorPanel.addClickHandler(handler);
 
 		for (AnchorPanel ap : anchorPanels) {
@@ -153,14 +220,22 @@ public class BlockHeaderWidget extends AWidget {
 		}
 	}
 
-	public void setHref(String href) {
+    /**
+     *
+     * @param href
+     */
+    public void setHref(String href) {
 		centerAnchorPanel.setHref(href);
 		for (AnchorPanel ap : anchorPanels) {
 			ap.setHref(href);
 		}
 	}
 
-	public FocusPanel getDragHandle() {
+    /**
+     *
+     * @return
+     */
+    public FocusPanel getDragHandle() {
 		return dragHandleWrapper;
 	}
 }

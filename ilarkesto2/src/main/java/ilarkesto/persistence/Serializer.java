@@ -19,15 +19,39 @@ import ilarkesto.io.StringOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class Serializer {
 
-	public abstract void setAlias(String alias, Class clazz);
+    /**
+     *
+     * @param alias
+     * @param clazz
+     */
+    public abstract void setAlias(String alias, Class clazz);
 
-	public abstract void serialize(Object bean, OutputStream out);
+    /**
+     *
+     * @param bean
+     * @param out
+     */
+    public abstract void serialize(Object bean, OutputStream out);
 
-	public abstract Object deserialize(InputStream in);
+    /**
+     *
+     * @param in
+     * @return
+     */
+    public abstract Object deserialize(InputStream in);
 
-	public final Object deserialize(String s) {
+    /**
+     *
+     * @param s
+     * @return
+     */
+    public final Object deserialize(String s) {
 		if (s == null || s.length() == 0) {
                         return null;
                 }
@@ -35,7 +59,12 @@ public abstract class Serializer {
 		return deserialize(in);
 	}
 
-	public final String serializeToString(Object bean) {
+    /**
+     *
+     * @param bean
+     * @return
+     */
+    public final String serializeToString(Object bean) {
 		StringOutputStream out = new StringOutputStream();
 		serialize(bean, out);
 		return out.toString();

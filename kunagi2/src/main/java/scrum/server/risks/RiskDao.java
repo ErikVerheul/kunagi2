@@ -14,7 +14,6 @@
  */
 package scrum.server.risks;
 
-import scrum.server.risks.GRiskDao;
 import scrum.server.project.Project;
 
 public class RiskDao extends GRiskDao {

@@ -14,6 +14,7 @@
  */
 package scrum.client.project;
 
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.ButtonWidget;
 import ilarkesto.gwt.client.TableBuilder;
 import ilarkesto.gwt.client.editor.RichtextEditorWidget;
@@ -22,8 +23,6 @@ import scrum.client.admin.ProjectBlock;
 import scrum.client.common.AScrumWidget;
 import scrum.client.common.WeekdaySelectorEditorWidget;
 import scrum.client.workspace.PagePanel;
-
-import com.google.gwt.user.client.ui.Widget;
 
 public class ProjectAdminWidget extends AScrumWidget {
 

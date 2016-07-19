@@ -17,12 +17,31 @@ package ilarkesto.pdf;
 import com.itextpdf.text.BaseColor;
 import static com.itextpdf.text.BaseColor.BLACK;
 
+/**
+ *
+ * @author erik
+ */
 public final class FontStyle {
 
-	public static final String FONT_UBUNTU = "fonts/Ubuntu-R.ttf";
-	public static final String FONT_LIBERATION_MONO = "fonts/LiberationMono-Regular.ttf";
-	public static final String FONT_DEFAULT = FONT_UBUNTU;
-	public static final String FONT_DEFAULT_FIXED = FONT_LIBERATION_MONO;
+    /**
+     *
+     */
+    public static final String FONT_UBUNTU = "fonts/Ubuntu-R.ttf";
+
+    /**
+     *
+     */
+    public static final String FONT_LIBERATION_MONO = "fonts/LiberationMono-Regular.ttf";
+
+    /**
+     *
+     */
+    public static final String FONT_DEFAULT = FONT_UBUNTU;
+
+    /**
+     *
+     */
+    public static final String FONT_DEFAULT_FIXED = FONT_LIBERATION_MONO;
 
 	private String font = FONT_DEFAULT;
 	private float size = 4f;
@@ -30,53 +49,103 @@ public final class FontStyle {
 	private boolean bold;
 	private BaseColor color = BLACK;
 
-	public boolean isItalic() {
+    /**
+     *
+     * @return
+     */
+    public boolean isItalic() {
 		return italic;
 	}
 
-	public FontStyle setItalic(boolean italic) {
+    /**
+     *
+     * @param italic
+     * @return
+     */
+    public FontStyle setItalic(boolean italic) {
 		this.italic = italic;
 		return this;
 	}
 
-	public boolean isBold() {
+    /**
+     *
+     * @return
+     */
+    public boolean isBold() {
 		return bold;
 	}
 
-	public FontStyle setBold(boolean bold) {
+    /**
+     *
+     * @param bold
+     * @return
+     */
+    public FontStyle setBold(boolean bold) {
 		this.bold = bold;
 		return this;
 	}
 
-	public float getSize() {
+    /**
+     *
+     * @return
+     */
+    public float getSize() {
 		return size;
 	}
 
-	public FontStyle setSize(float size) {
+    /**
+     *
+     * @param size
+     * @return
+     */
+    public FontStyle setSize(float size) {
 		this.size = size;
 		return this;
 	}
 
-	public BaseColor getColor() {
+    /**
+     *
+     * @return
+     */
+    public BaseColor getColor() {
 		return color;
 	}
 
-	public FontStyle setColor(BaseColor color) {
+    /**
+     *
+     * @param color
+     * @return
+     */
+    public FontStyle setColor(BaseColor color) {
 		this.color = color;
 		return this;
 	}
 
-	public String getFont() {
+    /**
+     *
+     * @return
+     */
+    public String getFont() {
 		return font;
 	}
 
-	public FontStyle setFont(String font) {
+    /**
+     *
+     * @param font
+     * @return
+     */
+    public FontStyle setFont(String font) {
 		this.font = font;
 		return this;
 	}
 
 	// --- ---
 
+    /**
+     *
+     * @param style
+     */
+    
 	public FontStyle(FontStyle style) {
 		this.font = style.font;
 		this.size = style.size;
@@ -85,6 +154,9 @@ public final class FontStyle {
 		this.color = style.color;
 	}
 
-	public FontStyle() {}
+    /**
+     *
+     */
+    public FontStyle() {}
 
 }

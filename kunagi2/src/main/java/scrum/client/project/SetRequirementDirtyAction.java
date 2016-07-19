@@ -16,9 +16,17 @@ package scrum.client.project;
 
 import scrum.client.common.TooltipBuilder;
 
+/**
+ *
+ * @author erik
+ */
 public class SetRequirementDirtyAction extends GSetRequirementDirtyAction {
 
-	protected SetRequirementDirtyAction(Requirement requirement) {
+    /**
+     *
+     * @param requirement
+     */
+    protected SetRequirementDirtyAction(Requirement requirement) {
 		super(requirement);
 	}
 
@@ -27,31 +35,45 @@ public class SetRequirementDirtyAction extends GSetRequirementDirtyAction {
 		return "Request re-estimation";
 	}
 
-	@Override
+    /**
+     *
+     * @param tb
+     */
+    @Override
 	public void updateTooltip(TooltipBuilder tb) {
 		tb.setText("Request a re-estimation of this story, if you changed the Story or think that the current estimation is outdated.");
 		if (!requirement.getProject().isProductOwnerOrTeamMember(getCurrentUser())) {
 			tb.addRemark(TooltipBuilder.NOT_TEAM_NOR_PRODUCT_OWNER);
 		} else {
-			if (requirement.isClosed()) tb.addRemark("Story is already closed.");
-			if (requirement.isDirty()) tb.addRemark("Re-estmation has already been requested for this Story.");
-			if (requirement.isInCurrentSprint()) tb.addRemark("Story is in current Sprint.");
+			if (requirement.isClosed()) {
+                            tb.addRemark("Story is already closed.");
+            }
+			if (requirement.isDirty()) {
+                            tb.addRemark("Re-estmation has already been requested for this Story.");
+            }
+                        if (requirement.isInCurrentSprint()) {
+                            tb.addRemark("Story is in current Sprint.");
+            }
 		}
 	}
 
 	@Override
-	public boolean isExecutable() {
-		if (requirement.isClosed()) return false;
-		if (requirement.isDirty()) return false;
-		if (requirement.isInCurrentSprint()) return false;
-		if (requirement.isWorkEstimationVotingActive()) return false;
-		return true;
+        public boolean isExecutable() {
+		if (requirement.isClosed()) {
+                    return false;
+                }
+		if (requirement.isDirty()) {
+                    return false;
+        }
+		if (requirement.isInCurrentSprint()) {
+            return false;
+        }
+		return !requirement.isWorkEstimationVotingActive();
 	}
 
 	@Override
 	public boolean isPermitted() {
-		if (!requirement.getProject().isProductOwnerOrTeamMember(getCurrentUser())) return false;
-		return true;
+		return requirement.getProject().isProductOwnerOrTeamMember(getCurrentUser());
 	}
 
 	@Override

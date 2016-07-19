@@ -14,6 +14,10 @@
  */
 package scrum.client;
 
+/**
+ *
+ * @author erik
+ */
 public class ScrumComponentsReflector extends GScrumComponentsReflector {
 
 }

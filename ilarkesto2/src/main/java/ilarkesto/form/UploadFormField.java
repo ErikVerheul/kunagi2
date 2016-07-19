@@ -23,24 +23,41 @@ import java.util.Map;
 import org.apache.commons.fileupload.FileItem;
 import static org.mortbay.log.Log.warn;
 
+/**
+ *
+ * @author erik
+ */
 public class UploadFormField extends AFormField {
 
     private File file;
     private Integer maxFilesize = 10000000;
 
+    /**
+     *
+     * @param name
+     */
     public UploadFormField(String name) {
         super(name);
         setRequired(true);
     }
 
-        @Override
+    /**
+     *
+     * @return
+     */
+    @Override
     public String getValueAsString() {
         return file == null ? null : file.getName();
     }
 
     private boolean maxFileSizeExceeded;
 
-        @Override
+    /**
+     *
+     * @param data
+     * @param uploadedFiles
+     */
+    @Override
         public void update(Map<String, String> data, Collection<FileItem> uploadedFiles) {
                 maxFileSizeExceeded = false;
                 for (FileItem item : uploadedFiles) {
@@ -66,11 +83,19 @@ public class UploadFormField extends AFormField {
                 }
         }
 
+    /**
+     *
+     * @return
+     */
     public File getValue() {
         return file;
     }
 
-        @Override
+    /**
+     *
+     * @throws ValidationException
+     */
+    @Override
     public void validate() throws ValidationException {
         if (maxFileSizeExceeded) { throw new ValidationException(
                 "Die Datei ist zu gro\u00DF. Maximale Dateigr\u00F6\u00DFe: "
@@ -78,10 +103,19 @@ public class UploadFormField extends AFormField {
         if (file == null && isRequired()) { throw new ValidationException("Eingabe erforderlich."); }
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getMaxFilesize() {
         return maxFilesize;
     }
 
+    /**
+     *
+     * @param maxFilesize
+     * @return
+     */
     public UploadFormField setMaxFilesize(Integer maxFilesize) {
         this.maxFilesize = maxFilesize;
         return this;
@@ -93,6 +127,10 @@ public class UploadFormField extends AFormField {
 
     private String applicationTempDir = "";
 
+    /**
+     *
+     * @param applicationTempDir
+     */
     public void setApplicationTempDir(String applicationTempDir) {
         this.applicationTempDir = applicationTempDir;
     }

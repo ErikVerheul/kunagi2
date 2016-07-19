@@ -14,6 +14,10 @@
  */
 package ilarkesto.ui;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class AView {
 
 }

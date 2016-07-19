@@ -18,9 +18,17 @@ import scrum.server.admin.User;
 import scrum.server.project.Project;
 import scrum.server.project.Requirement;
 
+/**
+ *
+ * @author erik
+ */
 public class RequirementEstimationVote extends GRequirementEstimationVote {
 
-	public Project getProject() {
+    /**
+     *
+     * @return
+     */
+    public Project getProject() {
 		return getRequirement().getProject();
 	}
 
@@ -35,7 +43,6 @@ public class RequirementEstimationVote extends GRequirementEstimationVote {
 		Requirement requirement = getRequirement();
 		if (!requirement.isWorkEstimationVotingActive() || requirement.isClosed()) {
 			getDao().deleteEntity(this);
-			return;
 		}
 	}
 }

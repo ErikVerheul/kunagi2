@@ -14,10 +14,10 @@
  */
 package ilarkesto.swing;
 
-import ilarkesto.logging.Log;
 import static ilarkesto.io.IO.getScaled;
 import static ilarkesto.io.IO.loadImage;
 import static ilarkesto.io.IO.toBufferedImage;
+import ilarkesto.logging.Log;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import static java.lang.Long.MAX_VALUE;

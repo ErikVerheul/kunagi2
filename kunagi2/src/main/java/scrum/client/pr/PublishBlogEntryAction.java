@@ -17,9 +17,17 @@ package scrum.client.pr;
 import ilarkesto.core.base.Str;
 import scrum.client.common.TooltipBuilder;
 
+/**
+ *
+ * @author erik
+ */
 public class PublishBlogEntryAction extends GPublishBlogEntryAction {
 
-	public PublishBlogEntryAction(scrum.client.pr.BlogEntry blogEntry) {
+    /**
+     *
+     * @param blogEntry
+     */
+    public PublishBlogEntryAction(scrum.client.pr.BlogEntry blogEntry) {
 		super(blogEntry);
 	}
 
@@ -28,24 +36,32 @@ public class PublishBlogEntryAction extends GPublishBlogEntryAction {
 		return "Publish";
 	}
 
-	@Override
+    /**
+     *
+     * @param tb
+     */
+    @Override
 	protected void updateTooltip(TooltipBuilder tb) {
 		tb.setText("Publish this Blog entry. Published entries are taken into account when exporting project data.");
-		if (!isPermitted()) tb.addRemark(TooltipBuilder.NOT_PRODUCT_OWNER_NOR_SCRUMMASTER);
+		if (!isPermitted()) {
+                    tb.addRemark(TooltipBuilder.NOT_PRODUCT_OWNER_NOR_SCRUMMASTER);
+        }
 	}
 
 	@Override
 	public boolean isPermitted() {
-		if (!blogEntry.getProject().isProductOwnerOrScrumMaster(getCurrentUser())) return false;
-		return true;
+		return blogEntry.getProject().isProductOwnerOrScrumMaster(getCurrentUser());
 	}
 
 	@Override
 	public boolean isExecutable() {
-		if (blogEntry.isPublished()) return false;
-		if (Str.isBlank(blogEntry.getTitle())) return false;
-		if (Str.isBlank(blogEntry.getText())) return false;
-		return true;
+		if (blogEntry.isPublished()) {
+                    return false;
+        }
+                if (Str.isBlank(blogEntry.getTitle())) {
+                    return false;
+        }
+		return !Str.isBlank(blogEntry.getText());
 	}
 
 	@Override

@@ -15,7 +15,6 @@
 package ilarkesto.integration.links;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import static java.util.Arrays.asList;
 import java.util.List;
 

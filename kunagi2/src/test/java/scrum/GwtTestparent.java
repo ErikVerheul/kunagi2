@@ -22,6 +22,7 @@ public class GwtTestparent extends GWTTestCase {
 
   /**
    * Must refer to a valid module that sources this class.
+     * @return 
    */
   @Override
   public String getModuleName() {

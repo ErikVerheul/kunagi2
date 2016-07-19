@@ -15,9 +15,7 @@
 package ilarkesto.mda.model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import static java.util.Arrays.asList;
-import java.util.Collections;
 import static java.util.Collections.emptyList;
 import java.util.HashSet;
 import java.util.List;

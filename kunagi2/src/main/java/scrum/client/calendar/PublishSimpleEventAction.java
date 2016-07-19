@@ -21,9 +21,17 @@ import ilarkesto.gwt.client.Gwt;
 import scrum.client.common.TooltipBuilder;
 import scrum.client.journal.ProjectEvent;
 
+/**
+ *
+ * @author erik
+ */
 public class PublishSimpleEventAction extends GPublishSimpleEventAction {
 
-	public PublishSimpleEventAction(scrum.client.calendar.SimpleEvent simpleEvent) {
+    /**
+     *
+     * @param simpleEvent
+     */
+    public PublishSimpleEventAction(scrum.client.calendar.SimpleEvent simpleEvent) {
 		super(simpleEvent);
 	}
 
@@ -32,7 +40,11 @@ public class PublishSimpleEventAction extends GPublishSimpleEventAction {
 		return "Publish Notification";
 	}
 
-	@Override
+    /**
+     *
+     * @param tb
+     */
+    @Override
 	protected void updateTooltip(TooltipBuilder tb) {
 		tb.setText("Add a notification for this event to the project journal.");
 	}
@@ -41,10 +53,13 @@ public class PublishSimpleEventAction extends GPublishSimpleEventAction {
 	protected void onExecute() {
 		String suffix = Gwt.formatWeekdayMonthDay(simpleEvent.getDate().toJavaDate());
 		Time time = simpleEvent.getTime();
-		if (time != null)
-			suffix += ", " + Gwt.formatHourMinute(new DateAndTime(simpleEvent.getDate(), time).toJavaDate());
+		if (time != null) {
+                    suffix += ", " + Gwt.formatHourMinute(new DateAndTime(simpleEvent.getDate(), time).toJavaDate());
+        }
 		String location = simpleEvent.getLocation();
-		if (!Str.isBlank(location)) suffix += " @ " + location;
+		if (!Str.isBlank(location)) {
+                    suffix += " @ " + location;
+        }
 		getDao().createProjectEvent(
 			new ProjectEvent(getCurrentProject(), simpleEvent.getLabel() + " scheduled to " + suffix));
 	}

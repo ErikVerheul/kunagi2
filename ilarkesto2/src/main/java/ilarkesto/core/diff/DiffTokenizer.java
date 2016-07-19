@@ -16,10 +16,24 @@ package ilarkesto.core.diff;
 
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public interface DiffTokenizer {
 
-	List<String> tokenize(String s);
+    /**
+     *
+     * @param s
+     * @return
+     */
+    List<String> tokenize(String s);
 
-	String concat(List<String> tokens);
+    /**
+     *
+     * @param tokens
+     * @return
+     */
+    String concat(List<String> tokens);
 	
 }

@@ -15,13 +15,13 @@
 package ilarkesto.form.swing;
 
 import edu.umd.cs.findbugs.annotations.SuppressWarnings;
-import ilarkesto.logging.Log;
 import ilarkesto.form.FileFormField;
 import ilarkesto.form.Form;
 import ilarkesto.form.FormButton;
 import ilarkesto.form.FormField;
 import ilarkesto.form.TextFormField;
 import ilarkesto.form.ValidationException;
+import ilarkesto.logging.Log;
 import ilarkesto.swing.FileField;
 import static ilarkesto.swing.FileField.createForDirectory;
 import static ilarkesto.swing.FileField.createForFile;

@@ -30,15 +30,25 @@ import static ilarkesto.core.time.Tm.WEEK;
 import ilarkesto.testng.ATest;
 import org.testng.annotations.Test;
 
+/**
+ *
+ * @author erik
+ */
 public class TimePeriodTest extends ATest {
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void subtract() {
 		assertEquals(hours(8).subtract(hours(1)), new TimePeriod("7:00"));
 		assertEquals(hours(8).subtract(minutes(30)), new TimePeriod("7:30"));
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void getPeriodTo() {
 		Time begin = new Time("9:00");
 		Time end = new Time("17:30");
@@ -46,7 +56,10 @@ public class TimePeriodTest extends ATest {
 		assertEquals(begin.getPeriodTo(end), new TimePeriod(8 * HOUR + 30 * MINUTE));
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void constructors() {
 		assertEquals(seconds(1).toMillis(), 1000);
 		assertEquals(minutes(1).toMillis(), 60000);
@@ -63,13 +76,19 @@ public class TimePeriodTest extends ATest {
 		assertEquals(weeks(1).toMillis(), 604800000);
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void toDecimalDays() {
 		assertEquals(days(1).toDecimalDays(), 1.0f, 0.0001f);
 		assertEquals(hours(12).toDecimalDays(), 0.5f, 0.0001f);
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void toDays() {
 		assertEquals(new TimePeriod(DAY).toDays(), 1);
 		assertEquals(new TimePeriod(DAY * 2).toDays(), 2);
@@ -77,7 +96,10 @@ public class TimePeriodTest extends ATest {
 		assertEquals(new TimePeriod(DAY * 512).toDays(), 512);
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void toShortestString() {
 		assertEquals(new TimePeriod(SECOND * 20).toShortestString("en"), "20 seconds");
 		assertEquals(new TimePeriod(MINUTE).toShortestString("en"), "1 minute");
@@ -87,12 +109,18 @@ public class TimePeriodTest extends ATest {
 		assertEquals(new TimePeriod(MONTH * 11).toShortestString("en"), "11 months");
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void constructorMillis() {
 		assertEquals(new TimePeriod("1").toMillis(), 1);
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void constructorTime() {
 		assertEquals(new TimePeriod("0:0:0:1").toMillis(), 1);
 	}

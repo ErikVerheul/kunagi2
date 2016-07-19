@@ -16,8 +16,16 @@ package ilarkesto.integration.itext;
 
 import com.itextpdf.text.Element;
 
+/**
+ *
+ * @author erik
+ */
 public interface ItextElement {
 
-	Element getITextElement();
+    /**
+     *
+     * @return
+     */
+    Element getITextElement();
 
 }

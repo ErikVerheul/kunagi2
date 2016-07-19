@@ -19,42 +19,111 @@ import java.util.Collection;
 import java.util.Map;
 import org.apache.commons.fileupload.FileItem;
 
+/**
+ *
+ * @author erik
+ */
 public interface FormField {
 
     // --- creating ---
 
+    /**
+     *
+     * @param value
+     * @return
+     */
+    
     FormField setLabel(String value);
 
+    /**
+     *
+     * @param value
+     * @return
+     */
     FormField setHintText(String value);
 
+    /**
+     *
+     * @param required
+     * @return
+     */
     FormField setRequired(boolean required);
 
+    /**
+     *
+     * @param listener
+     * @return
+     */
     FormField addFormFieldChangeListener(FormFieldChangeListener listener);
 
     // --- rendering ---
 
+    /**
+     *
+     * @return
+     */
+    
     String getName();
 
+    /**
+     *
+     * @return
+     */
     String getLabel();
 
+    /**
+     *
+     * @return
+     */
     String getHintText();
 
+    /**
+     *
+     * @return
+     */
     boolean isRequired();
 
+    /**
+     *
+     * @return
+     */
     String getErrorMessage();
 
     // --- rendering + submitting ---
 
+    /**
+     *
+     * @return
+     */
+    
     String getValueAsString();
 
     // --- submitting ---
 
+    /**
+     *
+     * @return
+     */
+    
     Form getForm();
 
+    /**
+     *
+     * @param value
+     */
     void setErrorMessage(String value);
 
+    /**
+     *
+     * @param data
+     * @param uploadedFiles
+     */
     void update(Map<String, String> data, Collection<FileItem> uploadedFiles);
 
+    /**
+     *
+     * @throws ValidationException
+     */
     void validate() throws ValidationException;
 
 }

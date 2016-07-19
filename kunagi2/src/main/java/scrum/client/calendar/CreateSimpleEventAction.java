@@ -18,6 +18,10 @@ import ilarkesto.core.scope.Scope;
 import scrum.client.common.TooltipBuilder;
 import scrum.client.workspace.ProjectWorkspaceWidgets;
 
+/**
+ *
+ * @author erik
+ */
 public class CreateSimpleEventAction extends GCreateSimpleEventAction {
 
 	@Override
@@ -25,10 +29,16 @@ public class CreateSimpleEventAction extends GCreateSimpleEventAction {
 		return "Create Event";
 	}
 
-	@Override
+    /**
+     *
+     * @param tb
+     */
+    @Override
 	protected void updateTooltip(TooltipBuilder tb) {
 		tb.setText("Create new Event on the date selected.");
-		if (!getCurrentProject().isScrumTeamMember(getCurrentUser())) tb.addRemark(TooltipBuilder.NOT_SCRUMTEAM);
+		if (!getCurrentProject().isScrumTeamMember(getCurrentUser())) {
+                    tb.addRemark(TooltipBuilder.NOT_SCRUMTEAM);
+        }
 	}
 
 	@Override
@@ -38,8 +48,7 @@ public class CreateSimpleEventAction extends GCreateSimpleEventAction {
 
 	@Override
 	public boolean isPermitted() {
-		if (!getCurrentProject().isScrumTeamMember(getCurrentUser())) return false;
-		return true;
+		return getCurrentProject().isScrumTeamMember(getCurrentUser());
 	}
 
 	@Override

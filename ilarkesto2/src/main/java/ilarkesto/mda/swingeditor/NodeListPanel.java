@@ -40,6 +40,10 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
 
+/**
+ *
+ * @author erik
+ */
 public class NodeListPanel extends JPanel {
 
 	private static final Log LOG = Log.get(NodeListPanel.class);
@@ -58,14 +62,21 @@ public class NodeListPanel extends JPanel {
 	private JButton removeButton;
 	private JButton editButton;
 
-	public NodeListPanel(SwingModelHelper swingModelHelper) {
+    /**
+     *
+     * @param swingModelHelper
+     */
+    public NodeListPanel(SwingModelHelper swingModelHelper) {
 		this.swingModelHelper = swingModelHelper;
 		setLayout(new BorderLayout());
 		add(createToolbar(), NORTH);
 		add(createTable(), CENTER);
 	}
 
-	public void addNode() {
+    /**
+     *
+     */
+    public void addNode() {
 		Node newNode = swingModelHelper.addNode(node, getSelectedNode());
 		if (newNode == null) {
                         return;
@@ -74,7 +85,10 @@ public class NodeListPanel extends JPanel {
 		selectNode(newNode);
 	}
 
-	public void editNode() {
+    /**
+     *
+     */
+    public void editNode() {
 		Node selectedNode = getSelectedNode();
 		if (selectedNode == null) {
                         return;
@@ -84,7 +98,10 @@ public class NodeListPanel extends JPanel {
 		selectNode(selectedNode);
 	}
 
-	public void removeNode() {
+    /**
+     *
+     */
+    public void removeNode() {
 		Node selectedNode = getSelectedNode();
 		if (selectedNode == null) {
                         return;
@@ -93,7 +110,11 @@ public class NodeListPanel extends JPanel {
 		tableModel.update();
 	}
 
-	public void selectNode(Node nodeToSelect) {
+    /**
+     *
+     * @param nodeToSelect
+     */
+    public void selectNode(Node nodeToSelect) {
 		int index = tableModel.nodes.indexOf(nodeToSelect);
 		if (index < 0) {
                         return;
@@ -101,7 +122,11 @@ public class NodeListPanel extends JPanel {
 		table.getSelectionModel().setSelectionInterval(index, index);
 	}
 
-	public void setNode(Node node) {
+    /**
+     *
+     * @param node
+     */
+    public void setNode(Node node) {
 		this.node = node;
 		tableModel.update();
 	}
@@ -151,12 +176,20 @@ public class NodeListPanel extends JPanel {
 		return scroller;
 	}
 
-	public Node getSelectedNode() {
+    /**
+     *
+     * @return
+     */
+    public Node getSelectedNode() {
 		int selectedRow = table.getSelectedRow();
 		return selectedRow < 0 ? null : tableModel.nodes.get(selectedRow);
 	}
 
-	public void setObserver(Observer observer) {
+    /**
+     *
+     * @param observer
+     */
+    public void setObserver(Observer observer) {
 		this.observer = observer;
 	}
 
@@ -189,9 +222,17 @@ public class NodeListPanel extends JPanel {
 		}
 	}
 
-	public static interface Observer {
+    /**
+     *
+     */
+    public static interface Observer {
 
-		void onNodeSelectionChanged(NodeListPanel nodeListPanel, Node selectedNode);
+        /**
+         *
+         * @param nodeListPanel
+         * @param selectedNode
+         */
+        void onNodeSelectionChanged(NodeListPanel nodeListPanel, Node selectedNode);
 
 	}
 

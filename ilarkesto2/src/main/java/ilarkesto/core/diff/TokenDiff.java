@@ -17,6 +17,10 @@ package ilarkesto.core.diff;
 import static ilarkesto.core.diff.LongestCommonSubsequenceList.execute;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class TokenDiff {
 
 	private List<String> left;
@@ -38,15 +42,37 @@ public class TokenDiff {
 	private boolean skipBurn;
 	private String removed;
 
-	public static String combinedDiff(String left, String right, DiffMarker marker) {
+    /**
+     *
+     * @param left
+     * @param right
+     * @param marker
+     * @return
+     */
+    public static String combinedDiff(String left, String right, DiffMarker marker) {
 		return new TokenDiff(left, right, marker, new LineTokenizer(), new WordTokenizer()).diff().toString();
 	}
 
-	public TokenDiff(String left, String right, DiffMarker marker, DiffTokenizer tokenizer) {
+    /**
+     *
+     * @param left
+     * @param right
+     * @param marker
+     * @param tokenizer
+     */
+    public TokenDiff(String left, String right, DiffMarker marker, DiffTokenizer tokenizer) {
 		this(left, right, marker, tokenizer, null);
 	}
 
-	public TokenDiff(String left, String right, DiffMarker marker, DiffTokenizer tokenizer, DiffTokenizer subTokenizer) {
+    /**
+     *
+     * @param left
+     * @param right
+     * @param marker
+     * @param tokenizer
+     * @param subTokenizer
+     */
+    public TokenDiff(String left, String right, DiffMarker marker, DiffTokenizer tokenizer, DiffTokenizer subTokenizer) {
 		this.left = tokenizer.tokenize(left);
 		this.right = tokenizer.tokenize(right);
 		this.marker = marker;
@@ -54,7 +80,11 @@ public class TokenDiff {
 		this.subTokenizer = subTokenizer;
 	}
 
-	public TokenDiff diff() {
+    /**
+     *
+     * @return
+     */
+    public TokenDiff diff() {
 		lcs = execute(left, right);
 		updateLengths();
 

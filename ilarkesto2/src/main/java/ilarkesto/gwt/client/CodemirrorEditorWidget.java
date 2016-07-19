@@ -22,6 +22,11 @@ import static ilarkesto.core.base.Str.isBlank;
 import static ilarkesto.core.time.Tm.getCurrentTimeMillis;
 
 // http://codemirror.net/manual.html
+
+/**
+ *
+ * @author erik
+ */
 public class CodemirrorEditorWidget extends AWidget {
 
 	private TextArea textArea = new MyTextArea();
@@ -64,7 +69,11 @@ public class CodemirrorEditorWidget extends AWidget {
 		return editor;
 	}-*/;
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected Widget onInitialization() {
 		return textArea;
 	}
@@ -93,22 +102,37 @@ public class CodemirrorEditorWidget extends AWidget {
 		return s + "\n";
 	}
 
-	public void setText(String text) {
+    /**
+     *
+     * @param text
+     */
+    public void setText(String text) {
 		textArea.setText(text);
 		if (editor != null) {
                         setCode(editor, prepareText(text));
                 }
 	}
 
-	public void focus() {
+    /**
+     *
+     */
+    public void focus() {
 		// if (editor != null) focus(editor);
 	}
 
-	public void addKeyDownHandler(KeyDownHandler listener) {
+    /**
+     *
+     * @param listener
+     */
+    public void addKeyDownHandler(KeyDownHandler listener) {
 		// TODO
 	}
 
-	public String getText() {
+    /**
+     *
+     * @return
+     */
+    public String getText() {
 		if (!isReady()) {
                         return textArea.getText();
                 }
@@ -125,15 +149,29 @@ public class CodemirrorEditorWidget extends AWidget {
 		this.height = height;
 	}
 
-	public void wrapSelection(String prefix, String suffix) {
+    /**
+     *
+     * @param prefix
+     * @param suffix
+     */
+    public void wrapSelection(String prefix, String suffix) {
 		wrapSelection(editor, prefix, suffix);
 	}
 
-	public void wrapLine(String prefix, String suffix) {
+    /**
+     *
+     * @param prefix
+     * @param suffix
+     */
+    public void wrapLine(String prefix, String suffix) {
 		wrapLine(editor, prefix, suffix);
 	}
 
-	public String getSelectedText() {
+    /**
+     *
+     * @return
+     */
+    public String getSelectedText() {
 		if (!isReady()) {
                         return null;
                 }
@@ -202,7 +240,11 @@ public class CodemirrorEditorWidget extends AWidget {
 	    });
 	}-*/;
 
-	public void setObserver(Observer observer) {
+    /**
+     *
+     * @param observer
+     */
+    public void setObserver(Observer observer) {
 		this.observer = observer;
 	}
 
@@ -235,13 +277,23 @@ public class CodemirrorEditorWidget extends AWidget {
 
 	}
 
-	public boolean isBurned() {
+    /**
+     *
+     * @return
+     */
+    public boolean isBurned() {
 		return burned;
 	}
 
-	public static interface Observer {
+    /**
+     *
+     */
+    public static interface Observer {
 
-		void onCodemirrorDetach();
+        /**
+         *
+         */
+        void onCodemirrorDetach();
 
 	}
 

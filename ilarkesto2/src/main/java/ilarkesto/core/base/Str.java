@@ -24,19 +24,58 @@ import java.util.Enumeration;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ *
+ * @author erik
+ */
 public class Str {
 
-	public static final char ue = '\u00FC';
-	public static final char UE = '\u00DC';
-	public static final char oe = '\u00F6';
-	public static final char OE = '\u00D6';
-	public static final char ae = '\u00E4';
-	public static final char AE = '\u00C4';
-	public static final char sz = '\u00DF';
+    /**
+     *
+     */
+    public static final char ue = '\u00FC';
 
-	public static final char EUR = '\u0080';
+    /**
+     *
+     */
+    public static final char UE = '\u00DC';
 
-	public static String encodeUrlParameter(String s) {
+    /**
+     *
+     */
+    public static final char oe = '\u00F6';
+
+    /**
+     *
+     */
+    public static final char OE = '\u00D6';
+
+    /**
+     *
+     */
+    public static final char ae = '\u00E4';
+
+    /**
+     *
+     */
+    public static final char AE = '\u00C4';
+
+    /**
+     *
+     */
+    public static final char sz = '\u00DF';
+
+    /**
+     *
+     */
+    public static final char EUR = '\u0080';
+
+    /**
+     *
+     * @param s
+     * @return
+     */
+    public static String encodeUrlParameter(String s) {
 		if (s == null) {
                         return "";
                 }
@@ -127,11 +166,21 @@ public class Str {
 		return sb.toString();
 	}
 
-	public static String[] toStringArray(Collection<String> c) {
+    /**
+     *
+     * @param c
+     * @return
+     */
+    public static String[] toStringArray(Collection<String> c) {
 		return toStringArray(c.toArray());
 	}
 
-	public static String[] toStringArray(Object[] oa) {
+    /**
+     *
+     * @param oa
+     * @return
+     */
+    public static String[] toStringArray(Object[] oa) {
 		String[] sa = new String[oa.length];
 		for (int i = 0; i < oa.length; i++) {
 			sa[i] = oa[i] == null ? null : oa[i].toString();
@@ -139,15 +188,35 @@ public class Str {
 		return sa;
 	}
 
-	public static String toStringHelper(Object thiz, Object... properties) {
+    /**
+     *
+     * @param thiz
+     * @param properties
+     * @return
+     */
+    public static String toStringHelper(Object thiz, Object... properties) {
 		return toStringHelper(getSimpleName(thiz.getClass()), properties);
 	}
 
-	public static String toStringHelper(String name, Object... properties) {
+    /**
+     *
+     * @param name
+     * @param properties
+     * @return
+     */
+    public static String toStringHelper(String name, Object... properties) {
 		return concat(name + "(", ")", ", ", properties);
 	}
 
-	public static String concat(String prefix, String suffix, String delimiter, Object... objects) {
+    /**
+     *
+     * @param prefix
+     * @param suffix
+     * @param delimiter
+     * @param objects
+     * @return
+     */
+    public static String concat(String prefix, String suffix, String delimiter, Object... objects) {
 		StringBuilder sb = new StringBuilder();
 		if (prefix != null) {
                         sb.append(prefix);
@@ -164,7 +233,13 @@ public class Str {
 		return sb.toString();
 	}
 
-	public static String concat(Iterable strings, String delimiter) {
+    /**
+     *
+     * @param strings
+     * @param delimiter
+     * @return
+     */
+    public static String concat(Iterable strings, String delimiter) {
 		if (strings == null) {
                         return null;
                 }
@@ -181,7 +256,13 @@ public class Str {
 		return sb.toString();
 	}
 
-	public static String concat(Collection strings, String delimiter) {
+    /**
+     *
+     * @param strings
+     * @param delimiter
+     * @return
+     */
+    public static String concat(Collection strings, String delimiter) {
 		if (strings == null) {
                         return null;
                 }
@@ -200,6 +281,7 @@ public class Str {
 
 	/**
 	 * Removes a suffix from a string, if it exists.
+     * @return 
 	 */
 	public static String removeSuffix(String s, String suffixToRemove) {
 		if (s == null) {
@@ -211,7 +293,13 @@ public class Str {
 		return s.substring(0, s.length() - suffixToRemove.length());
 	}
 
-	public static String removePrefix(String s, String prefixToRemove) {
+    /**
+     *
+     * @param s
+     * @param prefixToRemove
+     * @return
+     */
+    public static String removePrefix(String s, String prefixToRemove) {
 		if (s == null) {
                         return null;
                 }
@@ -221,11 +309,22 @@ public class Str {
 		return s.substring(prefixToRemove.length());
 	}
 
-	public static String getFirstParagraph(String s) {
+    /**
+     *
+     * @param s
+     * @return
+     */
+    public static String getFirstParagraph(String s) {
 		return getFirstParagraph(s, "\n\n");
 	}
 
-	public static String getFirstParagraph(String s, String paragraphEndIndicator) {
+    /**
+     *
+     * @param s
+     * @param paragraphEndIndicator
+     * @return
+     */
+    public static String getFirstParagraph(String s, String paragraphEndIndicator) {
 		if (s == null) {
                         return null;
                 }
@@ -236,14 +335,25 @@ public class Str {
 		return s.substring(0, idx);
 	}
 
-	public static String appendIfNotBlank(String s, String suffix) {
+    /**
+     *
+     * @param s
+     * @param suffix
+     * @return
+     */
+    public static String appendIfNotBlank(String s, String suffix) {
 		if (isBlank(s)) {
                         return s;
                 }
 		return s + suffix;
 	}
 
-	public static String toHtml(String s) {
+    /**
+     *
+     * @param s
+     * @return
+     */
+    public static String toHtml(String s) {
 		if (s == null) {
                         return null;
                 }
@@ -264,7 +374,12 @@ public class Str {
 		return s;
 	}
 
-	public static String getLeadingSpaces(String s) {
+    /**
+     *
+     * @param s
+     * @return
+     */
+    public static String getLeadingSpaces(String s) {
 		StringBuilder sb = new StringBuilder();
 		int len = s.length();
 		for (int i = 0; i < len; i++) {
@@ -276,7 +391,14 @@ public class Str {
 		return sb.toString();
 	}
 
-	public static String cutFromTo(String s, String from, String to) {
+    /**
+     *
+     * @param s
+     * @param from
+     * @param to
+     * @return
+     */
+    public static String cutFromTo(String s, String from, String to) {
 		if (s == null) {
                         return null;
                 }
@@ -285,7 +407,13 @@ public class Str {
 		return s;
 	}
 
-	public static String cutFrom(String s, String from) {
+    /**
+     *
+     * @param s
+     * @param from
+     * @return
+     */
+    public static String cutFrom(String s, String from) {
 		if (s == null) {
                         return null;
                 }
@@ -297,7 +425,13 @@ public class Str {
 		return s.substring(fromIdx);
 	}
 
-	public static String cutTo(String s, String to) {
+    /**
+     *
+     * @param s
+     * @param to
+     * @return
+     */
+    public static String cutTo(String s, String to) {
 		if (s == null) {
                         return null;
                 }
@@ -308,7 +442,12 @@ public class Str {
 		return s.substring(0, toIdx);
 	}
 
-	public static String toHtmlId(Object... objects) {
+    /**
+     *
+     * @param objects
+     * @return
+     */
+    public static String toHtmlId(Object... objects) {
 		StringBuilder sb = new StringBuilder();
 		boolean first = true;
 		for (Object object : objects) {
@@ -326,7 +465,12 @@ public class Str {
 		return sb.toString();
 	}
 
-	public static String toHtmlId(String s) {
+    /**
+     *
+     * @param s
+     * @return
+     */
+    public static String toHtmlId(String s) {
 		int len = s.length();
 		StringBuilder sb = new StringBuilder(len);
 		for (int i = 0; i < len; i++) {
@@ -341,7 +485,14 @@ public class Str {
 	}
 
 	// TODO rename
-	public static String cutLeft(String s, int maxlength) {
+
+    /**
+     *
+     * @param s
+     * @param maxlength
+     * @return
+     */
+    	public static String cutLeft(String s, int maxlength) {
 		if (s.length() > maxlength) {
 			return s.substring(s.length() - maxlength);
 		} else {
@@ -350,7 +501,15 @@ public class Str {
 	}
 
 	// TODO rename
-	public static String fillUpRight(String s, String filler, int minLength) {
+
+    /**
+     *
+     * @param s
+     * @param filler
+     * @param minLength
+     * @return
+     */
+    	public static String fillUpRight(String s, String filler, int minLength) {
 		StringBuilder sb = new StringBuilder(s);
 		while (sb.length() < minLength) {
 			sb.append(filler);
@@ -358,7 +517,12 @@ public class Str {
 		return sb.toString();
 	}
 
-	public static boolean isEmail(String s) {
+    /**
+     *
+     * @param s
+     * @return
+     */
+    public static boolean isEmail(String s) {
 		if (isBlank(s)) {
                         return false;
                 }
@@ -386,7 +550,12 @@ public class Str {
 		return !(!dot || !at);
 	}
 
-	public static boolean isTrue(String s) {
+    /**
+     *
+     * @param s
+     * @return
+     */
+    public static boolean isTrue(String s) {
 		if (s == null) {
                         return false;
                 }
@@ -409,7 +578,14 @@ public class Str {
 		return s.equals("j");
 	}
 
-	public static int indexOf(String text, String[] toFind, int startIdx) {
+    /**
+     *
+     * @param text
+     * @param toFind
+     * @param startIdx
+     * @return
+     */
+    public static int indexOf(String text, String[] toFind, int startIdx) {
 		int firstIdx = -1;
                 for (String toFind1 : toFind) {
                         int idx = text.indexOf(toFind1, startIdx);
@@ -420,7 +596,12 @@ public class Str {
 		return firstIdx;
 	}
 
-	public static String format(Object o) {
+    /**
+     *
+     * @param o
+     * @return
+     */
+    public static String format(Object o) {
 		if (o == null) {
                         return null;
                 }
@@ -452,15 +633,30 @@ public class Str {
 		return getSimpleName(ex.getClass()).equals("UmbrellaException");
 	}
 
-	public static String formatEnumeration(Enumeration<String> e) {
+    /**
+     *
+     * @param e
+     * @return
+     */
+    public static String formatEnumeration(Enumeration<String> e) {
 		return formatCollection(toList(e));
 	}
 
-	public static String formatCollection(Collection c) {
+    /**
+     *
+     * @param c
+     * @return
+     */
+    public static String formatCollection(Collection c) {
 		return formatObjectArray(c.toArray());
 	}
 
-	public static String formatMap(Map map) {
+    /**
+     *
+     * @param map
+     * @return
+     */
+    public static String formatMap(Map map) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("map[");
 		sb.append(map.size());
@@ -484,7 +680,12 @@ public class Str {
 		return sb.toString();
 	}
 
-	public static String formatException(Exception ex) {
+    /**
+     *
+     * @param ex
+     * @return
+     */
+    public static String formatException(Exception ex) {
 		StringBuilder sb = null;
 		while (ex != null) {
 			Throwable cause = ex.getCause();
@@ -514,7 +715,12 @@ public class Str {
 		return sb.toString();
 	}
 
-	public static String formatStackTrace(StackTraceElement[] trace) {
+    /**
+     *
+     * @param trace
+     * @return
+     */
+    public static String formatStackTrace(StackTraceElement[] trace) {
 		StringBuilder sb = new StringBuilder();
 		for (StackTraceElement element : trace) {
                         sb.append("    at ").append(element).append("\n");
@@ -522,7 +728,12 @@ public class Str {
 		return sb.toString();
 	}
 
-	public static String getStackTrace(Exception t) {
+    /**
+     *
+     * @param t
+     * @return
+     */
+    public static String getStackTrace(Exception t) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(t.toString()).append("\n");
 		sb.append(formatStackTrace(t.getStackTrace()));
@@ -536,7 +747,12 @@ public class Str {
 		return sb.toString();
 	}
 
-	public static String formatObjectArray(Object[] oa) {
+    /**
+     *
+     * @param oa
+     * @return
+     */
+    public static String formatObjectArray(Object[] oa) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("{");
 		for (int i = 0; i < oa.length; i++) {
@@ -553,7 +769,12 @@ public class Str {
 		return sb.toString();
 	}
 
-	public static String getSimpleName(Class type) {
+    /**
+     *
+     * @param type
+     * @return
+     */
+    public static String getSimpleName(Class type) {
 		String name = type.getName();
 		int idx = name.lastIndexOf('.');
 		if (idx > 0) {
@@ -562,7 +783,12 @@ public class Str {
 		return name;
 	}
 
-	public static boolean isBlank(String s) {
+    /**
+     *
+     * @param s
+     * @return
+     */
+    public static boolean isBlank(String s) {
 		return s == null || s.length() == 0 || s.trim().length() == 0;
 	}
 }

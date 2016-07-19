@@ -22,39 +22,64 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.AViewEditWidget;
 
+/**
+ *
+ * @author erik
+ */
 public class YesNoEditorWidget extends AViewEditWidget {
 
 	private final ABooleanEditorModel model;
 	private Label viewer;
 	private ListBox editor;
 
-	public YesNoEditorWidget(ABooleanEditorModel model) {
+    /**
+     *
+     * @param model
+     */
+    public YesNoEditorWidget(ABooleanEditorModel model) {
 		super();
 		this.model = model;
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void onViewerUpdate() {
 		viewer.setText(model.isTrue() ? "yes" : "no");
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void onEditorUpdate() {
 		editor.setSelectedIndex(model.isTrue() ? 0 : 1);
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void onEditorSubmit() {
 		model.setValue((editor.getSelectedIndex() == 0));
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected final Widget onViewerInitialization() {
 		viewer = new Label();
 		return viewer;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected final Widget onEditorInitialization() {
 		editor = new ListBox();
 		editor.addChangeHandler(new EditorChangeListener());
@@ -65,17 +90,29 @@ public class YesNoEditorWidget extends AViewEditWidget {
 		return editor;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public boolean isEditable() {
 		return model.isEditable();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getTooltip() {
 		return model.getTooltip();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getId() {
 		return model.getId();
 	}

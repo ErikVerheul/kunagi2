@@ -16,7 +16,6 @@ package scrum.server.css;
 
 import ilarkesto.base.Colors;
 import ilarkesto.ui.web.CssRenderer;
-
 import java.io.PrintWriter;
 import java.io.StringWriter;
 

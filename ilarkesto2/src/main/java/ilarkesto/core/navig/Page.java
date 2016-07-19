@@ -18,6 +18,10 @@ import static ilarkesto.core.base.Str.toStringHelper;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class Page {
 
 	private final Plugin plugin;
@@ -25,39 +29,75 @@ public class Page {
 	private final List<Item> items = new ArrayList<Item>();
 	private Object payload;
 
-	public Page(Plugin plugin) {
+    /**
+     *
+     * @param plugin
+     */
+    public Page(Plugin plugin) {
 		this.plugin = plugin;
 	}
 
-	public void add(Item item) {
+    /**
+     *
+     * @param item
+     */
+    public void add(Item item) {
 		items.add(item);
 	}
 
-	public void remove(Item item) {
+    /**
+     *
+     * @param item
+     */
+    public void remove(Item item) {
 		items.remove(item);
 	}
 
-	public List<Item> getItems() {
+    /**
+     *
+     * @return
+     */
+    public List<Item> getItems() {
 		return items;
 	}
 
-	public void setLabel(String label) {
+    /**
+     *
+     * @param label
+     */
+    public void setLabel(String label) {
 		this.label = label;
 	}
 
-	public String getLabel() {
+    /**
+     *
+     * @return
+     */
+    public String getLabel() {
 		return label;
 	}
 
-	public Plugin getPlugin() {
+    /**
+     *
+     * @return
+     */
+    public Plugin getPlugin() {
 		return plugin;
 	}
 
-	public Object getPayload() {
+    /**
+     *
+     * @return
+     */
+    public Object getPayload() {
 		return payload;
 	}
 
-	public void setPayload(Object payload) {
+    /**
+     *
+     * @param payload
+     */
+    public void setPayload(Object payload) {
 		this.payload = payload;
 	}
 

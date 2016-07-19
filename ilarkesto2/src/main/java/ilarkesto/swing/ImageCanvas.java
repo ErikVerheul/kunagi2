@@ -28,9 +28,18 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
+/**
+ *
+ * @author erik
+ */
 public class ImageCanvas extends Component {
 
-	public static void main(String[] args) throws Exception {
+    /**
+     *
+     * @param args
+     * @throws Exception
+     */
+    public static void main(String[] args) throws Exception {
 		ImageCanvas ic = new ImageCanvas();
 		ic.setImage(captureScreen(getWindow(ic)));
 		ic.setPreferredSize(new Dimension(300, 300));
@@ -44,13 +53,24 @@ public class ImageCanvas extends Component {
 
 	private ImagePreloader preloader;
 
-	public ImageCanvas() {}
+    /**
+     *
+     */
+    public ImageCanvas() {}
 
-	public ImageCanvas(BufferedImage image) {
+    /**
+     *
+     * @param image
+     */
+    public ImageCanvas(BufferedImage image) {
 		setImage(image);
 	}
 
-	public synchronized final void setImage(BufferedImage image) {
+    /**
+     *
+     * @param image
+     */
+    public synchronized final void setImage(BufferedImage image) {
 		this.image = image;
 		if (image != null) {
 			setPreferredSize(new Dimension(image.getWidth(), image.getHeight()));
@@ -58,12 +78,20 @@ public class ImageCanvas extends Component {
 		repaint();
 	}
 
-	public void setImage(File image) {
+    /**
+     *
+     * @param image
+     */
+    public void setImage(File image) {
 		setImage((BufferedImage) null);
 		new ImageLoadThread(image).start();
 	}
 
-	public void preloadImage(File image) {
+    /**
+     *
+     * @param image
+     */
+    public void preloadImage(File image) {
 		getPreloader().add(image);
 	}
 
@@ -106,26 +134,46 @@ public class ImageCanvas extends Component {
 		g.drawImage(image, x, y, null);
 	}
 
-	public synchronized BufferedImage getImage() {
+    /**
+     *
+     * @return
+     */
+    public synchronized BufferedImage getImage() {
 		return image;
 	}
 
-	public Color getBackgroundColor() {
+    /**
+     *
+     * @return
+     */
+    public Color getBackgroundColor() {
 		return backgroundColor;
 	}
 
-	public synchronized void setAutoScale(boolean autoScale) {
+    /**
+     *
+     * @param autoScale
+     */
+    public synchronized void setAutoScale(boolean autoScale) {
 		this.autoScale = autoScale;
 		if (autoScale && preloader != null) {
                         preloader.setAutoScale(getWidth(), getHeight());
                 }
 	}
 
-	public synchronized boolean isAutoScale() {
+    /**
+     *
+     * @return
+     */
+    public synchronized boolean isAutoScale() {
 		return autoScale;
 	}
 
-	public synchronized ImagePreloader getPreloader() {
+    /**
+     *
+     * @return
+     */
+    public synchronized ImagePreloader getPreloader() {
 		if (preloader == null) {
 			preloader = new ImagePreloader();
 			if (autoScale) {

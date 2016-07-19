@@ -20,11 +20,23 @@ import java.util.Map;
  * A write-only container for objects/beans.
  * 
  * @author wko
+ * @param <B>
  */
 public interface BeanStorage<B extends Object> {
 
-	public BeanStorage put(String beanName, B bean);
+    /**
+     *
+     * @param beanName
+     * @param bean
+     * @return
+     */
+    public BeanStorage put(String beanName, B bean);
 
-	public BeanStorage putAll(Map<String, ? extends B> beans);
+    /**
+     *
+     * @param beans
+     * @return
+     */
+    public BeanStorage putAll(Map<String, ? extends B> beans);
 
 }

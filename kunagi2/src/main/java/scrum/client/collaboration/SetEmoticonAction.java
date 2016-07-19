@@ -17,12 +17,21 @@ package scrum.client.collaboration;
 import scrum.client.common.AScrumAction;
 import scrum.client.common.AScrumGwtEntity;
 
+/**
+ *
+ * @author erik
+ */
 public class SetEmoticonAction extends AScrumAction {
 
 	private AScrumGwtEntity entity;
 	private String emotion;
 
-	public SetEmoticonAction(AScrumGwtEntity entity, String emotion) {
+    /**
+     *
+     * @param entity
+     * @param emotion
+     */
+    public SetEmoticonAction(AScrumGwtEntity entity, String emotion) {
 		super();
 		this.entity = entity;
 		this.emotion = emotion;

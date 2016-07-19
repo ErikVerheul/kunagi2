@@ -24,9 +24,16 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ *
+ * @author erik
+ */
 public class HistoryToken {
 
-	public static final String START_PAGE = "Dashboard";
+    /**
+     *
+     */
+    public static final String START_PAGE = "Dashboard";
 
 	private final HistoryTokenObserver observer;
 
@@ -35,12 +42,19 @@ public class HistoryToken {
 	private String entityId;
 	private boolean toggle;
 
-	public HistoryToken(HistoryTokenObserver observer) {
+    /**
+     *
+     * @param observer
+     */
+    public HistoryToken(HistoryTokenObserver observer) {
 		this.observer = observer;
 		History.addValueChangeHandler(new TokenChangeHandler());
 	}
 
-	public void evalHistoryToken() {
+    /**
+     *
+     */
+    public void evalHistoryToken() {
 		evalHistoryToken(History.getToken());
 	}
 
@@ -70,8 +84,15 @@ public class HistoryToken {
 		}
 	}
 
-	public static Map<String, String> parseHistoryToken(String token) {
-		if (token == null || token.length() == 0) return Collections.emptyMap();
+    /**
+     *
+     * @param token
+     * @return
+     */
+    public static Map<String, String> parseHistoryToken(String token) {
+		if (token == null || token.length() == 0) {
+                    return Collections.emptyMap();
+        }
 		Map<String, String> map = new HashMap<String, String>();
 		char separator = '|';
 		int idx = token.indexOf(separator);
@@ -96,47 +117,89 @@ public class HistoryToken {
 		map.put(key, value);
 	}
 
-	public void update(String projectId) {
+    /**
+     *
+     * @param projectId
+     */
+    public void update(String projectId) {
 		History.newItem(projectId == null ? "projectSelector" : "project=" + projectId + "|page=" + START_PAGE, true);
 	}
 
-	public void updatePage(String page) {
+    /**
+     *
+     * @param page
+     */
+    public void updatePage(String page) {
 		History.newItem("project=" + projectId + "|page=" + page, true);
 	}
 
-	public void updatePageAndEntity(String page, AGwtEntity entity, boolean event) {
+    /**
+     *
+     * @param page
+     * @param entity
+     * @param event
+     */
+    public void updatePageAndEntity(String page, AGwtEntity entity, boolean event) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("project=").append(getProjectId());
 
-		if (!Str.isBlank(page)) sb.append("|page=").append(page);
+		if (!Str.isBlank(page)) {
+                    sb.append("|page=").append(page);
+        }
 		this.page = page;
 
-		if (entity != null) sb.append("|entity=").append(entity.getId());
+                if (entity != null) {
+                    sb.append("|entity=").append(entity.getId());
+        }
 		this.entityId = entity == null ? null : entity.getId();
 
 		String token = sb.toString();
-		if (token.equals(History.getToken())) return;
+                if (token.equals(History.getToken())) {
+            return;
+        }
 		History.newItem(token, event);
 	}
 
-	public String getProjectId() {
-                if (projectId == null) DEBUG("projectId returns project Id= null");
+    /**
+     *
+     * @return
+     */
+    public String getProjectId() {
+        if (projectId == null) {
+            DEBUG("projectId returns project Id= null");
+        }
 		return projectId;
 	}
 
-	public boolean isProjectIdSet() {
+    /**
+     *
+     * @return
+     */
+    public boolean isProjectIdSet() {
 		return projectId != null;
 	}
 
-	public String getPage() {
+    /**
+     *
+     * @return
+     */
+    public String getPage() {
 		return page;
 	}
 
-	public String getEntityId() {
+    /**
+     *
+     * @return
+     */
+    public String getEntityId() {
 		return entityId;
 	}
 
-	public boolean isToggle() {
+    /**
+     *
+     * @return
+     */
+    public boolean isToggle() {
 		return toggle;
 	}
 

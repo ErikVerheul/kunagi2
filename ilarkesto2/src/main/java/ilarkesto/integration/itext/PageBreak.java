@@ -18,13 +18,25 @@ import com.itextpdf.text.Element;
 import ilarkesto.pdf.APageBreak;
 import ilarkesto.pdf.APdfElement;
 
+/**
+ *
+ * @author erik
+ */
 public class PageBreak extends APageBreak implements ItextElement {
 
-	public PageBreak(APdfElement parent) {
+    /**
+     *
+     * @param parent
+     */
+    public PageBreak(APdfElement parent) {
 		super(parent);
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public Element getITextElement() {
 		throw new IllegalStateException();
 	}

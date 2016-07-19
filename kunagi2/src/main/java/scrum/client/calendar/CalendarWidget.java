@@ -14,6 +14,7 @@
  */
 package scrum.client.calendar;
 
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.time.Date;
 import ilarkesto.gwt.client.ButtonWidget;
 import ilarkesto.gwt.client.Gwt;
@@ -22,8 +23,10 @@ import scrum.client.common.AScrumWidget;
 import scrum.client.common.UserGuideWidget;
 import scrum.client.workspace.PagePanel;
 
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class CalendarWidget extends AScrumWidget {
 
 	private DayListWidget dayList;
@@ -69,11 +72,19 @@ public class CalendarWidget extends AScrumWidget {
 		return tb.createTable();
 	}
 
-	public Date getSelectedDate() {
+    /**
+     *
+     * @return
+     */
+    public Date getSelectedDate() {
 		return new Date(yearSelector.getSelectedYear(), monthSelector.getSelectedMonth(), daySelector.getSelectedDay());
 	}
 
-	public void showDate(Date date) {
+    /**
+     *
+     * @param date
+     */
+    public void showDate(Date date) {
 		dayList.showDate(date);
 		yearSelector.setSelectedYear(date.getYear());
 		yearSelector.setVisibleRange(dayList.getBegin(), dayList.getEnd());
@@ -85,8 +96,14 @@ public class CalendarWidget extends AScrumWidget {
 		update();
 	}
 
-	public void showEvent(SimpleEvent event) {
-		if (event == null) return;
+    /**
+     *
+     * @param event
+     */
+    public void showEvent(SimpleEvent event) {
+		if (event == null) {
+                    return;
+        }
 		showDate(event.getDate());
 		dayList.showEvent(event);
 	}

@@ -15,7 +15,6 @@
 package ilarkesto.cli;
 
 import edu.umd.cs.findbugs.annotations.SuppressWarnings;
-import ilarkesto.base.StrExtend;
 import static ilarkesto.base.StrExtend.concat;
 import static ilarkesto.core.base.Str.fillUpRight;
 import static java.lang.System.arraycopy;

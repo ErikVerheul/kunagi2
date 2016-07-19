@@ -14,24 +14,49 @@
  */
 package ilarkesto.core.diff;
 
+/**
+ *
+ * @author erik
+ */
 public class TxtDiffMarker implements DiffMarker {
 
-	@Override
+    /**
+     *
+     * @param s
+     * @return
+     */
+    @Override
 	public String same(String s) {
 		return s;
 	}
 
-	@Override
+    /**
+     *
+     * @param s
+     * @return
+     */
+    @Override
 	public String added(String s) {
 		return "[+" + s + "]";
 	}
 
-	@Override
+    /**
+     *
+     * @param s
+     * @return
+     */
+    @Override
 	public String removed(String s) {
 		return "[-" + s + "]";
 	}
 
-	@Override
+    /**
+     *
+     * @param oldS
+     * @param newS
+     * @return
+     */
+    @Override
 	public String replaced(String oldS, String newS) {
 		return "[" + oldS + "|" + newS + "]";
 	}

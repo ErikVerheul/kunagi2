@@ -18,6 +18,10 @@ import ilarkesto.core.scope.Scope;
 import scrum.client.common.TooltipBuilder;
 import scrum.client.workspace.UsersWorkspaceWidgets;
 
+/**
+ *
+ * @author erik
+ */
 public class CreateUserAction extends GCreateUserAction {
 
 	@Override
@@ -25,7 +29,11 @@ public class CreateUserAction extends GCreateUserAction {
 		return "Create User";
 	}
 
-	@Override
+    /**
+     *
+     * @param tb
+     */
+    @Override
 	protected void updateTooltip(TooltipBuilder tb) {
 		tb.setText("Create a new user.");
 	}

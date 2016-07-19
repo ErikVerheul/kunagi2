@@ -18,6 +18,10 @@ import ilarkesto.concurrent.ATask;
 import ilarkesto.core.scope.In;
 import ilarkesto.persistence.TransactionService;
 
+/**
+ *
+ * @author erik
+ */
 public class DestroyTimeoutedSessionsTask extends ATask {
 
 	// --- dependencies ---
@@ -30,6 +34,11 @@ public class DestroyTimeoutedSessionsTask extends ATask {
 
 	// --- ---
 
+    /**
+     *
+     * @throws InterruptedException
+     */
+    
 	@Override
 	protected void perform() throws InterruptedException {
 		webApplication.destroyTimeoutedGwtConversations();

@@ -14,14 +14,11 @@
  */
 package scrum.client.collaboration;
 
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.HyperlinkWidget;
-
 import java.util.Map;
-
 import scrum.client.common.ShowEntityAction;
 import scrum.client.project.Project;
-
-import com.google.gwt.user.client.ui.Widget;
 
 public class Wikipage extends GWikipage implements ForumSupport {
 

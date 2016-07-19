@@ -18,16 +18,40 @@ import ilarkesto.gwt.client.Updatable;
 import scrum.client.common.BlockListSelectionManager;
 import scrum.client.sprint.Task;
 
+/**
+ *
+ * @author erik
+ */
 public interface TaskBlockContainer {
 
-	void selectTask(Task task);
+    /**
+     *
+     * @param task
+     */
+    void selectTask(Task task);
 
-	Updatable update();
+    /**
+     *
+     * @return
+     */
+    Updatable update();
 
-	BlockListSelectionManager getSelectionManager();
+    /**
+     *
+     * @return
+     */
+    BlockListSelectionManager getSelectionManager();
 
-	boolean isShowRequirement();
+    /**
+     *
+     * @return
+     */
+    boolean isShowRequirement();
 
-	boolean isShowOwner();
+    /**
+     *
+     * @return
+     */
+    boolean isShowOwner();
 
 }

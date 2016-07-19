@@ -21,6 +21,10 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public final class Navigator {
 
 	private final Page rootPage = new Page(null);
@@ -28,11 +32,18 @@ public final class Navigator {
 	private final List<Plugin> plugins = new ArrayList<Plugin>();
 	private NavigatorObserver observer;
 
-	public Navigator() {
+    /**
+     *
+     */
+    public Navigator() {
 		goBackToRoot();
 	}
 
-	public void execute(Item item) {
+    /**
+     *
+     * @param item
+     */
+    public void execute(Item item) {
 		if (item == null) {
                         return;
                 }
@@ -44,7 +55,10 @@ public final class Navigator {
 		plugin.execute(this, item);
 	}
 
-	public void goBack() {
+    /**
+     *
+     */
+    public void goBack() {
 		if (pages.size() <= 1) {
                         return;
                 }
@@ -52,7 +66,11 @@ public final class Navigator {
 		firePageChanged();
 	}
 
-	public void goNext(Page page) {
+    /**
+     *
+     * @param page
+     */
+    public void goNext(Page page) {
 		INFO("goNext:", page);
 		for (Item item : page.getItems()) {
 			DEBUG(" -", item);
@@ -61,25 +79,44 @@ public final class Navigator {
 		firePageChanged();
 	}
 
-	public int getDepth() {
+    /**
+     *
+     * @return
+     */
+    public int getDepth() {
 		return pages.size();
 	}
 
-	public Page getPage() {
+    /**
+     *
+     * @return
+     */
+    public Page getPage() {
 		return pages.get(0);
 	}
 
-	public void goBackToRoot() {
+    /**
+     *
+     */
+    public void goBackToRoot() {
 		pages.clear();
 		pages.add(rootPage);
 		firePageChanged();
 	}
 
-	public Page getRootPage() {
+    /**
+     *
+     * @return
+     */
+    public Page getRootPage() {
 		return rootPage;
 	}
 
-	public void setObserver(NavigatorObserver observer) {
+    /**
+     *
+     * @param observer
+     */
+    public void setObserver(NavigatorObserver observer) {
 		this.observer = observer;
 	}
 
@@ -89,7 +126,11 @@ public final class Navigator {
                 }
 	}
 
-	public void addPlugin(Plugin plugin) {
+    /**
+     *
+     * @param plugin
+     */
+    public void addPlugin(Plugin plugin) {
 		plugins.add(plugin);
 		plugin.initialize(this);
 		if (getPage() == rootPage) {

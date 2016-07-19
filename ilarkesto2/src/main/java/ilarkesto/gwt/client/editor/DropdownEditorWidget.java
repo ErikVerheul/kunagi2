@@ -22,25 +22,41 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ *
+ * @author erik
+ * @param <T>
+ */
 public class DropdownEditorWidget<T> extends ADropdownViewEditWidget {
 
 	private final AOptionEditorModel<T> model;
 	private final LabelProvider<T> labelProvider;
 	private List<T> options;
 
-	public DropdownEditorWidget(AOptionEditorModel<T> editor, LabelProvider<T> labelProvider) {
+    /**
+     *
+     * @param editor
+     * @param labelProvider
+     */
+    public DropdownEditorWidget(AOptionEditorModel<T> editor, LabelProvider<T> labelProvider) {
 		super();
 		this.model = editor;
 		this.labelProvider = labelProvider;
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void onViewerUpdate() {
 		String label = labelProvider.getLabel(model.getValue());
 		setViewerText(label);
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void onEditorUpdate() {
 
 		options = model.getOptions();
@@ -54,24 +70,39 @@ public class DropdownEditorWidget<T> extends ADropdownViewEditWidget {
 		super.onEditorUpdate();
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void onEditorSubmit() {
 		String selected = getSelectedOption();
 		int index = parseInt(selected);
 		model.changeValue(options.get(index));
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public boolean isEditable() {
 		return model.isEditable();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getTooltip() {
 		return model.getTooltip();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getId() {
 		return model.getId();
 	}

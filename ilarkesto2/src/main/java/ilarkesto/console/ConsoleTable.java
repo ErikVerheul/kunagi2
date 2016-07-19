@@ -14,11 +14,9 @@
  */
 package ilarkesto.console;
 
-import ilarkesto.core.base.Str;
 import static ilarkesto.core.base.Str.fillUpRight;
 import static java.lang.Math.max;
 import java.util.ArrayList;
-import java.util.Arrays;
 import static java.util.Arrays.fill;
 
 public class ConsoleTable {

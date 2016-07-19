@@ -14,9 +14,18 @@
  */
 package ilarkesto.json.jsondb;
 
+/**
+ *
+ * @author erik
+ */
 public class JsonDbException extends RuntimeException {
 
-	public JsonDbException(String message, Exception cause) {
+    /**
+     *
+     * @param message
+     * @param cause
+     */
+    public JsonDbException(String message, Exception cause) {
 		super(message, cause);
 	}
 

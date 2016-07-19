@@ -18,26 +18,46 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Widget;
 import static ilarkesto.gwt.client.Gwt.formatHours;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class ATextWidget extends AWidget {
 
 	private HTML viewer;
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected final Widget onInitialization() {
 		viewer = new HTML();
 		return viewer;
 	}
 
-	public final void setText(Object text) {
+    /**
+     *
+     * @param text
+     */
+    public final void setText(Object text) {
 		String s = text == null ? null : text.toString();
 		viewer.setText(s);
 	}
 
-	public final void setHtml(String html) {
+    /**
+     *
+     * @param html
+     */
+    public final void setHtml(String html) {
 		viewer.setHTML(html);
 	}
 
-	public void setHours(int hours) {
+    /**
+     *
+     * @param hours
+     */
+    public void setHours(int hours) {
 		setText(formatHours(hours));
 	}
 

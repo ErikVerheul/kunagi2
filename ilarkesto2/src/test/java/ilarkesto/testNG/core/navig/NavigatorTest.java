@@ -19,9 +19,16 @@ import ilarkesto.core.navig.Page;
 import ilarkesto.testng.ATest;
 import org.testng.annotations.Test;
 
+/**
+ *
+ * @author erik
+ */
 public class NavigatorTest extends ATest {
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void goBack() {
 		Navigator n = new Navigator();
 		Page p = new Page(null);
@@ -30,7 +37,10 @@ public class NavigatorTest extends ATest {
 		assertSame(n.getPage(), n.getRootPage());
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void goNext() {
 		Navigator n = new Navigator();
 		Page p = new Page(null);
@@ -38,7 +48,10 @@ public class NavigatorTest extends ATest {
 		assertSame(n.getPage(), p);
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void goBackToRoot() {
 		Navigator n = new Navigator();
 		n.goBackToRoot();

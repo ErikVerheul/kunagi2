@@ -14,14 +14,39 @@
  */
 package ilarkesto.core.diff;
 
+/**
+ *
+ * @author erik
+ */
 public interface DiffMarker {
 
-	String same(String s);
+    /**
+     *
+     * @param s
+     * @return
+     */
+    String same(String s);
 
-	String added(String s);
+    /**
+     *
+     * @param s
+     * @return
+     */
+    String added(String s);
 
-	String removed(String s);
+    /**
+     *
+     * @param s
+     * @return
+     */
+    String removed(String s);
 
-	String replaced(String oldS, String newS);
+    /**
+     *
+     * @param oldS
+     * @param newS
+     * @return
+     */
+    String replaced(String oldS, String newS);
 
 }

@@ -14,14 +14,13 @@
  */
 package scrum.client.files;
 
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.ButtonWidget;
 import scrum.client.common.AScrumWidget;
 import scrum.client.common.BlockListWidget;
 import scrum.client.common.UserGuideWidget;
 import scrum.client.impediments.RequestImpedimentsServiceCall;
 import scrum.client.workspace.PagePanel;
-
-import com.google.gwt.user.client.ui.Widget;
 
 public class FileRepositoryWidget extends AScrumWidget {
 

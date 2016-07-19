@@ -23,6 +23,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ *
+ * @author erik
+ */
 public class CascadingScope extends Scope {
 
 	int id;
@@ -46,7 +50,10 @@ public class CascadingScope extends Scope {
 		putComponent(DEFAULT_COMPONENT_NAME, new CascadingScopeEventBus(this));
 	}
 
-	public synchronized void wireComponents() {
+    /**
+     *
+     */
+    public synchronized void wireComponents() {
 		INFO("Wiring components:", getName());
 		wiringRequired = false;
 
@@ -81,7 +88,14 @@ public class CascadingScope extends Scope {
 		return parentScope.getComponent(name);
 	}
 
-	@Override
+    /**
+     *
+     * @param <T>
+     * @param name
+     * @param component
+     * @return
+     */
+    @Override
 	public final synchronized <T> T putComponent(String name, T component) {
 
 		Object existingComponent = componentsByName.get(name);
@@ -90,7 +104,9 @@ public class CascadingScope extends Scope {
                 }
 
 		INFO("Putting component:", name);
-                if (component == null) ERROR("Putting null component!");
+                if (component == null) {
+                    ERROR("Putting null component!");
+        }
 
 		componentsByName.put(name, component);
 		wiringRequired = true;
@@ -98,7 +114,11 @@ public class CascadingScope extends Scope {
 		return component;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public List getAllComponents() {
 		List ret = new ArrayList();
 		if (parentScope != null) {
@@ -108,14 +128,23 @@ public class CascadingScope extends Scope {
 		return ret;
 	}
 
-	public CascadingScope createScope(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public CascadingScope createScope(String name) {
 		INFO("Creating sub scope:", getName(), "->", name);
 		CascadingScope scope = new CascadingScope(this, name, componentReflector);
 		childScopesById.put(scope.getId(), scope);
 		return scope;
 	}
 
-	public synchronized List getLocalComponents() {
+    /**
+     *
+     * @return
+     */
+    public synchronized List getLocalComponents() {
 		if (wiringRequired) {
                         wireComponents();
                 }
@@ -125,12 +154,20 @@ public class CascadingScope extends Scope {
 		return ret;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getName() {
 		return parentScope == null ? name : parentScope.getName() + ">" + name;
 	}
 
-	public int getId() {
+    /**
+     *
+     * @return
+     */
+    public int getId() {
 		return id;
 	}
 
@@ -139,7 +176,11 @@ public class CascadingScope extends Scope {
 		return id + ":" + super.toString();
 	}
 
-	public static CascadingScope get() {
+    /**
+     *
+     * @return
+     */
+    public static CascadingScope get() {
 		return (CascadingScope) Scope.get();
 	}
 

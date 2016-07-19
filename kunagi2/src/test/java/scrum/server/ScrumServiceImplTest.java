@@ -44,6 +44,10 @@ import scrum.server.project.Requirement;
 import scrum.server.release.Release;
 import scrum.server.sprint.Sprint;
 
+/**
+ *
+ * @author erik
+ */
 public class ScrumServiceImplTest extends ATest {
 
     ScrumWebApplication app;
@@ -56,6 +60,9 @@ public class ScrumServiceImplTest extends ATest {
     User duke;
     Project project;
 
+    /**
+     *
+     */
     @BeforeTest
     public void init() {
         TestUtil.initialize();
@@ -80,6 +87,9 @@ public class ScrumServiceImplTest extends ATest {
         app.getTransactionService().commit();
     }
 
+    /**
+     *
+     */
     @BeforeMethod
     public void initConversations() {
         session.setUser(duke);
@@ -91,11 +101,17 @@ public class ScrumServiceImplTest extends ATest {
         conversationForAdmin.getNextData().clear();
     }
 
+    /**
+     *
+     */
     @AfterMethod
     public void commit() {
         app.getTransactionService().commit();
     }
 
+    /**
+     *
+     */
     @Test
     public void createExampleProject() {
         service.onCreateExampleProject(conversation);
@@ -111,12 +127,18 @@ public class ScrumServiceImplTest extends ATest {
         app.getProjectDao().deleteEntity(local_project);
     }
 
+    /**
+     *
+     */
     @Test
     public void search() {
         service.onSearch(conversation, "something");
         assertConversationWithoutErrors(conversation);
     }
 
+    /**
+     *
+     */
     @Test(expectedExceptions = PermissionDeniedException.class)
     public void updateSystemMessage() {
         SystemMessage systemMessage = new SystemMessage();
@@ -126,6 +148,9 @@ public class ScrumServiceImplTest extends ATest {
         assertConversationWithoutErrors(conversation);
     }
 
+    /**
+     *
+     */
     @Test
     public void updateSystemMessageAdmin() {
         SystemMessage systemMessage = new SystemMessage();
@@ -135,18 +160,27 @@ public class ScrumServiceImplTest extends ATest {
         assertConversationWithoutErrors(conversationForAdmin);
     }
 
+    /**
+     *
+     */
     @Test
     public void resetPassword() {
         service.onResetPassword(conversationForAdmin, duke.getId());
         assertConversationWithoutErrors(conversationForAdmin);
     }
 
+    /**
+     *
+     */
     @Test
     public void changePassword() {
         duke.setPassword("geheim");
         service.onChangePassword(conversation, "geheim", "supergeheim");
     }
 
+    /**
+     *
+     */
     @Test(expectedExceptions = WrongPasswordException.class)
     public void changePasswordFail() {
         duke.setPassword("geheim");
@@ -155,6 +189,9 @@ public class ScrumServiceImplTest extends ATest {
         assertTrue(duke.matchesPassword("supergeheim"));
     }
 
+    /**
+     *
+     */
     @Test
     public void createEntity() {
         Map<String, Object> properties = new HashMap<String, Object>();
@@ -167,6 +204,9 @@ public class ScrumServiceImplTest extends ATest {
         app.getUserDao().deleteEntity(anonymous);
     }
 
+    /**
+     *
+     */
     @Test
     public void deleteEntity() {
         User anonymous = app.getUserDao().postUserWithDefaultPassword("daemon");
@@ -175,6 +215,9 @@ public class ScrumServiceImplTest extends ATest {
         assertNull(app.getUserDao().getUserByName("daemon"));
     }
 
+    /**
+     *
+     */
     @Test
     public void changeProperties() {
         duke.setEmail("support@kunagi.org");
@@ -185,6 +228,9 @@ public class ScrumServiceImplTest extends ATest {
         assertEquals(duke.getEmail(), "duke@kunagi.org");
     }
 
+    /**
+     *
+     */
     @Test
     public void selectProject() {
         conversation.setProject(null);
@@ -194,6 +240,9 @@ public class ScrumServiceImplTest extends ATest {
         assertSame(duke.getCurrentProject(), project);
     }
 
+    /**
+     *
+     */
     @Test
     public void closeProject() {
         service.onCloseProject(conversation);
@@ -201,6 +250,9 @@ public class ScrumServiceImplTest extends ATest {
         assertNull(conversation.getProject());
     }
 
+    /**
+     *
+     */
     @Test
     public void requestForum() {
         Subject subject = app.getSubjectDao().postSubject(project, "Test subject");
@@ -211,6 +263,9 @@ public class ScrumServiceImplTest extends ATest {
         assertContainsEntities(conversation, project.getLatestComments());
     }
 
+    /**
+     *
+     */
     @Test
     public void requestImpediments() {
         app.getImpedimentDao().postImpediment(project, Date.today(), "Test", false);
@@ -219,6 +274,9 @@ public class ScrumServiceImplTest extends ATest {
         assertContainsEntities(conversation, project.getImpediments());
     }
 
+    /**
+     *
+     */
     @Test
     public void requestRisks() {
         app.getRiskDao().postRisk(project, "Test", 1, 1);
@@ -227,6 +285,9 @@ public class ScrumServiceImplTest extends ATest {
         assertContainsEntities(conversation, project.getRisks());
     }
 
+    /**
+     *
+     */
     @Test
     public void requestAcceptedIssues() {
         Issue spam = app.getIssueDao().postIssue(project, "spam");
@@ -239,7 +300,10 @@ public class ScrumServiceImplTest extends ATest {
         assertNotContainsEntity(conversation, spam);
     }
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void requestClosedIssues() {
 		Issue spam = app.getIssueDao().postIssue(project, "spam");
 		Issue bug = app.getIssueDao().postIssue(project, "bug");
@@ -252,7 +316,10 @@ public class ScrumServiceImplTest extends ATest {
 		assertNotContainsEntity(conversation, spam);
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void requestReleaseIssues() {
 		Release release = app.getReleaseDao().newEntityInstance();
 		release.setProject(project);
@@ -264,6 +331,9 @@ public class ScrumServiceImplTest extends ATest {
 		assertContainsEntity(conversation, bug);
 	}
 
+    /**
+     *
+     */
     @Test
     public void requestEntity() {
         Issue problem = app.getIssueDao().postIssue(project, "problem");
@@ -272,6 +342,9 @@ public class ScrumServiceImplTest extends ATest {
         assertContainsEntity(conversation, problem);
     }
 
+    /**
+     *
+     */
     @Test
     public void requestEntityByReference() {
         Issue problem = app.getIssueDao().postIssue(project, "problem");
@@ -280,6 +353,9 @@ public class ScrumServiceImplTest extends ATest {
         assertContainsEntity(conversation, problem);
     }
 
+    /**
+     *
+     */
     @Test
     public void requestComments() {
         Comment comment = app.getCommentDao().postComment(project, "test comment", "duke", "duke@kunagi.org", true);
@@ -290,6 +366,9 @@ public class ScrumServiceImplTest extends ATest {
         assertContainsEntity(conversation, comment);
     }
 
+    /**
+     *
+     */
     @Test
     public void requestChanges() {
         Change change = app.getChangeDao().postChange(project, duke, "dummy", "olddummy", "newdummy");
@@ -299,6 +378,9 @@ public class ScrumServiceImplTest extends ATest {
         assertContainsEntity(conversation, change);
     }
 
+    /**
+     *
+     */
     @Test
     public void requestRequirementEstimationVotes() {
         Requirement requirement = app.getRequirementDao().postRequirement(project, "new feature", 2f);
@@ -309,6 +391,9 @@ public class ScrumServiceImplTest extends ATest {
         assertContainsEntity(conversation, vote);
     }
 
+    /**
+     *
+     */
     @Test
     public void activateRequirementEstimationVoting() {
         Requirement requirement = app.getRequirementDao().postRequirement(project, "new feature", 2f);
@@ -318,6 +403,9 @@ public class ScrumServiceImplTest extends ATest {
         assertTrue(requirement.isWorkEstimationVotingActive());
     }
 
+    /**
+     *
+     */
     @Test
     public void switchToNextSprint() {
         Sprint currentSprint = project.getCurrentSprint();

@@ -15,9 +15,18 @@
 // Copyright (c) 2005 Witoslaw Koczewski, http://www.koczewski.de
 package ilarkesto.cli;
 
+/**
+ *
+ * @author erik
+ */
 public class BadSyntaxException extends CommandExecutionFailedException {
 
-	public BadSyntaxException(ACommand command, String message) {
+    /**
+     *
+     * @param command
+     * @param message
+     */
+    public BadSyntaxException(ACommand command, String message) {
 		super(command, message);
 	}
 

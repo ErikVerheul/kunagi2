@@ -14,11 +14,10 @@
  */
 package scrum.client.calendar;
 
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.time.Date;
 import ilarkesto.gwt.client.TableBuilder;
 import scrum.client.common.AScrumWidget;
-
-import com.google.gwt.user.client.ui.Widget;
 
 public class YearSelectorListWidget extends AScrumWidget {
 

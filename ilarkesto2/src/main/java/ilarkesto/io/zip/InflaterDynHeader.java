@@ -207,7 +207,6 @@ class InflaterDynHeader
 		}
 	    }
 	    mode = LENS;
-	    continue;
 	  }
       }
   }

@@ -14,6 +14,10 @@
  */
 package scrum.client.workspace;
 
+import com.google.gwt.user.client.ui.Widget;
+import static ilarkesto.core.logging.ClientLog.DEBUG;
+import static ilarkesto.core.logging.ClientLog.ERROR;
+import static ilarkesto.core.logging.ClientLog.INFO;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.AGwtEntity;
 import scrum.client.ScrumGwt;
@@ -30,28 +34,46 @@ import scrum.client.search.SearchInputWidget;
 import scrum.client.search.SearchResultsWidget;
 import scrum.client.workspace.history.HistoryToken;
 import scrum.client.workspace.history.HistoryTokenObserver;
-import com.google.gwt.user.client.ui.Widget;
-import static ilarkesto.core.logging.ClientLog.DEBUG;
-import static ilarkesto.core.logging.ClientLog.ERROR;
-import static ilarkesto.core.logging.ClientLog.INFO;
 
+/**
+ *
+ * @author erik
+ */
 public class Navigator extends GNavigator implements BlockExpandedHandler, ApplicationStartedHandler,
 		HistoryTokenObserver {
         
-	public static enum Mode {
-		USER, PROJECT
+    /**
+     *
+     */
+    public static enum Mode {
+
+        /**
+         *
+         */
+        USER, 
+
+        /**
+         *
+         */
+        PROJECT
 	}
 
 	private HistoryToken historyToken;
 	private Mode currentMode;
 	private SearchInputWidget search;
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	public void initialize() {
 		historyToken = new HistoryToken(this);
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	public void onProjectChanged() {
 		String projectId = historyToken.getProjectId();
 		if (projectId == null) {
@@ -61,12 +83,19 @@ public class Navigator extends GNavigator implements BlockExpandedHandler, Appli
 		}
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	public void onPageOrEntityChanged() {
 		showPageAndEntity();
 	}
 
-	@Override
+    /**
+     *
+     * @param event
+     */
+    @Override
 	public void onApplicationStarted(ApplicationStartedEvent event) {
 		historyToken.evalHistoryToken();
 		if (!historyToken.isProjectIdSet()) {
@@ -84,15 +113,25 @@ public class Navigator extends GNavigator implements BlockExpandedHandler, Appli
 		}
 	}
 
-	public void gotoProjectSelector() {
+    /**
+     *
+     */
+    public void gotoProjectSelector() {
 		historyToken.update(null);
 	}
 
-	public void gotoProject(String projectId) {
+    /**
+     *
+     * @param projectId
+     */
+    public void gotoProject(String projectId) {
 		historyToken.update(projectId);
 	}
 
-	public void gotoCurrentProjectSearch() {
+    /**
+     *
+     */
+    public void gotoCurrentProjectSearch() {
 		historyToken.updatePage(Page.getPageName(SearchResultsWidget.class));
 	}
 
@@ -105,7 +144,9 @@ public class Navigator extends GNavigator implements BlockExpandedHandler, Appli
 
 		if (project == null) {
 			project = dao.getProject(projectId);
-			if (project == null) throw new RuntimeException("Project does not exist: " + projectId);
+			if (project == null) {
+                            throw new RuntimeException("Project does not exist: " + projectId);
+            }
 			acitvateProjectMode(project, page, entityId);
 			return;
 		}
@@ -121,9 +162,13 @@ public class Navigator extends GNavigator implements BlockExpandedHandler, Appli
 		new TouchLastActivityServiceCall().execute();
 		ProjectWorkspaceWidgets workspace = Scope.get().getComponent(ProjectWorkspaceWidgets.class);
 
-		if (historyToken.getPage() == null && page == null) page = HistoryToken.START_PAGE;
+		if (historyToken.getPage() == null && page == null) {
+                    page = HistoryToken.START_PAGE;
+        }
 
-		if (page != null) workspace.showPage(page);
+                if (page != null) {
+                    workspace.showPage(page);
+        }
 
 		if (entityId != null) {
 			if (ScrumGwt.isEntityReferenceOrWikiPage(entityId)) {
@@ -143,7 +188,11 @@ public class Navigator extends GNavigator implements BlockExpandedHandler, Appli
 		}
 	}
 
-	@Override
+    /**
+     *
+     * @param event
+     */
+    @Override
 	public void onBlockExpanded(BlockExpandedEvent event) {
 		// Object object = event.getObject();
 		// if (object instanceof AGwtEntity) {
@@ -163,10 +212,14 @@ public class Navigator extends GNavigator implements BlockExpandedHandler, Appli
 
 	private void acitvateProjectMode(final Project project, final String page, final String entityId) {
 
-		if (currentMode == Mode.PROJECT) ScrumScopeManager.destroyProjectScope();
+            if (currentMode == Mode.PROJECT) {
+                ScrumScopeManager.destroyProjectScope();
+        }
 
-		INFO("Activating PROJECT mode");
-                if (project == null) ERROR("project == null!");
+            INFO("Activating PROJECT mode");
+            if (project == null) {
+            ERROR("project == null!");
+        }
 		Scope.get().getComponent(Ui.class).lock("Loading " + project.getLabel() + "...");
 		new SelectProjectServiceCall(project.getId()).execute(new Runnable() {
 
@@ -180,73 +233,141 @@ public class Navigator extends GNavigator implements BlockExpandedHandler, Appli
 		});
 	}
 
-	public static String getPageHref(String page) {
+    /**
+     *
+     * @param page
+     * @return
+     */
+    public static String getPageHref(String page) {
 		return '#' + getPageHistoryToken(page);
 	}
 
-	public static String getPageHistoryToken(String page) {
+    /**
+     *
+     * @param page
+     * @return
+     */
+    public static String getPageHistoryToken(String page) {
 		StringBuilder sb = new StringBuilder();
-		Project project = Scope.get().getComponent(Project.class);
-		if (project != null) sb.append("project=").append(project.getId()).append("|");
+                Project project = Scope.get().getComponent(Project.class);
+                if (project != null) {
+                    sb.append("project=").append(project.getId()).append("|");
+        }
 		sb.append("page=").append(page);
 		return sb.toString();
 	}
 
-	public static String getPageHref(Class<? extends Widget> pageClass) {
+    /**
+     *
+     * @param pageClass
+     * @return
+     */
+    public static String getPageHref(Class<? extends Widget> pageClass) {
 		return getPageHref(Page.getPageName(pageClass));
 	}
 
-	public static String getEntityHistoryToken(AGwtEntity entity) {
+    /**
+     *
+     * @param entity
+     * @return
+     */
+    public static String getEntityHistoryToken(AGwtEntity entity) {
 		String page = null;
-		ProjectWorkspaceWidgets workspace = Scope.get().getComponent(ProjectWorkspaceWidgets.class);
-		if (workspace != null) page = workspace.getPageForEntity(entity);
+                ProjectWorkspaceWidgets workspace = Scope.get().getComponent(ProjectWorkspaceWidgets.class);
+		if (workspace != null) {
+            page = workspace.getPageForEntity(entity);
+        }
 		String id = entity.getId();
 		return getEntityHistoryToken(page, id);
 	}
 
-	public static String getEntityHref(AGwtEntity entity) {
+    /**
+     *
+     * @param entity
+     * @return
+     */
+    public static String getEntityHref(AGwtEntity entity) {
 		String page = null;
-		ProjectWorkspaceWidgets workspace = Scope.get().getComponent(ProjectWorkspaceWidgets.class);
-		if (workspace != null) page = workspace.getPageForEntity(entity);
+                ProjectWorkspaceWidgets workspace = Scope.get().getComponent(ProjectWorkspaceWidgets.class);
+		if (workspace != null) {
+            page = workspace.getPageForEntity(entity);
+        }
 		String id = entity.getId();
 		return '#' + getEntityHistoryToken(page, id);
 	}
 
-	public static String getEntityHref(String entityId) {
+    /**
+     *
+     * @param entityId
+     * @return
+     */
+    public static String getEntityHref(String entityId) {
 		return '#' + getEntityHistoryToken(null, entityId);
 	}
 
-	public static String getEntityHistoryToken(String page, String entityId) {
-		StringBuilder sb = new StringBuilder();
-
-		Project project = Scope.get().getComponent(Project.class);
-		if (project != null) sb.append("project=").append(project.getId()).append("|");
+    /**
+     *
+     * @param page
+     * @param entityId
+     * @return
+     */
+    public static String getEntityHistoryToken(String page, String entityId) {
+        StringBuilder sb = new StringBuilder();
+        
+        Project project = Scope.get().getComponent(Project.class);
+		if (project != null) {
+            sb.append("project=").append(project.getId()).append("|");
+        }
 
 		Navigator navigator = Scope.get().getComponent(Navigator.class);
-		if (page == null) {
-			ProjectWorkspaceWidgets workspace = Scope.get().getComponent(ProjectWorkspaceWidgets.class);
-			if (workspace != null) page = workspace.getPageForEntity(entityId);
-			if (page == null && navigator != null) page = navigator.historyToken.getPage();
+                if (page == null) {
+                    ProjectWorkspaceWidgets workspace = Scope.get().getComponent(ProjectWorkspaceWidgets.class);
+                    if (workspace != null) {
+                        page = workspace.getPageForEntity(entityId);
+                    }
+                    if (page == null && navigator != null) {
+                page = navigator.historyToken.getPage();
+            }
 		}
-		if (page != null) sb.append("page=").append(page).append("|");
+		if (page != null) {
+            sb.append("page=").append(page).append("|");
+        }
 
 		sb.append("entity=").append(entityId);
 		return sb.toString();
 	}
 
-	public boolean isToggleMode() {
+    /**
+     *
+     * @return
+     */
+    public boolean isToggleMode() {
 		return historyToken.isToggle();
 	}
 
-	public void updateHistory(String page, AGwtEntity entity) {
+    /**
+     *
+     * @param page
+     * @param entity
+     */
+    public void updateHistory(String page, AGwtEntity entity) {
 		historyToken.updatePageAndEntity(page, entity, false);
 	}
 
-	public void gotoPageWithEntity(String page, AGwtEntity entity) {
+    /**
+     *
+     * @param page
+     * @param entity
+     */
+    public void gotoPageWithEntity(String page, AGwtEntity entity) {
 		historyToken.updatePageAndEntity(page, entity, true);
 	}
 
-	public void setSearch(SearchInputWidget search) {
+    /**
+     *
+     * @param search
+     */
+    public void setSearch(SearchInputWidget search) {
 		this.search = search;
 	}
 

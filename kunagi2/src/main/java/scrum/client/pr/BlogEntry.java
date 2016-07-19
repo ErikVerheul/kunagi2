@@ -14,40 +14,60 @@
  */
 package scrum.client.pr;
 
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.base.Utl;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.gwt.client.HyperlinkWidget;
 import ilarkesto.gwt.client.editor.AFieldModel;
-
 import java.util.Comparator;
 import java.util.Map;
-
 import scrum.client.ScrumGwt;
 import scrum.client.collaboration.ForumSupport;
 import scrum.client.common.ReferenceSupport;
 import scrum.client.common.ShowEntityAction;
 import scrum.client.project.Project;
 
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class BlogEntry extends GBlogEntry implements ReferenceSupport, ForumSupport {
 
-	public static final String REFERENCE_PREFIX = "blg";
+    /**
+     *
+     */
+    public static final String REFERENCE_PREFIX = "blg";
 
-	public BlogEntry(Map data) {
+    /**
+     *
+     * @param data
+     */
+    public BlogEntry(Map data) {
 		super(data);
 	}
 
-	public BlogEntry(Project project) {
+    /**
+     *
+     * @param project
+     */
+    public BlogEntry(Project project) {
 		setProject(project);
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getReference() {
 		return REFERENCE_PREFIX + getNumber();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getLabel() {
 		return getTitle();
 	}
@@ -62,12 +82,19 @@ public class BlogEntry extends GBlogEntry implements ReferenceSupport, ForumSupp
 		return getReference() + " " + getTitle();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public Widget createForumItemWidget() {
 		return new HyperlinkWidget(new ShowEntityAction(BlogWidget.class, this, getLabel()));
 	}
 
-	public static final Comparator<BlogEntry> DATE_COMPARATOR = new Comparator<BlogEntry>() {
+    /**
+     *
+     */
+    public static final Comparator<BlogEntry> DATE_COMPARATOR = new Comparator<BlogEntry>() {
 
 		@Override
 		public int compare(BlogEntry a, BlogEntry b) {
@@ -77,15 +104,21 @@ public class BlogEntry extends GBlogEntry implements ReferenceSupport, ForumSupp
 
 	private AFieldModel<String> dateModel;
 
-	public AFieldModel<String> getDateModel() {
-		if (dateModel == null) dateModel = new AFieldModel<String>() {
-
-			@Override
-			public String getValue() {
-				DateAndTime dateAndTime = getDateAndTime();
-				return dateAndTime != null ? dateAndTime.getDate().toString() : null;
-			}
-		};
+    /**
+     *
+     * @return
+     */
+    public AFieldModel<String> getDateModel() {
+		if (dateModel == null) {
+                    dateModel = new AFieldModel<String>() {
+                        
+                        @Override
+                        public String getValue() {
+                            DateAndTime dateAndTime = getDateAndTime();
+                            return dateAndTime != null ? dateAndTime.getDate().toString() : null;
+                        }
+                    };
+        }
 		return dateModel;
 	}
 }

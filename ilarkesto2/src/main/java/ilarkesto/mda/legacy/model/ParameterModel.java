@@ -14,16 +14,29 @@
  */
 package ilarkesto.mda.legacy.model;
 
+/**
+ *
+ * @author erik
+ */
 public class ParameterModel extends AModel {
 
 	private String type;
 
-	public ParameterModel(String name, String type) {
+    /**
+     *
+     * @param name
+     * @param type
+     */
+    public ParameterModel(String name, String type) {
 		super(name);
 		this.type = type;
 	}
 
-	public String getType() {
+    /**
+     *
+     * @return
+     */
+    public String getType() {
 		return type;
 	}
 

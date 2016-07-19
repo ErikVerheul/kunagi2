@@ -14,7 +14,17 @@
  */
 package scrum.client.common;
 
+/**
+ *
+ * @author erik
+ * @param <G>
+ */
 public interface ElementPredicate<G> {
 
-	public boolean contains(G element);
+    /**
+     *
+     * @param element
+     * @return
+     */
+    public boolean contains(G element);
 }

@@ -47,8 +47,15 @@ import scrum.client.sprint.Task;
 import scrum.client.workspace.Ui;
 import scrum.client.workspace.WorkspaceWidget;
 
+/**
+ *
+ * @author erik
+ */
 public class ScrumGwtApplication extends GScrumGwtApplication {
 
+    /**
+     *
+     */
     public static final String LOGIN_TOKEN_COOKIE = "kunagi2LoginToken";
 
     static final String[] REFERENCE_PREFIXES = new String[]{Requirement.REFERENCE_PREFIX,
@@ -56,6 +63,9 @@ public class ScrumGwtApplication extends GScrumGwtApplication {
         Risk.REFERENCE_PREFIX, File.REFERENCE_PREFIX, Subject.REFERENCE_PREFIX, SimpleEvent.REFERENCE_PREFIX,
         Release.REFERENCE_PREFIX, BlogEntry.REFERENCE_PREFIX, Sprint.REFERENCE_PREFIX};
 
+    /**
+     *
+     */
     public ApplicationInfo applicationInfo;
     /**
      * This field gets compiled out when <code>log_level=OFF</code>, or any <code>log_level</code> higher than <code>DEBUG</code>.
@@ -145,10 +155,17 @@ public class ScrumGwtApplication extends GScrumGwtApplication {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public ApplicationInfo getApplicationInfo() {
         return applicationInfo;
     }
 
+    /**
+     *
+     */
     public void logout() {
         INFO("Logging out");
 
@@ -192,6 +209,10 @@ public class ScrumGwtApplication extends GScrumGwtApplication {
         return Dao.get();
     }
 
+    /**
+     *
+     * @return
+     */
     public static ScrumGwtApplication get() {
         return (ScrumGwtApplication) AGwtApplication.get();
     }

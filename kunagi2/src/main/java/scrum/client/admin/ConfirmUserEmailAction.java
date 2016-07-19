@@ -16,9 +16,17 @@ package scrum.client.admin;
 
 import ilarkesto.core.base.Str;
 
+/**
+ *
+ * @author erik
+ */
 public class ConfirmUserEmailAction extends GConfirmUserEmailAction {
 
-	public ConfirmUserEmailAction(scrum.client.admin.User user) {
+    /**
+     *
+     * @param user
+     */
+    public ConfirmUserEmailAction(scrum.client.admin.User user) {
 		super(user);
 	}
 
@@ -29,15 +37,15 @@ public class ConfirmUserEmailAction extends GConfirmUserEmailAction {
 
 	@Override
 	public boolean isPermitted() {
-		if (!getCurrentUser().isAdmin()) return false;
-		return true;
+		return getCurrentUser().isAdmin();
 	}
 
 	@Override
 	public boolean isExecutable() {
-		if (!Str.isEmail(user.getEmail())) return false;
-		if (user.isEmailVerified()) return false;
-		return true;
+		if (!Str.isEmail(user.getEmail())) {
+                    return false;
+        }
+		return !user.isEmailVerified();
 	}
 
 	@Override

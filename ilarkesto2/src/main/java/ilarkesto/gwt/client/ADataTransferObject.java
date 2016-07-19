@@ -29,10 +29,21 @@ import java.util.Set;
  */
 public abstract class ADataTransferObject implements Serializable, IsSerializable {
 
-	public String entityIdBase;
-	public Boolean developmentMode;
+    /**
+     *
+     */
+    public String entityIdBase;
+
+    /**
+     *
+     */
+    public Boolean developmentMode;
 	private List<ErrorWrapper> errors;
-	public Integer conversationNumber;
+
+    /**
+     *
+     */
+    public Integer conversationNumber;
 
 	private String userId;
 	private Set<String> deletedEntities;
@@ -44,65 +55,117 @@ public abstract class ADataTransferObject implements Serializable, IsSerializabl
 	private float dummyF;
 	private Float dummyFloat;
 
-	public void clear() {
+    /**
+     *
+     */
+    public void clear() {
 		entities = null;
 		deletedEntities = null;
 	}
 
-	public void addError(ErrorWrapper error) {
+    /**
+     *
+     * @param error
+     */
+    public void addError(ErrorWrapper error) {
 		if (errors == null) {
                         errors = new ArrayList<ErrorWrapper>(1);
                 }
 		errors.add(error);
 	}
 
-	public List<ErrorWrapper> getErrors() {
+    /**
+     *
+     * @return
+     */
+    public List<ErrorWrapper> getErrors() {
 		return errors;
 	}
 
-	public void setUserId(String user) {
+    /**
+     *
+     * @param user
+     */
+    public void setUserId(String user) {
 		this.userId = user;
 	}
 
-	public String getUserId() {
+    /**
+     *
+     * @return
+     */
+    public String getUserId() {
 		return userId;
 	}
 
-	public boolean isUserSet() {
+    /**
+     *
+     * @return
+     */
+    public boolean isUserSet() {
 		return userId != null;
 	}
 
-	public final boolean containsEntities() {
+    /**
+     *
+     * @return
+     */
+    public final boolean containsEntities() {
 		return entities != null && !entities.isEmpty();
 	}
 
-	public final boolean containsEntity(String entityId) {
+    /**
+     *
+     * @param entityId
+     * @return
+     */
+    public final boolean containsEntity(String entityId) {
 		return entities.containsKey(entityId);
 	}
 
-	public final void addEntity(HashMap data) {
+    /**
+     *
+     * @param data
+     */
+    public final void addEntity(HashMap data) {
 		if (entities == null) {
                         entities = new HashMap<String, Map<String, String>>();
                 }
 		entities.put((String) data.get("id"), data);
 	}
 
-	public final Collection<Map<String, String>> getEntities() {
+    /**
+     *
+     * @return
+     */
+    public final Collection<Map<String, String>> getEntities() {
 		return entities.values();
 	}
 
-	public final boolean containsDeletedEntities() {
+    /**
+     *
+     * @return
+     */
+    public final boolean containsDeletedEntities() {
 		return deletedEntities != null && !deletedEntities.isEmpty();
 	}
 
-	public final void addDeletedEntity(String entityId) {
+    /**
+     *
+     * @param entityId
+     */
+    public final void addDeletedEntity(String entityId) {
 		if (deletedEntities == null) {
                         deletedEntities = new HashSet<String>();
                 }
 		deletedEntities.add(entityId);
 	}
 
-	public final Set<String> getDeletedEntities() {
+    /**
+     *
+     * @return
+     */
+    public final Set<String> getDeletedEntities() {
 		return deletedEntities;
 	}
 

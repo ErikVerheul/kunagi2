@@ -14,6 +14,7 @@
  */
 package scrum.client.calendar;
 
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.TableBuilder;
 import ilarkesto.gwt.client.editor.DateEditorWidget;
 import ilarkesto.gwt.client.editor.TextEditorWidget;
@@ -21,8 +22,6 @@ import ilarkesto.gwt.client.editor.TimeEditorWidget;
 import scrum.client.ScrumGwt;
 import scrum.client.collaboration.CommentsWidget;
 import scrum.client.common.AScrumWidget;
-
-import com.google.gwt.user.client.ui.Widget;
 
 public class SimpleEventWidget extends AScrumWidget {
 

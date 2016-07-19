@@ -14,22 +14,24 @@
  */
 package scrum.server;
 
-import ilarkesto.logging.Log;
 import ilarkesto.io.IO;
+import ilarkesto.logging.Log;
 import ilarkesto.persistence.EntityfilePreparator;
-
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.XMLOutputter;
 
+/**
+ *
+ * @author erik
+ */
 public class ScrumEntityfilePreparator implements EntityfilePreparator {
 
 	private static final Log LOG = Log.get(ScrumEntityfilePreparator.class);
@@ -42,7 +44,9 @@ public class ScrumEntityfilePreparator implements EntityfilePreparator {
 	public void prepareEntityfile(File file, Class type, String alias) {        
 		try {
 //			if ("_template_".equalsIgnoreCase(alias)) prepare_template_(file);
-			if ("sprint".equalsIgnoreCase(alias)) prepareSprint(file);
+			if ("sprint".equalsIgnoreCase(alias)) {
+                            prepareSprint(file);
+            }
 //			if ("projectUserConfig".equalsIgnoreCase(alias)) prepareProjectUserConfig(file);
 //			if ("change".equalsIgnoreCase(alias)) prepareChange(file);
 		} catch (Exception ex) {
@@ -67,7 +71,9 @@ public class ScrumEntityfilePreparator implements EntityfilePreparator {
 			modified = true;
 		}
 
-		if (modified) save(doc, file);
+		if (modified) {
+                    save(doc, file);
+        }
 	}
 
 	private void prepareIssue(File file) throws IOException {
@@ -87,7 +93,9 @@ public class ScrumEntityfilePreparator implements EntityfilePreparator {
 			modified = true;
 		}
 
-		if (modified) save(doc, file);
+                if (modified) {
+                    save(doc, file);
+        }
 	}
 
 	private void prepareProjectUserConfig(File file) throws IOException {
@@ -104,10 +112,12 @@ public class ScrumEntityfilePreparator implements EntityfilePreparator {
 		Element ids = root.getChild("selectedEntitysIds");
 		if (ids != null) {
 			root.removeContent(ids);
-			modified = true;
-		}
-
-		if (modified) save(doc, file);
+                        modified = true;
+                }
+                
+                if (modified) {
+            save(doc, file);
+        }
 	}
 
 	/**
@@ -125,17 +135,21 @@ public class ScrumEntityfilePreparator implements EntityfilePreparator {
 		Element root = doc.getRootElement();
 
 		Element principalDescription = root.getChild("principalDescription");
-		if (principalDescription != null) {
-			root.removeContent(principalDescription);
+                if (principalDescription != null) {
+                    root.removeContent(principalDescription);
 			modified = true;
 		}
 
-		if (modified) save(doc, file);
-	}
+		if (modified) {
+            save(doc, file);
+                }
+        }
 
 	private boolean removeChild(String name, Element root) {
 		Element e = root.getChild(name);
-		if (e == null) return false;
+		if (e == null) {
+            return false;
+        }
 		root.removeChild(name);
 		return true;
 	}
@@ -148,10 +162,12 @@ public class ScrumEntityfilePreparator implements EntityfilePreparator {
                 outputter.getFormat().setEncoding(IO.UTF_8);
                 outputter.output(doc, out);
             }
-	}
-
-	private void backup(File src) {
-		if (src.isDirectory()) throw new RuntimeException("sorry, backing up directories is not implemented yet.");
+        }
+        
+        private void backup(File src) {
+		if (src.isDirectory()) {
+            throw new RuntimeException("sorry, backing up directories is not implemented yet.");
+        }
 
 		File dst = new File(backupDir + "/" + src.getName());
 		for (int i = 2; dst.exists(); i++) {
@@ -167,7 +183,11 @@ public class ScrumEntityfilePreparator implements EntityfilePreparator {
 
 	private String backupDir;
 
-	public void setBackupDir(String backupDir) {
+    /**
+     *
+     * @param backupDir
+     */
+    public void setBackupDir(String backupDir) {
 		this.backupDir = backupDir;
 	}
 }

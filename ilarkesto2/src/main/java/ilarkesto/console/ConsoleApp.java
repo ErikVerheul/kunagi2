@@ -35,13 +35,33 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Scanner;
 
+/**
+ *
+ * @author erik
+ */
 public class ConsoleApp {
 
         private final Map<String, Command> commands = new LinkedHashMap<>();
 
-        public enum ExecutionMode {
+    /**
+     *
+     */
+    public enum ExecutionMode {
 
-                RUN_ONCE, ASK_TO_CONTINUE, RUN_UNTIL_EXIT
+        /**
+         *
+         */
+        RUN_ONCE, 
+
+        /**
+         *
+         */
+        ASK_TO_CONTINUE, 
+
+        /**
+         *
+         */
+        RUN_UNTIL_EXIT
         };
 
         private ExecutionMode mode = ExecutionMode.RUN_ONCE;
@@ -49,7 +69,12 @@ public class ConsoleApp {
 
         private boolean showParameterNames = false;
 
-        public static ConsoleApp fromClass(Class<?> clazz) {
+    /**
+     *
+     * @param clazz
+     * @return
+     */
+    public static ConsoleApp fromClass(Class<?> clazz) {
                 ConsoleApp app = new ConsoleApp();
                 ArrayList<Method> methods = new ArrayList<>(asList(clazz.getDeclaredMethods()));
                 Map<String, ArrayList<Method>> methodsByName = new HashMap<>();
@@ -83,7 +108,12 @@ public class ConsoleApp {
                 return isPublicAndStatic(m) && m.getName().equals("main");
         }
 
-        public void addCommand(String name, Method... methods) {
+    /**
+     *
+     * @param name
+     * @param methods
+     */
+    public void addCommand(String name, Method... methods) {
                 addCommand(null, name, methods);
         }
 
@@ -116,7 +146,10 @@ public class ConsoleApp {
                 return true;
         }
 
-        public void printUsage() {
+    /**
+     *
+     */
+    public void printUsage() {
                 int maxParams = getMaxNumberOfParams();
                 ConsoleTable table = new ConsoleTable();
                 for (String cmd : commands.keySet()) {
@@ -138,7 +171,11 @@ public class ConsoleApp {
                 System.out.println(table);
         }
 
-        public ConsoleApp showParameterNames() {
+    /**
+     *
+     * @return
+     */
+    public ConsoleApp showParameterNames() {
                 this.showParameterNames = true;
                 return this;
         }
@@ -184,7 +221,12 @@ public class ConsoleApp {
                 return n;
         }
 
-        public ConsoleApp setExecutionMode(ExecutionMode mode) {
+    /**
+     *
+     * @param mode
+     * @return
+     */
+    public ConsoleApp setExecutionMode(ExecutionMode mode) {
                 if (this.mode == ExecutionMode.RUN_UNTIL_EXIT && this.mode != mode) {
                         removeExitCommand();
                 }
@@ -214,7 +256,10 @@ public class ConsoleApp {
                 this.exit = true;
         }
 
-        public void execute() {
+    /**
+     *
+     */
+    public void execute() {
 		Scanner in = new Scanner(System.in, Charset.defaultCharset().toString());
 
                 do {
@@ -280,18 +325,36 @@ public class ConsoleApp {
                 return commands.get(parseCommandName(input));
         }
 
-        @Retention(RetentionPolicy.RUNTIME)
+    /**
+     *
+     */
+    @Retention(RetentionPolicy.RUNTIME)
         public static @interface CallDescription {
 
-                String text();
+        /**
+         *
+         * @return
+         */
+        String text();
         }
 
-        @Retention(RetentionPolicy.RUNTIME)
+    /**
+     *
+     */
+    @Retention(RetentionPolicy.RUNTIME)
         public static @interface ParameterDescription {
 
-                String name();
+        /**
+         *
+         * @return
+         */
+        String name();
 
-                String text() default "";
+        /**
+         *
+         * @return
+         */
+        String text() default "";
         }
 
         private static class Command {

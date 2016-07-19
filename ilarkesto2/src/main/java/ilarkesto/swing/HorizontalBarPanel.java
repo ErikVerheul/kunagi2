@@ -27,11 +27,19 @@ import javax.swing.JScrollPane;
 import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS;
 import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER;
 
+/**
+ *
+ * @author erik
+ */
 public class HorizontalBarPanel extends JPanel {
 
 	private static final Log LOG = Log.get(HorizontalBarPanel.class);
 
-	public static void main(String[] args) {
+    /**
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
 		HorizontalBarPanel panel = new HorizontalBarPanel();
 		panel.addColumn(new JLabel("Column 1"));
 		panel.addColumn(new JLabel("Column 2"));
@@ -42,24 +50,39 @@ public class HorizontalBarPanel extends JPanel {
 
 	private JPanel grid;
 
-	public HorizontalBarPanel() {
+    /**
+     *
+     */
+    public HorizontalBarPanel() {
 		setLayout(new BorderLayout());
 		add(createGrid(), CENTER);
 	}
 
-	public void addColumn(Component component) {
+    /**
+     *
+     * @param component
+     */
+    public void addColumn(Component component) {
 		LOG.debug("addColumn:", component);
 		grid.add(component);
 		grid.updateUI();
 	}
 
-	public void removeColumn(Component component) {
+    /**
+     *
+     * @param component
+     */
+    public void removeColumn(Component component) {
 		LOG.debug("removeColumn:", component);
 		grid.remove(component);
 		grid.updateUI();
 	}
 
-	public void removeColumnsAfter(Component component) {
+    /**
+     *
+     * @param component
+     */
+    public void removeColumnsAfter(Component component) {
 		LOG.debug("removeColumnsAfter:", component);
 		int count = grid.getComponentCount();
 		for (int i = count - 1; i >= 0; i--) {
@@ -71,7 +94,10 @@ public class HorizontalBarPanel extends JPanel {
 		grid.updateUI();
 	}
 
-	public void removeAllColumns() {
+    /**
+     *
+     */
+    public void removeAllColumns() {
 		LOG.debug("removeAllColumns");
 		grid.removeAll();
 	}

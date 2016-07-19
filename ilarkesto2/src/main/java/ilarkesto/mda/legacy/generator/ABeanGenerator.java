@@ -28,16 +28,31 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ *
+ * @author erik
+ * @param <B>
+ */
 public abstract class ABeanGenerator<B extends BeanModel> extends AClassGenerator {
 
-	protected B bean;
+    /**
+     *
+     */
+    protected B bean;
 
-	public ABeanGenerator(B bean) {
+    /**
+     *
+     * @param bean
+     */
+    public ABeanGenerator(B bean) {
 		super();
 		this.bean = bean;
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void writeContent() {
 		writeDependencies();
 		writeComposites();
@@ -103,7 +118,10 @@ public abstract class ABeanGenerator<B extends BeanModel> extends AClassGenerato
 		}
 	}
 
-	protected void writeDependencies() {
+    /**
+     *
+     */
+    protected void writeDependencies() {
 		if (bean.getDependencies().isEmpty()) {
                         return;
                 }
@@ -152,29 +170,49 @@ public abstract class ABeanGenerator<B extends BeanModel> extends AClassGenerato
 		}
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected String getName() {
 		return "G" + bean.getName();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected String getPackage() {
 		return bean.getPackageName();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected boolean isInterface() {
 		return false;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected Set<String> getImports() {
 		Set<String> result = new LinkedHashSet<>();
 		result.addAll(super.getImports());
 		return result;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected boolean isOverwrite() {
 		return true;
 	}

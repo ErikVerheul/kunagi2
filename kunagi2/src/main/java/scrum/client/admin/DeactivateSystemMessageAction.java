@@ -16,6 +16,10 @@ package scrum.client.admin;
 
 import ilarkesto.core.scope.Scope;
 
+/**
+ *
+ * @author erik
+ */
 public class DeactivateSystemMessageAction extends GCreateUserAction {
 
 	@Override
@@ -25,9 +29,10 @@ public class DeactivateSystemMessageAction extends GCreateUserAction {
 
 	@Override
 	public boolean isExecutable() {
-		if (getCurrentUser().isAdmin() == false) return false;
-		if (Scope.get().getComponent(SystemMessageManager.class).getSystemMessage().isActive() == false) return false;
-		return true;
+		if (getCurrentUser().isAdmin() == false) {
+                    return false;
+        }
+		return Scope.get().getComponent(SystemMessageManager.class).getSystemMessage().isActive() != false;
 	}
 
 	@Override

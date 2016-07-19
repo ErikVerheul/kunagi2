@@ -14,22 +14,39 @@
  */
 package ilarkesto.tools.cheatsheet;
 
+/**
+ *
+ * @author erik
+ */
 public class Cheat {
 
 	private String command;
 	private String label;
 
-	public Cheat(String command, String label) {
+    /**
+     *
+     * @param command
+     * @param label
+     */
+    public Cheat(String command, String label) {
 		super();
 		this.command = command;
 		this.label = label;
 	}
 
-	public String getCommand() {
+    /**
+     *
+     * @return
+     */
+    public String getCommand() {
 		return command;
 	}
 
-	public String getLabel() {
+    /**
+     *
+     * @return
+     */
+    public String getLabel() {
 		return label;
 	}
 

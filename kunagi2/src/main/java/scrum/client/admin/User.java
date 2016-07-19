@@ -26,23 +26,45 @@ import scrum.client.ScrumScopeManager;
 import scrum.client.collaboration.UsersStatus;
 import scrum.client.common.LabelSupport;
 
+/**
+ *
+ * @author erik
+ */
 public class User extends GUser implements LabelSupport, Comparable<User> {
 
+    /**
+     *
+     */
     public static final String INITIAL_NAME = "newuser";
 
+    /**
+     *
+     */
     public User() {
         setName(getNextNewUserName());
     }
 
+    /**
+     *
+     * @param data
+     */
     public User(Map data) {
         super(data);
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getLabel() {
         return getName();
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNameAndFullName() {
         String fullName = getFullName();
         if (Str.isBlank(fullName)) {
@@ -62,6 +84,10 @@ public class User extends GUser implements LabelSupport, Comparable<User> {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public ProjectUserConfig getProjectConfig() {
         return ScrumScopeManager.getProject().getUserConfig(this);
     }
@@ -92,6 +118,10 @@ public class User extends GUser implements LabelSupport, Comparable<User> {
         return getName();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public EmailModel getEmailModel() {
         return new EmailModel() {
@@ -106,6 +136,10 @@ public class User extends GUser implements LabelSupport, Comparable<User> {
         };
     }
 
+    /**
+     *
+     * @return
+     */
     public ATextEditorModel getNameFullNameModel() {
         return new ATextEditorModel() {
 
@@ -119,6 +153,10 @@ public class User extends GUser implements LabelSupport, Comparable<User> {
             }
         };
     }
+
+    /**
+     *
+     */
     public static final Comparator<User> LAST_LOGIN_COMPARATOR = new Comparator<User>() {
 
         @Override
@@ -126,6 +164,10 @@ public class User extends GUser implements LabelSupport, Comparable<User> {
             return Utl.compare(b.getLastLoginDateAndTime(), a.getLastLoginDateAndTime());
         }
     };
+
+    /**
+     *
+     */
     public static final Comparator<User> NAME_COMPARATOR = new Comparator<User>() {
 
         @Override
@@ -133,6 +175,10 @@ public class User extends GUser implements LabelSupport, Comparable<User> {
             return a.getName().toLowerCase().compareTo(b.getName().toLowerCase());
         }
     };
+
+    /**
+     *
+     */
     public transient static final Comparator<User> ONLINE_OFFLINE_COMPARATOR = new Comparator<User>() {
 
         @Override
@@ -151,6 +197,10 @@ public class User extends GUser implements LabelSupport, Comparable<User> {
     };
     private AFieldModel<String> lastLoginAgoModel;
 
+    /**
+     *
+     * @return
+     */
     public AFieldModel<String> getLastLoginAgoModel() {
         if (lastLoginAgoModel == null) {
             lastLoginAgoModel = new AFieldModel<String>() {

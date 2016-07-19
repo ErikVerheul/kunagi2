@@ -15,8 +15,8 @@
 package ilarkesto.concurrent;
 
 import static ilarkesto.base.UtlExtend.getRootCause;
-import ilarkesto.logging.Log;
 import static ilarkesto.core.time.Tm.getCurrentTimeMillis;
+import ilarkesto.logging.Log;
 import static java.lang.Thread.currentThread;
 
 public abstract class ATask {

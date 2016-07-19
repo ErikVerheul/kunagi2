@@ -14,8 +14,18 @@
  */
 package ilarkesto.auth;
 
+/**
+ *
+ * @author erik
+ * @param <U>
+ */
 public interface ViewProtected<U extends AUser> {
 
-	boolean isVisibleFor(U user);
+    /**
+     *
+     * @param user
+     * @return
+     */
+    boolean isVisibleFor(U user);
 
 }

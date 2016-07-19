@@ -14,14 +14,13 @@
  */
 package scrum.client.risks;
 
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.AFieldValueWidget;
 import ilarkesto.gwt.client.TableBuilder;
 import ilarkesto.gwt.client.editor.DropdownEditorWidget;
 import scrum.client.ScrumGwt;
 import scrum.client.common.AScrumWidget;
 import scrum.client.journal.ChangeHistoryWidget;
-
-import com.google.gwt.user.client.ui.Widget;
 
 public class RiskWidget extends AScrumWidget {
 

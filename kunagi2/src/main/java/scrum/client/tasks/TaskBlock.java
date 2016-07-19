@@ -14,6 +14,8 @@
  */
 package scrum.client.tasks;
 
+import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.AnchorPanel;
 import scrum.client.collaboration.EmoticonsWidget;
 import scrum.client.common.ABlockWidget;
@@ -31,25 +33,36 @@ import scrum.client.sprint.ReopenTaskAction;
 import scrum.client.sprint.Task;
 import scrum.client.sprint.UnclaimTaskAction;
 
-import com.google.gwt.user.client.ui.Image;
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class TaskBlock extends ABlockWidget<Task> implements TrashSupport {
 
 	private AnchorPanel statusIcon;
 
 	private TaskBlockContainer container;
 
-	public TaskBlock(TaskBlockContainer container) {
+    /**
+     *
+     * @param container
+     */
+    public TaskBlock(TaskBlockContainer container) {
 		this.container = container;
 	}
 
-	@Override
+    /**
+     *
+     * @param header
+     */
+    @Override
 	protected void onInitializationHeader(BlockHeaderWidget header) {
 		Task task = getObject();
 		statusIcon = header.addIconWrapper();
 		header.addText(task.getLabelModel());
-		if (container.isShowOwner()) header.addText(task.getOwnerModel(), true);
+		if (container.isShowOwner()) {
+                    header.addText(task.getOwnerModel(), true);
+        }
 		header.appendOuterCell(new EmoticonsWidget(task), null, true);
 		header.addMenuAction(new ClaimTaskAction(task));
 		header.addMenuAction(new CloseTaskAction(task));
@@ -60,7 +73,11 @@ public class TaskBlock extends ABlockWidget<Task> implements TrashSupport {
 		header.addMenuAction(new ActivateChangeHistoryAction(task));
 	}
 
-	@Override
+    /**
+     *
+     * @param header
+     */
+    @Override
 	protected void onUpdateHeader(BlockHeaderWidget header) {
 		Task task = getObject();
 		header.setDragHandle(task.getReference());
@@ -78,29 +95,52 @@ public class TaskBlock extends ABlockWidget<Task> implements TrashSupport {
 		statusIcon.setWidget(statusImage);
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected Widget onExtendedInitialization() {
 		return new TaskWidget(getObject());
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public AScrumAction getTrashAction() {
 		return new DeleteTaskAction(getObject());
 	}
 
-	public TaskBlockContainer getContainer() {
+    /**
+     *
+     * @return
+     */
+    public TaskBlockContainer getContainer() {
 		return this.container;
 	}
 
-	public static class TaskBlockFactory implements BlockWidgetFactory<Task> {
+    /**
+     *
+     */
+    public static class TaskBlockFactory implements BlockWidgetFactory<Task> {
 
 		private TaskBlockContainer container;
 
-		public TaskBlockFactory(TaskBlockContainer container) {
+        /**
+         *
+         * @param container
+         */
+        public TaskBlockFactory(TaskBlockContainer container) {
 			this.container = container;
 		}
 
-		@Override
+        /**
+         *
+         * @return
+         */
+        @Override
 		public ABlockWidget<Task> createBlock() {
 			return new TaskBlock(container);
 		}

@@ -16,8 +16,16 @@ package scrum.client.dnd;
 
 import scrum.client.common.AScrumAction;
 
+/**
+ *
+ * @author erik
+ */
 public interface TrashSupport {
 
-	AScrumAction getTrashAction();
+    /**
+     *
+     * @return
+     */
+    AScrumAction getTrashAction();
 
 }

@@ -16,7 +16,6 @@ package ilarkesto.mda.generator;
 
 import ilarkesto.mda.model.Node;
 import ilarkesto.mda.model.NodeTypes;
-import java.util.Arrays;
 import static java.util.Arrays.asList;
 
 public class GwtEventHandlerGenerator extends AJavaClassGenerator implements NodeTypes {

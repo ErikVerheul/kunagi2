@@ -16,6 +16,10 @@ package ilarkesto.pdf;
 
 import com.itextpdf.text.BaseColor;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class ACell extends APdfContainerElement {
 
 	private int colspan = 1;
@@ -39,40 +43,79 @@ public abstract class ACell extends APdfContainerElement {
 
 	private FontStyle fontStyle;
 
-	public ACell(APdfElement parent) {
+    /**
+     *
+     * @param parent
+     */
+    public ACell(APdfElement parent) {
 		super(parent);
 	}
 
-	public ACell setColspan(int colspan) {
+    /**
+     *
+     * @param colspan
+     * @return
+     */
+    public ACell setColspan(int colspan) {
 		this.colspan = colspan;
 		return this;
 	}
 
-	public ACell setBorderTop(BaseColor color, float width) {
+    /**
+     *
+     * @param color
+     * @param width
+     * @return
+     */
+    public ACell setBorderTop(BaseColor color, float width) {
 		borderTopColor = color;
 		borderTopWidth = width;
 		return this;
 	}
 
-	public ACell setBorderBottom(BaseColor color, float width) {
+    /**
+     *
+     * @param color
+     * @param width
+     * @return
+     */
+    public ACell setBorderBottom(BaseColor color, float width) {
 		borderBottomColor = color;
 		borderBottomWidth = width;
 		return this;
 	}
 
-	public ACell setBorderLeft(BaseColor color, float width) {
+    /**
+     *
+     * @param color
+     * @param width
+     * @return
+     */
+    public ACell setBorderLeft(BaseColor color, float width) {
 		borderLeftColor = color;
 		borderLeftWidth = width;
 		return this;
 	}
 
-	public ACell setBorderRight(BaseColor color, float width) {
+    /**
+     *
+     * @param color
+     * @param width
+     * @return
+     */
+    public ACell setBorderRight(BaseColor color, float width) {
 		borderRightColor = color;
 		borderRightWidth = width;
 		return this;
 	}
 
-	public ACell setBorder(BaseColor color, float width) {
+    /**
+     *
+     * @param color
+     * @param width
+     * @return
+     */
+    public ACell setBorder(BaseColor color, float width) {
 		setBorderTop(color, width);
 		setBorderBottom(color, width);
 		setBorderLeft(color, width);
@@ -80,37 +123,72 @@ public abstract class ACell extends APdfContainerElement {
 		return this;
 	}
 
-	public ACell setFontStyle(FontStyle fontStyle) {
+    /**
+     *
+     * @param fontStyle
+     * @return
+     */
+    public ACell setFontStyle(FontStyle fontStyle) {
 		this.fontStyle = fontStyle;
 		return this;
 	}
 
-	public ACell setBackgroundColor(BaseColor backgroundColor) {
+    /**
+     *
+     * @param backgroundColor
+     * @return
+     */
+    public ACell setBackgroundColor(BaseColor backgroundColor) {
 		this.backgroundColor = backgroundColor;
 		return this;
 	}
 
-	public ACell setPaddingTop(float paddingTop) {
+    /**
+     *
+     * @param paddingTop
+     * @return
+     */
+    public ACell setPaddingTop(float paddingTop) {
 		this.paddingTop = paddingTop;
 		return this;
 	}
 
-	public ACell setPaddingRight(float paddingRight) {
+    /**
+     *
+     * @param paddingRight
+     * @return
+     */
+    public ACell setPaddingRight(float paddingRight) {
 		this.paddingRight = paddingRight;
 		return this;
 	}
 
-	public ACell setPaddingBottom(float paddingBottom) {
+    /**
+     *
+     * @param paddingBottom
+     * @return
+     */
+    public ACell setPaddingBottom(float paddingBottom) {
 		this.paddingBottom = paddingBottom;
 		return this;
 	}
 
-	public ACell setPaddingLeft(float paddingLeft) {
+    /**
+     *
+     * @param paddingLeft
+     * @return
+     */
+    public ACell setPaddingLeft(float paddingLeft) {
 		this.paddingLeft = paddingLeft;
 		return this;
 	}
 
-	public ACell setPadding(float padding) {
+    /**
+     *
+     * @param padding
+     * @return
+     */
+    public ACell setPadding(float padding) {
 		setPaddingTop(padding);
 		setPaddingRight(padding);
 		setPaddingBottom(padding);
@@ -118,63 +196,123 @@ public abstract class ACell extends APdfContainerElement {
 		return this;
 	}
 
-	public int getColspan() {
+    /**
+     *
+     * @return
+     */
+    public int getColspan() {
 		return colspan;
 	}
 
-	public BaseColor getBackgroundColor() {
+    /**
+     *
+     * @return
+     */
+    public BaseColor getBackgroundColor() {
 		return backgroundColor;
 	}
 
-	public BaseColor getBorderBottomColor() {
+    /**
+     *
+     * @return
+     */
+    public BaseColor getBorderBottomColor() {
 		return borderBottomColor;
 	}
 
-	public float getBorderBottomWidth() {
+    /**
+     *
+     * @return
+     */
+    public float getBorderBottomWidth() {
 		return borderBottomWidth;
 	}
 
-	public BaseColor getBorderLeftColor() {
+    /**
+     *
+     * @return
+     */
+    public BaseColor getBorderLeftColor() {
 		return borderLeftColor;
 	}
 
-	public float getBorderLeftWidth() {
+    /**
+     *
+     * @return
+     */
+    public float getBorderLeftWidth() {
 		return borderLeftWidth;
 	}
 
-	public BaseColor getBorderRightColor() {
+    /**
+     *
+     * @return
+     */
+    public BaseColor getBorderRightColor() {
 		return borderRightColor;
 	}
 
-	public float getBorderRightWidth() {
+    /**
+     *
+     * @return
+     */
+    public float getBorderRightWidth() {
 		return borderRightWidth;
 	}
 
-	public BaseColor getBorderTopColor() {
+    /**
+     *
+     * @return
+     */
+    public BaseColor getBorderTopColor() {
 		return borderTopColor;
 	}
 
-	public float getBorderTopWidth() {
+    /**
+     *
+     * @return
+     */
+    public float getBorderTopWidth() {
 		return borderTopWidth;
 	}
 
-	public float getPaddingBottom() {
+    /**
+     *
+     * @return
+     */
+    public float getPaddingBottom() {
 		return paddingBottom;
 	}
 
-	public float getPaddingLeft() {
+    /**
+     *
+     * @return
+     */
+    public float getPaddingLeft() {
 		return paddingLeft;
 	}
 
-	public float getPaddingRight() {
+    /**
+     *
+     * @return
+     */
+    public float getPaddingRight() {
 		return paddingRight;
 	}
 
-	public float getPaddingTop() {
+    /**
+     *
+     * @return
+     */
+    public float getPaddingTop() {
 		return paddingTop;
 	}
 
-	public FontStyle getFontStyle() {
+    /**
+     *
+     * @return
+     */
+    public FontStyle getFontStyle() {
 		return fontStyle;
 	}
 

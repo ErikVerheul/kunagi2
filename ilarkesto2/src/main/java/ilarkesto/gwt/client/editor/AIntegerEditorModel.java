@@ -16,21 +16,43 @@ package ilarkesto.gwt.client.editor;
 
 import static java.lang.Integer.MAX_VALUE;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class AIntegerEditorModel extends AEditorModel<Integer> {
 
-	public abstract void increment();
+    /**
+     *
+     */
+    public abstract void increment();
 
-	public abstract void decrement();
+    /**
+     *
+     */
+    public abstract void decrement();
 
-	public boolean isMandatory() {
+    /**
+     *
+     * @return
+     */
+    public boolean isMandatory() {
 		return false;
 	}
 
-	public int getMin() {
+    /**
+     *
+     * @return
+     */
+    public int getMin() {
 		return 0;
 	}
 
-	public int getMax() {
+    /**
+     *
+     * @return
+     */
+    public int getMax() {
 		return MAX_VALUE;
 	}
 

@@ -21,15 +21,27 @@ import ilarkesto.core.scope.Scope;
 import ilarkesto.mda.model.ModellingSession;
 import ilarkesto.scope.ReflectionComponentReflector;
 
+/**
+ *
+ * @author erik
+ */
 public class Starter {
 
-	public static void main(String[] args) {
+    /**
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
 		createModellerScope();
 
 		Scope.get().getComponent(Workspace.class).showJFrame();
 	}
 
-	public static Scope createModellerScope() {
+    /**
+     *
+     * @return
+     */
+    public static Scope createModellerScope() {
 		createCascadingScopeInstance("app", new ReflectionComponentReflector());
 
 		CascadingScope scope = get();

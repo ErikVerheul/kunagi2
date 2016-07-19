@@ -14,18 +14,16 @@
  */
 package scrum.server;
 
-import ilarkesto.core.time.Tm;
-import ilarkesto.logging.Log;
 import ilarkesto.core.scope.In;
 import ilarkesto.core.time.TimePeriod;
+import ilarkesto.core.time.Tm;
 import ilarkesto.di.Context;
 import ilarkesto.gwt.server.AGwtConversation;
+import ilarkesto.logging.Log;
 import ilarkesto.persistence.TransactionService;
 import ilarkesto.webapp.AWebSession;
 import ilarkesto.webapp.GwtConversationDoesNotExist;
-
 import javax.servlet.http.HttpServletRequest;
-
 import scrum.server.admin.User;
 
 public class WebSession extends AWebSession {

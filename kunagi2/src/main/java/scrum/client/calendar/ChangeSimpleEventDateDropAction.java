@@ -18,21 +18,39 @@ import ilarkesto.core.time.Date;
 import scrum.client.dnd.BlockListDropAction;
 import scrum.client.workspace.VisibleDataChangedEvent;
 
+/**
+ *
+ * @author erik
+ */
 public class ChangeSimpleEventDateDropAction implements BlockListDropAction<SimpleEvent> {
 
 	private Date date;
 
-	public ChangeSimpleEventDateDropAction(Date date) {
+    /**
+     *
+     * @param date
+     */
+    public ChangeSimpleEventDateDropAction(Date date) {
 		super();
 		this.date = date;
 	}
 
-	@Override
+    /**
+     *
+     * @param event
+     * @return
+     */
+    @Override
 	public boolean isDroppable(SimpleEvent event) {
 		return true;
 	}
 
-	@Override
+    /**
+     *
+     * @param event
+     * @return
+     */
+    @Override
 	public boolean onDrop(SimpleEvent event) {
 		event.setDate(date);
 		new VisibleDataChangedEvent().fireInCurrentScope();

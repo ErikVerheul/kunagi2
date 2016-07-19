@@ -22,15 +22,26 @@ import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.base.Str;
 import static ilarkesto.gwt.client.Gwt.createBugMarker;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class AWidget extends Composite implements Updatable {
 
 	private boolean initializing;
 	private boolean initialized;
 	private final Wrapper wrapper;
 
-	protected abstract Widget onInitialization();
+    /**
+     *
+     * @return
+     */
+    protected abstract Widget onInitialization();
 
-	public AWidget() {
+    /**
+     *
+     */
+    public AWidget() {
 		wrapper = new Wrapper();
 		if (!isScript()) {
                         wrapper.setContent(createBugMarker(getClass().getName() + " is not initialized. -> call update()"));
@@ -38,11 +49,18 @@ public abstract class AWidget extends Composite implements Updatable {
 		initWidget(wrapper);
 	}
 
-	protected boolean isResetRequired() {
+    /**
+     *
+     * @return
+     */
+    protected boolean isResetRequired() {
 		return false;
 	}
 
-	protected void onUpdate() {
+    /**
+     *
+     */
+    protected void onUpdate() {
 		Element element = wrapper.getElement();
 		String newId = getId();
 		if (!element.getId().equals(newId)) {
@@ -77,16 +95,27 @@ public abstract class AWidget extends Composite implements Updatable {
 
 	}
 
-	public final void reset() {
+    /**
+     *
+     */
+    public final void reset() {
 		initialized = false;
 	}
 
-	protected void replaceContent(Widget widget) {
+    /**
+     *
+     * @param widget
+     */
+    protected void replaceContent(Widget widget) {
 		initialize();
 		wrapper.setContent(widget);
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public final AWidget update() {
 		if (isResetRequired()) {
                         reset();
@@ -99,19 +128,34 @@ public abstract class AWidget extends Composite implements Updatable {
 		return this;
 	}
 
-	protected boolean isUpdateRequired() {
+    /**
+     *
+     * @return
+     */
+    protected boolean isUpdateRequired() {
 		return true;
 	}
 
-	public final boolean isInitialized() {
+    /**
+     *
+     * @return
+     */
+    public final boolean isInitialized() {
 		return initialized;
 	}
 
-	protected final void setHeight100() {
+    /**
+     *
+     */
+    protected final void setHeight100() {
 		wrapper.setStyleName("AWidget-height100");
 	}
 
-	public String getId() {
+    /**
+     *
+     * @return
+     */
+    public String getId() {
 		return Str.getSimpleName(getClass()).replace('$', '_');
 	}
 

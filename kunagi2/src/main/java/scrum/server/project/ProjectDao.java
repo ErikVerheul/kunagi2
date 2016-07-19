@@ -14,12 +14,10 @@
  */
 package scrum.server.project;
 
-import scrum.server.project.GProjectDao;
-import ilarkesto.logging.Log;
 import ilarkesto.core.time.Date;
 import ilarkesto.core.time.DateAndTime;
+import ilarkesto.logging.Log;
 import scrum.server.admin.User;
-import scrum.server.admin.UserDao;
 
 public class ProjectDao extends GProjectDao {
 

@@ -39,15 +39,27 @@ public final class Sys {
 
 	private static final boolean developmentMode = new File("src").exists();
 
-	public static boolean isDevelopmentMode() {
+    /**
+     *
+     * @return
+     */
+    public static boolean isDevelopmentMode() {
 		return developmentMode;
 	}
 
-	public static boolean isProductionMode() {
+    /**
+     *
+     * @return
+     */
+    public static boolean isProductionMode() {
 		return !isDevelopmentMode();
 	}
 
-	public static long getAvailableMemory() {
+    /**
+     *
+     * @return
+     */
+    public static long getAvailableMemory() {
 		Runtime runtime = getRuntime();
 		long freeMemory = runtime.freeMemory();
 		long totalMemory = runtime.totalMemory();
@@ -57,42 +69,70 @@ public final class Sys {
 		return availableMemory;
 	}
 
-	public static void storeStartupTime() {
+    /**
+     *
+     */
+    public static void storeStartupTime() {
 		startupTime = getCurrentTimeMillis();
 	}
 
-	public static long getStartupTime() {
+    /**
+     *
+     * @return
+     */
+    public static long getStartupTime() {
 		if (startupTime == 0) {
                         throw new RuntimeException("Startup unknown. Sys.storeStartupTime() needs to be called.");
                 }
 		return startupTime;
 	}
 
-	public static File getWorkDir() {
+    /**
+     *
+     * @return
+     */
+    public static File getWorkDir() {
 		if (workDir == null) {
 			workDir = new File("dummy").getAbsoluteFile().getParentFile();
 		}
 		return workDir;
 	}
 
-	public static File getUsersHomeDir() {
+    /**
+     *
+     * @return
+     */
+    public static File getUsersHomeDir() {
 		return new File(getUsersHomePath());
 	}
 
-	public static void set2dTranslucencyAcceleration(boolean value) {
+    /**
+     *
+     * @param value
+     */
+    public static void set2dTranslucencyAcceleration(boolean value) {
 		setProperty("sun.java2d.translaccel", value);
 	}
 
-	public static void set2dForceVideoRam(boolean value) {
+    /**
+     *
+     * @param value
+     */
+    public static void set2dForceVideoRam(boolean value) {
 		setProperty("sun.java2d.ddforcevram", value);
 	}
 
-	public static void set2dHardwareAccaleratedScaling(boolean value) {
+    /**
+     *
+     * @param value
+     */
+    public static void set2dHardwareAccaleratedScaling(boolean value) {
 		setProperty("sun.java2d.ddscale", value);
 	}
 
 	/**
 	 * Java 2D OpenGL Support. (Better performance on Linux).
+     * @param value
 	 */
 	public static void set2dOpenGl(boolean value) {
 		setProperty("sun.java2d.opengl", value);
@@ -106,19 +146,38 @@ public final class Sys {
 		setProperty("java.awt.headless", value);
 	}
 
-	public static void setJmxRemote(boolean value) {
+    /**
+     *
+     * @param value
+     */
+    public static void setJmxRemote(boolean value) {
 		setProperty("com.sun.management.jmxremote", value);
 	}
 
-	public static boolean isHeadless() {
+    /**
+     *
+     * @return
+     */
+    public static boolean isHeadless() {
 		return GraphicsEnvironment.isHeadless();
 	}
 
-	public static void setHttpProxy(String host, Integer port) {
+    /**
+     *
+     * @param host
+     * @param port
+     */
+    public static void setHttpProxy(String host, Integer port) {
 		setHttpProxy(host, port, toStringArray(getLocalHostNames(true, true)));
 	}
 
-	public static void setHttpProxy(String host, Integer port, String... nonProxyHosts) {
+    /**
+     *
+     * @param host
+     * @param port
+     * @param nonProxyHosts
+     */
+    public static void setHttpProxy(String host, Integer port, String... nonProxyHosts) {
 		StringBuilder sb = new StringBuilder();
 		boolean first = true;
 		for (String nonProxyHost : nonProxyHosts) {
@@ -132,13 +191,23 @@ public final class Sys {
 		setHttpProxy(host, port, sb.toString());
 	}
 
-	public static void setHttpProxy(String host, Integer port, String nonProxyHosts) {
+    /**
+     *
+     * @param host
+     * @param port
+     * @param nonProxyHosts
+     */
+    public static void setHttpProxy(String host, Integer port, String nonProxyHosts) {
 		System.setProperty("http.proxyHost", isBlank(host) ? "" : host);
 		System.setProperty("http.proxyPort", port == null ? "" : port.toString());
 		System.setProperty("http.nonProxyHosts", isBlank(nonProxyHosts) ? "" : nonProxyHosts);
 	}
 
-	public static String getHttpProxyHost() {
+    /**
+     *
+     * @return
+     */
+    public static String getHttpProxyHost() {
 		String value = getProperty("http.proxyHost");
 		if (isBlank(value)) {
                         return null;
@@ -146,7 +215,11 @@ public final class Sys {
 		return value;
 	}
 
-	public static Integer getHttpProxyPort() {
+    /**
+     *
+     * @return
+     */
+    public static Integer getHttpProxyPort() {
 		String value = getProperty("http.proxyPort");
 		if (isBlank(value)) {
                         return null;
@@ -154,47 +227,93 @@ public final class Sys {
 		return parseInt(value);
 	}
 
-	public static String getJavaRuntimeVersion() {
+    /**
+     *
+     * @return
+     */
+    public static String getJavaRuntimeVersion() {
 		return getProperty("java.runtime.version");
 	}
 
-	public static String getJavaHome() {
+    /**
+     *
+     * @return
+     */
+    public static String getJavaHome() {
 		return getProperty("java.home");
 	}
 
-	public static String getFileEncoding() {
+    /**
+     *
+     * @return
+     */
+    public static String getFileEncoding() {
 		return getProperty("file.encoding");
 	}
 
-	public static void setFileEncoding(String charset) {
+    /**
+     *
+     * @param charset
+     */
+    public static void setFileEncoding(String charset) {
 		setProperty("file.encoding", charset);
 	}
 
-	public static String getUsersName() {
+    /**
+     *
+     * @return
+     */
+    public static String getUsersName() {
 		return getProperty("user.name");
 	}
 
-	public static String getUsersHomePath() {
+    /**
+     *
+     * @return
+     */
+    public static String getUsersHomePath() {
 		return getProperty("user.home");
 	}
 
-	public static String getFileSeparator() {
+    /**
+     *
+     * @return
+     */
+    public static String getFileSeparator() {
 		return getProperty("file.separator");
 	}
 
-	public static String getPathSeparator() {
+    /**
+     *
+     * @return
+     */
+    public static String getPathSeparator() {
 		return getProperty("path.separator");
 	}
 
-	public static void setProperty(String name, boolean value) {
+    /**
+     *
+     * @param name
+     * @param value
+     */
+    public static void setProperty(String name, boolean value) {
 		setProperty(name, valueOf(value));
 	}
 
-	public static void setProperty(String name, String value) {
+    /**
+     *
+     * @param name
+     * @param value
+     */
+    public static void setProperty(String name, String value) {
 		System.setProperty(name, value);
 	}
 
-	public static ThreadGroup getRootThreadGroup() {
+    /**
+     *
+     * @return
+     */
+    public static ThreadGroup getRootThreadGroup() {
 		ThreadGroup g = currentThread().getThreadGroup();
 		while (true) {
 			ThreadGroup parent = g.getParent();
@@ -206,7 +325,11 @@ public final class Sys {
 		return g;
 	}
 
-	public static Collection<Thread> getActiveThreads() {
+    /**
+     *
+     * @return
+     */
+    public static Collection<Thread> getActiveThreads() {
 		ThreadGroup tg = getRootThreadGroup();
 		int count = tg.activeCount();
 		Thread[] threads = new Thread[count];
@@ -214,7 +337,13 @@ public final class Sys {
 		return asList(threads);
 	}
 
-	public static boolean equalObjects(Object a, Object b) {
+    /**
+     *
+     * @param a
+     * @param b
+     * @return
+     */
+    public static boolean equalObjects(Object a, Object b) {
                 if (a == b) {
                         return true;
                 }
@@ -224,7 +353,14 @@ public final class Sys {
 		return false;
 	}
 
-	public static <T> int compare(Comparable<T> a, Comparable<T> b) {
+    /**
+     *
+     * @param <T>
+     * @param a
+     * @param b
+     * @return
+     */
+    public static <T> int compare(Comparable<T> a, Comparable<T> b) {
 		if (a == null || b == null) {
 			if (a == null && b == null) {
                                 return 0;
@@ -238,13 +374,21 @@ public final class Sys {
 		return a.compareTo((T) b);
 	}
 
-	public static boolean isWindows() {
+    /**
+     *
+     * @return
+     */
+    public static boolean isWindows() {
 		return !isUnixFileSystem();
 	}
 
 	private static Boolean unixFileSystem;
 
-	public static boolean isUnixFileSystem() {
+    /**
+     *
+     * @return
+     */
+    public static boolean isUnixFileSystem() {
 		if (unixFileSystem == null) {
 			File[] roots = listRoots();
 			unixFileSystem = roots.length == 1 && "/".equals(roots[0].getPath());

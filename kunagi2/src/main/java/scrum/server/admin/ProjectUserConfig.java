@@ -16,14 +16,24 @@ package scrum.server.admin;
 
 import ilarkesto.core.time.DateAndTime;
 
+/**
+ *
+ * @author erik
+ */
 public class ProjectUserConfig extends GProjectUserConfig {
 
-	public void touch() {
+    /**
+     *
+     */
+    public void touch() {
 		setLastActivityDateAndTime(DateAndTime.now());
 		setOnline(true);
 	}
 
-	public void reset() {
+    /**
+     *
+     */
+    public void reset() {
 		setOnline(false);
 		setSelectedEntitysIds(null);
 	}
@@ -33,7 +43,12 @@ public class ProjectUserConfig extends GProjectUserConfig {
 		return getProject().isVisibleFor(user);
 	}
 
-	public boolean isEditableBy(User user) {
+    /**
+     *
+     * @param user
+     * @return
+     */
+    public boolean isEditableBy(User user) {
 		return getProject().isEditableBy(user);
 	}
 

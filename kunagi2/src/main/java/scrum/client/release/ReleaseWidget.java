@@ -14,22 +14,19 @@
  */
 package scrum.client.release;
 
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.base.Str;
 import ilarkesto.gwt.client.AMultiSelectionViewEditWidget;
 import ilarkesto.gwt.client.AOutputViewEditWidget;
 import ilarkesto.gwt.client.TableBuilder;
-
 import java.util.Collections;
 import java.util.List;
-
 import scrum.client.ScrumGwt;
 import scrum.client.common.AScrumWidget;
 import scrum.client.issues.RequestReleaseIssuesServiceCall;
 import scrum.client.journal.ChangeHistoryWidget;
 import scrum.client.sprint.Sprint;
-
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.Widget;
 
 public class ReleaseWidget extends AScrumWidget {
 

@@ -23,6 +23,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 
+/**
+ *
+ * @author erik
+ */
 public class DirSelectionComponent extends AComponent {
 
 	private static final Log LOG = Log.get(DirSelectionComponent.class);
@@ -33,12 +37,20 @@ public class DirSelectionComponent extends AComponent {
 
 	private File selectedDir;
 
-	public void setSelectedDir(File selectedFolder) {
+    /**
+     *
+     * @param selectedFolder
+     */
+    public void setSelectedDir(File selectedFolder) {
 		this.selectedDir = selectedFolder;
 	}
 
 	// --- ---
 
+    /**
+     *
+     */
+    
 	@Override
 	protected void initializeControls() {
 		DefaultMutableTreeNode root = new DefaultMutableTreeNode("Computer", true);
@@ -49,17 +61,28 @@ public class DirSelectionComponent extends AComponent {
 		// tree.setRootVisible(false);
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected JComponent createComponent() {
 		JScrollPane scroller = new JScrollPane(tree);
 
 		return scroller;
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void updateControls() {}
 
-	public File getSelectedDir() {
+    /**
+     *
+     * @return
+     */
+    public File getSelectedDir() {
 		return selectedDir;
 	}
 

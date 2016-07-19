@@ -23,20 +23,71 @@ import java.util.List;
 import java.util.Map;
 import org.apache.commons.fileupload.FileItem;
 
+/**
+ *
+ * @author erik
+ */
 public class Form {
 
-	public static final String BUTTON_PREFIX = "_button_";
-	public static final String CLEAR_ITEM_BUTTON_NAME_PREFIX = "_clearItem_";
-	public static final String SELECT_ITEM_BUTTON_NAME_PREFIX = "_selectItem_";
-	public static final String INPUTASSISTANT_BUTTON_NAME_PREFIX = "_inputAssistant_";
-	public static final String SELECT_TEXTFIELD_ITEM_BUTTON_NAME_PREFIX = "_selectTextfieldItem_";
-	public static final String REMOVE_ITEM_BUTTON_NAME_PREFIX = "_removeItem_";
-	public static final String ADD_ITEM_BUTTON_NAME_PREFIX = "_addItem_";
-	public static final String REMOVE_ALLITEMS_BUTTON_NAME_PREFIX = "_removeAllItems_";
-	public static final String REMOVE_COMPLEX_BUTTON_NAME_PREFIX = "_removeComplex_";
-	public static final String EDIT_COMPLEX_BUTTON_NAME_PREFIX = "_editComplex_";
-	public static final String ADD_COMPLEX_BUTTON_NAME_PREFIX = "_addComplex_";
-	public static final String ABORT_BUTTON_NAME = "_abort";
+    /**
+     *
+     */
+    public static final String BUTTON_PREFIX = "_button_";
+
+    /**
+     *
+     */
+    public static final String CLEAR_ITEM_BUTTON_NAME_PREFIX = "_clearItem_";
+
+    /**
+     *
+     */
+    public static final String SELECT_ITEM_BUTTON_NAME_PREFIX = "_selectItem_";
+
+    /**
+     *
+     */
+    public static final String INPUTASSISTANT_BUTTON_NAME_PREFIX = "_inputAssistant_";
+
+    /**
+     *
+     */
+    public static final String SELECT_TEXTFIELD_ITEM_BUTTON_NAME_PREFIX = "_selectTextfieldItem_";
+
+    /**
+     *
+     */
+    public static final String REMOVE_ITEM_BUTTON_NAME_PREFIX = "_removeItem_";
+
+    /**
+     *
+     */
+    public static final String ADD_ITEM_BUTTON_NAME_PREFIX = "_addItem_";
+
+    /**
+     *
+     */
+    public static final String REMOVE_ALLITEMS_BUTTON_NAME_PREFIX = "_removeAllItems_";
+
+    /**
+     *
+     */
+    public static final String REMOVE_COMPLEX_BUTTON_NAME_PREFIX = "_removeComplex_";
+
+    /**
+     *
+     */
+    public static final String EDIT_COMPLEX_BUTTON_NAME_PREFIX = "_editComplex_";
+
+    /**
+     *
+     */
+    public static final String ADD_COMPLEX_BUTTON_NAME_PREFIX = "_addComplex_";
+
+    /**
+     *
+     */
+    public static final String ABORT_BUTTON_NAME = "_abort";
 
 	private String formName;
 	private String title;
@@ -51,9 +102,15 @@ public class Form {
 	private boolean initialized;
 	private List<FormPlugin> footerPlugins = new ArrayList<>(1);
 
-	protected void initializeForm() {}
+    /**
+     *
+     */
+    protected void initializeForm() {}
 
-	public final void initialize() {
+    /**
+     *
+     */
+    public final void initialize() {
 		if (initialized) {
                         return;
                 }
@@ -61,20 +118,37 @@ public class Form {
 		initializeForm();
 	}
 
-	public Form addFooterPlugin(FormPlugin plugin) {
+    /**
+     *
+     * @param plugin
+     * @return
+     */
+    public Form addFooterPlugin(FormPlugin plugin) {
 		footerPlugins.add(plugin);
 		return this;
 	}
 
-	public List<FormPlugin> getFooterPlugins() {
+    /**
+     *
+     * @return
+     */
+    public List<FormPlugin> getFooterPlugins() {
 		return footerPlugins;
 	}
 
-	public boolean isFooterPluginsAvailable() {
+    /**
+     *
+     * @return
+     */
+    public boolean isFooterPluginsAvailable() {
 		return footerPlugins != null && !footerPlugins.isEmpty();
 	}
 
-	public List<FormField> getAutoTriggerFields() {
+    /**
+     *
+     * @return
+     */
+    public List<FormField> getAutoTriggerFields() {
 		List<FormField> result = new ArrayList<>();
 		for (FormField field : visibleFields) {
 			if (field instanceof ItemFormField) {
@@ -86,133 +160,274 @@ public class Form {
 		return result;
 	}
 
-	public FormButton getMainSubmitButton() {
+    /**
+     *
+     * @return
+     */
+    public FormButton getMainSubmitButton() {
 		if (submitButtons.isEmpty()) {
                         return null;
                 }
 		return submitButtons.get(0);
 	}
 
-	public final void setAutoLocalize(boolean autoLocalize) {
+    /**
+     *
+     * @param autoLocalize
+     */
+    public final void setAutoLocalize(boolean autoLocalize) {
 		this.autoLocalize = autoLocalize;
 	}
 
-	public final void setStringKeyPrefix(String stringKeyPrefix) {
+    /**
+     *
+     * @param stringKeyPrefix
+     */
+    public final void setStringKeyPrefix(String stringKeyPrefix) {
 		this.stringKeyPrefix = stringKeyPrefix;
 	}
 
-	public String getStringKeyPrefix() {
+    /**
+     *
+     * @return
+     */
+    public String getStringKeyPrefix() {
 		if (stringKeyPrefix == null) {
 			stringKeyPrefix = getName().replace('_', '.');
 		}
 		return stringKeyPrefix;
 	}
 
-	public FormButton getDefaultButton() {
+    /**
+     *
+     * @return
+     */
+    public FormButton getDefaultButton() {
 		return defaultButton;
 	}
 
-	public boolean isMultipart() {
+    /**
+     *
+     * @return
+     */
+    public boolean isMultipart() {
 		return multipart;
 	}
 
-	public void setFormName(String name) {
+    /**
+     *
+     * @param name
+     */
+    public void setFormName(String name) {
 		this.formName = name;
 	}
 
-	public String getName() {
+    /**
+     *
+     * @return
+     */
+    public String getName() {
 		if (formName == null) {
                         formName = lowercaseFirstLetter(getClass().getSimpleName());
                 }
 		return formName;
 	}
 
-	public String getErrorMessage() {
+    /**
+     *
+     * @return
+     */
+    public String getErrorMessage() {
 		return errorMessage;
 	}
 
-	public void setErrorMessage(String errorMessage) {
+    /**
+     *
+     * @param errorMessage
+     */
+    public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
 
-	public OutputFormField addOutput(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public OutputFormField addOutput(String name) {
 		return addVisibleField(name, new OutputFormField(name));
 	}
 
-	public RadioSelectFormField addRadioSelect(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public RadioSelectFormField addRadioSelect(String name) {
 		return addVisibleField(name, new RadioSelectFormField(name));
 	}
 
-	public UploadFormField addUpload(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public UploadFormField addUpload(String name) {
 		multipart = true;
 		return addVisibleField(name, new UploadFormField(name));
 	}
 
-	public FileFormField addFile(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public FileFormField addFile(String name) {
 		return addVisibleField(name, new FileFormField(name));
 	}
 
-	public MultiComplexFormField addMultiComplex(String name, Class<? extends BeanForm> elementFormClass) {
+    /**
+     *
+     * @param name
+     * @param elementFormClass
+     * @return
+     */
+    public MultiComplexFormField addMultiComplex(String name, Class<? extends BeanForm> elementFormClass) {
 		return addVisibleField(name, new MultiComplexFormField(name, elementFormClass));
 	}
 
-	public MultiItemFormField addMultiItem(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public MultiItemFormField addMultiItem(String name) {
 		return addVisibleField(name, new MultiItemFormField(name));
 	}
 
-	public ItemFormField addItem(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public ItemFormField addItem(String name) {
 		return addVisibleField(name, new ItemFormField(name));
 	}
 
-	public DropdownFormField addDropdown(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public DropdownFormField addDropdown(String name) {
 		return addVisibleField(name, new DropdownFormField(name));
 	}
 
-	public CheckboxFormField addCheckbox(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public CheckboxFormField addCheckbox(String name) {
 		return addVisibleField(name, new CheckboxFormField(name));
 	}
 
-	public MultiCheckboxFormField addMultiCheckbox(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public MultiCheckboxFormField addMultiCheckbox(String name) {
 		return addVisibleField(name, new MultiCheckboxFormField(name));
 	}
 
-	public TextFormField addText(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public TextFormField addText(String name) {
 		return addVisibleField(name, new TextFormField(name));
 	}
 
-	public FloatFormField addFloat(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public FloatFormField addFloat(String name) {
 		return addVisibleField(name, new FloatFormField(name));
 	}
 
-	public IntegerFormField addInteger(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public IntegerFormField addInteger(String name) {
 		return addVisibleField(name, new IntegerFormField(name));
 	}
 
-	public PasswordFormField addPassword(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public PasswordFormField addPassword(String name) {
 		return addVisibleField(name, new PasswordFormField(name));
 	}
 
-	public TextareaFormField addTextarea(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public TextareaFormField addTextarea(String name) {
 		return addVisibleField(name, new TextareaFormField(name));
 	}
 
-	public MoneyFormField addMoney(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public MoneyFormField addMoney(String name) {
 		return addVisibleField(name, new MoneyFormField(name));
 	}
 
-	public EmailAddressFormField addEmailAddress(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public EmailAddressFormField addEmailAddress(String name) {
 		return addVisibleField(name, new EmailAddressFormField(name));
 	}
 
-	public DateFormField addDate(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public DateFormField addDate(String name) {
 		return addVisibleField(name, new DateFormField(name));
 	}
 
-	public TimeFormField addTime(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public TimeFormField addTime(String name) {
 		return addVisibleField(name, new TimeFormField(name));
 	}
 
-	public TimePeriodFormField addTimePeriod(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public TimePeriodFormField addTimePeriod(String name) {
 		return addVisibleField(name, new TimePeriodFormField(name));
 	}
 
@@ -229,7 +444,12 @@ public class Form {
 		return field;
 	}
 
-	public HiddenFormField addHidden(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public HiddenFormField addHidden(String name) {
 		HiddenFormField field = new HiddenFormField(name);
 		field.setForm(this);
 		hiddenFields.add(field);
@@ -239,7 +459,12 @@ public class Form {
 		return field;
 	}
 
-	public FormButton addSubmitButton(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public FormButton addSubmitButton(String name) {
 		FormButton button = new FormButton(name);
 		button.setIcon("submit");
 		submitButtons.add(button);
@@ -254,26 +479,47 @@ public class Form {
 		return button;
 	}
 
-	public FormButton addAbortSubmitButton() {
+    /**
+     *
+     * @return
+     */
+    public FormButton addAbortSubmitButton() {
 		return addSubmitButton(ABORT_BUTTON_NAME).setUpdateFields(false).setValidateForm(false).setIcon("abort");
 	}
 
-	public String getFormTitle() {
+    /**
+     *
+     * @return
+     */
+    public String getFormTitle() {
 		if (title == null && autoLocalize) {
 			title = localizer.string(getStringKeyPrefix() + ".formTitle");
 		}
 		return title;
 	}
 
-	public void setFormTitle(String value) {
+    /**
+     *
+     * @param value
+     */
+    public void setFormTitle(String value) {
 		this.title = value;
 	}
 
-	public List<FormButton> getSubmitButtons() {
+    /**
+     *
+     * @return
+     */
+    public List<FormButton> getSubmitButtons() {
 		return submitButtons;
 	}
 
-	public FormButton getButton(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public FormButton getButton(String name) {
 
 		// textField
 		if (name.startsWith(INPUTASSISTANT_BUTTON_NAME_PREFIX)) {
@@ -347,15 +593,28 @@ public class Form {
 		throw new RuntimeException("button does not exist: " + name);
 	}
 
-	public List<FormField> getVisibleFields() {
+    /**
+     *
+     * @return
+     */
+    public List<FormField> getVisibleFields() {
 		return visibleFields;
 	}
 
-	public List<HiddenFormField> getHiddenFields() {
+    /**
+     *
+     * @return
+     */
+    public List<HiddenFormField> getHiddenFields() {
 		return hiddenFields;
 	}
 
-	public void update(Map<String, String> data, java.util.Collection<FileItem> uploadedFiles) {
+    /**
+     *
+     * @param data
+     * @param uploadedFiles
+     */
+    public void update(Map<String, String> data, java.util.Collection<FileItem> uploadedFiles) {
 		if (uploadedFiles == null) {
                         return;
                 }
@@ -367,9 +626,16 @@ public class Form {
                 }
 	}
 
-	protected final static String ERROR_MSG = "Offensichtlich hast Du Bl\u00F6dsinn eingetippt. Du darfst Dich korrigieren.";
+    /**
+     *
+     */
+    protected final static String ERROR_MSG = "Offensichtlich hast Du Bl\u00F6dsinn eingetippt. Du darfst Dich korrigieren.";
 
-	public void validate() throws ValidationException {
+    /**
+     *
+     * @throws ValidationException
+     */
+    public void validate() throws ValidationException {
 		for (FormField field : visibleFields) {
 			try {
 				field.validate();
@@ -382,7 +648,12 @@ public class Form {
 		errorMessage = null;
 	}
 
-	public FormField getField(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public FormField getField(String name) {
 		for (FormField field : visibleFields) {
 			if (field.getName().equals(name)) {
                                 return field;
@@ -396,16 +667,31 @@ public class Form {
 		return null;
 	}
 
-	public String getFieldValue(String fieldName) {
+    /**
+     *
+     * @param fieldName
+     * @return
+     */
+    public String getFieldValue(String fieldName) {
 		return getField(fieldName).getValueAsString();
 	}
 
-	public boolean isKeepAlive() {
+    /**
+     *
+     * @return
+     */
+    public boolean isKeepAlive() {
 		return keepAlive;
 	}
 
 	// --- helper ---
 
+    /**
+     *
+     * @param name
+     * @return
+     */
+    
 	protected String getFieldLabel(String name) {
 		if (localizer == null) {
                         throw new MissingDependencyException("localizer");
@@ -413,7 +699,12 @@ public class Form {
 		return localizer.string(getStringKeyPrefix() + "." + name);
 	}
 
-	protected String getFieldTooltip(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    protected String getFieldTooltip(String name) {
 		if (localizer == null) {
                         throw new MissingDependencyException("localizer");
                 }
@@ -433,21 +724,37 @@ public class Form {
 
 	// --- dependencies ---
 
+    /**
+     *
+     */
+    
 	protected Localizer localizer;
 
-	public final void setLocalizer(Localizer stringProvider) {
+    /**
+     *
+     * @param stringProvider
+     */
+    public final void setLocalizer(Localizer stringProvider) {
 		this.localizer = stringProvider;
 	}
 
 	private BeanProvider beanProvider;
 
-	public void setBeanProvider(BeanProvider beanProvider) {
+    /**
+     *
+     * @param beanProvider
+     */
+    public void setBeanProvider(BeanProvider beanProvider) {
 		this.beanProvider = beanProvider;
 	}
 
 	private boolean keepAlive = true;
 
-	public void setKeepAlive(boolean keepAlive) {
+    /**
+     *
+     * @param keepAlive
+     */
+    public void setKeepAlive(boolean keepAlive) {
 		this.keepAlive = keepAlive;
 	}
 

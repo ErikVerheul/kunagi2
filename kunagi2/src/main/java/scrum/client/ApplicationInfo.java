@@ -14,10 +14,13 @@
  */
 package scrum.client;
 
+import com.google.gwt.user.client.rpc.IsSerializable;
 import java.io.Serializable;
 
-import com.google.gwt.user.client.rpc.IsSerializable;
-
+/**
+ *
+ * @author erik
+ */
 public class ApplicationInfo implements Serializable, IsSerializable {
 
 	private String name;
@@ -27,7 +30,16 @@ public class ApplicationInfo implements Serializable, IsSerializable {
 	private String currentRelease;
 	private String dataPath;
 
-	public ApplicationInfo(String name, String release, String build, boolean defaultAdminPassword,
+    /**
+     *
+     * @param name
+     * @param release
+     * @param build
+     * @param defaultAdminPassword
+     * @param currentRelease
+     * @param dataPath
+     */
+    public ApplicationInfo(String name, String release, String build, boolean defaultAdminPassword,
 			String currentRelease, String dataPath) {
 		this.name = name;
 		this.release = release;
@@ -37,39 +49,78 @@ public class ApplicationInfo implements Serializable, IsSerializable {
 		this.dataPath = dataPath;
 	}
 
-	protected ApplicationInfo() {}
+    /**
+     *
+     */
+    protected ApplicationInfo() {}
 
-	public boolean isNewReleaseAvailable() {
-		if (currentRelease == null) return false;
-		if (release.startsWith("dev")) return false;
+    /**
+     *
+     * @return
+     */
+    public boolean isNewReleaseAvailable() {
+		if (currentRelease == null) {
+                    return false;
+        }
+		if (release.startsWith("dev")) {
+                    return false;
+        }
 		return !currentRelease.equals(release);
 	}
 
-	public boolean isDefaultAdminPassword() {
+    /**
+     *
+     * @return
+     */
+    public boolean isDefaultAdminPassword() {
 		return defaultAdminPassword;
 	}
 
-	public String getRelease() {
+    /**
+     *
+     * @return
+     */
+    public String getRelease() {
 		return release;
 	}
 
-	public String getCurrentRelease() {
+    /**
+     *
+     * @return
+     */
+    public String getCurrentRelease() {
 		return currentRelease;
 	}
 
-	public String getBuild() {
+    /**
+     *
+     * @return
+     */
+    public String getBuild() {
 		return build;
 	}
 
-	public boolean isProductionStage() {
+    /**
+     *
+     * @return
+     */
+    public boolean isProductionStage() {
 		return !release.startsWith("dev[");
 	}
 
-	public String getVersionDescription() {
+    /**
+     *
+     * @return
+     */
+    public String getVersionDescription() {
 		return name + " " + release + " | Build " + build;
 	}
 
-	public String getDataPath() {
+    /**
+     *
+     * @return
+     */
+    public String getDataPath() {
 		return dataPath;
 	}
 

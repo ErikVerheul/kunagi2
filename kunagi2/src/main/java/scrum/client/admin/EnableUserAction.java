@@ -14,9 +14,17 @@
  */
 package scrum.client.admin;
 
+/**
+ *
+ * @author erik
+ */
 public class EnableUserAction extends GEnableUserAction {
 
-	public EnableUserAction(scrum.client.admin.User user) {
+    /**
+     *
+     * @param user
+     */
+    public EnableUserAction(scrum.client.admin.User user) {
 		super(user);
 	}
 
@@ -27,14 +35,12 @@ public class EnableUserAction extends GEnableUserAction {
 
 	@Override
 	public boolean isExecutable() {
-		if (!user.isDisabled()) return false;
-		return true;
+		return user.isDisabled();
 	}
 
 	@Override
 	public boolean isPermitted() {
-		if (!getCurrentUser().isAdmin()) return false;
-		return true;
+		return getCurrentUser().isAdmin();
 	}
 
 	@Override

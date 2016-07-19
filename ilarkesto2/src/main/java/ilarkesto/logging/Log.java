@@ -15,11 +15,11 @@
 package ilarkesto.logging;
 
 import static ilarkesto.core.base.Str.getSimpleName;
+import static ilarkesto.core.time.Tm.getCurrentTimeMillis;
 import static ilarkesto.logging.Log.Level.ERROR;
 import static ilarkesto.logging.Log.Level.FATAL;
 import static ilarkesto.logging.Log.Level.INFO;
 import static ilarkesto.logging.Log.Level.WARN;
-import static ilarkesto.core.time.Tm.getCurrentTimeMillis;
 import static java.lang.System.err;
 import java.util.HashMap;
 import java.util.Map;

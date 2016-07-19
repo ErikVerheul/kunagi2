@@ -14,33 +14,59 @@
  */
 package ilarkesto.base;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class Assert {
 
-	public static void greaterInt(int a, int b) {
+    /**
+     *
+     * @param a
+     * @param b
+     */
+    public static void greaterInt(int a, int b) {
 		if (a <= b) {
                         throw new AssertionException(a + " <= " + b);
                 }
 	}
 
-	public static void greaterOrEqualInt(int a, int b) {
+    /**
+     *
+     * @param a
+     * @param b
+     */
+    public static void greaterOrEqualInt(int a, int b) {
 		if (a < b) {
                         throw new AssertionException(a + " < " + b);
                 }
 	}
 
-	public static void equalInt(int a, int b) {
+    /**
+     *
+     * @param a
+     * @param b
+     */
+    public static void equalInt(int a, int b) {
 		if (a != b) {
                         throw new AssertionException(a + " != " + b);
                 }
 	}
 
-	public static void tru(boolean expression) {
+    /**
+     *
+     * @param expression
+     */
+    public static void tru(boolean expression) {
 		if (!expression) {
                         throw new AssertionException("expression is not true");
                 }
 	}
 
-	public static class AssertionException extends RuntimeException {
+    /**
+     *
+     */
+    public static class AssertionException extends RuntimeException {
 
 		AssertionException(String message) {
 			super(message);

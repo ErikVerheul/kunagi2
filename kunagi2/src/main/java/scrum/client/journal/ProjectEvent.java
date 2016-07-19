@@ -15,10 +15,8 @@
 package scrum.client.journal;
 
 import ilarkesto.core.time.DateAndTime;
-
 import java.util.Comparator;
 import java.util.Map;
-
 import scrum.client.collaboration.Wiki;
 import scrum.client.project.Project;
 

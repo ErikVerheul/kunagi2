@@ -14,25 +14,32 @@
  */
 package scrum.client.dnd;
 
-import scrum.client.common.ABlockWidget;
-import scrum.client.common.BlockListWidget;
-import scrum.client.project.CreateRequirementAction;
-import scrum.client.project.CreateStoryButtonWidget;
-import scrum.client.project.Requirement;
-
 import com.allen_sauer.gwt.dnd.client.DragContext;
 import com.allen_sauer.gwt.dnd.client.VetoDragException;
 import com.allen_sauer.gwt.dnd.client.drop.DropController;
 import com.allen_sauer.gwt.dnd.client.util.CoordinateLocation;
 import com.allen_sauer.gwt.dnd.client.util.WidgetArea;
 import com.google.gwt.user.client.ui.Widget;
+import scrum.client.common.ABlockWidget;
+import scrum.client.common.BlockListWidget;
+import scrum.client.project.CreateRequirementAction;
+import scrum.client.project.CreateStoryButtonWidget;
+import scrum.client.project.Requirement;
 
+/**
+ *
+ * @author erik
+ */
 public class BlockDropController implements DropController {
 
 	private BlockListWidget targetList;
 	private ABlockWidget targetBlock;
 
-	public BlockDropController(ABlockWidget targetBlock) {
+    /**
+     *
+     * @param targetBlock
+     */
+    public BlockDropController(ABlockWidget targetBlock) {
 		this.targetBlock = targetBlock;
 		this.targetList = targetBlock.getList();
 	}
@@ -45,7 +52,9 @@ public class BlockDropController implements DropController {
 	@Override
 	public void onDrop(DragContext context) {
 		Widget draggable = context.draggable;
-		if (!isDropAllowed(draggable)) return;
+		if (!isDropAllowed(draggable)) {
+                    return;
+        }
 
 		WidgetArea area = new WidgetArea(targetBlock, null);
 		CoordinateLocation location = new CoordinateLocation(context.mouseX, context.mouseY);
@@ -55,8 +64,12 @@ public class BlockDropController implements DropController {
 			ABlockWidget draggedBlock = (ABlockWidget) draggable;
 			int fromIndex = targetList.indexOfBlock(draggedBlock);
 			int toIndex = targetList.indexOfBlock(targetBlock);
-			if (fromIndex > toIndex) toIndex++;
-			if (isHigher(area, location)) toIndex--;
+			if (fromIndex > toIndex) {
+                            toIndex++;
+            }
+                        if (isHigher(area, location)) {
+                            toIndex--;
+            }
 			targetList.drop(draggedBlock, toIndex);
 		}
 
@@ -79,7 +92,9 @@ public class BlockDropController implements DropController {
 
 	@Override
 	public void onMove(DragContext context) {
-		if (!isDropAllowed(context.draggable)) return;
+            if (!isDropAllowed(context.draggable)) {
+            return;
+        }
 
 		WidgetArea area = new WidgetArea(targetBlock, null);
 		CoordinateLocation location = new CoordinateLocation(context.mouseX, context.mouseY);

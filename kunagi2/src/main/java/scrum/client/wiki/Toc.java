@@ -17,11 +17,19 @@ package scrum.client.wiki;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class Toc extends AWikiElement {
 
 	private final WikiModel model;
 
-	public Toc(WikiModel model) {
+    /**
+     *
+     * @param model
+     */
+    public Toc(WikiModel model) {
 		super();
 		this.model = model;
 	}
@@ -32,7 +40,9 @@ public class Toc extends AWikiElement {
 		for (AWikiElement element : model.getElements()) {
 			appendHeaders(headers, element);
 		}
-		if (headers.isEmpty()) return "";
+		if (headers.isEmpty()) {
+                    return "";
+        }
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("<div class=\"toc\">");
@@ -73,7 +83,9 @@ public class Toc extends AWikiElement {
 			}
 			return;
 		}
-		if (element instanceof Header) headers.add((Header) element);
+		if (element instanceof Header) {
+                    headers.add((Header) element);
+        }
 	}
 
 	@Override

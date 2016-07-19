@@ -19,43 +19,81 @@ import java.util.Collection;
 import java.util.Map;
 import org.apache.commons.fileupload.FileItem;
 
+/**
+ *
+ * @author erik
+ */
 public class FileFormField extends AFormField {
 
     private File value;
     private boolean folder;
 
+    /**
+     *
+     * @param name
+     */
     public FileFormField(String name) {
         super(name);
     }
 
+    /**
+     *
+     * @param value
+     */
     public void setValue(File value) {
         this.value = value;
     }
 
+    /**
+     *
+     * @return
+     */
     public File getValue() {
         return value;
     }
 
+    /**
+     *
+     * @param folder
+     * @return
+     */
     public FileFormField setFolder(boolean folder) {
         this.folder = folder;
         return this;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isFolder() {
         return folder;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getValueAsString() {
         return value == null ? null : value.getPath();
     }
 
+    /**
+     *
+     * @param data
+     * @param uploadedFiles
+     */
     @Override
     public void update(Map<String, String> data, Collection<FileItem> uploadedFiles) {
         String path = data.get(getName());
         value = path == null ? null : new File(path);
     }
 
+    /**
+     *
+     * @throws ValidationException
+     */
     @Override
     public void validate() throws ValidationException {
         if (value == null) {

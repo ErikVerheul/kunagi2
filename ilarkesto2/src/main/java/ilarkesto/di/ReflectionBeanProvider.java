@@ -23,16 +23,25 @@ import java.util.Set;
  * provided by this bean provider.
  * 
  * @author wko
+ * @param <T>
  */
 public class ReflectionBeanProvider<T> extends ABeanProvider {
 
 	private BeanMap<T> beanMap;
 
-	public ReflectionBeanProvider(T bean) {
+    /**
+     *
+     * @param bean
+     */
+    public ReflectionBeanProvider(T bean) {
 		beanMap = new BeanMap<>(bean);
 	}
 
-	public T getBean() {
+    /**
+     *
+     * @return
+     */
+    public T getBean() {
 		return beanMap.getBean();
 	}
 
@@ -43,7 +52,12 @@ public class ReflectionBeanProvider<T> extends ABeanProvider {
 		return result;
 	}
 
-	public final boolean containsBean(String beanName) {
+    /**
+     *
+     * @param beanName
+     * @return
+     */
+    public final boolean containsBean(String beanName) {
 		return beanMap.containsKey(beanName);
 	}
 

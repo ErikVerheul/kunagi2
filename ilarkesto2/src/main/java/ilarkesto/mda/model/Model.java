@@ -16,17 +16,27 @@ package ilarkesto.mda.model;
 
 import ilarkesto.logging.Log;
 
+/**
+ *
+ * @author erik
+ */
 public class Model implements NodeTypes {
 
 	private static final Log LOG = Log.get(Model.class);
 
 	private Node root;
 
-	public Model() {
+    /**
+     *
+     */
+    public Model() {
 		createRootNode();
 	}
 
-	public void clear() {
+    /**
+     *
+     */
+    public void clear() {
 		createRootNode();
 	}
 
@@ -34,7 +44,14 @@ public class Model implements NodeTypes {
 		root = new Node(this, "root", null, "root", null);
 	}
 
-        @edu.umd.cs.findbugs.annotations.SuppressWarnings(value = "RV_RETURN_VALUE_IGNORED_INFERRED", justification = "Return value not needed")
+    /**
+     *
+     * @param id
+     * @param parentId
+     * @param type
+     * @param value
+     */
+    @edu.umd.cs.findbugs.annotations.SuppressWarnings(value = "RV_RETURN_VALUE_IGNORED_INFERRED", justification = "Return value not needed")
 	public void addNode(String id, String parentId, String type, String value) {
 		if ("root".equals(id)) {
                         return;
@@ -46,7 +63,12 @@ public class Model implements NodeTypes {
 		parent.addChild(id, type, value);
 	}
 
-	public Node getNodeById(String id) {
+    /**
+     *
+     * @param id
+     * @return
+     */
+    public Node getNodeById(String id) {
 		return getNodeById(root, id);
 	}
 
@@ -63,11 +85,19 @@ public class Model implements NodeTypes {
 		return null;
 	}
 
-	public Node getRoot() {
+    /**
+     *
+     * @return
+     */
+    public Node getRoot() {
 		return root;
 	}
 
-        @edu.umd.cs.findbugs.annotations.SuppressWarnings(value = "RV_RETURN_VALUE_IGNORED_INFERRED", justification = "Return value not needed")
+    /**
+     *
+     * @return
+     */
+    @edu.umd.cs.findbugs.annotations.SuppressWarnings(value = "RV_RETURN_VALUE_IGNORED_INFERRED", justification = "Return value not needed")
 	public static Model createTestInstance() {
 		Model model = new Model();
 		Node root = model.root;

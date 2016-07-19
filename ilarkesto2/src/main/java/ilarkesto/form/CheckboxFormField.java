@@ -19,33 +19,62 @@ import java.util.Collection;
 import java.util.Map;
 import org.apache.commons.fileupload.FileItem;
 
+/**
+ *
+ * @author erik
+ */
 public class CheckboxFormField extends AFormField {
 
     private boolean checked;
 
+    /**
+     *
+     * @param name
+     */
     public CheckboxFormField(String name) {
         super(name);
     }
 
+    /**
+     *
+     * @param value
+     * @return
+     */
     public CheckboxFormField setChecked(boolean value) {
         this.checked = value;
         return this;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isChecked() {
         return checked;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getValueAsString() {
         return  valueOf(checked);
     }
 
+    /**
+     *
+     * @param data
+     * @param uploadedFiles
+     */
     @Override
     public void update(Map<String, String> data, Collection<FileItem> uploadedFiles) {
         checked = data.containsKey(getName());
     }
 
+    /**
+     *
+     */
     @Override
     public void validate() {}
 

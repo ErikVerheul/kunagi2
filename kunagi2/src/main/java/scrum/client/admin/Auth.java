@@ -20,11 +20,19 @@ import scrum.client.ScrumScopeManager;
 import scrum.client.communication.ServerDataReceivedEvent;
 import scrum.client.communication.ServerDataReceivedHandler;
 
+/**
+ *
+ * @author erik
+ */
 public class Auth extends GAuth implements ServerDataReceivedHandler {
 
 	private User user;
 
-	@Override
+    /**
+     *
+     * @param event
+     */
+    @Override
 	public void onServerDataReceived(ServerDataReceivedEvent event) {
 		DataTransferObject data = event.getData();
 		if (data.isUserSet()) {
@@ -34,15 +42,26 @@ public class Auth extends GAuth implements ServerDataReceivedHandler {
 		}
 	}
 
-	public void logout() {
+    /**
+     *
+     */
+    public void logout() {
 		user = null;
 	}
 
-	public boolean isUserLoggedIn() {
+    /**
+     *
+     * @return
+     */
+    public boolean isUserLoggedIn() {
 		return user != null;
 	}
 
-	public User getUser() {
+    /**
+     *
+     * @return
+     */
+    public User getUser() {
 		return user;
 	}
 

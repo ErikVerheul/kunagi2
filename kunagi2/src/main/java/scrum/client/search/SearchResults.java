@@ -21,24 +21,40 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
 import scrum.client.common.AScrumGwtEntity;
 
+/**
+ *
+ * @author erik
+ */
 public class SearchResults {
 
 	private final Collection<AScrumGwtEntity> entities = new HashSet<AScrumGwtEntity>();
 
-	public boolean isEmpty() {
+    /**
+     *
+     * @return
+     */
+    public boolean isEmpty() {
 		return entities.isEmpty();
 	}
 
-	public void clear() {
-		if (entities.isEmpty()) return;
+    /**
+     *
+     */
+    public void clear() {
+		if (entities.isEmpty()) {
+                    return;
+        }
 		entities.clear();
 		new SearchResultsChangedEvent().fireInCurrentScope();
 	}
 
-	public void addEntities(List<? extends AScrumGwtEntity> entities) {
+    /**
+     *
+     * @param entities
+     */
+    public void addEntities(List<? extends AScrumGwtEntity> entities) {
 		boolean changed = this.entities.addAll(entities);
 		if (changed) {
 			INFO("SearchResults:", this.entities.size());
@@ -46,7 +62,11 @@ public class SearchResults {
 		}
 	}
 
-	public Map<String, List<AScrumGwtEntity>> getEntitiesGrouped() {
+    /**
+     *
+     * @return
+     */
+    public Map<String, List<AScrumGwtEntity>> getEntitiesGrouped() {
 		Map<String, List<AScrumGwtEntity>> ret = new LinkedHashMap<String, List<AScrumGwtEntity>>();
 		for (AScrumGwtEntity entity : entities) {
 			String key = entity.getClass().getName();

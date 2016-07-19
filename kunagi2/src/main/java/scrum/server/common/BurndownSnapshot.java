@@ -16,12 +16,28 @@ package scrum.server.common;
 
 import ilarkesto.core.time.Date;
 
+/**
+ *
+ * @author erik
+ */
 public interface BurndownSnapshot {
 
-	public Date getDate();
+    /**
+     *
+     * @return
+     */
+    public Date getDate();
 
-	public int getBurnedWorkTotal();
+    /**
+     *
+     * @return
+     */
+    public int getBurnedWorkTotal();
 
-	public int getRemainingWork();
+    /**
+     *
+     * @return
+     */
+    public int getRemainingWork();
 
 }

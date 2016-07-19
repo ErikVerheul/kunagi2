@@ -18,9 +18,16 @@ import ilarkesto.base.StrExtend;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+/**
+ *
+ * @author erik
+ */
 public class StrTest extends Assert {
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void getLeadingSpaces() {
 		assertEquals(StrExtend.getLeadingSpaces("   a"), "   ");
 		assertEquals(StrExtend.getLeadingSpaces("   "), "   ");
@@ -28,7 +35,10 @@ public class StrTest extends Assert {
 		assertEquals(StrExtend.getLeadingSpaces(""), "");
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void cutFromTo() {
 		assertEquals(StrExtend.cutFromTo("Hello <em>world</em>!", "<em>", "</em>"), "world");
 	}

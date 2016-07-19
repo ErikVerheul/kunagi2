@@ -14,8 +14,16 @@
  */
 package ilarkesto.core.navig;
 
+/**
+ *
+ * @author erik
+ */
 public interface NavigatorObserver {
 
-	void onPageChanged(Navigator navigator);
+    /**
+     *
+     * @param navigator
+     */
+    void onPageChanged(Navigator navigator);
 
 }

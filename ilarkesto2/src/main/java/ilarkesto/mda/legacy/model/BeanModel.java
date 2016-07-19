@@ -23,6 +23,10 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class BeanModel extends AModel {
 
 	private final String packageName;
@@ -35,89 +39,171 @@ public abstract class BeanModel extends AModel {
 	private BeanModel superbean;
 	private String superclass;
 
-	public BeanModel(String name, String packageName) {
+    /**
+     *
+     * @param name
+     * @param packageName
+     */
+    public BeanModel(String name, String packageName) {
 		super(name);
 		this.packageName = packageName;
 	}
 
-	public PredicateModel addPredicate(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public PredicateModel addPredicate(String name) {
 		PredicateModel predicate = new PredicateModel(name);
 		predicates.add(predicate);
 		return predicate;
 	}
 
-	public List<PredicateModel> getPredicates() {
+    /**
+     *
+     * @return
+     */
+    public List<PredicateModel> getPredicates() {
 		return predicates;
 	}
 
-	@Deprecated
+    /**
+     *
+     * @return
+     * @deprecated
+     */
+    @Deprecated
 	public boolean isEntity() {
 		return false;
 	}
 
-	@Deprecated
+    /**
+     *
+     * @return
+     * @deprecated
+     */
+    @Deprecated
 	public boolean isValueObject() {
 		return false;
 	}
 
-	public String getBeanClass() {
+    /**
+     *
+     * @return
+     */
+    public String getBeanClass() {
 		return getPackageName() + "." + getName();
 	}
 
-	public Set<CompositeModel> getComposites() {
+    /**
+     *
+     * @return
+     */
+    public Set<CompositeModel> getComposites() {
 		return composites;
 	}
 
-	public void addDaosAsComposites(Collection<EntityModel> entites) {
+    /**
+     *
+     * @param entites
+     */
+    public void addDaosAsComposites(Collection<EntityModel> entites) {
 		for (EntityModel entity : entites) {
 			addDaoAsComposite(entity);
 		}
 	}
 
-	public CompositeModel addDaoAsComposite(EntityModel entity) {
+    /**
+     *
+     * @param entity
+     * @return
+     */
+    public CompositeModel addDaoAsComposite(EntityModel entity) {
 		return addComposite(entity.getDaoClass(), entity.getDaoName());
 	}
 
-	public CompositeModel addComposite(BeanModel bean) {
+    /**
+     *
+     * @param bean
+     * @return
+     */
+    public CompositeModel addComposite(BeanModel bean) {
 		return addComposite(bean.getBeanClass(), bean.getName());
 	}
 
-	public CompositeModel addComposite(String type, String name) {
+    /**
+     *
+     * @param type
+     * @param name
+     * @return
+     */
+    public CompositeModel addComposite(String type, String name) {
 		CompositeModel composite = new CompositeModel(type, name);
 		composites.add(composite);
 		return composite;
 	}
 
-	public CompositeModel addComposite(String type) {
+    /**
+     *
+     * @param type
+     * @return
+     */
+    public CompositeModel addComposite(String type) {
 		if (!isUpperCase(type.charAt(0))) {
                         throw new RuntimeException("Type needs to start with uppercase character: " + type);
                 }
 		return addComposite(type, lowercaseFirstLetter(type));
 	}
 
-	public EventModel addEvent(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public EventModel addEvent(String name) {
 		EventModel event = new EventModel(name);
 		events.add(event);
 		return event;
 	}
 
-	public Set<EventModel> getEvents() {
+    /**
+     *
+     * @return
+     */
+    public Set<EventModel> getEvents() {
 		return events;
 	}
 
-	public String getAbstractBaseClassName() {
+    /**
+     *
+     * @return
+     */
+    public String getAbstractBaseClassName() {
 		return "G" + getName();
 	}
 
-	public final String getPackageName() {
+    /**
+     *
+     * @return
+     */
+    public final String getPackageName() {
 		return packageName;
 	}
 
-	public final String getGwtPackageName() {
+    /**
+     *
+     * @return
+     */
+    public final String getGwtPackageName() {
 		return packageName.replace(".server", ".client");
 	}
 
-	public Set<DependencyModel> getDependencies() {
+    /**
+     *
+     * @return
+     */
+    public Set<DependencyModel> getDependencies() {
 		return dependencies;
 	}
 
@@ -125,7 +211,12 @@ public abstract class BeanModel extends AModel {
 		dependencies.add(dependencyModel);
 	}
 
-	public boolean containsDependency(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public boolean containsDependency(String name) {
 		for (DependencyModel dm : dependencies) {
 			if (dm.getName().equals(name)) {
                                 return true;
@@ -134,38 +225,69 @@ public abstract class BeanModel extends AModel {
 		return false;
 	}
 
-	protected DependencyModel addDependency(String caller, String type, String name) {
+    /**
+     *
+     * @param caller
+     * @param type
+     * @param name
+     * @return
+     */
+    protected DependencyModel addDependency(String caller, String type, String name) {
 		err.println("BeanModel:addDependency (caller, type, name): " + caller + ", " + type + ", " + name);
 		DependencyModel dependencyModel = new DependencyModel(type, name);
 		addDependency(dependencyModel);
 		return dependencyModel;
 	}
 
-	public boolean isAbstract() {
+    /**
+     *
+     * @return
+     */
+    public boolean isAbstract() {
 		return _abstract;
 	}
 
-	public void setAbstract(boolean value) {
+    /**
+     *
+     * @param value
+     */
+    public void setAbstract(boolean value) {
 		this._abstract = value;
 	}
 
-	public String getSuperclass() {
+    /**
+     *
+     * @return
+     */
+    public String getSuperclass() {
 		if (superbean != null) { return superbean.getName(); }
 		return superclass;
 	}
 
-	public BeanModel getSuperbean() {
+    /**
+     *
+     * @return
+     */
+    public BeanModel getSuperbean() {
 		return superbean;
 	}
 
-	public void setSuperbean(BeanModel superentity) {
+    /**
+     *
+     * @param superentity
+     */
+    public void setSuperbean(BeanModel superentity) {
 		if (superclass != null) {
                         throw new RuntimeException("superclass already set");
                 }
 		this.superbean = superentity;
 	}
 
-	public void setSuperclass(String superClass) {
+    /**
+     *
+     * @param superClass
+     */
+    public void setSuperclass(String superClass) {
 		if (superbean != null) {
                         throw new RuntimeException("superbean already set");
                 }

@@ -24,11 +24,22 @@ import static java.lang.String.format;
  */
 public class Colors {
 
-	public static void main(String[] args) {
+    /**
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
 		ColorsConsoleApp.main(args);
 	}
 
-	public static Color blend(Color one, Color two, float ratio) {
+    /**
+     *
+     * @param one
+     * @param two
+     * @param ratio
+     * @return
+     */
+    public static Color blend(Color one, Color two, float ratio) {
 		if (ratio < 0 || ratio > 1) {
                         throw new IllegalArgumentException("Color blend ratio r must be between 0 and 1.");
                 }
@@ -44,19 +55,43 @@ public class Colors {
 		return new Color(rgb1[0] * r1 + rgb2[0] * r2, rgb1[1] * r1 + rgb2[1] * r2, rgb1[2] * r1 + rgb2[2] * r2);
 	}
 
-	public static Color blend(Color one, Color two) {
+    /**
+     *
+     * @param one
+     * @param two
+     * @return
+     */
+    public static Color blend(Color one, Color two) {
 		return blend(one, two, 0.5f);
 	}
 
-	public static String blend(String hexOne, String hexTwo, float ratio) {
+    /**
+     *
+     * @param hexOne
+     * @param hexTwo
+     * @param ratio
+     * @return
+     */
+    public static String blend(String hexOne, String hexTwo, float ratio) {
 		return toHex(blend(fromHex(hexOne), fromHex(hexTwo), ratio));
 	}
 
-	public static String blend(String hexOne, String hexTwo) {
+    /**
+     *
+     * @param hexOne
+     * @param hexTwo
+     * @return
+     */
+    public static String blend(String hexOne, String hexTwo) {
 		return blend(hexOne, hexTwo, 0.5f);
 	}
 
-	public static Color darken(Color color) {
+    /**
+     *
+     * @param color
+     * @return
+     */
+    public static Color darken(Color color) {
 		float[] rgb = new float[3];
 		color.getColorComponents(rgb);
 
@@ -67,7 +102,12 @@ public class Colors {
 		return new Color(rgb[0], rgb[1], rgb[2]);
 	}
 
-	public static Color lighten(Color color) {
+    /**
+     *
+     * @param color
+     * @return
+     */
+    public static Color lighten(Color color) {
 		float[] rgb = new float[3];
 		color.getColorComponents(rgb);
 
@@ -78,15 +118,30 @@ public class Colors {
 		return new Color(rgb[0], rgb[1], rgb[2]);
 	}
 
-	public static String darken(String hexColor) {
+    /**
+     *
+     * @param hexColor
+     * @return
+     */
+    public static String darken(String hexColor) {
 		return toHex(darken(fromHex(hexColor)));
 	}
 
-	public static String lighten(String hexColor) {
+    /**
+     *
+     * @param hexColor
+     * @return
+     */
+    public static String lighten(String hexColor) {
 		return toHex(lighten(fromHex(hexColor)));
 	}
 
-	public static Color fromHex(String hexColor) {
+    /**
+     *
+     * @param hexColor
+     * @return
+     */
+    public static Color fromHex(String hexColor) {
 		try {
 			return decode(hexColor);
 		} catch (NumberFormatException e) {
@@ -95,11 +150,21 @@ public class Colors {
 		}
 	}
 
-	public static String toHex(Color color) {
+    /**
+     *
+     * @param color
+     * @return
+     */
+    public static String toHex(Color color) {
 		return format("#%02X%02X%02X", color.getRed(), color.getGreen(), color.getBlue());
 	}
 
-	public static boolean isHexColor(String hexColor) {
+    /**
+     *
+     * @param hexColor
+     * @return
+     */
+    public static boolean isHexColor(String hexColor) {
 		return hexColor.matches("#[0-9A-F]{6}");
 	}
 }

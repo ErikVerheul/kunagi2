@@ -18,6 +18,10 @@ import java.util.Collection;
 import java.util.Map;
 import org.apache.commons.fileupload.FileItem;
 
+/**
+ *
+ * @author erik
+ */
 public class HiddenFormField implements FormField {
 
     private String name;
@@ -25,86 +29,158 @@ public class HiddenFormField implements FormField {
     private Form form;
     private boolean required;
 
+    /**
+     *
+     * @param listener
+     * @return
+     */
     @Override
     public FormField addFormFieldChangeListener(FormFieldChangeListener listener) {
         throw new RuntimeException("Not implemented yet!");
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public boolean isRequired() {
         return required;
     }
 
+    /**
+     *
+     * @param required
+     * @return
+     */
     @Override
     public HiddenFormField setRequired(boolean required) {
         this.required = required;
         return this;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Form getForm() {
         return form;
     }
 
+    /**
+     *
+     * @param form
+     */
     public void setForm(Form form) {
         this.form = form;
     }
 
+    /**
+     *
+     * @param name
+     */
     public HiddenFormField(String name) {
         this.name = name;
     }
 
+    /**
+     *
+     * @param value
+     * @return
+     */
     @Override
     public FormField setLabel(String value) {
         // nop;
         return this;
     }
 
+    /**
+     *
+     * @param value
+     * @return
+     */
     @Override
     public FormField setHintText(String value) {
         // nop;
         return this;
     }
 
+    /**
+     *
+     * @param value
+     */
     public void setValue(String value) {
         this.value = value;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getLabel() {
         return name;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getHintText() {
         return null;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getErrorMessage() {
         return null;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getValueAsString() {
         return value;
     }
 
+    /**
+     *
+     * @param value
+     */
     @Override
     public void setErrorMessage(String value) {
     // nop
     }
 
+    /**
+     *
+     * @param data
+     * @param uploadedFiles
+     */
     @Override
     public void update(Map<String, String> data, Collection<FileItem> uploadedFiles) {
         value = data.get(name);
     }
 
+    /**
+     *
+     */
     @Override
     public void validate() {}
 

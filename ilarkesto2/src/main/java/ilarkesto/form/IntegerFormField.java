@@ -16,7 +16,6 @@ package ilarkesto.form;
 
 
 import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
 import static java.lang.String.valueOf;
 import java.util.Collection;
 import java.util.Map;

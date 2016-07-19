@@ -14,7 +14,6 @@
  */
 package ilarkesto.form;
 
-import ilarkesto.base.StrExtend;
 import static ilarkesto.base.StrExtend.cutHtmlAndHeaderAndBody;
 import static ilarkesto.base.StrExtend.removeHtmlTags;
 

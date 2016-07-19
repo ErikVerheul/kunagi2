@@ -14,14 +14,12 @@
  */
 package scrum.server.admin;
 
-import ilarkesto.logging.LogRecord;
 import ilarkesto.logging.DefaultLogRecordHandler;
+import ilarkesto.logging.LogRecord;
 import ilarkesto.ui.web.HtmlRenderer;
 import ilarkesto.webapp.RequestWrapper;
-
 import java.io.IOException;
 import java.util.List;
-
 import scrum.server.WebSession;
 import scrum.server.common.AKunagiServlet;
 

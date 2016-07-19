@@ -22,6 +22,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 
+/**
+ *
+ * @author erik
+ */
 public class ServerSocketTask extends ATask {
 
 	private static final Log LOG = Log.get(ServerSocketTask.class);
@@ -31,13 +35,22 @@ public class ServerSocketTask extends ATask {
 	private ServerSocket serverSocket;
 	private final TaskManager clientHandlerTaskManager;
 
-	public ServerSocketTask(ClientHandler clientHandler, int port, TaskManager clientHandlerTaskManager) {
+    /**
+     *
+     * @param clientHandler
+     * @param port
+     * @param clientHandlerTaskManager
+     */
+    public ServerSocketTask(ClientHandler clientHandler, int port, TaskManager clientHandlerTaskManager) {
 		this.clientHandler = clientHandler;
 		this.port = port;
 		this.clientHandlerTaskManager = clientHandlerTaskManager;
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void perform() {
 		try {
 			serverSocket = new ServerSocket(port);

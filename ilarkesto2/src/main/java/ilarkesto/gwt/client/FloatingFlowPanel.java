@@ -23,16 +23,27 @@ import static ilarkesto.gwt.client.Gwt.createDiv;
 import static ilarkesto.gwt.client.Gwt.createFloatClear;
 import java.util.Iterator;
 
+/**
+ *
+ * @author erik
+ */
 public class FloatingFlowPanel extends Composite implements HasWidgets {
 
 	private FlowPanel panel;
 	private String styleName;
 
-	public FloatingFlowPanel() {
+    /**
+     *
+     */
+    public FloatingFlowPanel() {
 		this("FloatingFlowPanel");
 	}
 
-	public FloatingFlowPanel(String styleName) {
+    /**
+     *
+     * @param styleName
+     */
+    public FloatingFlowPanel(String styleName) {
 		super();
 		this.styleName = styleName;
 		panel = new FlowPanel();
@@ -58,7 +69,11 @@ public class FloatingFlowPanel extends Composite implements HasWidgets {
 		panel.add(createFloatClear());
 	}
 
-	public boolean isEmpty() {
+    /**
+     *
+     * @return
+     */
+    public boolean isEmpty() {
 		return panel.getWidgetCount() <= 1;
 	}
 
@@ -67,12 +82,22 @@ public class FloatingFlowPanel extends Composite implements HasWidgets {
 		add(w, false);
 	}
 
-	public void add(Widget w, boolean right) {
+    /**
+     *
+     * @param w
+     * @param right
+     */
+    public void add(Widget w, boolean right) {
 		SimplePanel element = createDiv(styleName + "-element-" + (right ? "right" : "left"), w);
 		panel.insert(element, panel.getWidgetCount() - 1);
 	}
 
-	public void insert(Widget w, int index) {
+    /**
+     *
+     * @param w
+     * @param index
+     */
+    public void insert(Widget w, int index) {
 		SimplePanel element = createDiv(styleName + "-element-left", w);
 		panel.insert(element, index);
 	}

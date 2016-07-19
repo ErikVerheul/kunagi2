@@ -14,17 +14,17 @@
  */
 package scrum.client.project;
 
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.AFieldValueWidget;
 import ilarkesto.gwt.client.AMultiSelectionViewEditWidget;
 import ilarkesto.gwt.client.AOutputViewEditWidget;
 import ilarkesto.gwt.client.ButtonWidget;
 import ilarkesto.gwt.client.Gwt;
 import ilarkesto.gwt.client.TableBuilder;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import scrum.client.ScrumGwt;
 import scrum.client.collaboration.CommentsWidget;
 import scrum.client.collaboration.EmoticonSelectorWidget;
@@ -33,9 +33,10 @@ import scrum.client.common.ThemesWidget;
 import scrum.client.estimation.PlanningPokerWidget;
 import scrum.client.journal.ChangeHistoryWidget;
 
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class RequirementWidget extends AScrumWidget {
 
 	private Requirement requirement;
@@ -50,7 +51,19 @@ public class RequirementWidget extends AScrumWidget {
 	private boolean decidableOnInitialization;
 
 	// FIXME remove showComments
-	public RequirementWidget(Requirement requirement, boolean showLabel, boolean showSprint, boolean showTaskWork,
+
+    /**
+     *
+     * @param requirement
+     * @param showLabel
+     * @param showSprint
+     * @param showTaskWork
+     * @param showComments
+     * @param planningPoker
+     * @param showChangeHistory
+     * @param acceptReject
+     */
+    	public RequirementWidget(Requirement requirement, boolean showLabel, boolean showSprint, boolean showTaskWork,
 			boolean showComments, boolean planningPoker, boolean showChangeHistory, boolean acceptReject) {
 		this.requirement = requirement;
 		this.showLabel = showLabel;
@@ -117,13 +130,15 @@ public class RequirementWidget extends AScrumWidget {
 			});
 		}
 
-		if (showSprint) left.addFieldRow("Sprint", new AFieldValueWidget() {
-
-			@Override
-			protected void onUpdate() {
-				setText(requirement.getSprint());
-			}
-		});
+		if (showSprint) {
+                    left.addFieldRow("Sprint", new AFieldValueWidget() {
+                        
+                        @Override
+                        protected void onUpdate() {
+                            setText(requirement.getSprint());
+                        }
+                    });
+        }
 
 		left.addFieldRow("Related Stories", new AOutputViewEditWidget() {
 
@@ -136,12 +151,14 @@ public class RequirementWidget extends AScrumWidget {
 		left.addFieldRow("Related Issues", new AOutputViewEditWidget() {
 
 			@Override
-			protected void onViewerUpdate() {
-				setViewer(ScrumGwt.createToHtmlItemsWidget(requirement.getRelatedIssues()));
+                        protected void onViewerUpdate() {
+                            setViewer(ScrumGwt.createToHtmlItemsWidget(requirement.getRelatedIssues()));
 			}
 		});
 
-		if (showChangeHistory) left.addRow(new ChangeHistoryWidget(requirement), 2);
+		if (showChangeHistory) {
+            left.addRow(new ChangeHistoryWidget(requirement), 2);
+        }
 
 		TableBuilder right = ScrumGwt.createFieldTable();
 		if (acceptReject && requirement.getProject().isProductOwner(getCurrentUser()) && requirement.isDecidable()) {
@@ -164,7 +181,12 @@ public class RequirementWidget extends AScrumWidget {
 		return acceptReject && decidableOnInitialization != requirement.isDecidable();
 	}
 
-	public static Widget createActionsPanelForCompletedRequirement(Requirement requirement) {
+    /**
+     *
+     * @param requirement
+     * @return
+     */
+    public static Widget createActionsPanelForCompletedRequirement(Requirement requirement) {
 		TableBuilder tb = new TableBuilder();
 		tb.setWidth(null);
 		tb.setColumnWidths("48%", "10", "48%");

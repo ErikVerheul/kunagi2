@@ -89,6 +89,7 @@ public class DeflaterOutputStream extends FilterOutputStream
    * Deflates everything in the def's input buffers.  This will call
    * <code>def.deflate()</code> until all bytes from the input buffers
    * are processed.
+     * @throws java.io.IOException
    */
   protected void deflate () throws IOException
   {
@@ -152,6 +153,7 @@ public class DeflaterOutputStream extends FilterOutputStream
    * on the underlying stream.  This ensures that all bytes are
    * flushed.  This function doesn't work in Sun's JDK, but only in
    * jazzlib.
+     * @throws java.io.IOException
    */
   @Override
   public void flush() throws IOException
@@ -165,6 +167,7 @@ public class DeflaterOutputStream extends FilterOutputStream
    * Finishes the stream by calling finish() on the deflater.  This
    * was the only way to ensure that all bytes are flushed in Sun's
    * JDK.  
+     * @throws java.io.IOException
    */
   public void finish () throws IOException
   {
@@ -185,6 +188,7 @@ public class DeflaterOutputStream extends FilterOutputStream
 
   /**
    * Calls finish () and closes the stream. 
+     * @throws java.io.IOException
    */
   @Override
   public void close() throws IOException
@@ -196,6 +200,7 @@ public class DeflaterOutputStream extends FilterOutputStream
   /**
    * Writes a single byte to the compressed output stream.
    * @param bval the byte value.
+     * @throws java.io.IOException
    */
   @Override
   public void write(int bval) throws IOException
@@ -210,6 +215,7 @@ public class DeflaterOutputStream extends FilterOutputStream
    * @param buf the byte array.
    * @param off the offset into the byte array where to start.
    * @param len the number of bytes to write.
+     * @throws java.io.IOException
    */
   @Override
   public void write(byte[] buf, int off, int len) throws IOException

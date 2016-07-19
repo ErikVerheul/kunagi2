@@ -55,7 +55,6 @@ import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import static java.lang.Math.min;
-import static java.lang.Math.min;
 
 /* Written using on-line Java Platform 1.2 API Specification
  * and JCL book.

@@ -14,11 +14,22 @@
  */
 package ilarkesto.gwt.client;
 
+/**
+ *
+ * @author erik
+ */
 public interface Predicate {
 
-	boolean test();
+    /**
+     *
+     * @return
+     */
+    boolean test();
 
-	public static final Predicate FALSE = new Predicate() {
+    /**
+     *
+     */
+    public static final Predicate FALSE = new Predicate() {
 
 		@Override
 		public boolean test() {
@@ -26,7 +37,10 @@ public interface Predicate {
 		}
 	};
 
-	public static final Predicate TRUE = new Predicate() {
+    /**
+     *
+     */
+    public static final Predicate TRUE = new Predicate() {
 
 		@Override
 		public boolean test() {

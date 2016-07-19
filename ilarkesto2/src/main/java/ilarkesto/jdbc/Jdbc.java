@@ -23,11 +23,26 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ *
+ * @author erik
+ */
 public class Jdbc {
 
 	private static final Log log = Log.get(Jdbc.class);
 
-	public static Connection createConnection(String driver, String protocol, String host, String port,
+    /**
+     *
+     * @param driver
+     * @param protocol
+     * @param host
+     * @param port
+     * @param database
+     * @param login
+     * @param password
+     * @return
+     */
+    public static Connection createConnection(String driver, String protocol, String host, String port,
 			String database, String login, String password) {
 		loadDriver(driver);
 		String url = createConnectionUrl(protocol, host, port, database);
@@ -39,7 +54,15 @@ public class Jdbc {
 		}
 	}
 
-	public static String createConnectionUrl(String protocol, String host, String port, String database) {
+    /**
+     *
+     * @param protocol
+     * @param host
+     * @param port
+     * @param database
+     * @return
+     */
+    public static String createConnectionUrl(String protocol, String host, String port, String database) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(protocol);
 		sb.append("://");
@@ -53,7 +76,11 @@ public class Jdbc {
 		return sb.toString();
 	}
 
-	public static void loadDriver(String driver) {
+    /**
+     *
+     * @param driver
+     */
+    public static void loadDriver(String driver) {
 		try {
 			forName(driver).newInstance();
 		} catch (ClassNotFoundException ex) {
@@ -63,7 +90,14 @@ public class Jdbc {
 		}
 	}
 
-	public static PreparedStatement prepareStatement(Connection connection, String sql, Object... params) {
+    /**
+     *
+     * @param connection
+     * @param sql
+     * @param params
+     * @return
+     */
+    public static PreparedStatement prepareStatement(Connection connection, String sql, Object... params) {
 		PreparedStatement stmt;
 		try {
 			stmt = connection.prepareStatement(sql);
@@ -82,20 +116,46 @@ public class Jdbc {
 		return stmt;
 	}
 
-	public static void executeQuery(Connection connection, RecordHandler handler, String sql, Object... params)
+    /**
+     *
+     * @param connection
+     * @param handler
+     * @param sql
+     * @param params
+     * @throws SQLException
+     */
+    public static void executeQuery(Connection connection, RecordHandler handler, String sql, Object... params)
 			throws SQLException {
 		executeQuery(handler, prepareStatement(connection, sql, params));
 	}
 
-	public static void executeQuery(RecordHandler handler, PreparedStatement stmt) throws SQLException {
+    /**
+     *
+     * @param handler
+     * @param stmt
+     * @throws SQLException
+     */
+    public static void executeQuery(RecordHandler handler, PreparedStatement stmt) throws SQLException {
 		execute(handler, stmt);
 	}
 
-	public static void execute(Connection connection, String sql, Object... params) throws SQLException {
+    /**
+     *
+     * @param connection
+     * @param sql
+     * @param params
+     * @throws SQLException
+     */
+    public static void execute(Connection connection, String sql, Object... params) throws SQLException {
 		execute(prepareStatement(connection, sql, params));
 	}
 
-	public static void execute(PreparedStatement stmt) throws SQLException {
+    /**
+     *
+     * @param stmt
+     * @throws SQLException
+     */
+    public static void execute(PreparedStatement stmt) throws SQLException {
 		execute(null, stmt);
 	}
 
@@ -118,7 +178,11 @@ public class Jdbc {
 		}
 	}
 
-	public static void closeQuiet(Connection connection) {
+    /**
+     *
+     * @param connection
+     */
+    public static void closeQuiet(Connection connection) {
 		if (connection == null) {
                         return;
                 }
@@ -134,7 +198,11 @@ public class Jdbc {
 		}
 	}
 
-	public static void closeQuiet(Statement stmt) {
+    /**
+     *
+     * @param stmt
+     */
+    public static void closeQuiet(Statement stmt) {
 		if (stmt == null) {
                         return;
                 }
@@ -150,7 +218,11 @@ public class Jdbc {
 		}
 	}
 
-	public static void closeQuiet(ResultSet rs) {
+    /**
+     *
+     * @param rs
+     */
+    public static void closeQuiet(ResultSet rs) {
 		if (rs == null) {
                         return;
                 }
@@ -166,7 +238,10 @@ public class Jdbc {
 		}
 	}
 
-	public static abstract class RecordHandler {
+    /**
+     *
+     */
+    public static abstract class RecordHandler {
 
 		void onExecuted(ResultSet rs) throws SQLException {}
 

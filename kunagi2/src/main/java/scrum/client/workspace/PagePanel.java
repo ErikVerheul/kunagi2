@@ -14,32 +14,47 @@
  */
 package scrum.client.workspace;
 
-import ilarkesto.gwt.client.FloatingFlowPanel;
-import ilarkesto.gwt.client.Gwt;
-
-import java.util.Iterator;
-
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
+import ilarkesto.gwt.client.FloatingFlowPanel;
+import ilarkesto.gwt.client.Gwt;
+import java.util.Iterator;
 
+/**
+ *
+ * @author erik
+ */
 public class PagePanel extends Composite implements HasWidgets {
 
 	private FlowPanel content;
 	private boolean spacered;
 
-	public PagePanel() {
+    /**
+     *
+     */
+    public PagePanel() {
 		content = new FlowPanel();
 		initWidget(Gwt.createDiv("PagePanel", Gwt.createDiv("PagePanel-content", content)));
 	}
 
-	public void addHeader(String title, Widget... rightWidgets) {
+    /**
+     *
+     * @param title
+     * @param rightWidgets
+     */
+    public void addHeader(String title, Widget... rightWidgets) {
 		addHeader(Gwt.createDiv("title", title), rightWidgets);
 	}
 
-	public void addHeader(Widget left, Widget... rightWidgets) {
+    /**
+     *
+     * @param left
+     * @param rightWidgets
+     */
+    public void addHeader(Widget left, Widget... rightWidgets) {
 		FloatingFlowPanel panel = new FloatingFlowPanel();
 		panel.add(left);
 		for (Widget right : rightWidgets) {
@@ -49,30 +64,56 @@ public class PagePanel extends Composite implements HasWidgets {
 		addHeader(panel);
 	}
 
-	public void addHeader(String text) {
+    /**
+     *
+     * @param text
+     */
+    public void addHeader(String text) {
 		addHeader(new Label(text));
 	}
 
-	public void addHeader(Widget widget) {
+    /**
+     *
+     * @param widget
+     */
+    public void addHeader(Widget widget) {
 		add("header", widget);
 	}
 
-	public void addSection(String text) {
+    /**
+     *
+     * @param text
+     */
+    public void addSection(String text) {
 		addSection(new Label(text));
 	}
 
-	public void addSection(Widget widget) {
-		if (!spacered) addSpacer();
+    /**
+     *
+     * @param widget
+     */
+    public void addSection(Widget widget) {
+		if (!spacered) {
+                    addSpacer();
+        }
 		add("section", widget);
 		addSpacer();
 	}
 
-	public void add(String styleSuffix, Widget widget) {
+    /**
+     *
+     * @param styleSuffix
+     * @param widget
+     */
+    public void add(String styleSuffix, Widget widget) {
 		add(Gwt.createDiv("PagePanel-" + styleSuffix, widget));
 		spacered = false;
 	}
 
-	public void addSpacer() {
+    /**
+     *
+     */
+    public void addSpacer() {
 		add(Gwt.createEmptyDiv("PagePanel-spacer"));
 		spacered = true;
 	}
@@ -103,7 +144,13 @@ public class PagePanel extends Composite implements HasWidgets {
 		return Gwt.getSimpleName(getClass());
 	}
 
-	public static PagePanel createSimple(String header, Widget... sections) {
+    /**
+     *
+     * @param header
+     * @param sections
+     * @return
+     */
+    public static PagePanel createSimple(String header, Widget... sections) {
 		PagePanel page = new PagePanel();
 		page.addHeader(header);
 		for (Widget section : sections) {

@@ -21,26 +21,48 @@ import com.google.gwt.user.client.ui.Widget;
 import edu.umd.cs.findbugs.annotations.SuppressWarnings;
 import java.util.Iterator;
 
+/**
+ *
+ * @author erik
+ * @param <W>
+ */
 public class AnimatingFlowPanel<W extends Widget> extends Composite implements HasWidgets {
 
-        @SuppressWarnings("MS_SHOULD_BE_FINAL")
+    /**
+     *
+     */
+    @SuppressWarnings("MS_SHOULD_BE_FINAL")
 	public static boolean animationsDisabled = false;
 
 	private FlowPanel panel;
 
-	public AnimatingFlowPanel() {
+    /**
+     *
+     */
+    public AnimatingFlowPanel() {
 		panel = new FlowPanel();
 		initWidget(panel);
 	}
 
-	public void insertAnimated(int index, W widget, Integer height) {
+    /**
+     *
+     * @param index
+     * @param widget
+     * @param height
+     */
+    public void insertAnimated(int index, W widget, Integer height) {
 		insert(index, widget);
 		if (!animationsDisabled) {
                         new AppearAnimation(height, widget).run(250);
                 }
 	}
 
-	public void insert(int index, W widget) {
+    /**
+     *
+     * @param index
+     * @param widget
+     */
+    public void insert(int index, W widget) {
 		if (index < 0) {
                         index = panel.getWidgetCount();
                 }
@@ -67,9 +89,16 @@ public class AnimatingFlowPanel<W extends Widget> extends Composite implements H
 		insertAnimated(-1, (W) w, null);
 	}
 
-	public static interface InsertCallback {
+    /**
+     *
+     */
+    public static interface InsertCallback {
 
-		void onInserted(int index);
+        /**
+         *
+         * @param index
+         */
+        void onInserted(int index);
 
 	}
 

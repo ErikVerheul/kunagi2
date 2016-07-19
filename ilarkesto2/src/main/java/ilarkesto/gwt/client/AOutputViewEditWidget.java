@@ -17,35 +17,61 @@ package ilarkesto.gwt.client;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class AOutputViewEditWidget extends AViewEditWidget {
 
 	private SimplePanel wrapper;
 
-	public void setViewer(Widget viewer) {
+    /**
+     *
+     * @param viewer
+     */
+    public void setViewer(Widget viewer) {
 		initialize();
 		wrapper.setWidget(viewer);
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected Widget onViewerInitialization() {
 		wrapper = new SimplePanel();
 		return wrapper;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public boolean isEditable() {
 		return false;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected Widget onEditorInitialization() {
 		return null;
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void onEditorSubmit() {}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void onEditorUpdate() {}
 
 }

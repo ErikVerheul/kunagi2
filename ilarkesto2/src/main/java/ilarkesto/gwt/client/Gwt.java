@@ -51,6 +51,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+/**
+ *
+ * @author erik
+ */
 public class Gwt {
 
 	private static Widget rootWidget;
@@ -64,11 +68,19 @@ public class Gwt {
 	private static DateTimeFormat dtfWeekdayMonthDay;
 	private static DateTimeFormat dtfHourMinute;
 
-	public static boolean isWebkit() {
+    /**
+     *
+     * @return
+     */
+    public static boolean isWebkit() {
 		return isWebkitJs();
 	}
 
-	public static boolean isMsie() {
+    /**
+     *
+     * @return
+     */
+    public static boolean isMsie() {
 		return isProdMode() ? isMsieJs() : false;
 	}
 
@@ -84,7 +96,13 @@ public class Gwt {
 		return agent && agent.indexOf('webkit') >= 0;
 	}-*/;
 
-	public static boolean contains(HasWidgets container, Widget widget) {
+    /**
+     *
+     * @param container
+     * @param widget
+     * @return
+     */
+    public static boolean contains(HasWidgets container, Widget widget) {
 		Iterator<Widget> iterator = container.iterator();
 		while (iterator.hasNext()) {
 			if (iterator.next() == widget) {
@@ -94,39 +112,74 @@ public class Gwt {
 		return false;
 	}
 
-	public static String formatWeekdayMonthDay(Date date) {
+    /**
+     *
+     * @param date
+     * @return
+     */
+    public static String formatWeekdayMonthDay(Date date) {
 		if (dtfWeekdayMonthDay == null) {
                         dtfWeekdayMonthDay = DateTimeFormat.getFormat("EEEE, MMMM d.");
                 }
 		return dtfWeekdayMonthDay.format(date);
 	}
 
-	public static String formatHourMinute(Date date) {
+    /**
+     *
+     * @param date
+     * @return
+     */
+    public static String formatHourMinute(Date date) {
 		if (dtfHourMinute == null) {
                         dtfHourMinute = DateTimeFormat.getFormat("HH:mm");
                 }
 		return dtfHourMinute.format(date);
 	}
 
-	public static String formatDay(Date date) {
+    /**
+     *
+     * @param date
+     * @return
+     */
+    public static String formatDay(Date date) {
 		if (dtfDay == null) {
                         dtfDay = DateTimeFormat.getFormat("dd.");
                 }
 		return dtfDay.format(date);
 	}
 
-	public static String formatWeekdayShort(Date date) {
+    /**
+     *
+     * @param date
+     * @return
+     */
+    public static String formatWeekdayShort(Date date) {
 		if (dtfWeekdayShort == null) {
                         dtfWeekdayShort = DateTimeFormat.getFormat("EEE");
                 }
 		return dtfWeekdayShort.format(date);
 	}
 
-	public static TextBox createTextBox(String id, String value, int width) {
+    /**
+     *
+     * @param id
+     * @param value
+     * @param width
+     * @return
+     */
+    public static TextBox createTextBox(String id, String value, int width) {
 		return createTextBox(id, id, value, width + "px");
 	}
 
-	public static TextBox createTextBox(String id, String name, String value, String width) {
+    /**
+     *
+     * @param id
+     * @param name
+     * @param value
+     * @param width
+     * @return
+     */
+    public static TextBox createTextBox(String id, String name, String value, String width) {
 		TextBox textBox = new TextBox();
 		textBox.getElement().setId(id);
 		textBox.setName(name);
@@ -135,11 +188,28 @@ public class Gwt {
 		return textBox;
 	}
 
-	public static TextArea createTextArea(String id, String value, int width, int height) {
+    /**
+     *
+     * @param id
+     * @param value
+     * @param width
+     * @param height
+     * @return
+     */
+    public static TextArea createTextArea(String id, String value, int width, int height) {
 		return createTextArea(id, id, value, width + "px", height + "px");
 	}
 
-	public static TextArea createTextArea(String id, String name, String value, String width, String height) {
+    /**
+     *
+     * @param id
+     * @param name
+     * @param value
+     * @param width
+     * @param height
+     * @return
+     */
+    public static TextArea createTextArea(String id, String name, String value, String width, String height) {
 		TextArea textArea = new TextArea();
 		textArea.getElement().setId(id);
 		textArea.setName(name);
@@ -149,44 +219,86 @@ public class Gwt {
 		return textArea;
 	}
 
-	public static SubmitButton createInvisibleSubmitButton() {
+    /**
+     *
+     * @return
+     */
+    public static SubmitButton createInvisibleSubmitButton() {
 		SubmitButton button = new SubmitButton();
 		button.setVisible(false);
 		return button;
 	}
 
-	public static HTML addTooltipHtml(SourcesMouseEvents widget, String tooltipHtml) {
+    /**
+     *
+     * @param widget
+     * @param tooltipHtml
+     * @return
+     */
+    public static HTML addTooltipHtml(SourcesMouseEvents widget, String tooltipHtml) {
 		HTML html = new HTML(tooltipHtml);
 		TooltipListener listener = new TooltipListener(html);
 		widget.addMouseListener(listener);
 		return html;
 	}
 
-	public static <W extends Widget> W addTooltip(SourcesMouseEvents widget, W tooltipWidget) {
+    /**
+     *
+     * @param <W>
+     * @param widget
+     * @param tooltipWidget
+     * @return
+     */
+    public static <W extends Widget> W addTooltip(SourcesMouseEvents widget, W tooltipWidget) {
 		TooltipListener listener = new TooltipListener(tooltipWidget);
 		widget.addMouseListener(listener);
 		return tooltipWidget;
 	}
 
-	public static boolean confirm(String message) {
+    /**
+     *
+     * @param message
+     * @return
+     */
+    public static boolean confirm(String message) {
 		return Window.confirm(message);
 	}
 
-	public static String prompt(String message, String value) {
+    /**
+     *
+     * @param message
+     * @param value
+     * @return
+     */
+    public static String prompt(String message, String value) {
 		return Window.prompt(message, value);
 	}
 
-	public static String escapeHtml(String maybeHtml) {
+    /**
+     *
+     * @param maybeHtml
+     * @return
+     */
+    public static String escapeHtml(String maybeHtml) {
 		final Element div = DOM.createDiv();
 		setInnerText(div, maybeHtml);
 		return getInnerHTML(div);
 	}
 
-	public static UndoManager getUndoManager() {
+    /**
+     *
+     * @return
+     */
+    public static UndoManager getUndoManager() {
 		return undoManager;
 	}
 
-	public static String getMonthShort(int month) {
+    /**
+     *
+     * @param month
+     * @return
+     */
+    public static String getMonthShort(int month) {
 		switch (month) {
 			case (1):
 				return "Jan";
@@ -217,27 +329,63 @@ public class Gwt {
 		return "Invalid Month";
 	}
 
-	public static int percent(int total, int quotient) {
+    /**
+     *
+     * @param total
+     * @param quotient
+     * @return
+     */
+    public static int percent(int total, int quotient) {
 		return (quotient * 100) / total;
 	}
 
-	public static Predicate predicate(boolean value) {
+    /**
+     *
+     * @param value
+     * @return
+     */
+    public static Predicate predicate(boolean value) {
 		return value ? TRUE : FALSE;
 	}
 
-	public static Widget createToHtmlItemsWidget(Collection<? extends ToHtmlSupport> items) {
+    /**
+     *
+     * @param items
+     * @return
+     */
+    public static Widget createToHtmlItemsWidget(Collection<? extends ToHtmlSupport> items) {
 		return new HTML(concatToHtml(items, "<br>"));
 	}
 
-	public static HTML createServletDownloadLink(String relativeHref, String text) {
+    /**
+     *
+     * @param relativeHref
+     * @param text
+     * @return
+     */
+    public static HTML createServletDownloadLink(String relativeHref, String text) {
 		return createServletLink(relativeHref, text, true);
 	}
 
-	public static HTML createServletLink(String relativeHref, String text, boolean targetBlank) {
+    /**
+     *
+     * @param relativeHref
+     * @param text
+     * @param targetBlank
+     * @return
+     */
+    public static HTML createServletLink(String relativeHref, String text, boolean targetBlank) {
 		return createHyperlink(getModuleBaseURL() + relativeHref, text, targetBlank);
 	}
 
-	public static HTML createHyperlink(String href, String text, boolean targetBlank) {
+    /**
+     *
+     * @param href
+     * @param text
+     * @param targetBlank
+     * @return
+     */
+    public static HTML createHyperlink(String href, String text, boolean targetBlank) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("<a href='").append(href).append("'");
 		if (targetBlank) {
@@ -247,7 +395,12 @@ public class Gwt {
 		return new HTML(sb.toString());
 	}
 
-	public static String toString(Object o) {
+    /**
+     *
+     * @param o
+     * @return
+     */
+    public static String toString(Object o) {
 		if (o == null) {
                         return "<null>";
                 }
@@ -257,13 +410,23 @@ public class Gwt {
 		return o.toString();
 	}
 
-	public static Label createInline(String text) {
+    /**
+     *
+     * @param text
+     * @return
+     */
+    public static Label createInline(String text) {
 		Label label = new Label(text);
 		label.getElement().getStyle().setProperty("display", "inline");
 		return label;
 	}
 
-	public static void runLater(long delayInMillis, final Runnable action) {
+    /**
+     *
+     * @param delayInMillis
+     * @param action
+     */
+    public static void runLater(long delayInMillis, final Runnable action) {
 		new Timer() {
 
 			@Override
@@ -273,40 +436,77 @@ public class Gwt {
 		}.schedule((int) delayInMillis);
 	}
 
-	public static void setRichtextEditorEditInitializer(
+    /**
+     *
+     * @param richtextEditorToolbarInitializer
+     */
+    public static void setRichtextEditorEditInitializer(
 			Initializer<RichtextEditorWidget> richtextEditorToolbarInitializer) {
 		Gwt.richtextEditorEditInitializer = richtextEditorToolbarInitializer;
 	}
 
-	public static void setDefaultRichtextFormater(RichtextFormater defaultRichtextFormater) {
+    /**
+     *
+     * @param defaultRichtextFormater
+     */
+    public static void setDefaultRichtextFormater(RichtextFormater defaultRichtextFormater) {
 		Gwt.defaultRichtextFormater = defaultRichtextFormater;
 	}
 
-	public static Initializer<RichtextEditorWidget> getRichtextEditorEditInitializer() {
+    /**
+     *
+     * @return
+     */
+    public static Initializer<RichtextEditorWidget> getRichtextEditorEditInitializer() {
 		return richtextEditorEditInitializer;
 	}
 
-	public static RichtextFormater getDefaultRichtextFormater() {
+    /**
+     *
+     * @return
+     */
+    public static RichtextFormater getDefaultRichtextFormater() {
 		return defaultRichtextFormater;
 	}
 
-	public static String getDefaultRichtextSyntaxInfo() {
+    /**
+     *
+     * @return
+     */
+    public static String getDefaultRichtextSyntaxInfo() {
 		return defaultRichtextSyntaxInfo;
 	}
 
-	public static void setDefaultRichtextSyntaxInfo(String defaultRichtextSyntaxInfo) {
+    /**
+     *
+     * @param defaultRichtextSyntaxInfo
+     */
+    public static void setDefaultRichtextSyntaxInfo(String defaultRichtextSyntaxInfo) {
 		Gwt.defaultRichtextSyntaxInfo = defaultRichtextSyntaxInfo;
 	}
 
-	public static void setRootWidget(Widget rootWidget) {
+    /**
+     *
+     * @param rootWidget
+     */
+    public static void setRootWidget(Widget rootWidget) {
 		Gwt.rootWidget = rootWidget;
 	}
 
-	public static Widget getRootWidget() {
+    /**
+     *
+     * @return
+     */
+    public static Widget getRootWidget() {
 		return rootWidget;
 	}
 
-	public static String toString(Widget widget) {
+    /**
+     *
+     * @param widget
+     * @return
+     */
+    public static String toString(Widget widget) {
 		if (widget == null) {
                         return "<null>";
                 }
@@ -330,7 +530,12 @@ public class Gwt {
 		return getSimpleName(widget.getClass());
 	}
 
-	public static String formatHours(Integer i) {
+    /**
+     *
+     * @param i
+     * @return
+     */
+    public static String formatHours(Integer i) {
 		if (i == null || i == 0) {
                         return "nothing";
                 }
@@ -340,13 +545,22 @@ public class Gwt {
 		return i + " hours";
 	}
 
-	public static Label createFieldLabel(String text) {
+    /**
+     *
+     * @param text
+     * @return
+     */
+    public static Label createFieldLabel(String text) {
 		Label label = new Label(text);
 		label.setStyleName("fieldLabel");
 		return label;
 	}
 
-	public static void update(Collection<Widget> widgets) {
+    /**
+     *
+     * @param widgets
+     */
+    public static void update(Collection<Widget> widgets) {
 		for (Widget widget : widgets) {
 			if (widget == null) {
                                 continue;
@@ -357,7 +571,11 @@ public class Gwt {
 		}
 	}
 
-	public static void update(Widget... widgets) {
+    /**
+     *
+     * @param widgets
+     */
+    public static void update(Widget... widgets) {
 		for (Widget widget : widgets) {
 			update(widget);
 		}
@@ -369,7 +587,13 @@ public class Gwt {
 		}
 	}
 
-	public static <W extends Widget> W update(W widget) {
+    /**
+     *
+     * @param <W>
+     * @param widget
+     * @return
+     */
+    public static <W extends Widget> W update(W widget) {
 		if (widget == null) {
                         return null;
                 }
@@ -385,26 +609,49 @@ public class Gwt {
 		return widget;
 	}
 
-	public static Widget createBugMarker(String text) {
+    /**
+     *
+     * @param text
+     * @return
+     */
+    public static Widget createBugMarker(String text) {
 		Label label = new Label(text);
 		label.setStyleName("BugMarker");
 		return label;
 	}
 
-	public static <O extends Object> List<O> toList(Collection<O> collection) {
+    /**
+     *
+     * @param <O>
+     * @param collection
+     * @return
+     */
+    public static <O extends Object> List<O> toList(Collection<O> collection) {
 		if (collection instanceof List) {
                         return (List<O>) collection;
                 }
 		return new ArrayList<O>(collection);
 	}
 
-	public static <O extends Object> List<O> toList(O... objects) {
+    /**
+     *
+     * @param <O>
+     * @param objects
+     * @return
+     */
+    public static <O extends Object> List<O> toList(O... objects) {
 		ArrayList<O> list = new ArrayList<O>(objects.length);
                 list.addAll(asList(objects));
 		return list;
 	}
 
-	public static HorizontalPanel createHorizontalPanel(int spacing, Widget... widgets) {
+    /**
+     *
+     * @param spacing
+     * @param widgets
+     * @return
+     */
+    public static HorizontalPanel createHorizontalPanel(int spacing, Widget... widgets) {
 		assert (widgets.length > 0);
 		HorizontalPanel panel = new HorizontalPanel();
 		panel.setWidth("100%");
@@ -425,14 +672,25 @@ public class Gwt {
 		return panel;
 	}
 
-	public static SimplePanel createSpacer(int width, int height) {
+    /**
+     *
+     * @param width
+     * @param height
+     * @return
+     */
+    public static SimplePanel createSpacer(int width, int height) {
 		SimplePanel spacer = new SimplePanel();
 		spacer.getElement().getStyle().setPropertyPx("lineHeight", 1);
 		spacer.setSize(width + "px", height + "px");
 		return spacer;
 	}
 
-	public static FloatingFlowPanel createFloatingFlowPanel(Widget... widgets) {
+    /**
+     *
+     * @param widgets
+     * @return
+     */
+    public static FloatingFlowPanel createFloatingFlowPanel(Widget... widgets) {
 		FloatingFlowPanel panel = new FloatingFlowPanel();
 		for (Widget widget : widgets) {
 			panel.add(widget);
@@ -440,7 +698,12 @@ public class Gwt {
 		return panel;
 	}
 
-	public static FloatingFlowPanel createFloatingFlowPanelRight(Widget... widgets) {
+    /**
+     *
+     * @param widgets
+     * @return
+     */
+    public static FloatingFlowPanel createFloatingFlowPanelRight(Widget... widgets) {
 		FloatingFlowPanel panel = new FloatingFlowPanel();
 		for (Widget widget : widgets) {
 			panel.add(widget, true);
@@ -448,11 +711,23 @@ public class Gwt {
 		return panel;
 	}
 
-	public static FlowPanel createFlowPanel(Widget... widgets) {
+    /**
+     *
+     * @param widgets
+     * @return
+     */
+    public static FlowPanel createFlowPanel(Widget... widgets) {
 		return createFlowPanel(null, null, widgets);
 	}
 
-	public static FlowPanel createFlowPanel(String styleName, String elementStyleName, Widget... widgets) {
+    /**
+     *
+     * @param styleName
+     * @param elementStyleName
+     * @param widgets
+     * @return
+     */
+    public static FlowPanel createFlowPanel(String styleName, String elementStyleName, Widget... widgets) {
 		FlowPanel panel = new FlowPanel();
 		if (styleName != null) {
                         panel.setStyleName(styleName);
@@ -463,11 +738,20 @@ public class Gwt {
 		return panel;
 	}
 
-	public static Widget createNbsp() {
+    /**
+     *
+     * @return
+     */
+    public static Widget createNbsp() {
 		return new HTML("&nbsp;");
 	}
 
-	public static Set<String> getIdsAsSet(Collection<? extends AGwtEntity> entities) {
+    /**
+     *
+     * @param entities
+     * @return
+     */
+    public static Set<String> getIdsAsSet(Collection<? extends AGwtEntity> entities) {
 		if (entities == null) {
                         return emptySet();
                 }
@@ -478,7 +762,12 @@ public class Gwt {
 		return ret;
 	}
 
-	public static List<String> getIdsAsList(Collection<? extends AGwtEntity> entities) {
+    /**
+     *
+     * @param entities
+     * @return
+     */
+    public static List<String> getIdsAsList(Collection<? extends AGwtEntity> entities) {
 		List<String> ret = new ArrayList<String>(entities.size());
 		for (AGwtEntity entity : entities) {
 			ret.add(entity.getId());
@@ -486,68 +775,121 @@ public class Gwt {
 		return ret;
 	}
 
-	public static void scrollTo(Widget w) {
+    /**
+     *
+     * @param w
+     */
+    public static void scrollTo(Widget w) {
 		if (w == null) {
                         return;
                 }
 		w.getElement().scrollIntoView();
 	}
 
-	public static native void scrollTo(int posY)
-	/*-{
-		$wnd.scrollTo(0, posY);
-	}-*/;
+    /**
+     *
+     * @param posY
+     */
+    public static native void scrollTo(int posY);
 
-	public static Widget createEmptyDiv() {
+    /**
+     *
+     * @return
+     */
+    public static Widget createEmptyDiv() {
 		return new SimplePanel();
 	}
 
-	public static Widget createEmptyDiv(String styleName) {
+    /**
+     *
+     * @param styleName
+     * @return
+     */
+    public static Widget createEmptyDiv(String styleName) {
 		SimplePanel div = new SimplePanel();
 		div.setStyleName(styleName);
 		return div;
 	}
 
-	public static Widget createFloatClear() {
+    /**
+     *
+     * @return
+     */
+    public static Widget createFloatClear() {
 		return createEmptyDiv("floatClear");
 	}
 
-	public static FormPanel createForm(Widget content) {
+    /**
+     *
+     * @param content
+     * @return
+     */
+    public static FormPanel createForm(Widget content) {
 		FormPanel form = new FormPanel();
 		form.add(content);
 		return form;
 	}
 
-	public static Widget createCenterer(Widget content) {
+    /**
+     *
+     * @param content
+     * @return
+     */
+    public static Widget createCenterer(Widget content) {
 		TableBuilder tb = new TableBuilder();
 		tb.setCentered(true);
 		tb.add(content);
 		return tb.createTable();
 	}
 
-	public static SimplePanel createDiv(String styleName, Widget content) {
+    /**
+     *
+     * @param styleName
+     * @param content
+     * @return
+     */
+    public static SimplePanel createDiv(String styleName, Widget content) {
 		SimplePanel div = new SimplePanel();
 		div.setStyleName(styleName);
 		div.setWidget(content);
 		return div;
 	}
 
-	public static Widget createDiv(String styleName, String labelText) {
+    /**
+     *
+     * @param styleName
+     * @param labelText
+     * @return
+     */
+    public static Widget createDiv(String styleName, String labelText) {
 		if (labelText == null) {
                         return createEmptyDiv(styleName);
                 }
 		return createDiv(styleName, new Label(labelText));
 	}
 
-	public static String getSimpleName(Class<?> type) {
+    /**
+     *
+     * @param type
+     * @return
+     */
+    public static String getSimpleName(Class<?> type) {
 		String name = type.getName();
 		name = name.substring(name.lastIndexOf('.') + 1);
 		return name;
 	}
 
-	public static class DoNothingRichtextFormater implements RichtextFormater {
+    /**
+     *
+     */
+    public static class DoNothingRichtextFormater implements RichtextFormater {
 
-		@Override
+        /**
+         *
+         * @param s
+         * @return
+         */
+        @Override
 		public String richtextToHtml(String s) {
 			return s;
 		}

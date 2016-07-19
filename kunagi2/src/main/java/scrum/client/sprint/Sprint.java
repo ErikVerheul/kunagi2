@@ -14,6 +14,8 @@
  */
 package scrum.client.sprint;
 
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.base.Utl;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.core.time.Date;
@@ -21,13 +23,11 @@ import ilarkesto.core.time.TimePeriod;
 import ilarkesto.gwt.client.Gwt;
 import ilarkesto.gwt.client.HyperlinkWidget;
 import ilarkesto.gwt.client.editor.ATextEditorModel;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-
 import scrum.client.ScrumGwt;
 import scrum.client.admin.Auth;
 import scrum.client.admin.User;
@@ -43,57 +43,99 @@ import scrum.client.sprint.SprintHistoryHelper.StoryInfo;
 import scrum.client.sprint.SprintHistoryHelper.TaskInfo;
 import scrum.client.tasks.WhiteboardWidget;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class Sprint extends GSprint implements ForumSupport, ReferenceSupport, LabelSupport {
 
-	public static final String REFERENCE_PREFIX = "spr";
+    /**
+     *
+     */
+    public static final String REFERENCE_PREFIX = "spr";
 
 	private transient Comparator<Task> tasksOrderComparator;
 	private transient RequirementsOrderComparator requirementsOrderComparator;
 
-	public Sprint(Project project, String label) {
+    /**
+     *
+     * @param project
+     * @param label
+     */
+    public Sprint(Project project, String label) {
 		setProject(project);
 		setLabel(label);
 	}
 
-	public Sprint(Map data) {
+    /**
+     *
+     * @param data
+     */
+    public Sprint(Map data) {
 		super(data);
 	}
 
-	public void updateRequirementsOrder() {
+    /**
+     *
+     */
+    public void updateRequirementsOrder() {
 		List<Requirement> requirements = getRequirements();
 		Collections.sort(requirements, getRequirementsOrderComparator());
 		updateRequirementsOrder(requirements);
 	}
 
-	public void updateRequirementsOrder(List<Requirement> requirements) {
+    /**
+     *
+     * @param requirements
+     */
+    public void updateRequirementsOrder(List<Requirement> requirements) {
 		setRequirementsOrderIds(Gwt.getIdsAsList(requirements));
 	}
 
-	public List<Requirement> getCompletedUnclosedRequirements() {
+    /**
+     *
+     * @return
+     */
+    public List<Requirement> getCompletedUnclosedRequirements() {
 		List<Requirement> ret = new ArrayList<Requirement>();
 		for (Requirement req : getRequirements()) {
-			if (req.isTasksClosed() && !req.isClosed() && !req.isRejected()) ret.add(req);
+			if (req.isTasksClosed() && !req.isClosed() && !req.isRejected()) {
+                            ret.add(req);
+            }
 		}
 		return ret;
 	}
 
-	public Integer getLengthInDays() {
+    /**
+     *
+     * @return
+     */
+    public Integer getLengthInDays() {
 		TimePeriod lenght = getLength();
 		return lenght == null ? null : lenght.toDays();
 	}
 
-	public TimePeriod getLength() {
+    /**
+     *
+     * @return
+     */
+    public TimePeriod getLength() {
 		Date begin = getBegin();
 		Date end = getEnd();
-		if (begin == null || end == null) return null;
+		if (begin == null || end == null) {
+                    return null;
+        }
 		return getBegin().getPeriodTo(getEnd()).addDays(1);
 	}
 
-	public void setLengthInDays(Integer lenght) {
-		if (lenght == null || lenght <= 0) return;
+    /**
+     *
+     * @param lenght
+     */
+    public void setLengthInDays(Integer lenght) {
+        if (lenght == null || lenght <= 0) {
+            return;
+        }
 		Date begin = getBegin();
 		if (begin == null) {
 			begin = getProject().getCurrentSprint().getEnd();
@@ -103,7 +145,12 @@ public class Sprint extends GSprint implements ForumSupport, ReferenceSupport, L
 		setEnd(end);
 	}
 
-	public List<Task> getTasksBlockedBy(Impediment impediment) {
+    /**
+     *
+     * @param impediment
+     * @return
+     */
+    public List<Task> getTasksBlockedBy(Impediment impediment) {
 		List<Task> ret = new ArrayList<Task>();
 		for (Requirement requirement : getRequirements()) {
 			ret.addAll(requirement.getTasksBlockedBy(impediment));
@@ -111,53 +158,95 @@ public class Sprint extends GSprint implements ForumSupport, ReferenceSupport, L
 		return ret;
 	}
 
-	public String getChartUrl(int width, int height) {
+    /**
+     *
+     * @param width
+     * @param height
+     * @return
+     */
+    public String getChartUrl(int width, int height) {
 		return GWT.getModuleBaseURL() + "sprintBurndownChart.png?sprintId=" + getId() + "&width=" + width + "&height="
 				+ height;
 	}
 
-	public boolean isCompleted() {
+    /**
+     *
+     * @return
+     */
+    public boolean isCompleted() {
 		return getVelocity() != null;
 	}
 
-	public float getEstimatedRequirementWork() {
+    /**
+     *
+     * @return
+     */
+    public float getEstimatedRequirementWork() {
 		float sum = 0;
 		for (Requirement requirement : getRequirements()) {
 			Float work = requirement.getEstimatedWork();
-			if (work != null) sum += work;
+                        if (work != null) {
+                            sum += work;
+            }
 		}
 		return sum;
 	}
 
-	public float getCompletedRequirementWork() {
+    /**
+     *
+     * @return
+     */
+    public float getCompletedRequirementWork() {
 		float sum = 0;
-		for (Requirement requirement : getRequirements()) {
-			if (!requirement.isClosed()) continue;
-			Float work = requirement.getEstimatedWork();
-			if (work != null) sum += work;
+                for (Requirement requirement : getRequirements()) {
+			if (!requirement.isClosed()) {
+                continue;
+            }
+                        Float work = requirement.getEstimatedWork();
+			if (work != null) {
+                sum += work;
+            }
 		}
 		return sum;
 	}
 
-	public List<Requirement> getDecidableUndecidedRequirements() {
+    /**
+     *
+     * @return
+     */
+    public List<Requirement> getDecidableUndecidedRequirements() {
 		List<Requirement> ret = new ArrayList<Requirement>();
-		for (Requirement requirement : getRequirements()) {
-			if (requirement.isDecidable() && !requirement.isClosed()) ret.add(requirement);
+                for (Requirement requirement : getRequirements()) {
+                    if (requirement.isDecidable() && !requirement.isClosed()) {
+                ret.add(requirement);
+            }
 		}
 		return ret;
 	}
 
-	public List<Task> getUnclaimedTasks(boolean sorted) {
-		List<Task> ret = new ArrayList<Task>();
-		List<Requirement> requirements = getRequirements();
-		if (sorted) Collections.sort(requirements, getRequirementsOrderComparator());
+    /**
+     *
+     * @param sorted
+     * @return
+     */
+    public List<Task> getUnclaimedTasks(boolean sorted) {
+        List<Task> ret = new ArrayList<Task>();
+        List<Requirement> requirements = getRequirements();
+		if (sorted) {
+            Collections.sort(requirements, getRequirementsOrderComparator());
+        }
 		for (Requirement requirement : requirements) {
 			ret.addAll(requirement.getUnclaimedTasks());
 		}
 		return ret;
 	}
 
-	public List<Task> getTasks(User user) {
+    /**
+     *
+     * @param user
+     * @return
+     */
+    public List<Task> getTasks(User user) {
 		List<Task> ret = new ArrayList<Task>();
 		for (Requirement requirement : getRequirements()) {
 			for (Task task : requirement.getTasksInSprint()) {
@@ -175,7 +264,12 @@ public class Sprint extends GSprint implements ForumSupport, ReferenceSupport, L
 		return ret;
 	}
 
-	public List<Task> getClaimedTasks(User user) {
+    /**
+     *
+     * @param user
+     * @return
+     */
+    public List<Task> getClaimedTasks(User user) {
 		List<Task> ret = new ArrayList<Task>();
 		for (Requirement requirement : getRequirements()) {
 			ret.addAll(requirement.getClaimedTasks(user));
@@ -183,7 +277,11 @@ public class Sprint extends GSprint implements ForumSupport, ReferenceSupport, L
 		return ret;
 	}
 
-	public int getBurnedWorkInClosedTasks() {
+    /**
+     *
+     * @return
+     */
+    public int getBurnedWorkInClosedTasks() {
 		int sum = 0;
 		for (Requirement requirement : getRequirements()) {
 			sum += requirement.getBurnedWorkInClosedTasks();
@@ -191,11 +289,19 @@ public class Sprint extends GSprint implements ForumSupport, ReferenceSupport, L
 		return sum;
 	}
 
-	public int getBurnedWork() {
+    /**
+     *
+     * @return
+     */
+    public int getBurnedWork() {
 		return Requirement.sumBurnedWork(getRequirements());
 	}
 
-	public int getBurnedWorkInClaimedTasks() {
+    /**
+     *
+     * @return
+     */
+    public int getBurnedWorkInClaimedTasks() {
 		int sum = 0;
 		for (Requirement requirement : getRequirements()) {
 			sum += requirement.getBurnedWorkInClaimedTasks();
@@ -203,7 +309,11 @@ public class Sprint extends GSprint implements ForumSupport, ReferenceSupport, L
 		return sum;
 	}
 
-	public int getRemainingWorkInClaimedTasks() {
+    /**
+     *
+     * @return
+     */
+    public int getRemainingWorkInClaimedTasks() {
 		int sum = 0;
 		for (Requirement requirement : getRequirements()) {
 			sum += requirement.getRemainingWorkInClaimedTasks();
@@ -211,7 +321,11 @@ public class Sprint extends GSprint implements ForumSupport, ReferenceSupport, L
 		return sum;
 	}
 
-	public int getRemainingWorkInUnclaimedTasks() {
+    /**
+     *
+     * @return
+     */
+    public int getRemainingWorkInUnclaimedTasks() {
 		int sum = 0;
 		for (Requirement requirement : getRequirements()) {
 			sum += requirement.getRemainingWorkInUnclaimedTasks();
@@ -219,7 +333,11 @@ public class Sprint extends GSprint implements ForumSupport, ReferenceSupport, L
 		return sum;
 	}
 
-	public int getRemainingWork() {
+    /**
+     *
+     * @return
+     */
+    public int getRemainingWork() {
 		int sum = 0;
 		for (Requirement requirement : getRequirements()) {
 			sum += requirement.getRemainingWork();
@@ -234,66 +352,108 @@ public class Sprint extends GSprint implements ForumSupport, ReferenceSupport, L
 
 	@Override
 	public String toString() {
-		return getReferenceAndLabel();
+            return getReferenceAndLabel();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public boolean isEditable() {
-		if (isCompleted()) return false;
-		if (!getProject().isProductOwner(Scope.get().getComponent(Auth.class).getUser())) return false;
-		return true;
+		if (isCompleted()) {
+            return false;
+        }
+		return getProject().isProductOwner(Scope.get().getComponent(Auth.class).getUser());
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public boolean isPlanningEditable() {
-		if (isCompleted()) return false;
-		return true;
+		return !isCompleted();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public boolean isRetrospectiveEditable() {
-		if (!getProject().isScrumMaster(Scope.get().getComponent(Auth.class).getUser())) return false;
-		return true;
+		return getProject().isScrumMaster(Scope.get().getComponent(Auth.class).getUser());
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public boolean isReviewEditable() {
-		if (!getProject().isProductOwner(Scope.get().getComponent(Auth.class).getUser())) return false;
-		return true;
+            return getProject().isProductOwner(Scope.get().getComponent(Auth.class).getUser());
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public boolean isDatesEditable() {
-		if (isCompleted()) return false;
-		if (!getProject().isProductOwner(Scope.get().getComponent(Auth.class).getUser())) return false;
-		return true;
+		if (isCompleted()) {
+            return false;
+        }
+		return getProject().isProductOwner(Scope.get().getComponent(Auth.class).getUser());
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getGoalTemplate() {
 		return Scope.get().getComponent(Wiki.class).getTemplate("sprint.goal");
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getPlanningNoteTemplate() {
 		return Scope.get().getComponent(Wiki.class).getTemplate("sprint.planning");
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getRetrospectiveNoteTemplate() {
 		return Scope.get().getComponent(Wiki.class).getTemplate("sprint.retrospective");
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getReviewNoteTemplate() {
 		return Scope.get().getComponent(Wiki.class).getTemplate("sprint.review");
 	}
 
-	public boolean isCurrent() {
+    /**
+     *
+     * @return
+     */
+    public boolean isCurrent() {
 		return getProject().isCurrentSprint(this);
 	}
 
-	public static final Comparator<Sprint> END_DATE_COMPARATOR = new Comparator<Sprint>() {
+    /**
+     *
+     */
+    public static final Comparator<Sprint> END_DATE_COMPARATOR = new Comparator<Sprint>() {
 
 		@Override
 		public int compare(Sprint a, Sprint b) {
@@ -302,7 +462,10 @@ public class Sprint extends GSprint implements ForumSupport, ReferenceSupport, L
 
 	};
 
-	public static final Comparator<Sprint> END_DATE_REVERSE_COMPARATOR = new Comparator<Sprint>() {
+    /**
+     *
+     */
+    public static final Comparator<Sprint> END_DATE_REVERSE_COMPARATOR = new Comparator<Sprint>() {
 
 		@Override
 		public int compare(Sprint a, Sprint b) {
@@ -311,63 +474,93 @@ public class Sprint extends GSprint implements ForumSupport, ReferenceSupport, L
 
 	};
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public Widget createForumItemWidget() {
 		String label = isCurrent() ? "Sprint Backlog" : "Sprint";
 		return new HyperlinkWidget(new ShowEntityAction(isCurrent() ? WhiteboardWidget.class
 				: SprintHistoryWidget.class, this, label));
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getReference() {
 		return REFERENCE_PREFIX + getNumber();
 	}
 
-	private transient LengthInDaysModel lengthInDaysModel;
-
-	public LengthInDaysModel getLengthInDaysModel() {
-		if (lengthInDaysModel == null) lengthInDaysModel = new LengthInDaysModel();
-		return lengthInDaysModel;
-	}
-
-	public RequirementsOrderComparator getRequirementsOrderComparator() {
-		if (requirementsOrderComparator == null) requirementsOrderComparator = new RequirementsOrderComparator() {
+        private transient LengthInDaysModel lengthInDaysModel;
+        
+        /**
+         *
+         * @return
+     */
+    public LengthInDaysModel getLengthInDaysModel() {
+		if (lengthInDaysModel == null) {
+            lengthInDaysModel = new LengthInDaysModel();
+        }
+                return lengthInDaysModel;
+    }
+    
+    /**
+     *
+     * @return
+     */
+    public RequirementsOrderComparator getRequirementsOrderComparator() {
+        if (requirementsOrderComparator == null) {
+            requirementsOrderComparator = new RequirementsOrderComparator() {
 
 			@Override
 			protected List<String> getOrder() {
-				return getRequirementsOrderIds();
-			}
-		};
+                            return getRequirementsOrderIds();
+                        }
+            };
+        }
 		return requirementsOrderComparator;
 	}
 
-	public Comparator<Task> getTasksOrderComparator() {
-		if (tasksOrderComparator == null) tasksOrderComparator = new Comparator<Task>() {
-
-			@Override
-			public int compare(Task a, Task b) {
-				Requirement ar = a.getRequirement();
-				Requirement br = b.getRequirement();
-				if (ar != br) return getRequirementsOrderComparator().compare(ar, br);
-				List<String> order = ar.getTasksOrderIds();
-				int additional = order.size();
-				int ia = order.indexOf(a.getId());
-				if (ia < 0) {
+    /**
+     *
+     * @return
+     */
+    public Comparator<Task> getTasksOrderComparator() {
+        if (tasksOrderComparator == null) {
+            tasksOrderComparator = new Comparator<Task>() {
+                @Override
+                public int compare(Task a, Task b) {
+                    Requirement ar = a.getRequirement();
+                    Requirement br = b.getRequirement();
+                    if (ar != br) {
+                        return getRequirementsOrderComparator().compare(ar, br);
+                    }
+                    List<String> order = ar.getTasksOrderIds();
+                    int additional = order.size();
+                    int ia = order.indexOf(a.getId());
+                    if (ia < 0) {
 					ia = additional;
 					additional++;
 				}
-				int ib = order.indexOf(b.getId());
-				if (ib < 0) {
+                    int ib = order.indexOf(b.getId());
+                    if (ib < 0) {
 					ib = additional;
 					additional++;
 				}
-				return ia - ib;
-			}
-		};
+                    return ia - ib;
+                }
+            };
+        }
 		return tasksOrderComparator;
 	}
 
-	protected class LengthInDaysModel extends ilarkesto.gwt.client.editor.AIntegerEditorModel {
+    /**
+     *
+     */
+    protected class LengthInDaysModel extends ilarkesto.gwt.client.editor.AIntegerEditorModel {
 
 		@Override
 		public String getId() {
@@ -376,26 +569,30 @@ public class Sprint extends GSprint implements ForumSupport, ReferenceSupport, L
 
 		@Override
 		public java.lang.Integer getValue() {
-			Integer length = getLengthInDays();
-			return length == null || length <= 0 ? null : length;
+                    Integer length = getLengthInDays();
+                    return length == null || length <= 0 ? null : length;
 		}
 
 		@Override
 		public void setValue(java.lang.Integer value) {
 			setLengthInDays(value);
-		}
-
-		@Override
+                }
+                
+                @Override
 		public void increment() {
 			Integer length = getValue();
-			if (length == null) length = 0;
+			if (length == null) {
+                length = 0;
+            }
 			setLengthInDays(length + 1);
 		}
 
 		@Override
 		public void decrement() {
 			Integer lenght = getValue();
-			if (lenght == null || lenght < 2) return;
+			if (lenght == null || lenght < 2) {
+                return;
+            }
 			setLengthInDays(lenght - 1);
 		}
 
@@ -415,27 +612,32 @@ public class Sprint extends GSprint implements ForumSupport, ReferenceSupport, L
 		}
 
 		@Override
-		protected void onChangeValue(java.lang.Integer oldValue, java.lang.Integer newValue) {
-			super.onChangeValue(oldValue, newValue);
-			addUndo(this, oldValue);
-		}
-
-	}
-
-	private transient ATextEditorModel completedRequirementLabelsModel;
-
-	public ATextEditorModel getCompletedRequirementLabelsModel() {
-		if (completedRequirementLabelsModel == null) completedRequirementLabelsModel = new ATextEditorModel() {
-
-			@Override
-			public String getValue() {
-				StringBuilder sb = new StringBuilder();
-				List<StoryInfo> stories = SprintHistoryHelper.parseRequirementsAndTasks(getCompletedRequirementsData());
-				for (StoryInfo story : stories) {
-					sb.append("\n* ").append(story.getReference()).append(" ").append(story.getLabel());
-					sb.append(" ''").append(story.getEstimatedWorkAsString()).append(", ")
-							.append(story.getBurnedWorkAsString()).append("''");
-					for (TaskInfo task : story.getTasks()) {
+                protected void onChangeValue(java.lang.Integer oldValue, java.lang.Integer newValue) {
+                    super.onChangeValue(oldValue, newValue);
+                    addUndo(this, oldValue);
+                }
+                
+    }
+    
+    private transient ATextEditorModel completedRequirementLabelsModel;
+    
+    /**
+     *
+     * @return
+     */
+    public ATextEditorModel getCompletedRequirementLabelsModel() {
+        if (completedRequirementLabelsModel == null) {
+            completedRequirementLabelsModel = new ATextEditorModel() {
+                
+                @Override
+                public String getValue() {
+                    StringBuilder sb = new StringBuilder();
+                    List<StoryInfo> stories = SprintHistoryHelper.parseRequirementsAndTasks(getCompletedRequirementsData());
+                    for (StoryInfo story : stories) {
+                        sb.append("\n* ").append(story.getReference()).append(" ").append(story.getLabel());
+                        sb.append(" ''").append(story.getEstimatedWorkAsString()).append(", ")
+                                .append(story.getBurnedWorkAsString()).append("''");
+                        for (TaskInfo task : story.getTasks()) {
 						sb.append("\n  * ").append(task.getReference()).append(" ").append(task.getLabel());
 						sb.append(" ''").append(task.getBurnedWork()).append(" hrs.''");
 					}
@@ -451,10 +653,15 @@ public class Sprint extends GSprint implements ForumSupport, ReferenceSupport, L
 				return false;
 			}
 		};
+        }
 		return completedRequirementLabelsModel;
 	}
 
-	public String getReferenceAndLabel() {
+    /**
+     *
+     * @return
+     */
+    public String getReferenceAndLabel() {
 		return getReference() + " " + getLabel();
 	}
 }

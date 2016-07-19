@@ -22,6 +22,11 @@ import java.util.List;
 import java.util.Map;
 import org.apache.commons.fileupload.FileItem;
 
+/**
+ *
+ * @author erik
+ * @param <T>
+ */
 public final class RadioSelectFormField<T> extends AFormField {
 
 	private List<T> options;
@@ -29,46 +34,86 @@ public final class RadioSelectFormField<T> extends AFormField {
 	private boolean required = true;
 	private boolean vertical;
 
-	public RadioSelectFormField(String name) {
+    /**
+     *
+     * @param name
+     */
+    public RadioSelectFormField(String name) {
 		super(name);
 	}
 
-	public RadioSelectFormField<T> setOptions(Collection<T> options) {
+    /**
+     *
+     * @param options
+     * @return
+     */
+    public RadioSelectFormField<T> setOptions(Collection<T> options) {
 		this.options = new ArrayList<>(options);
 		return this;
 	}
 
-	public RadioSelectFormField<T> setValue(T value) {
+    /**
+     *
+     * @param value
+     * @return
+     */
+    public RadioSelectFormField<T> setValue(T value) {
 		this.value = value;
 		return this;
 	}
 
-	public RadioSelectFormField<T> setVertical(boolean vertical) {
+    /**
+     *
+     * @param vertical
+     * @return
+     */
+    public RadioSelectFormField<T> setVertical(boolean vertical) {
 		this.vertical = vertical;
 		return this;
 	}
 
-	public boolean isVertical() {
+    /**
+     *
+     * @return
+     */
+    public boolean isVertical() {
 		return vertical;
 	}
 
-	public List<T> getOptions() {
+    /**
+     *
+     * @return
+     */
+    public List<T> getOptions() {
 		if (options == null) {
                         throw new MissingDependencyException("options");
                 }
 		return options;
 	}
 
-	public T getValue() {
+    /**
+     *
+     * @return
+     */
+    public T getValue() {
 		return value;
 	}
 
-        @Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getValueAsString() {
 		return value == null ? null : value.toString();
 	}
 
-        @Override
+    /**
+     *
+     * @param data
+     * @param uploadedFiles
+     */
+    @Override
 	public void update(Map<String, String> data, Collection<FileItem> uploadedFiles) {
 		String indexAsString = data.get(getName());
 		if (indexAsString == null) {
@@ -78,7 +123,11 @@ public final class RadioSelectFormField<T> extends AFormField {
 		}
 	}
 
-        @Override
+    /**
+     *
+     * @throws ValidationException
+     */
+    @Override
 	public void validate() throws ValidationException {
 		if (value == null && required) {
                         throw new ValidationException("Eingabe erforderlich");

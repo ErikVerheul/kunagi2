@@ -14,16 +14,17 @@
  */
 package scrum.client.project;
 
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.FloatingFlowPanel;
 import ilarkesto.gwt.client.Gwt;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import scrum.client.common.AScrumWidget;
 
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class EstimationBarWidget extends AScrumWidget {
 
 	private FloatingFlowPanel flowPanel;
@@ -31,14 +32,20 @@ public class EstimationBarWidget extends AScrumWidget {
 
 	private Requirement requirement;
 
-	public EstimationBarWidget(Requirement requirement) {
+    /**
+     *
+     * @param requirement
+     */
+    public EstimationBarWidget(Requirement requirement) {
 		this.requirement = requirement;
 	}
 
 	@Override
 	protected void onUpdate() {
 		EstimationBar bar = requirement == null ? null : requirement.getEstimationBar();
-		if (bar == null) bar = new EstimationBar(0, new ArrayList<Float>());
+		if (bar == null) {
+                    bar = new EstimationBar(0, new ArrayList<Float>());
+        }
 		flowPanel.clear();
 		List<Float> estimations = bar.getWorkPerSprint();
 		int sprintOffset = bar.getSprintOffset();

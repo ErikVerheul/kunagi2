@@ -14,14 +14,16 @@
  */
 package scrum.client.admin;
 
+import com.google.gwt.user.client.rpc.IsSerializable;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.core.time.TimePeriod;
 import ilarkesto.core.time.Tm;
-
 import java.io.Serializable;
 
-import com.google.gwt.user.client.rpc.IsSerializable;
-
+/**
+ *
+ * @author erik
+ */
 public class SystemMessage implements Serializable, IsSerializable {
 
 	private boolean active = false;
@@ -30,50 +32,100 @@ public class SystemMessage implements Serializable, IsSerializable {
 
 	private DateAndTime expires;
 
-	public SystemMessage() {}
+    /**
+     *
+     */
+    public SystemMessage() {}
 
-	public SystemMessage(String text, DateAndTime expires, boolean active) {
+    /**
+     *
+     * @param text
+     * @param expires
+     * @param active
+     */
+    public SystemMessage(String text, DateAndTime expires, boolean active) {
 		this.text = text;
 		this.expires = expires;
 		this.active = active;
 	}
 
-	public SystemMessage(String text) {
+    /**
+     *
+     * @param text
+     */
+    public SystemMessage(String text) {
 		this(text, null, true);
 	}
 
-	public SystemMessage(String text, long expiresInMilliseconds) {
+    /**
+     *
+     * @param text
+     * @param expiresInMilliseconds
+     */
+    public SystemMessage(String text, long expiresInMilliseconds) {
 		this(text, new DateAndTime(Tm.getCurrentTimeMillis() + expiresInMilliseconds), true);
 	}
 
-	public boolean isActive() {
+    /**
+     *
+     * @return
+     */
+    public boolean isActive() {
 		return active;
 	}
 
-	public void setActive(boolean active) {
+    /**
+     *
+     * @param active
+     */
+    public void setActive(boolean active) {
 		this.active = active;
 	}
 
-	public String getText() {
+    /**
+     *
+     * @return
+     */
+    public String getText() {
 		return text;
 	}
 
-	public void setText(String text) {
+    /**
+     *
+     * @param text
+     */
+    public void setText(String text) {
 		this.text = text;
 	}
 
-	public DateAndTime getExpires() {
+    /**
+     *
+     * @return
+     */
+    public DateAndTime getExpires() {
 		return expires;
 	}
 
-	public String getExpiresAsString() {
-		if (expires == null) return null;
+    /**
+     *
+     * @return
+     */
+    public String getExpiresAsString() {
+		if (expires == null) {
+                    return null;
+        }
 		TimePeriod timePeriod = expires.getPeriodFromNow();
-		if (!timePeriod.isPositive()) return null;
+		if (!timePeriod.isPositive()) {
+                    return null;
+        }
 		return "in " + timePeriod.toShortestString();
 	}
 
-	public void setExpires(DateAndTime expires) {
+    /**
+     *
+     * @param expires
+     */
+    public void setExpires(DateAndTime expires) {
 		this.expires = expires;
 	}
 

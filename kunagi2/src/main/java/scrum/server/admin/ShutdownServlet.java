@@ -18,17 +18,24 @@ import ilarkesto.core.base.Str;
 import ilarkesto.core.time.Tm;
 import ilarkesto.ui.web.HtmlRenderer;
 import ilarkesto.webapp.RequestWrapper;
-
 import java.io.IOException;
-
 import scrum.server.WebSession;
 import scrum.server.common.AKunagiServlet;
 
+/**
+ *
+ * @author erik
+ */
 public class ShutdownServlet extends AKunagiServlet {
 
 	private boolean shutdownInitiated;
 
-	@Override
+    /**
+     *
+     * @param req
+     * @throws IOException
+     */
+    @Override
 	protected void onRequest(RequestWrapper<WebSession> req) throws IOException {
 		tokenLogin(req);
 
@@ -47,7 +54,9 @@ public class ShutdownServlet extends AKunagiServlet {
 			shutdownInitiated = true;
 			String sDelay = req.get("delay");
 			long delayInMillis = 0;
-			if (!Str.isBlank(sDelay)) delayInMillis = Long.parseLong(sDelay) * Tm.MINUTE;
+			if (!Str.isBlank(sDelay)) {
+                            delayInMillis = Long.parseLong(sDelay) * Tm.MINUTE;
+            }
 			webApplication.shutdown(delayInMillis);
 		}
 

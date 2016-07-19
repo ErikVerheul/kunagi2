@@ -18,11 +18,19 @@ import ilarkesto.core.scope.Scope;
 import ilarkesto.core.time.Date;
 import scrum.client.common.AScrumAction;
 
+/**
+ *
+ * @author erik
+ */
 public class DaySelectedAction extends AScrumAction {
 
 	private Date date;
 
-	public DaySelectedAction(Date date) {
+    /**
+     *
+     * @param date
+     */
+    public DaySelectedAction(Date date) {
 		this.date = date;
 	}
 

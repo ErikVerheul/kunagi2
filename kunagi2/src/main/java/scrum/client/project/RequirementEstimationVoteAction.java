@@ -14,11 +14,20 @@
  */
 package scrum.client.project;
 
+/**
+ *
+ * @author erik
+ */
 public class RequirementEstimationVoteAction extends GRequirementEstimationVoteAction {
 
 	private Float estimatedWork;
 
-	public RequirementEstimationVoteAction(scrum.client.project.Requirement requirement, java.lang.Float estimatedWork) {
+    /**
+     *
+     * @param requirement
+     * @param estimatedWork
+     */
+    public RequirementEstimationVoteAction(scrum.client.project.Requirement requirement, java.lang.Float estimatedWork) {
 		super(requirement, estimatedWork);
 		this.estimatedWork = estimatedWork;
 	}

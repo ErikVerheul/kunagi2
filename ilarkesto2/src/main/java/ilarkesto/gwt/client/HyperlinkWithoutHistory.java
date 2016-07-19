@@ -35,17 +35,28 @@ import com.google.gwt.user.client.ui.HasHTML;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.client.ui.impl.HyperlinkImpl;
 
+/**
+ *
+ * @author erik
+ */
 public class HyperlinkWithoutHistory extends Widget implements HasHTML, HasClickHandlers {
 
 	private static HyperlinkImpl impl = GWT.create(HyperlinkImpl.class);
 
 	private final Element anchorElem = createAnchor();
 
-	public HyperlinkWithoutHistory() {
+    /**
+     *
+     */
+    public HyperlinkWithoutHistory() {
 		this(createDiv());
 	}
 
-	protected HyperlinkWithoutHistory(Element elem) {
+    /**
+     *
+     * @param elem
+     */
+    protected HyperlinkWithoutHistory(Element elem) {
 		if (elem == null) {
 			setElement(anchorElem);
 		} else {

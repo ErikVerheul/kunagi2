@@ -14,16 +14,22 @@
  */
 package scrum.client.admin;
 
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.ButtonWidget;
 import scrum.client.common.AScrumWidget;
 import scrum.client.common.BlockListWidget;
 import scrum.client.workspace.PagePanel;
 
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class UserListWidget extends AScrumWidget {
 
-	public BlockListWidget<User> list;
+    /**
+     *
+     */
+    public BlockListWidget<User> list;
 
 	@Override
 	protected Widget onInitialization() {
@@ -42,8 +48,15 @@ public class UserListWidget extends AScrumWidget {
 		super.onUpdate();
 	}
 
-	public boolean select(User user) {
-		if (!list.contains(user)) update();
+    /**
+     *
+     * @param user
+     * @return
+     */
+    public boolean select(User user) {
+		if (!list.contains(user)) {
+                    update();
+        }
 		return list.showObject(user);
 	}
 

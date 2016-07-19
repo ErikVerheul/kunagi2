@@ -20,30 +20,57 @@ import java.util.Collection;
 import java.util.Map;
 import org.apache.commons.fileupload.FileItem;
 
+/**
+ *
+ * @author erik
+ */
 public class MoneyFormField extends AFormField {
 
 	private String value;
 	private String currency = EUR;
 
-	public MoneyFormField(String name) {
+    /**
+     *
+     * @param name
+     */
+    public MoneyFormField(String name) {
 		super(name);
 	}
 
-	public MoneyFormField setValue(Money value) {
+    /**
+     *
+     * @param value
+     * @return
+     */
+    public MoneyFormField setValue(Money value) {
 		this.value = value == null ? null : value.getAmountAsString(',');
 		return this;
 	}
 
-	public MoneyFormField setCurrency(String currency) {
+    /**
+     *
+     * @param currency
+     * @return
+     */
+    public MoneyFormField setCurrency(String currency) {
 		this.currency = currency;
 		return this;
 	}
 
-	public String getCurrency() {
+    /**
+     *
+     * @return
+     */
+    public String getCurrency() {
 		return currency;
 	}
 
-        @Override
+    /**
+     *
+     * @param data
+     * @param uploadedFiles
+     */
+    @Override
 	public void update(Map<String, String> data, Collection<FileItem> uploadedFiles) {
 		value = data.get(getName());
 		if (value != null) {
@@ -59,7 +86,11 @@ public class MoneyFormField extends AFormField {
 		}
 	}
 
-        @Override
+    /**
+     *
+     * @throws ValidationException
+     */
+    @Override
 	public void validate() throws ValidationException {
 		if (value == null) {
 			if (isRequired()) {
@@ -74,16 +105,28 @@ public class MoneyFormField extends AFormField {
 		}
 	}
 
-        @Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getValueAsString() {
 		return value + ' ' + currency;
 	}
 
-	public Money getValueAsMoney() {
+    /**
+     *
+     * @return
+     */
+    public Money getValueAsMoney() {
 		return value == null ? null : new Money(value, currency);
 	}
 
-	public String getAmountAsString() {
+    /**
+     *
+     * @return
+     */
+    public String getAmountAsString() {
 		return value;
 	}
 }

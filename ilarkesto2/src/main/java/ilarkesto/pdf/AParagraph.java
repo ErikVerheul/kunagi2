@@ -18,40 +18,113 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class AParagraph extends APdfElement {
 
-	public enum Align {
-		LEFT, CENTER, RIGHT
+    /**
+     *
+     */
+    public enum Align {
+
+        /**
+         *
+         */
+        LEFT, 
+
+        /**
+         *
+         */
+        CENTER, 
+
+        /**
+         *
+         */
+        RIGHT
 	}
 
 	private FontStyle defaultFontStyle;
-	protected float height;
-	protected Align align;
-	protected float spacingTop;
-	protected float spacingBottom;
-	protected List<AParagraphElement> elements = new ArrayList<>(1);
 
-	public abstract AImage image(File file);
+    /**
+     *
+     */
+    protected float height;
 
-	public abstract AImage image(byte[] data);
+    /**
+     *
+     */
+    protected Align align;
 
-	public AParagraph(APdfElement parent) {
+    /**
+     *
+     */
+    protected float spacingTop;
+
+    /**
+     *
+     */
+    protected float spacingBottom;
+
+    /**
+     *
+     */
+    protected List<AParagraphElement> elements = new ArrayList<>(1);
+
+    /**
+     *
+     * @param file
+     * @return
+     */
+    public abstract AImage image(File file);
+
+    /**
+     *
+     * @param data
+     * @return
+     */
+    public abstract AImage image(byte[] data);
+
+    /**
+     *
+     * @param parent
+     */
+    public AParagraph(APdfElement parent) {
 		super(parent);
 	}
 
-	public void setSpacingTop(float spacingTop) {
+    /**
+     *
+     * @param spacingTop
+     */
+    public void setSpacingTop(float spacingTop) {
 		this.spacingTop = spacingTop;
 	}
 
-	public void setSpacingBottom(float spacingBottom) {
+    /**
+     *
+     * @param spacingBottom
+     */
+    public void setSpacingBottom(float spacingBottom) {
 		this.spacingBottom = spacingBottom;
 	}
 
-	protected List<AParagraphElement> getElements() {
+    /**
+     *
+     * @return
+     */
+    protected List<AParagraphElement> getElements() {
 		return elements;
 	}
 
-	public AParagraph text(Object text, FontStyle fontStyle) {
+    /**
+     *
+     * @param text
+     * @param fontStyle
+     * @return
+     */
+    public AParagraph text(Object text, FontStyle fontStyle) {
 		if (text == null) {
                         return this;
                 }
@@ -59,31 +132,60 @@ public abstract class AParagraph extends APdfElement {
 		return this;
 	}
 
-	public AParagraph text(Object text) {
+    /**
+     *
+     * @param text
+     * @return
+     */
+    public AParagraph text(Object text) {
 		return text(text, defaultFontStyle);
 	}
 
-	public AParagraph nl() {
+    /**
+     *
+     * @return
+     */
+    public AParagraph nl() {
 		text("\n");
 		return this;
 	}
 
-	public AParagraph nl(FontStyle fontStyle) {
+    /**
+     *
+     * @param fontStyle
+     * @return
+     */
+    public AParagraph nl(FontStyle fontStyle) {
 		text("\n", fontStyle);
 		return this;
 	}
 
-	public AParagraph setHeight(float height) {
+    /**
+     *
+     * @param height
+     * @return
+     */
+    public AParagraph setHeight(float height) {
 		this.height = height;
 		return this;
 	}
 
-	public AParagraph setAlign(Align align) {
+    /**
+     *
+     * @param align
+     * @return
+     */
+    public AParagraph setAlign(Align align) {
 		this.align = align;
 		return this;
 	}
 
-	public AParagraph setDefaultFontStyle(FontStyle defaultFontStyle) {
+    /**
+     *
+     * @param defaultFontStyle
+     * @return
+     */
+    public AParagraph setDefaultFontStyle(FontStyle defaultFontStyle) {
 		this.defaultFontStyle = defaultFontStyle;
 		return this;
 	}

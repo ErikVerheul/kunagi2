@@ -21,6 +21,10 @@ import java.util.Collection;
 import java.util.Map;
 import org.apache.commons.fileupload.FileItem;
 
+/**
+ *
+ * @author erik
+ */
 public class TextFormField extends AFormField {
 
 	private String value;
@@ -32,7 +36,11 @@ public class TextFormField extends AFormField {
 	private InputAssistant inputAssistant;
 	private InputAssistantButton inputAssistantButton;
 
-	public TextFormField(String name) {
+    /**
+     *
+     * @param name
+     */
+    public TextFormField(String name) {
 		super(name);
 		inputAssistantButton = (InputAssistantButton) new InputAssistantButton(BUTTON_PREFIX
 				+ INPUTASSISTANT_BUTTON_NAME_PREFIX + name).setValidateForm(false).setLabel("Auswahl...").setIcon(
@@ -40,62 +48,122 @@ public class TextFormField extends AFormField {
 		"inputAssistant");
 	}
 
-	public InputAssistantButton getInputAssistantButton() {
+    /**
+     *
+     * @return
+     */
+    public InputAssistantButton getInputAssistantButton() {
 		return inputAssistantButton;
 	}
 
-	public TextFormField setSuffix(String suffix) {
+    /**
+     *
+     * @param suffix
+     * @return
+     */
+    public TextFormField setSuffix(String suffix) {
 		this.suffix = suffix;
 		return this;
 	}
 
-	public TextFormField setInputAssistant(InputAssistant inputAssistant) {
+    /**
+     *
+     * @param inputAssistant
+     * @return
+     */
+    public TextFormField setInputAssistant(InputAssistant inputAssistant) {
 		this.inputAssistant = inputAssistant;
 		return this;
 	}
 
-	public boolean isInputAssistantSet() {
+    /**
+     *
+     * @return
+     */
+    public boolean isInputAssistantSet() {
 		return inputAssistant != null;
 	}
 
-	public InputAssistant getInputAssistant() {
+    /**
+     *
+     * @return
+     */
+    public InputAssistant getInputAssistant() {
 		return inputAssistant;
 	}
 
-	public String getSuffix() {
+    /**
+     *
+     * @return
+     */
+    public String getSuffix() {
 		return suffix;
 	}
 
-	public TextFormField setTrim(boolean trim) {
+    /**
+     *
+     * @param trim
+     * @return
+     */
+    public TextFormField setTrim(boolean trim) {
 		this.trim = trim;
 		return this;
 	}
 
-	public TextFormField setWidth(int value) {
+    /**
+     *
+     * @param value
+     * @return
+     */
+    public TextFormField setWidth(int value) {
 		this.width = value;
 		return this;
 	}
 
-	public TextFormField setValidator(Validator validator) {
+    /**
+     *
+     * @param validator
+     * @return
+     */
+    public TextFormField setValidator(Validator validator) {
 		this.validator = validator;
 		return this;
 	}
 
-	public TextFormField setValue(String value) {
+    /**
+     *
+     * @param value
+     * @return
+     */
+    public TextFormField setValue(String value) {
 		this.value = value;
 		return this;
 	}
 
-	public int getWidth() {
+    /**
+     *
+     * @return
+     */
+    public int getWidth() {
 		return width;
 	}
 
-        @Override
+    /**
+     *
+     * @param data
+     * @param uploadedFiles
+     */
+    @Override
 	public void update(Map<String, String> data, Collection<FileItem> uploadedFiles) {
 		value = preProcessValue(data.get(getName()));
 	}
 
-	protected String preProcessValue(String s) {
+    /**
+     *
+     * @param s
+     * @return
+     */
+    protected String preProcessValue(String s) {
 		if (s == null) {
                         return null;
                 }
@@ -106,7 +174,11 @@ public class TextFormField extends AFormField {
 		return s;
 	}
 
-        @Override
+    /**
+     *
+     * @throws ValidationException
+     */
+    @Override
 	public void validate() throws ValidationException {
 		if (value == null) {
 			if (isRequired()) { throw new ValidationException("Eingabe erforderlich"); }
@@ -117,18 +189,33 @@ public class TextFormField extends AFormField {
 		}
 	}
 
-        @Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getValueAsString() {
 		return value;
 	}
 
-	public class InputAssistantButton extends FormButton {
+    /**
+     *
+     */
+    public class InputAssistantButton extends FormButton {
 
-		public InputAssistantButton(String name) {
+        /**
+         *
+         * @param name
+         */
+        public InputAssistantButton(String name) {
 			super(name);
 		}
 
-		public TextFormField getField() {
+        /**
+         *
+         * @return
+         */
+        public TextFormField getField() {
 			return TextFormField.this;
 		}
 

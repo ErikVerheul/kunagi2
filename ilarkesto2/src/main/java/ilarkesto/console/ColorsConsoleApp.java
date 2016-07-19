@@ -33,30 +33,57 @@ import ilarkesto.console.ConsoleApp.ParameterDescription;
  */
 public class ColorsConsoleApp {
 
-	public static void main(String[] args) {
+    /**
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
 		ConsoleApp app = ConsoleApp.fromClass(ColorsConsoleApp.class);
 		app.setExecutionMode(ExecutionMode.RUN_UNTIL_EXIT).showParameterNames();
 		app.printUsage();
 		app.execute();
 	}
 
-	@CallDescription(text = "Blends two colors a and b with the given ratio 0.0 <= r <= 1.0.")
+    /**
+     *
+     * @param a
+     * @param b
+     * @param r
+     * @return
+     */
+    @CallDescription(text = "Blends two colors a and b with the given ratio 0.0 <= r <= 1.0.")
 	public static String blend(@ParameterDescription(name = "a") String a, @ParameterDescription(name = "b") String b,
 			@ParameterDescription(name = "r") float r) {
 		return Colors.blend(a, b, r);
 	}
 
-	@CallDescription(text = "Blends two colors a and b (with the ratio 0.5).")
+    /**
+     *
+     * @param a
+     * @param b
+     * @return
+     */
+    @CallDescription(text = "Blends two colors a and b (with the ratio 0.5).")
 	public static String blend(@ParameterDescription(name = "a") String a, @ParameterDescription(name = "b") String b) {
 		return Colors.blend(a, b);
 	}
 
-	@CallDescription(text = "Darkens a color (by 0.1 where 0.0 is blac and 1.0 is white).")
+    /**
+     *
+     * @param a
+     * @return
+     */
+    @CallDescription(text = "Darkens a color (by 0.1 where 0.0 is blac and 1.0 is white).")
 	public static String darken(@ParameterDescription(name = "a") String a) {
 		return Colors.darken(a);
 	}
 
-	@CallDescription(text = "Lightens a color (by 0.1 where 0.0 is blac and 1.0 is white).")
+    /**
+     *
+     * @param a
+     * @return
+     */
+    @CallDescription(text = "Lightens a color (by 0.1 where 0.0 is blac and 1.0 is white).")
 	public static String lighten(@ParameterDescription(name = "a") String a) {
 		return Colors.lighten(a);
 	}

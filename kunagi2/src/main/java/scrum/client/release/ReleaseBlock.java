@@ -14,6 +14,8 @@
  */
 package scrum.client.release;
 
+import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.time.Date;
 import ilarkesto.gwt.client.AnchorPanel;
 import ilarkesto.gwt.client.editor.AFieldModel;
@@ -25,9 +27,6 @@ import scrum.client.common.BlockWidgetFactory;
 import scrum.client.dnd.TrashSupport;
 import scrum.client.img.Img;
 import scrum.client.journal.ActivateChangeHistoryAction;
-
-import com.google.gwt.user.client.ui.Image;
-import com.google.gwt.user.client.ui.Widget;
 
 public class ReleaseBlock extends ABlockWidget<Release> implements TrashSupport {
 

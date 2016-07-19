@@ -15,9 +15,7 @@
 package scrum.server.sprint;
 
 import ilarkesto.fp.Predicate;
-
 import java.util.Set;
-
 import scrum.server.project.Project;
 import scrum.server.project.Requirement;
 

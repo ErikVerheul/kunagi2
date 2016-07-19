@@ -16,25 +16,35 @@ package scrum.client.search;
 
 import ilarkesto.core.base.Str;
 import static ilarkesto.core.logging.ClientLog.INFO;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
 import scrum.client.common.AScrumGwtEntity;
 
+/**
+ *
+ * @author erik
+ */
 public class Search extends GSearch implements SearchResultsChangedHandler {
 
 	private final SearchResults results = new SearchResults();
 	private SearchResultsWidget resultsWidget;
 	private String searchText;
 
-	public void search(String text) {
-		if (text != null) text = text.toLowerCase();
+    /**
+     *
+     * @param text
+     */
+    public void search(String text) {
+		if (text != null) {
+                    text = text.toLowerCase();
+        }
 		this.searchText = text;
 		INFO("Searching:", searchText);
 		results.clear();
-		if (Str.isBlank(searchText)) return;
+		if (Str.isBlank(searchText)) {
+                    return;
+        }
 
 		new SearchServiceCall(searchText).execute(new Runnable() {
 
@@ -67,23 +77,44 @@ public class Search extends GSearch implements SearchResultsChangedHandler {
 	private <T extends AScrumGwtEntity> List<T> getMatching(Collection<T> entities, String[] keys) {
 		List<T> ret = new ArrayList<T>();
 		for (T entity : entities) {
-			if (matchesKeys(entity, keys)) ret.add(entity);
+			if (matchesKeys(entity, keys)) {
+                            ret.add(entity);
+            }
 		}
 		return ret;
 	}
 
-	public static boolean matchesQuery(AScrumGwtEntity entity, String query) {
+    /**
+     *
+     * @param entity
+     * @param query
+     * @return
+     */
+    public static boolean matchesQuery(AScrumGwtEntity entity, String query) {
 		return matchesKeys(entity, parseKeys(query));
 	}
 
-	public static boolean matchesKeys(AScrumGwtEntity entity, String[] keys) {
+    /**
+     *
+     * @param entity
+     * @param keys
+     * @return
+     */
+    public static boolean matchesKeys(AScrumGwtEntity entity, String[] keys) {
 		for (String key : keys) {
-			if (!entity.matchesKey(key)) return false;
+                    if (!entity.matchesKey(key)) {
+                        return false;
+            }
 		}
 		return true;
 	}
 
-	public static String[] parseKeys(String text) {
+    /**
+     *
+     * @param text
+     * @return
+     */
+    public static String[] parseKeys(String text) {
 		List<String> ret = new ArrayList<String>();
 		char sep = ' ';
 		int idx = text.indexOf(sep);
@@ -96,17 +127,31 @@ public class Search extends GSearch implements SearchResultsChangedHandler {
 		return ret.toArray(new String[ret.size()]);
 	}
 
-	public SearchResults getResults() {
+    /**
+     *
+     * @return
+     */
+    public SearchResults getResults() {
 		return results;
 	}
 
-	@Override
+    /**
+     *
+     * @param event
+     */
+    @Override
 	public void onSearchResultsChanged(SearchResultsChangedEvent event) {
 		getResultsWidget().update();
 	}
 
-	public SearchResultsWidget getResultsWidget() {
-		if (resultsWidget == null) resultsWidget = new SearchResultsWidget();
+    /**
+     *
+     * @return
+     */
+        public SearchResultsWidget getResultsWidget() {
+            if (resultsWidget == null) {
+                resultsWidget = new SearchResultsWidget();
+        }
 		return resultsWidget;
 	}
 

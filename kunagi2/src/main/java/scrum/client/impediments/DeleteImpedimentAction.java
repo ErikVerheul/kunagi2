@@ -1,25 +1,19 @@
-/*
- * Copyright 2011 Witoslaw Koczewsi <wi@koczewski.de>, Artjom Kochtchi
- * 
- * This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero
- * General Public License as published by the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
- * implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public
- * License for more details.
- * 
- * You should have received a copy of the GNU General Public License along with this program. If not, see
- * <http://www.gnu.org/licenses/>.
- */
+
 package scrum.client.impediments;
 
-import scrum.client.impediments.GDeleteImpedimentAction;
 import scrum.client.common.TooltipBuilder;
 
+/**
+ *
+ * @author erik
+ */
 public class DeleteImpedimentAction extends GDeleteImpedimentAction {
 
-	public DeleteImpedimentAction(Impediment impediment) {
+    /**
+     *
+     * @param impediment
+     */
+    public DeleteImpedimentAction(Impediment impediment) {
 		super(impediment);
 	}
 
@@ -28,10 +22,16 @@ public class DeleteImpedimentAction extends GDeleteImpedimentAction {
 		return "Delete";
 	}
 
-	@Override
+    /**
+     *
+     * @param tb
+     */
+    @Override
 	protected void updateTooltip(TooltipBuilder tb) {
 		tb.setText("Delete this Impediment permanently.");
-		if (!impediment.getProject().isScrumTeamMember(getCurrentUser())) tb.addRemark(TooltipBuilder.NOT_SCRUMTEAM);
+		if (!impediment.getProject().isScrumTeamMember(getCurrentUser())) {
+                    tb.addRemark(TooltipBuilder.NOT_SCRUMTEAM);
+        }
 	}
 
 	@Override
@@ -41,8 +41,7 @@ public class DeleteImpedimentAction extends GDeleteImpedimentAction {
 
 	@Override
 	public boolean isPermitted() {
-		if (!getCurrentProject().isScrumTeamMember(getCurrentUser())) return false;
-		return true;
+		return getCurrentProject().isScrumTeamMember(getCurrentUser());
 	}
 
 	@Override

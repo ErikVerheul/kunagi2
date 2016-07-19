@@ -19,24 +19,49 @@ import javax.swing.AbstractAction;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class AAction extends AbstractAction {
 
-	public AAction(String name, String iconResourceName) {
+    /**
+     *
+     * @param name
+     * @param iconResourceName
+     */
+    public AAction(String name, String iconResourceName) {
 		super(name);
 		setIcon(iconResourceName);
 	}
 
-	public void update() {}
+    /**
+     *
+     */
+    public void update() {}
 
-	public void setIcon(String iconResourceName) {
+    /**
+     *
+     * @param iconResourceName
+     */
+    public void setIcon(String iconResourceName) {
 		setIcon(loadIconFromResource(iconResourceName));
 	}
 
-	public void setIcon(Icon icon) {
+    /**
+     *
+     * @param icon
+     */
+    public void setIcon(Icon icon) {
 		putValue(SMALL_ICON, icon);
 	}
 
-	protected final Icon loadIconFromResource(String resourceName) {
+    /**
+     *
+     * @param resourceName
+     * @return
+     */
+    protected final Icon loadIconFromResource(String resourceName) {
 		if (resourceName == null) {
                         return null;
                 }
@@ -49,6 +74,11 @@ public abstract class AAction extends AbstractAction {
 
 	// ---
 
+    /**
+     *
+     * @param actions
+     */
+    
 	public static void updateAll(AAction... actions) {
 		for (AAction action : actions) {
 			action.update();

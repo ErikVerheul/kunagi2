@@ -18,21 +18,34 @@ import ilarkesto.core.time.Time;
 import ilarkesto.testng.ATest;
 import org.testng.annotations.Test;
 
+/**
+ *
+ * @author erik
+ */
 public class TimeTest extends ATest {
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void constructionAndToString() {
 		assertEquals(new Time(10, 9), new Time("10:09"));
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void isAfter() {
 		assertTrue(new Time(10, 10).isAfter(new Time(10, 9)));
 		assertFalse(new Time(10, 10).isAfter(new Time(10, 10)));
 		assertTrue(new Time(10, 10).isAfterOrSame(new Time(10, 10)));
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void isBefore() {
 		assertTrue(new Time(10, 10).isBefore(new Time(10, 11)));
 		assertFalse(new Time(10, 10).isBefore(new Time(10, 10)));

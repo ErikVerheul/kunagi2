@@ -23,9 +23,19 @@ import static java.lang.Integer.parseInt;
 import java.text.DateFormat;
 import java.text.ParseException;
 
+/**
+ *
+ * @author erik
+ */
 public class DateParser {
 
-	public static Date parseDate(String s) throws ParseException {
+    /**
+     *
+     * @param s
+     * @return
+     * @throws ParseException
+     */
+    public static Date parseDate(String s) throws ParseException {
 		if (s == null) {
                         return null;
                 }
@@ -68,7 +78,14 @@ public class DateParser {
 		return new Date(todayYear, todayMonth, ia[0]);
 	}
 
-	public static DateAndTime parseDateAndTime(String s, DateFormat... formats) throws ParseException {
+    /**
+     *
+     * @param s
+     * @param formats
+     * @return
+     * @throws ParseException
+     */
+    public static DateAndTime parseDateAndTime(String s, DateFormat... formats) throws ParseException {
 		ParseException ex = null;
 		for (DateFormat format : formats) {
 			try {

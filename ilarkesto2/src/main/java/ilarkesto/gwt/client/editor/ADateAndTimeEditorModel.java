@@ -16,9 +16,17 @@ package ilarkesto.gwt.client.editor;
 
 import ilarkesto.core.time.DateAndTime;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class ADateAndTimeEditorModel extends AEditorModel<DateAndTime> {
 
-	public boolean isMandatory() {
+    /**
+     *
+     * @return
+     */
+    public boolean isMandatory() {
 		return false;
 	}
 

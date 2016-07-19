@@ -17,44 +17,93 @@ package ilarkesto.mda.legacy.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class ApplicationModel extends BeanModel {
 
-	public enum Type {
-		WEB, SWING
+    /**
+     *
+     */
+    public enum Type {
+
+        /**
+         *
+         */
+        WEB, 
+
+        /**
+         *
+         */
+        SWING
 	}
 
 	private Type type;
 	private List<GwtServiceModel> gwtServices = new ArrayList<>();
 	private List<ActionModel> actions = new ArrayList<>();
 
-	public ApplicationModel(Type type, String name, String packageName) {
+    /**
+     *
+     * @param type
+     * @param name
+     * @param packageName
+     */
+    public ApplicationModel(Type type, String name, String packageName) {
 		super(name, packageName);
 		this.type = type;
 	}
 
-	public ActionModel addAction(String name, String packageName) {
+    /**
+     *
+     * @param name
+     * @param packageName
+     * @return
+     */
+    public ActionModel addAction(String name, String packageName) {
 		ActionModel action = new ActionModel(name, packageName);
 		actions.add(action);
 		return action;
 	}
 
-	public ActionModel addCreateAction(EntityModel entity) {
+    /**
+     *
+     * @param entity
+     * @return
+     */
+    public ActionModel addCreateAction(EntityModel entity) {
 		return addAction("Create" + entity.getName(), entity.getPackageName());
 	}
 
-	public List<ActionModel> getActions() {
+    /**
+     *
+     * @return
+     */
+    public List<ActionModel> getActions() {
 		return actions;
 	}
 
-	public Type getType() {
+    /**
+     *
+     * @return
+     */
+    public Type getType() {
 		return type;
 	}
 
-	public void addGwtService(GwtServiceModel serviceModel) {
+    /**
+     *
+     * @param serviceModel
+     */
+    public void addGwtService(GwtServiceModel serviceModel) {
 		gwtServices.add(serviceModel);
 	}
 
-	public List<GwtServiceModel> getGwtServices() {
+    /**
+     *
+     * @return
+     */
+    public List<GwtServiceModel> getGwtServices() {
 		return gwtServices;
 	}
 

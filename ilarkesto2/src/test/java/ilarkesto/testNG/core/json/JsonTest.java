@@ -1,6 +1,5 @@
 package ilarkesto.testNG.core.json;
 
-import ilarkesto.core.base.Utl;
 import static ilarkesto.core.base.Utl.toList;
 import ilarkesto.json.Json;
 import ilarkesto.json.JsonObject;

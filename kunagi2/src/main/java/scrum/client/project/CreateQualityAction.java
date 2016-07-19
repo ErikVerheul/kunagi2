@@ -18,6 +18,10 @@ import ilarkesto.core.scope.Scope;
 import scrum.client.common.TooltipBuilder;
 import scrum.client.workspace.ProjectWorkspaceWidgets;
 
+/**
+ *
+ * @author erik
+ */
 public class CreateQualityAction extends GCreateQualityAction {
 
 	@Override
@@ -25,10 +29,16 @@ public class CreateQualityAction extends GCreateQualityAction {
 		return "Create Quality";
 	}
 
-	@Override
+    /**
+     *
+     * @param tb
+     */
+    @Override
 	protected void updateTooltip(TooltipBuilder tb) {
 		tb.setText("Create a new Quality.");
-		if (!getCurrentProject().isProductOwner(getCurrentUser())) tb.addRemark(TooltipBuilder.NOT_PRODUCT_OWNER);
+		if (!getCurrentProject().isProductOwner(getCurrentUser())) {
+                    tb.addRemark(TooltipBuilder.NOT_PRODUCT_OWNER);
+        }
 	}
 
 	@Override
@@ -38,8 +48,7 @@ public class CreateQualityAction extends GCreateQualityAction {
 
 	@Override
 	public boolean isPermitted() {
-		if (!getCurrentProject().isProductOwner(getCurrentUser())) return false;
-		return true;
+		return getCurrentProject().isProductOwner(getCurrentUser());
 	}
 
 	@Override

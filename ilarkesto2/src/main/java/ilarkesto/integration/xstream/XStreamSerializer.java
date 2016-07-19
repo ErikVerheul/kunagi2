@@ -28,16 +28,27 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 
+/**
+ *
+ * @author erik
+ */
 public class XStreamSerializer extends Serializer {
 
 	private XStream xstream;
 	private String encoding;
 
-	public XStreamSerializer() {
+    /**
+     *
+     */
+    public XStreamSerializer() {
 		this(UTF_8);
 	}
 
-	public XStreamSerializer(String encoding) {
+    /**
+     *
+     * @param encoding
+     */
+    public XStreamSerializer(String encoding) {
 		this.encoding = encoding;
 		xstream = new XStream(new DomDriver(encoding));
 		registerConverter(DateConverter.class);
@@ -59,12 +70,22 @@ public class XStreamSerializer extends Serializer {
 		xstream.alias(type.getSimpleName(), type);
 	}
 
-	@Override
+    /**
+     *
+     * @param alias
+     * @param clazz
+     */
+    @Override
 	public void setAlias(String alias, Class clazz) {
 		xstream.alias(alias, clazz);
 	}
 
-	@Override
+    /**
+     *
+     * @param bean
+     * @param out
+     */
+    @Override
 	public void serialize(Object bean, OutputStream out) {
 		try {
 			Writer writer = new OutputStreamWriter(out, encoding);
@@ -76,7 +97,12 @@ public class XStreamSerializer extends Serializer {
 		}
 	}
 
-	@Override
+    /**
+     *
+     * @param in
+     * @return
+     */
+    @Override
 	public Object deserialize(InputStream in) {
 		try {
 			return xstream.fromXML(new InputStreamReader(in, encoding));

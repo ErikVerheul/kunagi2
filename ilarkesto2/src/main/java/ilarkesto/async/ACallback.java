@@ -16,27 +16,48 @@ package ilarkesto.async;
 
 import ilarkesto.fp.Function;
 
+/**
+ *
+ * @author erik
+ * @param <R>
+ */
 public abstract class ACallback<R> implements Callback<R> {
 
 	private Callback parentCallback;
 	private Function<R, Object> resultConverter;
 	private boolean called;
 
-	public ACallback() {
+    /**
+     *
+     */
+    public ACallback() {
 		this(null, null);
 	}
 
-	public ACallback(Callback parentCallback) {
+    /**
+     *
+     * @param parentCallback
+     */
+    public ACallback(Callback parentCallback) {
 		this(parentCallback, null);
 	}
 
-	public ACallback(Callback parentCallback, Function<R, Object> resultConverter) {
+    /**
+     *
+     * @param parentCallback
+     * @param resultConverter
+     */
+    public ACallback(Callback parentCallback, Function<R, Object> resultConverter) {
 		super();
 		this.parentCallback = parentCallback;
 		this.resultConverter = resultConverter;
 	}
 
-	@Override
+    /**
+     *
+     * @param result
+     */
+    @Override
 	public void onSuccess(R result) {
 		if (called) {
                         throw new IllegalStateException("Callback already called: " + this);
@@ -51,7 +72,11 @@ public abstract class ACallback<R> implements Callback<R> {
 		parentCallback.onSuccess(callbackResult);
 	}
 
-	@Override
+    /**
+     *
+     * @param error
+     */
+    @Override
 	public void onError(Exception error) {
 		if (called) {
                         throw new IllegalStateException("Callback already called: " + this);

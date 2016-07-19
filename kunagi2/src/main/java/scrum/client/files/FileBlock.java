@@ -14,13 +14,12 @@
  */
 package scrum.client.files;
 
+import com.google.gwt.user.client.ui.Widget;
 import scrum.client.common.ABlockWidget;
 import scrum.client.common.AScrumAction;
 import scrum.client.common.BlockHeaderWidget;
 import scrum.client.common.BlockWidgetFactory;
 import scrum.client.dnd.TrashSupport;
-
-import com.google.gwt.user.client.ui.Widget;
 
 public class FileBlock extends ABlockWidget<File> implements TrashSupport {
 

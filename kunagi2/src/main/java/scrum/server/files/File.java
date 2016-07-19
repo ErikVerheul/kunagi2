@@ -17,22 +17,39 @@ package scrum.server.files;
 import ilarkesto.io.IO;
 import scrum.server.admin.User;
 
+/**
+ *
+ * @author erik
+ */
 public class File extends GFile {
 
 	// --- dependencies ---
 
 	// --- ---
 
+    /**
+     *
+     */
+    
 	public void deleteFile() {
 		IO.delete(getJavaFile());
 	}
 
-	public java.io.File getJavaFile() {
+    /**
+     *
+     * @return
+     */
+    public java.io.File getJavaFile() {
 		return new java.io.File(getProject().getFileRepositoryPath() + "/" + getFilename());
 	}
 
-	public void updateNumber() {
-		if (isNumber(0)) setNumber(getProject().generateFileNumber());
+    /**
+     *
+     */
+    public void updateNumber() {
+		if (isNumber(0)) {
+                    setNumber(getProject().generateFileNumber());
+        }
 	}
 
         @Override
@@ -40,15 +57,28 @@ public class File extends GFile {
 		return getProject().isVisibleFor(user);
 	}
 
-	public String getReferenceAndLabel() {
+    /**
+     *
+     * @return
+     */
+    public String getReferenceAndLabel() {
 		return getReference() + " (" + getLabel() + ")";
 	}
 
-	public String getReference() {
+    /**
+     *
+     * @return
+     */
+    public String getReference() {
 		return scrum.client.files.File.REFERENCE_PREFIX + getNumber();
 	}
 
-	public boolean isEditableBy(User user) {
+    /**
+     *
+     * @param user
+     * @return
+     */
+    public boolean isEditableBy(User user) {
 		return getProject().isEditableBy(user);
 	}
 

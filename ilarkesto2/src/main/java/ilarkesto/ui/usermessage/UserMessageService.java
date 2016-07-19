@@ -14,7 +14,6 @@
  */
 package ilarkesto.ui.usermessage;
 
-import ilarkesto.base.StrExtend;
 import static ilarkesto.core.base.Str.format;
 import static ilarkesto.ui.usermessage.UserMessage.ERROR;
 import static ilarkesto.ui.usermessage.UserMessage.INFO;

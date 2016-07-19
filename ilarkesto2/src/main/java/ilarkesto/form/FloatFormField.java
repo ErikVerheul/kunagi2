@@ -20,6 +20,10 @@ import java.util.Collection;
 import java.util.Map;
 import org.apache.commons.fileupload.FileItem;
 
+/**
+ *
+ * @author erik
+ */
 public class FloatFormField extends AFormField {
 
 	private DecimalFormat format = new DecimalFormat("0.##");
@@ -28,25 +32,48 @@ public class FloatFormField extends AFormField {
 	private int width = 10;
 	private String suffix;
 
-	public FloatFormField(String name) {
+    /**
+     *
+     * @param name
+     */
+    public FloatFormField(String name) {
 		super(name);
 	}
 
-	public FloatFormField setSuffix(String suffix) {
+    /**
+     *
+     * @param suffix
+     * @return
+     */
+    public FloatFormField setSuffix(String suffix) {
 		this.suffix = suffix;
 		return this;
 	}
 
-	public String getSuffix() {
+    /**
+     *
+     * @return
+     */
+    public String getSuffix() {
 		return suffix;
 	}
 
-	public FloatFormField setWidth(int value) {
+    /**
+     *
+     * @param value
+     * @return
+     */
+    public FloatFormField setWidth(int value) {
 		this.width = value;
 		return this;
 	}
 
-	public FloatFormField setValue(Float value) {
+    /**
+     *
+     * @param value
+     * @return
+     */
+    public FloatFormField setValue(Float value) {
 		fValue = value;
 		updateSValue();
 		return this;
@@ -81,11 +108,20 @@ public class FloatFormField extends AFormField {
 		}
 	}
 
-	public int getWidth() {
+    /**
+     *
+     * @return
+     */
+    public int getWidth() {
 		return width;
 	}
 
-	@Override
+    /**
+     *
+     * @param data
+     * @param uploadedFiles
+     */
+    @Override
 	public void update(Map<String, String> data, Collection<FileItem> uploadedFiles) {
 		sValue = data.get(getName());
 		if (sValue != null) {
@@ -97,7 +133,11 @@ public class FloatFormField extends AFormField {
 		updateFValue();
 	}
 
-	@Override
+    /**
+     *
+     * @throws ValidationException
+     */
+    @Override
 	public void validate() throws ValidationException {
 		if (sValue == null) {
 			if (isRequired()) {
@@ -110,22 +150,40 @@ public class FloatFormField extends AFormField {
 		}
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getValueAsString() {
 		return sValue;
 	}
 
-	public Float getValue() {
+    /**
+     *
+     * @return
+     */
+    public Float getValue() {
 		return fValue;
 	}
 
-	public FloatFormField setFormat(DecimalFormat format) {
+    /**
+     *
+     * @param format
+     * @return
+     */
+    public FloatFormField setFormat(DecimalFormat format) {
 		this.format = format;
 		updateSValue();
 		return this;
 	}
 
-	public FloatFormField setFormat(String format) {
+    /**
+     *
+     * @param format
+     * @return
+     */
+    public FloatFormField setFormat(String format) {
 		return setFormat(new DecimalFormat(format));
 	}
 

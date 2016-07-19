@@ -16,22 +16,39 @@ package ilarkesto.io.nio.tcpserver;
 
 import edu.umd.cs.findbugs.annotations.SuppressWarnings;
 
+/**
+ *
+ * @author erik
+ */
 public class ServerDataEvent {
 
 	private final TcpConnection connection;
 	private final byte[] data;
 
-        @SuppressWarnings("EI_EXPOSE_REP2")
+    /**
+     *
+     * @param connection
+     * @param data
+     */
+    @SuppressWarnings("EI_EXPOSE_REP2")
 	public ServerDataEvent(TcpConnection connection, byte[] data) {
 		this.connection = connection;
 		this.data = data;
 	}
 
-	public TcpConnection getConnection() {
+    /**
+     *
+     * @return
+     */
+    public TcpConnection getConnection() {
 		return connection;
 	}
 
-        @SuppressWarnings("EI_EXPOSE_REP")
+    /**
+     *
+     * @return
+     */
+    @SuppressWarnings("EI_EXPOSE_REP")
 	public byte[] getData() {
 		return data;
 	}

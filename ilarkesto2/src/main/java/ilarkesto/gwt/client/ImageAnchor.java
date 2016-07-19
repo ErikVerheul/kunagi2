@@ -16,7 +16,6 @@ package ilarkesto.gwt.client;
 
 import com.google.gwt.dom.client.AnchorElement;
 import static com.google.gwt.dom.client.AnchorElement.as;
-import com.google.gwt.user.client.DOM;
 import static com.google.gwt.user.client.DOM.appendChild;
 import static com.google.gwt.user.client.DOM.createAnchor;
 import static com.google.gwt.user.client.DOM.createDiv;

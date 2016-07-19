@@ -14,28 +14,51 @@
  */
 package ilarkesto.pdf;
 
+/**
+ *
+ * @author erik
+ */
 public class FieldList extends APdfElement {
 
 	private ATable table;
 	private FontStyle labelFontStyle;
 
-	public FieldList(APdfContainerElement parent) {
+    /**
+     *
+     * @param parent
+     */
+    public FieldList(APdfContainerElement parent) {
 		super(parent);
 		table = parent.table(0.25f, 1);
 	}
 
-	public FieldList setLabelWidth(float labelWidth) {
+    /**
+     *
+     * @param labelWidth
+     * @return
+     */
+    public FieldList setLabelWidth(float labelWidth) {
 		table.setCellWidths(labelWidth, 1);
 		return this;
 	}
 
-	public APdfContainerElement field(String label) {
+    /**
+     *
+     * @param label
+     * @return
+     */
+    public APdfContainerElement field(String label) {
 		ARow row = table.row();
 		row.cell(label, labelFontStyle);
 		return row.cell();
 	}
 
-	public FieldList setLabelFontStyle(FontStyle labelFontStyle) {
+    /**
+     *
+     * @param labelFontStyle
+     * @return
+     */
+    public FieldList setLabelFontStyle(FontStyle labelFontStyle) {
 		this.labelFontStyle = labelFontStyle;
 		return this;
 	}

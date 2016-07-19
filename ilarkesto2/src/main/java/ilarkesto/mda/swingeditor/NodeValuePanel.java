@@ -18,7 +18,6 @@ import ilarkesto.core.scope.In;
 import ilarkesto.mda.model.Node;
 import java.awt.BorderLayout;
 import static java.awt.BorderLayout.CENTER;
-import java.awt.Color;
 import static java.awt.Color.DARK_GRAY;
 import java.awt.Component;
 import javax.swing.JPanel;

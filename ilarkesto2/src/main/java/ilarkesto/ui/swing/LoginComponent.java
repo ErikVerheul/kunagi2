@@ -22,6 +22,10 @@ import javax.swing.JComponent;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+/**
+ *
+ * @author erik
+ */
 public class LoginComponent extends AComponent {
 
 	private JTextField loginField;
@@ -33,16 +37,28 @@ public class LoginComponent extends AComponent {
 	private ActionListener loginActionListener;
 	private LoginData loginData;
 
-	public void setLoginActionListener(ActionListener loginActionListener) {
+    /**
+     *
+     * @param loginActionListener
+     */
+    public void setLoginActionListener(ActionListener loginActionListener) {
 		this.loginActionListener = loginActionListener;
 	}
 
-	public void setInitialLoginData(LoginData loginData) {
+    /**
+     *
+     * @param loginData
+     */
+    public void setInitialLoginData(LoginData loginData) {
 		this.loginData = loginData;
 	}
 
 	// --- ---
 
+    /**
+     *
+     */
+    
 	@Override
 	protected void initializeControls() {
 		loginField = new JTextField(15);
@@ -58,7 +74,11 @@ public class LoginComponent extends AComponent {
 		savePasswordCheckbox.setText(string("savePasswordCheckbox.text"));
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected JComponent createComponent() {
 		PanelBuilder fields = new PanelBuilder();
 		fields.setDefaultPadding(2, 2, 5, 5);
@@ -77,7 +97,10 @@ public class LoginComponent extends AComponent {
 		return fields.toPanel();
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void updateControls() {
 		if (loginData != null) {
 			loginField.setText(loginData.getLogin());
@@ -86,7 +109,11 @@ public class LoginComponent extends AComponent {
 		}
 	}
 
-	public LoginData getLoginData() {
+    /**
+     *
+     * @return
+     */
+    public LoginData getLoginData() {
 		return new LoginData(loginField.getText(), new String(passwordField.getPassword()), savePasswordCheckbox
 				.isSelected());
 	}

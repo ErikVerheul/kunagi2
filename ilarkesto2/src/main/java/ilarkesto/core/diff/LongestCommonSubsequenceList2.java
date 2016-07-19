@@ -19,9 +19,19 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class LongestCommonSubsequenceList2 {
 
-	public static List<String> executeRecursive(List<String> a, List<String> b) {
+    /**
+     *
+     * @param a
+     * @param b
+     * @return
+     */
+    public static List<String> executeRecursive(List<String> a, List<String> b) {
 		int aLen = a.size();
 		int bLen = b.size();
 		if (aLen == 0 || bLen == 0) {
@@ -37,7 +47,13 @@ public class LongestCommonSubsequenceList2 {
 		}
 	}
 
-	public static List<String> executeProc(List<String> x, List<String> y) {
+    /**
+     *
+     * @param x
+     * @param y
+     * @return
+     */
+    public static List<String> executeProc(List<String> x, List<String> y) {
 		int M = x.size();
 		int N = y.size();
 

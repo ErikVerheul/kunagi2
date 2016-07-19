@@ -16,36 +16,67 @@ package ilarkesto.mda.legacy.generator;
 
 import ilarkesto.mda.legacy.model.EntityModel;
 
+/**
+ *
+ * @author erik
+ */
 public class DaoTepmplateGenerator extends ABeanGenerator<EntityModel> {
 
-	public DaoTepmplateGenerator(EntityModel bean) {
+    /**
+     *
+     * @param bean
+     */
+    public DaoTepmplateGenerator(EntityModel bean) {
 		super(bean);
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected String getName() {
 		return bean.getName() + "Dao";
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected boolean isInterface() {
 		return false;
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void writeContent() {}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected String getSuperclass() {
 		return "G" + bean.getName() + "Dao";
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected boolean isAbstract() {
 		return bean.isAbstract();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected boolean isOverwrite() {
 		return false;
 	}

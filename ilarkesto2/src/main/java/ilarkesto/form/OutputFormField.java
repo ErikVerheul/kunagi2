@@ -14,7 +14,6 @@
  */
 package ilarkesto.form;
 
-import ilarkesto.richtext.RichTextFormatter;
 import static ilarkesto.richtext.RichTextFormatter.toHtml;
 import java.util.Collection;
 import java.util.Map;

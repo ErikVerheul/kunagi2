@@ -14,19 +14,35 @@
  */
 package ilarkesto.mda.legacy.model;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class AModel implements Comparable<AModel> {
 
 	private String name;
 
-	public AModel(String name) {
+    /**
+     *
+     * @param name
+     */
+    public AModel(String name) {
 		this.name = name;
 	}
 
-	public final String getName() {
+    /**
+     *
+     * @return
+     */
+    public final String getName() {
 		return name;
 	}
 
-	public final void setName(String name) {
+    /**
+     *
+     * @param name
+     */
+    public final void setName(String name) {
 		this.name = name;
 	}
 

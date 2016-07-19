@@ -19,12 +19,20 @@ import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 import static ilarkesto.gwt.client.Gwt.formatHours;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class AFieldValueWidget extends AWidget {
 
 	private SimplePanel content;
 	private HTML viewer;
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected final Widget onInitialization() {
 		viewer = new HTML();
 		viewer.setStyleName("AFieldValueWidget");
@@ -32,22 +40,38 @@ public abstract class AFieldValueWidget extends AWidget {
 		return content;
 	}
 
-	public void setContent(Widget content) {
+    /**
+     *
+     * @param content
+     */
+    public void setContent(Widget content) {
 		this.content.setWidget(content);
 	}
 
-	public final void setText(Object text) {
+    /**
+     *
+     * @param text
+     */
+    public final void setText(Object text) {
 		String s = text == null ? null : text.toString();
 		viewer.setText(s);
 		content.setWidget(viewer);
 	}
 
-	public final void setHtml(String html) {
+    /**
+     *
+     * @param html
+     */
+    public final void setHtml(String html) {
 		viewer.setHTML(html);
 		content.setWidget(viewer);
 	}
 
-	public void setHours(int hours) {
+    /**
+     *
+     * @param hours
+     */
+    public void setHours(int hours) {
 		setText(formatHours(hours));
 	}
 

@@ -18,6 +18,10 @@ import ilarkesto.core.scope.Scope;
 import scrum.client.common.TooltipBuilder;
 import scrum.client.workspace.ProjectWorkspaceWidgets;
 
+/**
+ *
+ * @author erik
+ */
 public class CreateBlogEntryAction extends GCreateBlogEntryAction {
 
 	@Override
@@ -25,10 +29,16 @@ public class CreateBlogEntryAction extends GCreateBlogEntryAction {
 		return "Create Blog entry";
 	}
 
-	@Override
+    /**
+     *
+     * @param tb
+     */
+    @Override
 	protected void updateTooltip(TooltipBuilder tb) {
 		tb.setText("Create a new Blog entry. You can set date, title and text after creation.");
-		if (!getCurrentProject().isScrumTeamMember(getCurrentUser())) tb.addRemark(TooltipBuilder.NOT_SCRUMTEAM);
+		if (!getCurrentProject().isScrumTeamMember(getCurrentUser())) {
+                    tb.addRemark(TooltipBuilder.NOT_SCRUMTEAM);
+        }
 	}
 
 	@Override
@@ -38,8 +48,7 @@ public class CreateBlogEntryAction extends GCreateBlogEntryAction {
 
 	@Override
 	public boolean isPermitted() {
-		if (!getCurrentProject().isScrumTeamMember(getCurrentUser())) return false;
-		return true;
+		return getCurrentProject().isScrumTeamMember(getCurrentUser());
 	}
 
 	@Override

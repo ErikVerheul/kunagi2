@@ -14,9 +14,17 @@
  */
 package ilarkesto.gwt.client;
 
+/**
+ *
+ * @author erik
+ */
 public class EntityDoesNotExistException extends RuntimeException {
 
-	public EntityDoesNotExistException(String entityId) {
+    /**
+     *
+     * @param entityId
+     */
+    public EntityDoesNotExistException(String entityId) {
 		super("Entity does not exist: " + entityId);
 	}
 }

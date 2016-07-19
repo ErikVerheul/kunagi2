@@ -14,18 +14,26 @@
  */
 package scrum.client.estimation;
 
+import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.Gwt;
 import scrum.client.common.AScrumWidget;
 
-import com.google.gwt.user.client.ui.FlowPanel;
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class PlanningPokerCardSlotWidget extends AScrumWidget {
 
 	private String text;
 	private Widget card;
 
-	public PlanningPokerCardSlotWidget(String owner, Widget card) {
+    /**
+     *
+     * @param owner
+     * @param card
+     */
+    public PlanningPokerCardSlotWidget(String owner, Widget card) {
 		super();
 		this.text = owner;
 		this.card = card;
@@ -36,7 +44,9 @@ public class PlanningPokerCardSlotWidget extends AScrumWidget {
 		FlowPanel panel = new FlowPanel();
 		panel.setStyleName("PlanningPokerCardSlotWidget");
 		panel.add(card == null ? createEmptySlot() : card);
-		if (text != null) panel.add(Gwt.createDiv("PlanningPokerCardSlotWidget-text", text));
+		if (text != null) {
+                    panel.add(Gwt.createDiv("PlanningPokerCardSlotWidget-text", text));
+        }
 
 		return panel;
 	}

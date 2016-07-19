@@ -14,7 +14,6 @@
  */
 package scrum.server.journal;
 
-import scrum.server.journal.GProjectEventDao;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.persistence.AEntity;
 import scrum.server.project.Project;

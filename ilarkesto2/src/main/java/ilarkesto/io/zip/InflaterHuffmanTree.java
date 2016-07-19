@@ -53,12 +53,23 @@ package ilarkesto.io.zip;
 
 import static ilarkesto.io.zip.DeflaterHuffman.bitReverse;
 
+/**
+ *
+ * @author erik
+ */
 public class InflaterHuffmanTree {
   private final static int MAX_BITLEN = 15;
   private short[] tree;
 
-  public final static InflaterHuffmanTree defLitLenTree;
-  public final static InflaterHuffmanTree defDistTree;
+    /**
+     *
+     */
+    public final static InflaterHuffmanTree defLitLenTree;
+
+    /**
+     *
+     */
+    public final static InflaterHuffmanTree defDistTree;
 
   static
   {
@@ -98,6 +109,7 @@ public class InflaterHuffmanTree {
    * Constructs a Huffman tree from the array of code lengths.
    *
    * @param codeLengths the array of code lengths
+     * @throws ilarkesto.io.zip.DataFormatException
    */
   public InflaterHuffmanTree(byte[] codeLengths) throws DataFormatException
   {
@@ -190,6 +202,7 @@ public class InflaterHuffmanTree {
    * huffman tree.
    * @param input the input source.
    * @return the next symbol, or -1 if not enough input is available.
+     * @throws ilarkesto.io.zip.DataFormatException
    */
   public int getSymbol(StreamManipulator input) throws DataFormatException
   {

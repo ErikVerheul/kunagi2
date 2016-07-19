@@ -14,26 +14,27 @@
  */
 package scrum.client.calendar;
 
-import ilarkesto.core.scope.Scope;
-import ilarkesto.core.time.Date;
-import ilarkesto.gwt.client.Gwt;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import scrum.client.ScrumGwt;
-import scrum.client.common.AScrumWidget;
-import scrum.client.common.BlockListSelectionManager;
-import scrum.client.common.BlockListWidget;
-
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
+import ilarkesto.core.scope.Scope;
+import ilarkesto.core.time.Date;
+import ilarkesto.gwt.client.Gwt;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import scrum.client.ScrumGwt;
+import scrum.client.common.AScrumWidget;
+import scrum.client.common.BlockListSelectionManager;
+import scrum.client.common.BlockListWidget;
 
+/**
+ *
+ * @author erik
+ */
 public class DayListWidget extends AScrumWidget {
 
 	private Calendar calendar;
@@ -48,7 +49,10 @@ public class DayListWidget extends AScrumWidget {
 	private Date begin;
 	private Date end;
 
-	public DayListWidget() {
+    /**
+     *
+     */
+    public DayListWidget() {
 		date = Date.today();
 		updateBeginAndEnd();
 	}
@@ -81,8 +85,14 @@ public class DayListWidget extends AScrumWidget {
 		end = begin.addDays(visibleDays);
 	}
 
-	public void showDate(Date dateToShow) {
-		if (wrapper.getWidget() != null && date.equals(dateToShow)) return;
+    /**
+     *
+     * @param dateToShow
+     */
+    public void showDate(Date dateToShow) {
+		if (wrapper.getWidget() != null && date.equals(dateToShow)) {
+                    return;
+        }
 
 		this.date = dateToShow;
 		updateBeginAndEnd();
@@ -137,14 +147,26 @@ public class DayListWidget extends AScrumWidget {
 			Element element = table.getCellFormatter().getElement(row, i);
 			Style style = element.getStyle();
 			style.setProperty("borderBottom", border);
-			if (row == 0) style.setProperty("borderTop", border);
-			if (i < 3 || i == 4) style.setProperty("borderLeft", border);
-			if (i == 4) style.setProperty("borderRight", border);
+			if (row == 0) {
+                            style.setProperty("borderTop", border);
+            }
+                        if (i < 3 || i == 4) {
+                            style.setProperty("borderLeft", border);
+                        }
+                        if (i == 4) {
+                            style.setProperty("borderRight", border);
+            }
 		}
 	}
 
-	public void showEvent(SimpleEvent event) {
-		if (event == null) return;
+    /**
+     *
+     * @param event
+     */
+    public void showEvent(SimpleEvent event) {
+		if (event == null) {
+            return;
+        }
 		selectionManager.select(event);
 	}
 
@@ -175,15 +197,27 @@ public class DayListWidget extends AScrumWidget {
 		return list;
 	}
 
-	public Date getDate() {
+    /**
+     *
+     * @return
+     */
+    public Date getDate() {
 		return date;
 	}
 
-	public Date getBegin() {
+    /**
+     *
+     * @return
+     */
+    public Date getBegin() {
 		return begin;
 	}
 
-	public Date getEnd() {
+    /**
+     *
+     * @return
+     */
+    public Date getEnd() {
 		return end;
 	}
 

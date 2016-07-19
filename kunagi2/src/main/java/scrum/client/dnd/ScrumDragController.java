@@ -18,11 +18,18 @@ import com.allen_sauer.gwt.dnd.client.PickupDragController;
 import com.google.gwt.user.client.ui.RootPanel;
 import scrum.client.common.GlobalsSingleton;
 
+/**
+ *
+ * @author erik
+ */
 public class ScrumDragController extends PickupDragController {
 
         private GlobalsSingleton globals;
 
-	public ScrumDragController() {
+    /**
+     *
+     */
+    public ScrumDragController() {
 		super(RootPanel.get(), false);
                 globals = GlobalsSingleton.getInstance();
 		setBehaviorDragProxy(true);

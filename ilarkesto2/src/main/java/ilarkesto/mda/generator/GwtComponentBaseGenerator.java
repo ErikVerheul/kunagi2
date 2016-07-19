@@ -17,13 +17,22 @@ package ilarkesto.mda.generator;
 import ilarkesto.mda.model.Node;
 import ilarkesto.mda.model.NodeTypes;
 
+/**
+ *
+ * @author erik
+ */
 public class GwtComponentBaseGenerator extends AJavaClassGenerator implements NodeTypes {
 
 	private Node component;
 	private Node package_;
 	private Node gwtModule;
 
-	public GwtComponentBaseGenerator(String srcPath, Node component) {
+    /**
+     *
+     * @param srcPath
+     * @param component
+     */
+    public GwtComponentBaseGenerator(String srcPath, Node component) {
 		super(srcPath, true);
 		this.component = component;
 
@@ -34,7 +43,11 @@ public class GwtComponentBaseGenerator extends AJavaClassGenerator implements No
 
 	}
 
-	@Override
+    /**
+     *
+     * @param out
+     */
+    @Override
 	protected void printCode(JavaPrinter out) {
 		out.package_(getPackageName());
 		out.beginClass(true, getClassName(), null, null);

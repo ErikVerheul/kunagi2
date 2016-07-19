@@ -17,34 +17,62 @@ package ilarkesto.tools.cheatsheet;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class CheatSheet {
 
 	private String label;
 	private String description;
 	private List<CheatGroup> groups = new ArrayList<>();
 
-	public CheatSheet(String label) {
+    /**
+     *
+     * @param label
+     */
+    public CheatSheet(String label) {
 		super();
 		this.label = label;
 	}
 
-	public void setDescription(String description) {
+    /**
+     *
+     * @param description
+     */
+    public void setDescription(String description) {
 		this.description = description;
 	}
 
-	public void addGroup(CheatGroup group) {
+    /**
+     *
+     * @param group
+     */
+    public void addGroup(CheatGroup group) {
 		groups.add(group);
 	}
 
-	public List<CheatGroup> getGroups() {
+    /**
+     *
+     * @return
+     */
+    public List<CheatGroup> getGroups() {
 		return groups;
 	}
 
-	public String getDescription() {
+    /**
+     *
+     * @return
+     */
+    public String getDescription() {
 		return description;
 	}
 
-	public String getLabel() {
+    /**
+     *
+     * @return
+     */
+    public String getLabel() {
 		return label;
 	}
 

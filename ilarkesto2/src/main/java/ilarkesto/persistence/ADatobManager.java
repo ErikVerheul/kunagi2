@@ -14,15 +14,29 @@
  */
 package ilarkesto.persistence;
 
+/**
+ *
+ * @author erik
+ * @param <D>
+ */
 public abstract class ADatobManager<D extends ADatob> {
 
 	/**
 	 * Called by the datob, when it is modified
+     * @param comment
 	 */
 	public abstract void onDatobModified(D datob, String comment);
 
-	public abstract void onMissingMaster(D datob);
+    /**
+     *
+     * @param datob
+     */
+    public abstract void onMissingMaster(D datob);
 
-	public abstract void updateLastModified(D datob);
+    /**
+     *
+     * @param datob
+     */
+    public abstract void updateLastModified(D datob);
 
 }

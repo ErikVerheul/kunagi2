@@ -17,11 +17,19 @@ package scrum.client.common;
 import ilarkesto.gwt.client.AMultiSelectionViewEditWidget;
 import ilarkesto.gwt.client.editor.AEditorModel;
 
+/**
+ *
+ * @author erik
+ */
 public class WeekdaySelectorEditorWidget extends AMultiSelectionViewEditWidget<Integer> {
 
 	private AEditorModel<WeekdaySelector> model;
 
-	public WeekdaySelectorEditorWidget(AEditorModel<WeekdaySelector> editor) {
+    /**
+     *
+     * @param editor
+     */
+    public WeekdaySelectorEditorWidget(AEditorModel<WeekdaySelector> editor) {
 		super();
 		this.model = editor;
 	}
@@ -42,7 +50,12 @@ public class WeekdaySelectorEditorWidget extends AMultiSelectionViewEditWidget<I
 		model.setValue(new WeekdaySelector(getEditorSelectedItems()));
 	}
 
-	@Override
+    /**
+     *
+     * @param weekday
+     * @return
+     */
+    @Override
 	protected String toHtml(Integer weekday) {
 		switch (weekday) {
 			case 1:

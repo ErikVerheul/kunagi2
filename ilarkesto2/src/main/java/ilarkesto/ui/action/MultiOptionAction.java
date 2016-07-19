@@ -30,15 +30,27 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ *
+ * @author erik
+ * @param <T>
+ */
 public final class MultiOptionAction<T> extends AAction {
 
 	private MultiCheckboxFormField<Option<T>> groupOptionsField;
 	private MultiCheckboxFormField<Option<T>> optionsField;
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void assertPermissions() {}
 
-	@Override
+    /**
+     *
+     * @throws InterruptedException
+     */
+    @Override
 	protected void performAction() throws InterruptedException {
 		setAutoShowInfoDone(false);
 
@@ -77,7 +89,11 @@ public final class MultiOptionAction<T> extends AAction {
                 }
 	}
 
-	public void addOption(Option<T> option) {
+    /**
+     *
+     * @param option
+     */
+    public void addOption(Option<T> option) {
 		if (options == null) {
                         options = new ArrayList<>();
                 }
@@ -86,6 +102,12 @@ public final class MultiOptionAction<T> extends AAction {
 
 	// --- helper ---
 
+    /**
+     *
+     * @param key
+     * @return
+     */
+    
 	public Option<T> getOption(String key) {
 		if (KEY_CANCEL.equals(key)) {
                         return null;
@@ -100,7 +122,11 @@ public final class MultiOptionAction<T> extends AAction {
 
 	private IdGenerator payloadIdGenerator;
 
-	public void addPayloads(Collection<T> payloads) {
+    /**
+     *
+     * @param payloads
+     */
+    public void addPayloads(Collection<T> payloads) {
 		if (payloadIdGenerator == null) {
                         payloadIdGenerator = new CountingIdGenerator("p");
                 }
@@ -110,7 +136,11 @@ public final class MultiOptionAction<T> extends AAction {
 		}
 	}
 
-	public Set<T> getSelectedPayloads() {
+    /**
+     *
+     * @return
+     */
+    public Set<T> getSelectedPayloads() {
 		Set<T> payloads = new HashSet<>(selectedOptions.size());
 		for (Option<T> option : selectedOptions) {
 			payloads.add(option.getPayload());
@@ -118,7 +148,18 @@ public final class MultiOptionAction<T> extends AAction {
 		return payloads;
 	}
 
-	public static <T> Set<Option<T>> showDialog(BeanProvider beanProvider, ActionPerformer actionPerformer,
+    /**
+     *
+     * @param <T>
+     * @param beanProvider
+     * @param actionPerformer
+     * @param waitingAction
+     * @param message
+     * @param horizontal
+     * @param options
+     * @return
+     */
+    public static <T> Set<Option<T>> showDialog(BeanProvider beanProvider, ActionPerformer actionPerformer,
 			AAction waitingAction, String message, boolean horizontal, Collection<Option<T>> options) {
 		MultiOptionAction<T> action = beanProvider.autowire(new MultiOptionAction());
 		action.setOptions(options);
@@ -127,7 +168,17 @@ public final class MultiOptionAction<T> extends AAction {
 		return action.getSelectedOptions();
 	}
 
-	public static <T> Set<T> showDialog(BeanProvider beanProvider, ActionPerformer actionPerformer,
+    /**
+     *
+     * @param <T>
+     * @param beanProvider
+     * @param actionPerformer
+     * @param waitingAction
+     * @param message
+     * @param payloads
+     * @return
+     */
+    public static <T> Set<T> showDialog(BeanProvider beanProvider, ActionPerformer actionPerformer,
 			AAction waitingAction, String message, Collection<T> payloads) {
 		MultiOptionAction<T> action = beanProvider.autowire(new MultiOptionAction());
 		action.addPayloads(payloads);
@@ -136,7 +187,11 @@ public final class MultiOptionAction<T> extends AAction {
 		return action.getSelectedPayloads();
 	}
 
-	public Set<Option<T>> getSelectedOptions() {
+    /**
+     *
+     * @return
+     */
+    public Set<Option<T>> getSelectedOptions() {
 		return selectedOptions;
 	}
 
@@ -144,27 +199,47 @@ public final class MultiOptionAction<T> extends AAction {
 
 	private Set<Option<T>> selectedOptions;
 
-	public void setSelectedOptions(Set<Option<T>> selectedOptions) {
+    /**
+     *
+     * @param selectedOptions
+     */
+    public void setSelectedOptions(Set<Option<T>> selectedOptions) {
 		this.selectedOptions = selectedOptions;
 	}
 
 	private Collection<Option<T>> options = new ArrayList<>();
 
-	public final Collection<Option<T>> getOptions() {
+    /**
+     *
+     * @return
+     */
+    public final Collection<Option<T>> getOptions() {
 		return options;
 	}
 
-	public final void setOptions(Collection<Option<T>> options) {
+    /**
+     *
+     * @param options
+     */
+    public final void setOptions(Collection<Option<T>> options) {
 		this.options = options;
 	}
 
 	private String message;
 
-	public final String getMessage() {
+    /**
+     *
+     * @return
+     */
+    public final String getMessage() {
 		return message;
 	}
 
-	public final void setMessage(String message) {
+    /**
+     *
+     * @param message
+     */
+    public final void setMessage(String message) {
 		this.message = message;
 	}
 

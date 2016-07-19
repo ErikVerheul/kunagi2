@@ -98,6 +98,7 @@ public class ZipFile implements ZipConstants {
         /**
          * Opens a Zip file with the given name_local for reading.
          *
+     * @param name
          * @exception IOException if a i/o error occured.
          * @exception ZipException if the file doesn't contain a valid zip archive.
          */
@@ -109,6 +110,7 @@ public class ZipFile implements ZipConstants {
         /**
          * Opens a Zip file reading the given File.
          *
+     * @param file
          * @exception IOException if a i/o error occured.
          * @exception ZipException if the file doesn't contain a valid zip archive.
          */
@@ -127,6 +129,7 @@ public class ZipFile implements ZipConstants {
          *
          * The OPEN_DELETE mode is currently unimplemented in this library
          *
+     * @param file
          * @since JDK1.3
          * @param mode Must be one of OPEN_READ or OPEN_READ | OPEN_DELETE
          *
@@ -293,6 +296,7 @@ public class ZipFile implements ZipConstants {
 
         /**
          * Calls the <code>close()</code> method when this ZipFile has not yet been explicitly closed.
+     * @throws java.lang.Throwable
          */
         @Override
         protected void finalize() throws IOException, Throwable {
@@ -307,6 +311,7 @@ public class ZipFile implements ZipConstants {
 
         /**
          * Returns an enumeration of all Zip entries_local in this Zip file.
+     * @return 
          */
         public Enumeration entries() {
                 try {
@@ -341,6 +346,7 @@ public class ZipFile implements ZipConstants {
          *
          * @param the name_local. May contain directory components separated by slashes ('/').
          * @return the zip entry, or null if no entry with that name_local exists.
+     * @throws java.lang.CloneNotSupportedException
          */
         public ZipEntry getEntry(String name) throws CloneNotSupportedException {
                 try {
@@ -419,6 +425,7 @@ public class ZipFile implements ZipConstants {
 
         /**
          * Returns the (path) name_local of this zip file.
+     * @return 
          */
         public String getName() {
                 return name;

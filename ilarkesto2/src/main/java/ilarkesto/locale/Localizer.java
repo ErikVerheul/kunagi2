@@ -23,15 +23,39 @@ import java.util.Locale;
  */
 public abstract class Localizer {
 
-	public abstract String string(String key, Object... parameters);
+    /**
+     *
+     * @param key
+     * @param parameters
+     * @return
+     */
+    public abstract String string(String key, Object... parameters);
 
-	public abstract Locale getLocale();
+    /**
+     *
+     * @return
+     */
+    public abstract Locale getLocale();
 
-	public final String string(AEntity scope, String key, Object... parameters) {
+    /**
+     *
+     * @param scope
+     * @param key
+     * @param parameters
+     * @return
+     */
+    public final String string(AEntity scope, String key, Object... parameters) {
 		return string("entity." + scope.getDao().getEntityName() + "." + key, parameters);
 	}
 
-	public final String string(Class scope, String key, Object... parameters) {
+    /**
+     *
+     * @param scope
+     * @param key
+     * @param parameters
+     * @return
+     */
+    public final String string(Class scope, String key, Object... parameters) {
 		if (scope == null) {
                         return string(key, parameters);
                 }
@@ -41,7 +65,11 @@ public abstract class Localizer {
 		return string(key, parameters);
 	}
 
-	public final String getLanguage() {
+    /**
+     *
+     * @return
+     */
+    public final String getLanguage() {
 		return getLocale().getLanguage();
 	}
 

@@ -14,7 +14,6 @@
  */
 package ilarkesto.io.nio.httpserver;
 
-import ilarkesto.logging.Log;
 import static ilarkesto.io.IO.UTF_8;
 import static ilarkesto.io.nio.httpserver.HttpMethod.values;
 import static ilarkesto.io.nio.httpserver.HttpStatusCode.BAD_REQUEST;
@@ -23,6 +22,7 @@ import static ilarkesto.io.nio.httpserver.HttpStatusCode.NOT_IMPLEMENTED;
 import ilarkesto.io.nio.tcpserver.DataHandler;
 import ilarkesto.io.nio.tcpserver.ServerDataEvent;
 import ilarkesto.io.nio.tcpserver.TcpConnection;
+import ilarkesto.logging.Log;
 import java.io.UnsupportedEncodingException;
 import static java.lang.System.arraycopy;
 import java.util.logging.Level;

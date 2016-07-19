@@ -27,11 +27,19 @@ import ilarkesto.pdf.FontStyle;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class Table extends ATable implements ItextElement {
 
 	private List<Cell> cells = new ArrayList<>();
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public ACell cell() {
 		Cell c = new Cell(this);
 
@@ -49,7 +57,11 @@ public class Table extends ATable implements ItextElement {
 		return c;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public Element getITextElement() {
 		float[] cellWidths = getCellWidths();
 		PdfPTable t = cellWidths == null ? new PdfPTable(getColumnCount()) : new PdfPTable(cellWidths);
@@ -68,7 +80,13 @@ public class Table extends ATable implements ItextElement {
 		return t;
 	}
 
-	@Override
+    /**
+     *
+     * @param color
+     * @param width
+     * @return
+     */
+    @Override
 	public ATable createCellBorders(BaseColor color, float width) {
 		float[] cellWidths = getCellWidths();
 		int cols = cellWidths == null ? getColumnCount() : cellWidths.length;
@@ -92,7 +110,11 @@ public class Table extends ATable implements ItextElement {
 		return this;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public ARow row() {
 		ARow row = new ARow(this);
 
@@ -104,7 +126,12 @@ public class Table extends ATable implements ItextElement {
 		return row;
 	}
 
-	@Override
+    /**
+     *
+     * @param cellTexts
+     * @return
+     */
+    @Override
 	public ARow row(Object... cellTexts) {
 		ARow row = row();
 		for (Object text : cellTexts) {
@@ -115,6 +142,11 @@ public class Table extends ATable implements ItextElement {
 
 	// --- dependencies ---
 
+    /**
+     *
+     * @param parent
+     */
+    
 	public Table(APdfElement parent) {
 		super(parent);
 	}

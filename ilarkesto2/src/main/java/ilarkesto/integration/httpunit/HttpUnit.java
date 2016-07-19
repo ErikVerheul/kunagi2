@@ -32,9 +32,19 @@ import static ilarkesto.base.Sys.getHttpProxyPort;
 import java.io.IOException;
 import org.xml.sax.SAXException;
 
+/**
+ *
+ * @author erik
+ */
 public class HttpUnit {
 
-	public static HTMLElement getElementWithId(String id, WebResponse response) {
+    /**
+     *
+     * @param id
+     * @param response
+     * @return
+     */
+    public static HTMLElement getElementWithId(String id, WebResponse response) {
 		try {
 			return response.getElementWithID(id);
 		} catch (SAXException ex) {
@@ -42,7 +52,12 @@ public class HttpUnit {
 		}
 	}
 
-	public static String getTitle(WebResponse response) {
+    /**
+     *
+     * @param response
+     * @return
+     */
+    public static String getTitle(WebResponse response) {
 		try {
 			return response.getTitle();
 		} catch (SAXException ex) {
@@ -50,7 +65,13 @@ public class HttpUnit {
 		}
 	}
 
-	public static WebTable getTable(String tableId, WebResponse response) {
+    /**
+     *
+     * @param tableId
+     * @param response
+     * @return
+     */
+    public static WebTable getTable(String tableId, WebResponse response) {
 		try {
 			return response.getTableWithID(tableId);
 		} catch (SAXException ex) {
@@ -58,7 +79,14 @@ public class HttpUnit {
 		}
 	}
 
-	public static HTMLElement getFirstElementWithAttribute(WebResponse response, String name, String value) {
+    /**
+     *
+     * @param response
+     * @param name
+     * @param value
+     * @return
+     */
+    public static HTMLElement getFirstElementWithAttribute(WebResponse response, String name, String value) {
 		HTMLElement[] elements;
 		try {
 			elements = response.getElementsWithAttribute("class", "photo");
@@ -68,7 +96,14 @@ public class HttpUnit {
 		return elements == null || elements.length < 1 ? null : elements[0];
 	}
 
-	public static WebResponse loadPage(String url, String proxyHost, Integer proxyPort) {
+    /**
+     *
+     * @param url
+     * @param proxyHost
+     * @param proxyPort
+     * @return
+     */
+    public static WebResponse loadPage(String url, String proxyHost, Integer proxyPort) {
 		try {
 			return createWebConversation(false, proxyHost, proxyPort).getResponse(url);
 		} catch (IOException | SAXException ex) {
@@ -76,15 +111,32 @@ public class HttpUnit {
 		}
 	}
 
-	public static WebResponse loadPage(String url) {
+    /**
+     *
+     * @param url
+     * @return
+     */
+    public static WebResponse loadPage(String url) {
 		return loadPage(url, getHttpProxyHost(), getHttpProxyPort());
 	}
 
-	public static WebConversation createWebConversation(boolean acceptCookies) {
+    /**
+     *
+     * @param acceptCookies
+     * @return
+     */
+    public static WebConversation createWebConversation(boolean acceptCookies) {
 		return createWebConversation(acceptCookies, getHttpProxyHost(), getHttpProxyPort());
 	}
 
-	public static WebConversation createWebConversation(boolean acceptCookies, String proxyHost, Integer proxyPort) {
+    /**
+     *
+     * @param acceptCookies
+     * @param proxyHost
+     * @param proxyPort
+     * @return
+     */
+    public static WebConversation createWebConversation(boolean acceptCookies, String proxyHost, Integer proxyPort) {
 		setScriptingEnabled(false);
 		WebConversation webConversation = new WebConversation();
 		if (proxyHost != null) {

@@ -23,7 +23,11 @@ public class ReverseComparator implements Comparator {
 
 	private Comparator comparator;
 
-	public ReverseComparator(Comparator comparator) {
+    /**
+     *
+     * @param comparator
+     */
+    public ReverseComparator(Comparator comparator) {
 		this.comparator = comparator;
 	}
 

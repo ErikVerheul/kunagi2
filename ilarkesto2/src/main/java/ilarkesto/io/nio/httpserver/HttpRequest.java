@@ -15,9 +15,9 @@
 package ilarkesto.io.nio.httpserver;
 
 import static ilarkesto.core.base.Str.isBlank;
-import ilarkesto.logging.Log;
 import static ilarkesto.io.nio.httpserver.HttpStatusCode.INTERNAL_SERVER_ERROR;
 import ilarkesto.io.nio.tcpserver.TcpConnection;
+import ilarkesto.logging.Log;
 import static java.lang.Integer.parseInt;
 import java.util.HashMap;
 import java.util.Map;

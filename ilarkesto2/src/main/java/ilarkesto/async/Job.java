@@ -14,14 +14,36 @@
  */
 package ilarkesto.async;
 
+/**
+ *
+ * @author erik
+ * @param <R>
+ */
 public interface Job<R> {
 
-	R runJob();
+    /**
+     *
+     * @return
+     */
+    R runJob();
 
-	void onSuccess(R result);
+    /**
+     *
+     * @param result
+     */
+    void onSuccess(R result);
 
-	void onError(Exception error);
+    /**
+     *
+     * @param error
+     */
+    void onError(Exception error);
 
-	Job<R> setCallback(Callback<R> callback);
+    /**
+     *
+     * @param callback
+     * @return
+     */
+    Job<R> setCallback(Callback<R> callback);
 
 }

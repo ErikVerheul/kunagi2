@@ -17,23 +17,50 @@ package ilarkesto.mda.legacy.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public final class ListPropertyModel extends ACollectionPropertyModel {
 
-	public ListPropertyModel(BeanModel entityModel, String name, boolean reference, Class contentType) {
+    /**
+     *
+     * @param entityModel
+     * @param name
+     * @param reference
+     * @param contentType
+     */
+    public ListPropertyModel(BeanModel entityModel, String name, boolean reference, Class contentType) {
 		super(entityModel, name, reference, false, contentType);
 	}
 
-	public ListPropertyModel(BeanModel entityModel, String name, boolean reference, boolean valueObject,
+    /**
+     *
+     * @param entityModel
+     * @param name
+     * @param reference
+     * @param valueObject
+     * @param contentType
+     */
+    public ListPropertyModel(BeanModel entityModel, String name, boolean reference, boolean valueObject,
 			String contentType) {
 		super(entityModel, name, reference, valueObject, contentType);
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected Class getCollectionTypeClass() {
 		return List.class;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected Class getCollectionImplClass() {
 		return ArrayList.class;
 	}

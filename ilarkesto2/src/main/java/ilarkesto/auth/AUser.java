@@ -17,18 +17,47 @@ package ilarkesto.auth;
 
 import ilarkesto.persistence.AEntity;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class AUser extends AEntity {
         
-	public abstract String getName();
+    /**
+     *
+     * @return
+     */
+    public abstract String getName();
 
-	public abstract String getRealName();
+    /**
+     *
+     * @return
+     */
+    public abstract String getRealName();
 
-	public abstract void setPassword(String value);
+    /**
+     *
+     * @param value
+     */
+    public abstract void setPassword(String value);
 
-	public abstract boolean matchesPassword(String password);
+    /**
+     *
+     * @param password
+     * @return
+     */
+    public abstract boolean matchesPassword(String password);
 
-	public abstract boolean isAdmin();
+    /**
+     *
+     * @return
+     */
+    public abstract boolean isAdmin();
 
-	public abstract String getAutoLoginString();
+    /**
+     *
+     * @return
+     */
+    public abstract String getAutoLoginString();
 
 }

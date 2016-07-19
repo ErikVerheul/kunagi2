@@ -21,16 +21,28 @@ import java.util.Collection;
 import java.util.List;
 import java.util.StringTokenizer;
 
+/**
+ *
+ * @author erik
+ */
 public final class EmailAddress {
 
-	public static void main(String[] args) {
+    /**
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
 		out.println(formatAddress("<duke@hell.org> Crap", false));
 	}
 
 	private String address;
 	private String label;
 
-	public EmailAddress(String emailAddress) {
+    /**
+     *
+     * @param emailAddress
+     */
+    public EmailAddress(String emailAddress) {
 		if (emailAddress == null) {
                         throw new IllegalArgumentException("emailAddress == null");
                 }
@@ -53,7 +65,12 @@ public final class EmailAddress {
 		}
 	}
 
-	public EmailAddress(String email, String label) {
+    /**
+     *
+     * @param email
+     * @param label
+     */
+    public EmailAddress(String email, String label) {
 		if (email == null) {
                         throw new IllegalArgumentException("email == null");
                 }
@@ -62,22 +79,38 @@ public final class EmailAddress {
 		this.label = label;
 	}
 
-	public String getDomain() {
+    /**
+     *
+     * @return
+     */
+    public String getDomain() {
 		if (address == null) {
                         return null;
                 }
 		return cutFrom(address, "@");
 	}
 
-	public String getAddress() {
+    /**
+     *
+     * @return
+     */
+    public String getAddress() {
 		return address;
 	}
 
-	public String getLabel() {
+    /**
+     *
+     * @return
+     */
+    public String getLabel() {
 		return label;
 	}
 
-	public boolean isLabelSet() {
+    /**
+     *
+     * @return
+     */
+    public boolean isLabelSet() {
 		return label != null;
 	}
 
@@ -114,7 +147,13 @@ public final class EmailAddress {
 		}
 	}
 
-	public static String formatAddress(String email, boolean removeText) {
+    /**
+     *
+     * @param email
+     * @param removeText
+     * @return
+     */
+    public static String formatAddress(String email, boolean removeText) {
 		if (email == null) {
                         return null;
                 }
@@ -150,7 +189,12 @@ public final class EmailAddress {
 		return email;
 	}
 
-	public static final String formatPlainAddress(String email) {
+    /**
+     *
+     * @param email
+     * @return
+     */
+    public static final String formatPlainAddress(String email) {
 		if (email == null) {
                         return null;
                 }
@@ -171,7 +215,11 @@ public final class EmailAddress {
 		return email;
 	}
 
-	public static final void validatePlainAddress(String email) {
+    /**
+     *
+     * @param email
+     */
+    public static final void validatePlainAddress(String email) {
 		String msg = "Illegal email address: " + email;
 		if (email.length() < 5) {
                         throw new RuntimeException(msg);
@@ -198,7 +246,12 @@ public final class EmailAddress {
                 }
 	}
 
-	public static final List<EmailAddress> parseList(String s) {
+    /**
+     *
+     * @param s
+     * @return
+     */
+    public static final List<EmailAddress> parseList(String s) {
 		if (s == null) {
                         return null;
                 }
@@ -210,11 +263,21 @@ public final class EmailAddress {
 		return result;
 	}
 
-	public static String getAddress(EmailAddress emailAddress) {
+    /**
+     *
+     * @param emailAddress
+     * @return
+     */
+    public static String getAddress(EmailAddress emailAddress) {
 		return emailAddress == null ? null : emailAddress.getAddress();
 	}
 
-	public static final List<String> toStringList(Collection<EmailAddress> addresses) {
+    /**
+     *
+     * @param addresses
+     * @return
+     */
+    public static final List<String> toStringList(Collection<EmailAddress> addresses) {
 		List<String> ret = new ArrayList<>(addresses.size());
 		for (EmailAddress address : addresses) {
 			ret.add(address.toString());
@@ -222,7 +285,12 @@ public final class EmailAddress {
 		return ret;
 	}
 
-	public static final String toString(Collection<EmailAddress> addresses) {
+    /**
+     *
+     * @param addresses
+     * @return
+     */
+    public static final String toString(Collection<EmailAddress> addresses) {
 		if (addresses == null) {
                         return null;
                 }

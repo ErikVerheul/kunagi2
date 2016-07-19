@@ -18,13 +18,21 @@ import com.itextpdf.text.BaseColor;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class ARow {
 
 	private List<ACell> cells = new ArrayList<>();
 	private BaseColor defaultBackgroundColor;
 	private FontStyle defaultFontStyle;
 
-	public ACell cell() {
+    /**
+     *
+     * @return
+     */
+    public ACell cell() {
 		ACell cell = table.cell();
 		cell.setBackgroundColor(defaultBackgroundColor);
 		cell.setFontStyle(defaultFontStyle);
@@ -32,14 +40,25 @@ public class ARow {
 		return cell;
 	}
 
-	public ACell cell(Object text, FontStyle fontStyle) {
+    /**
+     *
+     * @param text
+     * @param fontStyle
+     * @return
+     */
+    public ACell cell(Object text, FontStyle fontStyle) {
 		ACell cell = table.cell(text, fontStyle);
 		cell.setBackgroundColor(defaultBackgroundColor);
 		cells.add(cell);
 		return cell;
 	}
 
-	public ACell cell(Object text) {
+    /**
+     *
+     * @param text
+     * @return
+     */
+    public ACell cell(Object text) {
 		ACell cell = table.cell();
 		cell.setBackgroundColor(defaultBackgroundColor);
 		cell.setFontStyle(defaultFontStyle);
@@ -48,45 +67,85 @@ public class ARow {
 		return cell;
 	}
 
-	public ARow setDefaultBackgroundColor(BaseColor backgroundColor) {
+    /**
+     *
+     * @param backgroundColor
+     * @return
+     */
+    public ARow setDefaultBackgroundColor(BaseColor backgroundColor) {
 		this.defaultBackgroundColor = backgroundColor;
 		return this;
 	}
 
-	public ARow setDefaultFontStyle(FontStyle defaultFontStyle) {
+    /**
+     *
+     * @param defaultFontStyle
+     * @return
+     */
+    public ARow setDefaultFontStyle(FontStyle defaultFontStyle) {
 		this.defaultFontStyle = defaultFontStyle;
 		return this;
 	}
 
-	public ARow setBorder(BaseColor color, float width) {
+    /**
+     *
+     * @param color
+     * @param width
+     * @return
+     */
+    public ARow setBorder(BaseColor color, float width) {
 		for (ACell cell : cells) {
                         cell.setBorder(color, width);
                 }
 		return this;
 	}
 
-	public ARow setBorderTop(BaseColor color, float width) {
+    /**
+     *
+     * @param color
+     * @param width
+     * @return
+     */
+    public ARow setBorderTop(BaseColor color, float width) {
 		for (ACell cell : cells) {
                         cell.setBorderTop(color, width);
                 }
 		return this;
 	}
 
-	public ARow setBorderBottom(BaseColor color, float width) {
+    /**
+     *
+     * @param color
+     * @param width
+     * @return
+     */
+    public ARow setBorderBottom(BaseColor color, float width) {
 		for (ACell cell : cells) {
                         cell.setBorderBottom(color, width);
                 }
 		return this;
 	}
 
-	public ARow setBorderLeft(BaseColor color, float width) {
+    /**
+     *
+     * @param color
+     * @param width
+     * @return
+     */
+    public ARow setBorderLeft(BaseColor color, float width) {
 		for (ACell cell : cells) {
                         cell.setBorderLeft(color, width);
                 }
 		return this;
 	}
 
-	public ARow setBorderRight(BaseColor color, float width) {
+    /**
+     *
+     * @param color
+     * @param width
+     * @return
+     */
+    public ARow setBorderRight(BaseColor color, float width) {
 		for (ACell cell : cells) {
                         cell.setBorderRight(color, width);
                 }
@@ -97,7 +156,11 @@ public class ARow {
 
 	private ATable table;
 
-	public ARow(ATable table) {
+    /**
+     *
+     * @param table
+     */
+    public ARow(ATable table) {
 		this.table = table;
 	}
 

@@ -27,20 +27,36 @@ import java.util.ArrayList;
 import static java.util.Collections.sort;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class AJavaClassGenerator {
 
 	private final String srcPath;
 	private final boolean overwriteAllowed;
 
-	protected abstract void printCode(JavaPrinter out);
+    /**
+     *
+     * @param out
+     */
+    protected abstract void printCode(JavaPrinter out);
 
-	public AJavaClassGenerator(String srcPath, boolean overwriteAllowed) {
+    /**
+     *
+     * @param srcPath
+     * @param overwriteAllowed
+     */
+    public AJavaClassGenerator(String srcPath, boolean overwriteAllowed) {
 		super();
 		this.srcPath = srcPath;
 		this.overwriteAllowed = overwriteAllowed;
 	}
 
-	public void generate() {
+    /**
+     *
+     */
+    public void generate() {
 		JavaPrinter out = new JavaPrinter();
 		if (overwriteAllowed) {
                         out.commentGenerated();
@@ -51,6 +67,12 @@ public abstract class AJavaClassGenerator {
 
 	// --- helper ---
 
+    /**
+     *
+     * @param dependency
+     * @return
+     */
+    
 	public String getDependencyType(Node dependency) {
 		Node module = dependency.getSuperparentByType(GwtModule);
 		Node type = dependency.getChildByType(Type);
@@ -72,11 +94,21 @@ public abstract class AJavaClassGenerator {
 		throw new RuntimeException("Can not determine type for dependency: " + dependency);
 	}
 
-	public String getModulePackage(Node module) {
+    /**
+     *
+     * @param module
+     * @return
+     */
+    public String getModulePackage(Node module) {
 		return module.getValue().toLowerCase() + ".client";
 	}
 
-	public List<String> getParameterNames(Node parent) {
+    /**
+     *
+     * @param parent
+     * @return
+     */
+    public List<String> getParameterNames(Node parent) {
 		List<Node> parameters = parent.getChildrenByType(Parameter);
 		sort(parameters, new NodeByIndexComparator());
 		List<String> ret = new ArrayList<>(parameters.size());
@@ -86,7 +118,13 @@ public abstract class AJavaClassGenerator {
 		return ret;
 	}
 
-	public List<String> getParameterTypesAndNames(Node parent, String defaultType) {
+    /**
+     *
+     * @param parent
+     * @param defaultType
+     * @return
+     */
+    public List<String> getParameterTypesAndNames(Node parent, String defaultType) {
 		List<Node> parameters = parent.getChildrenByType(Parameter);
 		sort(parameters, new NodeByIndexComparator());
 		List<String> ret = new ArrayList<>(parameters.size());
@@ -96,7 +134,13 @@ public abstract class AJavaClassGenerator {
 		return ret;
 	}
 
-	public String getParameterTypeAndName(Node parameter, String defaultType) {
+    /**
+     *
+     * @param parameter
+     * @param defaultType
+     * @return
+     */
+    public String getParameterTypeAndName(Node parameter, String defaultType) {
 		return getParameterType(parameter, defaultType) + " " + parameter.getValue();
 	}
 

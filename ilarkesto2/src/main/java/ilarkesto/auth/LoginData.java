@@ -14,35 +14,66 @@
  */
 package ilarkesto.auth;
 
+/**
+ *
+ * @author erik
+ */
 public class LoginData implements LoginDataProvider {
 
 	private String login;
 	private String password;
 	private boolean savePassword;
 
-	public LoginData(String login, String password) {
+    /**
+     *
+     * @param login
+     * @param password
+     */
+    public LoginData(String login, String password) {
 		this.login = login;
 		this.password = password;
 	}
 
-	public LoginData(String login, String password, boolean savePassword) {
+    /**
+     *
+     * @param login
+     * @param password
+     * @param savePassword
+     */
+    public LoginData(String login, String password, boolean savePassword) {
 		this(login, password);
 		this.savePassword = savePassword;
 	}
 
-	public String getLogin() {
+    /**
+     *
+     * @return
+     */
+    public String getLogin() {
 		return login;
 	}
 
-	public String getPassword() {
+    /**
+     *
+     * @return
+     */
+    public String getPassword() {
 		return password;
 	}
 
-	public boolean isSavePassword() {
+    /**
+     *
+     * @return
+     */
+    public boolean isSavePassword() {
 		return savePassword;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public LoginData getLoginData() {
 		return this;
 	}

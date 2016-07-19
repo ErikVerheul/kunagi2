@@ -34,10 +34,19 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/**
+ *
+ * @author erik
+ */
 public class PdfBuilder extends APdfBuilder {
         private static FileOutputStream outStream;
         
-	public static void main(String[] args) throws Exception {
+    /**
+     *
+     * @param args
+     * @throws Exception
+     */
+    public static void main(String[] args) throws Exception {
                 PdfBuilder pdf = new PdfBuilder();
 		FontStyle fs = new FontStyle();
 		fs.setSize(20);
@@ -63,12 +72,20 @@ public class PdfBuilder extends APdfBuilder {
 	private final Collection<ItextElement> elements = new ArrayList<>();
 	private boolean newPage = true;
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public boolean isNewPage() {
 		return newPage;
 	}
 
-        public void write(File file) {
+    /**
+     *
+     * @param file
+     */
+    public void write(File file) {
                 BufferedOutputStream out = null;
                 if (file.getParentFile().mkdirs()) {
                         try {
@@ -85,7 +102,11 @@ public class PdfBuilder extends APdfBuilder {
                 }
         }
 
-	       public void write(OutputStream out) {
+    /**
+     *
+     * @param out
+     */
+    public void write(OutputStream out) {
                 Document document = new Document();
                 try {
                         getInstance(document, out);
@@ -112,14 +133,22 @@ public class PdfBuilder extends APdfBuilder {
                 document.close();
         }
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public APdfBuilder newPage() {
 		elements.add(new PageBreak(this));
 		newPage = true;
 		return this;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public AParagraph paragraph() {
 		Paragraph p = new Paragraph(this);
 		p.setDefaultFontStyle(defaultFontStyle);
@@ -128,7 +157,12 @@ public class PdfBuilder extends APdfBuilder {
 		return p;
 	}
 
-	@Override
+    /**
+     *
+     * @param cellWidths
+     * @return
+     */
+    @Override
 	public ATable table(float... cellWidths) {
 		Table t = new Table(this);
 		t.setCellWidths(cellWidths);
@@ -137,7 +171,12 @@ public class PdfBuilder extends APdfBuilder {
 		return t;
 	}
 
-	@Override
+    /**
+     *
+     * @param columnCount
+     * @return
+     */
+    @Override
 	public ATable table(int columnCount) {
 		Table t = new Table(this);
 		t.setColumnCount(columnCount);
@@ -146,7 +185,12 @@ public class PdfBuilder extends APdfBuilder {
 		return t;
 	}
 
-	@Override
+    /**
+     *
+     * @param data
+     * @return
+     */
+    @Override
 	public AImage image(byte[] data) {
 		Image i = new Image(this, data);
 		elements.add(i);
@@ -154,7 +198,12 @@ public class PdfBuilder extends APdfBuilder {
 		return i;
 	}
 
-	@Override
+    /**
+     *
+     * @param file
+     * @return
+     */
+    @Override
 	public AImage image(File file) {
 		Image i = new Image(this, file);
 		elements.add(i);

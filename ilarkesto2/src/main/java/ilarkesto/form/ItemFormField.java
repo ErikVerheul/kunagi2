@@ -24,6 +24,11 @@ import java.util.Map;
 import java.util.Set;
 import org.apache.commons.fileupload.FileItem;
 
+/**
+ *
+ * @author erik
+ * @param <T>
+ */
 public class ItemFormField<T> extends AFormField {
 
     private T value;
@@ -36,6 +41,10 @@ public class ItemFormField<T> extends AFormField {
 
     private boolean autoTrigger;
 
+    /**
+     *
+     * @param name
+     */
     public ItemFormField(String name) {
         super(name);
 
@@ -46,20 +55,38 @@ public class ItemFormField<T> extends AFormField {
                 .setValidateForm(false).setLabel("Auswahl...").setIcon("edit");
     }
 
+    /**
+     *
+     * @param autoTrigger
+     * @return
+     */
     public ItemFormField setAutoTrigger(boolean autoTrigger) {
         this.autoTrigger = autoTrigger;
         return this;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isAutoTrigger() {
         return autoTrigger && value == null;
     }
 
+    /**
+     *
+     * @param items
+     * @return
+     */
     public ItemFormField setSelectableItems(Collection<T> items) {
         this.selectableItems = items;
         return this;
     }
 
+    /**
+     *
+     * @return
+     */
     public Collection getSelectableItems() {
         Set<T> result = new HashSet<>(selectableItems);
         if (value != null) {
@@ -68,6 +95,10 @@ public class ItemFormField<T> extends AFormField {
         return result;
     }
 
+    /**
+     *
+     * @return
+     */
     public ClearButton getClearButton() {
         if (isRequired() || value == null) {
                 return null;
@@ -75,28 +106,54 @@ public class ItemFormField<T> extends AFormField {
         return clearButton;
     }
 
+    /**
+     *
+     * @return
+     */
     public SelectButton getSelectButton() {
         return selectButton;
     }
 
+    /**
+     *
+     * @param value
+     * @return
+     */
     public ItemFormField setValue(T value) {
         this.value = value;
         fireFieldValueChanged();
         return this;
     }
 
+    /**
+     *
+     * @return
+     */
     public T getValue() {
         return value;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getValueAsString() {
         return value == null ? null : value.toString();
     }
 
+    /**
+     *
+     * @param data
+     * @param uploadedFiles
+     */
     @Override
     public void update(Map<String, String> data, Collection<FileItem> uploadedFiles) {}
 
+    /**
+     *
+     * @throws ValidationException
+     */
     @Override
     public void validate() throws ValidationException {
         if (isRequired() && value == null) {
@@ -104,24 +161,46 @@ public class ItemFormField<T> extends AFormField {
         }
     }
 
+    /**
+     *
+     */
     public class SelectButton extends FormButton {
 
+        /**
+         *
+         * @param name
+         */
         public SelectButton(String name) {
             super(name);
         }
 
+        /**
+         *
+         * @return
+         */
         public ItemFormField getField() {
             return ItemFormField.this;
         }
 
     }
 
+    /**
+     *
+     */
     public class ClearButton extends FormButton {
 
+        /**
+         *
+         * @param name
+         */
         public ClearButton(String name) {
             super(name);
         }
 
+        /**
+         *
+         * @return
+         */
         public ItemFormField getField() {
             return ItemFormField.this;
         }

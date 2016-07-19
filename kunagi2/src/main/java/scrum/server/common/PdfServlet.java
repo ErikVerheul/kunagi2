@@ -18,9 +18,7 @@ import ilarkesto.base.PermissionDeniedException;
 import ilarkesto.core.time.Date;
 import ilarkesto.integration.itext.PdfBuilder;
 import ilarkesto.webapp.RequestWrapper;
-
 import java.io.IOException;
-
 import scrum.server.WebSession;
 import scrum.server.calendar.CalendarPdfCreator;
 import scrum.server.collaboration.Wikipage;
@@ -37,21 +35,49 @@ import scrum.server.sprint.Sprint;
 import scrum.server.sprint.SprintBacklogPdfCreator;
 import scrum.server.sprint.SprintReportPdfCreator;
 
+/**
+ *
+ * @author erik
+ */
 public class PdfServlet extends AKunagiServlet {
 
 	private APdfCreator getPdfCreator(String pdfId, RequestWrapper<WebSession> req) {
-		if (pdfId.equals("sprintReport")) return createSprintReport(req);
-		if (pdfId.equals("wikipage")) return createWikipage(req);
-		if (pdfId.equals("productBacklog")) return createProductBacklog(req);
-		if (pdfId.equals("sprintBacklog")) return createSprintBacklog(req);
-		if (pdfId.equals("qualityBacklog")) return createQualityBacklog(req);
-		if (pdfId.equals("impedimentList")) return createImpedimentList(req);
-		if (pdfId.equals("riskList")) return createRiskList(req);
-		if (pdfId.equals("calendar")) return createCalendar(req);
-		if (pdfId.equals("bugList")) return createBugList(req);
-		if (pdfId.equals("ideaList")) return createIdeaList(req);
-		if (pdfId.equals("releasePlan")) return createReleasePlan(req);
-		if (pdfId.equals("releaseHistory")) return createReleaseHistory(req);
+		if (pdfId.equals("sprintReport")) {
+                    return createSprintReport(req);
+        }
+		if (pdfId.equals("wikipage")) {
+                    return createWikipage(req);
+        }
+                if (pdfId.equals("productBacklog")) {
+                    return createProductBacklog(req);
+        }
+                if (pdfId.equals("sprintBacklog")) {
+                    return createSprintBacklog(req);
+                }
+                if (pdfId.equals("qualityBacklog")) {
+                    return createQualityBacklog(req);
+                }
+                if (pdfId.equals("impedimentList")) {
+                    return createImpedimentList(req);
+        }
+                if (pdfId.equals("riskList")) {
+                    return createRiskList(req);
+                }
+                if (pdfId.equals("calendar")) {
+                    return createCalendar(req);
+                }
+		if (pdfId.equals("bugList")) {
+                    return createBugList(req);
+        }
+		if (pdfId.equals("ideaList")) {
+                    return createIdeaList(req);
+        }
+		if (pdfId.equals("releasePlan")) {
+            return createReleasePlan(req);
+        }
+		if (pdfId.equals("releaseHistory")) {
+            return createReleaseHistory(req);
+        }
 		throw new RuntimeException("Unknown pdfId: " + pdfId);
 	}
 
@@ -95,21 +121,30 @@ public class PdfServlet extends AKunagiServlet {
 
 	private APdfCreator createIdeaList(RequestWrapper<WebSession> req) {
 		return new IdeaListPdfCreator(getProject(req));
-	}
-
-	private APdfCreator createWikipage(RequestWrapper<WebSession> req) {
+        }
+        
+        private APdfCreator createWikipage(RequestWrapper<WebSession> req) {
 		Wikipage wikipage = getEntityByParameter(req, Wikipage.class);
-		if (!wikipage.isProject(getProject(req))) throw new PermissionDeniedException();
-		return new WikipagePdfCreator(wikipage);
-	}
-
-	private APdfCreator createSprintReport(RequestWrapper<WebSession> req) {
+		if (!wikipage.isProject(getProject(req))) {
+            throw new PermissionDeniedException();
+        }
+                return new WikipagePdfCreator(wikipage);
+        }
+        
+        private APdfCreator createSprintReport(RequestWrapper<WebSession> req) {
 		Sprint sprint = getEntityByParameter(req, Sprint.class);
-		if (!sprint.isProject(getProject(req))) throw new PermissionDeniedException();
+		if (!sprint.isProject(getProject(req))) {
+            throw new PermissionDeniedException();
+        }
 		return new SprintReportPdfCreator(sprint);
 	}
 
-	@Override
+    /**
+     *
+     * @param req
+     * @throws IOException
+     */
+    @Override
 	protected void onRequest(RequestWrapper<WebSession> req) throws IOException {
 		String pdfId = req.getMandatory("pdfId");
 		APdfCreator creator = getPdfCreator(pdfId, req);

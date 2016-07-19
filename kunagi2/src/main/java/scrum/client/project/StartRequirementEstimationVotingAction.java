@@ -17,9 +17,17 @@ package scrum.client.project;
 import scrum.client.common.TooltipBuilder;
 import scrum.client.estimation.ActivateRequirementEstimationVotingServiceCall;
 
+/**
+ *
+ * @author erik
+ */
 public class StartRequirementEstimationVotingAction extends GStartRequirementEstimationVotingAction {
 
-	public StartRequirementEstimationVotingAction(scrum.client.project.Requirement requirement) {
+    /**
+     *
+     * @param requirement
+     */
+    public StartRequirementEstimationVotingAction(scrum.client.project.Requirement requirement) {
 		super(requirement);
 	}
 
@@ -28,24 +36,32 @@ public class StartRequirementEstimationVotingAction extends GStartRequirementEst
 		return "Start Planning Poker";
 	}
 
-	@Override
+    /**
+     *
+     * @param tb
+     */
+    @Override
 	public void updateTooltip(TooltipBuilder tb) {
 		tb.setText("Open the Planning Poker table for this Story.");
-		if (!requirement.getProject().isTeamMember(getCurrentUser())) tb.addRemark(TooltipBuilder.NOT_TEAM);
+		if (!requirement.getProject().isTeamMember(getCurrentUser())) {
+                    tb.addRemark(TooltipBuilder.NOT_TEAM);
+        }
 	}
 
 	@Override
 	public boolean isPermitted() {
-		if (!requirement.getProject().isTeamMember(getCurrentUser())) return false;
-		return true;
+		return requirement.getProject().isTeamMember(getCurrentUser());
 	}
 
 	@Override
 	public boolean isExecutable() {
-		if (requirement.isWorkEstimationVotingActive()) return false;
-		if (requirement.isClosed()) return false;
-		if (requirement.isInCurrentSprint()) return false;
-		return true;
+		if (requirement.isWorkEstimationVotingActive()) {
+                    return false;
+        }
+                if (requirement.isClosed()) {
+                    return false;
+        }
+		return !requirement.isInCurrentSprint();
 	}
 
 	@Override

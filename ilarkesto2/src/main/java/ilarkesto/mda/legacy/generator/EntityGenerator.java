@@ -34,13 +34,24 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+/**
+ *
+ * @author erik
+ */
 public class EntityGenerator extends DatobGenerator<EntityModel> {
 
-	public EntityGenerator(EntityModel bean) {
+    /**
+     *
+     * @param bean
+     */
+    public EntityGenerator(EntityModel bean) {
 		super(bean);
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void writeContent() {
 		String daoName = lowercaseFirstLetter(bean.getDaoName());
 
@@ -164,7 +175,11 @@ public class EntityGenerator extends DatobGenerator<EntityModel> {
 		}
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected Set<String> getSuperinterfaces() {
 		Set<String> result = new LinkedHashSet<>();
 		result.addAll(super.getSuperinterfaces());
@@ -189,7 +204,11 @@ public class EntityGenerator extends DatobGenerator<EntityModel> {
 		return result;
 	}
 
-	protected final String getUserClassName() {
+    /**
+     *
+     * @return
+     */
+    protected final String getUserClassName() {
 		EntityModel userModel = bean.getUserModel();
 		if (userModel == null && bean.getName().equals("User")) {
                         userModel = bean;
@@ -200,7 +219,10 @@ public class EntityGenerator extends DatobGenerator<EntityModel> {
 		return userModel.getPackageName() + "." + userModel.getName();
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void writeDependencies() {
 		super.writeDependencies();
 		String daoName = lowercaseFirstLetter(bean.getDaoName());
@@ -225,7 +247,11 @@ public class EntityGenerator extends DatobGenerator<EntityModel> {
 		}
 	}
 
-	@Override
+    /**
+     *
+     * @param p
+     */
+    @Override
 	protected void writeCollectionProperty(PropertyModel p) {
 		super.writeCollectionProperty(p);
 
@@ -247,7 +273,11 @@ public class EntityGenerator extends DatobGenerator<EntityModel> {
 		}
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected boolean isCopyConstructorEnabled() {
 		return false;
 	}

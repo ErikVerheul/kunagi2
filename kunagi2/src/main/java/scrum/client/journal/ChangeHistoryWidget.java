@@ -14,17 +14,14 @@
  */
 package scrum.client.journal;
 
-import ilarkesto.core.scope.Scope;
-
-import java.util.Collections;
-import java.util.List;
-
-import scrum.client.common.AScrumGwtEntity;
-import scrum.client.common.AScrumWidget;
-
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
+import ilarkesto.core.scope.Scope;
+import java.util.Collections;
+import java.util.List;
+import scrum.client.common.AScrumGwtEntity;
+import scrum.client.common.AScrumWidget;
 
 public class ChangeHistoryWidget extends AScrumWidget {
 

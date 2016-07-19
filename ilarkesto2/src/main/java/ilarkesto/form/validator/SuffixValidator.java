@@ -17,19 +17,34 @@ package ilarkesto.form.validator;
 
 import ilarkesto.form.ValidationException;
 
+/**
+ *
+ * @author erik
+ */
 public class SuffixValidator implements Validator {
 
 	private String	suffix;
 	private boolean	ignoreCase;
 	private String	failureMessage;
 
-	public SuffixValidator(String suffix, boolean ignoreCase) {
+    /**
+     *
+     * @param suffix
+     * @param ignoreCase
+     */
+    public SuffixValidator(String suffix, boolean ignoreCase) {
 		this(suffix, ignoreCase,
 				"Ung\u00FCltige Endung der Eingabe. Erforderlich ist: \"" + suffix
 						+ "\"");
 	}
 
-	public SuffixValidator(String suffix, boolean ignoreCase,
+    /**
+     *
+     * @param suffix
+     * @param ignoreCase
+     * @param failureMessage
+     */
+    public SuffixValidator(String suffix, boolean ignoreCase,
 			String failureMessage) {
 		this.suffix = suffix;
 		this.ignoreCase = ignoreCase;
@@ -39,7 +54,13 @@ public class SuffixValidator implements Validator {
 		this.failureMessage = failureMessage;
 	}
 
-        @Override
+    /**
+     *
+     * @param text
+     * @return
+     * @throws ValidationException
+     */
+    @Override
 	public String validate(String text) throws ValidationException {
 		if (ignoreCase) {
 			if (!text.toLowerCase().endsWith(suffix)) {

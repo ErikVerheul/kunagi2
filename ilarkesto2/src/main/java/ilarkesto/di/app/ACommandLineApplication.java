@@ -19,13 +19,25 @@ import ilarkesto.concurrent.TaskManager;
 import ilarkesto.logging.Log;
 import static java.lang.System.exit;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class ACommandLineApplication extends AApplication {
 
 	private static final Log LOG = Log.get(ACommandLineApplication.class);
 
-	protected abstract int execute(String[] args);
+    /**
+     *
+     * @param args
+     * @return
+     */
+    protected abstract int execute(String[] args);
 
-	@Override
+    /**
+     *
+     */
+    @Override
         @SuppressWarnings("DM_EXIT")
 	protected final void onStart() {
 		int rc;
@@ -38,13 +50,23 @@ public abstract class ACommandLineApplication extends AApplication {
 		exit(rc);
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	public void ensureIntegrity() {}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected final void onShutdown() {}
 
-	@Override
+    /**
+     *
+     * @param tm
+     */
+    @Override
 	protected final void scheduleTasks(TaskManager tm) {}
 
 }

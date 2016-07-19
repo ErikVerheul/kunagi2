@@ -15,34 +15,59 @@
 package scrum.client.project;
 
 import ilarkesto.gwt.client.Gwt;
-
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class EstimationBar {
 
 	private int sprintOffset;
 	private List<Float> workPerSprint;
 
-	public EstimationBar(int sprintOffset, List<Float> workPerSprint) {
+    /**
+     *
+     * @param sprintOffset
+     * @param workPerSprint
+     */
+    public EstimationBar(int sprintOffset, List<Float> workPerSprint) {
 		super();
 		this.sprintOffset = sprintOffset;
 		this.workPerSprint = workPerSprint;
 	}
 
-	public int getSprintOffset() {
+    /**
+     *
+     * @return
+     */
+    public int getSprintOffset() {
 		return sprintOffset;
 	}
 
-	public int getEndSprintOffset() {
+    /**
+     *
+     * @return
+     */
+    public int getEndSprintOffset() {
 		int offset = workPerSprint.isEmpty() ? 0 : workPerSprint.size() - 1;
 		return sprintOffset + offset;
 	}
 
-	public List<Float> getWorkPerSprint() {
+    /**
+     *
+     * @return
+     */
+    public List<Float> getWorkPerSprint() {
 		return workPerSprint;
 	}
 
-	public boolean isCompetedOnSameSprint(EstimationBar previous) {
+    /**
+     *
+     * @param previous
+     * @return
+     */
+    public boolean isCompetedOnSameSprint(EstimationBar previous) {
 		return getEndSprintOffset() == previous.getEndSprintOffset();
 	}
 
@@ -53,9 +78,13 @@ public class EstimationBar {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (!(obj instanceof EstimationBar)) return false;
+		if (!(obj instanceof EstimationBar)) {
+                    return false;
+        }
 		EstimationBar other = (EstimationBar) obj;
-		if (sprintOffset != other.sprintOffset) return false;
+		if (sprintOffset != other.sprintOffset) {
+                    return false;
+        }
 		return workPerSprint.equals(other.workPerSprint);
 	}
 

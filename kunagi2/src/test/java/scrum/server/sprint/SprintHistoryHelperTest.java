@@ -2,7 +2,6 @@ package scrum.server.sprint;
 
 import ilarkesto.base.UtlExtend;
 import ilarkesto.testng.ATest;
-
 import org.testng.annotations.Test;
 
 public class SprintHistoryHelperTest extends ATest {

@@ -14,8 +14,18 @@
  */
 package ilarkesto.auth;
 
+/**
+ *
+ * @author erik
+ * @param <U>
+ */
 public interface EditProtected<U extends AUser> {
 
-	boolean isEditableBy(U user);
+    /**
+     *
+     * @param user
+     * @return
+     */
+    boolean isEditableBy(U user);
 
 }

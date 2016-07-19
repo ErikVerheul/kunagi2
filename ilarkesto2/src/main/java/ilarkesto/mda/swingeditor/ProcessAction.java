@@ -19,12 +19,19 @@ import ilarkesto.mda.model.ModellingSession;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 
+/**
+ *
+ * @author erik
+ */
 public class ProcessAction extends AbstractAction {
 
 	@In
 	ModellingSession modellingSession;
 
-	public ProcessAction() {
+    /**
+     *
+     */
+    public ProcessAction() {
 		super("Save & Generate");
 	}
 

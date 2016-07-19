@@ -14,9 +14,18 @@
  */
 package ilarkesto.core.scope;
 
+/**
+ *
+ * @author erik
+ */
 public class ComponentAlreadyExistsException extends RuntimeException {
 
-	public ComponentAlreadyExistsException(String componentName, Scope scope) {
+    /**
+     *
+     * @param componentName
+     * @param scope
+     */
+    public ComponentAlreadyExistsException(String componentName, Scope scope) {
 		super("Component already exists in scope: " + componentName + " -> " + scope.getName());
 	}
 }

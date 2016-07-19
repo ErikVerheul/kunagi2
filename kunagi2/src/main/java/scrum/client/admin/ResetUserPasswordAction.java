@@ -14,9 +14,17 @@
  */
 package scrum.client.admin;
 
+/**
+ *
+ * @author erik
+ */
 public class ResetUserPasswordAction extends GResetUserPasswordAction {
 
-	public ResetUserPasswordAction(scrum.client.admin.User user) {
+    /**
+     *
+     * @param user
+     */
+    public ResetUserPasswordAction(scrum.client.admin.User user) {
 		super(user);
 	}
 

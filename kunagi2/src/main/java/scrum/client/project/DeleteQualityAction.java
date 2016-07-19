@@ -16,9 +16,17 @@ package scrum.client.project;
 
 import scrum.client.common.TooltipBuilder;
 
+/**
+ *
+ * @author erik
+ */
 public class DeleteQualityAction extends GDeleteQualityAction {
 
-	protected DeleteQualityAction(Quality quality) {
+    /**
+     *
+     * @param quality
+     */
+    protected DeleteQualityAction(Quality quality) {
 		super(quality);
 	}
 
@@ -27,10 +35,16 @@ public class DeleteQualityAction extends GDeleteQualityAction {
 		return "Delete";
 	}
 
-	@Override
+    /**
+     *
+     * @param tb
+     */
+    @Override
 	protected void updateTooltip(TooltipBuilder tb) {
 		tb.setText("Delete this Quality permanently.");
-		if (!quality.getProject().isProductOwner(getCurrentUser())) tb.addRemark(TooltipBuilder.NOT_PRODUCT_OWNER);
+		if (!quality.getProject().isProductOwner(getCurrentUser())) {
+                    tb.addRemark(TooltipBuilder.NOT_PRODUCT_OWNER);
+        }
 	}
 
 	@Override
@@ -40,8 +54,7 @@ public class DeleteQualityAction extends GDeleteQualityAction {
 
 	@Override
 	public boolean isPermitted() {
-		if (!quality.getProject().isProductOwner(getCurrentUser())) return false;
-		return true;
+		return quality.getProject().isProductOwner(getCurrentUser());
 	}
 
 	@Override

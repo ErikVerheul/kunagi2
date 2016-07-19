@@ -16,9 +16,17 @@ package scrum.client.admin;
 
 import java.util.Map;
 
+/**
+ *
+ * @author erik
+ */
 public class SystemConfig extends GSystemConfig {
 
-	public SystemConfig(Map data) {
+    /**
+     *
+     * @param data
+     */
+    public SystemConfig(Map data) {
 		super(data);
 	}
 

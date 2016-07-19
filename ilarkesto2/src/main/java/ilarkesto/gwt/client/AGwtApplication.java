@@ -17,15 +17,31 @@ package ilarkesto.gwt.client;
 import com.google.gwt.core.client.EntryPoint;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class AGwtApplication implements EntryPoint {
 
 	private static AGwtApplication singleton;
 
-	public abstract void handleServiceCallError(String serviceCall, List<ErrorWrapper> errors);
+    /**
+     *
+     * @param serviceCall
+     * @param errors
+     */
+    public abstract void handleServiceCallError(String serviceCall, List<ErrorWrapper> errors);
 
-	protected abstract AGwtDao getDao();
+    /**
+     *
+     * @return
+     */
+    protected abstract AGwtDao getDao();
 
-	public AGwtApplication() {
+    /**
+     *
+     */
+    public AGwtApplication() {
 		if (singleton != null) {
                         throw new RuntimeException("GWT application already instantiated: " + singleton);
                 }
@@ -37,7 +53,11 @@ public abstract class AGwtApplication implements EntryPoint {
 		return getClass().getName();
 	}
 
-	public static AGwtApplication get() {
+    /**
+     *
+     * @return
+     */
+    public static AGwtApplication get() {
 		return singleton;
 	}
 

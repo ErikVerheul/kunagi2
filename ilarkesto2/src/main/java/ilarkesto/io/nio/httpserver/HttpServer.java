@@ -24,6 +24,11 @@ import ilarkesto.io.nio.tcpserver.TcpServer;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ *
+ * @author erik
+ * @param <S>
+ */
 public class HttpServer<S> {
 
 	private TcpServer server;
@@ -31,7 +36,12 @@ public class HttpServer<S> {
 
 	private Set<HttpSession<S>> sessions = new HashSet<>();
 
-	public HttpServer(int port, String serverName) {
+    /**
+     *
+     * @param port
+     * @param serverName
+     */
+    public HttpServer(int port, String serverName) {
 		this.name = serverName;
 		server = new TcpServer(port, new PerConnectionDataHandler(new LocalHandlerFactory()));
 	}
@@ -60,11 +70,19 @@ public class HttpServer<S> {
 		return null;
 	}
 
-	public void start(TaskManager taskManager) {
+    /**
+     *
+     * @param taskManager
+     */
+    public void start(TaskManager taskManager) {
 		server.start(taskManager);
 	}
 
-	public String getName() {
+    /**
+     *
+     * @return
+     */
+    public String getName() {
 		return name;
 	}
 

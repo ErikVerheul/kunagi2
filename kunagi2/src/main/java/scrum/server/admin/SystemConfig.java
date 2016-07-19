@@ -18,20 +18,35 @@ import ilarkesto.base.StrExtend;
 import scrum.server.KunagiRootConfig;
 import scrum.server.ScrumWebApplication;
 
+/**
+ *
+ * @author erik
+ */
 public class SystemConfig extends GSystemConfig {
 
 	// --- dependencies ---
 
 	private static transient ScrumWebApplication webApplication;
 
-	public static void setWebApplication(ScrumWebApplication webApplication) {
+    /**
+     *
+     * @param webApplication
+     */
+    public static void setWebApplication(ScrumWebApplication webApplication) {
 		SystemConfig.webApplication = webApplication;
 	}
 
 	// --- ---
 
+    /**
+     *
+     * @return
+     */
+    
 	public String getInstanceNameWithApplicationLabel() {
-		if (!isInstanceNameSet()) return webApplication.getApplicationLabel();
+		if (!isInstanceNameSet()) {
+                    return webApplication.getApplicationLabel();
+        }
 		return webApplication.getApplicationLabel() + " @ " + getInstanceName();
 	}
 
@@ -42,36 +57,66 @@ public class SystemConfig extends GSystemConfig {
 
 	@Override
 	public boolean isEditableBy(User user) {
-		if (user == null) return false;
+		if (user == null) {
+                    return false;
+        }
 		return user.isAdmin();
 	}
 
-	@Override
+    /**
+     *
+     * @param url
+     * @return
+     */
+    @Override
 	protected String prepareUrl(String url) {
-		if (url != null && !url.endsWith("/")) url += "/";
+            if (url != null && !url.endsWith("/")) {
+                url += "/";
+        }
 		return super.prepareUrl(url);
 	}
 
 	@Override
 	public void ensureIntegrity() {
 		super.ensureIntegrity();
-		if (!isDefaultUserPasswordSet()) setDefaultUserPassword(config.getInitialPassword());
-		if (!isMaxFileSizeSet()) setMaxFileSize(20);
-		if (!isSubscriptionKeySeedSet()) setSubscriptionKeySeed(StrExtend.generatePassword(32));
-		if (!isSmtpServerSet()) updateSmtp();
+                if (!isDefaultUserPasswordSet()) {
+                    setDefaultUserPassword(config.getInitialPassword());
+                }
+                if (!isMaxFileSizeSet()) {
+                    setMaxFileSize(20);
+                }
+                if (!isSubscriptionKeySeedSet()) {
+                    setSubscriptionKeySeed(StrExtend.generatePassword(32));
+        }
+		if (!isSmtpServerSet()) {
+            updateSmtp();
+        }
 	}
 
-	private void updateSmtp() {
-		setSmtpServer(config.getSmtpServer());
-		if (!StrExtend.isBlank(config.getSmtpUser())) setSmtpUser(config.getSmtpUser());
-		if (!StrExtend.isBlank(config.getSmtpPassword())) setSmtpPassword(config.getSmtpPassword());
+        private void updateSmtp() {
+            setSmtpServer(config.getSmtpServer());
+            if (!StrExtend.isBlank(config.getSmtpUser())) {
+                setSmtpUser(config.getSmtpUser());
+        }
+		if (!StrExtend.isBlank(config.getSmtpPassword())) {
+            setSmtpPassword(config.getSmtpPassword());
+        }
 	}
 
-	public boolean isOpenIdDomainAllowed(String openId) {
-		if (!isOpenIdDomainsSet()) return true;
-		String[] domains = StrExtend.tokenize(getOpenIdDomains(), ",; ");
+    /**
+     *
+     * @param openId
+     * @return
+     */
+    public boolean isOpenIdDomainAllowed(String openId) {
+		if (!isOpenIdDomainsSet()) {
+            return true;
+        }
+                String[] domains = StrExtend.tokenize(getOpenIdDomains(), ",; ");
 		for (String domain : domains) {
-			if (openId.contains(domain)) return true;
+			if (openId.contains(domain)) {
+                return true;
+            }
 		}
 		return false;
 	}
@@ -80,7 +125,11 @@ public class SystemConfig extends GSystemConfig {
 
 	private transient static KunagiRootConfig config;
 
-	public static void setConfig(KunagiRootConfig config) {
+    /**
+     *
+     * @param config
+     */
+    public static void setConfig(KunagiRootConfig config) {
 		SystemConfig.config = config;
 	}
 

@@ -18,6 +18,10 @@ import static ilarkesto.base.StrExtend.lowercaseFirstLetter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public final class EntityModel extends DatobModel {
 
 	private List<ActionModel> actions = new ArrayList<>();
@@ -27,52 +31,98 @@ public final class EntityModel extends DatobModel {
 	private boolean editProtected;
 	private List<BackReferenceModel> backReferences = new ArrayList<>();
 
-	public EntityModel(String name, String packageName) {
+    /**
+     *
+     * @param name
+     * @param packageName
+     */
+    public EntityModel(String name, String packageName) {
 		super(name, packageName);
 	}
 
-	public void addBackReference(BackReferenceModel backReference) {
+    /**
+     *
+     * @param backReference
+     */
+    public void addBackReference(BackReferenceModel backReference) {
 		backReferences.add(backReference);
 	}
 
-	public List<BackReferenceModel> getBackReferences() {
+    /**
+     *
+     * @return
+     */
+    public List<BackReferenceModel> getBackReferences() {
 		return backReferences;
 	}
 
-	public List<ActionModel> getActions() {
+    /**
+     *
+     * @return
+     */
+    public List<ActionModel> getActions() {
 		return actions;
 	}
 
-	public ActionModel addAction(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public ActionModel addAction(String name) {
 		ActionModel action = new ActionModel(name, getPackageName());
 		action.addParameter(lowercaseFirstLetter(getName()), this);
 		actions.add(action);
 		return action;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public boolean isEntity() {
 		return true;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public boolean isValueObject() {
 		return false;
 	}
 
-	public String getDaoName() {
+    /**
+     *
+     * @return
+     */
+    public String getDaoName() {
 		return lowercaseFirstLetter(getName()) + "Dao";
 	}
 
-	public String getDaoClass() {
+    /**
+     *
+     * @return
+     */
+    public String getDaoClass() {
 		return getBeanClass() + "Dao";
 	}
 
-	public String getAbstractBaseDaoClassName() {
+    /**
+     *
+     * @return
+     */
+    public String getAbstractBaseDaoClassName() {
 		return getAbstractBaseClassName() + "Dao";
 	}
 
-	public final boolean isOwnable() {
+    /**
+     *
+     * @return
+     */
+    public final boolean isOwnable() {
 		BeanModel superbean = getSuperbean();
 		if (superbean != null) {
 			if (superbean instanceof EntityModel) {
@@ -84,19 +134,35 @@ public final class EntityModel extends DatobModel {
 		return ownable;
 	}
 
-	public final void setOwnable(boolean ownable) {
+    /**
+     *
+     * @param ownable
+     */
+    public final void setOwnable(boolean ownable) {
 		this.ownable = ownable;
 	}
 
-	public void setUserModel(EntityModel userModel) {
+    /**
+     *
+     * @param userModel
+     */
+    public void setUserModel(EntityModel userModel) {
 		this.userModel = userModel;
 	}
 
-	public EntityModel getUserModel() {
+    /**
+     *
+     * @return
+     */
+    public EntityModel getUserModel() {
 		return userModel;
 	}
 
-	public final boolean isViewProtected() {
+    /**
+     *
+     * @return
+     */
+    public final boolean isViewProtected() {
 		BeanModel superbean = getSuperbean();
 		if (superbean != null) {
 			if (superbean instanceof EntityModel) {
@@ -108,11 +174,19 @@ public final class EntityModel extends DatobModel {
 		return viewProtected;
 	}
 
-	public final void setViewProtected(boolean viewProtected) {
+    /**
+     *
+     * @param viewProtected
+     */
+    public final void setViewProtected(boolean viewProtected) {
 		this.viewProtected = viewProtected;
 	}
 
-	public final boolean isEditProtected() {
+    /**
+     *
+     * @return
+     */
+    public final boolean isEditProtected() {
 		BeanModel superbean = getSuperbean();
 		if (superbean != null) {
 			if (superbean instanceof EntityModel) {
@@ -125,13 +199,21 @@ public final class EntityModel extends DatobModel {
 		return editProtected;
 	}
 
-	public final void setEditProtected(boolean editProtected) {
+    /**
+     *
+     * @param editProtected
+     */
+    public final void setEditProtected(boolean editProtected) {
 		this.editProtected = editProtected;
 	}
 
 	private boolean deleteProtected;
 
-	public final boolean isDeleteProtected() {
+    /**
+     *
+     * @return
+     */
+    public final boolean isDeleteProtected() {
 		BeanModel superbean = getSuperbean();
 		if (superbean != null) {
 			if (superbean instanceof EntityModel) {
@@ -144,7 +226,11 @@ public final class EntityModel extends DatobModel {
 		return deleteProtected;
 	}
 
-	public final void setDeleteProtected(boolean deleteProtected) {
+    /**
+     *
+     * @param deleteProtected
+     */
+    public final void setDeleteProtected(boolean deleteProtected) {
 		this.deleteProtected = deleteProtected;
 	}
 

@@ -14,8 +14,16 @@
  */
 package ilarkesto.base;
 
+/**
+ *
+ * @author erik
+ */
 public interface Iconized {
 
-	String getIcon();
+    /**
+     *
+     * @return
+     */
+    String getIcon();
 
 }

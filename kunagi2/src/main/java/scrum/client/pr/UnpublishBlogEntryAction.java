@@ -14,9 +14,17 @@
  */
 package scrum.client.pr;
 
+/**
+ *
+ * @author erik
+ */
 public class UnpublishBlogEntryAction extends GUnpublishBlogEntryAction {
 
-	public UnpublishBlogEntryAction(scrum.client.pr.BlogEntry blogEntry) {
+    /**
+     *
+     * @param blogEntry
+     */
+    public UnpublishBlogEntryAction(scrum.client.pr.BlogEntry blogEntry) {
 		super(blogEntry);
 	}
 
@@ -27,14 +35,12 @@ public class UnpublishBlogEntryAction extends GUnpublishBlogEntryAction {
 
 	@Override
 	public boolean isPermitted() {
-		if (!blogEntry.getProject().isProductOwnerOrScrumMaster(getCurrentUser())) return false;
-		return true;
+		return blogEntry.getProject().isProductOwnerOrScrumMaster(getCurrentUser());
 	}
 
 	@Override
 	public boolean isExecutable() {
-		if (!blogEntry.isPublished()) return false;
-		return true;
+		return blogEntry.isPublished();
 	}
 
 	@Override

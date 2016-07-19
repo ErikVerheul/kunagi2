@@ -14,14 +14,12 @@
  */
 package scrum.client.dashboard;
 
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Widget;
 import java.util.List;
-
 import scrum.client.common.AScrumWidget;
 import scrum.client.project.Project;
 import scrum.client.risks.Risk;
-
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.Widget;
 
 public class HighestRisksWidget extends AScrumWidget {
 

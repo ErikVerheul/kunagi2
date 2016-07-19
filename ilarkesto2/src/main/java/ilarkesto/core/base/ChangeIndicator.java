@@ -14,18 +14,34 @@
  */
 package ilarkesto.core.base;
 
+/**
+ *
+ * @author erik
+ */
 public class ChangeIndicator {
 
 	private Object cachedObject;
 
-	public ChangeIndicator() {}
+    /**
+     *
+     */
+    public ChangeIndicator() {}
 
-	public ChangeIndicator(Object cachedObject) {
+    /**
+     *
+     * @param cachedObject
+     */
+    public ChangeIndicator(Object cachedObject) {
 		super();
 		this.cachedObject = cachedObject;
 	}
 
-	public boolean update(Object newObject) {
+    /**
+     *
+     * @param newObject
+     * @return
+     */
+    public boolean update(Object newObject) {
 		if (Utl.equalObjects(newObject, cachedObject)) {
                         return false;
                 }

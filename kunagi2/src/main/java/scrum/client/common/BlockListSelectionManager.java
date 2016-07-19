@@ -17,32 +17,62 @@ package scrum.client.common;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ *
+ * @author erik
+ */
 public class BlockListSelectionManager {
 
 	private Set<BlockListWidget> lists = new HashSet<BlockListWidget>();
 
-	public void clear() {
+    /**
+     *
+     */
+    public void clear() {
 		lists.clear();
 	}
 
-	public void add(BlockListWidget list) {
-		if (list == null) return;
+    /**
+     *
+     * @param list
+     */
+    public void add(BlockListWidget list) {
+		if (list == null) {
+                    return;
+        }
 		lists.add(list);
 	}
 
-	public void remove(BlockListWidget list) {
-		if (list == null) return;
+    /**
+     *
+     * @param list
+     */
+    public void remove(BlockListWidget list) {
+		if (list == null) {
+                    return;
+        }
 		lists.remove(list);
 	}
 
-	public void deselectAll() {
-		for (BlockListWidget list : lists)
-			list.collapseAll();
+    /**
+     *
+     */
+    public void deselectAll() {
+        for (BlockListWidget list : lists) {
+            list.collapseAll();
+        }
 	}
 
-	public boolean select(Object object) {
+    /**
+     *
+     * @param object
+     * @return
+     */
+    public boolean select(Object object) {
 		for (BlockListWidget list : lists) {
-			if (list.contains(object) && list.showObject(object)) return true;
+                    if (list.contains(object) && list.showObject(object)) {
+                        return true;
+            }
 		}
 		return false;
 	}

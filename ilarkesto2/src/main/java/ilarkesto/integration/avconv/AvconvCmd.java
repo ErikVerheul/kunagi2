@@ -6,13 +6,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+/**
+ *
+ * @author erik
+ */
 public class AvconvCmd {
 
 	private Proc proc = new Proc("avconv");
 	private int returnCode;
 	private String output;
 
-	public void execute() {
+    /**
+     *
+     */
+    public void execute() {
 		if (proc == null) {
                         throw new IllegalStateException("avconv already executed");
                 }
@@ -23,7 +30,11 @@ public class AvconvCmd {
 		proc = null;
 	}
 
-	public List<String> getStreamInfos() {
+    /**
+     *
+     * @return
+     */
+    public List<String> getStreamInfos() {
 		List<String> ret = new ArrayList<>(3);
 		StringTokenizer tokenizer = new StringTokenizer(getOutput(), "\r\n");
 		while (tokenizer.hasMoreTokens()) {
@@ -36,25 +47,42 @@ public class AvconvCmd {
 		return ret;
 	}
 
-	public String getOutput() {
+    /**
+     *
+     * @return
+     */
+    public String getOutput() {
 		if (proc != null) {
                         throw new IllegalStateException("avconv not executed yet");
                 }
 		return output;
 	}
 
-	public void addInputFile(File file) {
+    /**
+     *
+     * @param file
+     */
+    public void addInputFile(File file) {
 		proc.addParameters("-i", file.getAbsolutePath());
 	}
 
-	public int getReturnCode() {
+    /**
+     *
+     * @return
+     */
+    public int getReturnCode() {
 		if (proc != null) {
                         throw new IllegalStateException("avconv not executed yet");
                 }
 		return returnCode;
 	}
 
-	public static List<String> getStreamInfos(File file) {
+    /**
+     *
+     * @param file
+     * @return
+     */
+    public static List<String> getStreamInfos(File file) {
 		AvconvCmd avconv = new AvconvCmd();
 		avconv.addInputFile(file);
 		avconv.execute();

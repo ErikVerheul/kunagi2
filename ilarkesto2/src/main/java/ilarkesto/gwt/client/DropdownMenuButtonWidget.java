@@ -23,6 +23,10 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class DropdownMenuButtonWidget extends AWidget {
 
 	private LinkedHashMap<String, List<AAction>> actionGroups;
@@ -30,7 +34,11 @@ public class DropdownMenuButtonWidget extends AWidget {
 	private String icon;
 	private String label;
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected Widget onInitialization() {
 		setStyleName("DropdownMenuButtonWidget");
 		actionGroups = new LinkedHashMap<String, List<AAction>>();
@@ -52,7 +60,10 @@ public class DropdownMenuButtonWidget extends AWidget {
 		return wrapper;
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void onUpdate() {
 		menu.clearItems();
 		if (actionGroups.isEmpty()) {
@@ -85,11 +96,20 @@ public class DropdownMenuButtonWidget extends AWidget {
 		}
 	}
 
-	public void addAction(AAction action) {
+    /**
+     *
+     * @param action
+     */
+    public void addAction(AAction action) {
 		addAction("default", action);
 	}
 
-	public void addAction(String groupName, AAction action) {
+    /**
+     *
+     * @param groupName
+     * @param action
+     */
+    public void addAction(String groupName, AAction action) {
 		initialize();
 		if (actionGroups.get(groupName) == null) {
 			actionGroups.put(groupName, new LinkedList<AAction>());
@@ -97,20 +117,34 @@ public class DropdownMenuButtonWidget extends AWidget {
 		actionGroups.get(groupName).add(action);
 	}
 
-	public void addSeparator() {
+    /**
+     *
+     */
+    public void addSeparator() {
 		menu.addSeparator();
 	}
 
-	public void clear() {
+    /**
+     *
+     */
+    public void clear() {
 		initialize();
 		actionGroups.clear();
 	}
 
-	public void setLabel(String label) {
+    /**
+     *
+     * @param label
+     */
+    public void setLabel(String label) {
 		this.label = label;
 	}
 
-	public void setIcon(String icon) {
+    /**
+     *
+     * @param icon
+     */
+    public void setIcon(String icon) {
 		this.icon = icon;
 	}
 

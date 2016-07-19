@@ -14,38 +14,74 @@
  */
 package ilarkesto.mda.legacy.model;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class ACollectionPropertyModel extends PropertyModel {
 
-	protected abstract Class getCollectionTypeClass();
+    /**
+     *
+     * @return
+     */
+    protected abstract Class getCollectionTypeClass();
 
-	protected abstract Class getCollectionImplClass();
+    /**
+     *
+     * @return
+     */
+    protected abstract Class getCollectionImplClass();
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public final String getType() {
 		return getCollectionType() + "<" + getContentType() + ">";
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getCollectionType() {
 		return getCollectionTypeClass().getName();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getCollectionImpl() {
 		return getCollectionImplClass().getName();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getContentType() {
 		return contentType;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public final boolean isCollection() {
 		return true;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getNameSingular() {
 		String name = getName();
 		if (!name.endsWith("s")) {
@@ -54,17 +90,29 @@ public abstract class ACollectionPropertyModel extends PropertyModel {
 		return name.substring(0, name.length() - 1);
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public boolean isBoolean() {
 		return false;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public boolean isPrimitive() {
 		return false;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public boolean isString() {
 		return false;
 	}
@@ -73,13 +121,29 @@ public abstract class ACollectionPropertyModel extends PropertyModel {
 
 	private String contentType;
 
-	public ACollectionPropertyModel(BeanModel entityModel, String name, boolean reference, boolean valueObject,
+    /**
+     *
+     * @param entityModel
+     * @param name
+     * @param reference
+     * @param valueObject
+     * @param contentType
+     */
+    public ACollectionPropertyModel(BeanModel entityModel, String name, boolean reference, boolean valueObject,
 			String contentType) {
 		super(entityModel, name, reference, valueObject);
 		this.contentType = contentType;
 	}
 
-	public ACollectionPropertyModel(BeanModel entityModel, String name, boolean reference, boolean valueObject,
+    /**
+     *
+     * @param entityModel
+     * @param name
+     * @param reference
+     * @param valueObject
+     * @param contentType
+     */
+    public ACollectionPropertyModel(BeanModel entityModel, String name, boolean reference, boolean valueObject,
 			Class contentType) {
 		this(entityModel, name, reference, valueObject, contentType.getName());
 	}

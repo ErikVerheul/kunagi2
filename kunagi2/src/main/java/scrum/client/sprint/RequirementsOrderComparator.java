@@ -16,7 +16,6 @@ package scrum.client.sprint;
 
 import java.util.Comparator;
 import java.util.List;
-
 import scrum.client.project.Requirement;
 
 public abstract class RequirementsOrderComparator implements Comparator<Requirement> {

@@ -15,8 +15,8 @@
 package scrum.server.common;
 
 import ilarkesto.base.StrExtend;
-import ilarkesto.logging.Log;
 import ilarkesto.io.IO;
+import ilarkesto.logging.Log;
 import ilarkesto.ui.web.HtmlRenderer;
 import ilarkesto.webapp.RequestWrapper;
 import java.io.IOException;
@@ -24,20 +24,31 @@ import javax.servlet.ServletConfig;
 import scrum.server.ScrumWebApplication;
 import scrum.server.WebSession;
 
+/**
+ *
+ * @author erik
+ */
 public class StartServlet extends AKunagiServlet {
 
 	private static final Log log = Log.get(StartServlet.class);
 
 	private static boolean first = true;
 
-	@Override
+    /**
+     *
+     * @param req
+     * @throws IOException
+     */
+    @Override
 	protected void onRequest(RequestWrapper<WebSession> req) throws IOException {
 
 		if (first) {
 			first = false;
 			String requestUrl = req.getUri();
 			requestUrl = StrExtend.removeSuffix(requestUrl, "index.html");
-			if (!systemConfig.isUrlSet()) systemConfig.setUrl(requestUrl);
+			if (!systemConfig.isUrlSet()) {
+                            systemConfig.setUrl(requestUrl);
+            }
 		}
 
 		if (req.getSession().getUser() == null) {
@@ -52,8 +63,12 @@ public class StartServlet extends AKunagiServlet {
 		html.startHTMLstandard();
 
 		String title = "Kunagi2";
-		if (config.isShowRelease()) title += " " + applicationInfo.getRelease();
-		if (systemConfig.isInstanceNameSet()) title += " @ " + systemConfig.getInstanceName();
+		if (config.isShowRelease()) {
+                    title += " " + applicationInfo.getRelease();
+        }
+                if (systemConfig.isInstanceNameSet()) {
+                    title += " @ " + systemConfig.getInstanceName();
+        }
 		html.startHEAD(title, "EN");
 		html.META("X-UA-Compatible", "IE=edge");
 		html.LINKfavicon();
@@ -63,8 +78,10 @@ public class StartServlet extends AKunagiServlet {
 
 		html.startBODY();
 		html.comment(applicationInfo.toString());
-		String analyticsId = systemConfig.getGoogleAnalyticsId();
-		if (analyticsId != null) html.googleAnalytics(analyticsId);
+                String analyticsId = systemConfig.getGoogleAnalyticsId();
+                if (analyticsId != null) {
+                    html.googleAnalytics(analyticsId);
+        }
 		html.endBODY();
 
 		html.endHTML();

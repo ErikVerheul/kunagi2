@@ -14,8 +14,10 @@
  */
 package scrum.client.project;
 
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.base.Str;
 import ilarkesto.core.base.Utl;
+import static ilarkesto.core.logging.ClientLog.ERROR;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.core.time.Date;
 import ilarkesto.core.time.DateAndTime;
@@ -25,7 +27,6 @@ import ilarkesto.gwt.client.Gwt;
 import ilarkesto.gwt.client.HyperlinkWidget;
 import ilarkesto.gwt.client.editor.AEditorModel;
 import ilarkesto.gwt.client.editor.AFieldModel;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -34,7 +35,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import scrum.client.ScrumGwt;
 import scrum.client.admin.Auth;
 import scrum.client.admin.ProjectUserConfig;
@@ -58,19 +58,31 @@ import scrum.client.sprint.Sprint;
 import scrum.client.sprint.SprintReport;
 import scrum.client.sprint.Task;
 
-import com.google.gwt.user.client.ui.Widget;
-import static ilarkesto.core.logging.ClientLog.ERROR;
-
+/**
+ *
+ * @author erik
+ */
 public class Project extends GProject implements ForumSupport {
 
 	private static final String effortUnit = "pts";
-	public static final String INIT_LABEL = "New Project";
 
-	public transient boolean historyLoaded;
+    /**
+     *
+     */
+    public static final String INIT_LABEL = "New Project";
+
+    /**
+     *
+     */
+    public transient boolean historyLoaded;
 	private transient RequirementsOrderComparator requirementsOrderComparator;
 	private transient Comparator<Issue> issuesOrderComparator;
 
-	public Project(User creator) {
+    /**
+     *
+     * @param creator
+     */
+    public Project(User creator) {
 		setLabel(INIT_LABEL + " " + DateAndTime.now());
 		addParticipant(creator);
 		addAdmin(creator);
@@ -80,32 +92,59 @@ public class Project extends GProject implements ForumSupport {
 		setLastOpenedDateAndTime(DateAndTime.now());
 	}
 
-	public Project(Map data) {
+    /**
+     *
+     * @param data
+     */
+    public Project(Map data) {
 		super(data);
 	}
 
-	public boolean isInHistory(Requirement requirement) {
+    /**
+     *
+     * @param requirement
+     * @return
+     */
+    public boolean isInHistory(Requirement requirement) {
 		for (SprintReport report : getSprintReports()) {
-			if (report.containsCompletedRequirement(requirement)) return true;
-			if (report.containsRejectedRequirement(requirement)) return true;
+			if (report.containsCompletedRequirement(requirement)) {
+                            return true;
+            }
+			if (report.containsRejectedRequirement(requirement)) {
+                            return true;
+            }
 		}
 		return false;
 	}
 
-	public Set<SprintReport> getSprintReports() {
+    /**
+     *
+     * @return
+     */
+    public Set<SprintReport> getSprintReports() {
 		Set<SprintReport> reports = new HashSet<SprintReport>();
 		for (Sprint sprint : getSprints()) {
 			SprintReport report = sprint.getSprintReport();
-			if (report != null) reports.add(report);
+                        if (report != null) {
+                            reports.add(report);
+            }
 		}
 		return reports;
 	}
 
-	public boolean isHomepagePublishingEnabled() {
+    /**
+     *
+     * @return
+     */
+    public boolean isHomepagePublishingEnabled() {
 		return !Str.isBlank(getHomepageDir());
 	}
 
-	public int getTotalMisconducts() {
+    /**
+     *
+     * @return
+     */
+    public int getTotalMisconducts() {
 		int sum = 0;
 		for (ProjectUserConfig config : getProjectUserConfigs()) {
 			sum += config.getMisconducts();
@@ -113,21 +152,35 @@ public class Project extends GProject implements ForumSupport {
 		return sum;
 	}
 
-	public Requirement getNextProductBacklogRequirement() {
-		List<Requirement> requirements = getProductBacklogRequirements();
-		if (requirements.isEmpty()) return null;
+    /**
+     *
+     * @return
+     */
+    public Requirement getNextProductBacklogRequirement() {
+        List<Requirement> requirements = getProductBacklogRequirements();
+		if (requirements.isEmpty()) {
+            return null;
+        }
 		Collections.sort(requirements, getRequirementsOrderComparator());
 		return requirements.get(0);
 	}
 
-	public List<String> getThemes() {
+    /**
+     *
+     * @return
+     */
+    public List<String> getThemes() {
 		Set<String> themes = new HashSet<String>();
-		for (Requirement requirement : getRequirements()) {
-			if (requirement.isClosed()) continue;
+                for (Requirement requirement : getRequirements()) {
+			if (requirement.isClosed()) {
+                continue;
+            }
 			themes.addAll(requirement.getThemes());
 		}
-		for (Issue issue : getIssues()) {
-			if (issue.isClosed()) continue;
+                for (Issue issue : getIssues()) {
+			if (issue.isClosed()) {
+                continue;
+            }
 			themes.addAll(issue.getThemes());
 		}
 		List<String> ret = new ArrayList<String>(themes);
@@ -135,27 +188,46 @@ public class Project extends GProject implements ForumSupport {
 		return ret;
 	}
 
-	public void updateRequirementsModificationTimes() {
+    /**
+     *
+     */
+    public void updateRequirementsModificationTimes() {
 		for (Requirement requirement : getRequirements()) {
 			requirement.updateLocalModificationTime();
 		}
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public boolean isEditable() {
 		User currentUser = Scope.get().getComponent(Auth.class).getUser();
 		return currentUser.isAdmin() || isAdmin(currentUser);
 	}
 
-	public List<Issue> getClaimedBugs(User user) {
+    /**
+     *
+     * @param user
+     * @return
+     */
+    public List<Issue> getClaimedBugs(User user) {
 		List<Issue> issues = new ArrayList<Issue>();
-		for (Issue issue : getBugs()) {
-			if (issue.isOwner(user) && !issue.isFixed()) issues.add(issue);
+                for (Issue issue : getBugs()) {
+			if (issue.isOwner(user) && !issue.isFixed()) {
+                issues.add(issue);
+            }
 		}
 		return issues;
 	}
 
-	public List<Task> getClaimedTasks(User user) {
+    /**
+     *
+     * @param user
+     * @return
+     */
+    public List<Task> getClaimedTasks(User user) {
 		List<Task> tasks = new ArrayList<Task>();
 		for (Requirement req : getRequirements()) {
 			tasks.addAll(req.getClaimedTasks(user));
@@ -163,37 +235,68 @@ public class Project extends GProject implements ForumSupport {
 		return tasks;
 	}
 
-	public Float getVelocityFromLastSprint() {
+    /**
+     *
+     * @return
+     */
+    public Float getVelocityFromLastSprint() {
 		Sprint latest = getLatestCompletedSprint();
 		return latest == null ? null : latest.getVelocity();
 	}
 
-	public Sprint getLatestCompletedSprint() {
-		Sprint latest = null;
+    /**
+     *
+     * @return
+     */
+    public Sprint getLatestCompletedSprint() {
+        Sprint latest = null;
 		for (Sprint sprint : getSprints()) {
-			if (!sprint.isCompleted()) continue;
-			if (latest == null || sprint.getEnd().isAfter(latest.getEnd())) latest = sprint;
+			if (!sprint.isCompleted()) {
+                            continue;
+                        }
+			if (latest == null || sprint.getEnd().isAfter(latest.getEnd())) {
+                latest = sprint;
+            }
 		}
 		return latest;
 	}
 
-	public Set<Sprint> getCompletedSprints() {
-		Set<Sprint> ret = new HashSet<Sprint>();
+    /**
+     *
+     * @return
+     */
+    public Set<Sprint> getCompletedSprints() {
+        Set<Sprint> ret = new HashSet<Sprint>();
 		for (Sprint sprint : getSprints()) {
-			if (sprint.isCompleted()) ret.add(sprint);
+			if (sprint.isCompleted()) {
+                ret.add(sprint);
+            }
 		}
 		return ret;
 	}
 
-	public List<Sprint> getCompletedSprintsInOrder() {
+    /**
+     *
+     * @return
+     */
+    public List<Sprint> getCompletedSprintsInOrder() {
 		return Utl.sort(getCompletedSprints(), Sprint.END_DATE_COMPARATOR);
 	}
 
-	public List<Sprint> getCompletedSprintsInReverseOrder() {
+    /**
+     *
+     * @return
+     */
+    public List<Sprint> getCompletedSprintsInReverseOrder() {
 		return Utl.sort(getCompletedSprints(), Sprint.END_DATE_REVERSE_COMPARATOR);
 	}
 
-	public List<ProjectEvent> getLatestProjectEvents(int min) {
+    /**
+     *
+     * @param min
+     * @return
+     */
+    public List<ProjectEvent> getLatestProjectEvents(int min) {
 		List<ProjectEvent> events = getProjectEvents();
 		Collections.sort(events, ProjectEvent.DATE_AND_TIME_COMPARATOR);
 
@@ -201,77 +304,147 @@ public class Project extends GProject implements ForumSupport {
 		List<ProjectEvent> ret = new ArrayList<ProjectEvent>();
 		int count = 0;
 		for (ProjectEvent event : events) {
-			ret.add(event);
-			count++;
+                    ret.add(event);
+                    count++;
 			DateAndTime dateAndTime = event.getDateAndTime();
-			if (count > min && dateAndTime.isBefore(deadline)) break;
+			if (count > min && dateAndTime.isBefore(deadline)) {
+                break;
+            }
 		}
 		return ret;
 	}
 
-	public Wikipage getWikipage(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public Wikipage getWikipage(String name) {
 		name = name.toLowerCase();
 		for (Wikipage page : getDao().getWikipagesByProject(this)) {
-			if (page.getName().toLowerCase().equals(name)) return page;
+			if (page.getName().toLowerCase().equals(name)) {
+                return page;
+            }
 		}
-		return null;
-	}
-
-	public ProjectUserConfig getUserConfig(User user) {
-                if (user == null) ERROR("user == null!");
+                return null;
+    }
+    
+    /**
+     *
+     * @param user
+     * @return
+     */
+    public ProjectUserConfig getUserConfig(User user) {
+        if (user == null) {
+            ERROR("user == null!");
+        }
 		for (ProjectUserConfig config : getDao().getProjectUserConfigsByProject(this)) {
-			if (config.isUser(user)) return config;
+			if (config.isUser(user)) {
+                return config;
+            }
 		}
                 ERROR("getUserConfig is returning null!");
 		return null;
 	}
 
-	public boolean isScrumTeamMember(User user) {
+    /**
+     *
+     * @param user
+     * @return
+     */
+    public boolean isScrumTeamMember(User user) {
 		return isProductOwner(user) || isScrumMaster(user) || isTeamMember(user);
 	}
 
-	public boolean isProductOwnerOrScrumMaster(User user) {
+    /**
+     *
+     * @param user
+     * @return
+     */
+    public boolean isProductOwnerOrScrumMaster(User user) {
 		return isProductOwner(user) || isScrumMaster(user);
 	}
 
-	public boolean isProductOwnerOrTeamMember(User user) {
+    /**
+     *
+     * @param user
+     * @return
+     */
+    public boolean isProductOwnerOrTeamMember(User user) {
 		return isProductOwner(user) || isTeamMember(user);
 	}
 
-	public boolean isTeamMember(User user) {
+    /**
+     *
+     * @param user
+     * @return
+     */
+    public boolean isTeamMember(User user) {
 		return getTeamMembers().contains(user);
 	}
 
-	public boolean isScrumMaster(User user) {
+    /**
+     *
+     * @param user
+     * @return
+     */
+    public boolean isScrumMaster(User user) {
 		return getScrumMasters().contains(user);
 	}
 
-	public boolean isProductOwner(User user) {
+    /**
+     *
+     * @param user
+     * @return
+     */
+    public boolean isProductOwner(User user) {
 		return getProductOwners().contains(user);
 	}
 
-	public boolean isAdmin(User user) {
+    /**
+     *
+     * @param user
+     * @return
+     */
+    public boolean isAdmin(User user) {
 		return getAdmins().contains(user);
 	}
 
-	public String getUsersRolesAsString(User user, String prefix, String suffix) {
-		StringBuilder sb = new StringBuilder();
-		List<String> roles = new ArrayList<String>();
-		if (isProductOwner(user)) roles.add("PO");
-		if (isScrumMaster(user)) roles.add("SM");
-		if (isTeamMember(user)) roles.add("T");
+    /**
+     *
+     * @param user
+     * @param prefix
+     * @param suffix
+     * @return
+     */
+    public String getUsersRolesAsString(User user, String prefix, String suffix) {
+        StringBuilder sb = new StringBuilder();
+        List<String> roles = new ArrayList<String>();
+		if (isProductOwner(user)) {
+            roles.add("PO");
+        }
+		if (isScrumMaster(user)) {
+            roles.add("SM");
+        }
+		if (isTeamMember(user)) {
+                    roles.add("T");
+        }
 		boolean first = true;
 		if (!roles.isEmpty()) {
 			for (String role : roles) {
 				if (first) {
-					first = false;
-					if (prefix != null) sb.append(prefix);
+                                    first = false;
+                                    if (prefix != null) {
+                        sb.append(prefix);
+                    }
 				} else {
 					sb.append(",");
 				}
 				sb.append(role);
 			}
-			if (suffix != null) sb.append(suffix);
+			if (suffix != null) {
+                sb.append(suffix);
+            }
 		}
 		return sb.toString();
 	}
@@ -282,16 +455,28 @@ public class Project extends GProject implements ForumSupport {
 		updateRequirementsOrder(requirements);
 	}
 
-	public void updateRequirementsOrder(List<Requirement> requirements) {
+    /**
+     *
+     * @param requirements
+     */
+    public void updateRequirementsOrder(List<Requirement> requirements) {
 		setRequirementsOrderIds(Gwt.getIdsAsList(requirements));
 		updateRequirementsModificationTimes();
 	}
 
-	public void updateUrgentIssuesOrder(List<Issue> issues) {
+    /**
+     *
+     * @param issues
+     */
+    public void updateUrgentIssuesOrder(List<Issue> issues) {
 		setUrgentIssuesOrderIds(Gwt.getIdsAsList(issues));
 	}
 
-	public void setParticipantsConfigured(Collection<User> users) {
+    /**
+     *
+     * @param users
+     */
+    public void setParticipantsConfigured(Collection<User> users) {
 		users.addAll(getTeamMembers());
 		users.addAll(getAdmins());
 		users.addAll(getProductOwners());
@@ -299,54 +484,95 @@ public class Project extends GProject implements ForumSupport {
 		setParticipants(users);
 	}
 
-	public String getEffortUnit() {
+    /**
+     *
+     * @return
+     */
+    public String getEffortUnit() {
 		return effortUnit;
 	}
 
-	public Wikipage createNewWikipage(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public Wikipage createNewWikipage(String name) {
 		Wikipage page = new Wikipage(this, name);
 		getDao().createWikipage(page);
 		return page;
 	}
 
-	public Subject createNewSubject() {
+    /**
+     *
+     * @return
+     */
+    public Subject createNewSubject() {
 		Subject subject = new Subject(this);
 		getDao().createSubject(subject);
 		return subject;
 	}
 
-	public Issue createNewIssue() {
+    /**
+     *
+     * @return
+     */
+    public Issue createNewIssue() {
 		Issue issue = new Issue(this);
 		getDao().createIssue(issue);
 		return issue;
 	}
 
-	public Impediment createNewImpediment() {
+    /**
+     *
+     * @return
+     */
+    public Impediment createNewImpediment() {
 		Impediment impediment = new Impediment(this);
 		getDao().createImpediment(impediment);
 		return impediment;
 	}
 
-	public void deleteImpediment(Impediment impediment) {
+    /**
+     *
+     * @param impediment
+     */
+    public void deleteImpediment(Impediment impediment) {
 		for (Task task : getDao().getTasksByImpediment(impediment)) {
 			task.setImpediment(null);
 		}
 		getDao().deleteImpediment(impediment);
 	}
 
-	public void deleteFile(File file) {
+    /**
+     *
+     * @param file
+     */
+    public void deleteFile(File file) {
 		getDao().deleteFile(file);
 	}
 
-	public void deleteIssue(Issue issue) {
+    /**
+     *
+     * @param issue
+     */
+    public void deleteIssue(Issue issue) {
 		getDao().deleteIssue(issue);
 	}
 
-	public void deleteRisk(Risk risk) {
+    /**
+     *
+     * @param risk
+     */
+    public void deleteRisk(Risk risk) {
 		getDao().deleteRisk(risk);
 	}
 
-	public Set<ForumSupport> getEntitiesWithComments() {
+    /**
+     *
+     * @return
+     */
+    public Set<ForumSupport> getEntitiesWithComments() {
 		Set<ForumSupport> ret = new HashSet<ForumSupport>();
 		ret.addAll(getSubjects());
 		for (Comment comment : getDao().getComments()) {
@@ -355,87 +581,150 @@ public class Project extends GProject implements ForumSupport {
 				ERROR(entity.getClass().getName() + " needs to implement ForumSupport");
 				continue;
 			}
-			ret.add((ForumSupport) comment.getParent());
-		}
+                        ret.add((ForumSupport) comment.getParent());
+                }
 		return ret;
 	}
 
-	public List<Impediment> getOpenImpediments() {
+    /**
+     *
+     * @return
+     */
+    public List<Impediment> getOpenImpediments() {
 		List<Impediment> ret = new ArrayList<Impediment>();
 		for (Impediment impediment : getImpediments()) {
-			if (impediment.isClosed()) continue;
-			ret.add(impediment);
+			if (impediment.isClosed()) {
+                continue;
+                        }
+                        ret.add(impediment);
 		}
 		return ret;
 	}
 
-	public List<Issue> getOpenIssues(boolean includeSuspended) {
+    /**
+     *
+     * @param includeSuspended
+     * @return
+     */
+    public List<Issue> getOpenIssues(boolean includeSuspended) {
 		List<Issue> ret = new ArrayList<Issue>();
 		for (Issue issue : getIssues()) {
-			if (!issue.isOpen()) continue;
-			if (!includeSuspended && issue.isSuspended()) continue;
+			if (!issue.isOpen()) {
+                continue;
+                        }
+                        if (!includeSuspended && issue.isSuspended()) {
+                continue;
+            }
 			ret.add(issue);
 		}
 		return ret;
 	}
 
-	public List<Issue> getIdeas() {
+    /**
+     *
+     * @return
+     */
+    public List<Issue> getIdeas() {
 		List<Issue> ret = new ArrayList<Issue>();
-		for (Issue issue : getIssues()) {
-			if (issue.isIdea()) ret.add(issue);
+                for (Issue issue : getIssues()) {
+                    if (issue.isIdea()) {
+                ret.add(issue);
+            }
 		}
 		return ret;
 	}
 
-	public List<Issue> getUnclaimedBugs(int severity) {
-		List<Issue> ret = new ArrayList<Issue>();
+    /**
+     *
+     * @param severity
+     * @return
+     */
+    public List<Issue> getUnclaimedBugs(int severity) {
+        List<Issue> ret = new ArrayList<Issue>();
 		for (Issue issue : getBugs()) {
-			if (issue.getOwner() == null && issue.isSeverity(severity)) ret.add(issue);
+			if (issue.getOwner() == null && issue.isSeverity(severity)) {
+                ret.add(issue);
+            }
 		}
 		return ret;
 	}
 
-	public List<Issue> getBugs() {
+    /**
+     *
+     * @return
+     */
+    public List<Issue> getBugs() {
 		List<Issue> ret = new ArrayList<Issue>();
 		for (Issue issue : getIssues()) {
-			if (issue.isBug()) ret.add(issue);
+			if (issue.isBug()) {
+                ret.add(issue);
+            }
 		}
 		return ret;
 	}
 
-	public List<Issue> getFixedBugs() {
-		List<Issue> ret = new ArrayList<Issue>();
+    /**
+     *
+     * @return
+     */
+    public List<Issue> getFixedBugs() {
+        List<Issue> ret = new ArrayList<Issue>();
 		for (Issue issue : getIssues()) {
-			if (issue.isBug() && issue.isFixed()) ret.add(issue);
+			if (issue.isBug() && issue.isFixed()) {
+                ret.add(issue);
+            }
 		}
 		return ret;
 	}
 
-	public List<Issue> getClosedIssues() {
-		List<Issue> ret = new ArrayList<Issue>();
+    /**
+     *
+     * @return
+     */
+    public List<Issue> getClosedIssues() {
+        List<Issue> ret = new ArrayList<Issue>();
 		for (Issue issue : getIssues()) {
-			if (issue.isClosed()) ret.add(issue);
+			if (issue.isClosed()) {
+                ret.add(issue);
+            }
 		}
 		return ret;
 	}
 
-	public List<Release> getReleasedReleases() {
+    /**
+     *
+     * @return
+     */
+    public List<Release> getReleasedReleases() {
+        List<Release> ret = new ArrayList<Release>();
+		for (Release release : getReleases()) {
+			if (release.isReleased()) {
+                ret.add(release);
+            }
+		}
+		return ret;
+	}
+
+    /**
+     *
+     * @return
+     */
+    public List<Release> getPlannedReleases() {
 		List<Release> ret = new ArrayList<Release>();
 		for (Release release : getReleases()) {
-			if (release.isReleased()) ret.add(release);
+			if (!release.isReleased()) {
+                ret.add(release);
+            }
 		}
 		return ret;
 	}
 
-	public List<Release> getPlannedReleases() {
-		List<Release> ret = new ArrayList<Release>();
-		for (Release release : getReleases()) {
-			if (!release.isReleased()) ret.add(release);
-		}
-		return ret;
-	}
-
-	public List<Risk> getHighestRisks(int max) {
+    /**
+     *
+     * @param max
+     * @return
+     */
+    public List<Risk> getHighestRisks(int max) {
 		List<Risk> ret = getRisks();
 		Collections.sort(ret, Risk.PRIORITY_COMPARATOR);
 		while (ret.size() > max) {
@@ -444,19 +733,32 @@ public class Project extends GProject implements ForumSupport {
 		return ret;
 	}
 
-	public Risk createNewRisk() {
+    /**
+     *
+     * @return
+     */
+    public Risk createNewRisk() {
 		Risk risk = new Risk(this);
 		getDao().createRisk(risk);
 		return risk;
 	}
 
-	public BlogEntry createNewBlogEntry() {
+    /**
+     *
+     * @return
+     */
+    public BlogEntry createNewBlogEntry() {
 		BlogEntry blogEntry = new BlogEntry(this);
 		getDao().createBlogEntry(blogEntry);
 		return blogEntry;
 	}
 
-	public BlogEntry createNewBlogEntry(Release release) {
+    /**
+     *
+     * @param release
+     * @return
+     */
+    public BlogEntry createNewBlogEntry(Release release) {
 		BlogEntry blogEntry = new BlogEntry(this);
 		blogEntry.setTitle("Release " + release.getLabel());
 		String text = release.isReleased() ? release.getReleaseNotes() : release.createIzemizedReleaseNotes();
@@ -465,22 +767,30 @@ public class Project extends GProject implements ForumSupport {
 		return blogEntry;
 	}
 
-	public Release createNewRelease(Release parentRelease) {
+    /**
+     *
+     * @param parentRelease
+     * @return
+     */
+    public Release createNewRelease(Release parentRelease) {
 		Release release = new Release(this);
 		Date date = Date.today();
 		if (parentRelease != null) {
 			release.setParentRelease(parentRelease);
 			release.setLabel(parentRelease.getLabel() + " Bugfix " + (parentRelease.getBugfixReleases().size() + 1));
 			Date parentDate = parentRelease.getReleaseDate();
-			if (parentDate != null && parentDate.isAfter(date)) date = parentDate;
+			if (parentDate != null && parentDate.isAfter(date)) {
+                date = parentDate;
+            }
 		}
 		release.setReleaseDate(date);
 		getDao().createRelease(release);
-		return release;
+                return release;
 	}
 
 	/**
 	 * @param relative The story, before which the new story should be placed. Optional.
+     * @return 
 	 */
 	public Requirement createNewRequirement(Requirement relative, boolean before, boolean split) {
 		Requirement item = new Requirement(this);
@@ -488,14 +798,16 @@ public class Project extends GProject implements ForumSupport {
 		if (split) {
 			String theme = relative.getLabel();
 			List<String> themes = relative.getThemes();
-			if (!themes.contains(theme)) themes.add(theme);
+			if (!themes.contains(theme)) {
+                themes.add(theme);
+            }
 
 			relative.setThemes(themes);
 			relative.setDirty(true);
 
 			item.setEpic(relative);
 			item.setThemes(themes);
-			item.setDescription(relative.getDescription());
+                        item.setDescription(relative.getDescription());
 			item.setTestDescription(relative.getTestDescription());
 			item.setQualitys(relative.getQualitys());
 		}
@@ -507,7 +819,9 @@ public class Project extends GProject implements ForumSupport {
 			requirements.remove(item);
 			Collections.sort(requirements, getRequirementsOrderComparator());
 			int idx = requirements.indexOf(relative);
-			if (!before) idx++;
+			if (!before) {
+                idx++;
+            }
 			requirements.add(idx, item);
 			updateRequirementsOrder(requirements);
 		}
@@ -516,104 +830,168 @@ public class Project extends GProject implements ForumSupport {
 		return item;
 	}
 
-	public Quality createNewQuality() {
+    /**
+     *
+     * @return
+     */
+    public Quality createNewQuality() {
 		Quality item = new Quality(this);
 		getDao().createQuality(item);
 		return item;
 	}
 
-	public void deleteRequirement(Requirement item) {
+    /**
+     *
+     * @param item
+     */
+    public void deleteRequirement(Requirement item) {
 		getDao().deleteRequirement(item);
 	}
 
-	public void deleteQuality(Quality item) {
+    /**
+     *
+     * @param item
+     */
+    public void deleteQuality(Quality item) {
 		getDao().deleteQuality(item);
 	}
 
-	public List<Requirement> getProductBacklogRequirements() {
+    /**
+     *
+     * @return
+     */
+    public List<Requirement> getProductBacklogRequirements() {
 		List<Requirement> ret = new ArrayList<Requirement>();
 		for (Requirement requirement : getRequirements()) {
-			if (requirement.isClosed()) continue;
-			if (requirement.isInCurrentSprint()) continue;
-			ret.add(requirement);
-		}
-		return ret;
+			if (requirement.isClosed()) {
+                continue;
+            }
+			if (requirement.isInCurrentSprint()) {
+                continue;
+            }
+                        ret.add(requirement);
+                }
+                return ret;
 	}
 
-	public List<Task> getTasks() {
+    /**
+     *
+     * @return
+     */
+    public List<Task> getTasks() {
 		return getDao().getTasks();
 	}
 
-	public List<Issue> getIssuesByThemes(Collection<String> themes) {
+    /**
+     *
+     * @param themes
+     * @return
+     */
+    public List<Issue> getIssuesByThemes(Collection<String> themes) {
 		List<Issue> ret = new ArrayList<Issue>();
 		for (Issue issue : getIssues()) {
 			for (String theme : themes) {
-				if (issue.containsTheme(theme) && !ret.contains(issue)) ret.add(issue);
+                            if (issue.containsTheme(theme) && !ret.contains(issue)) {
+                    ret.add(issue);
+                }
 			}
 		}
 		return ret;
 	}
 
-	public List<Requirement> getRequirementsByThemes(Collection<String> themes) {
+    /**
+     *
+     * @param themes
+     * @return
+     */
+    public List<Requirement> getRequirementsByThemes(Collection<String> themes) {
 		List<Requirement> ret = new ArrayList<Requirement>();
 		for (Requirement requirement : getRequirements()) {
 			for (String theme : themes) {
-				if (requirement.containsTheme(theme) && !ret.contains(requirement)) ret.add(requirement);
+				if (requirement.containsTheme(theme) && !ret.contains(requirement)) {
+                    ret.add(requirement);
+                }
 			}
 		}
 		return ret;
 	}
 
-	public List<Requirement> getRequirementsOrdered() {
-		List<Requirement> requirements = getRequirements();
+    /**
+     *
+     * @return
+     */
+    public List<Requirement> getRequirementsOrdered() {
+        List<Requirement> requirements = getRequirements();
 		Collections.sort(requirements, getRequirementsOrderComparator());
 		return requirements;
 	}
 
-	public Sprint createNewSprint() {
+    /**
+     *
+     * @return
+     */
+    public Sprint createNewSprint() {
 		Sprint sprint = new Sprint(this, "New Sprint");
-		getDao().createSprint(sprint);
-		return sprint;
-	}
-
-	public boolean deleteTask(Task task) {
-		for (Requirement requirement : getRequirements()) {
-			boolean b = requirement.getTasks().remove(task);
-			if (b) return true;
-		}
-		return false;
-	}
-
-	@Override
-	public String toString() {
-		return getLabel();
-	}
-
-	public Comparator<Issue> getIssuesOrderComparator() {
-		if (issuesOrderComparator == null) issuesOrderComparator = new Comparator<Issue>() {
-
-			@Override
-			public int compare(Issue a, Issue b) {
-				List<String> order = getUrgentIssuesOrderIds();
-				int additional = order.size();
+                getDao().createSprint(sprint);
+                return sprint;
+    }
+    
+    /**
+     *
+     * @param task
+     * @return
+     */
+    public boolean deleteTask(Task task) {
+        for (Requirement requirement : getRequirements()) {
+            boolean b = requirement.getTasks().remove(task);
+            if (b) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    @Override
+    public String toString() {
+        return getLabel();
+    }
+    
+    /**
+     *
+     * @return
+     */
+    public Comparator<Issue> getIssuesOrderComparator() {
+		if (issuesOrderComparator == null) {
+                    issuesOrderComparator = new Comparator<Issue>() {
+                        
+                        @Override
+                        public int compare(Issue a, Issue b) {
+                            List<String> order = getUrgentIssuesOrderIds();
+                            int additional = order.size();
 				int ia = order.indexOf(a.getId());
-				if (ia < 0) {
-					ia = additional;
+                                if (ia < 0) {
+                                    ia = additional;
 					additional++;
 				}
-				int ib = order.indexOf(b.getId());
-				if (ib < 0) {
+                                int ib = order.indexOf(b.getId());
+                                if (ib < 0) {
 					ib = additional;
 					additional++;
 				}
 				return ia - ib;
 			}
 		};
+        }
 		return issuesOrderComparator;
 	}
 
-	public RequirementsOrderComparator getRequirementsOrderComparator() {
-		if (requirementsOrderComparator == null) requirementsOrderComparator = new RequirementsOrderComparator() {
+    /**
+     *
+     * @return
+     */
+    public RequirementsOrderComparator getRequirementsOrderComparator() {
+		if (requirementsOrderComparator == null) {
+            requirementsOrderComparator = new RequirementsOrderComparator() {
 
 			@Override
 			protected List<String> getOrder() {
@@ -621,20 +999,33 @@ public class Project extends GProject implements ForumSupport {
 			}
 
 		};
+        }
 		return requirementsOrderComparator;
 	}
 
-	public String formatEfford(Float i) {
-		if (i == null || i == 0) return "nothing";
+    /**
+     *
+     * @param i
+     * @return
+     */
+    public String formatEfford(Float i) {
+		if (i == null || i == 0) {
+            return "nothing";
+        }
 		String unit = getEffortUnit();
 		if (i == 1) {
-			if (unit.endsWith("s")) unit = unit.substring(0, unit.length() - 2);
-			return "1 " + unit;
+			if (unit.endsWith("s")) {
+                            unit = unit.substring(0, unit.length() - 2);
+                        }
+                        return "1 " + unit;
 		}
 		return i + " " + unit;
 	}
 
-	public static final Comparator<Project> LABEL_COMPARATOR = new Comparator<Project>() {
+    /**
+     *
+     */
+    public static final Comparator<Project> LABEL_COMPARATOR = new Comparator<Project>() {
 
 		@Override
 		public int compare(Project a, Project b) {
@@ -642,7 +1033,10 @@ public class Project extends GProject implements ForumSupport {
 		}
 	};
 
-	public static final Comparator<Project> LAST_OPENED_COMPARATOR = new Comparator<Project>() {
+    /**
+     *
+     */
+    public static final Comparator<Project> LAST_OPENED_COMPARATOR = new Comparator<Project>() {
 
 		@Override
 		public int compare(Project a, Project b) {
@@ -650,64 +1044,94 @@ public class Project extends GProject implements ForumSupport {
 		}
 	};
 
-	public Set<User> getUsersSelecting(AGwtEntity entity) {
-		Set<User> users = new HashSet<User>();
-		for (ProjectUserConfig config : getUserConfigs()) {
-			if (config.getSelectedEntitysIds().contains(entity.getId())) users.add(config.getUser());
+    /**
+     *
+     * @param entity
+     * @return
+     */
+    public Set<User> getUsersSelecting(AGwtEntity entity) {
+        Set<User> users = new HashSet<User>();
+        for (ProjectUserConfig config : getUserConfigs()) {
+            if (config.getSelectedEntitysIds().contains(entity.getId())) {
+                users.add(config.getUser());
+            }
 		}
 		return users;
 	}
 
-	public List<ProjectUserConfig> getUserConfigs() {
+    /**
+     *
+     * @return
+     */
+    public List<ProjectUserConfig> getUserConfigs() {
 		return getDao().getProjectUserConfigsByProject(this);
 	}
 
-	@Override
-	public Widget createForumItemWidget() {
-		return new HyperlinkWidget(new ShowEntityAction(DashboardWidget.class, this, "Project Dashboard"));
-	}
-
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
+    public Widget createForumItemWidget() {
+        return new HyperlinkWidget(new ShowEntityAction(DashboardWidget.class, this, "Project Dashboard"));
+    }
+    
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getReference() {
 		return "prj";
 	}
 
 	private transient AFieldModel<String> lastOpenedAgoModel;
 
-	public AFieldModel<String> getLastOpenedAgoModel() {
-		if (lastOpenedAgoModel == null) lastOpenedAgoModel = new AFieldModel<String>() {
-
-			@Override
-			public String getValue() {
-				return ScrumGwt.getPeriodToAsShortestString("last opened ", getLastOpenedDateAndTime(), " ago");
+    /**
+     *
+     * @return
+     */
+        public AFieldModel<String> getLastOpenedAgoModel() {
+            if (lastOpenedAgoModel == null) {
+                lastOpenedAgoModel = new AFieldModel<String>() {
+                    
+                    @Override
+                    public String getValue() {
+                        return ScrumGwt.getPeriodToAsShortestString("last opened ", getLastOpenedDateAndTime(), " ago");
 			}
 		};
+        }
 		return lastOpenedAgoModel;
 	}
 
 	private transient AEditorModel<WeekdaySelector> freeDaysWeekdaySelectorModel;
 
-	public AEditorModel<WeekdaySelector> getFreeDaysWeekdaySelectorModel() {
-		if (freeDaysWeekdaySelectorModel == null) freeDaysWeekdaySelectorModel = new AEditorModel<WeekdaySelector>() {
-
-			@Override
+    /**
+     *
+     * @return
+     */
+    public AEditorModel<WeekdaySelector> getFreeDaysWeekdaySelectorModel() {
+		if (freeDaysWeekdaySelectorModel == null) {
+            freeDaysWeekdaySelectorModel = new AEditorModel<WeekdaySelector>() {
+                @Override
 			public WeekdaySelector getValue() {
 				return new WeekdaySelector(getFreeDays());
 			}
 
-			@Override
-			public void setValue(WeekdaySelector value) {
-				if (value != null && value.isSelectedAll())
-					throw new RuntimeException("At least one work day required.");
-				setFreeDays(value == null ? 0 : value.createBitmask());
-			}
+                @Override
+                public void setValue(WeekdaySelector value) {
+                    if (value != null && value.isSelectedAll()) {
+                        throw new RuntimeException("At least one work day required.");
+                    }
+                    setFreeDays(value == null ? 0 : value.createBitmask());
+                }
 
-			@Override
+                @Override
 			public String getId() {
 				return "freeDaysWeekdaySelector";
 			}
-
-		};
+            };
+        }
 		return freeDaysWeekdaySelectorModel;
 	}
 }

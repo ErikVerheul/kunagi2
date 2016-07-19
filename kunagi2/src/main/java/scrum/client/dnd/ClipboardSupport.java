@@ -14,9 +14,8 @@
  */
 package scrum.client.dnd;
 
-import scrum.client.common.ABlockWidget;
-
 import com.google.gwt.user.client.ui.Image;
+import scrum.client.common.ABlockWidget;
 
 public interface ClipboardSupport {
 

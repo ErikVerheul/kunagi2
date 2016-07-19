@@ -15,16 +15,18 @@
 package scrum.server.pr;
 
 import ilarkesto.core.base.Str;
-import ilarkesto.logging.Log;
 import ilarkesto.core.scope.In;
 import ilarkesto.email.Eml;
-
+import ilarkesto.logging.Log;
 import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
-
 import scrum.server.admin.SystemConfig;
 import scrum.server.project.Project;
 
+/**
+ *
+ * @author erik
+ */
 public class EmailSender {
 
 	private static Log log = Log.get(Log.class);
@@ -32,36 +34,60 @@ public class EmailSender {
 	@In
 	private SystemConfig systemConfig;
 
-	public void sendEmail(Project project, String to, String subject, String text) {
+    /**
+     *
+     * @param project
+     * @param to
+     * @param subject
+     * @param text
+     */
+    public void sendEmail(Project project, String to, String subject, String text) {
 		sendEmail(project == null ? null : project.getSupportEmail(), to, subject, text);
 	}
 
-	public void sendEmail(String from, String to, String subject, String text) {
+    /**
+     *
+     * @param from
+     * @param to
+     * @param subject
+     * @param text
+     */
+    public void sendEmail(String from, String to, String subject, String text) {
 		Session session = createSmtpSession();
 		if (session == null) {
 			log.debug("Skipping sending email.", from, "->", to, "|", subject, "|", text);
 			return;
 		}
 
-		if (Str.isBlank(from)) from = systemConfig.getSmtpFrom();
+		if (Str.isBlank(from)) {
+                    from = systemConfig.getSmtpFrom();
+        }
 		if (Str.isBlank(from)) {
 			log.error("Missing configuration: smtpFrom");
 			return;
 		}
 
-		if (Str.isBlank(to)) to = systemConfig.getAdminEmail();
+		if (Str.isBlank(to)) {
+                    to = systemConfig.getAdminEmail();
+        }
 		if (Str.isBlank(to)) {
 			log.error("Missing configuration: adminEmail");
 			return;
 		}
 
-		if (Str.isBlank(subject)) subject = "Kunagi2";
+                if (Str.isBlank(subject)) {
+                    subject = "Kunagi2";
+        }
 
 		MimeMessage message = Eml.createTextMessage(session, subject, text, from, to);
 		Eml.sendSmtpMessage(session, message);
 	}
 
-	public Session createSmtpSession() {
+    /**
+     *
+     * @return
+     */
+    public Session createSmtpSession() {
 		String smtpServer = systemConfig.getSmtpServer();
 		Integer smtpPort = systemConfig.getSmtpPort();
 		boolean smtpTls = systemConfig.isSmtpTls();

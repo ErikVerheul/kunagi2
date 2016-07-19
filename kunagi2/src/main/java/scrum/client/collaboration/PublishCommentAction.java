@@ -16,9 +16,17 @@ package scrum.client.collaboration;
 
 import scrum.client.common.TooltipBuilder;
 
+/**
+ *
+ * @author erik
+ */
 public class PublishCommentAction extends GPublishCommentAction {
 
-	public PublishCommentAction(Comment comment) {
+    /**
+     *
+     * @param comment
+     */
+    public PublishCommentAction(Comment comment) {
 		super(comment);
 	}
 
@@ -27,22 +35,26 @@ public class PublishCommentAction extends GPublishCommentAction {
 		return "Publish";
 	}
 
-	@Override
+    /**
+     *
+     * @param tb
+     */
+    @Override
 	protected void updateTooltip(TooltipBuilder tb) {
 		tb.setText("Make this comment visible on the homepage.");
 	}
 
 	@Override
 	public boolean isExecutable() {
-		if (comment.isPublished()) return false;
-		if (getCurrentProject().getHomepageDir() == null) return false;
-		return true;
+		if (comment.isPublished()) {
+                    return false;
+        }
+		return getCurrentProject().getHomepageDir() != null;
 	}
 
 	@Override
 	public boolean isPermitted() {
-		if (!comment.isAuthor(getCurrentUser())) return false;
-		return true;
+		return comment.isAuthor(getCurrentUser());
 	}
 
 	@Override

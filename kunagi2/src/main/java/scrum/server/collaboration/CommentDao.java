@@ -20,18 +20,29 @@ import ilarkesto.core.base.Str;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.fp.Predicate;
 import ilarkesto.persistence.AEntity;
-
 import java.util.Set;
 
+/**
+ *
+ * @author erik
+ */
 public class CommentDao extends GCommentDao {
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	public void clearCaches() {
 		super.clearCaches();
 		commentsByParentIdCache.clear();
 	}
 
-	public Set<Comment> getPublishedCommentsByParent(final AEntity parent) {
+    /**
+     *
+     * @param parent
+     * @return
+     */
+    public Set<Comment> getPublishedCommentsByParent(final AEntity parent) {
 		return getEntities(new Predicate<Comment>() {
 
 			@Override
@@ -56,13 +67,29 @@ public class CommentDao extends GCommentDao {
 
 	};
 
-	public Set<Comment> getCommentsByParentId(final String parentId) {
+    /**
+     *
+     * @param parentId
+     * @return
+     */
+    public Set<Comment> getCommentsByParentId(final String parentId) {
 		return commentsByParentIdCache.get(parentId);
 	}
 
-	public Comment postComment(AEntity entity, String text, String name, String email, boolean publish) {
+    /**
+     *
+     * @param entity
+     * @param text
+     * @param name
+     * @param email
+     * @param publish
+     * @return
+     */
+    public Comment postComment(AEntity entity, String text, String name, String email, boolean publish) {
 		assert entity != null;
-		if (Str.isBlank(name)) name = "anonymous";
+		if (Str.isBlank(name)) {
+                    name = "anonymous";
+        }
 		Comment comment = newEntityInstance();
 		comment.setParent(entity);
 		comment.setText(text);

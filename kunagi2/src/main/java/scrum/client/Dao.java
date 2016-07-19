@@ -51,6 +51,10 @@ import scrum.client.sprint.Sprint;
 import scrum.client.sprint.Task;
 import scrum.client.workspace.VisibleDataChangedEvent;
 
+/**
+ *
+ * @author erik
+ */
 public class Dao extends GDao {
 
 	private static final Dao INSTANCE = new Dao();
@@ -59,7 +63,10 @@ public class Dao extends GDao {
 
 	private Dao() {}
 
-	public void clearProjectEntities() {
+    /**
+     *
+     */
+    public void clearProjectEntities() {
 		clearChatMessages();
 		clearImpediments();
 		clearQualitys();
@@ -75,21 +82,36 @@ public class Dao extends GDao {
 		clearProjectEvents();
 	}
 
-	public SystemConfig getSystemConfig() {
+    /**
+     *
+     * @return
+     */
+    public SystemConfig getSystemConfig() {
 		List<SystemConfig> configs = getSystemConfigs();
 		return configs.size() > 0 ? configs.get(0) : null;
 	}
 
-	public void requestEntityByReference(String reference) {
+    /**
+     *
+     * @param reference
+     */
+    public void requestEntityByReference(String reference) {
 		new RequestEntityByReferenceServiceCall(reference).execute();
 	}
 
-	public AScrumGwtEntity getEntityByReference(String reference) {
+    /**
+     *
+     * @param reference
+     * @return
+     */
+    public AScrumGwtEntity getEntityByReference(String reference) {
 
 		if (reference.length() > 4 && reference.startsWith("[[")) {
 			String pageName = reference.substring(2, reference.length() - 2);
 			for (Wikipage e : getWikipages()) {
-				if (e.isName(pageName)) return e;
+				if (e.isName(pageName)) {
+                                    return e;
+                }
 			}
 			return null;
 		}
@@ -97,62 +119,86 @@ public class Dao extends GDao {
 		int number = Integer.parseInt(reference.substring(Requirement.REFERENCE_PREFIX.length()));
 		if (reference.startsWith(Requirement.REFERENCE_PREFIX)) {
 			for (Requirement e : getRequirements()) {
-				if (e.isNumber(number)) return e;
+				if (e.isNumber(number)) {
+                                    return e;
+                }
 			}
 			return null;
 		} else if (reference.startsWith(Task.REFERENCE_PREFIX)) {
 			for (Task e : getTasks()) {
-				if (e.isNumber(number)) return e;
+                            if (e.isNumber(number)) {
+                    return e;
+                }
 			}
 			return null;
 		} else if (reference.startsWith(Quality.REFERENCE_PREFIX)) {
-			for (Quality e : getQualitys()) {
-				if (e.isNumber(number)) return e;
+                    for (Quality e : getQualitys()) {
+                        if (e.isNumber(number)) {
+                    return e;
+                }
 			}
 			return null;
-		} else if (reference.startsWith(Issue.REFERENCE_PREFIX)) {
+                } else if (reference.startsWith(Issue.REFERENCE_PREFIX)) {
 			for (Issue e : getIssues()) {
-				if (e.isNumber(number)) return e;
+				if (e.isNumber(number)) {
+                    return e;
+                }
 			}
 			return null;
-		} else if (reference.startsWith(Sprint.REFERENCE_PREFIX)) {
+                } else if (reference.startsWith(Sprint.REFERENCE_PREFIX)) {
 			for (Sprint e : getSprints()) {
-				if (e.isNumber(number)) return e;
+				if (e.isNumber(number)) {
+                    return e;
+                }
 			}
 			return null;
-		} else if (reference.startsWith(Risk.REFERENCE_PREFIX)) {
+                } else if (reference.startsWith(Risk.REFERENCE_PREFIX)) {
 			for (Risk e : getRisks()) {
-				if (e.isNumber(number)) return e;
+				if (e.isNumber(number)) {
+                    return e;
+                }
 			}
 			return null;
-		} else if (reference.startsWith(Impediment.REFERENCE_PREFIX)) {
+                } else if (reference.startsWith(Impediment.REFERENCE_PREFIX)) {
 			for (Impediment e : getImpediments()) {
-				if (e.isNumber(number)) return e;
+				if (e.isNumber(number)) {
+                    return e;
+                }
 			}
-			return null;
-		} else if (reference.startsWith(File.REFERENCE_PREFIX)) {
+                        return null;
+                } else if (reference.startsWith(File.REFERENCE_PREFIX)) {
 			for (File e : getFiles()) {
-				if (e.isNumber(number)) return e;
+				if (e.isNumber(number)) {
+                    return e;
+                                }
 			}
 			return null;
 		} else if (reference.startsWith(Subject.REFERENCE_PREFIX)) {
 			for (Subject e : getSubjects()) {
-				if (e.isNumber(number)) return e;
+				if (e.isNumber(number)) {
+                    return e;
+                                }
 			}
 			return null;
 		} else if (reference.startsWith(SimpleEvent.REFERENCE_PREFIX)) {
 			for (SimpleEvent e : getSimpleEvents()) {
-				if (e.isNumber(number)) return e;
+				if (e.isNumber(number)) {
+                                    return e;
+                }
 			}
 			return null;
 		} else if (reference.startsWith(Release.REFERENCE_PREFIX)) {
 			for (Release e : getReleases()) {
-				if (e.isNumber(number)) return e;
+                            if (e.isNumber(number)) {
+                                return e;
+                }
 			}
 			return null;
 		} else if (reference.startsWith(BlogEntry.REFERENCE_PREFIX)) {
 			for (BlogEntry e : getBlogEntrys()) {
-				if (e.isNumber(number)) return e;
+				if (e.isNumber(number)) {
+                    return e;
+                }
 			}
 			return null;
 		} else {
@@ -186,7 +232,12 @@ public class Dao extends GDao {
 		}
 	}
 
-	@Override
+    /**
+     *
+     * @param data
+     * @return
+     */
+    @Override
 	protected ProjectUserConfig updateProjectUserConfig(Map data) {
 		List<String> previouslySelectedIds = new ArrayList<String>();
 		ProjectUserConfig config = projectUserConfigs.get((String) data.get("id")); // TODO: fix parent to avoid casting
@@ -234,6 +285,11 @@ public class Dao extends GDao {
 
 	// --- ---
 
+    /**
+     *
+     * @return
+     */
+    
 	public static Dao get() {
 		return INSTANCE;
 	}
@@ -254,11 +310,12 @@ public class Dao extends GDao {
 
 		private void flush() {
 			if (!entityProperties.isEmpty()) {
-				ChangeHistoryManager changeHistoryManager = Scope.get().getComponent(ChangeHistoryManager.class);
+                            ChangeHistoryManager changeHistoryManager = Scope.get().getComponent(ChangeHistoryManager.class);
 				if (changeHistoryManager != null) {
 					for (String entityId : entityProperties.keySet()) {
-						if (changeHistoryManager.isChangeHistoryActive(entityId))
-							changeHistoryManager.deactivateChangeHistory();
+						if (changeHistoryManager.isChangeHistoryActive(entityId)) {
+                            changeHistoryManager.deactivateChangeHistory();
+                        }
 					}
 				}
 			}

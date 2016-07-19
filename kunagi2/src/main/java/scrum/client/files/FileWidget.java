@@ -14,6 +14,9 @@
  */
 package scrum.client.files;
 
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.Gwt;
 import ilarkesto.gwt.client.TableBuilder;
@@ -21,10 +24,6 @@ import scrum.client.ScrumGwt;
 import scrum.client.collaboration.CommentsWidget;
 import scrum.client.common.AScrumWidget;
 import scrum.client.project.Project;
-
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.Widget;
 
 public class FileWidget extends AScrumWidget {
 

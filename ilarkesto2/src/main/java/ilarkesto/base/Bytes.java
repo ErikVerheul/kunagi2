@@ -24,11 +24,19 @@ public class Bytes implements Comparable<Bytes> {
 
         private long bytes;
 
-        public Bytes(long bytes) {
+    /**
+     *
+     * @param bytes
+     */
+    public Bytes(long bytes) {
                 this.bytes = bytes;
         }
 
-        public long toLong() {
+    /**
+     *
+     * @return
+     */
+    public long toLong() {
                 return bytes;
         }
 
@@ -37,7 +45,11 @@ public class Bytes implements Comparable<Bytes> {
                 return valueOf(bytes) + " Bytes";
         }
 
-        public String toRoundedString() {
+    /**
+     *
+     * @return
+     */
+    public String toRoundedString() {
 		if (bytes > 10000000000l) {
                         return valueOf(round(bytes / 1000000000f)) + " GB";
                 }
@@ -50,15 +62,30 @@ public class Bytes implements Comparable<Bytes> {
                 return toString();
         }
 
-        public static Bytes kilo(long kilobytes) {
+    /**
+     *
+     * @param kilobytes
+     * @return
+     */
+    public static Bytes kilo(long kilobytes) {
                 return new Bytes(kilobytes * 1000);
         }
 
-        public static Bytes mega(long megabytes) {
+    /**
+     *
+     * @param megabytes
+     * @return
+     */
+    public static Bytes mega(long megabytes) {
                 return new Bytes(megabytes * 1000000);
         }
 
-        public static Bytes giga(long gigabytes) {
+    /**
+     *
+     * @param gigabytes
+     * @return
+     */
+    public static Bytes giga(long gigabytes) {
                 return new Bytes(gigabytes * 1000000000);
         }
 

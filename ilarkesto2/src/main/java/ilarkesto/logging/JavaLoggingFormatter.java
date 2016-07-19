@@ -14,7 +14,6 @@
  */
 package ilarkesto.logging;
 
-import ilarkesto.base.StrExtend;
 import static ilarkesto.base.StrExtend.cutLeft;
 import static ilarkesto.base.StrExtend.cutRight;
 import static ilarkesto.core.base.Str.fillUpRight;
@@ -23,7 +22,6 @@ import java.io.StringWriter;
 import java.util.logging.Formatter;
 import java.util.logging.Handler;
 import java.util.logging.LogRecord;
-import java.util.logging.Logger;
 import static java.util.logging.Logger.getLogger;
 
 public class JavaLoggingFormatter extends Formatter {

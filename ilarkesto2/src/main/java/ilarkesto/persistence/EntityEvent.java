@@ -18,20 +18,38 @@ package ilarkesto.persistence;
 
 import java.util.EventObject;
 
-
+/**
+ *
+ * @author erik
+ * @param <E>
+ */
 public class EntityEvent<E extends AEntity> extends EventObject {
 
     private E entity;
 
+    /**
+     *
+     * @param source
+     * @param entity
+     */
     public EntityEvent(Object source, E entity) {
         super(source);
         this.entity = entity;
     }
 
+    /**
+     *
+     * @return
+     */
     public E getEntity() {
         return entity;
     }
 
+    /**
+     *
+     * @param type
+     * @return
+     */
     public boolean isEntityType(Class<E> type) {
         return type.isAssignableFrom(entity.getClass());
     }

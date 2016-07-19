@@ -17,13 +17,30 @@ package scrum.server.collaboration;
 import ilarkesto.core.time.DateAndTime;
 import scrum.server.project.Project;
 
+/**
+ *
+ * @author erik
+ */
 public class ChatMessageDao extends GChatMessageDao {
 
-	public ChatMessage postChatMessage(Project project, String text) {
+    /**
+     *
+     * @param project
+     * @param text
+     * @return
+     */
+    public ChatMessage postChatMessage(Project project, String text) {
 		return postChatMessage(project, text, DateAndTime.now());
 	}
 
-	public ChatMessage postChatMessage(Project project, String text, DateAndTime dateAndTime) {
+    /**
+     *
+     * @param project
+     * @param text
+     * @param dateAndTime
+     * @return
+     */
+    public ChatMessage postChatMessage(Project project, String text, DateAndTime dateAndTime) {
 		ChatMessage msg = newEntityInstance();
 		msg.setProject(project);
 		msg.setDateAndTime(dateAndTime);
@@ -32,7 +49,10 @@ public class ChatMessageDao extends GChatMessageDao {
 		return msg;
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	public void ensureIntegrity() {
 		super.ensureIntegrity();
 		for (ChatMessage message : getEntities()) {

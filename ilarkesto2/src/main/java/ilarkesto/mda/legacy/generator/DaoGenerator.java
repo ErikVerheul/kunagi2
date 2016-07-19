@@ -30,23 +30,42 @@ import ilarkesto.persistence.EntityEvent;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+/**
+ *
+ * @author erik
+ */
 public class DaoGenerator extends ABeanGenerator<EntityModel> {
 
-	public DaoGenerator(EntityModel bean) {
+    /**
+     *
+     * @param bean
+     */
+    public DaoGenerator(EntityModel bean) {
 		super(bean);
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected String getName() {
 		return "G" + bean.getName() + "Dao";
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected boolean isInterface() {
 		return false;
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void writeContent() {
 
 		if (!bean.isAbstract()) {
@@ -264,7 +283,11 @@ public class DaoGenerator extends ABeanGenerator<EntityModel> {
 
 	}
 
-	protected final String getUserClassName() {
+    /**
+     *
+     * @return
+     */
+    protected final String getUserClassName() {
 		EntityModel userModel = bean.getUserModel();
 		if (userModel == null && bean.getName().equals("User")) {
                         userModel = bean;
@@ -275,12 +298,20 @@ public class DaoGenerator extends ABeanGenerator<EntityModel> {
 		return userModel.getPackageName() + "." + userModel.getName();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected boolean isOverwrite() {
 		return true;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected String getSuperclass() {
 		if ("User".equals(bean.getName())) {
                         return AUserDao.class.getName() + "<" + bean.getName() + ">";
@@ -288,7 +319,11 @@ public class DaoGenerator extends ABeanGenerator<EntityModel> {
 		return ADao.class.getName() + "<" + bean.getName() + ">";
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected Set<String> getImports() {
 		Set<String> result = new LinkedHashSet<>();
 		result.addAll(super.getImports());

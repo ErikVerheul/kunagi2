@@ -27,40 +27,65 @@ import static ilarkesto.core.logging.ClientLog.DEBUG;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.gwt.client.AViewEditWidget;
 
+/**
+ *
+ * @author erik
+ */
 public class DateAndTimeEditorWidget extends AViewEditWidget {
 
 	private Label viewer;
 	private TextBox editor;
 	private ADateAndTimeEditorModel model;
 
-	public DateAndTimeEditorWidget(ADateAndTimeEditorModel model) {
+    /**
+     *
+     * @param model
+     */
+    public DateAndTimeEditorWidget(ADateAndTimeEditorModel model) {
 		super();
 		assert model != null;
 		this.model = model;
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void onViewerUpdate() {
 		setViewerValue(model.getValue());
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void onEditorUpdate() {
 		setEditorValue(model.getValue());
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void onEditorSubmit() {
 		model.changeValue(getEditorValue());
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected final Widget onViewerInitialization() {
 		viewer = new Label();
 		return viewer;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected final Widget onEditorInitialization() {
 		editor = new TextBox();
 		editor.addFocusListener(new EditorFocusListener());
@@ -68,17 +93,29 @@ public class DateAndTimeEditorWidget extends AViewEditWidget {
 		return editor;
 	}
 
-	public final void setViewerValue(DateAndTime value) {
+    /**
+     *
+     * @param value
+     */
+    public final void setViewerValue(DateAndTime value) {
 		viewer.setText(value == null ? "." : value.toString());
 	}
 
-	public final void setEditorValue(DateAndTime value) {
+    /**
+     *
+     * @param value
+     */
+    public final void setEditorValue(DateAndTime value) {
 		editor.setText(value == null ? null : value.toString());
 		editor.setSelectionRange(0, editor.getText().length());
 		editor.setFocus(true);
 	}
 
-	public final DateAndTime getEditorValue() {
+    /**
+     *
+     * @return
+     */
+    public final DateAndTime getEditorValue() {
 		String s = editor.getText();
 		if (isBlank(s)) {
                         return null;
@@ -91,17 +128,29 @@ public class DateAndTimeEditorWidget extends AViewEditWidget {
 		}
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public boolean isEditable() {
 		return model.isEditable();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getTooltip() {
 		return model.getTooltip();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getId() {
 		return model.getId();
 	}

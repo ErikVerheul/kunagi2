@@ -15,12 +15,12 @@
 package ilarkesto.integration.velocity;
 
 import static ilarkesto.core.base.Str.removeSuffix;
-import ilarkesto.logging.Log;
 import ilarkesto.io.IO;
 import static ilarkesto.io.IO.UTF_8;
 import static ilarkesto.io.IO.copyFile;
 import static ilarkesto.io.IO.createDirectory;
 import static ilarkesto.io.IO.writeFileIfChanged;
+import ilarkesto.logging.Log;
 import java.io.File;
 import java.io.StringWriter;
 import java.util.Map;

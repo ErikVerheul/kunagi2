@@ -14,9 +14,19 @@
  */
 package ilarkesto.scope;
 
+/**
+ *
+ * @author erik
+ */
 public class ComponentInstantiationFailedException extends RuntimeException {
 
-	public ComponentInstantiationFailedException(String name, Class type, Exception cause) {
+    /**
+     *
+     * @param name
+     * @param type
+     * @param cause
+     */
+    public ComponentInstantiationFailedException(String name, Class type, Exception cause) {
 		super("Instantiating component failed: " + name + " -> " + type.getName(), cause);
 	}
 

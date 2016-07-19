@@ -16,16 +16,40 @@ package scrum.client.common;
 
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public interface ThemesContainer {
 
-	List<String> getThemes();
+    /**
+     *
+     * @return
+     */
+    List<String> getThemes();
 
-	List<String> getAvailableThemes();
+    /**
+     *
+     * @return
+     */
+    List<String> getAvailableThemes();
 
-	void setThemes(List<String> editorSelectedItems);
+    /**
+     *
+     * @param editorSelectedItems
+     */
+    void setThemes(List<String> editorSelectedItems);
 
-	boolean isThemesEditable();
+    /**
+     *
+     * @return
+     */
+    boolean isThemesEditable();
 
-	boolean isThemesCreatable();
+    /**
+     *
+     * @return
+     */
+    boolean isThemesCreatable();
 
 }

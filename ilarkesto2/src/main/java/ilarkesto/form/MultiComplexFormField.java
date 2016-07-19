@@ -33,6 +33,10 @@ import java.util.Map;
 import java.util.Set;
 import org.apache.commons.fileupload.FileItem;
 
+/**
+ *
+ * @author erik
+ */
 public class MultiComplexFormField extends AFormField {
 
 	private Set<Object> value;
@@ -43,14 +47,23 @@ public class MultiComplexFormField extends AFormField {
 	private Class<? extends BeanForm> elementFormClass;
 	private Comparator comparator;
 
-	public MultiComplexFormField(String name, Class<? extends BeanForm> elementFormClass) {
+    /**
+     *
+     * @param name
+     * @param elementFormClass
+     */
+    public MultiComplexFormField(String name, Class<? extends BeanForm> elementFormClass) {
 		super(name);
 		this.elementFormClass = elementFormClass;
 
 		addButton = (AddButton) new AddButton().setValidateForm(false).setLabel("Hinzuf\u00FCgen...").setIcon("add");
 	}
 
-	public BeanForm createSubform() {
+    /**
+     *
+     * @return
+     */
+    public BeanForm createSubform() {
 		// String formBeanName = getForm().getName() + Str.uppercaseFirstLetter(getName()) + "Form";
 		// BeanForm form = (BeanForm) beanProvider.getBean(formBeanName);
 		// if (form == null) throw new RuntimeException("Form bean does not exist: " + formBeanName);
@@ -59,24 +72,47 @@ public class MultiComplexFormField extends AFormField {
 		return form;
 	}
 
-	public Factory getItemFactory() {
+    /**
+     *
+     * @return
+     */
+    public Factory getItemFactory() {
 		return itemFactory;
 	}
 
-	public MultiComplexFormField setItemFactory(Factory factory) {
+    /**
+     *
+     * @param factory
+     * @return
+     */
+    public MultiComplexFormField setItemFactory(Factory factory) {
 		this.itemFactory = factory;
 		return this;
 	}
 
-	public AddButton getAddButton() {
+    /**
+     *
+     * @return
+     */
+    public AddButton getAddButton() {
 		return addButton;
 	}
 
-	public RemoveButton getRemoveButton(Object item) {
+    /**
+     *
+     * @param item
+     * @return
+     */
+    public RemoveButton getRemoveButton(Object item) {
 		return removeButtons.get(item);
 	}
 
-	public RemoveButton getRemoveButton(String id) {
+    /**
+     *
+     * @param id
+     * @return
+     */
+    public RemoveButton getRemoveButton(String id) {
 		for (RemoveButton button : removeButtons.values()) {
 			if (button.getId().equals(id)) {
                                 return button;
@@ -85,11 +121,21 @@ public class MultiComplexFormField extends AFormField {
 		throw new RuntimeException("remove button does not exist: " + id);
 	}
 
-	public EditButton getEditButton(Object item) {
+    /**
+     *
+     * @param item
+     * @return
+     */
+    public EditButton getEditButton(Object item) {
 		return editButtons.get(item);
 	}
 
-	public EditButton getEditButton(String id) {
+    /**
+     *
+     * @param id
+     * @return
+     */
+    public EditButton getEditButton(String id) {
 		for (EditButton button : editButtons.values()) {
 			if (button.getId().equals(id)) {
                                 return button;
@@ -98,7 +144,12 @@ public class MultiComplexFormField extends AFormField {
 		throw new RuntimeException("edit button does not exist: " + id);
 	}
 
-	public MultiComplexFormField setValue(Set<Object> value) {
+    /**
+     *
+     * @param value
+     * @return
+     */
+    public MultiComplexFormField setValue(Set<Object> value) {
 		this.value = value;
 		removeButtons.clear();
 		for (Object item : value) {
@@ -113,17 +164,29 @@ public class MultiComplexFormField extends AFormField {
 		return this;
 	}
 
-	public void removeValueItem(Object item) {
+    /**
+     *
+     * @param item
+     */
+    public void removeValueItem(Object item) {
 		value.remove(item);
 		setValue(value);
 	}
 
-	public void addValueItem(Object item) {
+    /**
+     *
+     * @param item
+     */
+    public void addValueItem(Object item) {
 		value.add(item);
 		setValue(value);
 	}
 
-	public Collection<Object> getValue() {
+    /**
+     *
+     * @return
+     */
+    public Collection<Object> getValue() {
 		if (comparator != null) {
 			List list = new ArrayList(value);
 			sort(list, comparator);
@@ -132,47 +195,82 @@ public class MultiComplexFormField extends AFormField {
 		return value;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getValueAsString() {
 		return value == null ? "0" : valueOf(value.size());
 	}
 
-	@Override
+    /**
+     *
+     * @param data
+     * @param uploadedFiles
+     */
+    @Override
 	public void update(Map<String, String> data, Collection<FileItem> uploadedFiles) {
 		// nop
 	}
 
-	@Override
+    /**
+     *
+     * @throws ValidationException
+     */
+    @Override
 	public void validate() throws ValidationException {
 		if (isRequired() && (value == null || value.isEmpty())) {
                         throw new ValidationException("Auswahl erforderlich!");
                 }
 	}
 
-	public MultiComplexFormField setComparator(Comparator comparator) {
+    /**
+     *
+     * @param comparator
+     * @return
+     */
+    public MultiComplexFormField setComparator(Comparator comparator) {
 		this.comparator = comparator;
 		return this;
 	}
 
-	public class AddButton extends FormButton {
+    /**
+     *
+     */
+    public class AddButton extends FormButton {
 
-		public AddButton() {
+        /**
+         *
+         */
+        public AddButton() {
 			super(BUTTON_PREFIX + ADD_COMPLEX_BUTTON_NAME_PREFIX + MultiComplexFormField.this.getName());
 		}
 
-		public MultiComplexFormField getField() {
+        /**
+         *
+         * @return
+         */
+        public MultiComplexFormField getField() {
 			return MultiComplexFormField.this;
 		}
 
 	}
 
-	public class RemoveButton extends FormButton {
+    /**
+     *
+     */
+    public class RemoveButton extends FormButton {
 
 		private String id;
 
 		private Object item;
 
-		public RemoveButton(Object item) {
+        /**
+         *
+         * @param item
+         */
+        public RemoveButton(Object item) {
 			this(item, buttonIdGenerator.generateId());
 		}
 
@@ -185,27 +283,46 @@ public class MultiComplexFormField extends AFormField {
 			setValidateForm(false);
 		}
 
-		public MultiComplexFormField getField() {
+        /**
+         *
+         * @return
+         */
+        public MultiComplexFormField getField() {
 			return MultiComplexFormField.this;
 		}
 
-		public Object getItem() {
+        /**
+         *
+         * @return
+         */
+        public Object getItem() {
 			return item;
 		}
 
-		public String getId() {
+        /**
+         *
+         * @return
+         */
+        public String getId() {
 			return id;
 		}
 
 	}
 
-	public class EditButton extends FormButton {
+    /**
+     *
+     */
+    public class EditButton extends FormButton {
 
 		private String id;
 
 		private Object item;
 
-		public EditButton(Object item) {
+        /**
+         *
+         * @param item
+         */
+        public EditButton(Object item) {
 			this(item, buttonIdGenerator.generateId());
 		}
 
@@ -218,15 +335,27 @@ public class MultiComplexFormField extends AFormField {
 			setValidateForm(false);
 		}
 
-		public MultiComplexFormField getField() {
+        /**
+         *
+         * @return
+         */
+        public MultiComplexFormField getField() {
 			return MultiComplexFormField.this;
 		}
 
-		public Object getItem() {
+        /**
+         *
+         * @return
+         */
+        public Object getItem() {
 			return item;
 		}
 
-		public String getId() {
+        /**
+         *
+         * @return
+         */
+        public String getId() {
 			return id;
 		}
 

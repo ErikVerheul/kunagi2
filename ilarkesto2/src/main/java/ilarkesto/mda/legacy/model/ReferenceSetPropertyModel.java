@@ -14,17 +14,32 @@
  */
 package ilarkesto.mda.legacy.model;
 
+/**
+ *
+ * @author erik
+ */
 public class ReferenceSetPropertyModel extends SetPropertyModel {
 
 	private final EntityModel referencedEntity;
 	private BackReferenceModel backReference;
 
-	public ReferenceSetPropertyModel(BeanModel entityModel, String name, EntityModel referencedEntity) {
+    /**
+     *
+     * @param entityModel
+     * @param name
+     * @param referencedEntity
+     */
+    public ReferenceSetPropertyModel(BeanModel entityModel, String name, EntityModel referencedEntity) {
 		super(entityModel, name, true, false, referencedEntity.getBeanClass());
 		this.referencedEntity = referencedEntity;
 	}
 
-	public ReferenceSetPropertyModel createBackReference(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public ReferenceSetPropertyModel createBackReference(String name) {
 		if (!getBean().isEntity()) {
                         return this;
                 }
@@ -33,11 +48,20 @@ public class ReferenceSetPropertyModel extends SetPropertyModel {
 		return this;
 	}
 
-	public EntityModel getReferencedEntity() {
+    /**
+     *
+     * @return
+     */
+    public EntityModel getReferencedEntity() {
 		return referencedEntity;
 	}
 
-	public ReferenceSetPropertyModel setBackReferenceName(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public ReferenceSetPropertyModel setBackReferenceName(String name) {
 		backReference.setName(name);
 		return this;
 	}

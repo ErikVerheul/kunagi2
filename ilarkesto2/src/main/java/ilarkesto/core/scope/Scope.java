@@ -19,6 +19,10 @@ import static ilarkesto.core.scope.ScopeManager.getInstance;
 import static ilarkesto.core.scope.ScopeUtil.getComponentName;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class Scope {
 
 	/**
@@ -28,11 +32,26 @@ public abstract class Scope {
 	 */
 	public abstract Object getComponent(String name);
 
-	public abstract List getAllComponents();
+    /**
+     *
+     * @return
+     */
+    public abstract List getAllComponents();
 
-	public abstract <T> T putComponent(String name, T component);
+    /**
+     *
+     * @param <T>
+     * @param name
+     * @param component
+     * @return
+     */
+    public abstract <T> T putComponent(String name, T component);
 
-	public String getName() {
+    /**
+     *
+     * @return
+     */
+    public String getName() {
 		return getSimpleName(getClass());
 	}
 
@@ -43,6 +62,13 @@ public abstract class Scope {
 
 	// --- helper ---
 
+    /**
+     *
+     * @param <T>
+     * @param component
+     * @return
+     */
+    
 	public <T> T putComponent(T component) {
 		if (component == null) {
                         throw new IllegalArgumentException("component == null");
@@ -50,12 +76,22 @@ public abstract class Scope {
 		return putComponent(getComponentName(component.getClass()), component);
 	}
 
-	public <T> T getComponent(Class<T> type) {
+    /**
+     *
+     * @param <T>
+     * @param type
+     * @return
+     */
+    public <T> T getComponent(Class<T> type) {
 		String name = getComponentName(type);
 		return (T) getComponent(name);
 	}
 
-	public static Scope get() {
+    /**
+     *
+     * @return
+     */
+    public static Scope get() {
 		return getInstance().getScope();
 	}
 

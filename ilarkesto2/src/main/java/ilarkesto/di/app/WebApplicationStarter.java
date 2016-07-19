@@ -14,8 +14,8 @@
  */
 package ilarkesto.di.app;
 
-import ilarkesto.logging.Log;
 import ilarkesto.di.BeanContainer;
+import ilarkesto.logging.Log;
 import ilarkesto.webapp.AWebApplication;
 import static java.lang.Thread.sleep;
 

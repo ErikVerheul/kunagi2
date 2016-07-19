@@ -14,6 +14,9 @@
  */
 package scrum.client.pr;
 
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.base.Str;
 import ilarkesto.gwt.client.AMultiSelectionViewEditWidget;
 import ilarkesto.gwt.client.AOutputViewEditWidget;
@@ -23,15 +26,19 @@ import scrum.client.admin.User;
 import scrum.client.common.AScrumWidget;
 import scrum.client.journal.ChangeHistoryWidget;
 
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class BlogEntryWidget extends AScrumWidget {
 
 	private BlogEntry blogEntry;
 
-	public BlogEntryWidget(BlogEntry blogEntry) {
+    /**
+     *
+     * @param blogEntry
+     */
+    public BlogEntryWidget(BlogEntry blogEntry) {
 		super();
 		this.blogEntry = blogEntry;
 	}
@@ -75,7 +82,9 @@ public class BlogEntryWidget extends AScrumWidget {
 					if (Str.isBlank(url)) {
 						setViewer(new Label("Yes"));
 					} else {
-						if (!url.endsWith("/")) url += "/";
+						if (!url.endsWith("/")) {
+                                                    url += "/";
+                        }
 						url += blogEntry.getReference() + ".html";
 						setViewer(new HTML("<a href=\"" + url + "\" target=\"_blank\">" + url + "</a>"));
 					}

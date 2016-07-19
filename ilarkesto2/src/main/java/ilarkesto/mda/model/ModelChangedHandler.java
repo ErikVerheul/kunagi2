@@ -14,8 +14,16 @@
  */
 package ilarkesto.mda.model;
 
+/**
+ *
+ * @author erik
+ */
 public interface ModelChangedHandler {
 
-	void onModelChanged(ModelChangedEvent event);
+    /**
+     *
+     * @param event
+     */
+    void onModelChanged(ModelChangedEvent event);
 
 }

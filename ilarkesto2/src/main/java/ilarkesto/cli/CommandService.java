@@ -15,7 +15,6 @@
 package ilarkesto.cli;
 
 import ilarkesto.auth.LoginRequiredException;
-import ilarkesto.base.StrExtend;
 import static ilarkesto.base.StrExtend.subarray;
 import static ilarkesto.base.StrExtend.tokenize;
 import java.util.ArrayList;

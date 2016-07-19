@@ -16,11 +16,8 @@ package scrum.server.sprint;
 
 import ilarkesto.core.base.Utl;
 import ilarkesto.testng.ATest;
-
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import scrum.TestUtil;
 import scrum.client.sprint.SprintHistoryHelper.StoryInfo;
 import scrum.server.project.Requirement;

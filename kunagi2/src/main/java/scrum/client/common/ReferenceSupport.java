@@ -14,8 +14,16 @@
  */
 package scrum.client.common;
 
+/**
+ *
+ * @author erik
+ */
 public interface ReferenceSupport {
 
-	String getReference();
+    /**
+     *
+     * @return
+     */
+    String getReference();
 
 }

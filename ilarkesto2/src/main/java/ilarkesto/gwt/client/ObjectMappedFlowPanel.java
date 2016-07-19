@@ -26,9 +26,18 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+/**
+ *
+ * @author erik
+ * @param <O>
+ * @param <W>
+ */
 public class ObjectMappedFlowPanel<O extends Object, W extends Widget> extends Composite implements HasWidgets {
 
-	public final static Map<Object, Integer> objectHeights = new HashMap<Object, Integer>();
+    /**
+     *
+     */
+    public final static Map<Object, Integer> objectHeights = new HashMap<Object, Integer>();
 
 	private final AnimatingFlowPanel<W> panel;
 	private final WidgetFactory<O, W> widgetFactory;
@@ -38,7 +47,11 @@ public class ObjectMappedFlowPanel<O extends Object, W extends Widget> extends C
 	private final Map<O, W> widgetMap;
 	private boolean virgin = true;
 
-	public ObjectMappedFlowPanel(WidgetFactory<O, W> widgetFactory) {
+    /**
+     *
+     * @param widgetFactory
+     */
+    public ObjectMappedFlowPanel(WidgetFactory<O, W> widgetFactory) {
 		this.widgetFactory = widgetFactory;
 		objectList = new ArrayList<O>();
 		widgetMap = new HashMap<O, W>();
@@ -46,7 +59,11 @@ public class ObjectMappedFlowPanel<O extends Object, W extends Widget> extends C
 		initWidget(panel);
 	}
 
-	public void set(List<O> newObjects) {
+    /**
+     *
+     * @param newObjects
+     */
+    public void set(List<O> newObjects) {
 		boolean animationAllowed = !virgin;
 		virgin = false;
 		if (objectList.equals(newObjects)) {
@@ -140,7 +157,15 @@ public class ObjectMappedFlowPanel<O extends Object, W extends Widget> extends C
 		return widget;
 	}
 
-	public W move(int toIndex, O object, boolean animate, InsertCallback callback) {
+    /**
+     *
+     * @param toIndex
+     * @param object
+     * @param animate
+     * @param callback
+     * @return
+     */
+    public W move(int toIndex, O object, boolean animate, InsertCallback callback) {
 		assert toIndex >= 0 && toIndex <= objectList.size();
 		assert objectList.contains(object);
 
@@ -171,23 +196,46 @@ public class ObjectMappedFlowPanel<O extends Object, W extends Widget> extends C
 		return ret;
 	}
 
-	public List<O> getObjects() {
+    /**
+     *
+     * @return
+     */
+    public List<O> getObjects() {
 		return objectList;
 	}
 
-	public Collection<W> getWidgets() {
+    /**
+     *
+     * @return
+     */
+    public Collection<W> getWidgets() {
 		return widgetMap.values();
 	}
 
-	public int indexOfObject(O object) {
+    /**
+     *
+     * @param object
+     * @return
+     */
+    public int indexOfObject(O object) {
 		return objectList.indexOf(object);
 	}
 
-	public W getWidget(int index) {
+    /**
+     *
+     * @param index
+     * @return
+     */
+    public W getWidget(int index) {
 		return getWidget(objectList.get(index));
 	}
 
-	public W getWidget(O object) {
+    /**
+     *
+     * @param object
+     * @return
+     */
+    public W getWidget(O object) {
 		assert object != null;
 		W widget = widgetMap.get(object);
 		assert widget != null;
@@ -199,11 +247,20 @@ public class ObjectMappedFlowPanel<O extends Object, W extends Widget> extends C
 		return widget;
 	}
 
-	public boolean containsObject(O object) {
+    /**
+     *
+     * @param object
+     * @return
+     */
+    public boolean containsObject(O object) {
 		return objectList.contains(object);
 	}
 
-	public int size() {
+    /**
+     *
+     * @return
+     */
+    public int size() {
 		return objectList.size();
 	}
 
@@ -222,19 +279,44 @@ public class ObjectMappedFlowPanel<O extends Object, W extends Widget> extends C
 		return false;
 	}
 
-	public void setMoveObserver(MoveObserver<O, W> moveObserver) {
+    /**
+     *
+     * @param moveObserver
+     */
+    public void setMoveObserver(MoveObserver<O, W> moveObserver) {
 		this.moveObserver = moveObserver;
 	}
 
-	public static interface WidgetFactory<O extends Object, W extends Widget> {
+    /**
+     *
+     * @param <O>
+     * @param <W>
+     */
+    public static interface WidgetFactory<O extends Object, W extends Widget> {
 
-		W createWidget(O object);
+        /**
+         *
+         * @param object
+         * @return
+         */
+        W createWidget(O object);
 
 	}
 
-	public static interface MoveObserver<O extends Object, W extends Widget> {
+    /**
+     *
+     * @param <O>
+     * @param <W>
+     */
+    public static interface MoveObserver<O extends Object, W extends Widget> {
 
-		void moved(O object, W oldWidget, W newWidget);
+        /**
+         *
+         * @param object
+         * @param oldWidget
+         * @param newWidget
+         */
+        void moved(O object, W oldWidget, W newWidget);
 
 	}
 

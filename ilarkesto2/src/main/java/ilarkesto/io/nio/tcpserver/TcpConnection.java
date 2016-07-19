@@ -24,6 +24,10 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ *
+ * @author erik
+ */
 public class TcpConnection {
 
 	static final ByteBuffer CLOSE_CONNECTION = wrap(new byte[0]);
@@ -46,7 +50,11 @@ public class TcpConnection {
 		localPort = socket.getLocalPort();
 	}
 
-	public void sendData(byte[] data) {
+    /**
+     *
+     * @param data
+     */
+    public void sendData(byte[] data) {
 		if (closed) {
                         throw new IllegalStateException("Connection already closed: " + toString());
                 }
@@ -55,11 +63,20 @@ public class TcpConnection {
 		server.wakeupSelector();
 	}
 
-	public void sendString(String s) throws UnsupportedEncodingException {
+    /**
+     *
+     * @param s
+     * @throws UnsupportedEncodingException
+     */
+    public void sendString(String s) throws UnsupportedEncodingException {
 		sendData(s.getBytes(UTF_8));
 	}
 
-	public void sendLineCrLf(String line) {
+    /**
+     *
+     * @param line
+     */
+    public void sendLineCrLf(String line) {
                 try {
                         sendString(line);
                 } catch (UnsupportedEncodingException ex) {
@@ -68,7 +85,10 @@ public class TcpConnection {
 		sendData(new byte[] { 13, 10 });
 	}
 
-	public void close() {
+    /**
+     *
+     */
+    public void close() {
 		sendData(null);
 		closed = true;
 	}

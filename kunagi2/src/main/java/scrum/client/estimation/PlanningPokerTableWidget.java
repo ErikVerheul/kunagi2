@@ -40,6 +40,10 @@ import scrum.client.project.RequirementEstimationVotingShowoffAction;
 import scrum.client.project.ResetRequirementEstimationVotingAction;
 import scrum.client.workspace.VisibleDataChangedEvent;
 
+/**
+ *
+ * @author erik
+ */
 public class PlanningPokerTableWidget extends AScrumWidget {
 
 	private Requirement requirement;
@@ -49,7 +53,11 @@ public class PlanningPokerTableWidget extends AScrumWidget {
 	private SimplePanel actionsWrapper;
 	private SimplePanel estimationHelpDisplay;
 
-	public PlanningPokerTableWidget(Requirement requirement) {
+    /**
+     *
+     * @param requirement
+     */
+    public PlanningPokerTableWidget(Requirement requirement) {
 		super();
 		this.requirement = requirement;
 	}
@@ -121,7 +129,9 @@ public class PlanningPokerTableWidget extends AScrumWidget {
 
 		// value cards
 		for (String value : Requirement.getWorkEstimationValues()) {
-			if (value.length() == 0) continue;
+			if (value.length() == 0) {
+                            continue;
+            }
 			final float estimation = Float.parseFloat(value);
 			PlanningPokerCardWidget card = null;
 			if (!showoff && (voteValue == null || estimation != voteValue)) {
@@ -170,7 +180,9 @@ public class PlanningPokerTableWidget extends AScrumWidget {
 					if (some.getEstimatedWork() != estimation) {
 						sb.append(" (").append(some.getEstimatedWorkWithUnit()).append(")");
 					}
-					if (it.hasNext()) sb.append(" <strong>and</strong> ");
+					if (it.hasNext()) {
+                                            sb.append(" <strong>and</strong> ");
+                    }
 				}
 				sb.append("</li>");
 			}

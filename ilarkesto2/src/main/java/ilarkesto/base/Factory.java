@@ -16,9 +16,14 @@ package ilarkesto.base;
 
 /**
  * A simple factory interface.
+ * @param <E>
  */
 public interface Factory<E> {
 
-	public E getBean();
+    /**
+     *
+     * @return
+     */
+    public E getBean();
 
 }

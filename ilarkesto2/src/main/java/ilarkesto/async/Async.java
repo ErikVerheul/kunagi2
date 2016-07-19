@@ -14,22 +14,38 @@
  */
 package ilarkesto.async;
 
+/**
+ *
+ * @author erik
+ */
 public class Async {
 
 	private static volatile AsyncWorker worker;
 
-	public static void start(Job job) {
+    /**
+     *
+     * @param job
+     */
+    public static void start(Job job) {
 		getWorker().start(job);
 	}
 
-	public static AsyncWorker getWorker() {
+    /**
+     *
+     * @return
+     */
+    public static AsyncWorker getWorker() {
 		if (worker == null) {
                         worker = new ExecutorAsyncWorker();
                 }
 		return worker;
 	}
 
-	public static void setWorker(AsyncWorker worker) {
+    /**
+     *
+     * @param worker
+     */
+    public static void setWorker(AsyncWorker worker) {
 		Async.worker = worker;
 	}
 

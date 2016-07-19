@@ -16,7 +16,6 @@ package ilarkesto.gwt.client.undo;
 
 import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.DropdownMenuButtonWidget;
-import ilarkesto.gwt.client.Gwt;
 import static ilarkesto.gwt.client.Gwt.createDiv;
 import static ilarkesto.gwt.client.Gwt.getUndoManager;
 

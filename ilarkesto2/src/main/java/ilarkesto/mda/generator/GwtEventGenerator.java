@@ -24,6 +24,10 @@ import java.util.Collection;
 import static java.util.Collections.emptyList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class GwtEventGenerator extends AJavaClassGenerator implements NodeTypes {
 
 	private static final String QUIET_FLAG = "quiet";
@@ -31,7 +35,12 @@ public class GwtEventGenerator extends AJavaClassGenerator implements NodeTypes 
 	private final Node package_;
 	private final Node gwtModule;
 
-	public GwtEventGenerator(String srcPath, Node event) {
+    /**
+     *
+     * @param srcPath
+     * @param event
+     */
+    public GwtEventGenerator(String srcPath, Node event) {
 		super(srcPath, true);
 		this.event = event;
 
@@ -42,7 +51,11 @@ public class GwtEventGenerator extends AJavaClassGenerator implements NodeTypes 
 
 	}
 
-	@Override
+    /**
+     *
+     * @param out
+     */
+    @Override
 	protected void printCode(JavaPrinter out) {
 		out.package_(getPackageName());
 		out.beginClass(event.getValue() + "Event", ilarkesto.core.event.AEvent.class.getName(), getInterfaces());

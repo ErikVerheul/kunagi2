@@ -14,18 +14,15 @@
  */
 package scrum.client.sprint;
 
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.base.ChangeIndicator;
 import ilarkesto.gwt.client.Gwt;
-
 import java.util.Set;
-
 import scrum.client.ScrumGwt;
 import scrum.client.common.AScrumWidget;
 import scrum.client.common.BlockListWidget;
 import scrum.client.project.Requirement;
-
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.Widget;
 
 public class SprintHistorySprintWidget extends AScrumWidget {
 

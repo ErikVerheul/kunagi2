@@ -16,30 +16,57 @@ package ilarkesto.mda.legacy.model;
 
 import static java.lang.Integer.MAX_VALUE;
 
+/**
+ *
+ * @author erik
+ */
 public class IntegerPropertyModel extends SimplePropertyModel {
 
 	private int min = 0;
 	private int max = MAX_VALUE;
 
-	public IntegerPropertyModel(BeanModel entityModel, String name) {
+    /**
+     *
+     * @param entityModel
+     * @param name
+     */
+    public IntegerPropertyModel(BeanModel entityModel, String name) {
 		super(entityModel, name, false, false, Integer.class.getName());
 	}
 
-	public IntegerPropertyModel setMin(int min) {
+    /**
+     *
+     * @param min
+     * @return
+     */
+    public IntegerPropertyModel setMin(int min) {
 		this.min = min;
 		return this;
 	}
 
-	public IntegerPropertyModel setMax(int max) {
+    /**
+     *
+     * @param max
+     * @return
+     */
+    public IntegerPropertyModel setMax(int max) {
 		this.max = max;
 		return this;
 	}
 
-	public int getMin() {
+    /**
+     *
+     * @return
+     */
+    public int getMin() {
 		return min;
 	}
 
-	public int getMax() {
+    /**
+     *
+     * @return
+     */
+    public int getMax() {
 		return max;
 	}
 

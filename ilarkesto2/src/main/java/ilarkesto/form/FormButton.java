@@ -16,6 +16,10 @@ package ilarkesto.form;
 
 import static ilarkesto.form.Form.ABORT_BUTTON_NAME;
 
+/**
+ *
+ * @author erik
+ */
 public class FormButton  {
 
     private String name;
@@ -25,60 +29,117 @@ public class FormButton  {
     private Character accessKey;
     private String icon;
 
+    /**
+     *
+     * @param name
+     */
     public FormButton(String name) {
         this.name = name;
         this.label = name;
     }
 
+    /**
+     *
+     * @param icon
+     * @return
+     */
     public FormButton setIcon(String icon) {
         this.icon = icon;
         return this;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getIcon() {
         return icon;
     }
 
+    /**
+     *
+     * @param accessKey
+     * @return
+     */
     public FormButton setAccessKey(Character accessKey) {
         this.accessKey = accessKey;
         return this;
     }
 
+    /**
+     *
+     * @return
+     */
     public Character getAccessKey() {
         return accessKey;
     }
 
+    /**
+     *
+     * @param value
+     * @return
+     */
     public FormButton setLabel(String value) {
         this.label = value;
         return this;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getLabel() {
         return label;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isUpdateFields() {
         return updateFields;
     }
 
+    /**
+     *
+     * @param updateFields
+     * @return
+     */
     public FormButton setUpdateFields(boolean updateFields) {
         this.updateFields = updateFields;
         return this;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isValidateForm() {
         return validateForm;
     }
 
+    /**
+     *
+     * @param validateForm
+     * @return
+     */
     public FormButton setValidateForm(boolean validateForm) {
         this.validateForm = validateForm;
         return this;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isAbort() {
         return  ABORT_BUTTON_NAME.equals(name);
     }

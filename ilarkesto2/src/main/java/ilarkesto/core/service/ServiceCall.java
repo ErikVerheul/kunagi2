@@ -14,10 +14,21 @@
  */
 package ilarkesto.core.service;
 
+/**
+ *
+ * @author erik
+ */
 public interface ServiceCall {
 
-	void execute(Runnable returnHandler);
+    /**
+     *
+     * @param returnHandler
+     */
+    void execute(Runnable returnHandler);
 
-	void execute();
+    /**
+     *
+     */
+    void execute();
 
 }

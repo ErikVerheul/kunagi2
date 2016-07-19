@@ -18,11 +18,19 @@ import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.Gwt;
 import scrum.client.common.AScrumAction;
 
+/**
+ *
+ * @author erik
+ */
 public class MonthSelectedAction extends AScrumAction {
 
 	private int month;
 
-	public MonthSelectedAction(int month) {
+    /**
+     *
+     * @param month
+     */
+    public MonthSelectedAction(int month) {
 		this.month = month;
 	}
 

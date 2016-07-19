@@ -22,16 +22,27 @@ import static java.util.Arrays.sort;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+/**
+ *
+ * @author erik
+ */
 public class GwtImageBundleGenerator extends AClassGenerator {
 
 	private final String packageName;
 
-	public GwtImageBundleGenerator(String packageName) {
+    /**
+     *
+     * @param packageName
+     */
+    public GwtImageBundleGenerator(String packageName) {
 		super();
 		this.packageName = packageName;
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void writeContent() {
 		File folder = new File("src/main/java/" + packageName.replace('.', '/'));
 		File[] files = folder.listFiles();
@@ -59,34 +70,58 @@ public class GwtImageBundleGenerator extends AClassGenerator {
 		ln("    " + AbstractImagePrototype.class.getName(), name + "();");
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected String getSuperclass() {
 		return ImageBundle.class.getName();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected Set<String> getImports() {
 		Set<String> ret = new LinkedHashSet<>(super.getImports());
 		ret.add(com.google.gwt.user.client.ui.ImageBundle.class.getName());
 		return ret;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected String getName() {
 		return "GImageBundle";
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected String getPackage() {
 		return packageName;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected boolean isInterface() {
 		return true;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected boolean isOverwrite() {
 		return true;
 	}

@@ -19,12 +19,21 @@ import static ilarkesto.core.base.Str.isBlank;
 import ilarkesto.mda.model.Node;
 import ilarkesto.mda.model.NodeTypes;
 
+/**
+ *
+ * @author erik
+ */
 public class GwtTextBundleGenerator extends AJavaClassGenerator implements NodeTypes {
 
 	private Node bundle;
 	private Node gwtModule;
 
-	public GwtTextBundleGenerator(String srcPath, Node bundle) {
+    /**
+     *
+     * @param srcPath
+     * @param bundle
+     */
+    public GwtTextBundleGenerator(String srcPath, Node bundle) {
 		super(srcPath, true);
 		this.bundle = bundle;
 
@@ -33,7 +42,11 @@ public class GwtTextBundleGenerator extends AJavaClassGenerator implements NodeT
 
 	}
 
-	@Override
+    /**
+     *
+     * @param out
+     */
+    @Override
 	protected void printCode(JavaPrinter out) {
 		out.package_(getBasePackageName() + ".i18n");
 		out.beginClass(getClassName(), null, null);

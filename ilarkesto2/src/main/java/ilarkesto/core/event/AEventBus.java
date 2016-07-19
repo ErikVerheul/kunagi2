@@ -17,12 +17,28 @@ package ilarkesto.core.event;
 import static ilarkesto.core.logging.ClientLog.DEBUG;
 import java.util.Collection;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class AEventBus implements EventBus {
 
-	public static final String DEFAULT_COMPONENT_NAME = "eventBus";
-	protected abstract Collection getPotentialEventHandlers();
+    /**
+     *
+     */
+    public static final String DEFAULT_COMPONENT_NAME = "eventBus";
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    protected abstract Collection getPotentialEventHandlers();
+
+    /**
+     *
+     * @param event
+     */
+    @Override
 	public void fireEvent(Event event) {
 		if (!(event instanceof Quiet)) {
                         DEBUG("Firing event:", event);

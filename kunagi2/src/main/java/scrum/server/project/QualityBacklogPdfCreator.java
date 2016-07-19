@@ -15,11 +15,9 @@
 package scrum.server.project;
 
 import ilarkesto.pdf.APdfContainerElement;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import scrum.server.common.APdfCreator;
 
 public class QualityBacklogPdfCreator extends APdfCreator {

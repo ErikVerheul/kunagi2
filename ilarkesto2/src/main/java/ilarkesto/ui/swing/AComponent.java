@@ -40,33 +40,66 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class AComponent {
 
 	private static final Log LOG = Log.get(AComponent.class);
 
-	protected abstract void initializeControls();
+    /**
+     *
+     */
+    protected abstract void initializeControls();
 
-	protected abstract JComponent createComponent();
+    /**
+     *
+     * @return
+     */
+    protected abstract JComponent createComponent();
 
-	protected abstract void updateControls();
+    /**
+     *
+     */
+    protected abstract void updateControls();
 
 	private JComponent component;
 	private boolean initialized;
 
 	// --- dependencies ---
 
+    /**
+     *
+     */
+    
 	protected SwingUi ui;
-	protected TransactionService transactionService;
 
-	public final void setUi(SwingUi ui) {
+    /**
+     *
+     */
+    protected TransactionService transactionService;
+
+    /**
+     *
+     * @param ui
+     */
+    public final void setUi(SwingUi ui) {
 		this.ui = ui;
 	}
 
-	public final void setTransactionService(TransactionService transactionService) {
+    /**
+     *
+     * @param transactionService
+     */
+    public final void setTransactionService(TransactionService transactionService) {
 		this.transactionService = transactionService;
 	}
 
-	public final void initialize() {
+    /**
+     *
+     */
+    public final void initialize() {
 		if (initialized) {
                         throw new RuntimeException(getName() + " already initialized");
                 }
@@ -77,6 +110,11 @@ public abstract class AComponent {
 
 	// --- ---
 
+    /**
+     *
+     * @return
+     */
+    
 	public final JComponent getJavaComponent() {
 		if (!initialized) {
                         initialize();
@@ -95,15 +133,26 @@ public abstract class AComponent {
 		return component;
 	}
 
-	public final void resetComponent() {
+    /**
+     *
+     */
+    public final void resetComponent() {
 		component = null;
 	}
 
-	protected String getStringKeyPrefix() {
+    /**
+     *
+     * @return
+     */
+    protected String getStringKeyPrefix() {
 		return getName();
 	}
 
-	protected String getName() {
+    /**
+     *
+     * @return
+     */
+    protected String getName() {
 		return getClass().getSimpleName();
 	}
 
@@ -114,6 +163,10 @@ public abstract class AComponent {
 
 	// --- helper ---
 
+    /**
+     *
+     */
+    
 	public final void updateControlsInEventDispatchThreadLater() {
 		invokeLater(new Runnable() {
 
@@ -125,37 +178,73 @@ public abstract class AComponent {
 		});
 	}
 
-	protected final JButton createButton(String name) {
+    /**
+     *
+     * @param name
+     * @return
+     */
+    protected final JButton createButton(String name) {
 		JButton c = new JButton();
 		c.setText(string(name + ".label"));
 		c.setToolTipText(string(name + ".hint"));
 		return c;
 	}
 
-	protected final JButton createButton(String name, String icon) {
+    /**
+     *
+     * @param name
+     * @param icon
+     * @return
+     */
+    protected final JButton createButton(String name, String icon) {
 		JButton button = createButton(name);
 		button.setIcon(getIcon16(icon));
 		return button;
 	}
 
-	protected final String string(String key, Object... parameters) {
+    /**
+     *
+     * @param key
+     * @param parameters
+     * @return
+     */
+    protected final String string(String key, Object... parameters) {
 		return ui.getLocalizer().string(getStringKeyPrefix() + "." + key, parameters);
 	}
 
-	protected static abstract class ListModel<I> extends AbstractTableModel implements ListSelectionListener {
+    /**
+     *
+     * @param <I>
+     */
+    protected static abstract class ListModel<I> extends AbstractTableModel implements ListSelectionListener {
 
-		protected abstract void onItemsSelected(List<I> items);
+        /**
+         *
+         * @param items
+         */
+        protected abstract void onItemsSelected(List<I> items);
 
-		protected abstract String getName();
+        /**
+         *
+         * @return
+         */
+        protected abstract String getName();
 
 		private List<I> items = emptyList();
 		private JTable table;
 		private List<Column<I>> columns;
 		private boolean settingItems;
 
-		public ListModel() {}
+        /**
+         *
+         */
+        public ListModel() {}
 
-		public void addColumn(Column<I> column) {
+        /**
+         *
+         * @param column
+         */
+        public void addColumn(Column<I> column) {
 			if (columns == null) {
                                 columns = new ArrayList<>();
                         }
@@ -173,7 +262,13 @@ public abstract class AComponent {
 			}
 		}
 
-		public Object getValueAt(int columnIndex, I item) {
+        /**
+         *
+         * @param columnIndex
+         * @param item
+         * @return
+         */
+        public Object getValueAt(int columnIndex, I item) {
 			if (columns == null) {
                                 return item.toString();
                         }
@@ -186,11 +281,19 @@ public abstract class AComponent {
 			return getValueAt(columnIndex, item);
 		}
 
-		public void setTable(JTable table) {
+        /**
+         *
+         * @param table
+         */
+        public void setTable(JTable table) {
 			this.table = table;
 		}
 
-		public void setItems(Collection<I> items) {
+        /**
+         *
+         * @param items
+         */
+        public void setItems(Collection<I> items) {
 			List<I> selectedItems = getSelectedItems();
 			this.items = new ArrayList(items);
 			settingItems = true;
@@ -231,7 +334,11 @@ public abstract class AComponent {
 			onItemsSelected(getSelectedItems());
 		}
 
-		public void setSelectedItems(List<I> selectedItems) {
+        /**
+         *
+         * @param selectedItems
+         */
+        public void setSelectedItems(List<I> selectedItems) {
 			selectedItems.retainAll(items);
 			ListSelectionModel selectionModel = table.getSelectionModel();
 			selectionModel.clearSelection();
@@ -240,11 +347,19 @@ public abstract class AComponent {
 			}
 		}
 
-		public List<I> getSelectedItems() {
+        /**
+         *
+         * @return
+         */
+        public List<I> getSelectedItems() {
 			return getItems(table.getSelectedRows());
 		}
 
-		public I getSelectedItem() {
+        /**
+         *
+         * @return
+         */
+        public I getSelectedItem() {
 			int index = table.getSelectedRow();
 			return index < 0 ? null : items.get(index);
 		}
@@ -268,42 +383,86 @@ public abstract class AComponent {
 		}
 	}
 
-	protected abstract class Column<I> {
+    /**
+     *
+     * @param <I>
+     */
+    protected abstract class Column<I> {
 
 		private ListModel<I> listModel;
 
-		public abstract String getName();
+        /**
+         *
+         * @return
+         */
+        public abstract String getName();
 
-		public abstract Object getValue(I item);
+        /**
+         *
+         * @param item
+         * @return
+         */
+        public abstract Object getValue(I item);
 
-		public String getLabel() {
+        /**
+         *
+         * @return
+         */
+        public String getLabel() {
 			return string(listModel.getName() + "." + getName());
 		}
 
-		public void setListModel(ListModel<I> listModel) {
+        /**
+         *
+         * @param listModel
+         */
+        public void setListModel(ListModel<I> listModel) {
 			this.listModel = listModel;
 		}
 
-		public void update(TableColumn tc) {}
+        /**
+         *
+         * @param tc
+         */
+        public void update(TableColumn tc) {}
 
 	}
 
-	protected abstract class DropdownModel<I> implements ComboBoxModel, ActionListener {
+    /**
+     *
+     * @param <I>
+     */
+    protected abstract class DropdownModel<I> implements ComboBoxModel, ActionListener {
 
-		protected abstract void onItemSelected(I item);
+        /**
+         *
+         * @param item
+         */
+        protected abstract void onItemSelected(I item);
 
 		private List<ListDataListener> listeners = new ArrayList<>(1);
 		private List<I> items = emptyList();
 		private I selectedItem;
 		private JComboBox dropdown;
 
-		public DropdownModel() {}
+        /**
+         *
+         */
+        public DropdownModel() {}
 
-		public void setDropdown(JComboBox dropdown) {
+        /**
+         *
+         * @param dropdown
+         */
+        public void setDropdown(JComboBox dropdown) {
 			this.dropdown = dropdown;
 		}
 
-		public void setItems(Collection<I> items) {
+        /**
+         *
+         * @param items
+         */
+        public void setItems(Collection<I> items) {
 			this.items = new ArrayList(items);
 			ListDataEvent event = new ListDataEvent(AComponent.this, CONTENTS_CHANGED, 0,
 					items.size() - 1);

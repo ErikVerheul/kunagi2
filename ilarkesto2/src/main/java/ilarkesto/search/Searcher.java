@@ -14,8 +14,16 @@
  */
 package ilarkesto.search;
 
+/**
+ *
+ * @author erik
+ */
 public interface Searcher {
 
-	void feed(SearchResultsConsumer consumer);
+    /**
+     *
+     * @param consumer
+     */
+    void feed(SearchResultsConsumer consumer);
 
 }

@@ -25,13 +25,25 @@ import scrum.server.common.BurndownChart;
 import scrum.server.project.Project;
 import scrum.server.project.Requirement;
 
+/**
+ *
+ * @author erik
+ */
 public class SprintBacklogPdfCreator extends APdfCreator {
 
-	public SprintBacklogPdfCreator(Project project) {
+    /**
+     *
+     * @param project
+     */
+    public SprintBacklogPdfCreator(Project project) {
 		super(project);
 	}
 
-	@Override
+    /**
+     *
+     * @param pdf
+     */
+    @Override
 	protected void build(APdfContainerElement pdf) {
 		Sprint sprint = project.getCurrentSprint();
 
@@ -65,7 +77,11 @@ public class SprintBacklogPdfCreator extends APdfCreator {
 
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected String getFilename() {
 		return "sprintbacklog-" + project.getCurrentSprint().getReference();
 	}

@@ -16,18 +16,31 @@ package scrum.client.wiki;
 
 import ilarkesto.core.base.Str;
 
+/**
+ *
+ * @author erik
+ */
 public class EntityReference extends AWikiElement {
 
 	private String reference;
 	private String label;
 
-	public EntityReference(String reference, String label) {
+    /**
+     *
+     * @param reference
+     * @param label
+     */
+    public EntityReference(String reference, String label) {
 		super();
 		this.reference = reference;
 		this.label = label;
 	}
 
-	public EntityReference(String reference) {
+    /**
+     *
+     * @param reference
+     */
+    public EntityReference(String reference) {
 		this(reference, reference);
 	}
 
@@ -35,7 +48,9 @@ public class EntityReference extends AWikiElement {
 	String toHtml(HtmlContext context) {
 		StringBuilder sb = new StringBuilder();
 		String styleClass = "reference";
-		if (!context.isEntityReferenceAvailable(reference)) styleClass += " reference-unavailable";
+		if (!context.isEntityReferenceAvailable(reference)) {
+                    styleClass += " reference-unavailable";
+        }
 		sb.append("<a class='").append(styleClass).append("' ");
 		String hrefOrOnclick = context.getEntityReferenceHrefOrOnclickAParameter(reference);
 		sb.append(hrefOrOnclick);
@@ -53,11 +68,19 @@ public class EntityReference extends AWikiElement {
 		return sb.toString();
 	}
 
-	public String getLabel() {
+    /**
+     *
+     * @return
+     */
+    public String getLabel() {
 		return label;
 	}
 
-	public String getReference() {
+    /**
+     *
+     * @return
+     */
+    public String getReference() {
 		return reference;
 	}
 

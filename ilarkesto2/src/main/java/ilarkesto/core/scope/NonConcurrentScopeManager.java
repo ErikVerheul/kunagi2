@@ -17,16 +17,30 @@ package ilarkesto.core.scope;
 import static ilarkesto.core.logging.ClientLog.ERROR;
 import static ilarkesto.core.logging.ClientLog.INFO;
 
+/**
+ *
+ * @author erik
+ */
 public class NonConcurrentScopeManager extends ScopeManager {
 
 	private Scope currentScope;
 
-	protected NonConcurrentScopeManager(Scope rootScope) {
+    /**
+     *
+     * @param rootScope
+     */
+    protected NonConcurrentScopeManager(Scope rootScope) {
 		super(rootScope);
 		this.currentScope = getRootScope();
 	}
 
-	public static NonConcurrentScopeManager createCascadingScopeInstance(String rootScopeName,
+    /**
+     *
+     * @param rootScopeName
+     * @param componentReflector
+     * @return
+     */
+    public static NonConcurrentScopeManager createCascadingScopeInstance(String rootScopeName,
 			ComponentReflector componentReflector) {
 		return new NonConcurrentScopeManager(new CascadingScope(null, rootScopeName, componentReflector));
 	}
@@ -37,8 +51,15 @@ public class NonConcurrentScopeManager extends ScopeManager {
 		return currentScope;
 	}
 
-	public Scope setScope(Scope scope) {
-		if (scope == null) ERROR("Scope == null!");
+    /**
+     *
+     * @param scope
+     * @return
+     */
+    public Scope setScope(Scope scope) {
+		if (scope == null) {
+                    ERROR("Scope == null!");
+        }
 		this.currentScope = scope;
 		INFO("Scope activated:", scope);
 		return scope;

@@ -28,12 +28,20 @@ public final class Url implements BeanStorage<String>, Cloneable {
 	private Map<String, String> parameters;
 	private boolean immutable;
 
-	public Url(Url template) {
+    /**
+     *
+     * @param template
+     */
+    public Url(Url template) {
 		this.base = template.base;
 		this.parameters = template.parameters == null ? null : new HashMap<>(template.parameters);
 	}
 
-	public Url(String base) {
+    /**
+     *
+     * @param base
+     */
+    public Url(String base) {
 		this.base = base;
 	}
 
@@ -42,24 +50,46 @@ public final class Url implements BeanStorage<String>, Cloneable {
 		return new Url(base).putAll(parameters);
 	}
 
-	public boolean isInternal() {
+    /**
+     *
+     * @return
+     */
+    public boolean isInternal() {
 		return !isExternal();
 	}
 
-	public boolean isExternal() {
+    /**
+     *
+     * @return
+     */
+    public boolean isExternal() {
 		return isExternal(base);
 	}
 
-	public static boolean isExternal(String url) {
+    /**
+     *
+     * @param url
+     * @return
+     */
+    public static boolean isExternal(String url) {
 		return url.startsWith("http://") || url.startsWith("ftp://") || url.startsWith("mailto:")
 				|| url.startsWith("javascript:");
 	}
 
-	public String getBase() {
+    /**
+     *
+     * @return
+     */
+    public String getBase() {
 		return base;
 	}
 
-	@Override
+    /**
+     *
+     * @param parameters
+     * @return
+     */
+    @Override
 	public Url putAll(Map<String, ? extends String> parameters) {
 		if (immutable) {
                         throw new RuntimeException("Url is immutable");
@@ -74,7 +104,13 @@ public final class Url implements BeanStorage<String>, Cloneable {
 		return this;
 	}
 
-	@Override
+    /**
+     *
+     * @param name
+     * @param value
+     * @return
+     */
+    @Override
 	public Url put(String name, String value) {
 		if (immutable) {
                         throw new RuntimeException("Url is immutable");
@@ -89,28 +125,50 @@ public final class Url implements BeanStorage<String>, Cloneable {
 		return this;
 	}
 
-	public Url put(String name, Boolean value) {
+    /**
+     *
+     * @param name
+     * @param value
+     * @return
+     */
+    public Url put(String name, Boolean value) {
 		if (value == null) {
                         return this;
                 }
 		return put(name, value.toString());
 	}
 
-	public Url put(String name, Integer value) {
+    /**
+     *
+     * @param name
+     * @param value
+     * @return
+     */
+    public Url put(String name, Integer value) {
 		if (value == null) {
                         return this;
                 }
 		return put(name, value.toString());
 	}
 
-	public Url put(String name, Long value) {
+    /**
+     *
+     * @param name
+     * @param value
+     * @return
+     */
+    public Url put(String name, Long value) {
 		if (value == null) {
                         return this;
                 }
 		return put(name, value.toString());
 	}
 
-	public Url setImmutable() {
+    /**
+     *
+     * @return
+     */
+    public Url setImmutable() {
 		this.immutable = true;
 		return this;
 	}

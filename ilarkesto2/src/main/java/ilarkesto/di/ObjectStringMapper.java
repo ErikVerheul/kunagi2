@@ -23,21 +23,25 @@ public interface ObjectStringMapper {
 
 	/**
 	 * Indicates if an object type is mappable.
+     * @return 
 	 */
 	boolean isTypeSupported(Class type);
 
 	/**
 	 * Map string value to object of specified type.
+     * @return 
 	 */
 	<T extends Object> T stringToObject(String value, Class<T> type);
 
 	/**
 	 * Map object to string.
+     * @return 
 	 */
 	String objectToString(Object object);
 
 	/**
 	 * Map all object values form given map to string values in new map.
+     * @return 
 	 */
 	Map<String, String> objectsToStrings(Map<String, ? extends Object> map);
 

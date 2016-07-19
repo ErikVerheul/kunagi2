@@ -101,6 +101,7 @@ public class CRC32 implements Checksum
 
   /**
    * Returns the CRC32 data checksum computed so far.
+     * @return 
    */
   @Override
   public long getValue ()
@@ -147,6 +148,7 @@ public class CRC32 implements Checksum
 
   /**
    * Adds the complete byte array to the data checksum.
+     * @param buf
    */
   public void update (byte[] buf) { update(buf, 0, buf.length); }
 }

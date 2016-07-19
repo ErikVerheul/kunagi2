@@ -53,8 +53,6 @@ exception statement from your version. */
 package ilarkesto.io.zip;
 
 import edu.umd.cs.findbugs.annotations.SuppressWarnings;
-import static ilarkesto.io.zip.ZipOutputStream.DEFLATED;
-import static ilarkesto.io.zip.ZipOutputStream.STORED;
 import java.util.Calendar;
 import static java.util.Calendar.DAY_OF_MONTH;
 import static java.util.Calendar.HOUR_OF_DAY;

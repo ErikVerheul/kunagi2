@@ -17,27 +17,47 @@ package ilarkesto.io.nio.tcpserver;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ *
+ * @author erik
+ */
 public class PerConnectionDataHandler implements DataHandler {
 
 	private HandlerFacotry factory;
 
 	private Map<TcpConnection, DataHandler> handlers = new HashMap<>();
 
-	public PerConnectionDataHandler(Class<? extends DataHandler> handlerType) {
+    /**
+     *
+     * @param handlerType
+     */
+    public PerConnectionDataHandler(Class<? extends DataHandler> handlerType) {
 		this(new ReflectionHandlerFactory(handlerType));
 	}
 
-	public PerConnectionDataHandler(HandlerFacotry factory) {
+    /**
+     *
+     * @param factory
+     */
+    public PerConnectionDataHandler(HandlerFacotry factory) {
 		super();
 		this.factory = factory;
 	}
 
-	@Override
+    /**
+     *
+     * @param event
+     */
+    @Override
 	public void onDataReceived(ServerDataEvent event) {
 		getHandler(event.getConnection()).onDataReceived(event);
 	}
 
-	@Override
+    /**
+     *
+     * @param connection
+     */
+    @Override
 	public void onConnectionClosed(TcpConnection connection) {
 		synchronized (handlers) {
 			handlers.remove(connection);
@@ -56,9 +76,17 @@ public class PerConnectionDataHandler implements DataHandler {
 		}
 	}
 
-	public static interface HandlerFacotry {
+    /**
+     *
+     */
+    public static interface HandlerFacotry {
 
-		DataHandler createHandler(TcpConnection connection);
+        /**
+         *
+         * @param connection
+         * @return
+         */
+        DataHandler createHandler(TcpConnection connection);
 
 	}
 

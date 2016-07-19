@@ -33,32 +33,61 @@ import scrum.client.collaboration.Comment;
 import scrum.client.collaboration.Emoticon;
 import scrum.client.collaboration.ForumSupport;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class AScrumGwtEntity extends AGwtEntity implements ToHtmlSupport, HtmlLabelSupport {
 
-	public AScrumGwtEntity() {}
+    /**
+     *
+     */
+    public AScrumGwtEntity() {}
 
-	public List<Comment> getComments() {
+    /**
+     *
+     * @return
+     */
+    public List<Comment> getComments() {
 		return getDao().getCommentsByParent(this);
 	}
 
-	public Comment getLatestComment() {
+    /**
+     *
+     * @return
+     */
+    public Comment getLatestComment() {
 		Comment latest = null;
 		for (Comment comment : getComments()) {
-			if (latest == null || comment.getDateAndTime().isAfter(latest.getDateAndTime())) latest = comment;
+			if (latest == null || comment.getDateAndTime().isAfter(latest.getDateAndTime())) {
+                            latest = comment;
+            }
 		}
 		return latest;
 	}
 
-	public DateAndTime getLatestCommentDateAndTime() {
+    /**
+     *
+     * @return
+     */
+    public DateAndTime getLatestCommentDateAndTime() {
 		Comment latest = getLatestComment();
 		return latest == null ? null : latest.getDateAndTime();
 	}
 
-	public List<Emoticon> getEmoticons() {
+    /**
+     *
+     * @return
+     */
+    public List<Emoticon> getEmoticons() {
 		return getDao().getEmoticonsByParent(this);
 	}
 
-	public void setCurrentUserEmoticon(String emotion) {
+    /**
+     *
+     * @param emotion
+     */
+    public void setCurrentUserEmoticon(String emotion) {
 		updateLocalModificationTime();
 		boolean delete = Str.isBlank(emotion);
 		Emoticon emoticon = getCurrentUserEmoticon();
@@ -76,15 +105,25 @@ public abstract class AScrumGwtEntity extends AGwtEntity implements ToHtmlSuppor
 		}
 	}
 
-	public Emoticon getCurrentUserEmoticon() {
+    /**
+     *
+     * @return
+     */
+    public Emoticon getCurrentUserEmoticon() {
 		User currentUser = Scope.get().getComponent(Auth.class).getUser();
 		for (Emoticon emoticon : getEmoticons()) {
-			if (emoticon.isOwner(currentUser)) return emoticon;
+			if (emoticon.isOwner(currentUser)) {
+                            return emoticon;
+            }
 		}
 		return null;
 	}
 
-	public AOptionEditorModel<String> getCurrentUserEmotionModel() {
+    /**
+     *
+     * @return
+     */
+    public AOptionEditorModel<String> getCurrentUserEmotionModel() {
 		return new AOptionEditorModel<String>() {
 
 			@Override
@@ -110,12 +149,18 @@ public abstract class AScrumGwtEntity extends AGwtEntity implements ToHtmlSuppor
 	@Override
 	public boolean matchesKey(String key) {
 		if (this instanceof ReferenceSupport) {
-			if (matchesKey(((ReferenceSupport) this).getReference(), key)) return true;
+                    if (matchesKey(((ReferenceSupport) this).getReference(), key)) {
+                        return true;
+            }
 		}
 		return super.matchesKey(key);
 	}
 
-	public AScrumGwtEntity(Map data) {
+    /**
+     *
+     * @param data
+     */
+    public AScrumGwtEntity(Map data) {
 		super(data);
 	}
 
@@ -137,14 +182,19 @@ public abstract class AScrumGwtEntity extends AGwtEntity implements ToHtmlSuppor
 
 	private transient AFieldModel<String> labelModel;
 
-	public AFieldModel<String> getLabelModel() {
+    /**
+     *
+     * @return
+     */
+    public AFieldModel<String> getLabelModel() {
 		if (labelModel == null) {
 			labelModel = new AFieldModel<String>() {
 
 				@Override
 				public String getValue() {
-					if (AScrumGwtEntity.this instanceof LabelSupport)
-						return ((LabelSupport) AScrumGwtEntity.this).getLabel();
+                                    if (AScrumGwtEntity.this instanceof LabelSupport) {
+                                        return ((LabelSupport) AScrumGwtEntity.this).getLabel();
+                    }
 					return toString();
 				}
 			};
@@ -154,16 +204,22 @@ public abstract class AScrumGwtEntity extends AGwtEntity implements ToHtmlSuppor
 
 	private transient AFieldModel<String> lastCommentAgoModel;
 
-	public AFieldModel<String> getLastCommentAgoModel() {
-		if (lastCommentAgoModel == null) lastCommentAgoModel = new AFieldModel<String>() {
-
-			@Override
-			public String getValue() {
-				Comment comment = (AScrumGwtEntity.this).getLatestComment();
-				return comment != null ? comment.getDateAndTime().getPeriodToNow().toShortestString() + " ago by "
+    /**
+     *
+     * @return
+     */
+        public AFieldModel<String> getLastCommentAgoModel() {
+            if (lastCommentAgoModel == null) {
+                lastCommentAgoModel = new AFieldModel<String>() {
+                    
+                    @Override
+                    public String getValue() {
+                        Comment comment = (AScrumGwtEntity.this).getLatestComment();
+                        return comment != null ? comment.getDateAndTime().getPeriodToNow().toShortestString() + " ago by "
 						+ comment.getAuthorName() : null;
 			}
 		};
+        }
 		return lastCommentAgoModel;
 	}
 

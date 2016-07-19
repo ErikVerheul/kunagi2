@@ -1,31 +1,18 @@
-/*
- * Copyright 2011 Witoslaw Koczewsi <wi@koczewski.de>, Artjom Kochtchi
- * 
- * This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero
- * General Public License as published by the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
- * implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public
- * License for more details.
- * 
- * You should have received a copy of the GNU General Public License along with this program. If not, see
- * <http://www.gnu.org/licenses/>.
- */
+
 package scrum.client.sprint;
 
-import scrum.client.sprint.GSwitchToNextSprintAction;
-import scrum.client.sprint.SwitchToNextSprintServiceCall;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.Gwt;
-
 import java.util.List;
-
 import scrum.client.common.TooltipBuilder;
 import scrum.client.project.Requirement;
 import scrum.client.workspace.ProjectWorkspaceWidgets;
 import scrum.client.workspace.Ui;
 
+/**
+ *
+ * @author erik
+ */
 public class SwitchToNextSprintAction extends GSwitchToNextSprintAction {
 
 	@Override
@@ -33,10 +20,16 @@ public class SwitchToNextSprintAction extends GSwitchToNextSprintAction {
 		return "Switch to next Sprint";
 	}
 
-	@Override
+    /**
+     *
+     * @param tb
+     */
+    @Override
 	protected void updateTooltip(TooltipBuilder tb) {
 		tb.setText("Finish the current Sprint and replace it by the next one.");
-		if (!getCurrentProject().isProductOwner(getCurrentUser())) tb.addRemark(TooltipBuilder.NOT_PRODUCT_OWNER);
+		if (!getCurrentProject().isProductOwner(getCurrentUser())) {
+                    tb.addRemark(TooltipBuilder.NOT_PRODUCT_OWNER);
+        }
 	}
 
 	@Override
@@ -46,8 +39,7 @@ public class SwitchToNextSprintAction extends GSwitchToNextSprintAction {
 
 	@Override
 	public boolean isPermitted() {
-		if (!getCurrentProject().isProductOwner(getCurrentUser())) return false;
-		return true;
+		return getCurrentProject().isProductOwner(getCurrentUser());
 	}
 
 	@Override
@@ -72,9 +64,13 @@ public class SwitchToNextSprintAction extends GSwitchToNextSprintAction {
 				sb.append(" are");
 			}
 			sb.append(" completed and should be either accepted or rejected. Switch to next Sprint and reject all undecided Stories?");
-			if (!Gwt.confirm(sb.toString())) return;
+			if (!Gwt.confirm(sb.toString())) {
+                            return;
+            }
 		} else {
-			if (!Gwt.confirm("Switch to next Sprint?")) return;
+                    if (!Gwt.confirm("Switch to next Sprint?")) {
+                        return;
+            }
 		}
 		Scope.get().getComponent(Ui.class).lock("Switching to next Sprint");
 		new SwitchToNextSprintServiceCall().execute(new Runnable() {

@@ -19,9 +19,16 @@ import ilarkesto.testng.ATest;
 import java.util.List;
 import org.testng.annotations.Test;
 
+/**
+ *
+ * @author erik
+ */
 public class EmailAddressTest extends ATest {
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void parse() {
 		assertEmail(new EmailAddress("wi@koczewski.de"), null, "wi@koczewski.de");
 		assertEmail(new EmailAddress("Witoslaw Koczewski <wi@koczewski.de>"), "Witoslaw Koczewski", "wi@koczewski.de");
@@ -30,7 +37,10 @@ public class EmailAddressTest extends ATest {
 		assertEmail(new EmailAddress("'Witoslaw Koczewski' <wi@koczewski.de>"), "Witoslaw Koczewski", "wi@koczewski.de");
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void parseList() {
 		List<EmailAddress> addresses = EmailAddress
 				.parseList("Witoslaw Koczewski <wi@koczewski.de>; support@kunagi.org");

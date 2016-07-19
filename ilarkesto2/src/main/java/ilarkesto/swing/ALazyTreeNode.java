@@ -18,13 +18,25 @@ import java.util.Enumeration;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeNode;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class ALazyTreeNode extends DefaultMutableTreeNode {
 
 	private boolean childrenLoaded;
 
-	protected abstract void loadChildren();
+    /**
+     *
+     */
+    protected abstract void loadChildren();
 
-	public ALazyTreeNode(Object userObject, boolean allowesChildren) {
+    /**
+     *
+     * @param userObject
+     * @param allowesChildren
+     */
+    public ALazyTreeNode(Object userObject, boolean allowesChildren) {
 		super(userObject, allowesChildren);
 	}
 

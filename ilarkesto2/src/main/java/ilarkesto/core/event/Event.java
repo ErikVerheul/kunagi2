@@ -14,8 +14,16 @@
  */
 package ilarkesto.core.event;
 
+/**
+ *
+ * @author erik
+ */
 public interface Event {
 
-	void tryToGetHandled(Object handler);
+    /**
+     *
+     * @param handler
+     */
+    void tryToGetHandled(Object handler);
 
 }

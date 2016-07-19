@@ -14,6 +14,9 @@
  */
 package scrum.client.project;
 
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.TableBuilder;
 import scrum.client.ScrumGwt;
 import scrum.client.collaboration.CommentsWidget;
@@ -21,14 +24,21 @@ import scrum.client.common.AScrumWidget;
 import scrum.client.sprint.Sprint;
 import scrum.client.workspace.PagePanel;
 
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.Image;
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class ProjectOverviewWidget extends AScrumWidget {
 
-	public static final int CHART_WIDTH = 800;
-	public static final int CHART_HEIGHT = 270;
+    /**
+     *
+     */
+    public static final int CHART_WIDTH = 800;
+
+    /**
+     *
+     */
+    public static final int CHART_HEIGHT = 270;
 
 	private Image sprintChart;
 
@@ -63,7 +73,9 @@ public class ProjectOverviewWidget extends AScrumWidget {
 		super.onUpdate();
 		if (sprintChart != null) {
 			Sprint sprint = getCurrentProject().getCurrentSprint();
-			if (sprint != null) sprintChart.setUrl(getChartUrl(sprint));
+			if (sprint != null) {
+                            sprintChart.setUrl(getChartUrl(sprint));
+            }
 		}
 	}
 

@@ -42,16 +42,28 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+/**
+ *
+ * @author erik
+ */
 public class GwtEntityGenerator extends ABeanGenerator<EntityModel> {
 
 	private final ApplicationModel application;
 
-	public GwtEntityGenerator(EntityModel datobModel, ApplicationModel application) {
+    /**
+     *
+     * @param datobModel
+     * @param application
+     */
+    public GwtEntityGenerator(EntityModel datobModel, ApplicationModel application) {
 		super(datobModel);
 		this.application = application;
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void writeContent() {
 		dao();
 		predicates();
@@ -553,32 +565,56 @@ public class GwtEntityGenerator extends ABeanGenerator<EntityModel> {
 
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected String getName() {
 		return "G" + bean.getName();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected String getPackage() {
 		return bean.getPackageName().replace(".server.", ".client.");
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected boolean isInterface() {
 		return false;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected boolean isOverwrite() {
 		return true;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected String getSuperclass() {
 		return "scrum.client.common.AScrumGwtEntity";
 	}
         
-         @Override
+    /**
+     *
+     * @return
+     */
+    @Override
         protected Set<String> getStaticImports() {
             Set<String> result = new LinkedHashSet<>();
             result.add("ilarkesto.core.base.Utl.equalObjects");
@@ -586,7 +622,11 @@ public class GwtEntityGenerator extends ABeanGenerator<EntityModel> {
             return result;
         }
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected Set<String> getImports() {
 		Set<String> ret = new LinkedHashSet<>(super.getImports());
 		ret.add("scrum.client.common.*");

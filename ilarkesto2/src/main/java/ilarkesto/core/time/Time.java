@@ -18,10 +18,6 @@ import edu.umd.cs.findbugs.annotations.SuppressWarnings;
 import static ilarkesto.core.time.Tm.getNowAsDate;
 import java.io.Serializable;
 import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
 
 @SuppressWarnings("SE_NO_SERIALVERSIONID")
 public class Time implements Comparable<Time>, Serializable {

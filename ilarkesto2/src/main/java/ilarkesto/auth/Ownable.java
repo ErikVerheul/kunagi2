@@ -14,10 +14,24 @@
  */
 package ilarkesto.auth;
 
+/**
+ *
+ * @author erik
+ * @param <U>
+ */
 public interface Ownable<U extends AUser> {
 
-	boolean isOwner(U user);
+    /**
+     *
+     * @param user
+     * @return
+     */
+    boolean isOwner(U user);
 
-	void setOwner(U user);
+    /**
+     *
+     * @param user
+     */
+    void setOwner(U user);
 
 }

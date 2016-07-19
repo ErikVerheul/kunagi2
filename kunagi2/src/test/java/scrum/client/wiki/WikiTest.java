@@ -17,9 +17,16 @@ package scrum.client.wiki;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+/**
+ *
+ * @author erik
+ */
 public class WikiTest extends Assert {
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void table() {
 		assertEquals(toHtml("{|a|}"), "\n<table class='data-table'>\n<tr> <td>a</td> </tr>\n</table>\n");
 		assertEquals(toHtml("{|\n|a\n|b\n|-\n|c\n|d\n\n|}"),
@@ -28,7 +35,10 @@ public class WikiTest extends Assert {
 			"\n<table class='data-table'>\n<tr> <td>a</td>  <td>b</td> </tr>\n<tr> <td>c</td>  <td>d</td> </tr>\n</table>\n");
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void tableWithHeaders() {
 		assertEquals(toHtml("{|\n!a\n!b\n|-\n|c\n|d\n\n|}"),
 			"\n<table class='data-table'>\n<tr> <th>a</th>  <th>b</th> </tr>\n<tr> <td>c</td>  <td>d</td> </tr>\n</table>\n");
@@ -36,7 +46,10 @@ public class WikiTest extends Assert {
 			"\n<table class='data-table'>\n<tr> <th>a</th>  <th>b</th> </tr>\n<tr> <th>c</th>  <td>d</td> </tr>\n</table>\n");
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void localImg() {
 		Assert.assertEquals(toHtml("[[Image:fle1]]"), "<a href='fle1.html'><img src=\"fle1\"></a>");
 		Assert.assertEquals(toHtml("[[Image:fle1|thumb]]"),
@@ -45,14 +58,20 @@ public class WikiTest extends Assert {
 			"<a href='fle1.html'><img src=\"fle1\" width=\"100px\" align=\"left\"></a>");
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void externalImg() {
 		Assert.assertEquals(toHtml("[[Image:http://servisto.de/image.png]]"),
 			"<a href=\"http://servisto.de/image.png\" target=\"_blank\"><img src=\"http://servisto.de/image.png\"></a>");
 
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void toc() {
 		Assert.assertEquals(toHtml("__TOC__\n= 1 =\n== 1.1 ==\n= 2 ="), "<div class=\"toc\"><ul><li>"
 				+ "<a href=\"#wiki_h1_1\">1</a></li><ul><li>" + "<a href=\"#wiki_h2_1_1\">1.1</a></li></ul><li>"
@@ -62,7 +81,10 @@ public class WikiTest extends Assert {
 				+ "<a name=\"wiki_h1_2\" id=\"wiki_h1_2\"></a><h1>2</h1>");
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void emphAndStrong() {
 		Assert.assertEquals(toHtml("'''''emph and strong'''''"), "<strong><em>emph and strong</em></strong>");
 		Assert.assertEquals(toHtml("this is '''strong'''"), "this is <strong>strong</strong>");
@@ -71,7 +93,10 @@ public class WikiTest extends Assert {
 		Assert.assertEquals(toHtml("'''''test"), "'''''test");
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void entityReference() {
 		Assert.assertTrue(toHtml("tsk15 is completed").contains("<a "));
 		Assert.assertTrue(toHtml("[[Wiki]] is cool").contains("<a "));
@@ -81,7 +106,10 @@ public class WikiTest extends Assert {
 		Assert.assertTrue(toHtml("tsk15:; :-)").contains("<a "));
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void link() {
 		Assert.assertEquals(toHtml("link www.servisto.de here"),
 			"link <a href=\"http://www.servisto.de\" target=\"_blank\">servisto.de</a> here");
@@ -91,7 +119,10 @@ public class WikiTest extends Assert {
 			"link <a href=\"http://www.servisto.de\" target=\"_blank\">Servisto</a> here");
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void itemList() {
 		Assert.assertEquals(toHtml("* item"), "<ul><li>item</li></ul>");
 		Assert.assertEquals(toHtml("# item"), "<ol><li>item</li></ol>");
@@ -99,19 +130,28 @@ public class WikiTest extends Assert {
 		Assert.assertEquals(toHtml("* item 1\n* item 2"), "<ul><li>item 1</li><li>item 2</li></ul>");
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void itemListWithValue() {
 		Assert.assertEquals(toHtml("#=42 item"), "<ol><li value=\"42\">item</li></ol>");
 		Assert.assertEquals(toHtml("#=42 item 1\n# item 2"), "<ol><li value=\"42\">item 1</li><li>item 2</li></ol>");
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void itemListWithIdentifier() {
 		Assert.assertEquals(toHtml("#=myid item 1\n# item 2\n\n#=myid item 3"),
 			"<ol><li>item 1</li><li>item 2</li></ol><ol><li value=\"3\">item 3</li></ol>");
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void nestedItemList() {
 		Assert.assertEquals(toHtml("* item\n # subitem"), "<ul><li>item<ol><li>subitem</li></ol></li></ul>");
 		Assert.assertEquals(
@@ -123,27 +163,39 @@ public class WikiTest extends Assert {
 			"<ul><li>item<ol><li>subitem<ul><li>subsubitem</li></ul></li></ol></li></ul>");
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void nestedItemListDirty() {
 		Assert.assertEquals(toHtml("* topitem\n    * A\n * B\n    * C"),
 			"<ul><li>topitem<ul><li>A</li><li>B</li><li>C</li></ul></li></ul>");
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void preformated() {
 		Assert.assertEquals(toHtml(" preformated"), "<pre class=\"codeBlock\"> preformated</pre>");
 		Assert.assertEquals(toHtml("\tpreformated"), "<pre class=\"codeBlock\">    preformated</pre>");
 		Assert.assertEquals(toHtml(" line 1\n line 2"), "<pre class=\"codeBlock\"> line 1\n line 2</pre>");
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void nowiki() {
 		Assert.assertEquals(toHtml("here is <nowiki>'''plain'''</nowiki>."), "here is '''plain'''.");
 		Assert.assertEquals(toHtml("<nowiki>\n= header 1 =\n\nparagraph...</nowiki>"),
 			"<p><br>= header 1 =<br><br>paragraph...</p>");
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void code() {
 		Assert.assertEquals(toHtml("some <code>code</code> is here."), "some <code>code</code> is here.");
 		Assert.assertEquals(toHtml("here is <code>code</code>."), "here is <code>code</code>.");
@@ -162,7 +214,10 @@ public class WikiTest extends Assert {
 			"some <code class=\"codeBlock\">looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong&nbsp;code</code> is here.");
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void paragraph() {
 		Assert.assertEquals(toHtml("a b"), "a b");
 		Assert.assertEquals(toHtml("a\nb"), "<p>a<br>b</p>");
@@ -171,7 +226,10 @@ public class WikiTest extends Assert {
 		Assert.assertEquals(toHtml("a\n\n\n"), "<p>a</p>");
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void header() {
 		Assert.assertEquals(toHtml("= header ="),
 			"<a name=\"wiki_h1_header\" id=\"wiki_h1_header\"></a><h1>header</h1>");
@@ -189,19 +247,28 @@ public class WikiTest extends Assert {
 			"<a name=\"wiki_h4_header\" id=\"wiki_h4_header\"></a><h4>header</h4>");
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void specialChars() {
 		Assert.assertEquals(toHtml("ü ä ß"), "ü ä ß");
 		Assert.assertEquals(toHtml("& #"), "&amp; #");
 		Assert.assertEquals(toHtml("< >"), "&lt; &gt;");
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void simple() {
 		Assert.assertEquals(toHtml("hello world"), "hello world");
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void complete() {
 		String html = toHtml("= header 1 =\nmy first paragraph\nstill first\n\nsecond paragraph\n\n\n\nthird paragraph\n\n== header 2 ==");
 		// System.out.println("\n-----\n" + html + "\n-----\n");

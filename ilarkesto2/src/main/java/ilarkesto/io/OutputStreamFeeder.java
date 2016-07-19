@@ -22,6 +22,11 @@ import java.io.OutputStream;
  */
 public interface OutputStreamFeeder {
 
-	void feed(OutputStream out) throws IOException;
+    /**
+     *
+     * @param out
+     * @throws IOException
+     */
+    void feed(OutputStream out) throws IOException;
 
 }

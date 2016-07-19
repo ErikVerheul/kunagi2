@@ -14,12 +14,21 @@
  */
 package scrum.client.wiki;
 
+/**
+ *
+ * @author erik
+ */
 public class TableCell extends AWikiElement {
 
 	private Paragraph paragraph;
 	private boolean header;
 
-	public TableCell(Paragraph paragraph, boolean header) {
+    /**
+     *
+     * @param paragraph
+     * @param header
+     */
+    public TableCell(Paragraph paragraph, boolean header) {
 		super();
 		this.paragraph = paragraph;
 		this.header = header;
@@ -34,11 +43,19 @@ public class TableCell extends AWikiElement {
 		return sb.toString();
 	}
 
-	public Paragraph getParagraph() {
+    /**
+     *
+     * @return
+     */
+    public Paragraph getParagraph() {
 		return paragraph;
 	}
 
-	public boolean isHeader() {
+    /**
+     *
+     * @return
+     */
+    public boolean isHeader() {
 		return header;
 	}
 

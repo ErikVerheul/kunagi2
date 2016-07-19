@@ -16,30 +16,52 @@ package ilarkesto.base;
 
 /**
  * Tuple of two objects.
+ * @param <B>
  */
 public final class Tuple<A, B> {
 
 	private A a;
 	private B b;
 
-	public Tuple(A a, B b) {
+    /**
+     *
+     * @param a
+     * @param b
+     */
+    public Tuple(A a, B b) {
 		this.a = a;
 		this.b = b;
 	}
 
-	public A getA() {
+    /**
+     *
+     * @return
+     */
+    public A getA() {
 		return a;
 	}
 
-	public B getB() {
+    /**
+     *
+     * @return
+     */
+    public B getB() {
 		return b;
 	}
 
-	public void setA(A a) {
+    /**
+     *
+     * @param a
+     */
+    public void setA(A a) {
 		this.a = a;
 	}
 
-	public void setB(B b) {
+    /**
+     *
+     * @param b
+     */
+    public void setB(B b) {
 		this.b = b;
 	}
 

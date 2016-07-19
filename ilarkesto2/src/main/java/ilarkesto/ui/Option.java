@@ -16,35 +16,71 @@ package ilarkesto.ui;
 
 import ilarkesto.base.StringProvider;
 
+/**
+ *
+ * @author erik
+ * @param <T>
+ */
 public final class Option<T> {
 
-	public static final String KEY_CANCEL = "_cancel";
+    /**
+     *
+     */
+    public static final String KEY_CANCEL = "_cancel";
 
-	public String getKey() {
+    /**
+     *
+     * @return
+     */
+    public String getKey() {
 		return key;
 	}
 
-	public String getIcon() {
+    /**
+     *
+     * @return
+     */
+    public String getIcon() {
 		return icon;
 	}
 
-	public String getImage() {
+    /**
+     *
+     * @return
+     */
+    public String getImage() {
 		return image;
 	}
 
-	public String getLabel() {
+    /**
+     *
+     * @return
+     */
+    public String getLabel() {
 		return label;
 	}
 
-	public T getPayload() {
+    /**
+     *
+     * @return
+     */
+    public T getPayload() {
 		return payload;
 	}
 
-	public boolean isGroup() {
+    /**
+     *
+     * @return
+     */
+    public boolean isGroup() {
 		return group;
 	}
 
-	public String getTooltip() {
+    /**
+     *
+     * @return
+     */
+    public String getTooltip() {
 		return tooltip;
 	}
 
@@ -74,7 +110,15 @@ public final class Option<T> {
 	private T payload;
 	private boolean group;
 
-	public Option(String key, String label, String icon, String image, T payload) {
+    /**
+     *
+     * @param key
+     * @param label
+     * @param icon
+     * @param image
+     * @param payload
+     */
+    public Option(String key, String label, String icon, String image, T payload) {
 		this.key = key;
 		this.label = label;
 		this.icon = icon;
@@ -82,33 +126,70 @@ public final class Option<T> {
 		this.payload = payload;
 	}
 
-	public Option(String key, String label, String icon, String image) {
+    /**
+     *
+     * @param key
+     * @param label
+     * @param icon
+     * @param image
+     */
+    public Option(String key, String label, String icon, String image) {
 		this(key, label, icon, image, null);
 	}
 
-	public void setTooltip(String tooltip) {
+    /**
+     *
+     * @param tooltip
+     */
+    public void setTooltip(String tooltip) {
 		this.tooltip = tooltip;
 	}
 
-	public void setGroup(boolean group) {
+    /**
+     *
+     * @param group
+     */
+    public void setGroup(boolean group) {
 		this.group = group;
 	}
 
 	// --- tooltip StringProvider ---
 
+    /**
+     *
+     */
+    
 	public static final OptionTooltipStringProvider OPTION_TOOLTIP_STRING_PROVIDER = new OptionTooltipStringProvider();
 
-	public static class OptionTooltipStringProvider<T> implements StringProvider<Option<T>> {
+    /**
+     *
+     * @param <T>
+     */
+    public static class OptionTooltipStringProvider<T> implements StringProvider<Option<T>> {
 
-		@Override
+        /**
+         *
+         * @param o
+         * @return
+         */
+        @Override
 		public String getString(Option<T> o) {
 			return o.getTooltip();
 		}
 	}
 
-	public static class OptionImageUrlStringProvider<T> implements StringProvider<Option<T>> {
+    /**
+     *
+     * @param <T>
+     */
+    public static class OptionImageUrlStringProvider<T> implements StringProvider<Option<T>> {
 
-		@Override
+        /**
+         *
+         * @param o
+         * @return
+         */
+        @Override
 		public String getString(Option<T> o) {
 			return o.getImage();
 		}

@@ -39,6 +39,10 @@ import scrum.client.sprint.Task;
 import scrum.client.workspace.PagePanel;
 import scrum.client.workspace.Ui;
 
+/**
+ *
+ * @author erik
+ */
 public class ScrumStatusWidget extends AScrumWidget {
 
 	private Dao dao;

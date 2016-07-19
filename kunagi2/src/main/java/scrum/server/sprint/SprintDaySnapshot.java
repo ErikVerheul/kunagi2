@@ -18,23 +18,42 @@ import scrum.server.admin.User;
 import scrum.server.common.BurndownSnapshot;
 import scrum.server.project.Project;
 
+/**
+ *
+ * @author erik
+ */
 public class SprintDaySnapshot extends GSprintDaySnapshot implements BurndownSnapshot {
 
-	public void addBurnedWorkFromDeleted(int work) {
+    /**
+     *
+     * @param work
+     */
+    public void addBurnedWorkFromDeleted(int work) {
 		setBurnedWorkFromDeleted(getBurnedWorkFromDeleted() + work);
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public int getBurnedWorkTotal() {
 		return getBurnedWork() + getBurnedWorkFromDeleted();
 	}
 
-	public void updateWithCurrentSprint() {
+    /**
+     *
+     */
+    public void updateWithCurrentSprint() {
 		setRemainingWork(getSprint().getRemainingWork());
 		setBurnedWork(getSprint().getBurnedWork());
 	}
 
-	public Project getProject() {
+    /**
+     *
+     * @return
+     */
+    public Project getProject() {
 		return getSprint().getProject();
 	}
 

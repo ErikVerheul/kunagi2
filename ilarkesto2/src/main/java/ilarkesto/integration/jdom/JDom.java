@@ -14,11 +14,11 @@
  */
 package ilarkesto.integration.jdom;
 
-import ilarkesto.logging.Log;
 import static ilarkesto.io.IO.close;
 import static ilarkesto.io.IO.closeQuiet;
 import static ilarkesto.io.IO.createDirectory;
 import static ilarkesto.io.IO.openUrlInputStream;
+import ilarkesto.logging.Log;
 import java.io.BufferedInputStream;
 import java.io.BufferedWriter;
 import java.io.File;

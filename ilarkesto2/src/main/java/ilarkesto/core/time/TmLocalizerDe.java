@@ -1,8 +1,17 @@
 package ilarkesto.core.time;
 
+/**
+ *
+ * @author erik
+ */
 public class TmLocalizerDe extends TmLocalizer {
 
-	@Override
+    /**
+     *
+     * @param day
+     * @return
+     */
+    @Override
 	public String full(Weekday day) {
 		switch (day) {
 			case MONDAY:
@@ -23,7 +32,12 @@ public class TmLocalizerDe extends TmLocalizer {
 		throw new IllegalStateException(day.name());
 	}
 
-	@Override
+    /**
+     *
+     * @param month
+     * @return
+     */
+    @Override
 	public String full(Month month) {
 		switch (month) {
 			case JANUARY:
@@ -54,42 +68,82 @@ public class TmLocalizerDe extends TmLocalizer {
 		throw new IllegalArgumentException(month.name());
 	}
 
-	@Override
+    /**
+     *
+     * @param count
+     * @return
+     */
+    @Override
 	public String years(long count) {
 		return "Jahr.";
 	}
 
-	@Override
+    /**
+     *
+     * @param count
+     * @return
+     */
+    @Override
 	public String months(long count) {
 		return "Mon.";
 	}
 
-	@Override
+    /**
+     *
+     * @param count
+     * @return
+     */
+    @Override
 	public String weeks(long count) {
 		return "Wo.";
 	}
 
-	@Override
+    /**
+     *
+     * @param count
+     * @return
+     */
+    @Override
 	public String days(long count) {
 		return "Tag.";
 	}
 
-	@Override
+    /**
+     *
+     * @param count
+     * @return
+     */
+    @Override
 	public String hours(long count) {
 		return "Std.";
 	}
 
-	@Override
+    /**
+     *
+     * @param count
+     * @return
+     */
+    @Override
 	public String minutes(long count) {
 		return "Min.";
 	}
 
-	@Override
+    /**
+     *
+     * @param count
+     * @return
+     */
+    @Override
 	public String seconds(long count) {
 		return "Sek.";
 	}
 
-	@Override
+    /**
+     *
+     * @param count
+     * @return
+     */
+    @Override
 	public String millis(long count) {
 		return "ms";
 	}

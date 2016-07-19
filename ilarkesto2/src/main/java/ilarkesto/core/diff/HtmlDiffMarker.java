@@ -16,24 +16,49 @@ package ilarkesto.core.diff;
 
 import ilarkesto.core.base.Str;
 
+/**
+ *
+ * @author erik
+ */
 public class HtmlDiffMarker implements DiffMarker {
 
-	@Override
+    /**
+     *
+     * @param s
+     * @return
+     */
+    @Override
 	public String same(String s) {
 		return toHtml(s);
 	}
 
-	@Override
+    /**
+     *
+     * @param s
+     * @return
+     */
+    @Override
 	public String added(String s) {
 		return "<span class=\"added\">" + toHtml(s) + "</span>";
 	}
 
-	@Override
+    /**
+     *
+     * @param s
+     * @return
+     */
+    @Override
 	public String removed(String s) {
 		return "<span class=\"removed\">" + toHtml(s) + "</span>";
 	}
 
-	@Override
+    /**
+     *
+     * @param oldS
+     * @param newS
+     * @return
+     */
+    @Override
 	public String replaced(String oldS, String newS) {
 		return removed(oldS) + added(newS);
 	}

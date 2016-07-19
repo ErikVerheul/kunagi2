@@ -17,9 +17,17 @@ package scrum.client.admin;
 import ilarkesto.gwt.client.Gwt;
 import scrum.client.common.TooltipBuilder;
 
+/**
+ *
+ * @author erik
+ */
 public class DeleteUserAction extends GDeleteUserAction {
 
-	public DeleteUserAction(User user) {
+    /**
+     *
+     * @param user
+     */
+    public DeleteUserAction(User user) {
 		super(user);
 	}
 
@@ -28,7 +36,11 @@ public class DeleteUserAction extends GDeleteUserAction {
 		return "Delete";
 	}
 
-	@Override
+    /**
+     *
+     * @param tb
+     */
+    @Override
 	protected void updateTooltip(TooltipBuilder tb) {
 		tb.setText("Delete this user.");
 	}
@@ -50,7 +62,9 @@ public class DeleteUserAction extends GDeleteUserAction {
 
 	@Override
 	protected void onExecute() {
-		if (!Gwt.confirm("Delete user " + user.getName() + "?")) return;
+		if (!Gwt.confirm("Delete user " + user.getName() + "?")) {
+                    return;
+        }
 		getDao().deleteUser(user);
 		addUndo(new Undo());
 	}

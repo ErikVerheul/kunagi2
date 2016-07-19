@@ -27,26 +27,50 @@ import scrum.client.common.ReferenceSupport;
 import scrum.client.common.ShowEntityAction;
 import scrum.client.project.Project;
 
+/**
+ *
+ * @author erik
+ */
 public class SimpleEvent extends GSimpleEvent implements ForumSupport, ReferenceSupport, LabelSupport {
 
-	public static final String REFERENCE_PREFIX = "evt";
+    /**
+     *
+     */
+    public static final String REFERENCE_PREFIX = "evt";
 
-	public SimpleEvent(Project project, Date date) {
+    /**
+     *
+     * @param project
+     * @param date
+     */
+    public SimpleEvent(Project project, Date date) {
 		super();
 		setDate(date);
 		setProject(project);
 	}
 
-	public SimpleEvent(Map data) {
+    /**
+     *
+     * @param data
+     */
+    public SimpleEvent(Map data) {
 		super(data);
 	}
 
-	public String getTimeAsString() {
+    /**
+     *
+     * @return
+     */
+    public String getTimeAsString() {
 		Time time = getTime();
 		return time == null ? null : time.toHourMinuteString();
 	}
 
-	public String getDurationAsString() {
+    /**
+     *
+     * @return
+     */
+    public String getDurationAsString() {
 		Integer duration = getDuration();
 		return duration == null ? null : TimePeriod.minutes(duration).toHoursAndMinutes();
 	}
@@ -68,25 +92,42 @@ public class SimpleEvent extends GSimpleEvent implements ForumSupport, Reference
 		return sb.toString();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public Widget createForumItemWidget() {
 		return new HyperlinkWidget(new ShowEntityAction(CalendarWidget.class, this, getLabel()));
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getReference() {
 		return REFERENCE_PREFIX + getNumber();
 	}
 
-	public final static Comparator<SimpleEvent> TIME_COMPARATOR = new Comparator<SimpleEvent>() {
+    /**
+     *
+     */
+    public final static Comparator<SimpleEvent> TIME_COMPARATOR = new Comparator<SimpleEvent>() {
 
 		@Override
 		public int compare(SimpleEvent a, SimpleEvent b) {
 			Time at = a.getTime();
 			Time bt = b.getTime();
-			if (at == null && bt == null) return 0;
-			if (at == null) return -1;
-			if (bt == null) return 1;
+			if (at == null && bt == null) {
+                            return 0;
+            }
+			if (at == null) {
+                            return -1;
+            }
+                        if (bt == null) {
+                            return 1;
+            }
 			return at.compareTo(bt);
 		}
 	};

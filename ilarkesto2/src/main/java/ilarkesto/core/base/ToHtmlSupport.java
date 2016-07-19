@@ -14,8 +14,16 @@
  */
 package ilarkesto.core.base;
 
+/**
+ *
+ * @author erik
+ */
 public interface ToHtmlSupport {
 
-	String toHtml();
+    /**
+     *
+     * @return
+     */
+    String toHtml();
 
 }

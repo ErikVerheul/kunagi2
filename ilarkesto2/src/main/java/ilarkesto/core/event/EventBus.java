@@ -14,8 +14,16 @@
  */
 package ilarkesto.core.event;
 
+/**
+ *
+ * @author erik
+ */
 public interface EventBus {
 
-	void fireEvent(Event event);
+    /**
+     *
+     * @param event
+     */
+    void fireEvent(Event event);
 
 }

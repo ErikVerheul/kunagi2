@@ -17,11 +17,19 @@ package ilarkesto.io;
 import java.io.File;
 import java.io.FileFilter;
 
+/**
+ *
+ * @author erik
+ */
 public class SuffixFileFilter implements FileFilter {
 
 	private String[] suffixes;
 
-	public SuffixFileFilter(String... suffixes) {
+    /**
+     *
+     * @param suffixes
+     */
+    public SuffixFileFilter(String... suffixes) {
 		this.suffixes = suffixes;
 	}
 

@@ -17,6 +17,10 @@ package scrum.server.collaboration;
 import ilarkesto.core.time.TimePeriod;
 import scrum.server.admin.User;
 
+/**
+ *
+ * @author erik
+ */
 public class ChatMessage extends GChatMessage {
 
 	private static final TimePeriod TTL = TimePeriod.hours(3);
@@ -26,7 +30,12 @@ public class ChatMessage extends GChatMessage {
 		return getProject().isVisibleFor(user);
 	}
 
-	public boolean isEditableBy(User user) {
+    /**
+     *
+     * @param user
+     * @return
+     */
+    public boolean isEditableBy(User user) {
 		return false;
 	}
 

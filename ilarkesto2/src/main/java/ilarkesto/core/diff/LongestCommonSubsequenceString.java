@@ -26,7 +26,13 @@ public class LongestCommonSubsequenceString {
 	private static final int LEFT = 2;
 	private static final int UP_AND_LEFT = 3;
 
-	public static String execute(String a, String b) {
+    /**
+     *
+     * @param a
+     * @param b
+     * @return
+     */
+    public static String execute(String a, String b) {
 		int n = a.length();
 		int m = b.length();
 		int S[][] = new int[n + 1][m + 1];
@@ -96,7 +102,11 @@ public class LongestCommonSubsequenceString {
 		return new String(lcs);
 	}
 
-	public static void main(String args[]) {
+    /**
+     *
+     * @param args
+     */
+    public static void main(String args[]) {
 		try {
 			String s = execute(args[0], args[1]);
 			out.println(s);

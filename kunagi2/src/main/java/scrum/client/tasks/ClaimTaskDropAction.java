@@ -22,22 +22,41 @@ import scrum.client.project.Requirement;
 import scrum.client.sprint.Task;
 import scrum.client.workspace.VisibleDataChangedEvent;
 
+/**
+ *
+ * @author erik
+ */
 public class ClaimTaskDropAction implements BlockListDropAction<Task> {
 
 	private Requirement requirement;
 
-	public ClaimTaskDropAction(Requirement requirement) {
+    /**
+     *
+     * @param requirement
+     */
+    public ClaimTaskDropAction(Requirement requirement) {
 		this.requirement = requirement;
 	}
 
-	@Override
+    /**
+     *
+     * @param task
+     * @return
+     */
+    @Override
 	public boolean isDroppable(Task task) {
-		if (!task.getProject().isTeamMember(Scope.get().getComponent(User.class))) return false;
-		if (!task.getRequirement().equals(this.requirement)) return false;
-		return true;
+		if (!task.getProject().isTeamMember(Scope.get().getComponent(User.class))) {
+                    return false;
+        }
+		return task.getRequirement().equals(this.requirement);
 	}
 
-	@Override
+    /**
+     *
+     * @param task
+     * @return
+     */
+    @Override
 	public boolean onDrop(Task task) {
 		User owner = task.getOwner();
 		task.claim();

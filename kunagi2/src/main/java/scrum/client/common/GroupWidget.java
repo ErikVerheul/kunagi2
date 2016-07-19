@@ -14,13 +14,12 @@
  */
 package scrum.client.common;
 
-import ilarkesto.gwt.client.AWidget;
-import ilarkesto.gwt.client.Gwt;
-
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
+import ilarkesto.gwt.client.AWidget;
+import ilarkesto.gwt.client.Gwt;
 
 public class GroupWidget extends AWidget {
 

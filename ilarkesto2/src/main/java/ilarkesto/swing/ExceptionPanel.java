@@ -14,7 +14,6 @@
  */
 package ilarkesto.swing;
 
-import ilarkesto.base.StrExtend;
 import static ilarkesto.base.StrExtend.getRootCauseMessage;
 import static ilarkesto.core.base.Str.getStackTrace;
 import static ilarkesto.swing.Swing.center;
@@ -32,9 +31,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
-import static javax.swing.JOptionPane.showMessageDialog;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;

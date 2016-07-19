@@ -19,6 +19,10 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author erik
+ */
 public class ListFiles extends AJob<List<File>> {
 
 	private File rootDir;
@@ -27,15 +31,27 @@ public class ListFiles extends AJob<List<File>> {
 	private boolean recurse;
 	private boolean includeDirs;
 
-	public ListFiles(File rootDir) {
+    /**
+     *
+     * @param rootDir
+     */
+    public ListFiles(File rootDir) {
 		this.rootDir = rootDir;
 	}
 
-	public ListFiles(String rootPath) {
+    /**
+     *
+     * @param rootPath
+     */
+    public ListFiles(String rootPath) {
 		this(new File(rootPath));
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public List<File> runJob() {
 		listFiles(rootDir);
 		return result;
@@ -66,12 +82,22 @@ public class ListFiles extends AJob<List<File>> {
 		}
 	}
 
-	public ListFiles setRecurse(boolean recurse) {
+    /**
+     *
+     * @param recurse
+     * @return
+     */
+    public ListFiles setRecurse(boolean recurse) {
 		this.recurse = recurse;
 		return this;
 	}
 
-	public ListFiles setIncludeDirs(boolean includeDirs) {
+    /**
+     *
+     * @param includeDirs
+     * @return
+     */
+    public ListFiles setIncludeDirs(boolean includeDirs) {
 		this.includeDirs = includeDirs;
 		return this;
 	}

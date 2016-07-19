@@ -2,9 +2,17 @@ package scrum.client.pr;
 
 import java.util.Map;
 
+/**
+ *
+ * @author erik
+ */
 public class Subscription extends GSubscription {
 
-	public Subscription(Map data) {
+    /**
+     *
+     * @param data
+     */
+    public Subscription(Map data) {
 		super(data);
 	}
 }

@@ -14,16 +14,6 @@
  */
 package scrum.client.common;
 
-import ilarkesto.core.base.Str;
-import ilarkesto.gwt.client.AMultiSelectionViewEditWidget;
-import ilarkesto.gwt.client.MultiSelectionWidget;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import scrum.client.ScrumGwt;
-
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.KeyCodes;
@@ -33,13 +23,28 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
+import ilarkesto.core.base.Str;
+import ilarkesto.gwt.client.AMultiSelectionViewEditWidget;
+import ilarkesto.gwt.client.MultiSelectionWidget;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import scrum.client.ScrumGwt;
 
+/**
+ *
+ * @author erik
+ */
 public class ThemesWidget extends AMultiSelectionViewEditWidget<String> {
 
 	private ThemesContainer model;
 	private TextBox newThemeTextBox;
 
-	public ThemesWidget(ThemesContainer model) {
+    /**
+     *
+     * @param model
+     */
+    public ThemesWidget(ThemesContainer model) {
 		super();
 		this.model = model;
 	}
@@ -65,10 +70,16 @@ public class ThemesWidget extends AMultiSelectionViewEditWidget<String> {
 		model.setThemes(getEditorSelectedItems());
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected Widget getExtendedEditorContent() {
 		StringBuilder tooltip = new StringBuilder("Create a new theme.");
-		if (!model.isThemesCreatable()) tooltip.append("Only Product Owner can create themes.");
+		if (!model.isThemesCreatable()) {
+                    tooltip.append("Only Product Owner can create themes.");
+        }
 
 		newThemeTextBox = new TextBox();
 		newThemeTextBox.setEnabled(model.isThemesCreatable());
@@ -110,7 +121,9 @@ public class ThemesWidget extends AMultiSelectionViewEditWidget<String> {
 
 	private void createTheme() {
 		String theme = newThemeTextBox.getText();
-		if (Str.isBlank(theme)) return;
+		if (Str.isBlank(theme)) {
+                    return;
+        }
 		theme = theme.trim();
 		MultiSelectionWidget<String> editor = getEditor();
 
@@ -118,7 +131,9 @@ public class ThemesWidget extends AMultiSelectionViewEditWidget<String> {
 
 		List<String> selected = editor.getSelected();
 
-		if (!items.contains(theme)) items.add(theme);
+                if (!items.contains(theme)) {
+                    items.add(theme);
+        }
 		Collections.sort(items);
 		selected.add(theme);
 

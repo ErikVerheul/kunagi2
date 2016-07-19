@@ -16,8 +16,18 @@ package ilarkesto.webapp.jsonapi;
 
 import ilarkesto.webapp.RequestWrapper;
 
+/**
+ *
+ * @author erik
+ */
 public interface JsonApiFactory {
 
-	AJsonApi createApi(RequestWrapper req, String path);
+    /**
+     *
+     * @param req
+     * @param path
+     * @return
+     */
+    AJsonApi createApi(RequestWrapper req, String path);
 
 }

@@ -15,9 +15,9 @@
 package ilarkesto.integration.gravatar;
 
 import static ilarkesto.core.base.Str.isBlank;
-import ilarkesto.logging.Log;
 import static ilarkesto.io.IO.downloadUrlToString;
 import ilarkesto.json.JsonObject;
+import ilarkesto.logging.Log;
 import java.io.UnsupportedEncodingException;
 import static java.lang.Integer.toHexString;
 import static java.lang.System.out;

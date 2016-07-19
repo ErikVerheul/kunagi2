@@ -19,24 +19,71 @@ import ilarkesto.id.IdentifiableResolver;
 import java.util.Collection;
 import java.util.Set;
 
+/**
+ *
+ * @author erik
+ */
 public interface EntityStore extends IdentifiableResolver<AEntity> {
 
-	void setVersion(long version);
+    /**
+     *
+     * @param version
+     */
+    void setVersion(long version);
 
-	void setAlias(String alias, Class cls);
+    /**
+     *
+     * @param alias
+     * @param cls
+     */
+    void setAlias(String alias, Class cls);
 
-	void load(Class<? extends AEntity> cls, String alias);
+    /**
+     *
+     * @param cls
+     * @param alias
+     */
+    void load(Class<? extends AEntity> cls, String alias);
 
-	AEntity getEntity(Predicate<Class> typeFilter, Predicate<AEntity> entityFilter);
+    /**
+     *
+     * @param typeFilter
+     * @param entityFilter
+     * @return
+     */
+    AEntity getEntity(Predicate<Class> typeFilter, Predicate<AEntity> entityFilter);
 
-	int getEntitiesCount(Predicate<Class> typeFilter, Predicate<AEntity> entityFilter);
+    /**
+     *
+     * @param typeFilter
+     * @param entityFilter
+     * @return
+     */
+    int getEntitiesCount(Predicate<Class> typeFilter, Predicate<AEntity> entityFilter);
 
-	Set<AEntity> getEntities(Predicate<Class> typeFilter, Predicate<AEntity> entityFilter);
+    /**
+     *
+     * @param typeFilter
+     * @param entityFilter
+     * @return
+     */
+    Set<AEntity> getEntities(Predicate<Class> typeFilter, Predicate<AEntity> entityFilter);
 
-	void persist(Collection<AEntity> entitiesToSave, Collection<AEntity> entitiesToDelete);
+    /**
+     *
+     * @param entitiesToSave
+     * @param entitiesToDelete
+     */
+    void persist(Collection<AEntity> entitiesToSave, Collection<AEntity> entitiesToDelete);
 
-	void lock();
+    /**
+     *
+     */
+    void lock();
 
-	void deleteOldBackups();
+    /**
+     *
+     */
+    void deleteOldBackups();
 
 }

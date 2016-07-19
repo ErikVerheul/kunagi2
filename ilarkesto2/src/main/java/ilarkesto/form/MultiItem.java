@@ -16,10 +16,23 @@ package ilarkesto.form;
 
 import java.util.Collection;
 
+/**
+ *
+ * @author erik
+ * @param <E>
+ */
 public interface MultiItem<E> {
 
-	Collection<E> getItems();
+    /**
+     *
+     * @return
+     */
+    Collection<E> getItems();
 
-	String getTooltip();
+    /**
+     *
+     * @return
+     */
+    String getTooltip();
 
 }

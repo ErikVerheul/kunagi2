@@ -21,50 +21,100 @@ import static ilarkesto.core.time.Tm.MINUTE;
 import static ilarkesto.core.time.Tm.SECOND;
 import static ilarkesto.core.time.Tm.WEEK;
 
+/**
+ *
+ * @author erik
+ */
 public final class TimePeriodExtend extends ilarkesto.core.time.TimePeriod {
 
-	public static final TimePeriodExtend ZERO = new TimePeriodExtend(0);
+    /**
+     *
+     */
+    public static final TimePeriodExtend ZERO = new TimePeriodExtend(0);
 
-	public TimePeriodExtend(long millis) {
+    /**
+     *
+     * @param millis
+     */
+    public TimePeriodExtend(long millis) {
 		super(millis);
 	}
 
-	public TimePeriodExtend(String s) {
+    /**
+     *
+     * @param s
+     */
+    public TimePeriodExtend(String s) {
 		super(s);
 	}
 
-	@Override
+    /**
+     *
+     * @param millis
+     * @return
+     */
+    @Override
 	protected TimePeriodExtend newTimePeriod(long millis) {
 		return new TimePeriodExtend(millis);
 	}
 
 	// ---
 
+    /**
+     *
+     * @param factor
+     * @return
+     */
+    
 	@Override
 	public TimePeriodExtend multiplyBy(int factor) {
 		return (TimePeriodExtend) super.multiplyBy(factor);
 	}
 
-	@Override
+    /**
+     *
+     * @param divisor
+     * @return
+     */
+    @Override
 	public TimePeriodExtend divide(int divisor) {
 		return (TimePeriodExtend) super.divide(divisor);
 	}
 
-	@Override
+    /**
+     *
+     * @param tp
+     * @return
+     */
+    @Override
 	public TimePeriodExtend subtract(ilarkesto.core.time.TimePeriod tp) {
 		return (TimePeriodExtend) super.subtract(tp);
 	}
 
-	@Override
+    /**
+     *
+     * @param tp
+     * @return
+     */
+    @Override
 	public TimePeriodExtend add(ilarkesto.core.time.TimePeriod tp) {
 		return (TimePeriodExtend) super.add(tp);
 	}
 
-	public TimePeriodExtend subtract(Time time) {
+    /**
+     *
+     * @param time
+     * @return
+     */
+    public TimePeriodExtend subtract(Time time) {
 		return new TimePeriodExtend(toMillis() - time.toMillis());
 	}
 
-        @Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String toHoursAndMinutesString() {
 		long hours = toHours();
 		long minutes = toMinutes() - (hours * 60);
@@ -78,23 +128,48 @@ public final class TimePeriodExtend extends ilarkesto.core.time.TimePeriod {
 		return sb.toString();
 	}
 
-	public static TimePeriodExtend seconds(int seconds) {
+    /**
+     *
+     * @param seconds
+     * @return
+     */
+    public static TimePeriodExtend seconds(int seconds) {
 		return new TimePeriodExtend(seconds * SECOND);
 	}
 
-	public static TimePeriodExtend minutes(int minutes) {
+    /**
+     *
+     * @param minutes
+     * @return
+     */
+    public static TimePeriodExtend minutes(int minutes) {
 		return new TimePeriodExtend(minutes * MINUTE);
 	}
 
-	public static TimePeriodExtend hours(int hours) {
+    /**
+     *
+     * @param hours
+     * @return
+     */
+    public static TimePeriodExtend hours(int hours) {
 		return new TimePeriodExtend(hours * HOUR);
 	}
 
-	public static TimePeriodExtend days(int days) {
+    /**
+     *
+     * @param days
+     * @return
+     */
+    public static TimePeriodExtend days(int days) {
 		return new TimePeriodExtend(days * DAY);
 	}
 
-	public static TimePeriodExtend weeks(int weeks) {
+    /**
+     *
+     * @param weeks
+     * @return
+     */
+    public static TimePeriodExtend weeks(int weeks) {
 		return new TimePeriodExtend(weeks * WEEK);
 	}
 

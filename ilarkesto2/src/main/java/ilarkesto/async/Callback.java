@@ -14,10 +14,23 @@
  */
 package ilarkesto.async;
 
+/**
+ *
+ * @author erik
+ * @param <R>
+ */
 public interface Callback<R> {
 
-	void onSuccess(R result);
+    /**
+     *
+     * @param result
+     */
+    void onSuccess(R result);
 
-	void onError(Exception error);
+    /**
+     *
+     * @param error
+     */
+    void onError(Exception error);
 
 }

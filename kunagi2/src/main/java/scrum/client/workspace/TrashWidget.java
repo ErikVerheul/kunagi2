@@ -14,18 +14,21 @@
  */
 package scrum.client.workspace;
 
+import com.allen_sauer.gwt.dnd.client.DragContext;
+import com.allen_sauer.gwt.dnd.client.VetoDragException;
+import com.allen_sauer.gwt.dnd.client.drop.DropController;
+import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.scope.Scope;
 import scrum.client.common.AScrumWidget;
 import scrum.client.common.StyleSheet;
 import scrum.client.dnd.TrashSupport;
 import scrum.client.img.Img;
 
-import com.allen_sauer.gwt.dnd.client.DragContext;
-import com.allen_sauer.gwt.dnd.client.VetoDragException;
-import com.allen_sauer.gwt.dnd.client.drop.DropController;
-import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class TrashWidget extends AScrumWidget {
 
 	private DndManager dndManager;
@@ -68,7 +71,9 @@ public class TrashWidget extends AScrumWidget {
 
 		@Override
 		public void onDrop(DragContext context) {
-			if (!isTrashable(context.draggable)) return;
+			if (!isTrashable(context.draggable)) {
+                            return;
+            }
 			((TrashSupport) context.draggable).getTrashAction().execute();
 		}
 

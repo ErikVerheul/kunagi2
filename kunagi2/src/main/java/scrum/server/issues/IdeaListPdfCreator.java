@@ -15,34 +15,52 @@
 package scrum.server.issues;
 
 import ilarkesto.pdf.APdfContainerElement;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import scrum.server.common.APdfCreator;
 import scrum.server.project.Project;
 
+/**
+ *
+ * @author erik
+ */
 public class IdeaListPdfCreator extends APdfCreator {
 
-	public IdeaListPdfCreator(Project project) {
+    /**
+     *
+     * @param project
+     */
+    public IdeaListPdfCreator(Project project) {
 		super(project);
 	}
 
-	@Override
+    /**
+     *
+     * @param pdf
+     */
+    @Override
 	protected void build(APdfContainerElement pdf) {
 		reportHeader(pdf, "Idea list", project.getLabel());
 
 		List<Issue> issues = new ArrayList<Issue>(project.getIssues());
 		Collections.sort(issues, Issue.ACCEPT_DATE_COMPARATOR);
 		for (Issue issue : issues) {
-			if (issue.isClosed()) continue;
-			if (!issue.isIdea()) continue;
+			if (issue.isClosed()) {
+                            continue;
+            }
+			if (!issue.isIdea()) {
+                            continue;
+            }
 			issue(pdf, issue);
 		}
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected String getFilename() {
 		return "idealist";
 	}

@@ -6,20 +6,40 @@ package ilarkesto.core.logging;
  */
 import com.allen_sauer.gwt.log.client.Log;
 
+/**
+ *
+ * @author erik
+ */
 public class ClientLog {
 
+    /**
+     *
+     * @param s
+     */
     public static void DEBUG(Object... s) {
         Log.debug(concat(s));
     }
 
+    /**
+     *
+     * @param s
+     */
     public static void ERROR(Object... s) {
         Log.error(concat(s));
     }
 
+    /**
+     *
+     * @param s
+     */
     public static void WARN(Object... s) {
         Log.warn(concat(s));
     }
 
+    /**
+     *
+     * @param s
+     */
     public static void INFO(Object... s) {
         Log.info(concat(s));
     }

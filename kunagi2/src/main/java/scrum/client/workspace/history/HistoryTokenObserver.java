@@ -14,10 +14,20 @@
  */
 package scrum.client.workspace.history;
 
+/**
+ *
+ * @author erik
+ */
 public interface HistoryTokenObserver {
 
-	void onProjectChanged();
+    /**
+     *
+     */
+    void onProjectChanged();
 
-	void onPageOrEntityChanged();
+    /**
+     *
+     */
+    void onPageOrEntityChanged();
 
 }

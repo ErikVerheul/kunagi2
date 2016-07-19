@@ -16,9 +16,17 @@ package scrum.client.project;
 
 import scrum.client.common.TooltipBuilder;
 
+/**
+ *
+ * @author erik
+ */
 public class DeleteRequirementAction extends GDeleteRequirementAction {
 
-	protected DeleteRequirementAction(Requirement requirement) {
+    /**
+     *
+     * @param requirement
+     */
+    protected DeleteRequirementAction(Requirement requirement) {
 		super(requirement);
 	}
 
@@ -27,25 +35,33 @@ public class DeleteRequirementAction extends GDeleteRequirementAction {
 		return "Delete";
 	}
 
-	@Override
+    /**
+     *
+     * @param tb
+     */
+    @Override
 	protected void updateTooltip(TooltipBuilder tb) {
 		tb.setText("Delete this Story permanently.");
-		if (!requirement.getProject().isProductOwner(getCurrentUser())) tb.addRemark(TooltipBuilder.NOT_PRODUCT_OWNER);
+		if (!requirement.getProject().isProductOwner(getCurrentUser())) {
+                    tb.addRemark(TooltipBuilder.NOT_PRODUCT_OWNER);
+        }
 	}
 
 	@Override
 	public boolean isExecutable() {
 		Project project = getCurrentProject();
-		if (!project.getProductBacklogRequirements().contains(requirement)) return false;
-		if (project.isCurrentSprint(requirement.getSprint())) return false;
-		if (project.isInHistory(requirement)) return false;
-		return true;
+		if (!project.getProductBacklogRequirements().contains(requirement)) {
+                    return false;
+        }
+                if (project.isCurrentSprint(requirement.getSprint())) {
+                    return false;
+        }
+		return !project.isInHistory(requirement);
 	}
 
 	@Override
 	public boolean isPermitted() {
-		if (!requirement.getProject().isProductOwner(getCurrentUser())) return false;
-		return true;
+		return requirement.getProject().isProductOwner(getCurrentUser());
 	}
 
 	@Override

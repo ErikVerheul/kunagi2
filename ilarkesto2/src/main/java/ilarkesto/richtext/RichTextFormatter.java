@@ -18,7 +18,6 @@ import ilarkesto.base.StrExtend;
 import static ilarkesto.base.StrExtend.activateLinksInHtml;
 import static ilarkesto.base.StrExtend.cutHtmlAndHeaderAndBody;
 import static ilarkesto.base.StrExtend.toStringList;
-import ilarkesto.integration.links.MultiLinkConverter;
 import static ilarkesto.integration.links.MultiLinkConverter.ALL;
 import java.util.List;
 

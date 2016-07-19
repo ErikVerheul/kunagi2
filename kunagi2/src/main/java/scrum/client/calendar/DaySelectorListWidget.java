@@ -14,16 +14,13 @@
  */
 package scrum.client.calendar;
 
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.time.Date;
 import ilarkesto.core.time.Weekday;
 import ilarkesto.gwt.client.Gwt;
 import ilarkesto.gwt.client.TableBuilder;
-
 import java.util.List;
-
 import scrum.client.common.AScrumWidget;
-
-import com.google.gwt.user.client.ui.Widget;
 
 public class DaySelectorListWidget extends AScrumWidget {
 

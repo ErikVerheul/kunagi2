@@ -14,19 +14,29 @@
  */
 package scrum.client.core;
 
+import com.google.gwt.user.client.Timer;
+import static ilarkesto.core.logging.ClientLog.ERROR;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.AViewEditWidget;
 import ilarkesto.gwt.client.editor.RichtextEditorWidget;
 import scrum.client.admin.ProjectUserConfig;
 
-import com.google.gwt.user.client.Timer;
-import static ilarkesto.core.logging.ClientLog.ERROR;
-
+/**
+ *
+ * @author erik
+ */
 public class RichtextAutosaver extends GRichtextAutosaver implements ApplicationStartedHandler {
 
-	public static final int SAVE_INTERVAL_IN_SECONDS = 5;
+    /**
+     *
+     */
+    public static final int SAVE_INTERVAL_IN_SECONDS = 5;
 
-	@Override
+    /**
+     *
+     * @param event
+     */
+    @Override
 	public void onApplicationStarted(ApplicationStartedEvent event) {
 		new Timer() {
 
@@ -39,16 +49,28 @@ public class RichtextAutosaver extends GRichtextAutosaver implements Application
 
 	private void autosave() {
 		AViewEditWidget currentEditor = RichtextEditorWidget.getCurrentEditor();
-		if (currentEditor == null) return;
+		if (currentEditor == null) {
+                    return;
+        }
 
 		try {
-			if (!currentEditor.isInitialized()) return;
+			if (!currentEditor.isInitialized()) {
+                            return;
+            }
 			ProjectUserConfig config = Scope.get().getComponent(ProjectUserConfig.class);
-			if (config == null) return;
-			if (!(currentEditor instanceof RichtextEditorWidget)) return;
-			RichtextEditorWidget editor = (RichtextEditorWidget) currentEditor;
-			if (!editor.isEditMode()) return;
-			if (!editor.isAutosave()) return;
+                        if (config == null) {
+                            return;
+            }
+                        if (!(currentEditor instanceof RichtextEditorWidget)) {
+                return;
+            }
+                        RichtextEditorWidget editor = (RichtextEditorWidget) currentEditor;
+                        if (!editor.isEditMode()) {
+                return;
+            }
+			if (!editor.isAutosave()) {
+                return;
+            }
 			editor.submitEditor(false);
 		} catch (Exception ex) {
 			ERROR(ex);

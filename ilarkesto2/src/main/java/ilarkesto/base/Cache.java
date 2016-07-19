@@ -32,7 +32,11 @@ public class Cache<K, V> {
 
 	private Factory<K, V> factory;
 
-	public Cache(Factory<K, V> factory) {
+    /**
+     *
+     * @param factory
+     */
+    public Cache(Factory<K, V> factory) {
 		this.factory = factory;
 	}
 
@@ -42,11 +46,19 @@ public class Cache<K, V> {
 		this.factory = factory;
 	}
 
-	public void clear() {
+    /**
+     *
+     */
+    public void clear() {
 		cache = new HashMap<>();
 	}
 
-	public V get(K key) {
+    /**
+     *
+     * @param key
+     * @return
+     */
+    public V get(K key) {
 		V value = cache.get(key);
 		if (value == null) {
 			value = factory.create(key);
@@ -58,9 +70,19 @@ public class Cache<K, V> {
 		return value;
 	}
 
-	public static interface Factory<K, V> {
+    /**
+     *
+     * @param <K>
+     * @param <V>
+     */
+    public static interface Factory<K, V> {
 
-		V create(K key);
+        /**
+         *
+         * @param key
+         * @return
+         */
+        V create(K key);
 
 	}
 

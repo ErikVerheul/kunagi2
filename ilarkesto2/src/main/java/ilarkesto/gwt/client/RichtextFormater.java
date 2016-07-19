@@ -14,8 +14,17 @@
  */
 package ilarkesto.gwt.client;
 
+/**
+ *
+ * @author erik
+ */
 public interface RichtextFormater {
 
-	String richtextToHtml(String s);
+    /**
+     *
+     * @param s
+     * @return
+     */
+    String richtextToHtml(String s);
 
 }

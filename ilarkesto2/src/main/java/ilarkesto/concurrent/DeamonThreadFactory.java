@@ -16,7 +16,10 @@ package ilarkesto.concurrent;
 
 import java.util.concurrent.ThreadFactory;
 
-
+/**
+ *
+ * @author erik
+ */
 public class DeamonThreadFactory implements ThreadFactory {
 
     @Override

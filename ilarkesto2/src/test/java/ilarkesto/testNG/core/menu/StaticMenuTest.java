@@ -1,9 +1,9 @@
 package ilarkesto.testNG.core.menu;
 
+import static ilarkesto.base.UtlExtend.sleep;
 import ilarkesto.core.menu.StaticMenu;
 import ilarkesto.core.menu.StaticMenuItem;
 import ilarkesto.core.menu.StaticSubmenu;
-import static ilarkesto.base.UtlExtend.sleep;
 import static java.util.UUID.randomUUID;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;

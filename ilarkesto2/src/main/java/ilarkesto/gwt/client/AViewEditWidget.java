@@ -33,6 +33,10 @@ import static ilarkesto.gwt.client.Gwt.addTooltipHtml;
 import static ilarkesto.gwt.client.Gwt.createDiv;
 import static ilarkesto.gwt.client.Gwt.getRootWidget;
 
+/**
+ *
+ * @author erik
+ */
 public abstract class AViewEditWidget extends AWidget {
 
 	private static AViewEditWidget currentEditor;
@@ -51,17 +55,38 @@ public abstract class AViewEditWidget extends AWidget {
 	private boolean editorInitialized;
 	private boolean editorInitializing;
 
-	protected abstract void onViewerUpdate();
+    /**
+     *
+     */
+    protected abstract void onViewerUpdate();
 
-	protected abstract Widget onViewerInitialization();
+    /**
+     *
+     * @return
+     */
+    protected abstract Widget onViewerInitialization();
 
-	protected abstract void onEditorUpdate();
+    /**
+     *
+     */
+    protected abstract void onEditorUpdate();
 
-	protected abstract Widget onEditorInitialization();
+    /**
+     *
+     * @return
+     */
+    protected abstract Widget onEditorInitialization();
 
-	protected abstract void onEditorSubmit();
+    /**
+     *
+     */
+    protected abstract void onEditorSubmit();
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected final Widget onInitialization() {
 		masterWrapper = new FocusPanel();
 		masterWrapper.setStyleName("AViewEditWidget");
@@ -69,7 +94,10 @@ public abstract class AViewEditWidget extends AWidget {
 		return masterWrapper;
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	protected void onUpdate() {
 		if (isViewMode()) {
 			updateViewer();
@@ -79,11 +107,20 @@ public abstract class AViewEditWidget extends AWidget {
 		}
 	}
 
-	protected void onEditorClose() {}
+    /**
+     *
+     */
+    protected void onEditorClose() {}
 
-	protected void focusEditor() {}
+    /**
+     *
+     */
+    protected void focusEditor() {}
 
-        @edu.umd.cs.findbugs.annotations.SuppressWarnings(value = "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD", justification = "Assume this is OK")
+    /**
+     *
+     */
+    @edu.umd.cs.findbugs.annotations.SuppressWarnings(value = "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD", justification = "Assume this is OK")
 	public void switchToEditMode() {
 		if (isEditMode()) {
                         return;
@@ -113,19 +150,37 @@ public abstract class AViewEditWidget extends AWidget {
 		onSwitchToEditModeCompleted();
 	}
 
-	protected void onSwitchToEditModeCompleted() {}
+    /**
+     *
+     */
+    protected void onSwitchToEditModeCompleted() {}
 
-	public abstract boolean isEditable();
+    /**
+     *
+     * @return
+     */
+    public abstract boolean isEditable();
 
-	public String getTooltip() {
+    /**
+     *
+     * @return
+     */
+    public String getTooltip() {
 		return null;
 	}
 
-	public void switchToViewMode() {
+    /**
+     *
+     */
+    public void switchToViewMode() {
 		switchToViewMode(isAttached());
 	}
 
-	public void switchToViewMode(boolean update) {
+    /**
+     *
+     * @param update
+     */
+    public void switchToViewMode(boolean update) {
 		if (isViewMode()) {
                         return;
                 }
@@ -146,11 +201,20 @@ public abstract class AViewEditWidget extends AWidget {
                 }
 	}
 
-	public final boolean submitEditor() {
+    /**
+     *
+     * @return
+     */
+    public final boolean submitEditor() {
 		return submitEditor(true);
 	}
 
-	public final boolean submitEditor(boolean switchToViewMode) {
+    /**
+     *
+     * @param switchToViewMode
+     * @return
+     */
+    public final boolean submitEditor(boolean switchToViewMode) {
 		if (!isEditMode()) {
                         throw new RuntimeException("submitEditor() not allowed. Not in edit mode: " + toString());
                 }
@@ -171,18 +235,27 @@ public abstract class AViewEditWidget extends AWidget {
 		return true;
 	}
 
-	protected void updateAutoUpdateWidget() {
+    /**
+     *
+     */
+    protected void updateAutoUpdateWidget() {
 		Gwt.update(getRootWidget());
 	}
 
-	protected final void cancelEditor() {
+    /**
+     *
+     */
+    protected final void cancelEditor() {
 		if (!isEditMode()) {
                         throw new RuntimeException("cancelEditor() not allowed. Not in edit mode: " + toString());
                 }
 		switchToViewMode();
 	}
 
-	protected void closeEditor() {
+    /**
+     *
+     */
+    protected void closeEditor() {
 		cancelEditor();
 	}
 
@@ -252,7 +325,11 @@ public abstract class AViewEditWidget extends AWidget {
 		editorInitializing = false;
 	}
 
-	protected void setEditorError(String text) {
+    /**
+     *
+     * @param text
+     */
+    protected void setEditorError(String text) {
 		if (isBlank(text)) {
 			errorWrapper.clear();
 		} else {
@@ -260,11 +337,18 @@ public abstract class AViewEditWidget extends AWidget {
 		}
 	}
 
-	public void setModeSwitchHandler(ModeSwitchHandler modeSwitchHandler) {
+    /**
+     *
+     * @param modeSwitchHandler
+     */
+    public void setModeSwitchHandler(ModeSwitchHandler modeSwitchHandler) {
 		this.modeSwitchHandler = modeSwitchHandler;
 	}
 
-	protected final void ensureEditorInitialized() {
+    /**
+     *
+     */
+    protected final void ensureEditorInitialized() {
 		if (editorInitializing) {
                         throw new RuntimeException("Editor initializing. Don't call update() within onEditorInitailization(): "
                                 + toString());
@@ -281,32 +365,60 @@ public abstract class AViewEditWidget extends AWidget {
 		getElement().scrollIntoView();
 	}
 
-	public final boolean isViewMode() {
+    /**
+     *
+     * @return
+     */
+    public final boolean isViewMode() {
 		return viewMode;
 	}
 
-	public final boolean isEditMode() {
+    /**
+     *
+     * @return
+     */
+    public final boolean isEditMode() {
 		return !viewMode;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getId() {
 		return getSimpleName(getClass()).replace('$', '_');
 	}
 
-	protected String getViewerId() {
+    /**
+     *
+     * @return
+     */
+    protected String getViewerId() {
 		return "viewer_" + getId();
 	}
 
-	protected String getEditroId() {
+    /**
+     *
+     * @return
+     */
+    protected String getEditroId() {
 		return "editor_" + getId();
 	}
 
-	public static AViewEditWidget getCurrentEditor() {
+    /**
+     *
+     * @return
+     */
+    public static AViewEditWidget getCurrentEditor() {
 		return currentEditor;
 	}
 
-	public static void setGlobalModeSwitchHandler(ModeSwitchHandler globalModeSwitchHandler) {
+    /**
+     *
+     * @param globalModeSwitchHandler
+     */
+    public static void setGlobalModeSwitchHandler(ModeSwitchHandler globalModeSwitchHandler) {
 		AViewEditWidget.globalModeSwitchHandler = globalModeSwitchHandler;
 	}
 
@@ -322,9 +434,15 @@ public abstract class AViewEditWidget extends AWidget {
 
 	}
 
-	protected class SubmitEditorFocusListener implements FocusListener {
+    /**
+     *
+     */
+    protected class SubmitEditorFocusListener implements FocusListener {
 
-		public SubmitEditorFocusListener() {}
+        /**
+         *
+         */
+        public SubmitEditorFocusListener() {}
 
 		@Override
 		public void onFocus(Widget sender) {}
@@ -336,7 +454,10 @@ public abstract class AViewEditWidget extends AWidget {
 
 	}
 
-	public class CancelKeyHandler implements KeyDownHandler {
+    /**
+     *
+     */
+    public class CancelKeyHandler implements KeyDownHandler {
 
 		@Override
 		public void onKeyDown(KeyDownEvent event) {
@@ -348,11 +469,22 @@ public abstract class AViewEditWidget extends AWidget {
 
 	}
 
-	public static interface ModeSwitchHandler {
+    /**
+     *
+     */
+    public static interface ModeSwitchHandler {
 
-		void onViewerActivated(AViewEditWidget widget);
+        /**
+         *
+         * @param widget
+         */
+        void onViewerActivated(AViewEditWidget widget);
 
-		void onEditorActivated(AViewEditWidget widget);
+        /**
+         *
+         * @param widget
+         */
+        void onEditorActivated(AViewEditWidget widget);
 
 	}
 

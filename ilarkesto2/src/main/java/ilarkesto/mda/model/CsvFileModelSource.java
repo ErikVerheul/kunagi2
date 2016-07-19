@@ -14,11 +14,11 @@
  */
 package ilarkesto.mda.model;
 
-import ilarkesto.logging.Log;
 import ilarkesto.io.CsvParser;
 import ilarkesto.io.CsvWriter;
 import static ilarkesto.io.IO.UTF_8;
 import static ilarkesto.io.IO.writeFile;
+import ilarkesto.logging.Log;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.StringWriter;

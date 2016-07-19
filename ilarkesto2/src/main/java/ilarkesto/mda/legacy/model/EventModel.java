@@ -18,37 +18,70 @@ import static java.lang.Character.isUpperCase;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+/**
+ *
+ * @author erik
+ */
 public class EventModel extends AModel {
 
 	private Set<ParameterModel> parameters = new LinkedHashSet<>();
 	private boolean quiet;
 
-	public EventModel(String name) {
+    /**
+     *
+     * @param name
+     */
+    public EventModel(String name) {
 		super(name);
 		if (!isUpperCase(name.charAt(0))) {
                         throw new RuntimeException("First letter of event name needs to be uppercase: " + name);
                 }
 	}
 
-	public EventModel addParameter(String name, String type) {
+    /**
+     *
+     * @param name
+     * @param type
+     * @return
+     */
+    public EventModel addParameter(String name, String type) {
 		ParameterModel parameter = new ParameterModel(name, type);
 		parameters.add(parameter);
 		return this;
 	}
 
-	public EventModel addParameter(String name, Class type) {
+    /**
+     *
+     * @param name
+     * @param type
+     * @return
+     */
+    public EventModel addParameter(String name, Class type) {
 		return addParameter(name, type.getName());
 	}
 
-	public Set<ParameterModel> getParameters() {
+    /**
+     *
+     * @return
+     */
+    public Set<ParameterModel> getParameters() {
 		return parameters;
 	}
 
-	public boolean isQuiet() {
+    /**
+     *
+     * @return
+     */
+    public boolean isQuiet() {
 		return quiet;
 	}
 
-	public EventModel setQuiet(boolean quiet) {
+    /**
+     *
+     * @param quiet
+     * @return
+     */
+    public EventModel setQuiet(boolean quiet) {
 		this.quiet = quiet;
 		return this;
 	}

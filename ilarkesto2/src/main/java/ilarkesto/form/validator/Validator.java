@@ -30,6 +30,12 @@ import ilarkesto.form.ValidationException;
  */
 public interface Validator {
 
+    /**
+     *
+     * @param text
+     * @return
+     * @throws ValidationException
+     */
     public String validate(String text) throws ValidationException;
 
 }

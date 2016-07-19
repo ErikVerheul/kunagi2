@@ -16,17 +16,29 @@ package ilarkesto.core.menu;
 
 import static ilarkesto.core.logging.ClientLog.DEBUG;
 
+/**
+ *
+ * @author erik
+ */
 public class StaticMenuItem implements MenuItem {
 
 	private final String label;
 	private boolean selected;
-	protected StaticMenu menu;
+
+    /**
+     *
+     */
+    protected StaticMenu menu;
 	private Object payload;
 
 	private Runnable onSelect;
 	private Runnable onDeselect;
 
-	public StaticMenuItem(String label) {
+    /**
+     *
+     * @param label
+     */
+    public StaticMenuItem(String label) {
 		super();
 		this.label = label;
 	}
@@ -35,17 +47,28 @@ public class StaticMenuItem implements MenuItem {
 		this.menu = menu;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getLabel() {
 		return label;
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public boolean isSelected() {
 		return selected;
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	public void select() {
 		if (selected) {
                         return;
@@ -59,7 +82,10 @@ public class StaticMenuItem implements MenuItem {
 		menu.changeIndicator.markChanged();
 	}
 
-	@Override
+    /**
+     *
+     */
+    @Override
 	public void deselect() {
 		if (!selected) {
                         return;
@@ -71,11 +97,20 @@ public class StaticMenuItem implements MenuItem {
 		menu.changeIndicator.markChanged();
 	}
 
-	public Object getPayload() {
+    /**
+     *
+     * @return
+     */
+    public Object getPayload() {
 		return payload;
 	}
 
-	public boolean isPayload(Object test) {
+    /**
+     *
+     * @param test
+     * @return
+     */
+    public boolean isPayload(Object test) {
 		if (test == null && payload == null) {
                         return true;
                 }
@@ -85,7 +120,12 @@ public class StaticMenuItem implements MenuItem {
 		return payload.equals(test);
 	}
 
-	public StaticMenuItem setPayload(Object payload) {
+    /**
+     *
+     * @param payload
+     * @return
+     */
+    public StaticMenuItem setPayload(Object payload) {
 		this.payload = payload;
 		if (menu != null) {
                         menu.changeIndicator.markChanged();
@@ -93,12 +133,22 @@ public class StaticMenuItem implements MenuItem {
 		return this;
 	}
 
-	public StaticMenuItem setOnSelect(Runnable onSelect) {
+    /**
+     *
+     * @param onSelect
+     * @return
+     */
+    public StaticMenuItem setOnSelect(Runnable onSelect) {
 		this.onSelect = onSelect;
 		return this;
 	}
 
-	public StaticMenuItem setOnDeselect(Runnable onDeselect) {
+    /**
+     *
+     * @param onDeselect
+     * @return
+     */
+    public StaticMenuItem setOnDeselect(Runnable onDeselect) {
 		this.onDeselect = onDeselect;
 		return this;
 	}

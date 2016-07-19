@@ -16,8 +16,16 @@ package scrum.client.estimation;
 
 import java.util.Map;
 
+/**
+ *
+ * @author erik
+ */
 public class RequirementEstimationVote extends GRequirementEstimationVote {
 
+    /**
+     *
+     * @param data
+     */
     public RequirementEstimationVote(Map data) {
         super(data);
     }

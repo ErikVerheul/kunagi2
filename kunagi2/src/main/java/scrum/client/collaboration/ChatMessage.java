@@ -21,8 +21,18 @@ import java.util.Map;
 import scrum.client.admin.User;
 import scrum.client.project.Project;
 
+/**
+ *
+ * @author erik
+ */
 public class ChatMessage extends GChatMessage implements Comparable<ChatMessage> {
 
+    /**
+     *
+     * @param project
+     * @param author
+     * @param text
+     */
     public ChatMessage(Project project, User author, String text) {
         setProject(project);
         setAuthor(author);
@@ -30,6 +40,10 @@ public class ChatMessage extends GChatMessage implements Comparable<ChatMessage>
         setDateAndTime(DateAndTime.now());
     }
 
+    /**
+     *
+     * @param data
+     */
     public ChatMessage(Map data) {
         super(data);
     }
@@ -39,6 +53,10 @@ public class ChatMessage extends GChatMessage implements Comparable<ChatMessage>
         return getAuthor() + ": " + getText();
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isOld() {
         DateAndTime dt = getDateAndTime();
 

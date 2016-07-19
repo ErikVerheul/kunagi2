@@ -17,17 +17,25 @@ package scrum.client.collaboration;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.gwt.client.AGwtEntity;
-
 import java.util.Comparator;
 import java.util.Map;
-
 import scrum.client.admin.User;
 import scrum.client.common.AScrumGwtEntity;
 import scrum.client.project.Project;
 
+/**
+ *
+ * @author erik
+ */
 public class Comment extends GComment {
 
-	public Comment(AGwtEntity parent, User author, String text) {
+    /**
+     *
+     * @param parent
+     * @param author
+     * @param text
+     */
+    public Comment(AGwtEntity parent, User author, String text) {
 		setParent(parent);
 		setAuthor(author);
 		setAuthorName(author.getName());
@@ -35,27 +43,46 @@ public class Comment extends GComment {
 		setDateAndTime(DateAndTime.now());
 	}
 
-	public Comment(Map data) {
+    /**
+     *
+     * @param data
+     */
+    public Comment(Map data) {
 		super(data);
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public boolean isEditable() {
 		User currentUser = Scope.get().getComponent(User.class);
 		if (isAuthorSet()) {
-			if (!isAuthor(currentUser)) return false;
-			if (getDateAndTime().getPeriodFromNow().abs().toHours() > 6) return false;
+			if (!isAuthor(currentUser)) {
+                            return false;
+            }
+			if (getDateAndTime().getPeriodFromNow().abs().toHours() > 6) {
+                            return false;
+            }
 			AScrumGwtEntity parent = (AScrumGwtEntity) getParent();
-			if (parent.getLatestComment() != this) return false;
+                        if (parent.getLatestComment() != this) {
+                            return false;
+            }
 		} else {
 			// public comment
 			Project project = Scope.get().getComponent(Project.class);
-			if (!project.isScrumTeamMember(currentUser)) return false;
+                        if (!project.isScrumTeamMember(currentUser)) {
+                return false;
+            }
 		}
 		return true;
 	}
 
-	public static final Comparator<Comment> DATEANDTIME_COMPARATOR = new Comparator<Comment>() {
+    /**
+     *
+     */
+    public static final Comparator<Comment> DATEANDTIME_COMPARATOR = new Comparator<Comment>() {
 
 		@Override
 		public int compare(Comment a, Comment b) {
@@ -63,7 +90,10 @@ public class Comment extends GComment {
 		}
 	};
 
-	public static final Comparator<Comment> REVERSE_DATEANDTIME_COMPARATOR = new Comparator<Comment>() {
+    /**
+     *
+     */
+    public static final Comparator<Comment> REVERSE_DATEANDTIME_COMPARATOR = new Comparator<Comment>() {
 
 		@Override
 		public int compare(Comment a, Comment b) {

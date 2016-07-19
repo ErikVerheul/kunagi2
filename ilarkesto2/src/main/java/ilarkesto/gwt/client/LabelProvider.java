@@ -14,8 +14,18 @@
  */
 package ilarkesto.gwt.client;
 
+/**
+ *
+ * @author erik
+ * @param <T>
+ */
 public interface LabelProvider<T> {
 
-	String getLabel(T object);
+    /**
+     *
+     * @param object
+     * @return
+     */
+    String getLabel(T object);
 
 }

@@ -14,10 +14,10 @@
  */
 package ilarkesto.persistence;
 
-import ilarkesto.logging.Log;
 import ilarkesto.core.scope.In;
 import ilarkesto.fp.Predicate;
 import ilarkesto.id.IdentifiableResolver;
+import ilarkesto.logging.Log;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;

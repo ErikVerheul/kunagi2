@@ -14,8 +14,16 @@
  */
 package ilarkesto.form;
 
+/**
+ *
+ * @author erik
+ */
 public class PasswordFormField extends TextFormField  {
 
+    /**
+     *
+     * @param name
+     */
     public PasswordFormField(String name) {
         super(name);
     }

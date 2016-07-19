@@ -14,9 +14,17 @@
  */
 package scrum.server.pr;
 
+/**
+ *
+ * @author erik
+ */
 public class InvalidKeyException extends Exception {
 
-	public InvalidKeyException(String email) {
+    /**
+     *
+     * @param email
+     */
+    public InvalidKeyException(String email) {
 		super("Invalid key for " + email);
 	}
 }

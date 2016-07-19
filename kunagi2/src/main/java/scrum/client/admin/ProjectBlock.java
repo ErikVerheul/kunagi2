@@ -14,14 +14,13 @@
  */
 package scrum.client.admin;
 
+import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.AMultiSelectionViewEditWidget;
 import ilarkesto.gwt.client.TableBuilder;
 import ilarkesto.gwt.client.editor.TextEditorWidget;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-
 import scrum.client.Dao;
 import scrum.client.ScrumGwt;
 import scrum.client.common.ABlockWidget;
@@ -31,11 +30,17 @@ import scrum.client.project.DeleteProjectAction;
 import scrum.client.project.OpenProjectAction;
 import scrum.client.project.Project;
 
-import com.google.gwt.user.client.ui.Widget;
-
+/**
+ *
+ * @author erik
+ */
 public class ProjectBlock extends ABlockWidget<Project> {
 
-	@Override
+    /**
+     *
+     * @param header
+     */
+    @Override
 	protected void onInitializationHeader(BlockHeaderWidget header) {
 		Project project = getObject();
 		header.addText(project.getLabelModel());
@@ -44,12 +49,20 @@ public class ProjectBlock extends ABlockWidget<Project> {
 		header.addMenuAction(new DeleteProjectAction(project));
 	}
 
-	@Override
+    /**
+     *
+     * @param header
+     */
+    @Override
 	protected void onUpdateHeader(BlockHeaderWidget header) {
 		header.setDragHandle("prj");
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	protected Widget onExtendedInitialization() {
 		final Project project = getObject();
 
@@ -71,7 +84,12 @@ public class ProjectBlock extends ABlockWidget<Project> {
 		return tb.createTable();
 	}
 
-	public static void addParticipantsAndAdminsFieldRows(final Project project, TableBuilder tb) {
+    /**
+     *
+     * @param project
+     * @param tb
+     */
+    public static void addParticipantsAndAdminsFieldRows(final Project project, TableBuilder tb) {
 		tb.addFieldRow("Participants", new AMultiSelectionViewEditWidget<User>() {
 
 			@Override
@@ -84,7 +102,9 @@ public class ProjectBlock extends ABlockWidget<Project> {
 				List<User> users = Dao.get().getUsersByDisabled(false);
 				Set<User> participants = project.getParticipants();
 				for (User participant : participants) {
-					if (!users.contains(participant)) users.add(participant);
+					if (!users.contains(participant)) {
+                                            users.add(participant);
+                    }
 				}
 				Collections.sort(users);
 				setEditorItems(users);
@@ -128,7 +148,12 @@ public class ProjectBlock extends ABlockWidget<Project> {
 		});
 	}
 
-	public static void addRolesFieldRows(final Project project, TableBuilder tb) {
+    /**
+     *
+     * @param project
+     * @param tb
+     */
+    public static void addRolesFieldRows(final Project project, TableBuilder tb) {
 		tb.addFieldRow("Product Owner", new AMultiSelectionViewEditWidget<User>() {
 
 			@Override
@@ -202,7 +227,10 @@ public class ProjectBlock extends ABlockWidget<Project> {
 		});
 	}
 
-	public static final BlockWidgetFactory<Project> FACTORY = new BlockWidgetFactory<Project>() {
+    /**
+     *
+     */
+    public static final BlockWidgetFactory<Project> FACTORY = new BlockWidgetFactory<Project>() {
 
 		@Override
 		public ProjectBlock createBlock() {
