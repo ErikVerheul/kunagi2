@@ -345,27 +345,28 @@ public class Base64 {
     /**
      * Encodes or decodes two files from the command line; <strong>feel free to delete this method (in fact you probably should) if you're embedding this code
      * into a larger program.</strong>
+     *
      * @param args
      */
     public final static void main(String[] args) {
         if (args.length < 3) {
             usage("Not enough arguments.");
-        } // end if: args.length < 3
+        }
         else {
             String flag = args[0];
             String infile = args[1];
             String outfile = args[2];
             if (flag.equals("-e")) {
                 encodeFileToFile(infile, outfile);
-            } // end if: encode
+            }
             else if (flag.equals("-d")) {
                 decodeFileToFile(infile, outfile);
-            } // end else if: decode
+            }
             else {
                 usage("Unknown flag: " + flag);
-            } // end else
-        } // end else
-    } // end main
+            }
+        }
+    }
 
     /**
      * Prints command line usage.
@@ -562,7 +563,7 @@ public class Base64 {
      * Encodes a byte array into Base64 notation. Does not GZip-compress data.
      *
      * @param source The data to convert
-     * @return 
+     * @return
      * @since 1.4
      */
     public static String encodeBytes(byte[] source) {
@@ -587,7 +588,7 @@ public class Base64 {
      *
      * @param source The data to convert
      * @param options Specified options
-     * @return 
+     * @return
      * @see Base64#GZIP
      * @see Base64#DONT_BREAK_LINES
      * @since 2.0
@@ -602,7 +603,7 @@ public class Base64 {
      * @param source The data to convert
      * @param off Offset in array where conversion should begin
      * @param len Length of data to convert
-     * @return 
+     * @return
      * @since 1.4
      */
     public static String encodeBytes(byte[] source, int off, int len) {
@@ -629,7 +630,7 @@ public class Base64 {
      * @param off Offset in array where conversion should begin
      * @param len Length of data to convert
      * @param options alphabet type is pulled from this (standard, url-safe, ordered)
-     * @return 
+     * @return
      * @see Base64#GZIP
      * @see Base64#DONT_BREAK_LINES
      * @since 2.0
@@ -1544,6 +1545,7 @@ public class Base64 {
 
         /**
          * Method added by PHIL. [Thanks, PHIL. -Rob] This pads the buffer without closing the stream.
+         *
          * @throws java.io.IOException
          */
         public void flushBase64() throws java.io.IOException {

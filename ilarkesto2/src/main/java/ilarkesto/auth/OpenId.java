@@ -112,7 +112,7 @@ public class OpenId {
      */
     public static final String TECHNORATI_TEMPLATE = "https://technorati.com/people/technorati/$(username)/";
 
-	private static Log log = Log.get(OpenId.class);
+	private static final Log log = Log.get(OpenId.class);
 
     /**
      *

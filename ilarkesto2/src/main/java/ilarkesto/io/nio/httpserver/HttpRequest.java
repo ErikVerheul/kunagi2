@@ -27,7 +27,7 @@ public class HttpRequest<S> {
 	static String SERVER = "Ilarkesto/1.1";
 	static final String PROTOCOL_VERSION = "HTTP/1.1";
 
-	private static Log log = Log.get(HttpRequest.class);
+	private static final Log log = Log.get(HttpRequest.class);
 
 	private HttpMethod method;
 	private String uri;
