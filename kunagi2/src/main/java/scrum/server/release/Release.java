@@ -38,7 +38,7 @@ import scrum.server.sprint.SprintReport;
  */
 public class Release extends GRelease implements Numbered, ReferenceSupport {
 
-	private static Log log = Log.get(Release.class);
+	private static final Log log = Log.get(Release.class);
 
 	// --- dependencies ---
 

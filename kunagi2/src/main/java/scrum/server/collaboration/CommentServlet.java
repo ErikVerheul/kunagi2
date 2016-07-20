@@ -44,7 +44,7 @@ public class CommentServlet extends AKunagiServlet {
 
 	private static final long serialVersionUID = 1;
 
-	private static Log log = Log.get(CommentServlet.class);
+	private static final Log log = Log.get(CommentServlet.class);
 
 	private transient DaoService daoService;
 	private transient CommentDao commentDao;

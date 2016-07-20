@@ -17,7 +17,7 @@ import scrum.server.project.Project;
  */
 public class ReleaseTask extends ATask {
 
-	private static Log log = Log.get(ReleaseTask.class);
+	private static final Log log = Log.get(ReleaseTask.class);
 
 	// --- dependencies ---
 

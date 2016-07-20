@@ -40,7 +40,7 @@ public class IssueServlet extends AKunagiServlet {
 
 	private static final long serialVersionUID = 1;
 
-	private static Log log = Log.get(IssueServlet.class);
+	private static final Log log = Log.get(IssueServlet.class);
 
 	private transient IssueDao issueDao;
 	private transient ProjectDao projectDao;

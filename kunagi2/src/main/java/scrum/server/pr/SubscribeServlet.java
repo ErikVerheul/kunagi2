@@ -36,7 +36,7 @@ public class SubscribeServlet extends AKunagiServlet {
 
 	private static final long serialVersionUID = 1;
 
-	private static Log log = Log.get(SubscribeServlet.class);
+	private static final Log log = Log.get(SubscribeServlet.class);
 
 	private transient SubscriptionService subscriptionService;
 	private transient DaoService daoService;

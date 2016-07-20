@@ -28,7 +28,7 @@ import scrum.server.ScrumWebApplication;
  */
 public class UserDao extends GUserDao {
 
-	private static Log log = Log.get(UserDao.class);
+	private static final Log log = Log.get(UserDao.class);
 
 	@Override
 	public User postUser(String name, String password) {

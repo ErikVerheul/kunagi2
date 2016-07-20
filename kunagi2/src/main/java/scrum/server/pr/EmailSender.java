@@ -29,7 +29,7 @@ import scrum.server.project.Project;
  */
 public class EmailSender {
 
-	private static Log log = Log.get(Log.class);
+	private static final Log log = Log.get(Log.class);
 
 	@In
 	private SystemConfig systemConfig;

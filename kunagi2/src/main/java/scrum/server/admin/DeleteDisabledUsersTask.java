@@ -25,7 +25,7 @@ import java.util.Collection;
  */
 public class DeleteDisabledUsersTask extends ACollectionTask<User> {
 
-	private static Log log = Log.get(DeleteDisabledUsersTask.class);
+	private static final Log log = Log.get(DeleteDisabledUsersTask.class);
 
 	// --- dependencies ---
 

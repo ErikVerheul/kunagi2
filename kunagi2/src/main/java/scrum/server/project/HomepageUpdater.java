@@ -55,7 +55,7 @@ import scrum.server.sprint.Sprint;
  */
 public class HomepageUpdater {
 
-	private static Log log = Log.get(HomepageUpdater.class);
+	private static final Log log = Log.get(HomepageUpdater.class);
 
 	private Project project;
 	private MyHtmlContext htmlContext;

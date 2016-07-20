@@ -29,7 +29,7 @@ import java.util.Properties;
  */
 public class KunagiRootConfig {
 
-	private static Log log = Log.get(KunagiRootConfig.class);
+	private static final Log log = Log.get(KunagiRootConfig.class);
 
 	private APropertiesStore props;
 

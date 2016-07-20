@@ -25,7 +25,7 @@ import scrum.server.common.AKunagiServlet;
 
 public class ConfirmEmailServlet extends AKunagiServlet {
 
-	private static Log log = Log.get(ConfirmEmailServlet.class);
+	private static final Log log = Log.get(ConfirmEmailServlet.class);
 	private static final long serialVersionUID = 1;
 
 	@Override

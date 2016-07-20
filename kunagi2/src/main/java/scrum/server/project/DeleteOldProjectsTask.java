@@ -27,7 +27,7 @@ import java.util.Collection;
  */
 public class DeleteOldProjectsTask extends ACollectionTask<Project> {
 
-	private static Log log = Log.get(DeleteOldProjectsTask.class);
+	private static final Log log = Log.get(DeleteOldProjectsTask.class);
 
 	// --- dependencies ---
 

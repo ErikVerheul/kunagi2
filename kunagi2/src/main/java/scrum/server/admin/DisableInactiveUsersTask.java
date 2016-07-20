@@ -25,7 +25,7 @@ import java.util.Collection;
  */
 public class DisableInactiveUsersTask extends ACollectionTask<User> {
 
-	private static Log log = Log.get(DisableInactiveUsersTask.class);
+	private static final Log log = Log.get(DisableInactiveUsersTask.class);
 
 	// --- dependencies ---
 

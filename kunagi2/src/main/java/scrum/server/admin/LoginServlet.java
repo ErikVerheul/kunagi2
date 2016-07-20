@@ -26,7 +26,7 @@ public class LoginServlet extends AKunagiServlet {
 
 	private static final long serialVersionUID = 1;
 
-	private static Log log = Log.get(LoginServlet.class);
+	private static final Log log = Log.get(LoginServlet.class);
 
     /**
      *

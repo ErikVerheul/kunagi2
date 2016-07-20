@@ -25,7 +25,7 @@ import java.util.Collection;
  */
 public class DisableUsersWithUnverifiedEmailsTask extends ACollectionTask<User> {
 
-	private static Log log = Log.get(DisableUsersWithUnverifiedEmailsTask.class);
+	private static final Log log = Log.get(DisableUsersWithUnverifiedEmailsTask.class);
 
 	// --- dependencies ---
 
