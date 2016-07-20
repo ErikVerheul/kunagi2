@@ -24,12 +24,12 @@ import java.util.List;
  */
 public final class EntityModel extends DatobModel {
 
-	private List<ActionModel> actions = new ArrayList<>();
-	private boolean ownable;
-	private EntityModel userModel;
-	private boolean viewProtected = false;
-	private boolean editProtected;
-	private List<BackReferenceModel> backReferences = new ArrayList<>();
+    private final List<ActionModel> actions = new ArrayList<>();
+    private boolean ownable;
+    private EntityModel userModel;
+    private boolean viewProtected = false;
+    private boolean editProtected;
+    private final List<BackReferenceModel> backReferences = new ArrayList<>();
 
     /**
      *
@@ -37,32 +37,32 @@ public final class EntityModel extends DatobModel {
      * @param packageName
      */
     public EntityModel(String name, String packageName) {
-		super(name, packageName);
-	}
+        super(name, packageName);
+    }
 
     /**
      *
      * @param backReference
      */
     public void addBackReference(BackReferenceModel backReference) {
-		backReferences.add(backReference);
-	}
+        backReferences.add(backReference);
+    }
 
     /**
      *
      * @return
      */
     public List<BackReferenceModel> getBackReferences() {
-		return backReferences;
-	}
+        return backReferences;
+    }
 
     /**
      *
      * @return
      */
     public List<ActionModel> getActions() {
-		return actions;
-	}
+        return actions;
+    }
 
     /**
      *
@@ -70,168 +70,168 @@ public final class EntityModel extends DatobModel {
      * @return
      */
     public ActionModel addAction(String name) {
-		ActionModel action = new ActionModel(name, getPackageName());
-		action.addParameter(lowercaseFirstLetter(getName()), this);
-		actions.add(action);
-		return action;
-	}
+        ActionModel action = new ActionModel(name, getPackageName());
+        action.addParameter(lowercaseFirstLetter(getName()), this);
+        actions.add(action);
+        return action;
+    }
 
     /**
      *
      * @return
      */
     @Override
-	public boolean isEntity() {
-		return true;
-	}
+    public boolean isEntity() {
+        return true;
+    }
 
     /**
      *
      * @return
      */
     @Override
-	public boolean isValueObject() {
-		return false;
-	}
+    public boolean isValueObject() {
+        return false;
+    }
 
     /**
      *
      * @return
      */
     public String getDaoName() {
-		return lowercaseFirstLetter(getName()) + "Dao";
-	}
+        return lowercaseFirstLetter(getName()) + "Dao";
+    }
 
     /**
      *
      * @return
      */
     public String getDaoClass() {
-		return getBeanClass() + "Dao";
-	}
+        return getBeanClass() + "Dao";
+    }
 
     /**
      *
      * @return
      */
     public String getAbstractBaseDaoClassName() {
-		return getAbstractBaseClassName() + "Dao";
-	}
+        return getAbstractBaseClassName() + "Dao";
+    }
 
     /**
      *
      * @return
      */
     public final boolean isOwnable() {
-		BeanModel superbean = getSuperbean();
-		if (superbean != null) {
-			if (superbean instanceof EntityModel) {
-				if (((EntityModel) superbean).isOwnable()) {
-                                        return true;
-                                }
-			}
-		}
-		return ownable;
-	}
+        BeanModel superbean = getSuperbean();
+        if (superbean != null) {
+            if (superbean instanceof EntityModel) {
+                if (((EntityModel) superbean).isOwnable()) {
+                    return true;
+                }
+            }
+        }
+        return ownable;
+    }
 
     /**
      *
      * @param ownable
      */
     public final void setOwnable(boolean ownable) {
-		this.ownable = ownable;
-	}
+        this.ownable = ownable;
+    }
 
     /**
      *
      * @param userModel
      */
     public void setUserModel(EntityModel userModel) {
-		this.userModel = userModel;
-	}
+        this.userModel = userModel;
+    }
 
     /**
      *
      * @return
      */
     public EntityModel getUserModel() {
-		return userModel;
-	}
+        return userModel;
+    }
 
     /**
      *
      * @return
      */
     public final boolean isViewProtected() {
-		BeanModel superbean = getSuperbean();
-		if (superbean != null) {
-			if (superbean instanceof EntityModel) {
-				if (((EntityModel) superbean).isViewProtected()) {
-                                        return true;
-                                }
-			}
-		}
-		return viewProtected;
-	}
+        BeanModel superbean = getSuperbean();
+        if (superbean != null) {
+            if (superbean instanceof EntityModel) {
+                if (((EntityModel) superbean).isViewProtected()) {
+                    return true;
+                }
+            }
+        }
+        return viewProtected;
+    }
 
     /**
      *
      * @param viewProtected
      */
     public final void setViewProtected(boolean viewProtected) {
-		this.viewProtected = viewProtected;
-	}
+        this.viewProtected = viewProtected;
+    }
 
     /**
      *
      * @return
      */
     public final boolean isEditProtected() {
-		BeanModel superbean = getSuperbean();
-		if (superbean != null) {
-			if (superbean instanceof EntityModel) {
-				if (((EntityModel) superbean).isEditProtected()) {
-                                        return true;
-                                }
-			}
-		}
+        BeanModel superbean = getSuperbean();
+        if (superbean != null) {
+            if (superbean instanceof EntityModel) {
+                if (((EntityModel) superbean).isEditProtected()) {
+                    return true;
+                }
+            }
+        }
 
-		return editProtected;
-	}
+        return editProtected;
+    }
 
     /**
      *
      * @param editProtected
      */
     public final void setEditProtected(boolean editProtected) {
-		this.editProtected = editProtected;
-	}
+        this.editProtected = editProtected;
+    }
 
-	private boolean deleteProtected;
+    private boolean deleteProtected;
 
     /**
      *
      * @return
      */
     public final boolean isDeleteProtected() {
-		BeanModel superbean = getSuperbean();
-		if (superbean != null) {
-			if (superbean instanceof EntityModel) {
-				if (((EntityModel) superbean).isDeleteProtected()) {
-                                        return true;
-                                }
-			}
-		}
+        BeanModel superbean = getSuperbean();
+        if (superbean != null) {
+            if (superbean instanceof EntityModel) {
+                if (((EntityModel) superbean).isDeleteProtected()) {
+                    return true;
+                }
+            }
+        }
 
-		return deleteProtected;
-	}
+        return deleteProtected;
+    }
 
     /**
      *
      * @param deleteProtected
      */
     public final void setDeleteProtected(boolean deleteProtected) {
-		this.deleteProtected = deleteProtected;
-	}
+        this.deleteProtected = deleteProtected;
+    }
 
 }

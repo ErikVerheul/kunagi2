@@ -281,7 +281,7 @@ public class GwtDaoGenerator extends AClassGenerator {
 
         ln();
         ln("    @Override");
-        ln("    protected final " + AGwtEntity.class.getName() + " updateLocalEntity(String type, Map data) {");
+        ln("    protected final " + AGwtEntity.class.getName() + " updateLocalEntity(String type, Map<String, String> data) {");
         for (EntityModel entity : entities) {
             ln("        if (type.equals(" + entity.getPackageName().replace(".server.", ".client.") + "."
                     + entity.getName() + ".ENTITY_TYPE)) {");

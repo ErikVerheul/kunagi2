@@ -127,11 +127,11 @@ public abstract class ADataTransferObject implements Serializable, IsSerializabl
      *
      * @param data
      */
-    public final void addEntity(HashMap data) {
+    public final void addEntity(HashMap<String, String> data) {
 		if (entities == null) {
                         entities = new HashMap<String, Map<String, String>>();
                 }
-		entities.put((String) data.get("id"), data);
+		entities.put(data.get("id"), data);
 	}
 
     /**

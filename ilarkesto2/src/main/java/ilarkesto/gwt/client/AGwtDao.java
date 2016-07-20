@@ -40,7 +40,7 @@ public abstract class AGwtDao extends AComponent {
      * @param data
      * @return
      */
-    protected abstract AGwtEntity updateLocalEntity(String type, Map data);
+    protected abstract AGwtEntity updateLocalEntity(String type, Map<String, String> data);
 
     /**
      *
@@ -116,8 +116,8 @@ public abstract class AGwtDao extends AComponent {
 		List<AGwtEntity> modifiedEntities = null;
 		if (data.containsEntities()) {
 			modifiedEntities = new ArrayList<AGwtEntity>(data.getEntities().size());
-			for (Map entityData : data.getEntities()) {
-				AGwtEntity entity = updateLocalEntity((String) entityData.get("@type"), entityData);
+			for (Map<String, String> entityData : data.getEntities()) {
+				AGwtEntity entity = updateLocalEntity(entityData.get("@type"), entityData);
 				modifiedEntities.add(entity);
 			}
 		}
