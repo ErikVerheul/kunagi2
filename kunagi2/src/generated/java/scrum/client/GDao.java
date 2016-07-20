@@ -4019,7 +4019,7 @@ public abstract class GDao
     }
 
     @Override
-    protected final ilarkesto.gwt.client.AGwtEntity updateLocalEntity(String type, Map data) {
+    protected final ilarkesto.gwt.client.AGwtEntity updateLocalEntity(String type, Map<String, String> data) {
         if (type.equals(scrum.client.pr.BlogEntry.ENTITY_TYPE)) {
             return updateBlogEntry(data);
         }
