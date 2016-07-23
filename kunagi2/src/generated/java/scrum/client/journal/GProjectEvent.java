@@ -13,7 +13,7 @@
 
 package scrum.client.journal;
 
-import ilarkesto.core.KunagiProperties;
+import ilarkesto.core.base.KunagiProperties;
 import java.util.*;
 import static ilarkesto.core.base.Utl.equalObjects;
 import static ilarkesto.core.logging.ClientLog.*;

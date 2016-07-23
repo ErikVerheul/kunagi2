@@ -14,7 +14,7 @@
  */
 package scrum.client.journal;
 
-import ilarkesto.core.KunagiProperties;
+import ilarkesto.core.base.KunagiProperties;
 import ilarkesto.core.time.DateAndTime;
 import java.util.Comparator;
 import scrum.client.collaboration.Wiki;

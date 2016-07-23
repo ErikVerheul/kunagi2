@@ -14,7 +14,7 @@
  */
 package scrum.client.common;
 
-import ilarkesto.core.KunagiProperties;
+import ilarkesto.core.base.KunagiProperties;
 import ilarkesto.core.base.Str;
 import ilarkesto.core.base.ToHtmlSupport;
 import ilarkesto.core.scope.Scope;

@@ -15,7 +15,7 @@
 package scrum.server;
 
 import ilarkesto.auth.Auth;
-import ilarkesto.core.KunagiProperties;
+import ilarkesto.core.base.KunagiProperties;
 import ilarkesto.core.time.TimePeriod;
 import ilarkesto.gwt.server.AGwtConversation;
 import ilarkesto.logging.Log;

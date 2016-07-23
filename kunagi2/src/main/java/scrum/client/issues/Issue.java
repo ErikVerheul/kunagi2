@@ -15,7 +15,7 @@
 package scrum.client.issues;
 
 import com.google.gwt.user.client.ui.Widget;
-import ilarkesto.core.KunagiProperties;
+import ilarkesto.core.base.KunagiProperties;
 import ilarkesto.core.base.Str;
 import static ilarkesto.core.logging.ClientLog.INFO;
 import ilarkesto.core.time.Date;

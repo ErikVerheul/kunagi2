@@ -15,7 +15,7 @@
 package scrum.client.impediments;
 
 import com.google.gwt.user.client.ui.Widget;
-import ilarkesto.core.KunagiProperties;
+import ilarkesto.core.base.KunagiProperties;
 import ilarkesto.core.time.Date;
 import ilarkesto.gwt.client.HyperlinkWidget;
 import java.util.Comparator;

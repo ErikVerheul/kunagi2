@@ -16,7 +16,7 @@ package ilarkesto.persistence;
 
 import ilarkesto.auth.AUserDao;
 import ilarkesto.base.OverrideExpectedException;
-import ilarkesto.core.KunagiProperties;
+import ilarkesto.core.base.KunagiProperties;
 import ilarkesto.core.base.Str;
 import ilarkesto.search.Searchable;
 import java.util.ArrayList;

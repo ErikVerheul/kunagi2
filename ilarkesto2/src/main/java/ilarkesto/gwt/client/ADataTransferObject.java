@@ -15,7 +15,7 @@
 package ilarkesto.gwt.client;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
-import ilarkesto.core.KunagiProperties;
+import ilarkesto.core.base.KunagiProperties;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;

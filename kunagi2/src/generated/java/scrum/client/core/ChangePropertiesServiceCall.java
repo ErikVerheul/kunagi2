@@ -1,7 +1,7 @@
 // // ----------> GENERATED FILE - DON'T TOUCH! <----------
 package scrum.client.core;
 
-import ilarkesto.core.KunagiProperties;
+import ilarkesto.core.base.KunagiProperties;
 import static ilarkesto.core.logging.ClientLog.DEBUG;
 import java.io.Serializable;
 

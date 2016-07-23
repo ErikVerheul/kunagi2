@@ -1,6 +1,6 @@
 package scrum.client.pr;
 
-import ilarkesto.core.KunagiProperties;
+import ilarkesto.core.base.KunagiProperties;
 
 /**
  *

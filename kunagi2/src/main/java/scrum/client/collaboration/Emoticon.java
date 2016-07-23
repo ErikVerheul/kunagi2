@@ -14,7 +14,7 @@
  */
 package scrum.client.collaboration;
 
-import ilarkesto.core.KunagiProperties;
+import ilarkesto.core.base.KunagiProperties;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.LabelProvider;
 import java.util.Arrays;

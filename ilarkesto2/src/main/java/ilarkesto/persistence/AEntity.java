@@ -16,7 +16,7 @@ package ilarkesto.persistence;
 
 import ilarkesto.auth.AUser;
 import ilarkesto.base.Iconized;
-import ilarkesto.core.KunagiProperties;
+import ilarkesto.core.base.KunagiProperties;
 import ilarkesto.core.time.DateAndTime;
 import static ilarkesto.core.time.DateAndTime.now;
 import ilarkesto.id.Identifiable;

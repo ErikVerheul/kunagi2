@@ -15,7 +15,7 @@
 package scrum.client;
 
 import com.google.gwt.user.client.Timer;
-import ilarkesto.core.KunagiProperties;
+import ilarkesto.core.base.KunagiProperties;
 import static ilarkesto.core.logging.ClientLog.DEBUG;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.ADataTransferObject;

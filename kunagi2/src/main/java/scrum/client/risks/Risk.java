@@ -15,7 +15,7 @@
 package scrum.client.risks;
 
 import com.google.gwt.user.client.ui.Widget;
-import ilarkesto.core.KunagiProperties;
+import ilarkesto.core.base.KunagiProperties;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.Gwt;
 import ilarkesto.gwt.client.HyperlinkWidget;

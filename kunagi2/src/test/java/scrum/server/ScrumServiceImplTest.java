@@ -17,7 +17,7 @@ package scrum.server;
 import ilarkesto.auth.WrongPasswordException;
 import ilarkesto.base.PermissionDeniedException;
 import ilarkesto.base.StrExtend;
-import ilarkesto.core.KunagiProperties;
+import ilarkesto.core.base.KunagiProperties;
 import ilarkesto.core.time.Date;
 import ilarkesto.gwt.client.ErrorWrapper;
 import ilarkesto.persistence.AEntity;

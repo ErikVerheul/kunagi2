@@ -14,7 +14,7 @@
  */
 package scrum.client.files;
 
-import ilarkesto.core.KunagiProperties;
+import ilarkesto.core.base.KunagiProperties;
 import java.util.Comparator;
 import scrum.client.ScrumGwt;
 import scrum.client.common.LabelSupport;

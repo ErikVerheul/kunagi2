@@ -2,7 +2,7 @@
 
 package scrum.client.core;
 
-import ilarkesto.core.KunagiProperties;
+import ilarkesto.core.base.KunagiProperties;
 
 public class CreateEntityServiceCall extends scrum.client.core.AServiceCall {
 

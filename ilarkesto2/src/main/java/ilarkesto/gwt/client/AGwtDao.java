@@ -14,7 +14,7 @@
  */
 package ilarkesto.gwt.client;
 
-import ilarkesto.core.KunagiProperties;
+import ilarkesto.core.base.KunagiProperties;
 import static ilarkesto.core.logging.ClientLog.DEBUG;
 import java.util.ArrayList;
 import java.util.Collection;

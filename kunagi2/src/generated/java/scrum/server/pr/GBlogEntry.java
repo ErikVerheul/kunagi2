@@ -20,7 +20,7 @@ import ilarkesto.persistence.AStructure;
 import ilarkesto.auth.AUser;
 import ilarkesto.persistence.EntityDoesNotExistException;
 import ilarkesto.base.StrExtend;
-import ilarkesto.core.KunagiProperties;
+import ilarkesto.core.base.KunagiProperties;
 
 public abstract class GBlogEntry
             extends AEntity

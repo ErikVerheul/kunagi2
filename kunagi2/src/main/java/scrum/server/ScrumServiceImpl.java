@@ -21,7 +21,7 @@ import ilarkesto.base.PermissionDeniedException;
 import ilarkesto.base.Reflect;
 import ilarkesto.base.UtlExtend;
 import ilarkesto.base.time.DateExtend;
-import ilarkesto.core.KunagiProperties;
+import ilarkesto.core.base.KunagiProperties;
 import ilarkesto.core.base.Str;
 import ilarkesto.core.scope.In;
 import ilarkesto.core.time.DateAndTime;

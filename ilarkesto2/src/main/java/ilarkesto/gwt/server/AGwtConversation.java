@@ -17,7 +17,7 @@ package ilarkesto.gwt.server;
 import ilarkesto.base.PermissionDeniedException;
 import static ilarkesto.base.Sys.isDevelopmentMode;
 import static ilarkesto.base.UtlExtend.toStringWithType;
-import ilarkesto.core.KunagiProperties;
+import ilarkesto.core.base.KunagiProperties;
 import static ilarkesto.core.base.Utl.compare;
 import ilarkesto.core.time.DateAndTime;
 import static ilarkesto.core.time.DateAndTime.now;

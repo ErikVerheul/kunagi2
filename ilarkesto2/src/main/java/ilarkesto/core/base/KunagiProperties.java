@@ -1,7 +1,8 @@
-package ilarkesto.core;
+package ilarkesto.core.base;
 
 
 import static ilarkesto.core.logging.ClientLog.WARN;
+import com.google.gwt.user.client.rpc.IsSerializable;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +12,7 @@ import java.util.Set;
  *
  * @author erik
  */
-public class KunagiProperties implements Serializable {
+public class KunagiProperties implements Serializable, IsSerializable {
 
     private static final long serialVersionUID = 1L;
 

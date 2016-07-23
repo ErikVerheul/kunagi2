@@ -15,7 +15,7 @@
 package scrum.client.collaboration;
 
 import com.google.gwt.user.client.ui.Widget;
-import ilarkesto.core.KunagiProperties;
+import ilarkesto.core.base.KunagiProperties;
 import ilarkesto.gwt.client.HyperlinkWidget;
 import scrum.client.common.ShowEntityAction;
 import scrum.client.project.Project;

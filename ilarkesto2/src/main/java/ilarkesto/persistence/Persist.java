@@ -16,7 +16,7 @@ package ilarkesto.persistence;
 
 import ilarkesto.auth.AUser;
 import static ilarkesto.auth.Auth.isVisible;
-import ilarkesto.core.KunagiProperties;
+import ilarkesto.core.base.KunagiProperties;
 import ilarkesto.fp.Predicate;
 import ilarkesto.id.Identifiable;
 import ilarkesto.search.Searchable;

@@ -2,7 +2,7 @@
 
 package scrum.client;
 
-import ilarkesto.core.KunagiProperties;
+import ilarkesto.core.base.KunagiProperties;
 
 public interface ScrumService extends com.google.gwt.user.client.rpc.RemoteService {
 

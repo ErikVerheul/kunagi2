@@ -1,6 +1,6 @@
 package scrum.client.sprint;
 
-import ilarkesto.core.KunagiProperties;
+import ilarkesto.core.base.KunagiProperties;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;

@@ -15,7 +15,7 @@
 package scrum.client.pr;
 
 import com.google.gwt.user.client.ui.Widget;
-import ilarkesto.core.KunagiProperties;
+import ilarkesto.core.base.KunagiProperties;
 import ilarkesto.core.base.Utl;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.gwt.client.HyperlinkWidget;

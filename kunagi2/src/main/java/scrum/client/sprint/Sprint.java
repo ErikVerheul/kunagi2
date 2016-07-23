@@ -16,7 +16,7 @@ package scrum.client.sprint;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.Widget;
-import ilarkesto.core.KunagiProperties;
+import ilarkesto.core.base.KunagiProperties;
 import ilarkesto.core.base.Utl;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.core.time.Date;
