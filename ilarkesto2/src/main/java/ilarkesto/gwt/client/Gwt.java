@@ -57,44 +57,42 @@ import java.util.Set;
  */
 public class Gwt {
 
-	private static Widget rootWidget;
-	private static RichtextFormater defaultRichtextFormater = new DoNothingRichtextFormater();
-	private static Initializer<RichtextEditorWidget> richtextEditorEditInitializer;
-	private static String defaultRichtextSyntaxInfo;
-	private static UndoManager undoManager = new UndoManager();
+    private static Widget rootWidget;
+    private static RichtextFormater defaultRichtextFormater = new DoNothingRichtextFormater();
+    private static Initializer<RichtextEditorWidget> richtextEditorEditInitializer;
+    private static String defaultRichtextSyntaxInfo;
+    private static UndoManager undoManager = new UndoManager();
 
-	private static DateTimeFormat dtfWeekdayShort;
-	private static DateTimeFormat dtfDay;
-	private static DateTimeFormat dtfWeekdayMonthDay;
-	private static DateTimeFormat dtfHourMinute;
+    private static DateTimeFormat dtfWeekdayShort;
+    private static DateTimeFormat dtfDay;
+    private static DateTimeFormat dtfWeekdayMonthDay;
+    private static DateTimeFormat dtfHourMinute;
 
     /**
      *
      * @return
      */
     public static boolean isWebkit() {
-		return isWebkitJs();
-	}
+        return isWebkitJs();
+    }
 
     /**
      *
      * @return
      */
     public static boolean isMsie() {
-		return isProdMode() ? isMsieJs() : false;
-	}
+        return isProdMode() ? isMsieJs() : false;
+    }
 
-	private static native boolean isMsieJs()
-	/*-{
-	    var agent = navigator.userAgent.toLowerCase();
-		return agent && agent.indexOf('msie') >= 0;
-	}-*/;
+    private static native boolean isMsieJs() /*-{
+     var agent = navigator.userAgent.toLowerCase();
+     return agent && agent.indexOf('msie') >= 0;
+     }-*/;
 
-	private static native boolean isWebkitJs()
-	/*-{
-	    var agent = navigator.userAgent.toLowerCase();
-		return agent && agent.indexOf('webkit') >= 0;
-	}-*/;
+    private static native boolean isWebkitJs() /*-{
+     var agent = navigator.userAgent.toLowerCase();
+     return agent && agent.indexOf('webkit') >= 0;
+     }-*/;
 
     /**
      *
@@ -103,14 +101,14 @@ public class Gwt {
      * @return
      */
     public static boolean contains(HasWidgets container, Widget widget) {
-		Iterator<Widget> iterator = container.iterator();
-		while (iterator.hasNext()) {
-			if (iterator.next() == widget) {
-                                return true;
-                        }
-		}
-		return false;
-	}
+        Iterator<Widget> iterator = container.iterator();
+        while (iterator.hasNext()) {
+            if (iterator.next() == widget) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     /**
      *
@@ -118,11 +116,11 @@ public class Gwt {
      * @return
      */
     public static String formatWeekdayMonthDay(Date date) {
-		if (dtfWeekdayMonthDay == null) {
-                        dtfWeekdayMonthDay = DateTimeFormat.getFormat("EEEE, MMMM d.");
-                }
-		return dtfWeekdayMonthDay.format(date);
-	}
+        if (dtfWeekdayMonthDay == null) {
+            dtfWeekdayMonthDay = DateTimeFormat.getFormat("EEEE, MMMM d.");
+        }
+        return dtfWeekdayMonthDay.format(date);
+    }
 
     /**
      *
@@ -130,11 +128,11 @@ public class Gwt {
      * @return
      */
     public static String formatHourMinute(Date date) {
-		if (dtfHourMinute == null) {
-                        dtfHourMinute = DateTimeFormat.getFormat("HH:mm");
-                }
-		return dtfHourMinute.format(date);
-	}
+        if (dtfHourMinute == null) {
+            dtfHourMinute = DateTimeFormat.getFormat("HH:mm");
+        }
+        return dtfHourMinute.format(date);
+    }
 
     /**
      *
@@ -142,11 +140,11 @@ public class Gwt {
      * @return
      */
     public static String formatDay(Date date) {
-		if (dtfDay == null) {
-                        dtfDay = DateTimeFormat.getFormat("dd.");
-                }
-		return dtfDay.format(date);
-	}
+        if (dtfDay == null) {
+            dtfDay = DateTimeFormat.getFormat("dd.");
+        }
+        return dtfDay.format(date);
+    }
 
     /**
      *
@@ -154,11 +152,11 @@ public class Gwt {
      * @return
      */
     public static String formatWeekdayShort(Date date) {
-		if (dtfWeekdayShort == null) {
-                        dtfWeekdayShort = DateTimeFormat.getFormat("EEE");
-                }
-		return dtfWeekdayShort.format(date);
-	}
+        if (dtfWeekdayShort == null) {
+            dtfWeekdayShort = DateTimeFormat.getFormat("EEE");
+        }
+        return dtfWeekdayShort.format(date);
+    }
 
     /**
      *
@@ -168,8 +166,8 @@ public class Gwt {
      * @return
      */
     public static TextBox createTextBox(String id, String value, int width) {
-		return createTextBox(id, id, value, width + "px");
-	}
+        return createTextBox(id, id, value, width + "px");
+    }
 
     /**
      *
@@ -180,13 +178,13 @@ public class Gwt {
      * @return
      */
     public static TextBox createTextBox(String id, String name, String value, String width) {
-		TextBox textBox = new TextBox();
-		textBox.getElement().setId(id);
-		textBox.setName(name);
-		textBox.setValue(value);
-		textBox.setWidth(width);
-		return textBox;
-	}
+        TextBox textBox = new TextBox();
+        textBox.getElement().setId(id);
+        textBox.setName(name);
+        textBox.setValue(value);
+        textBox.setWidth(width);
+        return textBox;
+    }
 
     /**
      *
@@ -197,8 +195,8 @@ public class Gwt {
      * @return
      */
     public static TextArea createTextArea(String id, String value, int width, int height) {
-		return createTextArea(id, id, value, width + "px", height + "px");
-	}
+        return createTextArea(id, id, value, width + "px", height + "px");
+    }
 
     /**
      *
@@ -210,24 +208,24 @@ public class Gwt {
      * @return
      */
     public static TextArea createTextArea(String id, String name, String value, String width, String height) {
-		TextArea textArea = new TextArea();
-		textArea.getElement().setId(id);
-		textArea.setName(name);
-		textArea.setValue(value);
-		textArea.setWidth(width);
-		textArea.setHeight(height);
-		return textArea;
-	}
+        TextArea textArea = new TextArea();
+        textArea.getElement().setId(id);
+        textArea.setName(name);
+        textArea.setValue(value);
+        textArea.setWidth(width);
+        textArea.setHeight(height);
+        return textArea;
+    }
 
     /**
      *
      * @return
      */
     public static SubmitButton createInvisibleSubmitButton() {
-		SubmitButton button = new SubmitButton();
-		button.setVisible(false);
-		return button;
-	}
+        SubmitButton button = new SubmitButton();
+        button.setVisible(false);
+        return button;
+    }
 
     /**
      *
@@ -236,11 +234,11 @@ public class Gwt {
      * @return
      */
     public static HTML addTooltipHtml(SourcesMouseEvents widget, String tooltipHtml) {
-		HTML html = new HTML(tooltipHtml);
-		TooltipListener listener = new TooltipListener(html);
-		widget.addMouseListener(listener);
-		return html;
-	}
+        HTML html = new HTML(tooltipHtml);
+        TooltipListener listener = new TooltipListener(html);
+        widget.addMouseListener(listener);
+        return html;
+    }
 
     /**
      *
@@ -250,10 +248,10 @@ public class Gwt {
      * @return
      */
     public static <W extends Widget> W addTooltip(SourcesMouseEvents widget, W tooltipWidget) {
-		TooltipListener listener = new TooltipListener(tooltipWidget);
-		widget.addMouseListener(listener);
-		return tooltipWidget;
-	}
+        TooltipListener listener = new TooltipListener(tooltipWidget);
+        widget.addMouseListener(listener);
+        return tooltipWidget;
+    }
 
     /**
      *
@@ -261,8 +259,8 @@ public class Gwt {
      * @return
      */
     public static boolean confirm(String message) {
-		return Window.confirm(message);
-	}
+        return Window.confirm(message);
+    }
 
     /**
      *
@@ -271,8 +269,8 @@ public class Gwt {
      * @return
      */
     public static String prompt(String message, String value) {
-		return Window.prompt(message, value);
-	}
+        return Window.prompt(message, value);
+    }
 
     /**
      *
@@ -280,18 +278,18 @@ public class Gwt {
      * @return
      */
     public static String escapeHtml(String maybeHtml) {
-		final Element div = DOM.createDiv();
-		setInnerText(div, maybeHtml);
-		return getInnerHTML(div);
-	}
+        final Element div = DOM.createDiv();
+        setInnerText(div, maybeHtml);
+        return getInnerHTML(div);
+    }
 
     /**
      *
      * @return
      */
     public static UndoManager getUndoManager() {
-		return undoManager;
-	}
+        return undoManager;
+    }
 
     /**
      *
@@ -299,35 +297,35 @@ public class Gwt {
      * @return
      */
     public static String getMonthShort(int month) {
-		switch (month) {
-			case (1):
-				return "Jan";
-			case (2):
-				return "Feb";
-			case (3):
-				return "Mar";
-			case (4):
-				return "Apr";
-			case (5):
-				return "May";
-			case (6):
-				return "Jun";
-			case (7):
-				return "Jul";
-			case (8):
-				return "Aug";
-			case (9):
-				return "Sep";
-			case (10):
-				return "Oct";
-			case (11):
-				return "Nov";
-			case (12):
-				return "Dec";
-		}
+        switch (month) {
+            case (1):
+                return "Jan";
+            case (2):
+                return "Feb";
+            case (3):
+                return "Mar";
+            case (4):
+                return "Apr";
+            case (5):
+                return "May";
+            case (6):
+                return "Jun";
+            case (7):
+                return "Jul";
+            case (8):
+                return "Aug";
+            case (9):
+                return "Sep";
+            case (10):
+                return "Oct";
+            case (11):
+                return "Nov";
+            case (12):
+                return "Dec";
+        }
 
-		return "Invalid Month";
-	}
+        return "Invalid Month";
+    }
 
     /**
      *
@@ -336,8 +334,8 @@ public class Gwt {
      * @return
      */
     public static int percent(int total, int quotient) {
-		return (quotient * 100) / total;
-	}
+        return (quotient * 100) / total;
+    }
 
     /**
      *
@@ -345,8 +343,8 @@ public class Gwt {
      * @return
      */
     public static Predicate predicate(boolean value) {
-		return value ? TRUE : FALSE;
-	}
+        return value ? TRUE : FALSE;
+    }
 
     /**
      *
@@ -354,8 +352,8 @@ public class Gwt {
      * @return
      */
     public static Widget createToHtmlItemsWidget(Collection<? extends ToHtmlSupport> items) {
-		return new HTML(concatToHtml(items, "<br>"));
-	}
+        return new HTML(concatToHtml(items, "<br>"));
+    }
 
     /**
      *
@@ -364,8 +362,8 @@ public class Gwt {
      * @return
      */
     public static HTML createServletDownloadLink(String relativeHref, String text) {
-		return createServletLink(relativeHref, text, true);
-	}
+        return createServletLink(relativeHref, text, true);
+    }
 
     /**
      *
@@ -375,8 +373,8 @@ public class Gwt {
      * @return
      */
     public static HTML createServletLink(String relativeHref, String text, boolean targetBlank) {
-		return createHyperlink(getModuleBaseURL() + relativeHref, text, targetBlank);
-	}
+        return createHyperlink(getModuleBaseURL() + relativeHref, text, targetBlank);
+    }
 
     /**
      *
@@ -386,14 +384,14 @@ public class Gwt {
      * @return
      */
     public static HTML createHyperlink(String href, String text, boolean targetBlank) {
-		StringBuilder sb = new StringBuilder();
-		sb.append("<a href='").append(href).append("'");
-		if (targetBlank) {
-                        sb.append(" target='_blank'");
-                }
-		sb.append(">").append(text).append("</a>"); // TODO escape html
-		return new HTML(sb.toString());
-	}
+        StringBuilder sb = new StringBuilder();
+        sb.append("<a href='").append(href).append("'");
+        if (targetBlank) {
+            sb.append(" target='_blank'");
+        }
+        sb.append(">").append(text).append("</a>"); // TODO escape html
+        return new HTML(sb.toString());
+    }
 
     /**
      *
@@ -401,14 +399,14 @@ public class Gwt {
      * @return
      */
     public static String toString(Object o) {
-		if (o == null) {
-                        return "<null>";
-                }
-		if (o instanceof List) {
-                        return o.toString();
-                }
-		return o.toString();
-	}
+        if (o == null) {
+            return "<null>";
+        }
+        if (o instanceof List) {
+            return o.toString();
+        }
+        return o.toString();
+    }
 
     /**
      *
@@ -416,10 +414,10 @@ public class Gwt {
      * @return
      */
     public static Label createInline(String text) {
-		Label label = new Label(text);
-		label.getElement().getStyle().setProperty("display", "inline");
-		return label;
-	}
+        Label label = new Label(text);
+        label.getElement().getStyle().setProperty("display", "inline");
+        return label;
+    }
 
     /**
      *
@@ -427,79 +425,79 @@ public class Gwt {
      * @param action
      */
     public static void runLater(long delayInMillis, final Runnable action) {
-		new Timer() {
+        new Timer() {
 
-			@Override
-			public void run() {
-				action.run();
-			}
-		}.schedule((int) delayInMillis);
-	}
+            @Override
+            public void run() {
+                action.run();
+            }
+        }.schedule((int) delayInMillis);
+    }
 
     /**
      *
      * @param richtextEditorToolbarInitializer
      */
     public static void setRichtextEditorEditInitializer(
-			Initializer<RichtextEditorWidget> richtextEditorToolbarInitializer) {
-		Gwt.richtextEditorEditInitializer = richtextEditorToolbarInitializer;
-	}
+            Initializer<RichtextEditorWidget> richtextEditorToolbarInitializer) {
+        Gwt.richtextEditorEditInitializer = richtextEditorToolbarInitializer;
+    }
 
     /**
      *
      * @param defaultRichtextFormater
      */
     public static void setDefaultRichtextFormater(RichtextFormater defaultRichtextFormater) {
-		Gwt.defaultRichtextFormater = defaultRichtextFormater;
-	}
+        Gwt.defaultRichtextFormater = defaultRichtextFormater;
+    }
 
     /**
      *
      * @return
      */
     public static Initializer<RichtextEditorWidget> getRichtextEditorEditInitializer() {
-		return richtextEditorEditInitializer;
-	}
+        return richtextEditorEditInitializer;
+    }
 
     /**
      *
      * @return
      */
     public static RichtextFormater getDefaultRichtextFormater() {
-		return defaultRichtextFormater;
-	}
+        return defaultRichtextFormater;
+    }
 
     /**
      *
      * @return
      */
     public static String getDefaultRichtextSyntaxInfo() {
-		return defaultRichtextSyntaxInfo;
-	}
+        return defaultRichtextSyntaxInfo;
+    }
 
     /**
      *
      * @param defaultRichtextSyntaxInfo
      */
     public static void setDefaultRichtextSyntaxInfo(String defaultRichtextSyntaxInfo) {
-		Gwt.defaultRichtextSyntaxInfo = defaultRichtextSyntaxInfo;
-	}
+        Gwt.defaultRichtextSyntaxInfo = defaultRichtextSyntaxInfo;
+    }
 
     /**
      *
      * @param rootWidget
      */
     public static void setRootWidget(Widget rootWidget) {
-		Gwt.rootWidget = rootWidget;
-	}
+        Gwt.rootWidget = rootWidget;
+    }
 
     /**
      *
      * @return
      */
     public static Widget getRootWidget() {
-		return rootWidget;
-	}
+        return rootWidget;
+    }
 
     /**
      *
@@ -507,28 +505,28 @@ public class Gwt {
      * @return
      */
     public static String toString(Widget widget) {
-		if (widget == null) {
-                        return "<null>";
+        if (widget == null) {
+            return "<null>";
+        }
+        if (widget instanceof AWidget) {
+            return widget.toString();
+        }
+        if (widget instanceof HasWidgets) {
+            StringBuilder sb = new StringBuilder();
+            boolean first = true;
+            sb.append(getSimpleName(widget.getClass())).append("(");
+            for (Widget subWidget : (HasWidgets) widget) {
+                if (first) {
+                    first = false;
+                } else {
+                    sb.append(", ");
                 }
-		if (widget instanceof AWidget) {
-                        return widget.toString();
-                }
-		if (widget instanceof HasWidgets) {
-			StringBuilder sb = new StringBuilder();
-			boolean first = true;
-			sb.append(getSimpleName(widget.getClass())).append("(");
-			for (Widget subWidget : (HasWidgets) widget) {
-				if (first) {
-					first = false;
-				} else {
-					sb.append(", ");
-				}
-				sb.append(toString(subWidget));
-			}
-			sb.append(")");
-		}
-		return getSimpleName(widget.getClass());
-	}
+                sb.append(toString(subWidget));
+            }
+            sb.append(")");
+        }
+        return getSimpleName(widget.getClass());
+    }
 
     /**
      *
@@ -536,14 +534,14 @@ public class Gwt {
      * @return
      */
     public static String formatHours(Integer i) {
-		if (i == null || i == 0) {
-                        return "nothing";
-                }
-		if (i == 1) {
-                        return "1 hour";
-                }
-		return i + " hours";
-	}
+        if (i == null || i == 0) {
+            return "nothing";
+        }
+        if (i == 1) {
+            return "1 hour";
+        }
+        return i + " hours";
+    }
 
     /**
      *
@@ -551,41 +549,41 @@ public class Gwt {
      * @return
      */
     public static Label createFieldLabel(String text) {
-		Label label = new Label(text);
-		label.setStyleName("fieldLabel");
-		return label;
-	}
+        Label label = new Label(text);
+        label.setStyleName("fieldLabel");
+        return label;
+    }
 
     /**
      *
      * @param widgets
      */
     public static void update(Collection<Widget> widgets) {
-		for (Widget widget : widgets) {
-			if (widget == null) {
-                                continue;
-                        }
-			if (widget instanceof AWidget) {
-                                ((Updatable) widget).update();
-                        }
-		}
-	}
+        for (Widget widget : widgets) {
+            if (widget == null) {
+                continue;
+            }
+            if (widget instanceof AWidget) {
+                ((Updatable) widget).update();
+            }
+        }
+    }
 
     /**
      *
      * @param widgets
      */
     public static void update(Widget... widgets) {
-		for (Widget widget : widgets) {
-			update(widget);
-		}
-	}
+        for (Widget widget : widgets) {
+            update(widget);
+        }
+    }
 
-	private static void update(HasWidgets container) {
-		for (Widget widget : container) {
-			update(widget);
-		}
-	}
+    private static void update(HasWidgets container) {
+        for (Widget widget : container) {
+            update(widget);
+        }
+    }
 
     /**
      *
@@ -594,20 +592,20 @@ public class Gwt {
      * @return
      */
     public static <W extends Widget> W update(W widget) {
-		if (widget == null) {
-                        return null;
-                }
-		if (widget instanceof AWidget) {
-			// GwtLogger.DEBUG("Updating:", widget);
-			((Updatable) widget).update();
-			return widget;
-		}
-		if (widget instanceof HasWidgets) {
-			update((HasWidgets) widget);
-			return widget;
-		}
-		return widget;
-	}
+        if (widget == null) {
+            return null;
+        }
+        if (widget instanceof AWidget) {
+            // GwtLogger.DEBUG("Updating:", widget);
+            ((Updatable) widget).update();
+            return widget;
+        }
+        if (widget instanceof HasWidgets) {
+            update((HasWidgets) widget);
+            return widget;
+        }
+        return widget;
+    }
 
     /**
      *
@@ -615,10 +613,10 @@ public class Gwt {
      * @return
      */
     public static Widget createBugMarker(String text) {
-		Label label = new Label(text);
-		label.setStyleName("BugMarker");
-		return label;
-	}
+        Label label = new Label(text);
+        label.setStyleName("BugMarker");
+        return label;
+    }
 
     /**
      *
@@ -627,11 +625,11 @@ public class Gwt {
      * @return
      */
     public static <O extends Object> List<O> toList(Collection<O> collection) {
-		if (collection instanceof List) {
-                        return (List<O>) collection;
-                }
-		return new ArrayList<O>(collection);
-	}
+        if (collection instanceof List) {
+            return (List<O>) collection;
+        }
+        return new ArrayList<O>(collection);
+    }
 
     /**
      *
@@ -640,10 +638,10 @@ public class Gwt {
      * @return
      */
     public static <O extends Object> List<O> toList(O... objects) {
-		ArrayList<O> list = new ArrayList<O>(objects.length);
-                list.addAll(asList(objects));
-		return list;
-	}
+        ArrayList<O> list = new ArrayList<O>(objects.length);
+        list.addAll(asList(objects));
+        return list;
+    }
 
     /**
      *
@@ -652,25 +650,25 @@ public class Gwt {
      * @return
      */
     public static HorizontalPanel createHorizontalPanel(int spacing, Widget... widgets) {
-		assert (widgets.length > 0);
-		HorizontalPanel panel = new HorizontalPanel();
-		panel.setWidth("100%");
-		boolean first = true;
-		for (Widget widget : widgets) {
-			if (first) {
-				first = false;
-			} else {
-				if (spacing > 0) {
-					Widget spacer = createEmptyDiv("HorizontalPanel-spacer");
-					panel.add(spacer);
-					panel.setCellWidth(spacer, spacing + "px");
+        assert (widgets.length > 0);
+        HorizontalPanel panel = new HorizontalPanel();
+        panel.setWidth("100%");
+        boolean first = true;
+        for (Widget widget : widgets) {
+            if (first) {
+                first = false;
+            } else {
+                if (spacing > 0) {
+                    Widget spacer = createEmptyDiv("HorizontalPanel-spacer");
+                    panel.add(spacer);
+                    panel.setCellWidth(spacer, spacing + "px");
 
-				}
-			}
-			panel.add(widget);
-		}
-		return panel;
-	}
+                }
+            }
+            panel.add(widget);
+        }
+        return panel;
+    }
 
     /**
      *
@@ -679,11 +677,11 @@ public class Gwt {
      * @return
      */
     public static SimplePanel createSpacer(int width, int height) {
-		SimplePanel spacer = new SimplePanel();
-		spacer.getElement().getStyle().setPropertyPx("lineHeight", 1);
-		spacer.setSize(width + "px", height + "px");
-		return spacer;
-	}
+        SimplePanel spacer = new SimplePanel();
+        spacer.getElement().getStyle().setPropertyPx("lineHeight", 1);
+        spacer.setSize(width + "px", height + "px");
+        return spacer;
+    }
 
     /**
      *
@@ -691,12 +689,12 @@ public class Gwt {
      * @return
      */
     public static FloatingFlowPanel createFloatingFlowPanel(Widget... widgets) {
-		FloatingFlowPanel panel = new FloatingFlowPanel();
-		for (Widget widget : widgets) {
-			panel.add(widget);
-		}
-		return panel;
-	}
+        FloatingFlowPanel panel = new FloatingFlowPanel();
+        for (Widget widget : widgets) {
+            panel.add(widget);
+        }
+        return panel;
+    }
 
     /**
      *
@@ -704,12 +702,12 @@ public class Gwt {
      * @return
      */
     public static FloatingFlowPanel createFloatingFlowPanelRight(Widget... widgets) {
-		FloatingFlowPanel panel = new FloatingFlowPanel();
-		for (Widget widget : widgets) {
-			panel.add(widget, true);
-		}
-		return panel;
-	}
+        FloatingFlowPanel panel = new FloatingFlowPanel();
+        for (Widget widget : widgets) {
+            panel.add(widget, true);
+        }
+        return panel;
+    }
 
     /**
      *
@@ -717,8 +715,8 @@ public class Gwt {
      * @return
      */
     public static FlowPanel createFlowPanel(Widget... widgets) {
-		return createFlowPanel(null, null, widgets);
-	}
+        return createFlowPanel(null, null, widgets);
+    }
 
     /**
      *
@@ -728,23 +726,23 @@ public class Gwt {
      * @return
      */
     public static FlowPanel createFlowPanel(String styleName, String elementStyleName, Widget... widgets) {
-		FlowPanel panel = new FlowPanel();
-		if (styleName != null) {
-                        panel.setStyleName(styleName);
-                }
-		for (Widget widget : widgets) {
-			panel.add(elementStyleName == null ? widget : createDiv(elementStyleName, widget));
-		}
-		return panel;
-	}
+        FlowPanel panel = new FlowPanel();
+        if (styleName != null) {
+            panel.setStyleName(styleName);
+        }
+        for (Widget widget : widgets) {
+            panel.add(elementStyleName == null ? widget : createDiv(elementStyleName, widget));
+        }
+        return panel;
+    }
 
     /**
      *
      * @return
      */
     public static Widget createNbsp() {
-		return new HTML("&nbsp;");
-	}
+        return new HTML("&nbsp;");
+    }
 
     /**
      *
@@ -752,15 +750,15 @@ public class Gwt {
      * @return
      */
     public static Set<String> getIdsAsSet(Collection<? extends AGwtEntity> entities) {
-		if (entities == null) {
-                        return emptySet();
-                }
-		Set<String> ret = new HashSet<String>(entities.size());
-		for (AGwtEntity entity : entities) {
-			ret.add(entity.getId());
-		}
-		return ret;
-	}
+        if (entities == null) {
+            return emptySet();
+        }
+        Set<String> ret = new HashSet<String>(entities.size());
+        for (AGwtEntity entity : entities) {
+            ret.add(entity.getId());
+        }
+        return ret;
+    }
 
     /**
      *
@@ -768,37 +766,39 @@ public class Gwt {
      * @return
      */
     public static List<String> getIdsAsList(Collection<? extends AGwtEntity> entities) {
-		List<String> ret = new ArrayList<String>(entities.size());
-		for (AGwtEntity entity : entities) {
-			ret.add(entity.getId());
-		}
-		return ret;
-	}
+        List<String> ret = new ArrayList<>(entities.size());
+        for (AGwtEntity entity : entities) {
+            ret.add(entity.getId());
+        }
+        return ret;
+    }
 
     /**
      *
      * @param w
      */
     public static void scrollTo(Widget w) {
-		if (w == null) {
-                        return;
-                }
-		w.getElement().scrollIntoView();
-	}
+        if (w == null) {
+            return;
+        }
+        w.getElement().scrollIntoView();
+    }
 
     /**
      *
      * @param posY
      */
-    public static native void scrollTo(int posY);
+    public static native void scrollTo(int posY)
+    /*-{	   
+     }-*/;
 
     /**
      *
      * @return
      */
     public static Widget createEmptyDiv() {
-		return new SimplePanel();
-	}
+        return new SimplePanel();
+    }
 
     /**
      *
@@ -806,18 +806,18 @@ public class Gwt {
      * @return
      */
     public static Widget createEmptyDiv(String styleName) {
-		SimplePanel div = new SimplePanel();
-		div.setStyleName(styleName);
-		return div;
-	}
+        SimplePanel div = new SimplePanel();
+        div.setStyleName(styleName);
+        return div;
+    }
 
     /**
      *
      * @return
      */
     public static Widget createFloatClear() {
-		return createEmptyDiv("floatClear");
-	}
+        return createEmptyDiv("floatClear");
+    }
 
     /**
      *
@@ -825,10 +825,10 @@ public class Gwt {
      * @return
      */
     public static FormPanel createForm(Widget content) {
-		FormPanel form = new FormPanel();
-		form.add(content);
-		return form;
-	}
+        FormPanel form = new FormPanel();
+        form.add(content);
+        return form;
+    }
 
     /**
      *
@@ -836,11 +836,11 @@ public class Gwt {
      * @return
      */
     public static Widget createCenterer(Widget content) {
-		TableBuilder tb = new TableBuilder();
-		tb.setCentered(true);
-		tb.add(content);
-		return tb.createTable();
-	}
+        TableBuilder tb = new TableBuilder();
+        tb.setCentered(true);
+        tb.add(content);
+        return tb.createTable();
+    }
 
     /**
      *
@@ -849,11 +849,11 @@ public class Gwt {
      * @return
      */
     public static SimplePanel createDiv(String styleName, Widget content) {
-		SimplePanel div = new SimplePanel();
-		div.setStyleName(styleName);
-		div.setWidget(content);
-		return div;
-	}
+        SimplePanel div = new SimplePanel();
+        div.setStyleName(styleName);
+        div.setWidget(content);
+        return div;
+    }
 
     /**
      *
@@ -862,11 +862,11 @@ public class Gwt {
      * @return
      */
     public static Widget createDiv(String styleName, String labelText) {
-		if (labelText == null) {
-                        return createEmptyDiv(styleName);
-                }
-		return createDiv(styleName, new Label(labelText));
-	}
+        if (labelText == null) {
+            return createEmptyDiv(styleName);
+        }
+        return createDiv(styleName, new Label(labelText));
+    }
 
     /**
      *
@@ -874,10 +874,10 @@ public class Gwt {
      * @return
      */
     public static String getSimpleName(Class<?> type) {
-		String name = type.getName();
-		name = name.substring(name.lastIndexOf('.') + 1);
-		return name;
-	}
+        String name = type.getName();
+        name = name.substring(name.lastIndexOf('.') + 1);
+        return name;
+    }
 
     /**
      *
@@ -890,10 +890,10 @@ public class Gwt {
          * @return
          */
         @Override
-		public String richtextToHtml(String s) {
-			return s;
-		}
+        public String richtextToHtml(String s) {
+            return s;
+        }
 
-	}
+    }
 
 }

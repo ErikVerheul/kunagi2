@@ -13,6 +13,8 @@
  * <http://www.gnu.org/licenses/>.
  */
 package ilarkesto.gwt.client;
+
+import ilarkesto.core.KunagiProperties;
 import static ilarkesto.core.logging.ClientLog.DEBUG;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,8 +27,8 @@ import java.util.Map;
  */
 public abstract class AGwtDao extends AComponent {
 
-	private String entityIdBase;
-	private int entityIdCounter;
+    private String entityIdBase;
+    private int entityIdCounter;
 
     /**
      *
@@ -40,7 +42,7 @@ public abstract class AGwtDao extends AComponent {
      * @param data
      * @return
      */
-    protected abstract AGwtEntity updateLocalEntity(String type, Map<String, String> data);
+    protected abstract AGwtEntity updateLocalEntity(String type, KunagiProperties data);
 
     /**
      *
@@ -86,61 +88,61 @@ public abstract class AGwtDao extends AComponent {
      * @return
      */
     public String getEntityIdBase() {
-		return entityIdBase;
-	}
+        return entityIdBase;
+    }
 
     /**
      *
      * @return
      */
     public int getEntityIdCounter() {
-		return entityIdCounter;
-	}
+        return entityIdCounter;
+    }
 
-	String getNewEntityId() {
-		if (entityIdBase == null) {
-                        throw new RuntimeException("No entityIdBase received yet.");
-                }
-		return entityIdBase + "-" + ++entityIdCounter;
-	}
+    String getNewEntityId() {
+        if (entityIdBase == null) {
+            throw new RuntimeException("No entityIdBase received yet.");
+        }
+        return entityIdBase + "-" + ++entityIdCounter;
+    }
 
     /**
      *
      * @param data
      */
     public void handleDataFromServer(ADataTransferObject data) {
-		if (data.entityIdBase != null) {
-			entityIdBase = data.entityIdBase;
-			DEBUG("entityIdBase received:", data.entityIdBase);
-		}
-		List<AGwtEntity> modifiedEntities = null;
-		if (data.containsEntities()) {
-			modifiedEntities = new ArrayList<AGwtEntity>(data.getEntities().size());
-			for (Map<String, String> entityData : data.getEntities()) {
-				AGwtEntity entity = updateLocalEntity(entityData.get("@type"), entityData);
-				modifiedEntities.add(entity);
-			}
-		}
-		if (data.containsDeletedEntities()) {
-			List<String> deletedEntities = new ArrayList<String>(data.getDeletedEntities());
-			for (Map<String, ? extends AGwtEntity> map : getEntityMaps()) {
-				for (String entityId : new ArrayList<String>(deletedEntities)) {
-					AGwtEntity entity = map.remove(entityId);
-					if (entity != null) {
-						deletedEntities.remove(entityId);
-						DEBUG("deleted:", entity.getEntityType() + ":", entity);
-						onEntityDeletedRemotely(entity);
-						entity.updateLocalModificationTime();
-					}
-				}
-			}
-		}
-		if (modifiedEntities != null) {
-			for (AGwtEntity entity : modifiedEntities) {
-				onEntityModifiedRemotely(entity);
-			}
-		}
-	}
+        if (data.entityIdBase != null) {
+            entityIdBase = data.entityIdBase;
+            DEBUG("entityIdBase received:", data.entityIdBase);
+        }
+        List<AGwtEntity> modifiedEntities = null;
+        if (data.containsEntities()) {
+            modifiedEntities = new ArrayList<>(data.getEntities().size());
+            for (KunagiProperties entityData : data.getEntities()) {
+                AGwtEntity entity = updateLocalEntity(entityData.getType(), entityData);
+                modifiedEntities.add(entity);
+            }
+        }
+        if (data.containsDeletedEntities()) {
+            List<String> deletedEntities = new ArrayList<>(data.getDeletedEntities());
+            for (Map<String, ? extends AGwtEntity> map : getEntityMaps()) {
+                for (String entityId : new ArrayList<>(deletedEntities)) {
+                    AGwtEntity entity = map.remove(entityId);
+                    if (entity != null) {
+                        deletedEntities.remove(entityId);
+                        DEBUG("deleted:", entity.getEntityType() + ":", entity);
+                        onEntityDeletedRemotely(entity);
+                        entity.updateLocalModificationTime();
+                    }
+                }
+            }
+        }
+        if (modifiedEntities != null) {
+            for (AGwtEntity entity : modifiedEntities) {
+                onEntityModifiedRemotely(entity);
+            }
+        }
+    }
 
     /**
      *
@@ -148,18 +150,18 @@ public abstract class AGwtDao extends AComponent {
      * @param successAction
      */
     protected final void entityCreated(AGwtEntity entity, Runnable successAction) {
-		entity.setCreated();
-		onEntityCreatedLocaly(entity, successAction);
-	}
+        entity.setCreated();
+        onEntityCreatedLocaly(entity, successAction);
+    }
 
     /**
      *
      * @param entity
      */
     protected final void entityDeleted(AGwtEntity entity) {
-		onEntityDeletedLocaly(entity);
-		entity.updateLocalModificationTime();
-	}
+        onEntityDeletedLocaly(entity);
+        entity.updateLocalModificationTime();
+    }
 
     /**
      *
@@ -168,8 +170,8 @@ public abstract class AGwtDao extends AComponent {
      * @param value
      */
     public final void entityPropertyChanged(AGwtEntity entity, String property, Object value) {
-		onEntityPropertyChangedLocaly(entity, property, value);
-	}
+        onEntityPropertyChangedLocaly(entity, property, value);
+    }
 
     /**
      *
@@ -178,14 +180,14 @@ public abstract class AGwtDao extends AComponent {
      * @throws EntityDoesNotExistException
      */
     public final AGwtEntity getEntity(String id) throws EntityDoesNotExistException {
-		for (Map<String, ? extends AGwtEntity> entityMap : getEntityMaps()) {
-			AGwtEntity entity = entityMap.get(id);
-			if (entity != null) {
-                                return entity;
-                        }
-		}
-                DEBUG("EntityDoesNotExistException thrown in " + this.getClass().getName());
-		throw new EntityDoesNotExistException(id);
-	}
+        for (Map<String, ? extends AGwtEntity> entityMap : getEntityMaps()) {
+            AGwtEntity entity = entityMap.get(id);
+            if (entity != null) {
+                return entity;
+            }
+        }
+        DEBUG("EntityDoesNotExistException thrown in " + this.getClass().getName());
+        throw new EntityDoesNotExistException(id);
+    }
 
 }

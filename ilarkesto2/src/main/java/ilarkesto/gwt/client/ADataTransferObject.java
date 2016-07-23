@@ -15,13 +15,13 @@
 package ilarkesto.gwt.client;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
+import ilarkesto.core.KunagiProperties;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -38,81 +38,81 @@ public abstract class ADataTransferObject implements Serializable, IsSerializabl
      *
      */
     public Boolean developmentMode;
-	private List<ErrorWrapper> errors;
+    private List<ErrorWrapper> errors;
 
     /**
      *
      */
     public Integer conversationNumber;
 
-	private String userId;
-	private Set<String> deletedEntities;
-	private HashMap<String, Map<String, String>> entities;
+    private String userId;
+    private Set<String> deletedEntities;
+    private HashMap<String, KunagiProperties> entities;
 
-	// dummys required for gwt-serialization
-	private int dummyI;
-	private Integer dummyInteger;
-	private float dummyF;
-	private Float dummyFloat;
+    // dummys required for gwt-serialization
+    private int dummyI;
+    private Integer dummyInteger;
+    private float dummyF;
+    private Float dummyFloat;
 
     /**
      *
      */
     public void clear() {
-		entities = null;
-		deletedEntities = null;
-	}
+        entities = null;
+        deletedEntities = null;
+    }
 
     /**
      *
      * @param error
      */
     public void addError(ErrorWrapper error) {
-		if (errors == null) {
-                        errors = new ArrayList<ErrorWrapper>(1);
-                }
-		errors.add(error);
-	}
+        if (errors == null) {
+            errors = new ArrayList<ErrorWrapper>(1);
+        }
+        errors.add(error);
+    }
 
     /**
      *
      * @return
      */
     public List<ErrorWrapper> getErrors() {
-		return errors;
-	}
+        return errors;
+    }
 
     /**
      *
      * @param user
      */
     public void setUserId(String user) {
-		this.userId = user;
-	}
+        this.userId = user;
+    }
 
     /**
      *
      * @return
      */
     public String getUserId() {
-		return userId;
-	}
+        return userId;
+    }
 
     /**
      *
      * @return
      */
     public boolean isUserSet() {
-		return userId != null;
-	}
+        return userId != null;
+    }
 
     /**
      *
      * @return
      */
     public final boolean containsEntities() {
-		return entities != null && !entities.isEmpty();
-	}
+        return entities != null && !entities.isEmpty();
+    }
 
     /**
      *
@@ -120,53 +120,53 @@ public abstract class ADataTransferObject implements Serializable, IsSerializabl
      * @return
      */
     public final boolean containsEntity(String entityId) {
-		return entities.containsKey(entityId);
-	}
+        return entities.containsKey(entityId);
+    }
 
     /**
      *
      * @param data
      */
-    public final void addEntity(HashMap<String, String> data) {
-		if (entities == null) {
-                        entities = new HashMap<String, Map<String, String>>();
-                }
-		entities.put(data.get("id"), data);
-	}
+    public final void addEntity(KunagiProperties data) {
+        if (entities == null) {
+                        entities = new HashMap<>();
+        }
+        entities.put(data.getId(), data);
+    }
 
     /**
      *
      * @return
      */
-    public final Collection<Map<String, String>> getEntities() {
-		return entities.values();
-	}
+    public final Collection<KunagiProperties> getEntities() {
+        return entities.values();
+    }
 
     /**
      *
      * @return
      */
     public final boolean containsDeletedEntities() {
-		return deletedEntities != null && !deletedEntities.isEmpty();
-	}
+        return deletedEntities != null && !deletedEntities.isEmpty();
+    }
 
     /**
      *
      * @param entityId
      */
     public final void addDeletedEntity(String entityId) {
-		if (deletedEntities == null) {
-                        deletedEntities = new HashSet<String>();
-                }
-		deletedEntities.add(entityId);
-	}
+        if (deletedEntities == null) {
+            deletedEntities = new HashSet<>();
+        }
+        deletedEntities.add(entityId);
+    }
 
     /**
      *
      * @return
      */
     public final Set<String> getDeletedEntities() {
-		return deletedEntities;
-	}
+        return deletedEntities;
+    }
 
 }

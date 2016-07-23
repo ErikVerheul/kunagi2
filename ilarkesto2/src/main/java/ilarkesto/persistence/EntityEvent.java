@@ -20,12 +20,12 @@ import java.util.EventObject;
 
 /**
  *
- * @author erik
  * @param <E>
  */
 public class EntityEvent<E extends AEntity> extends EventObject {
+    private static final long serialVersionUID = 1L;
 
-    private E entity;
+    private final E entity;
 
     /**
      *
@@ -55,11 +55,3 @@ public class EntityEvent<E extends AEntity> extends EventObject {
     }
 
 }
-
-// $Log: EntityEvent.java,v $
-// Revision 1.2  2006/03/22 19:20:11  wko
-// *** empty log message ***
-//
-// Revision 1.1 2006/02/02 17:36:39 wko
-// *** empty log message ***
-//

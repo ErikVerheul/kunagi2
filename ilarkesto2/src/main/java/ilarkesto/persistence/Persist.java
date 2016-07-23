@@ -16,13 +16,13 @@ package ilarkesto.persistence;
 
 import ilarkesto.auth.AUser;
 import static ilarkesto.auth.Auth.isVisible;
+import ilarkesto.core.KunagiProperties;
 import ilarkesto.fp.Predicate;
 import ilarkesto.id.Identifiable;
 import ilarkesto.search.Searchable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 public abstract class Persist {
 
@@ -34,8 +34,8 @@ public abstract class Persist {
 		return ret;
 	}
 
-	public static List<Map> createPropertiesMaps(Collection<? extends AEntity> entities) {
-		List<Map> result = new ArrayList<>(entities.size());
+	public static List<KunagiProperties> createPropertiesMaps(Collection<? extends AEntity> entities) {
+		List<KunagiProperties> result = new ArrayList<>(entities.size());
 		for (AEntity entity : entities) {
 			result.add(entity.createPropertiesMap());
 		}

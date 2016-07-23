@@ -16,10 +16,10 @@ package ilarkesto.persistence;
 
 import ilarkesto.auth.AUser;
 import ilarkesto.base.Iconized;
+import ilarkesto.core.KunagiProperties;
 import ilarkesto.core.time.DateAndTime;
 import static ilarkesto.core.time.DateAndTime.now;
 import ilarkesto.id.Identifiable;
-import java.util.Map;
 import static java.util.UUID.randomUUID;
 
 /**
@@ -28,13 +28,13 @@ import static java.util.UUID.randomUUID;
  */
 public abstract class AEntity extends ADatob implements Identifiable, Iconized {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private static DaoService daoService;
+    private static DaoService daoService;
 
-	private String id;
-	private DateAndTime lastModified;
-	private String lastEditorId;
+    private String id;
+    private DateAndTime lastModified;
+    private String lastEditorId;
 
     /**
      *
@@ -42,96 +42,92 @@ public abstract class AEntity extends ADatob implements Identifiable, Iconized {
      */
     public abstract ADao getDao();
 
-	// --- dependencies ---
-
+// --- dependencies ---
     /**
      *
      * @return
      */
-    
-	public static DaoService getDaoService() {
-		return daoService;
-	}
+    public static DaoService getDaoService() {
+        return daoService;
+    }
 
     /**
      *
      * @param daoService
      */
     public static void setDaoService(DaoService daoService) {
-		AEntity.daoService = daoService;
-	}
+        AEntity.daoService = daoService;
+    }
 
-	// --- ---
-
+// --- ---
     /**
      *
      * @return
      */
-    
-	@Override
-	protected final ADao getManager() {
-		return getDao();
-	}
+    @Override
+    protected final ADao<AEntity> getManager() {
+        return getDao();
+    }
 
     /**
      *
      * @return
      */
     @Override
-	public String getIcon() {
-		return getDao().getIcon();
-	}
+    public String getIcon() {
+        return getDao().getIcon();
+    }
 
     /**
      *
      * @return
      */
     @Override
-	public final String getId() {
-		if (id == null) {
-                        id = randomUUID().toString();
-                }
-		return id;
-	}
+    public final String getId() {
+        if (id == null) {
+            id = randomUUID().toString();
+        }
+        return id;
+    }
 
-	final void setId(String id) {
-		this.id = id;
-	}
+    final void setId(String id) {
+        this.id = id;
+    }
 
     /**
      *
      * @return
      */
     public final DateAndTime getLastModified() {
-		return lastModified;
-	}
+        return lastModified;
+    }
 
-	final void setLastModified(DateAndTime value) {
-		this.lastModified = value;
-	}
+    final void setLastModified(DateAndTime value) {
+        this.lastModified = value;
+    }
 
     /**
      *
      * @return
      */
     public final AUser getLastEditor() {
-		if (this.lastEditorId == null) {
-                        return null;
-                }
-		return (AUser) userDao.getById(this.lastEditorId);
-	}
+        if (this.lastEditorId == null) {
+            return null;
+        }
+        return (AUser) userDao.getById(this.lastEditorId);
+    }
 
     /**
      *
      * @param lastEditor
      */
     public final void setLastEditor(AUser lastEditor) {
-		if (isLastEditor(lastEditor)) {
-                        return;
-                }
-		this.lastEditorId = lastEditor == null ? null : lastEditor.getId();
-		fireModified("lastEditor=" + lastEditor);
-	}
+        if (isLastEditor(lastEditor)) {
+            return;
+        }
+        this.lastEditorId = lastEditor == null ? null : lastEditor.getId();
+        fireModified("lastEditor=" + lastEditor);
+    }
 
     /**
      *
@@ -139,78 +135,78 @@ public abstract class AEntity extends ADatob implements Identifiable, Iconized {
      * @return
      */
     public final boolean isLastEditor(AUser user) {
-		if (this.lastEditorId == null && user == null) {
-                        return true;
-                }
-		return user != null && user.getId().equals(this.lastEditorId);
-	}
+        if (this.lastEditorId == null && user == null) {
+            return true;
+        }
+        return user != null && user.getId().equals(this.lastEditorId);
+    }
 
     /**
      *
      * @return
      */
     public final boolean isLastEditorSet() {
-		return lastEditorId != null;
-	}
+        return lastEditorId != null;
+    }
 
     /**
      *
      * @param comment
      */
     @Override
-	protected void fireModified(String comment) {
-		super.fireModified(comment);
-	}
+    protected void fireModified(String comment) {
+        super.fireModified(comment);
+    }
 
     /**
      *
      */
     @Override
-	public void updateLastModified() {
-		setLastModified(now());
-	}
+    public void updateLastModified() {
+        setLastModified(now());
+    }
 
     /**
      *
      */
     @Override
-	public void ensureIntegrity() {
-		super.ensureIntegrity();
-		if (lastModified == null) {
-                        fireModified("lastModified!=null");
-                }
-	}
+    public void ensureIntegrity() {
+        super.ensureIntegrity();
+        if (lastModified == null) {
+            fireModified("lastModified!=null");
+        }
+    }
 
     /**
      *
      * @param properties
      */
     @Override
-	protected void storeProperties(Map <String, String>properties) {
-		properties.put("@type", getDao().getEntityName());
-		properties.put("id", getId());
-	}
+    protected void storeProperties(KunagiProperties properties) {
+        properties.putValue("id", getId());
+        properties.putValue("@type", getDao().getEntityName());
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) {
-                        return true;
-                }
-		if (o == null) {
-                        return false;
-                }
-		if (!getClass().equals(o.getClass())) {
-                        return false;
-                }
-                AEntity ae  = (AEntity)o;
-		return getId().equals(ae.getId());
-	}
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null) {
+            return false;
+        }
+        if (!getClass().equals(o.getClass())) {
+            return false;
+        }
+        AEntity ae = (AEntity) o;
+        return getId().equals(ae.getId());
+    }
 
-	@Override
-        public int hashCode() {
-                int hash = 3;
-                hash = 37 * hash + getId().hashCode();
-                return hash;
-	}
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 37 * hash + getId().hashCode();
+        return hash;
+    }
 
 }

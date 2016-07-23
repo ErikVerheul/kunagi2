@@ -13,17 +13,17 @@
  * <http://www.gnu.org/licenses/>.
  */
 package ilarkesto.persistence;
-import edu.umd.cs.findbugs.annotations.SuppressWarnings;
+
 import ilarkesto.auth.AUserDao;
 import ilarkesto.base.OverrideExpectedException;
+import ilarkesto.core.KunagiProperties;
+import ilarkesto.core.base.Str;
 import ilarkesto.search.Searchable;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -31,71 +31,67 @@ import java.util.Set;
  */
 public abstract class ADatob implements Searchable {
 
-	// --- dependencies ---
-
+    // --- dependencies ---
     /**
      *
      */
-    
-        @SuppressWarnings(value = "MS_PKGPROTECT", justification = "Sorry, can not make this member package protected.")
-	protected static AUserDao userDao;
+    protected static AUserDao userDao;
 
     /**
      *
      * @param userDao
      */
     public static void setUserDao(AUserDao userDao) {
-		ADatob.userDao = userDao;
-	}
+        ADatob.userDao = userDao;
+    }
 
-	// --- ---
-
+    // --- ---
+    
     /**
      *
      * @return
      */
+    protected abstract ADatobManager getManager();
     
-	protected abstract ADatobManager getManager();
-
     /**
      *
      * @param properties
      */
-    public abstract void updateProperties(Map<?, ?> properties);
+    public abstract void updateProperties(KunagiProperties properties);
 
     /**
      *
      */
     protected void updateLastModified() {
-		ADatobManager manager = getManager();
-		if (manager == null) {
-                        return;
-                }
-		manager.updateLastModified(this);
-	}
+        ADatobManager manager = getManager();
+        if (manager == null) {
+            return;
+        }
+        manager.updateLastModified(this);
+    }
 
     /**
      *
      * @param comment
      */
     protected void fireModified(String comment) {
-		ADatobManager manager = getManager();
-		if (manager == null) {
-                        return;
-                }
-		manager.onDatobModified(this, comment);
-	}
+        ADatobManager manager = getManager();
+        if (manager == null) {
+            return;
+        }
+        manager.onDatobModified(this, comment);
+    }
 
     /**
      *
      */
     protected final void repairMissingMaster() {
-		ADatobManager manager = getManager();
-		if (manager == null) {
-                        return;
-                }
-		manager.onMissingMaster(this);
-	}
+        ADatobManager manager = getManager();
+        if (manager == null) {
+            return;
+        }
+        manager.onMissingMaster(this);
+    }
 
     /**
      *
@@ -103,82 +99,57 @@ public abstract class ADatob implements Searchable {
      * @return
      */
     @Override
-	public boolean matchesKey(String key) {
-		return false;
-	}
+    public boolean matchesKey(String key) {
+        return false;
+    }
 
     /**
      *
      * @param entityId
      */
-    protected void repairDeadReferences(String entityId) {}
+    protected void repairDeadReferences(String entityId) {
+    }
 
     /**
      *
      */
-    public void ensureIntegrity() {}
+    public void ensureIntegrity() {
+    }
 
-	@Override
-	public String toString() {
-		return getClass().getSimpleName();
-	}
+    @Override
+    public String toString() {
+        return getClass().getSimpleName();
+    }
 
-	// --- properties as map ---
-
+    // --- properties as map ---
     /**
      *
      * @return
      */
-    
-	public final HashMap createPropertiesMap() {
-		HashMap properties = new HashMap();
-		storeProperties(properties);
-		return properties;
-	}
+    public final KunagiProperties createPropertiesMap() {
+        KunagiProperties properties = new KunagiProperties();
+        storeProperties(properties);
+        return properties;
+    }
 
     /**
      *
      * @param properties
      */
-    protected void storeProperties(Map <String, String>properties) {}
-
-	// public final void updateProperties(Map<?, ?> properties) {
-	// for (Map.Entry entry : properties.entrySet()) {
-	// updateProperty((String) entry.getKey(), entry.getValue());
-	// }
-	// }
-	//
-	// public final void updateProperty(String property, Object value) {
-	// if ("id".equals(property)) return;
-	//
-	// Class type = Reflect.getPropertyType(this, property);
-	// if (type == null && property.endsWith("Id")) {
-	// property = Str.removeSuffix(property, "Id");
-	// type = Reflect.getPropertyType(this, property);
-	// if (type == null || !AEntity.class.isAssignableFrom(type))
-	// throw new RuntimeException("Unsupported property: " + property);
-	// value = ((AEntity) this).getDaoService().getById((String) value);
-	// }
-	//
-	// if (value != null) {
-	// if (Date.class.equals(type)) value = new Date((String) value);
-	// }
-	// Reflect.setProperty(this, property, value);
-	// }
-
-	// --- helper ---
+    protected void storeProperties(KunagiProperties properties) {
+        properties.putValue("@type", Str.getSimpleName(getClass()));
+    }
 
     /**
      *
      * @param valueObjects
      * @param entityId
      */
-    
-	protected static void repairDeadReferencesOfValueObjects(Collection<? extends ADatob> valueObjects, String entityId) {
-		for (ADatob vo : valueObjects) {
-                        vo.repairDeadReferences(entityId);
-                }
-	}
+    protected static void repairDeadReferencesOfValueObjects(Collection<? extends ADatob> valueObjects, String entityId) {
+        for (ADatob vo : valueObjects) {
+            vo.repairDeadReferences(entityId);
+        }
+    }
 
     /**
      *
@@ -188,13 +159,13 @@ public abstract class ADatob implements Searchable {
      * @return
      */
     protected final <S extends AStructure> Set<S> cloneValueObjects(Collection<S> strucktures,
-			StructureManager<S> manager) {
-		Set<S> ret = new HashSet<>();
-		for (S s : strucktures) {
-			ret.add((S) s.clone(manager));
-		}
-		return ret;
-	}
+            StructureManager<S> manager) {
+        Set<S> ret = new HashSet<>();
+        for (S s : strucktures) {
+            ret.add((S) s.clone(manager));
+        }
+        return ret;
+    }
 
     /**
      *
@@ -202,12 +173,12 @@ public abstract class ADatob implements Searchable {
      * @return
      */
     protected static Set<String> getIdsAsSet(Collection<? extends AEntity> entities) {
-		Set<String> result = new HashSet<>(entities.size());
-		for (AEntity entity : entities) {
-                        result.add(entity.getId());
-                }
-		return result;
-	}
+        Set<String> result = new HashSet<>(entities.size());
+        for (AEntity entity : entities) {
+            result.add(entity.getId());
+        }
+        return result;
+    }
 
     /**
      *
@@ -215,12 +186,12 @@ public abstract class ADatob implements Searchable {
      * @return
      */
     protected static List<String> getIdsAsList(Collection<? extends AEntity> entities) {
-		List<String> result = new ArrayList<>(entities.size());
-		for (AEntity entity : entities) {
-                        result.add(entity.getId());
-                }
-		return result;
-	}
+        List<String> result = new ArrayList<>(entities.size());
+        for (AEntity entity : entities) {
+            result.add(entity.getId());
+        }
+        return result;
+    }
 
     /**
      *
@@ -229,12 +200,14 @@ public abstract class ADatob implements Searchable {
      * @return
      */
     protected static boolean matchesKey(Object object, String key) {
-		if (object == null) {
-                        return false;
-                }
-		if (object instanceof Searchable) { return ((Searchable) object).matchesKey(key); }
-		return object.toString().toLowerCase().indexOf(key) >= 0;
-	}
+        if (object == null) {
+            return false;
+        }
+        if (object instanceof Searchable) {
+            return ((Searchable) object).matchesKey(key);
+        }
+        return object.toString().toLowerCase().indexOf(key) >= 0;
+    }
 
     /**
      *
@@ -243,21 +216,21 @@ public abstract class ADatob implements Searchable {
      * @return
      */
     protected static boolean matchesKey(Collection objects, String key) {
-		for (Iterator iter = objects.iterator(); iter.hasNext();) {
-			if (matchesKey(iter.next(), key)) {
-                                return true;
-                        }
-		}
-		return false;
-	}
+        for (Iterator iter = objects.iterator(); iter.hasNext();) {
+            if (matchesKey(iter.next(), key)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     /**
      *
      * @param datob
      */
     protected void repairDeadDatob(ADatob datob) {
-		throw new OverrideExpectedException();
-	}
+        throw new OverrideExpectedException();
+    }
 
     /**
      *
@@ -265,40 +238,40 @@ public abstract class ADatob implements Searchable {
      */
     public class StructureManager<D extends ADatob> extends ADatobManager<D> {
 
-		@Override
-		public void onDatobModified(D datob, String comment) {
-			fireModified(comment);
-		}
+        @Override
+        public void onDatobModified(D datob, String comment) {
+            fireModified(comment);
+        }
 
         /**
          *
          * @param datob
          */
         @Override
-		public void updateLastModified(D datob) {
-			ADatob.this.updateLastModified();
-		}
+        public void updateLastModified(D datob) {
+            ADatob.this.updateLastModified();
+        }
 
         /**
          *
          * @param datob
          */
         @Override
-		public void onMissingMaster(D datob) {
-			repairDeadDatob(datob);
-		}
+        public void onMissingMaster(D datob) {
+            repairDeadDatob(datob);
+        }
 
         /**
          *
          * @param structures
          */
         public void ensureIntegrityOfStructures(Collection<? extends AStructure> structures) {
-			for (AStructure structure : new ArrayList<>(structures)) {
-				structure.setManager(this);
-				structure.ensureIntegrity();
-			}
-		}
+            for (AStructure structure : new ArrayList<>(structures)) {
+                structure.setManager(this);
+                structure.ensureIntegrity();
+            }
+        }
 
-	}
+    }
 
 }

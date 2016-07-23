@@ -780,6 +780,9 @@ public class Str {
 		if (idx > 0) {
 			name = name.substring(idx + 1);
 		}
+                if (null == name) {
+                    name = "getSimpleName: unknown class";
+                }
 		return name;
 	}
 

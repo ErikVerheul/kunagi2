@@ -14,44 +14,44 @@
  */
 package ilarkesto.base;
 
-import ilarkesto.logging.Log;
+import static ilarkesto.gwt.server.AGwtServiceImpl.LOG;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * A simple cache, where keys are mapped to value objects. When no value-object is assigned to a key, then a
- * create method is called on the user provided factory.
+ * A simple cache, where keys are mapped to value objects. When no value-object is assigned to a key, then a create method is called on the user provided
+ * factory.
+ *
  * @param <K>
  * @param <V>
  */
 public class Cache<K, V> {
 
-	private static final Log LOG = Log.get(Cache.class);
+    private Map<K, V> cache = new HashMap<>();
 
-	private Map<K, V> cache = new HashMap<>();
-
-	private Factory<K, V> factory;
+    private Factory<K, V> factory;
 
     /**
      *
      * @param factory
      */
     public Cache(Factory<K, V> factory) {
-		this.factory = factory;
-	}
+        this.factory = factory;
+    }
 
-	Cache() {}
+    Cache() {
+    }
 
-	void setFactory(Factory<K, V> factory) {
-		this.factory = factory;
-	}
+    void setFactory(Factory<K, V> factory) {
+        this.factory = factory;
+    }
 
     /**
      *
      */
     public void clear() {
-		cache = new HashMap<>();
-	}
+        cache = new HashMap<>();
+    }
 
     /**
      *
@@ -59,16 +59,16 @@ public class Cache<K, V> {
      * @return
      */
     public V get(K key) {
-		V value = cache.get(key);
-		if (value == null) {
-			value = factory.create(key);
-			// LOG.debug("Returning new:", key, "->", value);
-			cache.put(key, value);
+        V value = cache.get(key);
+        if (value == null) {
+            value = factory.create(key);
+//            LOG.debug("Returning new:", key, "->", value);
+            cache.put(key, value);
 			// } else {
-			// LOG.debug("Returning cached:", key, "->", value);
-		}
-		return value;
-	}
+//            LOG.debug("Returning cached:", key, "->", value);
+        }
+        return value;
+    }
 
     /**
      *
@@ -84,6 +84,6 @@ public class Cache<K, V> {
          */
         V create(K key);
 
-	}
+    }
 
 }

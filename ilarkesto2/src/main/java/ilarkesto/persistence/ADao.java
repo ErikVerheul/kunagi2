@@ -42,7 +42,7 @@ import java.util.Map;
 import java.util.Set;
 
 public abstract class ADao<E extends AEntity> extends ADatobManager<E> implements IdentifiableResolver<E>, Searcher,
-		DaoListener, Iconized {
+		DaoListener<E>, Iconized {
 
 	private static final Log LOG = Log.get(ADao.class);
 

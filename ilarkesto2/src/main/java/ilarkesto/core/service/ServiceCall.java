@@ -16,7 +16,6 @@ package ilarkesto.core.service;
 
 /**
  *
- * @author erik
  */
 public interface ServiceCall {
 
