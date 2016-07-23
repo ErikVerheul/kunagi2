@@ -1,9 +1,9 @@
 package scrum.client.sprint;
 
+import ilarkesto.core.KunagiProperties;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import scrum.client.project.Requirement;
 
@@ -19,7 +19,7 @@ public class SprintReport extends GSprintReport {
      *
      * @param data
      */
-    public SprintReport(Map data) {
+    public SprintReport(KunagiProperties data) {
 		super(data);
 	}
 
@@ -28,7 +28,7 @@ public class SprintReport extends GSprintReport {
      * @return
      */
     public Set<Requirement> getAllRequirements() {
-		Set<Requirement> requirements = new HashSet<Requirement>();
+		Set<Requirement> requirements = new HashSet<>();
 		requirements.addAll(getCompletedRequirements());
 		requirements.addAll(getRejectedRequirements());
 		return requirements;

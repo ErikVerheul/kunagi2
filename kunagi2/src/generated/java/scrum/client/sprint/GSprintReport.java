@@ -13,6 +13,7 @@
 
 package scrum.client.sprint;
 
+import ilarkesto.core.KunagiProperties;
 import java.util.*;
 import static ilarkesto.core.base.Utl.equalObjects;
 import static ilarkesto.core.logging.ClientLog.*;
@@ -29,7 +30,7 @@ public abstract class GSprintReport
     public GSprintReport() {
     }
 
-    public GSprintReport(Map data) {
+    public GSprintReport(KunagiProperties data) {
         super(data);
         updateProperties(data);
     }
@@ -283,27 +284,27 @@ public abstract class GSprintReport
 
     // --- update properties by map ---
 
-    public void updateProperties(Map props) {
-        sprintId = (String) props.get("sprintId");
-        completedRequirementsIds = (Set<String>) props.get("completedRequirementsIds");
-        rejectedRequirementsIds = (Set<String>) props.get("rejectedRequirementsIds");
-        requirementsOrderIds  = (java.util.List<java.lang.String>) props.get("requirementsOrderIds");
-        closedTasksIds = (Set<String>) props.get("closedTasksIds");
-        openTasksIds = (Set<String>) props.get("openTasksIds");
-        burnedWork  = (Integer) props.get("burnedWork");
+    public void updateProperties(KunagiProperties props) {
+        sprintId = (String) props.getValue("sprintId");
+        completedRequirementsIds = (Set<String>) props.getValue("completedRequirementsIds");
+        rejectedRequirementsIds = (Set<String>) props.getValue("rejectedRequirementsIds");
+        requirementsOrderIds  = (java.util.List<java.lang.String>) props.getValue("requirementsOrderIds");
+        closedTasksIds = (Set<String>) props.getValue("closedTasksIds");
+        openTasksIds = (Set<String>) props.getValue("openTasksIds");
+        burnedWork  = (Integer) props.getValue("burnedWork");
         updateLocalModificationTime();
     }
 
     @Override
-    public void storeProperties(Map properties) {
+    public void storeProperties(KunagiProperties properties) {
         super.storeProperties(properties);
-        properties.put("sprintId", this.sprintId);
-        properties.put("completedRequirementsIds", this.completedRequirementsIds);
-        properties.put("rejectedRequirementsIds", this.rejectedRequirementsIds);
-        properties.put("requirementsOrderIds", this.requirementsOrderIds);
-        properties.put("closedTasksIds", this.closedTasksIds);
-        properties.put("openTasksIds", this.openTasksIds);
-        properties.put("burnedWork", this.burnedWork);
+        properties.putValue("sprintId", this.sprintId);
+        properties.putValue("completedRequirementsIds", this.completedRequirementsIds);
+        properties.putValue("rejectedRequirementsIds", this.rejectedRequirementsIds);
+        properties.putValue("requirementsOrderIds", this.requirementsOrderIds);
+        properties.putValue("closedTasksIds", this.closedTasksIds);
+        properties.putValue("openTasksIds", this.openTasksIds);
+        properties.putValue("burnedWork", this.burnedWork);
     }
 
 }

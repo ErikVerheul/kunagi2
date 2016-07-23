@@ -20,6 +20,7 @@ import ilarkesto.persistence.AStructure;
 import ilarkesto.auth.AUser;
 import ilarkesto.persistence.EntityDoesNotExistException;
 import ilarkesto.base.StrExtend;
+import ilarkesto.core.KunagiProperties;
 
 public abstract class GImpediment
             extends AEntity
@@ -35,15 +36,15 @@ public abstract class GImpediment
     }
 
     @Override
-    public void storeProperties(Map properties) {
+    public void storeProperties(KunagiProperties properties) {
         super.storeProperties(properties);
-        properties.put("projectId", this.projectId);
-        properties.put("number", this.number);
-        properties.put("label", this.label);
-        properties.put("date", this.date == null ? null : this.date.toString());
-        properties.put("description", this.description);
-        properties.put("solution", this.solution);
-        properties.put("closed", this.closed);
+        properties.putValue("projectId", this.projectId);
+        properties.putValue("number", this.number);
+        properties.putValue("label", this.label);
+        properties.putValue("date", this.date == null ? null : this.date.toString());
+        properties.putValue("description", this.description);
+        properties.putValue("solution", this.solution);
+        properties.putValue("closed", this.closed);
     }
 
     public int compareTo(Impediment other) {
@@ -327,9 +328,9 @@ public abstract class GImpediment
         setClosed((Boolean)value);
     }
 
-    public void updateProperties(Map<?, ?> properties) {
-        for (Map.Entry entry : properties.entrySet()) {
-            String property = (String) entry.getKey();
+    public void updateProperties(KunagiProperties properties) {
+        for (Map.Entry<String, Object> entry : properties.getEntrySet()) {
+            String property = entry.getKey();
             if (property.equals("id")) continue;
             Object value = entry.getValue();
             if (property.equals("projectId")) updateProject(value);

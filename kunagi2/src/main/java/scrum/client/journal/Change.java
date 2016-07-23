@@ -14,6 +14,7 @@
  */
 package scrum.client.journal;
 
+import ilarkesto.core.KunagiProperties;
 import ilarkesto.core.base.Str;
 import ilarkesto.core.diff.HtmlDiffMarker;
 import ilarkesto.core.diff.TokenDiff;
@@ -57,7 +58,7 @@ public class Change extends GChange {
      *
      * @param data
      */
-    public Change(Map data) {
+    public Change(KunagiProperties data) {
 		super(data);
 	}
 

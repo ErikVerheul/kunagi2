@@ -20,6 +20,7 @@ import ilarkesto.persistence.AStructure;
 import ilarkesto.auth.AUser;
 import ilarkesto.persistence.EntityDoesNotExistException;
 import ilarkesto.base.StrExtend;
+import ilarkesto.core.KunagiProperties;
 
 public abstract class GSprint
             extends AEntity
@@ -35,24 +36,24 @@ public abstract class GSprint
     }
 
     @Override
-    public void storeProperties(Map properties) {
+    public void storeProperties(KunagiProperties properties) {
         super.storeProperties(properties);
-        properties.put("number", this.number);
-        properties.put("projectId", this.projectId);
-        properties.put("label", this.label);
-        properties.put("goal", this.goal);
-        properties.put("begin", this.begin == null ? null : this.begin.toString());
-        properties.put("end", this.end == null ? null : this.end.toString());
-        properties.put("velocity", this.velocity);
-        properties.put("completedRequirementsData", this.completedRequirementsData);
-        properties.put("incompletedRequirementsData", this.incompletedRequirementsData);
-        properties.put("planningNote", this.planningNote);
-        properties.put("reviewNote", this.reviewNote);
-        properties.put("retrospectiveNote", this.retrospectiveNote);
-        properties.put("requirementsOrderIds", this.requirementsOrderIds);
-        properties.put("productOwnersIds", this.productOwnersIds);
-        properties.put("scrumMastersIds", this.scrumMastersIds);
-        properties.put("teamMembersIds", this.teamMembersIds);
+        properties.putValue("number", this.number);
+        properties.putValue("projectId", this.projectId);
+        properties.putValue("label", this.label);
+        properties.putValue("goal", this.goal);
+        properties.putValue("begin", this.begin == null ? null : this.begin.toString());
+        properties.putValue("end", this.end == null ? null : this.end.toString());
+        properties.putValue("velocity", this.velocity);
+        properties.putValue("completedRequirementsData", this.completedRequirementsData);
+        properties.putValue("incompletedRequirementsData", this.incompletedRequirementsData);
+        properties.putValue("planningNote", this.planningNote);
+        properties.putValue("reviewNote", this.reviewNote);
+        properties.putValue("retrospectiveNote", this.retrospectiveNote);
+        properties.putValue("requirementsOrderIds", this.requirementsOrderIds);
+        properties.putValue("productOwnersIds", this.productOwnersIds);
+        properties.putValue("scrumMastersIds", this.scrumMastersIds);
+        properties.putValue("teamMembersIds", this.teamMembersIds);
     }
 
     public int compareTo(Sprint other) {
@@ -914,9 +915,9 @@ public abstract class GSprint
         setTeamMembers((java.util.Set) userDao.getByIdsAsSet(ids));
     }
 
-    public void updateProperties(Map<?, ?> properties) {
-        for (Map.Entry entry : properties.entrySet()) {
-            String property = (String) entry.getKey();
+    public void updateProperties(KunagiProperties properties) {
+        for (Map.Entry<String, Object> entry : properties.getEntrySet()) {
+            String property = entry.getKey();
             if (property.equals("id")) continue;
             Object value = entry.getValue();
             if (property.equals("number")) updateNumber(value);

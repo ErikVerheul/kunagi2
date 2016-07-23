@@ -20,6 +20,7 @@ import ilarkesto.persistence.AStructure;
 import ilarkesto.auth.AUser;
 import ilarkesto.persistence.EntityDoesNotExistException;
 import ilarkesto.base.StrExtend;
+import ilarkesto.core.KunagiProperties;
 
 public abstract class GChange
             extends AEntity
@@ -35,15 +36,15 @@ public abstract class GChange
     }
 
     @Override
-    public void storeProperties(Map properties) {
+    public void storeProperties(KunagiProperties properties) {
         super.storeProperties(properties);
-        properties.put("parentId", this.parentId);
-        properties.put("userId", this.userId);
-        properties.put("dateAndTime", this.dateAndTime == null ? null : this.dateAndTime.toString());
-        properties.put("key", this.key);
-        properties.put("oldValue", this.oldValue);
-        properties.put("newValue", this.newValue);
-        properties.put("comment", this.comment);
+        properties.putValue("parentId", this.parentId);
+        properties.putValue("userId", this.userId);
+        properties.putValue("dateAndTime", this.dateAndTime == null ? null : this.dateAndTime.toString());
+        properties.putValue("key", this.key);
+        properties.putValue("oldValue", this.oldValue);
+        properties.putValue("newValue", this.newValue);
+        properties.putValue("comment", this.comment);
     }
 
     public int compareTo(Change other) {
@@ -338,9 +339,9 @@ public abstract class GChange
         setComment((java.lang.String)value);
     }
 
-    public void updateProperties(Map<?, ?> properties) {
-        for (Map.Entry entry : properties.entrySet()) {
-            String property = (String) entry.getKey();
+    public void updateProperties(KunagiProperties properties) {
+        for (Map.Entry<String, Object> entry : properties.getEntrySet()) {
+            String property = entry.getKey();
             if (property.equals("id")) continue;
             Object value = entry.getValue();
             if (property.equals("parentId")) updateParent(value);

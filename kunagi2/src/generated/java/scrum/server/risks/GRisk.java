@@ -20,6 +20,7 @@ import ilarkesto.persistence.AStructure;
 import ilarkesto.auth.AUser;
 import ilarkesto.persistence.EntityDoesNotExistException;
 import ilarkesto.base.StrExtend;
+import ilarkesto.core.KunagiProperties;
 
 public abstract class GRisk
             extends AEntity
@@ -35,16 +36,16 @@ public abstract class GRisk
     }
 
     @Override
-    public void storeProperties(Map properties) {
+    public void storeProperties(KunagiProperties properties) {
         super.storeProperties(properties);
-        properties.put("projectId", this.projectId);
-        properties.put("number", this.number);
-        properties.put("label", this.label);
-        properties.put("description", this.description);
-        properties.put("probabilityMitigation", this.probabilityMitigation);
-        properties.put("impactMitigation", this.impactMitigation);
-        properties.put("probability", this.probability);
-        properties.put("impact", this.impact);
+        properties.putValue("projectId", this.projectId);
+        properties.putValue("number", this.number);
+        properties.putValue("label", this.label);
+        properties.putValue("description", this.description);
+        properties.putValue("probabilityMitigation", this.probabilityMitigation);
+        properties.putValue("impactMitigation", this.impactMitigation);
+        properties.putValue("probability", this.probability);
+        properties.putValue("impact", this.impact);
     }
 
     public int compareTo(Risk other) {
@@ -355,9 +356,9 @@ public abstract class GRisk
         setImpact((Integer)value);
     }
 
-    public void updateProperties(Map<?, ?> properties) {
-        for (Map.Entry entry : properties.entrySet()) {
-            String property = (String) entry.getKey();
+    public void updateProperties(KunagiProperties properties) {
+        for (Map.Entry<String, Object> entry : properties.getEntrySet()) {
+            String property = entry.getKey();
             if (property.equals("id")) continue;
             Object value = entry.getValue();
             if (property.equals("projectId")) updateProject(value);

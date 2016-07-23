@@ -2,6 +2,8 @@
 
 package scrum.client;
 
+import ilarkesto.core.KunagiProperties;
+
 public interface ScrumService extends com.google.gwt.user.client.rpc.RemoteService {
 
     scrum.client.DataTransferObject changePassword(int conversationNumber, String newPassword, String oldPassword);
@@ -26,9 +28,9 @@ public interface ScrumService extends com.google.gwt.user.client.rpc.RemoteServi
 
     scrum.client.DataTransferObject touchLastActivity(int conversationNumber);
 
-    scrum.client.DataTransferObject changeProperties(int conversationNumber, String entityId, java.util.Map<String, Object> properties);
+    scrum.client.DataTransferObject changeProperties(int conversationNumber, String entityId, KunagiProperties properties);
 
-    scrum.client.DataTransferObject createEntity(int conversationNumber, String type, java.util.Map<String, Object> properties);
+    scrum.client.DataTransferObject createEntity(int conversationNumber, String type, KunagiProperties properties);
 
     scrum.client.DataTransferObject deleteEntity(int conversationNumber, String entityId);
 

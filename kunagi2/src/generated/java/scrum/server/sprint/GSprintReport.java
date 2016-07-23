@@ -20,6 +20,7 @@ import ilarkesto.persistence.AStructure;
 import ilarkesto.auth.AUser;
 import ilarkesto.persistence.EntityDoesNotExistException;
 import ilarkesto.base.StrExtend;
+import ilarkesto.core.KunagiProperties;
 
 public abstract class GSprintReport
             extends AEntity
@@ -35,15 +36,15 @@ public abstract class GSprintReport
     }
 
     @Override
-    public void storeProperties(Map properties) {
+    public void storeProperties(KunagiProperties properties) {
         super.storeProperties(properties);
-        properties.put("sprintId", this.sprintId);
-        properties.put("completedRequirementsIds", this.completedRequirementsIds);
-        properties.put("rejectedRequirementsIds", this.rejectedRequirementsIds);
-        properties.put("requirementsOrderIds", this.requirementsOrderIds);
-        properties.put("closedTasksIds", this.closedTasksIds);
-        properties.put("openTasksIds", this.openTasksIds);
-        properties.put("burnedWork", this.burnedWork);
+        properties.putValue("sprintId", this.sprintId);
+        properties.putValue("completedRequirementsIds", this.completedRequirementsIds);
+        properties.putValue("rejectedRequirementsIds", this.rejectedRequirementsIds);
+        properties.putValue("requirementsOrderIds", this.requirementsOrderIds);
+        properties.putValue("closedTasksIds", this.closedTasksIds);
+        properties.putValue("openTasksIds", this.openTasksIds);
+        properties.putValue("burnedWork", this.burnedWork);
     }
 
     public int compareTo(SprintReport other) {
@@ -62,7 +63,7 @@ public abstract class GSprintReport
     private transient scrum.server.sprint.Sprint sprintCache;
 
     private void updateSprintCache() {
-        sprintCache = this.sprintId == null ? null : (scrum.server.sprint.Sprint)sprintDao.getById(this.sprintId);
+        sprintCache = this.sprintId == null ? null : sprintDao.getById(this.sprintId);
     }
 
     public final String getSprintId() {
@@ -589,9 +590,9 @@ public abstract class GSprintReport
         setBurnedWork((Integer)value);
     }
 
-    public void updateProperties(Map<?, ?> properties) {
-        for (Map.Entry entry : properties.entrySet()) {
-            String property = (String) entry.getKey();
+    public void updateProperties(KunagiProperties properties) {
+        for (Map.Entry<String, Object> entry : properties.getEntrySet()) {
+            String property = entry.getKey();
             if (property.equals("id")) continue;
             Object value = entry.getValue();
             if (property.equals("sprintId")) updateSprint(value);

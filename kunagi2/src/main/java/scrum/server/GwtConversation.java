@@ -15,6 +15,7 @@
 package scrum.server;
 
 import ilarkesto.auth.Auth;
+import ilarkesto.core.KunagiProperties;
 import ilarkesto.core.time.TimePeriod;
 import ilarkesto.gwt.server.AGwtConversation;
 import ilarkesto.logging.Log;
@@ -50,7 +51,7 @@ public class GwtConversation extends AGwtConversation {
 	}
 
 	@Override
-	protected void filterEntityProperties(AEntity entity, java.util.Map propertiesMap) {
+	protected void filterEntityProperties(AEntity entity, KunagiProperties propertiesMap) {
 		super.filterEntityProperties(entity, propertiesMap);
 		User user = getSession().getUser();
 

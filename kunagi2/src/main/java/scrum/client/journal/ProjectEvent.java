@@ -14,15 +14,15 @@
  */
 package scrum.client.journal;
 
+import ilarkesto.core.KunagiProperties;
 import ilarkesto.core.time.DateAndTime;
 import java.util.Comparator;
-import java.util.Map;
 import scrum.client.collaboration.Wiki;
 import scrum.client.project.Project;
 
 public class ProjectEvent extends GProjectEvent {
 
-	public ProjectEvent(Map data) {
+	public ProjectEvent(KunagiProperties data) {
 		super(data);
 	}
 

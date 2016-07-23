@@ -13,6 +13,7 @@
 
 package scrum.client.sprint;
 
+import ilarkesto.core.KunagiProperties;
 import java.util.*;
 import static ilarkesto.core.base.Utl.equalObjects;
 import static ilarkesto.core.logging.ClientLog.*;
@@ -31,7 +32,7 @@ public abstract class GTask
     public GTask() {
     }
 
-    public GTask(Map data) {
+    public GTask(KunagiProperties data) {
         super(data);
         updateProperties(data);
     }
@@ -467,31 +468,31 @@ public abstract class GTask
 
     // --- update properties by map ---
 
-    public void updateProperties(Map props) {
-        requirementId = (String) props.get("requirementId");
-        number  = (Integer) props.get("number");
-        label  = (java.lang.String) props.get("label");
-        description  = (java.lang.String) props.get("description");
-        remainingWork  = (Integer) props.get("remainingWork");
-        burnedWork  = (Integer) props.get("burnedWork");
-        ownerId = (String) props.get("ownerId");
-        impedimentId = (String) props.get("impedimentId");
-        closedInPastSprintId = (String) props.get("closedInPastSprintId");
+    public void updateProperties(KunagiProperties props) {
+        requirementId = (String) props.getValue("requirementId");
+        number  = (Integer) props.getValue("number");
+        label  = (java.lang.String) props.getValue("label");
+        description  = (java.lang.String) props.getValue("description");
+        remainingWork  = (Integer) props.getValue("remainingWork");
+        burnedWork  = (Integer) props.getValue("burnedWork");
+        ownerId = (String) props.getValue("ownerId");
+        impedimentId = (String) props.getValue("impedimentId");
+        closedInPastSprintId = (String) props.getValue("closedInPastSprintId");
         updateLocalModificationTime();
     }
 
     @Override
-    public void storeProperties(Map properties) {
+    public void storeProperties(KunagiProperties properties) {
         super.storeProperties(properties);
-        properties.put("requirementId", this.requirementId);
-        properties.put("number", this.number);
-        properties.put("label", this.label);
-        properties.put("description", this.description);
-        properties.put("remainingWork", this.remainingWork);
-        properties.put("burnedWork", this.burnedWork);
-        properties.put("ownerId", this.ownerId);
-        properties.put("impedimentId", this.impedimentId);
-        properties.put("closedInPastSprintId", this.closedInPastSprintId);
+        properties.putValue("requirementId", this.requirementId);
+        properties.putValue("number", this.number);
+        properties.putValue("label", this.label);
+        properties.putValue("description", this.description);
+        properties.putValue("remainingWork", this.remainingWork);
+        properties.putValue("burnedWork", this.burnedWork);
+        properties.putValue("ownerId", this.ownerId);
+        properties.putValue("impedimentId", this.impedimentId);
+        properties.putValue("closedInPastSprintId", this.closedInPastSprintId);
     }
 
     public final java.util.List<scrum.client.sprint.SprintReport> getSprintReports() {

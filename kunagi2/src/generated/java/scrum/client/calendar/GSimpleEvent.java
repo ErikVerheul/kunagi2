@@ -13,6 +13,7 @@
 
 package scrum.client.calendar;
 
+import ilarkesto.core.KunagiProperties;
 import java.util.*;
 import static ilarkesto.core.base.Utl.equalObjects;
 import static ilarkesto.core.logging.ClientLog.*;
@@ -29,7 +30,7 @@ public abstract class GSimpleEvent
     public GSimpleEvent() {
     }
 
-    public GSimpleEvent(Map data) {
+    public GSimpleEvent(KunagiProperties data) {
         super(data);
         updateProperties(data);
     }
@@ -525,33 +526,33 @@ public abstract class GSimpleEvent
 
     // --- update properties by map ---
 
-    public void updateProperties(Map props) {
-        projectId = (String) props.get("projectId");
-        label  = (java.lang.String) props.get("label");
-        number  = (Integer) props.get("number");
-        String dateAsString = (String) props.get("date");
+    public void updateProperties(KunagiProperties props) {
+        projectId = (String) props.getValue("projectId");
+        label  = (java.lang.String) props.getValue("label");
+        number  = (Integer) props.getValue("number");
+        String dateAsString = (String) props.getValue("date");
         date  =  dateAsString == null ? null : new ilarkesto.core.time.Date(dateAsString);
-        String timeAsString = (String) props.get("time");
+        String timeAsString = (String) props.getValue("time");
         time  =  timeAsString == null ? null : new ilarkesto.core.time.Time(timeAsString);
-        location  = (java.lang.String) props.get("location");
-        duration  = (java.lang.Integer) props.get("duration");
-        agenda  = (java.lang.String) props.get("agenda");
-        note  = (java.lang.String) props.get("note");
+        location  = (java.lang.String) props.getValue("location");
+        duration  = (java.lang.Integer) props.getValue("duration");
+        agenda  = (java.lang.String) props.getValue("agenda");
+        note  = (java.lang.String) props.getValue("note");
         updateLocalModificationTime();
     }
 
     @Override
-    public void storeProperties(Map properties) {
+    public void storeProperties(KunagiProperties properties) {
         super.storeProperties(properties);
-        properties.put("projectId", this.projectId);
-        properties.put("label", this.label);
-        properties.put("number", this.number);
-        properties.put("date", this.date == null ? null : this.date.toString());
-        properties.put("time", this.time == null ? null : this.time.toString());
-        properties.put("location", this.location);
-        properties.put("duration", this.duration);
-        properties.put("agenda", this.agenda);
-        properties.put("note", this.note);
+        properties.putValue("projectId", this.projectId);
+        properties.putValue("label", this.label);
+        properties.putValue("number", this.number);
+        properties.putValue("date", this.date == null ? null : this.date.toString());
+        properties.putValue("time", this.time == null ? null : this.time.toString());
+        properties.putValue("location", this.location);
+        properties.putValue("duration", this.duration);
+        properties.putValue("agenda", this.agenda);
+        properties.putValue("note", this.note);
     }
 
     @Override

@@ -15,8 +15,8 @@
 package scrum.client.collaboration;
 
 import com.google.gwt.user.client.ui.Widget;
+import ilarkesto.core.KunagiProperties;
 import ilarkesto.gwt.client.HyperlinkWidget;
-import java.util.Map;
 import scrum.client.common.ShowEntityAction;
 import scrum.client.project.Project;
 
@@ -28,7 +28,7 @@ public class Wikipage extends GWikipage implements ForumSupport {
 		setText("= " + name + " =\n\n...");
 	}
 
-	public Wikipage(Map data) {
+	public Wikipage(KunagiProperties data) {
 		super(data);
 	}
 

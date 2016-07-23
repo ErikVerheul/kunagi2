@@ -334,4 +334,4 @@ public class User extends GUser {
 		return getLastLoginDateAndTime().getPeriodToNow().abs().toDays() > DAYS_FOR_INACTIVITY;
 	}
 
-}
+    }

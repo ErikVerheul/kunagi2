@@ -14,6 +14,7 @@
  */
 package scrum.client.common;
 
+import ilarkesto.core.KunagiProperties;
 import ilarkesto.core.base.Str;
 import ilarkesto.core.base.ToHtmlSupport;
 import ilarkesto.core.scope.Scope;
@@ -25,7 +26,6 @@ import ilarkesto.gwt.client.editor.AFieldModel;
 import ilarkesto.gwt.client.editor.AOptionEditorModel;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import scrum.client.Dao;
 import scrum.client.admin.Auth;
 import scrum.client.admin.User;
@@ -160,7 +160,7 @@ public abstract class AScrumGwtEntity extends AGwtEntity implements ToHtmlSuppor
      *
      * @param data
      */
-    public AScrumGwtEntity(Map data) {
+    public AScrumGwtEntity(KunagiProperties data) {
 		super(data);
 	}
 

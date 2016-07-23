@@ -60,6 +60,8 @@ public class ScrumJs {
      * @param text
      * @return
      */
-    public static native String regexTextToHtml(String text);
+    public static native String regexTextToHtml(String text)
+     /*-{	   
+     }-*/;
 
 }

@@ -15,6 +15,8 @@
 package scrum.client;
 
 import com.google.gwt.user.client.Timer;
+import ilarkesto.core.KunagiProperties;
+import static ilarkesto.core.logging.ClientLog.DEBUG;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.ADataTransferObject;
 import ilarkesto.gwt.client.AGwtEntity;
@@ -57,47 +59,48 @@ import scrum.client.workspace.VisibleDataChangedEvent;
  */
 public class Dao extends GDao {
 
-	private static final Dao INSTANCE = new Dao();
+    private static final Dao INSTANCE = new Dao();
 
-	private EntityChangeCache cache = new EntityChangeCache();
+    private final EntityChangeCache cache = new EntityChangeCache();
 
-	private Dao() {}
+    private Dao() {
+    }
 
     /**
      *
      */
     public void clearProjectEntities() {
-		clearChatMessages();
-		clearImpediments();
-		clearQualitys();
-		clearRequirements();
-		clearRisks();
-		clearSprints();
-		clearTasks();
-		clearComments();
-		clearWikipages();
-		clearIssues();
-		clearSimpleEvents();
-		clearProjectUserConfigs();
-		clearProjectEvents();
-	}
+        clearChatMessages();
+        clearImpediments();
+        clearQualitys();
+        clearRequirements();
+        clearRisks();
+        clearSprints();
+        clearTasks();
+        clearComments();
+        clearWikipages();
+        clearIssues();
+        clearSimpleEvents();
+        clearProjectUserConfigs();
+        clearProjectEvents();
+    }
 
     /**
      *
      * @return
      */
     public SystemConfig getSystemConfig() {
-		List<SystemConfig> configs = getSystemConfigs();
-		return configs.size() > 0 ? configs.get(0) : null;
-	}
+        List<SystemConfig> configs = getSystemConfigs();
+        return configs.size() > 0 ? configs.get(0) : null;
+    }
 
     /**
      *
      * @param reference
      */
     public void requestEntityByReference(String reference) {
-		new RequestEntityByReferenceServiceCall(reference).execute();
-	}
+        new RequestEntityByReferenceServiceCall(reference).execute();
+    }
 
     /**
      *
@@ -106,131 +109,130 @@ public class Dao extends GDao {
      */
     public AScrumGwtEntity getEntityByReference(String reference) {
 
-		if (reference.length() > 4 && reference.startsWith("[[")) {
-			String pageName = reference.substring(2, reference.length() - 2);
-			for (Wikipage e : getWikipages()) {
-				if (e.isName(pageName)) {
-                                    return e;
+        if (reference.length() > 4 && reference.startsWith("[[")) {
+            String pageName = reference.substring(2, reference.length() - 2);
+            for (Wikipage e : getWikipages()) {
+                if (e.isName(pageName)) {
+                    return e;
                 }
-			}
-			return null;
-		}
+            }
+            return null;
+        }
 
-		int number = Integer.parseInt(reference.substring(Requirement.REFERENCE_PREFIX.length()));
-		if (reference.startsWith(Requirement.REFERENCE_PREFIX)) {
-			for (Requirement e : getRequirements()) {
-				if (e.isNumber(number)) {
-                                    return e;
-                }
-			}
-			return null;
-		} else if (reference.startsWith(Task.REFERENCE_PREFIX)) {
-			for (Task e : getTasks()) {
-                            if (e.isNumber(number)) {
+        int number = Integer.parseInt(reference.substring(Requirement.REFERENCE_PREFIX.length()));
+        if (reference.startsWith(Requirement.REFERENCE_PREFIX)) {
+            for (Requirement e : getRequirements()) {
+                if (e.isNumber(number)) {
                     return e;
                 }
-			}
-			return null;
-		} else if (reference.startsWith(Quality.REFERENCE_PREFIX)) {
-                    for (Quality e : getQualitys()) {
-                        if (e.isNumber(number)) {
+            }
+            return null;
+        } else if (reference.startsWith(Task.REFERENCE_PREFIX)) {
+            for (Task e : getTasks()) {
+                if (e.isNumber(number)) {
                     return e;
                 }
-			}
-			return null;
-                } else if (reference.startsWith(Issue.REFERENCE_PREFIX)) {
-			for (Issue e : getIssues()) {
-				if (e.isNumber(number)) {
+            }
+            return null;
+        } else if (reference.startsWith(Quality.REFERENCE_PREFIX)) {
+            for (Quality e : getQualitys()) {
+                if (e.isNumber(number)) {
                     return e;
                 }
-			}
-			return null;
-                } else if (reference.startsWith(Sprint.REFERENCE_PREFIX)) {
-			for (Sprint e : getSprints()) {
-				if (e.isNumber(number)) {
+            }
+            return null;
+        } else if (reference.startsWith(Issue.REFERENCE_PREFIX)) {
+            for (Issue e : getIssues()) {
+                if (e.isNumber(number)) {
                     return e;
                 }
-			}
-			return null;
-                } else if (reference.startsWith(Risk.REFERENCE_PREFIX)) {
-			for (Risk e : getRisks()) {
-				if (e.isNumber(number)) {
+            }
+            return null;
+        } else if (reference.startsWith(Sprint.REFERENCE_PREFIX)) {
+            for (Sprint e : getSprints()) {
+                if (e.isNumber(number)) {
                     return e;
                 }
-			}
-			return null;
-                } else if (reference.startsWith(Impediment.REFERENCE_PREFIX)) {
-			for (Impediment e : getImpediments()) {
-				if (e.isNumber(number)) {
+            }
+            return null;
+        } else if (reference.startsWith(Risk.REFERENCE_PREFIX)) {
+            for (Risk e : getRisks()) {
+                if (e.isNumber(number)) {
                     return e;
                 }
-			}
-                        return null;
-                } else if (reference.startsWith(File.REFERENCE_PREFIX)) {
-			for (File e : getFiles()) {
-				if (e.isNumber(number)) {
-                    return e;
-                                }
-			}
-			return null;
-		} else if (reference.startsWith(Subject.REFERENCE_PREFIX)) {
-			for (Subject e : getSubjects()) {
-				if (e.isNumber(number)) {
-                    return e;
-                                }
-			}
-			return null;
-		} else if (reference.startsWith(SimpleEvent.REFERENCE_PREFIX)) {
-			for (SimpleEvent e : getSimpleEvents()) {
-				if (e.isNumber(number)) {
-                                    return e;
-                }
-			}
-			return null;
-		} else if (reference.startsWith(Release.REFERENCE_PREFIX)) {
-			for (Release e : getReleases()) {
-                            if (e.isNumber(number)) {
-                                return e;
-                }
-			}
-			return null;
-		} else if (reference.startsWith(BlogEntry.REFERENCE_PREFIX)) {
-			for (BlogEntry e : getBlogEntrys()) {
-				if (e.isNumber(number)) {
+            }
+            return null;
+        } else if (reference.startsWith(Impediment.REFERENCE_PREFIX)) {
+            for (Impediment e : getImpediments()) {
+                if (e.isNumber(number)) {
                     return e;
                 }
-			}
-			return null;
-		} else {
-			throw new RuntimeException("Unsupported entity reference: " + reference);
-		}
-	}
+            }
+            return null;
+        } else if (reference.startsWith(File.REFERENCE_PREFIX)) {
+            for (File e : getFiles()) {
+                if (e.isNumber(number)) {
+                    return e;
+                }
+            }
+            return null;
+        } else if (reference.startsWith(Subject.REFERENCE_PREFIX)) {
+            for (Subject e : getSubjects()) {
+                if (e.isNumber(number)) {
+                    return e;
+                }
+            }
+            return null;
+        } else if (reference.startsWith(SimpleEvent.REFERENCE_PREFIX)) {
+            for (SimpleEvent e : getSimpleEvents()) {
+                if (e.isNumber(number)) {
+                    return e;
+                }
+            }
+            return null;
+        } else if (reference.startsWith(Release.REFERENCE_PREFIX)) {
+            for (Release e : getReleases()) {
+                if (e.isNumber(number)) {
+                    return e;
+                }
+            }
+            return null;
+        } else if (reference.startsWith(BlogEntry.REFERENCE_PREFIX)) {
+            for (BlogEntry e : getBlogEntrys()) {
+                if (e.isNumber(number)) {
+                    return e;
+                }
+            }
+            return null;
+        } else {
+            throw new RuntimeException("Unsupported entity reference: " + reference);
+        }
+    }
 
-	@Override
-	public void handleDataFromServer(ADataTransferObject data) {
-		super.handleDataFromServer(data);
-		if (data.containsEntities() || data.containsDeletedEntities()) {
-			new VisibleDataChangedEvent().fireInCurrentScope();
-		}
-	}
+    @Override
+    public void handleDataFromServer(ADataTransferObject data) {
+        super.handleDataFromServer(data);
+        if (data.containsEntities() || data.containsDeletedEntities()) {
+            new VisibleDataChangedEvent().fireInCurrentScope();
+        }
+    }
 
-	// --- remote events (incoming from server) ---
-
-	@Override
-	protected void onEntityModifiedRemotely(AGwtEntity entity) {
-		if (entity instanceof ChatMessage) {
-			Scope.get().getComponent(Chat.class).addChatMessage((ChatMessage) entity);
-		}
-		if (entity instanceof File) {
-			new FileUploadedEvent((File) entity).fireInCurrentScope();
-		}
-		if (entity instanceof Comment) {
-			((Comment) entity).getParent().updateLocalModificationTime();
-		}
-		if (entity instanceof Change) {
-			((Change) entity).getParent().updateLocalModificationTime();
-		}
-	}
+    // --- remote events (incoming from server) ---
+    @Override
+    protected void onEntityModifiedRemotely(AGwtEntity entity) {
+        if (entity instanceof ChatMessage) {
+            Scope.get().getComponent(Chat.class).addChatMessage((ChatMessage) entity);
+        }
+        if (entity instanceof File) {
+            new FileUploadedEvent((File) entity).fireInCurrentScope();
+        }
+        if (entity instanceof Comment) {
+            ((Comment) entity).getParent().updateLocalModificationTime();
+        }
+        if (entity instanceof Change) {
+            ((Change) entity).getParent().updateLocalModificationTime();
+        }
+    }
 
     /**
      *
@@ -238,98 +240,100 @@ public class Dao extends GDao {
      * @return
      */
     @Override
-	protected ProjectUserConfig updateProjectUserConfig(Map data) {
-		List<String> previouslySelectedIds = new ArrayList<String>();
-		ProjectUserConfig config = projectUserConfigs.get((String) data.get("id")); // TODO: fix parent to avoid casting
-		if (config != null) {
-			previouslySelectedIds.addAll(config.getSelectedEntitysIds());
-		}
+    protected ProjectUserConfig updateProjectUserConfig(KunagiProperties data) {
+        List<String> previouslySelectedIds = new ArrayList<>();
+        ProjectUserConfig config = projectUserConfigs.get((String) data.getId()); // TODO: fix parent to avoid casting
+        if (config != null) {
+            previouslySelectedIds.addAll(config.getSelectedEntitysIds());
+        }
 
-		config = super.updateProjectUserConfig(data);
+        config = super.updateProjectUserConfig(data);
 
-		List<String> selectedIds = config.getSelectedEntitysIds();
-		previouslySelectedIds.removeAll(selectedIds);
-		selectedIds.removeAll(previouslySelectedIds);
-		for (String id : previouslySelectedIds) {
-			try {
-				getEntity(id).updateLocalModificationTime();
-			} catch (EntityDoesNotExistException ex) {}
-		}
-		for (String id : selectedIds) {
-			try {
-				getEntity(id).updateLocalModificationTime();
-			} catch (EntityDoesNotExistException ex) {}
-		}
-		return config;
-	}
+        List<String> selectedIds = config.getSelectedEntitysIds();
+        previouslySelectedIds.removeAll(selectedIds);
+        selectedIds.removeAll(previouslySelectedIds);
+        for (String id : previouslySelectedIds) {
+            try {
+                getEntity(id).updateLocalModificationTime();
+            } catch (EntityDoesNotExistException ex) {
+            }
+        }
+        for (String id : selectedIds) {
+            try {
+                getEntity(id).updateLocalModificationTime();
+            } catch (EntityDoesNotExistException ex) {
+            }
+        }
+        return config;
+    }
 
-	@Override
-	protected void onEntityDeletedRemotely(AGwtEntity entity) {}
+    @Override
+    protected void onEntityDeletedRemotely(AGwtEntity entity) {
+    }
 
-	// --- local events ---
+    // --- local events ---
+    @Override
+    protected void onEntityCreatedLocaly(AGwtEntity entity, Runnable successAction) {
+        new CreateEntityServiceCall(entity.getEntityType(), entity.createPropertiesMap()).execute(successAction);
+    }
 
-	@Override
-	protected void onEntityCreatedLocaly(AGwtEntity entity, Runnable successAction) {
-		new CreateEntityServiceCall(entity.getEntityType(), entity.createPropertiesMap()).execute(successAction);
-	}
+    @Override
+    protected void onEntityDeletedLocaly(AGwtEntity entity) {
+        new DeleteEntityServiceCall(entity.getId()).execute();
+    }
 
-	@Override
-	protected void onEntityDeletedLocaly(AGwtEntity entity) {
-		new DeleteEntityServiceCall(entity.getId()).execute();
-	}
+    @Override
+    protected void onEntityPropertyChangedLocaly(AGwtEntity entity, String property, Object value) {
+        cache.put(entity.getId(), property, value);
+    }
 
-	@Override
-	protected void onEntityPropertyChangedLocaly(AGwtEntity entity, String property, Object value) {
-		cache.put(entity.getId(), property, value);
-	}
-
-	// --- ---
-
+    // --- ---
     /**
      *
      * @return
      */
-    
-	public static Dao get() {
-		return INSTANCE;
-	}
+    public static Dao get() {
+        return INSTANCE;
+    }
 
-	private static class EntityChangeCache extends Timer {
+    private static class EntityChangeCache extends Timer {
 
-		private Map<String, Map> entityProperties = new HashMap<String, Map>(3);
+        private Map<String, KunagiProperties> entityProperties = new HashMap<>(3);
 
-		public void put(String entityId, String property, Object value) {
-			Map entity = entityProperties.get(entityId);
-			if (entity == null) {
-				entity = new HashMap();
-				entityProperties.put(entityId, entity);
-			}
-			entity.put(property, value);
-			schedule(1000);
-		}
+        public void put(String entityId, String property, Object value) {
+            KunagiProperties props = entityProperties.get(entityId);
+            if (props == null) {
+                props = new KunagiProperties();
+                entityProperties.put(entityId, props);
+            }
+            props.putValue(property, value);
+            schedule(1000);
+        }
 
-		private void flush() {
-			if (!entityProperties.isEmpty()) {
-                            ChangeHistoryManager changeHistoryManager = Scope.get().getComponent(ChangeHistoryManager.class);
-				if (changeHistoryManager != null) {
-					for (String entityId : entityProperties.keySet()) {
-						if (changeHistoryManager.isChangeHistoryActive(entityId)) {
+        private void flush() {
+            if (!entityProperties.isEmpty()) {
+                ChangeHistoryManager changeHistoryManager = Scope.get().getComponent(ChangeHistoryManager.class);
+                if (changeHistoryManager != null) {
+                    for (String entityId : entityProperties.keySet()) {
+                        if (changeHistoryManager.isChangeHistoryActive(entityId)) {
                             changeHistoryManager.deactivateChangeHistory();
                         }
-					}
-				}
-			}
+                    }
+                }
+            }
 
-			for (Map.Entry<String, Map> entry : entityProperties.entrySet()) {
-				new ChangePropertiesServiceCall(entry.getKey(), entry.getValue()).execute();
-			}
+            for (Map.Entry<String, KunagiProperties> entry : entityProperties.entrySet()) {
+                new ChangePropertiesServiceCall(entry.getKey(), entry.getValue()).execute();
+            }
 
-			entityProperties = new HashMap<String, Map>(3);
-		}
+            entityProperties = new HashMap<>(3);
+        }
 
-		@Override
-		public void run() {
-			flush();
-		}
-	}
+        @Override
+        public void run() {
+            DEBUG("Dao.java:flush start");
+            flush();
+            DEBUG("Dao.java:flush finished");
+        }
+    }
 }

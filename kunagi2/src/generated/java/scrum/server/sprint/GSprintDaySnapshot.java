@@ -20,6 +20,7 @@ import ilarkesto.persistence.AStructure;
 import ilarkesto.auth.AUser;
 import ilarkesto.persistence.EntityDoesNotExistException;
 import ilarkesto.base.StrExtend;
+import ilarkesto.core.KunagiProperties;
 
 public abstract class GSprintDaySnapshot
             extends AEntity
@@ -35,13 +36,13 @@ public abstract class GSprintDaySnapshot
     }
 
     @Override
-    public void storeProperties(Map properties) {
+    public void storeProperties(KunagiProperties properties) {
         super.storeProperties(properties);
-        properties.put("sprintId", this.sprintId);
-        properties.put("date", this.date == null ? null : this.date.toString());
-        properties.put("remainingWork", this.remainingWork);
-        properties.put("burnedWork", this.burnedWork);
-        properties.put("burnedWorkFromDeleted", this.burnedWorkFromDeleted);
+        properties.putValue("sprintId", this.sprintId);
+        properties.putValue("date", this.date == null ? null : this.date.toString());
+        properties.putValue("remainingWork", this.remainingWork);
+        properties.putValue("burnedWork", this.burnedWork);
+        properties.putValue("burnedWorkFromDeleted", this.burnedWorkFromDeleted);
     }
 
     public int compareTo(SprintDaySnapshot other) {
@@ -230,9 +231,9 @@ public abstract class GSprintDaySnapshot
         setBurnedWorkFromDeleted((Integer)value);
     }
 
-    public void updateProperties(Map<?, ?> properties) {
-        for (Map.Entry entry : properties.entrySet()) {
-            String property = (String) entry.getKey();
+    public void updateProperties(KunagiProperties properties) {
+        for (Map.Entry<String, Object> entry : properties.getEntrySet()) {
+            String property = entry.getKey();
             if (property.equals("id")) continue;
             Object value = entry.getValue();
             if (property.equals("sprintId")) updateSprint(value);

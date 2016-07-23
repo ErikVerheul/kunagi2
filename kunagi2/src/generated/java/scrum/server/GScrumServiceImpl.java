@@ -3,7 +3,9 @@
 package scrum.server;
 
 import ilarkesto.webapp.GwtConversationDoesNotExist;
+import ilarkesto.core.KunagiProperties;
 
+@SuppressWarnings("serial")
 public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtServiceImpl implements scrum.client.ScrumService {
 
     public abstract void onChangePassword(GwtConversation conversation, String newPassword, String oldPassword);
@@ -26,9 +28,9 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     public abstract void onTouchLastActivity(GwtConversation conversation);
 
-    public abstract void onChangeProperties(GwtConversation conversation, String entityId, java.util.Map<String, Object> properties);
+    public abstract void onChangeProperties(GwtConversation conversation, String entityId, KunagiProperties properties);
 
-    public abstract void onCreateEntity(GwtConversation conversation, String type, java.util.Map<String, Object> properties);
+    public abstract void onCreateEntity(GwtConversation conversation, String type, KunagiProperties properties);
 
     public abstract void onDeleteEntity(GwtConversation conversation, String entityId);
 
@@ -339,7 +341,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
     }
 
     @Override
-    public scrum.client.DataTransferObject changeProperties(int conversationNumber, String entityId, java.util.Map<String, Object> properties) {
+    public scrum.client.DataTransferObject changeProperties(int conversationNumber, String entityId, KunagiProperties properties) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -365,7 +367,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
     }
 
     @Override
-    public scrum.client.DataTransferObject createEntity(int conversationNumber, String type, java.util.Map<String, Object> properties) {
+    public scrum.client.DataTransferObject createEntity(int conversationNumber, String type, KunagiProperties properties) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;

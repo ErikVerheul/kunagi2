@@ -114,4 +114,4 @@ public class Task extends GTask implements Numbered, ReferenceSupport, LabelSupp
 		return getReferenceAndLabel();
 	}
 
-}
+    }

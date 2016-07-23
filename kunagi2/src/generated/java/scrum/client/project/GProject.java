@@ -13,6 +13,7 @@
 
 package scrum.client.project;
 
+import ilarkesto.core.KunagiProperties;
 import java.util.*;
 import static ilarkesto.core.base.Utl.equalObjects;
 import static ilarkesto.core.logging.ClientLog.*;
@@ -31,7 +32,7 @@ public abstract class GProject
     public GProject() {
     }
 
-    public GProject(Map data) {
+    public GProject(KunagiProperties data) {
         super(data);
         updateProperties(data);
     }
@@ -2254,100 +2255,100 @@ public abstract class GProject
 
     // --- update properties by map ---
 
-    public void updateProperties(Map props) {
-        label  = (java.lang.String) props.get("label");
-        vision  = (java.lang.String) props.get("vision");
-        productLabel  = (java.lang.String) props.get("productLabel");
-        shortDescription  = (java.lang.String) props.get("shortDescription");
-        description  = (java.lang.String) props.get("description");
-        longDescription  = (java.lang.String) props.get("longDescription");
-        String beginAsString = (String) props.get("begin");
+    public void updateProperties(KunagiProperties props) {
+        label  = (java.lang.String) props.getValue("label");
+        vision  = (java.lang.String) props.getValue("vision");
+        productLabel  = (java.lang.String) props.getValue("productLabel");
+        shortDescription  = (java.lang.String) props.getValue("shortDescription");
+        description  = (java.lang.String) props.getValue("description");
+        longDescription  = (java.lang.String) props.getValue("longDescription");
+        String beginAsString = (String) props.getValue("begin");
         begin  =  beginAsString == null ? null : new ilarkesto.core.time.Date(beginAsString);
-        String endAsString = (String) props.get("end");
+        String endAsString = (String) props.getValue("end");
         end  =  endAsString == null ? null : new ilarkesto.core.time.Date(endAsString);
-        participantsIds = (Set<String>) props.get("participantsIds");
-        adminsIds = (Set<String>) props.get("adminsIds");
-        productOwnersIds = (Set<String>) props.get("productOwnersIds");
-        scrumMastersIds = (Set<String>) props.get("scrumMastersIds");
-        teamMembersIds = (Set<String>) props.get("teamMembersIds");
-        currentSprintId = (String) props.get("currentSprintId");
-        nextSprintId = (String) props.get("nextSprintId");
-        velocity  = (java.lang.Integer) props.get("velocity");
-        requirementsOrderIds  = (java.util.List<java.lang.String>) props.get("requirementsOrderIds");
-        urgentIssuesOrderIds  = (java.util.List<java.lang.String>) props.get("urgentIssuesOrderIds");
-        lastSprintNumber  = (Integer) props.get("lastSprintNumber");
-        lastTaskNumber  = (Integer) props.get("lastTaskNumber");
-        lastRequirementNumber  = (Integer) props.get("lastRequirementNumber");
-        lastQualityNumber  = (Integer) props.get("lastQualityNumber");
-        lastRiskNumber  = (Integer) props.get("lastRiskNumber");
-        lastIssueNumber  = (Integer) props.get("lastIssueNumber");
-        lastImpedimentNumber  = (Integer) props.get("lastImpedimentNumber");
-        lastFileNumber  = (Integer) props.get("lastFileNumber");
-        lastSubjectNumber  = (Integer) props.get("lastSubjectNumber");
-        lastEventNumber  = (Integer) props.get("lastEventNumber");
-        lastReleaseNumber  = (Integer) props.get("lastReleaseNumber");
-        lastBlogEntryNumber  = (Integer) props.get("lastBlogEntryNumber");
-        punishmentUnit  = (java.lang.String) props.get("punishmentUnit");
-        punishmentFactor  = (Integer) props.get("punishmentFactor");
-        homepageDir  = (java.lang.String) props.get("homepageDir");
-        homepageUrl  = (java.lang.String) props.get("homepageUrl");
-        autoUpdateHomepage  = (Boolean) props.get("autoUpdateHomepage");
-        releaseScriptPath  = (java.lang.String) props.get("releaseScriptPath");
-        supportEmail  = (java.lang.String) props.get("supportEmail");
-        issueReplyTemplate  = (java.lang.String) props.get("issueReplyTemplate");
-        subscriberNotificationTemplate  = (java.lang.String) props.get("subscriberNotificationTemplate");
-        String lastOpenedDateAndTimeAsString = (String) props.get("lastOpenedDateAndTime");
+        participantsIds = (Set<String>) props.getValue("participantsIds");
+        adminsIds = (Set<String>) props.getValue("adminsIds");
+        productOwnersIds = (Set<String>) props.getValue("productOwnersIds");
+        scrumMastersIds = (Set<String>) props.getValue("scrumMastersIds");
+        teamMembersIds = (Set<String>) props.getValue("teamMembersIds");
+        currentSprintId = (String) props.getValue("currentSprintId");
+        nextSprintId = (String) props.getValue("nextSprintId");
+        velocity  = (java.lang.Integer) props.getValue("velocity");
+        requirementsOrderIds  = (java.util.List<java.lang.String>) props.getValue("requirementsOrderIds");
+        urgentIssuesOrderIds  = (java.util.List<java.lang.String>) props.getValue("urgentIssuesOrderIds");
+        lastSprintNumber  = (Integer) props.getValue("lastSprintNumber");
+        lastTaskNumber  = (Integer) props.getValue("lastTaskNumber");
+        lastRequirementNumber  = (Integer) props.getValue("lastRequirementNumber");
+        lastQualityNumber  = (Integer) props.getValue("lastQualityNumber");
+        lastRiskNumber  = (Integer) props.getValue("lastRiskNumber");
+        lastIssueNumber  = (Integer) props.getValue("lastIssueNumber");
+        lastImpedimentNumber  = (Integer) props.getValue("lastImpedimentNumber");
+        lastFileNumber  = (Integer) props.getValue("lastFileNumber");
+        lastSubjectNumber  = (Integer) props.getValue("lastSubjectNumber");
+        lastEventNumber  = (Integer) props.getValue("lastEventNumber");
+        lastReleaseNumber  = (Integer) props.getValue("lastReleaseNumber");
+        lastBlogEntryNumber  = (Integer) props.getValue("lastBlogEntryNumber");
+        punishmentUnit  = (java.lang.String) props.getValue("punishmentUnit");
+        punishmentFactor  = (Integer) props.getValue("punishmentFactor");
+        homepageDir  = (java.lang.String) props.getValue("homepageDir");
+        homepageUrl  = (java.lang.String) props.getValue("homepageUrl");
+        autoUpdateHomepage  = (Boolean) props.getValue("autoUpdateHomepage");
+        releaseScriptPath  = (java.lang.String) props.getValue("releaseScriptPath");
+        supportEmail  = (java.lang.String) props.getValue("supportEmail");
+        issueReplyTemplate  = (java.lang.String) props.getValue("issueReplyTemplate");
+        subscriberNotificationTemplate  = (java.lang.String) props.getValue("subscriberNotificationTemplate");
+        String lastOpenedDateAndTimeAsString = (String) props.getValue("lastOpenedDateAndTime");
         lastOpenedDateAndTime  =  lastOpenedDateAndTimeAsString == null ? null : new ilarkesto.core.time.DateAndTime(lastOpenedDateAndTimeAsString);
-        freeDays  = (Integer) props.get("freeDays");
-        releasingInfo  = (java.lang.String) props.get("releasingInfo");
+        freeDays  = (Integer) props.getValue("freeDays");
+        releasingInfo  = (java.lang.String) props.getValue("releasingInfo");
         updateLocalModificationTime();
     }
 
     @Override
-    public void storeProperties(Map properties) {
+    public void storeProperties(KunagiProperties properties) {
         super.storeProperties(properties);
-        properties.put("label", this.label);
-        properties.put("vision", this.vision);
-        properties.put("productLabel", this.productLabel);
-        properties.put("shortDescription", this.shortDescription);
-        properties.put("description", this.description);
-        properties.put("longDescription", this.longDescription);
-        properties.put("begin", this.begin == null ? null : this.begin.toString());
-        properties.put("end", this.end == null ? null : this.end.toString());
-        properties.put("participantsIds", this.participantsIds);
-        properties.put("adminsIds", this.adminsIds);
-        properties.put("productOwnersIds", this.productOwnersIds);
-        properties.put("scrumMastersIds", this.scrumMastersIds);
-        properties.put("teamMembersIds", this.teamMembersIds);
-        properties.put("currentSprintId", this.currentSprintId);
-        properties.put("nextSprintId", this.nextSprintId);
-        properties.put("velocity", this.velocity);
-        properties.put("requirementsOrderIds", this.requirementsOrderIds);
-        properties.put("urgentIssuesOrderIds", this.urgentIssuesOrderIds);
-        properties.put("lastSprintNumber", this.lastSprintNumber);
-        properties.put("lastTaskNumber", this.lastTaskNumber);
-        properties.put("lastRequirementNumber", this.lastRequirementNumber);
-        properties.put("lastQualityNumber", this.lastQualityNumber);
-        properties.put("lastRiskNumber", this.lastRiskNumber);
-        properties.put("lastIssueNumber", this.lastIssueNumber);
-        properties.put("lastImpedimentNumber", this.lastImpedimentNumber);
-        properties.put("lastFileNumber", this.lastFileNumber);
-        properties.put("lastSubjectNumber", this.lastSubjectNumber);
-        properties.put("lastEventNumber", this.lastEventNumber);
-        properties.put("lastReleaseNumber", this.lastReleaseNumber);
-        properties.put("lastBlogEntryNumber", this.lastBlogEntryNumber);
-        properties.put("punishmentUnit", this.punishmentUnit);
-        properties.put("punishmentFactor", this.punishmentFactor);
-        properties.put("homepageDir", this.homepageDir);
-        properties.put("homepageUrl", this.homepageUrl);
-        properties.put("autoUpdateHomepage", this.autoUpdateHomepage);
-        properties.put("releaseScriptPath", this.releaseScriptPath);
-        properties.put("supportEmail", this.supportEmail);
-        properties.put("issueReplyTemplate", this.issueReplyTemplate);
-        properties.put("subscriberNotificationTemplate", this.subscriberNotificationTemplate);
-        properties.put("lastOpenedDateAndTime", this.lastOpenedDateAndTime == null ? null : this.lastOpenedDateAndTime.toString());
-        properties.put("freeDays", this.freeDays);
-        properties.put("releasingInfo", this.releasingInfo);
+        properties.putValue("label", this.label);
+        properties.putValue("vision", this.vision);
+        properties.putValue("productLabel", this.productLabel);
+        properties.putValue("shortDescription", this.shortDescription);
+        properties.putValue("description", this.description);
+        properties.putValue("longDescription", this.longDescription);
+        properties.putValue("begin", this.begin == null ? null : this.begin.toString());
+        properties.putValue("end", this.end == null ? null : this.end.toString());
+        properties.putValue("participantsIds", this.participantsIds);
+        properties.putValue("adminsIds", this.adminsIds);
+        properties.putValue("productOwnersIds", this.productOwnersIds);
+        properties.putValue("scrumMastersIds", this.scrumMastersIds);
+        properties.putValue("teamMembersIds", this.teamMembersIds);
+        properties.putValue("currentSprintId", this.currentSprintId);
+        properties.putValue("nextSprintId", this.nextSprintId);
+        properties.putValue("velocity", this.velocity);
+        properties.putValue("requirementsOrderIds", this.requirementsOrderIds);
+        properties.putValue("urgentIssuesOrderIds", this.urgentIssuesOrderIds);
+        properties.putValue("lastSprintNumber", this.lastSprintNumber);
+        properties.putValue("lastTaskNumber", this.lastTaskNumber);
+        properties.putValue("lastRequirementNumber", this.lastRequirementNumber);
+        properties.putValue("lastQualityNumber", this.lastQualityNumber);
+        properties.putValue("lastRiskNumber", this.lastRiskNumber);
+        properties.putValue("lastIssueNumber", this.lastIssueNumber);
+        properties.putValue("lastImpedimentNumber", this.lastImpedimentNumber);
+        properties.putValue("lastFileNumber", this.lastFileNumber);
+        properties.putValue("lastSubjectNumber", this.lastSubjectNumber);
+        properties.putValue("lastEventNumber", this.lastEventNumber);
+        properties.putValue("lastReleaseNumber", this.lastReleaseNumber);
+        properties.putValue("lastBlogEntryNumber", this.lastBlogEntryNumber);
+        properties.putValue("punishmentUnit", this.punishmentUnit);
+        properties.putValue("punishmentFactor", this.punishmentFactor);
+        properties.putValue("homepageDir", this.homepageDir);
+        properties.putValue("homepageUrl", this.homepageUrl);
+        properties.putValue("autoUpdateHomepage", this.autoUpdateHomepage);
+        properties.putValue("releaseScriptPath", this.releaseScriptPath);
+        properties.putValue("supportEmail", this.supportEmail);
+        properties.putValue("issueReplyTemplate", this.issueReplyTemplate);
+        properties.putValue("subscriberNotificationTemplate", this.subscriberNotificationTemplate);
+        properties.putValue("lastOpenedDateAndTime", this.lastOpenedDateAndTime == null ? null : this.lastOpenedDateAndTime.toString());
+        properties.putValue("freeDays", this.freeDays);
+        properties.putValue("releasingInfo", this.releasingInfo);
     }
 
     public final java.util.List<scrum.client.sprint.Sprint> getSprints() {

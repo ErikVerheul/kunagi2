@@ -2,6 +2,7 @@
 package scrum.client.release;
 
 import com.google.gwt.user.client.ui.Widget;
+import ilarkesto.core.KunagiProperties;
 import ilarkesto.core.base.Utl;
 import ilarkesto.core.time.Date;
 import ilarkesto.gwt.client.HyperlinkWidget;
@@ -9,7 +10,6 @@ import ilarkesto.gwt.client.editor.AFieldModel;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import scrum.client.ScrumGwt;
 import scrum.client.collaboration.ForumSupport;
 import scrum.client.common.ReferenceSupport;
@@ -42,7 +42,7 @@ public class Release extends GRelease implements ReferenceSupport, ForumSupport 
      *
      * @param data
      */
-    public Release(Map data) {
+    public Release(KunagiProperties data) {
 		super(data);
 	}
 

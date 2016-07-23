@@ -14,7 +14,7 @@
  */
 package scrum.client.admin;
 
-import java.util.Map;
+import ilarkesto.core.KunagiProperties;
 
 /**
  *
@@ -26,7 +26,7 @@ public class SystemConfig extends GSystemConfig {
      *
      * @param data
      */
-    public SystemConfig(Map data) {
+    public SystemConfig(KunagiProperties data) {
 		super(data);
 	}
 

@@ -15,11 +15,11 @@
 package scrum.client.project;
 
 import com.google.gwt.user.client.ui.Widget;
+import ilarkesto.core.KunagiProperties;
 import ilarkesto.core.base.Utl;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.HyperlinkWidget;
 import java.util.Comparator;
-import java.util.Map;
 import scrum.client.ScrumGwt;
 import scrum.client.admin.Auth;
 import scrum.client.collaboration.ForumSupport;
@@ -61,7 +61,7 @@ public class Quality extends GQuality implements ReferenceSupport, LabelSupport,
      *
      * @param data
      */
-    public Quality(Map data) {
+    public Quality(KunagiProperties data) {
         super(data);
     }
 

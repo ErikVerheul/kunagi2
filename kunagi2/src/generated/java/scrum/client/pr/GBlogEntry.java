@@ -13,6 +13,7 @@
 
 package scrum.client.pr;
 
+import ilarkesto.core.KunagiProperties;
 import java.util.*;
 import static ilarkesto.core.base.Utl.equalObjects;
 import static ilarkesto.core.logging.ClientLog.*;
@@ -29,7 +30,7 @@ public abstract class GBlogEntry
     public GBlogEntry() {
     }
 
-    public GBlogEntry(Map data) {
+    public GBlogEntry(KunagiProperties data) {
         super(data);
         updateProperties(data);
     }
@@ -425,30 +426,30 @@ public abstract class GBlogEntry
 
     // --- update properties by map ---
 
-    public void updateProperties(Map props) {
-        projectId = (String) props.get("projectId");
-        number  = (Integer) props.get("number");
-        authorsIds = (Set<String>) props.get("authorsIds");
-        title  = (java.lang.String) props.get("title");
-        text  = (java.lang.String) props.get("text");
-        String dateAndTimeAsString = (String) props.get("dateAndTime");
+    public void updateProperties(KunagiProperties props) {
+        projectId = (String) props.getValue("projectId");
+        number  = (Integer) props.getValue("number");
+        authorsIds = (Set<String>) props.getValue("authorsIds");
+        title  = (java.lang.String) props.getValue("title");
+        text  = (java.lang.String) props.getValue("text");
+        String dateAndTimeAsString = (String) props.getValue("dateAndTime");
         dateAndTime  =  dateAndTimeAsString == null ? null : new ilarkesto.core.time.DateAndTime(dateAndTimeAsString);
-        releasesIds = (Set<String>) props.get("releasesIds");
-        published  = (Boolean) props.get("published");
+        releasesIds = (Set<String>) props.getValue("releasesIds");
+        published  = (Boolean) props.getValue("published");
         updateLocalModificationTime();
     }
 
     @Override
-    public void storeProperties(Map properties) {
+    public void storeProperties(KunagiProperties properties) {
         super.storeProperties(properties);
-        properties.put("projectId", this.projectId);
-        properties.put("number", this.number);
-        properties.put("authorsIds", this.authorsIds);
-        properties.put("title", this.title);
-        properties.put("text", this.text);
-        properties.put("dateAndTime", this.dateAndTime == null ? null : this.dateAndTime.toString());
-        properties.put("releasesIds", this.releasesIds);
-        properties.put("published", this.published);
+        properties.putValue("projectId", this.projectId);
+        properties.putValue("number", this.number);
+        properties.putValue("authorsIds", this.authorsIds);
+        properties.putValue("title", this.title);
+        properties.putValue("text", this.text);
+        properties.putValue("dateAndTime", this.dateAndTime == null ? null : this.dateAndTime.toString());
+        properties.putValue("releasesIds", this.releasesIds);
+        properties.putValue("published", this.published);
     }
 
     @Override

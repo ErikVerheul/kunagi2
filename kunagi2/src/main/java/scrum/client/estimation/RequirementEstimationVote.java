@@ -14,7 +14,7 @@
  */
 package scrum.client.estimation;
 
-import java.util.Map;
+import ilarkesto.core.KunagiProperties;
 
 /**
  *
@@ -26,7 +26,7 @@ public class RequirementEstimationVote extends GRequirementEstimationVote {
      *
      * @param data
      */
-    public RequirementEstimationVote(Map data) {
+    public RequirementEstimationVote(KunagiProperties data) {
         super(data);
     }
 }

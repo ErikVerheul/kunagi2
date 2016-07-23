@@ -21,6 +21,7 @@ import ilarkesto.base.PermissionDeniedException;
 import ilarkesto.base.Reflect;
 import ilarkesto.base.UtlExtend;
 import ilarkesto.base.time.DateExtend;
+import ilarkesto.core.KunagiProperties;
 import ilarkesto.core.base.Str;
 import ilarkesto.core.scope.In;
 import ilarkesto.core.time.DateAndTime;
@@ -358,8 +359,8 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
      * @param properties
      */
     @Override
-    public void onCreateEntity(GwtConversation conversation, String type, Map properties) {
-        String id = (String) properties.get("id");
+    public void onCreateEntity(GwtConversation conversation, String type, KunagiProperties properties) {
+        String id = properties.getId();
         if (id == null) {
             throw new NullPointerException("id == null");
         }
@@ -522,7 +523,7 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
      * @param properties
      */
     @Override
-    public void onChangeProperties(GwtConversation conversation, String entityId, Map properties) {
+    public void onChangeProperties(GwtConversation conversation, String entityId, KunagiProperties properties) {
         AEntity entity = getDaoService().getEntityById(entityId);
         User currentUser = conversation.getSession().getUser();
         if (!Auth.isEditable(entity, currentUser)) {
@@ -611,7 +612,7 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         sendToClients(conversation, entity);
     }
 
-    private void onSprintChanged(GwtConversation conversation, Sprint sprint, Map properties) {
+    private void onSprintChanged(GwtConversation conversation, Sprint sprint, KunagiProperties properties) {
         Project project = sprint.getProject();
         if (project.isCurrentSprint(sprint)) {
             sprint.updateNextSprintDates();
@@ -619,13 +620,13 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         }
     }
 
-    private void onSystemConfigChanged(GwtConversation conversation, SystemConfig config, Map properties) {
+    private void onSystemConfigChanged(GwtConversation conversation, SystemConfig config, KunagiProperties properties) {
         if (properties.containsKey("url")) {
             webApplication.getConfig().setUrl(config.getUrl());
         }
     }
 
-    private void onCommentChanged(GwtConversation conversation, Comment comment, Map properties) {
+    private void onCommentChanged(GwtConversation conversation, Comment comment, KunagiProperties properties) {
         conversation.getProject().updateHomepage(comment.getParent(), false);
         if (comment.isPublished() && properties.containsKey("published")) {
             subscriptionService.notifySubscribers(comment.getParent(),
@@ -633,7 +634,7 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         }
     }
 
-    private void onBlogEntryChanged(GwtConversation conversation, BlogEntry blogEntry, Map properties) {
+    private void onBlogEntryChanged(GwtConversation conversation, BlogEntry blogEntry, KunagiProperties properties) {
         User currentUser = conversation.getSession().getUser();
 
         if (properties.containsKey("text")) {
@@ -649,11 +650,11 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         }
     }
 
-    private void onWikipageChanged(GwtConversation conversation, Wikipage wikipage, Map properties) {
+    private void onWikipageChanged(GwtConversation conversation, Wikipage wikipage, KunagiProperties properties) {
         LOG.warn("onWikipageChanged should not be called and does nothing,takes too long and blocks all clients! ");
     }
 
-    private void onIssueChanged(GwtConversation conversation, Issue issue, Map properties) {
+    private void onIssueChanged(GwtConversation conversation, Issue issue, KunagiProperties properties) {
         User currentUser = conversation.getSession().getUser();
 
         if (properties.containsKey("closeDate")) {
@@ -709,7 +710,7 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         issue.getProject().updateHomepage(issue, false);
     }
 
-    private void onImpedimentChanged(GwtConversation conversation, Impediment impediment, Map properties) {
+    private void onImpedimentChanged(GwtConversation conversation, Impediment impediment, KunagiProperties properties) {
         User currentUser = conversation.getSession().getUser();
         if (properties.containsKey("closed")) {
             if (impediment.isClosed()) {
@@ -723,7 +724,7 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         }
     }
 
-    private void onRequirementChanged(GwtConversation conversation, Requirement requirement, Map properties,
+    private void onRequirementChanged(GwtConversation conversation, Requirement requirement, KunagiProperties properties,
             Sprint previousRequirementSprint) {
         Project currentProject = conversation.getProject();
         Sprint sprint = requirement.getSprint();
@@ -775,7 +776,7 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         requirement.getProject().getCurrentSprintSnapshot().update();
     }
 
-    private void onTaskChanged(GwtConversation conversation, Task task, Map properties) {
+    private void onTaskChanged(GwtConversation conversation, Task task, KunagiProperties properties) {
         // update sprint day snapshot after change
         conversation.getProject().getCurrentSprint().getDaySnapshot(DateExtend.today()).updateWithCurrentSprint();
         Requirement requirement = task.getRequirement();
@@ -1210,11 +1211,11 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         return (scrum.client.DataTransferObject) conversation.popNextData();
     }
 
-    private void postChangeIfChanged(GwtConversation conversation, AEntity entity, Map properties, User user,
+    private void postChangeIfChanged(GwtConversation conversation, AEntity entity, KunagiProperties properties, User user,
             String property) {
         if (properties.containsKey(property)) {
             Object oldValue = Reflect.getProperty(entity, property);
-            Object newValue = properties.get(property);
+            Object newValue = properties.getValue(property);
             Change change = changeDao.postChange(entity, user, property, oldValue, newValue);
             conversation.sendToClient(change);
         }

@@ -20,6 +20,7 @@ import ilarkesto.persistence.AStructure;
 import ilarkesto.auth.AUser;
 import ilarkesto.persistence.EntityDoesNotExistException;
 import ilarkesto.base.StrExtend;
+import ilarkesto.core.KunagiProperties;
 
 public abstract class GIssue
             extends AEntity
@@ -35,30 +36,30 @@ public abstract class GIssue
     }
 
     @Override
-    public void storeProperties(Map properties) {
+    public void storeProperties(KunagiProperties properties) {
         super.storeProperties(properties);
-        properties.put("projectId", this.projectId);
-        properties.put("storyId", this.storyId);
-        properties.put("number", this.number);
-        properties.put("type", this.type);
-        properties.put("date", this.date == null ? null : this.date.toString());
-        properties.put("creatorId", this.creatorId);
-        properties.put("label", this.label);
-        properties.put("description", this.description);
-        properties.put("statement", this.statement);
-        properties.put("issuerName", this.issuerName);
-        properties.put("issuerEmail", this.issuerEmail);
-        properties.put("acceptDate", this.acceptDate == null ? null : this.acceptDate.toString());
-        properties.put("urgent", this.urgent);
-        properties.put("severity", this.severity);
-        properties.put("ownerId", this.ownerId);
-        properties.put("fixDate", this.fixDate == null ? null : this.fixDate.toString());
-        properties.put("closeDate", this.closeDate == null ? null : this.closeDate.toString());
-        properties.put("suspendedUntilDate", this.suspendedUntilDate == null ? null : this.suspendedUntilDate.toString());
-        properties.put("affectedReleasesIds", this.affectedReleasesIds);
-        properties.put("fixReleasesIds", this.fixReleasesIds);
-        properties.put("published", this.published);
-        properties.put("themes", this.themes);
+        properties.putValue("projectId", this.projectId);
+        properties.putValue("storyId", this.storyId);
+        properties.putValue("number", this.number);
+        properties.putValue("type", this.type);
+        properties.putValue("date", this.date == null ? null : this.date.toString());
+        properties.putValue("creatorId", this.creatorId);
+        properties.putValue("label", this.label);
+        properties.putValue("description", this.description);
+        properties.putValue("statement", this.statement);
+        properties.putValue("issuerName", this.issuerName);
+        properties.putValue("issuerEmail", this.issuerEmail);
+        properties.putValue("acceptDate", this.acceptDate == null ? null : this.acceptDate.toString());
+        properties.putValue("urgent", this.urgent);
+        properties.putValue("severity", this.severity);
+        properties.putValue("ownerId", this.ownerId);
+        properties.putValue("fixDate", this.fixDate == null ? null : this.fixDate.toString());
+        properties.putValue("closeDate", this.closeDate == null ? null : this.closeDate.toString());
+        properties.putValue("suspendedUntilDate", this.suspendedUntilDate == null ? null : this.suspendedUntilDate.toString());
+        properties.putValue("affectedReleasesIds", this.affectedReleasesIds);
+        properties.putValue("fixReleasesIds", this.fixReleasesIds);
+        properties.putValue("published", this.published);
+        properties.putValue("themes", this.themes);
     }
 
     public int compareTo(Issue other) {
@@ -1083,9 +1084,9 @@ public abstract class GIssue
         setThemes((java.util.List<java.lang.String>) value);
     }
 
-    public void updateProperties(Map<?, ?> properties) {
-        for (Map.Entry entry : properties.entrySet()) {
-            String property = (String) entry.getKey();
+    public void updateProperties(KunagiProperties properties) {
+        for (Map.Entry<String, Object> entry : properties.getEntrySet()) {
+            String property = entry.getKey();
             if (property.equals("id")) continue;
             Object value = entry.getValue();
             if (property.equals("projectId")) updateProject(value);

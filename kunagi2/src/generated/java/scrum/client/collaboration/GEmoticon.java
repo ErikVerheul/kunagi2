@@ -13,6 +13,7 @@
 
 package scrum.client.collaboration;
 
+import ilarkesto.core.KunagiProperties;
 import java.util.*;
 import static ilarkesto.core.base.Utl.equalObjects;
 import static ilarkesto.core.logging.ClientLog.*;
@@ -29,7 +30,7 @@ public abstract class GEmoticon
     public GEmoticon() {
     }
 
-    public GEmoticon(Map data) {
+    public GEmoticon(KunagiProperties data) {
         super(data);
         updateProperties(data);
     }
@@ -146,19 +147,19 @@ public abstract class GEmoticon
 
     // --- update properties by map ---
 
-    public void updateProperties(Map props) {
-        parentId = (String) props.get("parentId");
-        ownerId = (String) props.get("ownerId");
-        emotion  = (java.lang.String) props.get("emotion");
+    public void updateProperties(KunagiProperties props) {
+        parentId = (String) props.getValue("parentId");
+        ownerId = (String) props.getValue("ownerId");
+        emotion  = (java.lang.String) props.getValue("emotion");
         updateLocalModificationTime();
     }
 
     @Override
-    public void storeProperties(Map properties) {
+    public void storeProperties(KunagiProperties properties) {
         super.storeProperties(properties);
-        properties.put("parentId", this.parentId);
-        properties.put("ownerId", this.ownerId);
-        properties.put("emotion", this.emotion);
+        properties.putValue("parentId", this.parentId);
+        properties.putValue("ownerId", this.ownerId);
+        properties.putValue("emotion", this.emotion);
     }
 
 }

@@ -2,6 +2,8 @@
 
 package scrum.client;
 
+import ilarkesto.core.KunagiProperties;
+
 public interface ScrumServiceAsync {
 
     void changePassword(int conversationNumber, String newPassword, String oldPassword, com.google.gwt.user.client.rpc.AsyncCallback<scrum.client.DataTransferObject> callback);
@@ -26,9 +28,9 @@ public interface ScrumServiceAsync {
 
     void touchLastActivity(int conversationNumber, com.google.gwt.user.client.rpc.AsyncCallback<scrum.client.DataTransferObject> callback);
 
-    void changeProperties(int conversationNumber, String entityId, java.util.Map<String, Object> properties, com.google.gwt.user.client.rpc.AsyncCallback<scrum.client.DataTransferObject> callback);
+    void changeProperties(int conversationNumber, String entityId, KunagiProperties properties, com.google.gwt.user.client.rpc.AsyncCallback<scrum.client.DataTransferObject> callback);
 
-    void createEntity(int conversationNumber, String type, java.util.Map<String, Object> properties, com.google.gwt.user.client.rpc.AsyncCallback<scrum.client.DataTransferObject> callback);
+    void createEntity(int conversationNumber, String type, KunagiProperties properties, com.google.gwt.user.client.rpc.AsyncCallback<scrum.client.DataTransferObject> callback);
 
     void deleteEntity(int conversationNumber, String entityId, com.google.gwt.user.client.rpc.AsyncCallback<scrum.client.DataTransferObject> callback);
 

@@ -13,6 +13,7 @@
 
 package scrum.client.journal;
 
+import ilarkesto.core.KunagiProperties;
 import java.util.*;
 import static ilarkesto.core.base.Utl.equalObjects;
 import static ilarkesto.core.logging.ClientLog.*;
@@ -31,7 +32,7 @@ public abstract class GProjectEvent
     public GProjectEvent() {
     }
 
-    public GProjectEvent(Map data) {
+    public GProjectEvent(KunagiProperties data) {
         super(data);
         updateProperties(data);
     }
@@ -215,22 +216,22 @@ public abstract class GProjectEvent
 
     // --- update properties by map ---
 
-    public void updateProperties(Map props) {
-        projectId = (String) props.get("projectId");
-        label  = (java.lang.String) props.get("label");
-        subjectId = (String) props.get("subjectId");
-        String dateAndTimeAsString = (String) props.get("dateAndTime");
+    public void updateProperties(KunagiProperties props) {
+        projectId = (String) props.getValue("projectId");
+        label  = (java.lang.String) props.getValue("label");
+        subjectId = (String) props.getValue("subjectId");
+        String dateAndTimeAsString = (String) props.getValue("dateAndTime");
         dateAndTime  =  dateAndTimeAsString == null ? null : new ilarkesto.core.time.DateAndTime(dateAndTimeAsString);
         updateLocalModificationTime();
     }
 
     @Override
-    public void storeProperties(Map properties) {
+    public void storeProperties(KunagiProperties properties) {
         super.storeProperties(properties);
-        properties.put("projectId", this.projectId);
-        properties.put("label", this.label);
-        properties.put("subjectId", this.subjectId);
-        properties.put("dateAndTime", this.dateAndTime == null ? null : this.dateAndTime.toString());
+        properties.putValue("projectId", this.projectId);
+        properties.putValue("label", this.label);
+        properties.putValue("subjectId", this.subjectId);
+        properties.putValue("dateAndTime", this.dateAndTime == null ? null : this.dateAndTime.toString());
     }
 
     @Override

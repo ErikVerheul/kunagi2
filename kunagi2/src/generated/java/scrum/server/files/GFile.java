@@ -20,6 +20,7 @@ import ilarkesto.persistence.AStructure;
 import ilarkesto.auth.AUser;
 import ilarkesto.persistence.EntityDoesNotExistException;
 import ilarkesto.base.StrExtend;
+import ilarkesto.core.KunagiProperties;
 
 public abstract class GFile
             extends AEntity
@@ -35,14 +36,14 @@ public abstract class GFile
     }
 
     @Override
-    public void storeProperties(Map properties) {
+    public void storeProperties(KunagiProperties properties) {
         super.storeProperties(properties);
-        properties.put("projectId", this.projectId);
-        properties.put("filename", this.filename);
-        properties.put("uploadTime", this.uploadTime == null ? null : this.uploadTime.toString());
-        properties.put("label", this.label);
-        properties.put("number", this.number);
-        properties.put("note", this.note);
+        properties.putValue("projectId", this.projectId);
+        properties.putValue("filename", this.filename);
+        properties.putValue("uploadTime", this.uploadTime == null ? null : this.uploadTime.toString());
+        properties.putValue("label", this.label);
+        properties.putValue("number", this.number);
+        properties.putValue("note", this.note);
     }
 
     public int compareTo(File other) {
@@ -292,8 +293,8 @@ public abstract class GFile
         setNote((java.lang.String)value);
     }
 
-    public void updateProperties(Map<?, ?> properties) {
-        for (Map.Entry entry : properties.entrySet()) {
+    public void updateProperties(KunagiProperties properties) {
+        for (Map.Entry<String, Object> entry : properties.getEntrySet()) {
             String property = (String) entry.getKey();
             if (property.equals("id")) continue;
             Object value = entry.getValue();

@@ -20,6 +20,7 @@ import ilarkesto.persistence.AStructure;
 import ilarkesto.auth.AUser;
 import ilarkesto.persistence.EntityDoesNotExistException;
 import ilarkesto.base.StrExtend;
+import ilarkesto.core.KunagiProperties;
 
 public abstract class GUser
             extends AUser
@@ -35,36 +36,36 @@ public abstract class GUser
     }
 
     @Override
-    public void storeProperties(Map properties) {
+    public void storeProperties(KunagiProperties properties) {
         super.storeProperties(properties);
-        properties.put("name", this.name);
-        properties.put("publicName", this.publicName);
-        properties.put("fullName", this.fullName);
-        properties.put("admin", this.admin);
-        properties.put("emailVerified", this.emailVerified);
-        properties.put("email", this.email);
-        properties.put("currentProjectId", this.currentProjectId);
-        properties.put("color", this.color);
-        properties.put("lastLoginDateAndTime", this.lastLoginDateAndTime == null ? null : this.lastLoginDateAndTime.toString());
-        properties.put("registrationDateAndTime", this.registrationDateAndTime == null ? null : this.registrationDateAndTime.toString());
-        properties.put("disabled", this.disabled);
-        properties.put("hideUserGuideBlog", this.hideUserGuideBlog);
-        properties.put("hideUserGuideCalendar", this.hideUserGuideCalendar);
-        properties.put("hideUserGuideFiles", this.hideUserGuideFiles);
-        properties.put("hideUserGuideForum", this.hideUserGuideForum);
-        properties.put("hideUserGuideImpediments", this.hideUserGuideImpediments);
-        properties.put("hideUserGuideIssues", this.hideUserGuideIssues);
-        properties.put("hideUserGuideJournal", this.hideUserGuideJournal);
-        properties.put("hideUserGuideNextSprint", this.hideUserGuideNextSprint);
-        properties.put("hideUserGuideProductBacklog", this.hideUserGuideProductBacklog);
-        properties.put("hideUserGuideCourtroom", this.hideUserGuideCourtroom);
-        properties.put("hideUserGuideQualityBacklog", this.hideUserGuideQualityBacklog);
-        properties.put("hideUserGuideReleases", this.hideUserGuideReleases);
-        properties.put("hideUserGuideRisks", this.hideUserGuideRisks);
-        properties.put("hideUserGuideSprintBacklog", this.hideUserGuideSprintBacklog);
-        properties.put("hideUserGuideWhiteboard", this.hideUserGuideWhiteboard);
-        properties.put("loginToken", this.loginToken);
-        properties.put("openId", this.openId);
+        properties.putValue("name", this.name);
+        properties.putValue("publicName", this.publicName);
+        properties.putValue("fullName", this.fullName);
+        properties.putValue("admin", this.admin);
+        properties.putValue("emailVerified", this.emailVerified);
+        properties.putValue("email", this.email);
+        properties.putValue("currentProjectId", this.currentProjectId);
+        properties.putValue("color", this.color);
+        properties.putValue("lastLoginDateAndTime", this.lastLoginDateAndTime == null ? null : this.lastLoginDateAndTime.toString());
+        properties.putValue("registrationDateAndTime", this.registrationDateAndTime == null ? null : this.registrationDateAndTime.toString());
+        properties.putValue("disabled", this.disabled);
+        properties.putValue("hideUserGuideBlog", this.hideUserGuideBlog);
+        properties.putValue("hideUserGuideCalendar", this.hideUserGuideCalendar);
+        properties.putValue("hideUserGuideFiles", this.hideUserGuideFiles);
+        properties.putValue("hideUserGuideForum", this.hideUserGuideForum);
+        properties.putValue("hideUserGuideImpediments", this.hideUserGuideImpediments);
+        properties.putValue("hideUserGuideIssues", this.hideUserGuideIssues);
+        properties.putValue("hideUserGuideJournal", this.hideUserGuideJournal);
+        properties.putValue("hideUserGuideNextSprint", this.hideUserGuideNextSprint);
+        properties.putValue("hideUserGuideProductBacklog", this.hideUserGuideProductBacklog);
+        properties.putValue("hideUserGuideCourtroom", this.hideUserGuideCourtroom);
+        properties.putValue("hideUserGuideQualityBacklog", this.hideUserGuideQualityBacklog);
+        properties.putValue("hideUserGuideReleases", this.hideUserGuideReleases);
+        properties.putValue("hideUserGuideRisks", this.hideUserGuideRisks);
+        properties.putValue("hideUserGuideSprintBacklog", this.hideUserGuideSprintBacklog);
+        properties.putValue("hideUserGuideWhiteboard", this.hideUserGuideWhiteboard);
+        properties.putValue("loginToken", this.loginToken);
+        properties.putValue("openId", this.openId);
     }
 
     public int compareTo(User other) {
@@ -1053,9 +1054,9 @@ public abstract class GUser
         setOpenId((java.lang.String)value);
     }
 
-    public void updateProperties(Map<?, ?> properties) {
-        for (Map.Entry entry : properties.entrySet()) {
-            String property = (String) entry.getKey();
+    public void updateProperties(KunagiProperties properties) {
+        for (Map.Entry<String, Object> entry : properties.getEntrySet()) {
+            String property = entry.getKey();
             if (property.equals("id")) continue;
             Object value = entry.getValue();
             if (property.equals("name")) updateName(value);

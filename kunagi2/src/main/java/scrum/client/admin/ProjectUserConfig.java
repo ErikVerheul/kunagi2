@@ -14,6 +14,7 @@
  */
 package scrum.client.admin;
 
+import ilarkesto.core.KunagiProperties;
 import ilarkesto.core.base.Str;
 import ilarkesto.core.base.Utl;
 import ilarkesto.core.scope.Scope;
@@ -43,7 +44,7 @@ public class ProjectUserConfig extends GProjectUserConfig {
      *
      * @param data
      */
-    public ProjectUserConfig(Map data) {
+    public ProjectUserConfig(KunagiProperties data) {
 		super(data);
 	}
 

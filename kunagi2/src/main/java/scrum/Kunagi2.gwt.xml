@@ -31,6 +31,10 @@
       http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/PatternLayout.html
     -->
     <set-configuration-property name="log_pattern" value="(%F:%L) %d [%-5p] %m%n" />
+    
+    <!-- for debugging only -->
+    <set-property name="compiler.emulatedStack" value="true"/>
+    <set-configuration-property name="compiler.emulatedStack.recordFileNames" value="true"/>
 
     <stylesheet src="screen.css" />
 

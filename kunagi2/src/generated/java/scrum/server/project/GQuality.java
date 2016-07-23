@@ -20,6 +20,7 @@ import ilarkesto.persistence.AStructure;
 import ilarkesto.auth.AUser;
 import ilarkesto.persistence.EntityDoesNotExistException;
 import ilarkesto.base.StrExtend;
+import ilarkesto.core.KunagiProperties;
 
 public abstract class GQuality
             extends AEntity
@@ -35,13 +36,13 @@ public abstract class GQuality
     }
 
     @Override
-    public void storeProperties(Map properties) {
+    public void storeProperties(KunagiProperties properties) {
         super.storeProperties(properties);
-        properties.put("projectId", this.projectId);
-        properties.put("number", this.number);
-        properties.put("label", this.label);
-        properties.put("description", this.description);
-        properties.put("testDescription", this.testDescription);
+        properties.putValue("projectId", this.projectId);
+        properties.putValue("number", this.number);
+        properties.putValue("label", this.label);
+        properties.putValue("description", this.description);
+        properties.putValue("testDescription", this.testDescription);
     }
 
     public int compareTo(Quality other) {
@@ -263,9 +264,9 @@ public abstract class GQuality
         setTestDescription((java.lang.String)value);
     }
 
-    public void updateProperties(Map<?, ?> properties) {
-        for (Map.Entry entry : properties.entrySet()) {
-            String property = (String) entry.getKey();
+    public void updateProperties(KunagiProperties properties) {
+        for (Map.Entry<String, Object> entry : properties.getEntrySet()) {
+            String property = entry.getKey();
             if (property.equals("id")) continue;
             Object value = entry.getValue();
             if (property.equals("projectId")) updateProject(value);

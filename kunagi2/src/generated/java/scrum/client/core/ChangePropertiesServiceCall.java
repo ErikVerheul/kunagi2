@@ -1,27 +1,36 @@
 // // ----------> GENERATED FILE - DON'T TOUCH! <----------
-
 package scrum.client.core;
+
+import ilarkesto.core.KunagiProperties;
+import static ilarkesto.core.logging.ClientLog.DEBUG;
+import java.io.Serializable;
 
 public class ChangePropertiesServiceCall extends scrum.client.core.AServiceCall {
 
-    private String entityId;
+    private final String entityId;
 
-    private java.util.Map<String, Object> properties;
+    private KunagiProperties props = null;
 
-    public  ChangePropertiesServiceCall(String entityId, java.util.Map<String, Object> properties) {
+    public ChangePropertiesServiceCall(String entityId, KunagiProperties properties) {
         this.entityId = entityId;
-        this.properties = properties;
+        this.props = properties;      
     }
 
     @Override
     public void execute(Runnable returnHandler) {
         serviceCaller.onServiceCall(this);
-        serviceCaller.getService().changeProperties(serviceCaller.getConversationNumber(), entityId, properties, new DefaultCallback(this, returnHandler));
+        DEBUG("ConversationNumber = " + serviceCaller.getConversationNumber());
+        DEBUG("entityId = " + entityId);
+        DEBUG("Is properties serializable? = " + (props instanceof Serializable));
+        serviceCaller.getService().changeProperties(serviceCaller.getConversationNumber(), 
+                entityId, 
+                props, 
+                new DefaultCallback(this, returnHandler));
     }
 
     @Override
     public boolean isDispensable() {
-        return ilarkesto.core.scope.Scope.get().getComponent(scrum.client.Dao.class).getEntity(entityId) instanceof scrum.client.admin.ProjectUserConfig && (properties.containsKey("selectedEntitysIds") || properties.containsKey("richtextAutosaveText") || properties.containsKey("richtextAutosaveField") || properties.containsKey("online"));
+        return ilarkesto.core.scope.Scope.get().getComponent(scrum.client.Dao.class).getEntity(entityId) instanceof scrum.client.admin.ProjectUserConfig && (props.containsKey("selectedEntitysIds") || props.containsKey("richtextAutosaveText") || props.containsKey("richtextAutosaveField") || props.containsKey("online"));
     }
 
     @Override
@@ -30,4 +39,3 @@ public class ChangePropertiesServiceCall extends scrum.client.core.AServiceCall 
     }
 
 }
-

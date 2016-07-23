@@ -1,11 +1,10 @@
-
 package scrum.client.sprint;
 
 import com.google.gwt.user.client.ui.Widget;
+import ilarkesto.core.KunagiProperties;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.HyperlinkWidget;
 import ilarkesto.gwt.client.editor.AFieldModel;
-import java.util.Map;
 import scrum.client.ScrumGwt;
 import scrum.client.admin.Auth;
 import scrum.client.admin.User;
@@ -55,7 +54,7 @@ public class Task extends GTask implements ReferenceSupport, LabelSupport, Forum
      *
      * @param data
      */
-    public Task(Map data) {
+    public Task(KunagiProperties data) {
 		super(data);
 	}
 

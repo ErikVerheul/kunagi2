@@ -20,6 +20,7 @@ import ilarkesto.persistence.AStructure;
 import ilarkesto.auth.AUser;
 import ilarkesto.persistence.EntityDoesNotExistException;
 import ilarkesto.base.StrExtend;
+import ilarkesto.core.KunagiProperties;
 
 public abstract class GEmoticon
             extends AEntity
@@ -35,11 +36,11 @@ public abstract class GEmoticon
     }
 
     @Override
-    public void storeProperties(Map properties) {
+    public void storeProperties(KunagiProperties properties) {
         super.storeProperties(properties);
-        properties.put("parentId", this.parentId);
-        properties.put("ownerId", this.ownerId);
-        properties.put("emotion", this.emotion);
+        properties.putValue("parentId", this.parentId);
+        properties.putValue("ownerId", this.ownerId);
+        properties.putValue("emotion", this.emotion);
     }
 
     public int compareTo(Emoticon other) {
@@ -190,9 +191,9 @@ public abstract class GEmoticon
         setEmotion((java.lang.String)value);
     }
 
-    public void updateProperties(Map<?, ?> properties) {
-        for (Map.Entry entry : properties.entrySet()) {
-            String property = (String) entry.getKey();
+    public void updateProperties(KunagiProperties properties) {
+        for (Map.Entry<String, Object> entry : properties.getEntrySet()) {
+            String property = entry.getKey();
             if (property.equals("id")) continue;
             Object value = entry.getValue();
             if (property.equals("parentId")) updateParent(value);

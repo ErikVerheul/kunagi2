@@ -15,6 +15,7 @@
 package scrum.client.project;
 
 import com.google.gwt.user.client.ui.Widget;
+import ilarkesto.core.KunagiProperties;
 import ilarkesto.core.base.Str;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.core.time.Date;
@@ -28,7 +29,6 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import scrum.client.ScrumGwt;
 import scrum.client.admin.Auth;
@@ -93,7 +93,7 @@ public class Requirement extends GRequirement implements ReferenceSupport, Label
      *
      * @param data
      */
-    public Requirement(Map data) {
+    public Requirement(KunagiProperties data) {
 		super(data);
 	}
         

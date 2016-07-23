@@ -15,10 +15,10 @@
 package scrum.client.impediments;
 
 import com.google.gwt.user.client.ui.Widget;
+import ilarkesto.core.KunagiProperties;
 import ilarkesto.core.time.Date;
 import ilarkesto.gwt.client.HyperlinkWidget;
 import java.util.Comparator;
-import java.util.Map;
 import scrum.client.ScrumGwt;
 import scrum.client.collaboration.ForumSupport;
 import scrum.client.common.LabelSupport;
@@ -35,7 +35,7 @@ public class Impediment extends GImpediment implements ReferenceSupport, LabelSu
 		setProject(project);
 	}
 
-	public Impediment(Map data) {
+	public Impediment(KunagiProperties data) {
 		super(data);
 	}
 

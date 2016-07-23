@@ -13,6 +13,7 @@
 
 package scrum.client.estimation;
 
+import ilarkesto.core.KunagiProperties;
 import java.util.*;
 import static ilarkesto.core.base.Utl.equalObjects;
 import static ilarkesto.core.logging.ClientLog.*;
@@ -29,7 +30,7 @@ public abstract class GRequirementEstimationVote
     public GRequirementEstimationVote() {
     }
 
-    public GRequirementEstimationVote(Map data) {
+    public GRequirementEstimationVote(KunagiProperties data) {
         super(data);
         updateProperties(data);
     }
@@ -146,19 +147,19 @@ public abstract class GRequirementEstimationVote
 
     // --- update properties by map ---
 
-    public void updateProperties(Map props) {
-        requirementId = (String) props.get("requirementId");
-        userId = (String) props.get("userId");
-        estimatedWork  = (java.lang.Float) props.get("estimatedWork");
+    public void updateProperties(KunagiProperties props) {
+        requirementId = (String) props.getValue("requirementId");
+        userId = (String) props.getValue("userId");
+        estimatedWork  = (java.lang.Float) props.getValue("estimatedWork");
         updateLocalModificationTime();
     }
 
     @Override
-    public void storeProperties(Map properties) {
+    public void storeProperties(KunagiProperties properties) {
         super.storeProperties(properties);
-        properties.put("requirementId", this.requirementId);
-        properties.put("userId", this.userId);
-        properties.put("estimatedWork", this.estimatedWork);
+        properties.putValue("requirementId", this.requirementId);
+        properties.putValue("userId", this.userId);
+        properties.putValue("estimatedWork", this.estimatedWork);
     }
 
 }

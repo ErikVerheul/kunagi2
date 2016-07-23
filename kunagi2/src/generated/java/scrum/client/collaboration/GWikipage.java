@@ -13,6 +13,7 @@
 
 package scrum.client.collaboration;
 
+import ilarkesto.core.KunagiProperties;
 import java.util.*;
 import static ilarkesto.core.base.Utl.equalObjects;
 import static ilarkesto.core.logging.ClientLog.*;
@@ -29,7 +30,7 @@ public abstract class GWikipage
     public GWikipage() {
     }
 
-    public GWikipage(Map data) {
+    public GWikipage(KunagiProperties data) {
         super(data);
         updateProperties(data);
     }
@@ -181,19 +182,19 @@ public abstract class GWikipage
 
     // --- update properties by map ---
 
-    public void updateProperties(Map props) {
-        projectId = (String) props.get("projectId");
-        name  = (java.lang.String) props.get("name");
-        text  = (java.lang.String) props.get("text");
+    public void updateProperties(KunagiProperties props) {
+        projectId = (String) props.getValue("projectId");
+        name  = (java.lang.String) props.getValue("name");
+        text  = (java.lang.String) props.getValue("text");
         updateLocalModificationTime();
     }
 
     @Override
-    public void storeProperties(Map properties) {
+    public void storeProperties(KunagiProperties properties) {
         super.storeProperties(properties);
-        properties.put("projectId", this.projectId);
-        properties.put("name", this.name);
-        properties.put("text", this.text);
+        properties.putValue("projectId", this.projectId);
+        properties.putValue("name", this.name);
+        properties.putValue("text", this.text);
     }
 
     @Override

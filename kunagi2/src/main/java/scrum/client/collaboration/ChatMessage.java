@@ -14,10 +14,10 @@
  */
 package scrum.client.collaboration;
 
+import ilarkesto.core.KunagiProperties;
 import ilarkesto.core.time.Date;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.core.time.Time;
-import java.util.Map;
 import scrum.client.admin.User;
 import scrum.client.project.Project;
 
@@ -44,7 +44,7 @@ public class ChatMessage extends GChatMessage implements Comparable<ChatMessage>
      *
      * @param data
      */
-    public ChatMessage(Map data) {
+    public ChatMessage(KunagiProperties data) {
         super(data);
     }
 

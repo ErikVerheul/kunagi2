@@ -13,6 +13,7 @@
 
 package scrum.client.collaboration;
 
+import ilarkesto.core.KunagiProperties;
 import java.util.*;
 import static ilarkesto.core.base.Utl.equalObjects;
 import static ilarkesto.core.logging.ClientLog.*;
@@ -31,7 +32,7 @@ public abstract class GComment
     public GComment() {
     }
 
-    public GComment(Map data) {
+    public GComment(KunagiProperties data) {
         super(data);
         updateProperties(data);
     }
@@ -423,30 +424,30 @@ public abstract class GComment
 
     // --- update properties by map ---
 
-    public void updateProperties(Map props) {
-        parentId = (String) props.get("parentId");
-        authorId = (String) props.get("authorId");
-        published  = (Boolean) props.get("published");
-        authorName  = (java.lang.String) props.get("authorName");
-        authorEmail  = (java.lang.String) props.get("authorEmail");
-        authorNameVisible  = (Boolean) props.get("authorNameVisible");
-        text  = (java.lang.String) props.get("text");
-        String dateAndTimeAsString = (String) props.get("dateAndTime");
+    public void updateProperties(KunagiProperties props) {
+        parentId = (String) props.getValue("parentId");
+        authorId = (String) props.getValue("authorId");
+        published  = (Boolean) props.getValue("published");
+        authorName  = (java.lang.String) props.getValue("authorName");
+        authorEmail  = (java.lang.String) props.getValue("authorEmail");
+        authorNameVisible  = (Boolean) props.getValue("authorNameVisible");
+        text  = (java.lang.String) props.getValue("text");
+        String dateAndTimeAsString = (String) props.getValue("dateAndTime");
         dateAndTime  =  dateAndTimeAsString == null ? null : new ilarkesto.core.time.DateAndTime(dateAndTimeAsString);
         updateLocalModificationTime();
     }
 
     @Override
-    public void storeProperties(Map properties) {
+    public void storeProperties(KunagiProperties properties) {
         super.storeProperties(properties);
-        properties.put("parentId", this.parentId);
-        properties.put("authorId", this.authorId);
-        properties.put("published", this.published);
-        properties.put("authorName", this.authorName);
-        properties.put("authorEmail", this.authorEmail);
-        properties.put("authorNameVisible", this.authorNameVisible);
-        properties.put("text", this.text);
-        properties.put("dateAndTime", this.dateAndTime == null ? null : this.dateAndTime.toString());
+        properties.putValue("parentId", this.parentId);
+        properties.putValue("authorId", this.authorId);
+        properties.putValue("published", this.published);
+        properties.putValue("authorName", this.authorName);
+        properties.putValue("authorEmail", this.authorEmail);
+        properties.putValue("authorNameVisible", this.authorNameVisible);
+        properties.putValue("text", this.text);
+        properties.putValue("dateAndTime", this.dateAndTime == null ? null : this.dateAndTime.toString());
     }
 
     @Override

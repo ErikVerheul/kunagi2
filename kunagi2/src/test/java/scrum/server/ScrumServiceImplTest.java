@@ -17,14 +17,13 @@ package scrum.server;
 import ilarkesto.auth.WrongPasswordException;
 import ilarkesto.base.PermissionDeniedException;
 import ilarkesto.base.StrExtend;
+import ilarkesto.core.KunagiProperties;
 import ilarkesto.core.time.Date;
 import ilarkesto.gwt.client.ErrorWrapper;
 import ilarkesto.persistence.AEntity;
 import ilarkesto.testng.ATest;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -194,9 +193,9 @@ public class ScrumServiceImplTest extends ATest {
      */
     @Test
     public void createEntity() {
-        Map<String, Object> properties = new HashMap<String, Object>();
-        properties.put("id", UUID.randomUUID().toString());
-        properties.put("name", "anonymous");
+        KunagiProperties properties = new KunagiProperties();
+        properties.putValue("id", UUID.randomUUID().toString());
+        properties.putValue("name", "anonymous");
         service.onCreateEntity(conversation, "user", properties);
         assertConversationWithoutErrors(conversation);
         User anonymous = app.getUserDao().getUserByName("anonymous");
@@ -221,8 +220,8 @@ public class ScrumServiceImplTest extends ATest {
     @Test
     public void changeProperties() {
         duke.setEmail("support@kunagi.org");
-        Map<String, Object> properties = new HashMap<String, Object>();
-        properties.put("email", "duke@kunagi.org");
+        KunagiProperties properties = new KunagiProperties();
+        properties.putValue("email", "duke@kunagi.org");
         service.onChangeProperties(conversation, duke.getId(), properties);
         assertConversationWithoutErrors(conversation);
         assertEquals(duke.getEmail(), "duke@kunagi.org");
@@ -427,8 +426,8 @@ public class ScrumServiceImplTest extends ATest {
     private static void assertContainsEntity(GwtConversation conversation, AEntity entity) {
         DataTransferObject dto = conversation.getNextData();
         assertTrue(dto.containsEntities());
-        for (Map properties : dto.getEntities()) {
-            if (entity.getId().equals(properties.get("id"))) {
+        for (KunagiProperties properties : dto.getEntities()) {
+            if (entity.getId().equals(properties.getId())) {
                 return;
             }
         }
@@ -438,8 +437,8 @@ public class ScrumServiceImplTest extends ATest {
     private static void assertNotContainsEntity(GwtConversation conversation, AEntity entity) {
         DataTransferObject dto = conversation.getNextData();
         assertTrue(dto.containsEntities());
-        for (Map properties : dto.getEntities()) {
-            if (entity.getId().equals(properties.get("id"))) {
+        for (KunagiProperties properties : dto.getEntities()) {
+            if (entity.getId().equals(properties.getId())) {
                 fail("Conversation does contain <" + entity + ">.");
             }
         }
@@ -450,9 +449,9 @@ public class ScrumServiceImplTest extends ATest {
         if (!dto.containsEntities()) {
             return null;
         }
-        for (Map entity : dto.getEntities()) {
-            if (type.getSimpleName().toLowerCase().equals(entity.get("@type"))) {
-                String id = (String) entity.get("id");
+        for (KunagiProperties prop : dto.getEntities()) {
+            if (type.getSimpleName().toLowerCase().equals(prop.getType())) {
+                String id = (String) prop.getId();
                 E e = (E) TestUtil.getApp().getDaoService().getEntityById(id);
                 return e;
             }
@@ -460,7 +459,7 @@ public class ScrumServiceImplTest extends ATest {
         return null;
     }
 
-    private static <E extends AEntity> E createEntity(Class<E> type, Map properties) {
+    private static <E extends AEntity> E createEntity(Class<E> type, KunagiProperties properties) {
         E entity;
         try {
             entity = type.newInstance();

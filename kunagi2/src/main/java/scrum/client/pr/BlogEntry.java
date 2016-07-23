@@ -15,12 +15,12 @@
 package scrum.client.pr;
 
 import com.google.gwt.user.client.ui.Widget;
+import ilarkesto.core.KunagiProperties;
 import ilarkesto.core.base.Utl;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.gwt.client.HyperlinkWidget;
 import ilarkesto.gwt.client.editor.AFieldModel;
 import java.util.Comparator;
-import java.util.Map;
 import scrum.client.ScrumGwt;
 import scrum.client.collaboration.ForumSupport;
 import scrum.client.common.ReferenceSupport;
@@ -42,7 +42,7 @@ public class BlogEntry extends GBlogEntry implements ReferenceSupport, ForumSupp
      *
      * @param data
      */
-    public BlogEntry(Map data) {
+    public BlogEntry(KunagiProperties data) {
 		super(data);
 	}
 

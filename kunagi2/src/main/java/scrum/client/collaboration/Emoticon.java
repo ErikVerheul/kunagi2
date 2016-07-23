@@ -14,11 +14,11 @@
  */
 package scrum.client.collaboration;
 
+import ilarkesto.core.KunagiProperties;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.LabelProvider;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import scrum.client.admin.Auth;
 import scrum.client.admin.User;
 import scrum.client.common.AScrumGwtEntity;
@@ -44,7 +44,7 @@ public class Emoticon extends GEmoticon {
      *
      * @param data
      */
-    public Emoticon(Map data) {
+    public Emoticon(KunagiProperties data) {
 		super(data);
 	}
 
