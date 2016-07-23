@@ -46,7 +46,7 @@ public class KunagiProperties implements Serializable, IsSerializable {
             throw new RuntimeException("Cannot put value, the key == null");
         }
         if (null == value) {
-            WARN("Puting a value of null for key " + key);
+            WARN("Putting a value of null for key " + key);
         }
         properties.put(key, value);
     }
