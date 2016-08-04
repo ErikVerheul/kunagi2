@@ -1,17 +1,18 @@
 package scrum.server.sprint;
 
 import ilarkesto.base.UtlExtend;
-import ilarkesto.testng.ATest;
-import org.testng.annotations.Test;
+import ilarkesto.junit.AjunitTest;
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 
-public class SprintHistoryHelperTest extends ATest {
+public class SprintHistoryHelperTest extends AjunitTest {
 
 	@Test
 	public void parseLines() {
-		assertEquals(SprintHistoryHelperExtend.parseLines("a"), UtlExtend.toList("a"));
-		assertEquals(SprintHistoryHelperExtend.parseLines("line1\nline2"), UtlExtend.toList("line1", "line2"));
-		assertEquals(SprintHistoryHelperExtend.parseLines("line1\n\nline3"), UtlExtend.toList("line1", "", "line3"));
-		assertEquals(SprintHistoryHelperExtend.parseLines(""), UtlExtend.toList(""));
+		assertEquals(UtlExtend.toList("a"), SprintHistoryHelperExtend.parseLines("a"));
+		assertEquals(UtlExtend.toList("line1", "line2"), SprintHistoryHelperExtend.parseLines("line1\nline2"));
+		assertEquals(UtlExtend.toList("line1", "", "line3"), SprintHistoryHelperExtend.parseLines("line1\n\nline3"));
+		assertEquals(UtlExtend.toList(""), SprintHistoryHelperExtend.parseLines(""));
 	}
 
 }

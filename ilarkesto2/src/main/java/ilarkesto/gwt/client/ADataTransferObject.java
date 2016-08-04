@@ -54,6 +54,7 @@ public abstract class ADataTransferObject implements Serializable, IsSerializabl
     private Integer dummyInteger;
     private float dummyF;
     private Float dummyFloat;
+//    private KunagiProperties dummyProps;
 
     /**
      *

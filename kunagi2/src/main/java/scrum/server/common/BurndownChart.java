@@ -124,7 +124,7 @@ public class BurndownChart {
 		writeSprintBurndownChart(out, snapshots, sprint.getBegin(), sprint.getEnd(), freeDays, width, height);
 	}
 
-	static void writeSprintBurndownChart(OutputStream out, List<? extends BurndownSnapshot> snapshots, Date firstDay,
+	public static void writeSprintBurndownChart(OutputStream out, List<? extends BurndownSnapshot> snapshots, Date firstDay,
 			Date lastDay, WeekdaySelector freeDays, int width, int height) {
 		LOG.debug("Creating burndown chart:", snapshots.size(), "snapshots from", firstDay, "to", lastDay, "(" + width
 				+ "x" + height + " px)");

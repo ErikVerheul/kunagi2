@@ -14,6 +14,7 @@
  */
 package ilarkesto.gwt.client;
 
+import ilarkesto.core.base.EntityDoesNotExistException;
 import ilarkesto.core.base.KunagiProperties;
 import static ilarkesto.core.logging.ClientLog.DEBUG;
 import java.util.ArrayList;

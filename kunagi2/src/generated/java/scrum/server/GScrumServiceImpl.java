@@ -1,5 +1,4 @@
 // // ----------> GENERATED FILE - DON'T TOUCH! <----------
-
 package scrum.server;
 
 import ilarkesto.webapp.GwtConversationDoesNotExist;
@@ -1017,4 +1016,3 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
     }
 
 }
-

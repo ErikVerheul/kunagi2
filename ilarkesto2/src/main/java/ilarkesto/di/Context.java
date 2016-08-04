@@ -14,6 +14,7 @@
  */
 package ilarkesto.di;
 
+import ilarkesto.logging.Log;
 import edu.umd.cs.findbugs.annotations.SuppressWarnings;
 import static java.lang.Thread.currentThread;
 import java.util.Set;
@@ -23,63 +24,65 @@ import java.util.Set;
  */
 public final class Context {
 
-	private static ThreadLocal<Context> threadLocal = new ThreadLocal<>();
+    private static final Log LOG = Log.get(Context.class);
 
-	private static Context rootContext;
+    private static ThreadLocal<Context> threadLocal = new ThreadLocal<>();
 
-	private Context parent;
-	private String name;
-	private MultiBeanProvider beanProvider;
+    private static Context rootContext;
 
-	private Context(Context parent, String name) {
-		this.parent = parent;
-		this.name = name;
+    private Context parent;
+    private String name;
+    private MultiBeanProvider beanProvider;
 
-		beanProvider = new MultiBeanProvider();
-		if (parent != null) {
-                        beanProvider.addBeanProvider(parent.beanProvider);
-                }
-	}
+    private Context(Context parent, String name) {
+        this.parent = parent;
+        this.name = name;
+
+        beanProvider = new MultiBeanProvider();
+        if (parent != null) {
+            beanProvider.addBeanProvider(parent.beanProvider);
+        }
+    }
 
     /**
      *
      * @param name
      */
     public final void setName(String name) {
-		this.name = name;
-	}
+        this.name = name;
+    }
 
     /**
      *
      * @return
      */
     public final String getName() {
-		return name;
-	}
+        return name;
+    }
 
     /**
      *
      * @param heanProvider
      */
     public final void addBeanProvider(Object heanProvider) {
-		this.beanProvider.addBeanProvider(heanProvider);
-	}
+        this.beanProvider.addBeanProvider(heanProvider);
+    }
 
     /**
      *
      * @return
      */
     public final BeanProvider getBeanProvider() {
-		return this.beanProvider;
-	}
+        return this.beanProvider;
+    }
 
     /**
      *
      * @return
      */
     public final Context getParentContext() {
-		return parent;
-	}
+        return parent;
+    }
 
     /**
      *
@@ -87,58 +90,58 @@ public final class Context {
      * @return
      */
     public final Context createSubContext(String name) {
-		Context context = new Context(this, name);
-		// LOG.debug("Context created:", context);
-		context.bindCurrentThread();
-		return context;
-	}
+        Context context = new Context(this, name);
+        LOG.debug("createSubContext: Context created:", context);
+        context.bindCurrentThread();
+        return context;
+    }
 
     /**
      *
      */
     @SuppressWarnings(value = "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD", justification = "Static variable is set to null only")
-	public final void destroy() {
-		releaseCurrentThread();
-		if (parent != null) {
-			parent.bindCurrentThread();
-		} else {
-			// root context
-			threadLocal = null;
-		}
-	}
+    public final void destroy() {
+        releaseCurrentThread();
+        if (parent != null) {
+            parent.bindCurrentThread();
+        } else {
+            // root context
+            threadLocal = null;
+        }
+    }
 
     /**
      *
      */
     public final void bindCurrentThread() {
-		if (threadLocal != null) {
-                        threadLocal.set(this);
-                }
-		currentThread().setName(toString());
-	}
+        if (threadLocal != null) {
+            threadLocal.set(this);
+        }
+        currentThread().setName(toString());
+    }
 
-	private void releaseCurrentThread() {
-		if (threadLocal != null) {
-                        threadLocal.set(null);
-                }
-		currentThread().setName("<no context>");
-	}
+    private void releaseCurrentThread() {
+        if (threadLocal != null) {
+            threadLocal.set(null);
+        }
+        currentThread().setName("<no context>");
+    }
 
-	@Override
-	public final String toString() {
-		return parent == null ? name : parent + " > " + name;
-	}
+    @Override
+    public final String toString() {
+        return parent == null ? name : parent + " > " + name;
+    }
 
     /**
      *
      * @return
      */
     public static Context getRootContext() {
-		if (rootContext == null) {
-                        throw new RuntimeException("Root context does not exist. Call createRootContext()");
-                }
-		return rootContext;
-	}
+        if (rootContext == null) {
+            throw new RuntimeException("Root context does not exist. Call createRootContext()");
+        }
+        return rootContext;
+    }
 
     /**
      *
@@ -146,69 +149,76 @@ public final class Context {
      * @return
      */
     public static synchronized Context createRootContext(String name) {
-		if (rootContext != null) {
-                        throw new RuntimeException("Root context already exists: " + rootContext);
-                }
-		rootContext = new Context(null, name);
-		rootContext.bindCurrentThread();
-		return rootContext;
-	}
+        if (rootContext != null) {
+            rootContext.destroy();
+            LOG.debug("createRootContext: Existing rootcontext is destoyed. ");
+        }
+        rootContext = new Context(null, name);
+        rootContext.bindCurrentThread();
+        return rootContext;
+    }
 
     /**
      *
      * @return
      */
     public static Context get() {
-		Context context = threadLocal.get();
-		if (context == null) {
-                        context = getRootContext();
-                }
-		return context;
-	}
+        Context context = threadLocal.get();
+        if (context == null) {
+            context = getRootContext();
+        }
+        return context;
+    }
 
 	// --- helper ---
-
     /**
      *
      * @param <T>
      * @param target
      * @return
      */
-    
-	public final <T> T autowire(T target) {
-		return beanProvider.autowire(target);
-	}
+    public final <T> T autowire(T target) {
+        return beanProvider.autowire(target);
+    }
 
     /**
      *
      * @param type
      */
     public final void autowireClass(Class type) {
-		beanProvider.autowireClass(type);
-	}
+        beanProvider.autowireClass(type);
+    }
 
-	/**
-	 * Gets all beans by their type. All beans instanceof the given type are returned.
-     * @return 
-	 */
-	public final <T> Set<T> getBeansByType(Class<T> type) {
-		return beanProvider.getBeansByType(type);
-	}
+    /**
+     * Gets all beans by their type. All beans instanceof the given type are
+     * returned.
+     *
+     * @param <T>
+     * @param type
+     * @return
+     */
+    public final <T> Set<T> getBeansByType(Class<T> type) {
+        return beanProvider.getBeansByType(type);
+    }
 
-	/**
-	 * Provides a set of all existing bean names.
-     * @return 
-	 */
-	public final Set<String> getBeanNames() {
-		return beanProvider.beanNames();
-	}
+    /**
+     * Provides a set of all existing bean names.
+     *
+     * @return
+     */
+    public final Set<String> getBeanNames() {
+        return beanProvider.beanNames();
+    }
 
-	/**
-	 * Gets a bean by name.
-     * @return 
-	 */
-	public final <T> Object getBean(String beanName) {
-		return beanProvider.getBean(beanName);
-	}
+    /**
+     * Gets a bean by name.
+     *
+     * @param <T>
+     * @param beanName
+     * @return
+     */
+    public final <T> Object getBean(String beanName) {
+        return beanProvider.getBean(beanName);
+    }
 
 }

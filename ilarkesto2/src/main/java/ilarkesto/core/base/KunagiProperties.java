@@ -1,61 +1,77 @@
 package ilarkesto.core.base;
 
-
-import static ilarkesto.core.logging.ClientLog.WARN;
-import com.google.gwt.user.client.rpc.IsSerializable;
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 
 /**
  *
  * @author erik
  */
-public class KunagiProperties implements Serializable, IsSerializable {
+public class KunagiProperties implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    //Do not make properties final as it will not be serialized.
+    private java.util.HashMap<String, Object> props = new HashMap<>();
+    // dummys required for gwt-serialization
+    private int dummyI;
+    private Integer dummyInteger;
+    private float dummyF;
+    private Float dummyFloat;
 
-    java.util.Map<String, Object> properties = new HashMap<>();
+    public void KunagiProperties() {
 
-    public void Properties() {
     }
 
     public String getId() {
-        return (String) properties.get("id");
-    }
-    
-    public String getType() {
-        return (String) properties.get("@type");
-    }
-    
-    public Object getValue(String id) {
-        return properties.get(id);
-    }
-    
-    public Set<Map.Entry<String, Object>> getEntrySet() {
-        return properties.entrySet();
+        return (String) props.get("id");
     }
 
-    public java.util.Map<String, Object> get() {
-        return properties;
+    public String getType() {
+        return (String) props.get("@type");
     }
-    
+
+    public Object getValue(String id) {
+        return props.get(id);
+    }
+
+    public Set<HashMap.Entry<String, Object>> getEntrySet() {
+        return props.entrySet();
+    }
+
     public void putValue(String key, Object value) {
         if (null == key) {
             throw new RuntimeException("Cannot put value, the key == null");
         }
-        if (null == value) {
-            WARN("Putting a value of null for key " + key);
-        }
-        properties.put(key, value);
+        props.put(key, value);
     }
-    
+
     public boolean containsKey(String key) {
-        return properties.containsKey(key);
+        return props.containsKey(key);
     }
-    
+
     public void remove(String key) {
-        properties.remove(key);
+        props.remove(key);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("KunagiProperties Id=");
+        sb.append(getId());
+        sb.append(",Type=");
+        sb.append(getType());
+        sb.append("Number of entities=");
+        sb.append(props.size());
+        sb.append("\n");
+        for (HashMap.Entry<String, Object> entry : props.entrySet()) {
+            sb.append("Key=");
+            sb.append(entry.getKey());
+            sb.append(" ; Value=");
+            sb.append(entry.getValue());
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
+
 }

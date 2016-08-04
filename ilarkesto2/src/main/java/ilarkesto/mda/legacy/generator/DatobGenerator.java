@@ -29,7 +29,7 @@ import ilarkesto.mda.legacy.model.SetPropertyModel;
 import ilarkesto.persistence.ADatob;
 import ilarkesto.persistence.AEntity;
 import ilarkesto.persistence.AStructure;
-import ilarkesto.persistence.EntityDoesNotExistException;
+import ilarkesto.core.base.EntityDoesNotExistException;
 import ilarkesto.persistence.UniqueFieldConstraintException;
 import java.util.LinkedHashSet;
 import java.util.Set;

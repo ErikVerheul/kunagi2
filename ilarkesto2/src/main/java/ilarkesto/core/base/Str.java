@@ -76,95 +76,95 @@ public class Str {
      * @return
      */
     public static String encodeUrlParameter(String s) {
-		if (s == null) {
-                        return "";
-                }
-		StringBuilder sb = new StringBuilder();
-		int len = s.length();
-		for (int i = 0; i < len; i++) {
-			char c = s.charAt(i);
-			switch (c) {
-				case '$':
-					sb.append("%24");
-					break;
-				case '&':
-					sb.append("%26");
-					break;
-				case '+':
-					sb.append("%2B");
-					break;
-				case ',':
-					sb.append("%2C");
-					break;
-				case '/':
-					sb.append("%2F");
-					break;
-				case ':':
-					sb.append("%3A");
-					break;
-				case ';':
-					sb.append("%3B");
-					break;
-				case '=':
-					sb.append("%3D");
-					break;
-				case '?':
-					sb.append("%3F");
-					break;
-				case '@':
-					sb.append("%40");
-					break;
-				case ' ':
-					sb.append("%20");
-					break;
-				case '"':
-					sb.append("%22");
-					break;
-				case '<':
-					sb.append("%3C");
-					break;
-				case '>':
-					sb.append("%3E");
-					break;
-				case '#':
-					sb.append("%23");
-					break;
-				case '%':
-					sb.append("%25");
-					break;
-				case '{':
-					sb.append("7B%");
-					break;
-				case '}':
-					sb.append("7D%");
-					break;
-				case '|':
-					sb.append("%7C");
-					break;
-				case '\\':
-					sb.append("%5C");
-					break;
-				case '^':
-					sb.append("%5E");
-					break;
-				case '~':
-					sb.append("%7E");
-					break;
-				case '[':
-					sb.append("%5B");
-					break;
-				case ']':
-					sb.append("%5D");
-					break;
-				case '`':
-					sb.append("%60");
-					break;
-				default:
-					sb.append(c);
-			}
-		}
-		return sb.toString();
-	}
+        if (s == null) {
+            return "";
+        }
+        StringBuilder sb = new StringBuilder();
+        int len = s.length();
+        for (int i = 0; i < len; i++) {
+            char c = s.charAt(i);
+            switch (c) {
+                case '$':
+                    sb.append("%24");
+                    break;
+                case '&':
+                    sb.append("%26");
+                    break;
+                case '+':
+                    sb.append("%2B");
+                    break;
+                case ',':
+                    sb.append("%2C");
+                    break;
+                case '/':
+                    sb.append("%2F");
+                    break;
+                case ':':
+                    sb.append("%3A");
+                    break;
+                case ';':
+                    sb.append("%3B");
+                    break;
+                case '=':
+                    sb.append("%3D");
+                    break;
+                case '?':
+                    sb.append("%3F");
+                    break;
+                case '@':
+                    sb.append("%40");
+                    break;
+                case ' ':
+                    sb.append("%20");
+                    break;
+                case '"':
+                    sb.append("%22");
+                    break;
+                case '<':
+                    sb.append("%3C");
+                    break;
+                case '>':
+                    sb.append("%3E");
+                    break;
+                case '#':
+                    sb.append("%23");
+                    break;
+                case '%':
+                    sb.append("%25");
+                    break;
+                case '{':
+                    sb.append("7B%");
+                    break;
+                case '}':
+                    sb.append("7D%");
+                    break;
+                case '|':
+                    sb.append("%7C");
+                    break;
+                case '\\':
+                    sb.append("%5C");
+                    break;
+                case '^':
+                    sb.append("%5E");
+                    break;
+                case '~':
+                    sb.append("%7E");
+                    break;
+                case '[':
+                    sb.append("%5B");
+                    break;
+                case ']':
+                    sb.append("%5D");
+                    break;
+                case '`':
+                    sb.append("%60");
+                    break;
+                default:
+                    sb.append(c);
+            }
+        }
+        return sb.toString();
+    }
 
     /**
      *
@@ -172,8 +172,8 @@ public class Str {
      * @return
      */
     public static String[] toStringArray(Collection<String> c) {
-		return toStringArray(c.toArray());
-	}
+        return toStringArray(c.toArray());
+    }
 
     /**
      *
@@ -181,12 +181,12 @@ public class Str {
      * @return
      */
     public static String[] toStringArray(Object[] oa) {
-		String[] sa = new String[oa.length];
-		for (int i = 0; i < oa.length; i++) {
-			sa[i] = oa[i] == null ? null : oa[i].toString();
-		}
-		return sa;
-	}
+        String[] sa = new String[oa.length];
+        for (int i = 0; i < oa.length; i++) {
+            sa[i] = oa[i] == null ? null : oa[i].toString();
+        }
+        return sa;
+    }
 
     /**
      *
@@ -195,8 +195,8 @@ public class Str {
      * @return
      */
     public static String toStringHelper(Object thiz, Object... properties) {
-		return toStringHelper(getSimpleName(thiz.getClass()), properties);
-	}
+        return toStringHelper(getSimpleName(thiz.getClass()), properties);
+    }
 
     /**
      *
@@ -205,8 +205,8 @@ public class Str {
      * @return
      */
     public static String toStringHelper(String name, Object... properties) {
-		return concat(name + "(", ")", ", ", properties);
-	}
+        return concat(name + "(", ")", ", ", properties);
+    }
 
     /**
      *
@@ -217,21 +217,21 @@ public class Str {
      * @return
      */
     public static String concat(String prefix, String suffix, String delimiter, Object... objects) {
-		StringBuilder sb = new StringBuilder();
-		if (prefix != null) {
-                        sb.append(prefix);
-                }
-		for (int i = 0; i < objects.length; i++) {
-			sb.append(objects[i]);
-			if (delimiter != null && i < objects.length - 1) {
-				sb.append(delimiter);
-			}
-		}
-		if (suffix != null) {
-                        sb.append(suffix);
-                }
-		return sb.toString();
-	}
+        StringBuilder sb = new StringBuilder();
+        if (prefix != null) {
+            sb.append(prefix);
+        }
+        for (int i = 0; i < objects.length; i++) {
+            sb.append(objects[i]);
+            if (delimiter != null && i < objects.length - 1) {
+                sb.append(delimiter);
+            }
+        }
+        if (suffix != null) {
+            sb.append(suffix);
+        }
+        return sb.toString();
+    }
 
     /**
      *
@@ -240,21 +240,21 @@ public class Str {
      * @return
      */
     public static String concat(Iterable strings, String delimiter) {
-		if (strings == null) {
-                        return null;
-                }
-		StringBuilder sb = new StringBuilder();
-		boolean first = true;
-		for (Object s : strings) {
-			if (first) {
-				first = false;
-			} else {
-				sb.append(delimiter);
-			}
-			sb.append(s);
-		}
-		return sb.toString();
-	}
+        if (strings == null) {
+            return null;
+        }
+        StringBuilder sb = new StringBuilder();
+        boolean first = true;
+        for (Object s : strings) {
+            if (first) {
+                first = false;
+            } else {
+                sb.append(delimiter);
+            }
+            sb.append(s);
+        }
+        return sb.toString();
+    }
 
     /**
      *
@@ -263,35 +263,36 @@ public class Str {
      * @return
      */
     public static String concat(Collection strings, String delimiter) {
-		if (strings == null) {
-                        return null;
-                }
-		StringBuilder sb = new StringBuilder();
-		boolean first = true;
-		for (Object s : strings) {
-			if (first) {
-				first = false;
-			} else {
-				sb.append(delimiter);
-			}
-			sb.append(s);
-		}
-		return sb.toString();
-	}
+        if (strings == null) {
+            return null;
+        }
+        StringBuilder sb = new StringBuilder();
+        boolean first = true;
+        for (Object s : strings) {
+            if (first) {
+                first = false;
+            } else {
+                sb.append(delimiter);
+            }
+            sb.append(s);
+        }
+        return sb.toString();
+    }
 
-	/**
-	 * Removes a suffix from a string, if it exists.
-     * @return 
-	 */
-	public static String removeSuffix(String s, String suffixToRemove) {
-		if (s == null) {
-                        return null;
-                }
-		if (!s.endsWith(suffixToRemove)) {
-                        return s;
-                }
-		return s.substring(0, s.length() - suffixToRemove.length());
-	}
+    /**
+     * Removes a suffix from a string, if it exists.
+     *
+     * @return
+     */
+    public static String removeSuffix(String s, String suffixToRemove) {
+        if (s == null) {
+            return null;
+        }
+        if (!s.endsWith(suffixToRemove)) {
+            return s;
+        }
+        return s.substring(0, s.length() - suffixToRemove.length());
+    }
 
     /**
      *
@@ -300,14 +301,14 @@ public class Str {
      * @return
      */
     public static String removePrefix(String s, String prefixToRemove) {
-		if (s == null) {
-                        return null;
-                }
-		if (!s.startsWith(prefixToRemove)) {
-                        return s;
-                }
-		return s.substring(prefixToRemove.length());
-	}
+        if (s == null) {
+            return null;
+        }
+        if (!s.startsWith(prefixToRemove)) {
+            return s;
+        }
+        return s.substring(prefixToRemove.length());
+    }
 
     /**
      *
@@ -315,8 +316,8 @@ public class Str {
      * @return
      */
     public static String getFirstParagraph(String s) {
-		return getFirstParagraph(s, "\n\n");
-	}
+        return getFirstParagraph(s, "\n\n");
+    }
 
     /**
      *
@@ -325,15 +326,15 @@ public class Str {
      * @return
      */
     public static String getFirstParagraph(String s, String paragraphEndIndicator) {
-		if (s == null) {
-                        return null;
-                }
-		int idx = s.indexOf(paragraphEndIndicator);
-		if (idx <= 0) {
-                        return s;
-                }
-		return s.substring(0, idx);
-	}
+        if (s == null) {
+            return null;
+        }
+        int idx = s.indexOf(paragraphEndIndicator);
+        if (idx <= 0) {
+            return s;
+        }
+        return s.substring(0, idx);
+    }
 
     /**
      *
@@ -342,11 +343,11 @@ public class Str {
      * @return
      */
     public static String appendIfNotBlank(String s, String suffix) {
-		if (isBlank(s)) {
-                        return s;
-                }
-		return s + suffix;
-	}
+        if (isBlank(s)) {
+            return s;
+        }
+        return s + suffix;
+    }
 
     /**
      *
@@ -354,25 +355,25 @@ public class Str {
      * @return
      */
     public static String toHtml(String s) {
-		if (s == null) {
-                        return null;
-                }
-		s = s.replace("&", "&amp;");
-		s = s.replace(valueOf(ae), "&auml;");
-		s = s.replace(valueOf(ue), "&uuml;");
-		s = s.replace(valueOf(oe), "&ouml;");
-		s = s.replace(valueOf(AE), "&Auml;");
-		s = s.replace(valueOf(UE), "&Uuml;");
-		s = s.replace(valueOf(OE), "&Ouml;");
-		s = s.replace(valueOf(sz), "&szlig;");
-		s = s.replace(valueOf(EUR), "&euro;");
-		s = s.replace("<", "&lt;");
-		s = s.replace(">", "&gt;");
-		s = s.replace("\"", "&quot;");
-		s = s.replace("\n", "<br>");
+        if (s == null) {
+            return null;
+        }
+        s = s.replace("&", "&amp;");
+        s = s.replace(valueOf(ae), "&auml;");
+        s = s.replace(valueOf(ue), "&uuml;");
+        s = s.replace(valueOf(oe), "&ouml;");
+        s = s.replace(valueOf(AE), "&Auml;");
+        s = s.replace(valueOf(UE), "&Uuml;");
+        s = s.replace(valueOf(OE), "&Ouml;");
+        s = s.replace(valueOf(sz), "&szlig;");
+        s = s.replace(valueOf(EUR), "&euro;");
+        s = s.replace("<", "&lt;");
+        s = s.replace(">", "&gt;");
+        s = s.replace("\"", "&quot;");
+        s = s.replace("\n", "<br>");
 
-		return s;
-	}
+        return s;
+    }
 
     /**
      *
@@ -380,16 +381,16 @@ public class Str {
      * @return
      */
     public static String getLeadingSpaces(String s) {
-		StringBuilder sb = new StringBuilder();
-		int len = s.length();
-		for (int i = 0; i < len; i++) {
-			if (s.charAt(i) != ' ') {
-                                break;
-                        }
-			sb.append(' ');
-		}
-		return sb.toString();
-	}
+        StringBuilder sb = new StringBuilder();
+        int len = s.length();
+        for (int i = 0; i < len; i++) {
+            if (s.charAt(i) != ' ') {
+                break;
+            }
+            sb.append(' ');
+        }
+        return sb.toString();
+    }
 
     /**
      *
@@ -399,13 +400,13 @@ public class Str {
      * @return
      */
     public static String cutFromTo(String s, String from, String to) {
-		if (s == null) {
-                        return null;
-                }
-		s = cutFrom(s, from);
-		s = cutTo(s, to);
-		return s;
-	}
+        if (s == null) {
+            return null;
+        }
+        s = cutFrom(s, from);
+        s = cutTo(s, to);
+        return s;
+    }
 
     /**
      *
@@ -414,16 +415,16 @@ public class Str {
      * @return
      */
     public static String cutFrom(String s, String from) {
-		if (s == null) {
-                        return null;
-                }
-		int fromIdx = s.indexOf(from);
-		if (fromIdx < 0) {
-                        return null;
-                }
-		fromIdx += from.length();
-		return s.substring(fromIdx);
-	}
+        if (s == null) {
+            return null;
+        }
+        int fromIdx = s.indexOf(from);
+        if (fromIdx < 0) {
+            return null;
+        }
+        fromIdx += from.length();
+        return s.substring(fromIdx);
+    }
 
     /**
      *
@@ -432,15 +433,15 @@ public class Str {
      * @return
      */
     public static String cutTo(String s, String to) {
-		if (s == null) {
-                        return null;
-                }
-		int toIdx = s.indexOf(to);
-		if (toIdx < 0) {
-                        return null;
-                }
-		return s.substring(0, toIdx);
-	}
+        if (s == null) {
+            return null;
+        }
+        int toIdx = s.indexOf(to);
+        if (toIdx < 0) {
+            return null;
+        }
+        return s.substring(0, toIdx);
+    }
 
     /**
      *
@@ -448,22 +449,22 @@ public class Str {
      * @return
      */
     public static String toHtmlId(Object... objects) {
-		StringBuilder sb = new StringBuilder();
-		boolean first = true;
-		for (Object object : objects) {
-			if (first) {
-				first = false;
-			} else {
-				sb.append("_");
-			}
-			if (object == null) {
-				sb.append("null");
-				continue;
-			}
-			sb.append(toHtmlId(object.toString()));
-		}
-		return sb.toString();
-	}
+        StringBuilder sb = new StringBuilder();
+        boolean first = true;
+        for (Object object : objects) {
+            if (first) {
+                first = false;
+            } else {
+                sb.append("_");
+            }
+            if (object == null) {
+                sb.append("null");
+                continue;
+            }
+            sb.append(toHtmlId(object.toString()));
+        }
+        return sb.toString();
+    }
 
     /**
      *
@@ -471,37 +472,35 @@ public class Str {
      * @return
      */
     public static String toHtmlId(String s) {
-		int len = s.length();
-		StringBuilder sb = new StringBuilder(len);
-		for (int i = 0; i < len; i++) {
-			char ch = s.charAt(i);
-			if (isLetter(ch) || (isDigit(ch) && i > 0)) {
-				sb.append(ch);
-				continue;
-			}
-			sb.append('_');
-		}
-		return sb.toString();
-	}
+        int len = s.length();
+        StringBuilder sb = new StringBuilder(len);
+        for (int i = 0; i < len; i++) {
+            char ch = s.charAt(i);
+            if (isLetter(ch) || (isDigit(ch) && i > 0)) {
+                sb.append(ch);
+                continue;
+            }
+            sb.append('_');
+        }
+        return sb.toString();
+    }
 
-	// TODO rename
-
+    // TODO rename
     /**
      *
      * @param s
      * @param maxlength
      * @return
      */
-    	public static String cutLeft(String s, int maxlength) {
-		if (s.length() > maxlength) {
-			return s.substring(s.length() - maxlength);
-		} else {
-                        return s;
-                }
-	}
+    public static String cutLeft(String s, int maxlength) {
+        if (s.length() > maxlength) {
+            return s.substring(s.length() - maxlength);
+        } else {
+            return s;
+        }
+    }
 
-	// TODO rename
-
+    // TODO rename
     /**
      *
      * @param s
@@ -509,13 +508,13 @@ public class Str {
      * @param minLength
      * @return
      */
-    	public static String fillUpRight(String s, String filler, int minLength) {
-		StringBuilder sb = new StringBuilder(s);
-		while (sb.length() < minLength) {
-			sb.append(filler);
-		}
-		return sb.toString();
-	}
+    public static String fillUpRight(String s, String filler, int minLength) {
+        StringBuilder sb = new StringBuilder(s);
+        while (sb.length() < minLength) {
+            sb.append(filler);
+        }
+        return sb.toString();
+    }
 
     /**
      *
@@ -523,32 +522,32 @@ public class Str {
      * @return
      */
     public static boolean isEmail(String s) {
-		if (isBlank(s)) {
-                        return false;
+        if (isBlank(s)) {
+            return false;
+        }
+        boolean at = false;
+        boolean dot = false;
+        int len = s.length();
+        for (int i = 0; i < len; i++) {
+            char c = s.charAt(i);
+            if (c == '@') {
+                if (at) {
+                    return false;
                 }
-		boolean at = false;
-		boolean dot = false;
-		int len = s.length();
-		for (int i = 0; i < len; i++) {
-			char c = s.charAt(i);
-			if (c == '@') {
-				if (at) {
-                                        return false;
-                                }
-				at = true;
-				continue;
-			}
-			if (c == '.') {
-				dot = true;
-				continue;
-			}
-			if (isLetterOrDigit(c) || c == '-' || c == '_') {
-                                continue;
-                        }
-			return false;
-		}
-		return !(!dot || !at);
-	}
+                at = true;
+                continue;
+            }
+            if (c == '.') {
+                dot = true;
+                continue;
+            }
+            if (isLetterOrDigit(c) || c == '-' || c == '_') {
+                continue;
+            }
+            return false;
+        }
+        return !(!dot || !at);
+    }
 
     /**
      *
@@ -556,27 +555,27 @@ public class Str {
      * @return
      */
     public static boolean isTrue(String s) {
-		if (s == null) {
-                        return false;
-                }
-		s = s.toLowerCase();
-		if (s.equals("true")) {
-                        return true;
-                }
-		if (s.equals("yes")) {
-                        return true;
-                }
-		if (s.equals("y")) {
-                        return true;
-                }
-		if (s.equals("1")) {
-                        return true;
-                }
-		if (s.equals("ja")) {
-                        return true;
-                }
-		return s.equals("j");
-	}
+        if (s == null) {
+            return false;
+        }
+        s = s.toLowerCase();
+        if (s.equals("true")) {
+            return true;
+        }
+        if (s.equals("yes")) {
+            return true;
+        }
+        if (s.equals("y")) {
+            return true;
+        }
+        if (s.equals("1")) {
+            return true;
+        }
+        if (s.equals("ja")) {
+            return true;
+        }
+        return s.equals("j");
+    }
 
     /**
      *
@@ -586,15 +585,15 @@ public class Str {
      * @return
      */
     public static int indexOf(String text, String[] toFind, int startIdx) {
-		int firstIdx = -1;
-                for (String toFind1 : toFind) {
-                        int idx = text.indexOf(toFind1, startIdx);
-                        if (firstIdx < 0 || (idx >= 0 && idx < firstIdx)) {
-                                firstIdx = idx;
-                        }
-                }
-		return firstIdx;
-	}
+        int firstIdx = -1;
+        for (String toFind1 : toFind) {
+            int idx = text.indexOf(toFind1, startIdx);
+            if (firstIdx < 0 || (idx >= 0 && idx < firstIdx)) {
+                firstIdx = idx;
+            }
+        }
+        return firstIdx;
+    }
 
     /**
      *
@@ -602,36 +601,36 @@ public class Str {
      * @return
      */
     public static String format(Object o) {
-		if (o == null) {
-                        return null;
-                }
-		if (o instanceof Object[]) {
-                        return formatObjectArray((Object[]) o);
-                }
-		if (o instanceof Map) {
-                        return formatMap((Map) o);
-                }
-		if (o instanceof Collection) {
-                        formatCollection((Collection) o);
-                }
-		if (o instanceof Enumeration) {
-                        return formatEnumeration((Enumeration) o);
-                }
-		if (o instanceof Exception) {
-                        return formatException((Exception) o);
-                }
-		return o.toString();
-	}
+        if (o == null) {
+            return null;
+        }
+        if (o instanceof Object[]) {
+            return formatObjectArray((Object[]) o);
+        }
+        if (o instanceof Map) {
+            return formatMap((Map) o);
+        }
+        if (o instanceof Collection) {
+            formatCollection((Collection) o);
+        }
+        if (o instanceof Enumeration) {
+            return formatEnumeration((Enumeration) o);
+        }
+        if (o instanceof Exception) {
+            return formatException((Exception) o);
+        }
+        return o.toString();
+    }
 
-	private static boolean isWrapperException(Exception ex) {
-		if (getSimpleName(ex.getClass()).equals("RuntimeException")) {
-                        return true;
-                }
-		if (getSimpleName(ex.getClass()).equals("ExecutionException")) {
-                        return true;
-                }
-		return getSimpleName(ex.getClass()).equals("UmbrellaException");
-	}
+    private static boolean isWrapperException(Exception ex) {
+        if (getSimpleName(ex.getClass()).equals("RuntimeException")) {
+            return true;
+        }
+        if (getSimpleName(ex.getClass()).equals("ExecutionException")) {
+            return true;
+        }
+        return getSimpleName(ex.getClass()).equals("UmbrellaException");
+    }
 
     /**
      *
@@ -639,8 +638,8 @@ public class Str {
      * @return
      */
     public static String formatEnumeration(Enumeration<String> e) {
-		return formatCollection(toList(e));
-	}
+        return formatCollection(toList(e));
+    }
 
     /**
      *
@@ -648,8 +647,8 @@ public class Str {
      * @return
      */
     public static String formatCollection(Collection c) {
-		return formatObjectArray(c.toArray());
-	}
+        return formatObjectArray(c.toArray());
+    }
 
     /**
      *
@@ -657,63 +656,43 @@ public class Str {
      * @return
      */
     public static String formatMap(Map map) {
-		StringBuilder sb = new StringBuilder();
-		sb.append("map[");
-		sb.append(map.size());
-		sb.append("]={");
-		boolean following = false;
-		Set<Map.Entry> entries = map.entrySet();
-		for (Map.Entry entry : entries) {
-			Object key = entry.getKey();
-			Object value = entry.getValue();
-			if (following) {
-				sb.append(',');
-			}
-			following = true;
-			sb.append('"');
-			sb.append(format(key));
-			sb.append("\"=\"");
-			sb.append(format(value));
-			sb.append('"');
-		}
-		sb.append('}');
-		return sb.toString();
-	}
+        StringBuilder sb = new StringBuilder();
+        sb.append("map[");
+        sb.append(map.size());
+        sb.append("]={");
+        boolean following = false;
+        Set<Map.Entry> entries = map.entrySet();
+        for (Map.Entry entry : entries) {
+            Object key = entry.getKey();
+            Object value = entry.getValue();
+            if (following) {
+                sb.append(',');
+            }
+            following = true;
+            sb.append('"');
+            sb.append(format(key));
+            sb.append("\"=\"");
+            sb.append(format(value));
+            sb.append('"');
+        }
+        sb.append('}');
+        return sb.toString();
+    }
 
     /**
-     *
+     * A simple stack trace to String convertor.
+     * 
      * @param ex
      * @return
      */
     public static String formatException(Exception ex) {
-		StringBuilder sb = null;
-		while (ex != null) {
-			Throwable cause = ex.getCause();
-			String message = ex.getMessage();
-			if (cause != null && message != null && message.startsWith(cause.getClass().getName())) {
-                                message = null;
-                        }
-			while ((isWrapperException(ex) && isBlank(message) && cause != null)
-					|| getSimpleName(ex.getClass()).equals("UmbrellaException")) {
-				cause = ex.getCause();
-				message = ex.getMessage();
-				if (cause != null && message != null && message.startsWith(cause.getClass().getName())) {
-                                        message = null;
-                                }
-			}
-			if (sb == null) {
-				sb = new StringBuilder();
-			} else {
-				sb.append("\nCaused by ");
-			}
-			if (!isWrapperException(ex)) {
-				sb.append(getSimpleName(ex.getClass()));
-				sb.append(": ");
-			}
-			sb.append(message);
-		}
-		return sb.toString();
-	}
+        StringBuilder sb = new StringBuilder();
+        for (StackTraceElement element : ex.getStackTrace()) {
+            sb.append(element.toString());
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
 
     /**
      *
@@ -721,12 +700,12 @@ public class Str {
      * @return
      */
     public static String formatStackTrace(StackTraceElement[] trace) {
-		StringBuilder sb = new StringBuilder();
-		for (StackTraceElement element : trace) {
-                        sb.append("    at ").append(element).append("\n");
-                }
-		return sb.toString();
-	}
+        StringBuilder sb = new StringBuilder();
+        for (StackTraceElement element : trace) {
+            sb.append("    at ").append(element).append("\n");
+        }
+        return sb.toString();
+    }
 
     /**
      *
@@ -734,18 +713,18 @@ public class Str {
      * @return
      */
     public static String getStackTrace(Exception t) {
-		StringBuilder sb = new StringBuilder();
-		sb.append(t.toString()).append("\n");
-		sb.append(formatStackTrace(t.getStackTrace()));
+        StringBuilder sb = new StringBuilder();
+        sb.append(t.toString()).append("\n");
+        sb.append(formatStackTrace(t.getStackTrace()));
 
-		Exception cause = (Exception) t.getCause();
-		if (cause == null) {
-                        return sb.toString();
-                }
-		sb.append("Caused by: ").append(getStackTrace(cause));
+        Exception cause = (Exception) t.getCause();
+        if (cause == null) {
+            return sb.toString();
+        }
+        sb.append("Caused by: ").append(getStackTrace(cause));
 
-		return sb.toString();
-	}
+        return sb.toString();
+    }
 
     /**
      *
@@ -753,21 +732,21 @@ public class Str {
      * @return
      */
     public static String formatObjectArray(Object[] oa) {
-		StringBuilder sb = new StringBuilder();
-		sb.append("{");
-		for (int i = 0; i < oa.length; i++) {
-			if (oa[i] != null) {
-				sb.append('<');
-				sb.append(format(oa[i]));
-				sb.append('>');
-			}
-			if (i != oa.length - 1) {
-				sb.append(',');
-			}
-		}
-		sb.append('}');
-		return sb.toString();
-	}
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        for (int i = 0; i < oa.length; i++) {
+            if (oa[i] != null) {
+                sb.append('<');
+                sb.append(format(oa[i]));
+                sb.append('>');
+            }
+            if (i != oa.length - 1) {
+                sb.append(',');
+            }
+        }
+        sb.append('}');
+        return sb.toString();
+    }
 
     /**
      *
@@ -775,16 +754,16 @@ public class Str {
      * @return
      */
     public static String getSimpleName(Class type) {
-		String name = type.getName();
-		int idx = name.lastIndexOf('.');
-		if (idx > 0) {
-			name = name.substring(idx + 1);
-		}
-                if (null == name) {
-                    name = "getSimpleName: unknown class";
-                }
-		return name;
-	}
+        String name = type.getName();
+        int idx = name.lastIndexOf('.');
+        if (idx > 0) {
+            name = name.substring(idx + 1);
+        }
+        if (null == name) {
+            name = "getSimpleName: unknown class";
+        }
+        return name;
+    }
 
     /**
      *
@@ -792,6 +771,6 @@ public class Str {
      * @return
      */
     public static boolean isBlank(String s) {
-		return s == null || s.length() == 0 || s.trim().length() == 0;
-	}
+        return s == null || s.length() == 0 || s.trim().length() == 0;
+    }
 }

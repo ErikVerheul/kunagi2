@@ -15,12 +15,12 @@
 package scrum.client;
 
 import com.google.gwt.user.client.Timer;
+import ilarkesto.core.base.EntityDoesNotExistException;
 import ilarkesto.core.base.KunagiProperties;
 import static ilarkesto.core.logging.ClientLog.DEBUG;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.ADataTransferObject;
 import ilarkesto.gwt.client.AGwtEntity;
-import ilarkesto.gwt.client.EntityDoesNotExistException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

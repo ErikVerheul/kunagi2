@@ -44,7 +44,7 @@ public class SprintBacklogPdfCreator extends APdfCreator {
      * @param pdf
      */
     @Override
-	protected void build(APdfContainerElement pdf) {
+	public void build(APdfContainerElement pdf) {
 		Sprint sprint = project.getCurrentSprint();
 
 		reportHeader(pdf, "Sprint Backlog", project.getLabel());
@@ -82,7 +82,7 @@ public class SprintBacklogPdfCreator extends APdfCreator {
      * @return
      */
     @Override
-	protected String getFilename() {
+	public String getFilename() {
 		return "sprintbacklog-" + project.getCurrentSprint().getReference();
 	}
 

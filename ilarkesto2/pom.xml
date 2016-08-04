@@ -146,12 +146,13 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <scope>test</scope>
+            <type>jar</type>
+            <version>4.11</version>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <type>jar</type>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.openid4java</groupId>

@@ -15,27 +15,29 @@
 package scrum.server.sprint;
 
 import ilarkesto.core.base.Utl;
-import ilarkesto.testng.ATest;
+import ilarkesto.junit.AjunitTest;
 import java.util.List;
-import org.testng.annotations.Test;
-import scrum.TestUtil;
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+import junit.scrum.TestUtil;
+import org.junit.Assert;
 import scrum.client.sprint.SprintHistoryHelper.StoryInfo;
 import scrum.server.project.Requirement;
 
-public class SprintReportHelperTest extends ATest {
+public class SprintReportHelperTest extends AjunitTest {
 
 	@Test
 	public void encodeRequirement() {
 		Requirement req = TestUtil.createRequirement(TestUtil.createProject(), 1);
 		req.setLabel("Story ;x");
 		req.setEstimatedWork(13f);
-		assertEquals(SprintHistoryHelperExtend.encodeRequirement(req), "sto1;13;Story ;x");
+		assertEquals("sto1;13;Story ;x", SprintHistoryHelperExtend.encodeRequirement(req));
 	}
 
 	@Test
 	public void decodeRequirement() {
 		String[] req = SprintHistoryHelperExtend.decodeRequirement("sto1;13;Story ;x");
-		assertEquals(req, new String[] { "sto1", "13", "Story ;x" });
+		Assert.assertArrayEquals(req, new String[] { "sto1", "13", "Story ;x" });
 	}
 
 	@Test
@@ -44,13 +46,13 @@ public class SprintReportHelperTest extends ATest {
 		Task tsk = TestUtil.createTask(req, 1, 1, 0);
 		tsk.setLabel("Task;X :-D");
 		tsk.setBurnedWork(6);
-		assertEquals(SprintHistoryHelperExtend.encodeTask(tsk), "tsk1;6;1;Task;X :-D");
+		assertEquals("tsk1;6;1;Task;X :-D", SprintHistoryHelperExtend.encodeTask(tsk));
 	}
 
 	@Test
 	public void decodeTask() {
 		String[] req = SprintHistoryHelperExtend.decodeTask("tsk1;6;1;Task;X :-D");
-		assertEquals(req, new String[] { "tsk1", "6", "1", "Task;X :-D" });
+		Assert.assertArrayEquals(req, new String[] { "tsk1", "6", "1", "Task;X :-D" });
 	}
 
 	@Test
@@ -71,8 +73,8 @@ public class SprintReportHelperTest extends ATest {
 		String encoded = SprintHistoryHelperExtend.encodeRequirementsAndTasks(Utl.toList(req1, req2, req3));
 		List<StoryInfo> reqs = SprintHistoryHelperExtend.parseRequirementsAndTasks(encoded);
 
-		assertEquals(reqs.size(), 3);
-		assertEquals(reqs.get(1).getTasks().size(), 2);
+		assertEquals(3, reqs.size());
+		assertEquals(2, reqs.get(1).getTasks().size());
 	}
 
 }

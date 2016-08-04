@@ -14,11 +14,14 @@
  */
 package scrum.client.project;
 
-import ilarkesto.testng.ATest;
-import org.testng.annotations.Test;
+import ilarkesto.junit.AjunitTest;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import org.junit.Test;
 import scrum.client.common.WeekdaySelector;
 
-public class WeekdaySelectorTest extends ATest {
+public class WeekdaySelectorTest extends AjunitTest {
 
 	@Test
 	public void none() {
@@ -43,7 +46,7 @@ public class WeekdaySelectorTest extends ATest {
 		days.setFri(true);
 		days.setSat(true);
 		int bitmask = days.createBitmask();
-		assertEquals(bitmask, 127);
+		assertEquals(127, bitmask);
 		days = new WeekdaySelector(bitmask);
 		assertTrue(days.isSun());
 		assertTrue(days.isMon());
@@ -65,7 +68,7 @@ public class WeekdaySelectorTest extends ATest {
 		days.setFri(false);
 		days.setSat(true);
 		int bitmask = days.createBitmask();
-		assertEquals(bitmask, 73);
+		assertEquals(73, bitmask);
 		days = new WeekdaySelector(bitmask);
 		assertTrue(days.isSun());
 		assertFalse(days.isMon());

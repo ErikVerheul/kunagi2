@@ -19,6 +19,7 @@ import static ilarkesto.core.base.Utl.equalObjects;
 import static ilarkesto.core.logging.ClientLog.*;
 import scrum.client.common.*;
 import ilarkesto.gwt.client.*;
+import ilarkesto.core.base.EntityDoesNotExistException;
 
 public abstract class GDao
             extends ilarkesto.gwt.client.AGwtDao {
@@ -69,7 +70,7 @@ public abstract class GDao
         scrum.client.pr.BlogEntry ret = blogEntrys.get(id);
         if (ret == null) {
             DEBUG("BlogEntry :EntityDoesNotExistException in " + this.getClass().getName());
-            throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+            throw new EntityDoesNotExistException(id);
         }
         return ret;
     }
@@ -80,7 +81,7 @@ public abstract class GDao
             scrum.client.pr.BlogEntry entity = blogEntrys.get(id);
             if (entity == null) {
               DEBUG("BlogEntry :EntityDoesNotExistException in " + this.getClass().getName());
-              throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+              throw new EntityDoesNotExistException(id);
             }
             ret.add(entity);
         }
@@ -201,7 +202,7 @@ public abstract class GDao
         scrum.client.journal.Change ret = changes.get(id);
         if (ret == null) {
             DEBUG("Change :EntityDoesNotExistException in " + this.getClass().getName());
-            throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+            throw new EntityDoesNotExistException(id);
         }
         return ret;
     }
@@ -212,7 +213,7 @@ public abstract class GDao
             scrum.client.journal.Change entity = changes.get(id);
             if (entity == null) {
               DEBUG("Change :EntityDoesNotExistException in " + this.getClass().getName());
-              throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+              throw new EntityDoesNotExistException(id);
             }
             ret.add(entity);
         }
@@ -325,7 +326,7 @@ public abstract class GDao
         scrum.client.collaboration.ChatMessage ret = chatMessages.get(id);
         if (ret == null) {
             DEBUG("ChatMessage :EntityDoesNotExistException in " + this.getClass().getName());
-            throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+            throw new EntityDoesNotExistException(id);
         }
         return ret;
     }
@@ -336,7 +337,7 @@ public abstract class GDao
             scrum.client.collaboration.ChatMessage entity = chatMessages.get(id);
             if (entity == null) {
               DEBUG("ChatMessage :EntityDoesNotExistException in " + this.getClass().getName());
-              throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+              throw new EntityDoesNotExistException(id);
             }
             ret.add(entity);
         }
@@ -425,7 +426,7 @@ public abstract class GDao
         scrum.client.collaboration.Comment ret = comments.get(id);
         if (ret == null) {
             DEBUG("Comment :EntityDoesNotExistException in " + this.getClass().getName());
-            throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+            throw new EntityDoesNotExistException(id);
         }
         return ret;
     }
@@ -436,7 +437,7 @@ public abstract class GDao
             scrum.client.collaboration.Comment entity = comments.get(id);
             if (entity == null) {
               DEBUG("Comment :EntityDoesNotExistException in " + this.getClass().getName());
-              throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+              throw new EntityDoesNotExistException(id);
             }
             ret.add(entity);
         }
@@ -557,7 +558,7 @@ public abstract class GDao
         scrum.client.collaboration.Emoticon ret = emoticons.get(id);
         if (ret == null) {
             DEBUG("Emoticon :EntityDoesNotExistException in " + this.getClass().getName());
-            throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+            throw new EntityDoesNotExistException(id);
         }
         return ret;
     }
@@ -568,7 +569,7 @@ public abstract class GDao
             scrum.client.collaboration.Emoticon entity = emoticons.get(id);
             if (entity == null) {
               DEBUG("Emoticon :EntityDoesNotExistException in " + this.getClass().getName());
-              throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+              throw new EntityDoesNotExistException(id);
             }
             ret.add(entity);
         }
@@ -649,7 +650,7 @@ public abstract class GDao
         scrum.client.files.File ret = files.get(id);
         if (ret == null) {
             DEBUG("File :EntityDoesNotExistException in " + this.getClass().getName());
-            throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+            throw new EntityDoesNotExistException(id);
         }
         return ret;
     }
@@ -660,7 +661,7 @@ public abstract class GDao
             scrum.client.files.File entity = files.get(id);
             if (entity == null) {
               DEBUG("File :EntityDoesNotExistException in " + this.getClass().getName());
-              throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+              throw new EntityDoesNotExistException(id);
             }
             ret.add(entity);
         }
@@ -765,7 +766,7 @@ public abstract class GDao
         scrum.client.impediments.Impediment ret = impediments.get(id);
         if (ret == null) {
             DEBUG("Impediment :EntityDoesNotExistException in " + this.getClass().getName());
-            throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+            throw new EntityDoesNotExistException(id);
         }
         return ret;
     }
@@ -776,7 +777,7 @@ public abstract class GDao
             scrum.client.impediments.Impediment entity = impediments.get(id);
             if (entity == null) {
               DEBUG("Impediment :EntityDoesNotExistException in " + this.getClass().getName());
-              throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+              throw new EntityDoesNotExistException(id);
             }
             ret.add(entity);
         }
@@ -889,7 +890,7 @@ public abstract class GDao
         scrum.client.issues.Issue ret = issues.get(id);
         if (ret == null) {
             DEBUG("Issue :EntityDoesNotExistException in " + this.getClass().getName());
-            throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+            throw new EntityDoesNotExistException(id);
         }
         return ret;
     }
@@ -900,7 +901,7 @@ public abstract class GDao
             scrum.client.issues.Issue entity = issues.get(id);
             if (entity == null) {
               DEBUG("Issue :EntityDoesNotExistException in " + this.getClass().getName());
-              throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+              throw new EntityDoesNotExistException(id);
             }
             ret.add(entity);
         }
@@ -1133,7 +1134,7 @@ public abstract class GDao
         scrum.client.project.Project ret = projects.get(id);
         if (ret == null) {
             DEBUG("Project :EntityDoesNotExistException in " + this.getClass().getName());
-            throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+            throw new EntityDoesNotExistException(id);
         }
         return ret;
     }
@@ -1144,7 +1145,7 @@ public abstract class GDao
             scrum.client.project.Project entity = projects.get(id);
             if (entity == null) {
               DEBUG("Project :EntityDoesNotExistException in " + this.getClass().getName());
-              throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+              throw new EntityDoesNotExistException(id);
             }
             ret.add(entity);
         }
@@ -1536,7 +1537,7 @@ public abstract class GDao
         scrum.client.journal.ProjectEvent ret = projectEvents.get(id);
         if (ret == null) {
             DEBUG("ProjectEvent :EntityDoesNotExistException in " + this.getClass().getName());
-            throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+            throw new EntityDoesNotExistException(id);
         }
         return ret;
     }
@@ -1547,7 +1548,7 @@ public abstract class GDao
             scrum.client.journal.ProjectEvent entity = projectEvents.get(id);
             if (entity == null) {
               DEBUG("ProjectEvent :EntityDoesNotExistException in " + this.getClass().getName());
-              throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+              throw new EntityDoesNotExistException(id);
             }
             ret.add(entity);
         }
@@ -1636,7 +1637,7 @@ public abstract class GDao
         scrum.client.admin.ProjectUserConfig ret = projectUserConfigs.get(id);
         if (ret == null) {
             DEBUG("ProjectUserConfig :EntityDoesNotExistException in " + this.getClass().getName());
-            throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+            throw new EntityDoesNotExistException(id);
         }
         return ret;
     }
@@ -1647,7 +1648,7 @@ public abstract class GDao
             scrum.client.admin.ProjectUserConfig entity = projectUserConfigs.get(id);
             if (entity == null) {
               DEBUG("ProjectUserConfig :EntityDoesNotExistException in " + this.getClass().getName());
-              throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+              throw new EntityDoesNotExistException(id);
             }
             ret.add(entity);
         }
@@ -1840,7 +1841,7 @@ public abstract class GDao
         scrum.client.project.Quality ret = qualitys.get(id);
         if (ret == null) {
             DEBUG("Quality :EntityDoesNotExistException in " + this.getClass().getName());
-            throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+            throw new EntityDoesNotExistException(id);
         }
         return ret;
     }
@@ -1851,7 +1852,7 @@ public abstract class GDao
             scrum.client.project.Quality entity = qualitys.get(id);
             if (entity == null) {
               DEBUG("Quality :EntityDoesNotExistException in " + this.getClass().getName());
-              throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+              throw new EntityDoesNotExistException(id);
             }
             ret.add(entity);
         }
@@ -1948,7 +1949,7 @@ public abstract class GDao
         scrum.client.release.Release ret = releases.get(id);
         if (ret == null) {
             DEBUG("Release :EntityDoesNotExistException in " + this.getClass().getName());
-            throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+            throw new EntityDoesNotExistException(id);
         }
         return ret;
     }
@@ -1959,7 +1960,7 @@ public abstract class GDao
             scrum.client.release.Release entity = releases.get(id);
             if (entity == null) {
               DEBUG("Release :EntityDoesNotExistException in " + this.getClass().getName());
-              throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+              throw new EntityDoesNotExistException(id);
             }
             ret.add(entity);
         }
@@ -2112,7 +2113,7 @@ public abstract class GDao
         scrum.client.project.Requirement ret = requirements.get(id);
         if (ret == null) {
             DEBUG("Requirement :EntityDoesNotExistException in " + this.getClass().getName());
-            throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+            throw new EntityDoesNotExistException(id);
         }
         return ret;
     }
@@ -2123,7 +2124,7 @@ public abstract class GDao
             scrum.client.project.Requirement entity = requirements.get(id);
             if (entity == null) {
               DEBUG("Requirement :EntityDoesNotExistException in " + this.getClass().getName());
-              throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+              throw new EntityDoesNotExistException(id);
             }
             ret.add(entity);
         }
@@ -2316,7 +2317,7 @@ public abstract class GDao
         scrum.client.estimation.RequirementEstimationVote ret = requirementEstimationVotes.get(id);
         if (ret == null) {
             DEBUG("RequirementEstimationVote :EntityDoesNotExistException in " + this.getClass().getName());
-            throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+            throw new EntityDoesNotExistException(id);
         }
         return ret;
     }
@@ -2327,7 +2328,7 @@ public abstract class GDao
             scrum.client.estimation.RequirementEstimationVote entity = requirementEstimationVotes.get(id);
             if (entity == null) {
               DEBUG("RequirementEstimationVote :EntityDoesNotExistException in " + this.getClass().getName());
-              throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+              throw new EntityDoesNotExistException(id);
             }
             ret.add(entity);
         }
@@ -2408,7 +2409,7 @@ public abstract class GDao
         scrum.client.risks.Risk ret = risks.get(id);
         if (ret == null) {
             DEBUG("Risk :EntityDoesNotExistException in " + this.getClass().getName());
-            throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+            throw new EntityDoesNotExistException(id);
         }
         return ret;
     }
@@ -2419,7 +2420,7 @@ public abstract class GDao
             scrum.client.risks.Risk entity = risks.get(id);
             if (entity == null) {
               DEBUG("Risk :EntityDoesNotExistException in " + this.getClass().getName());
-              throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+              throw new EntityDoesNotExistException(id);
             }
             ret.add(entity);
         }
@@ -2540,7 +2541,7 @@ public abstract class GDao
         scrum.client.calendar.SimpleEvent ret = simpleEvents.get(id);
         if (ret == null) {
             DEBUG("SimpleEvent :EntityDoesNotExistException in " + this.getClass().getName());
-            throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+            throw new EntityDoesNotExistException(id);
         }
         return ret;
     }
@@ -2551,7 +2552,7 @@ public abstract class GDao
             scrum.client.calendar.SimpleEvent entity = simpleEvents.get(id);
             if (entity == null) {
               DEBUG("SimpleEvent :EntityDoesNotExistException in " + this.getClass().getName());
-              throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+              throw new EntityDoesNotExistException(id);
             }
             ret.add(entity);
         }
@@ -2680,7 +2681,7 @@ public abstract class GDao
         scrum.client.sprint.Sprint ret = sprints.get(id);
         if (ret == null) {
             DEBUG("Sprint :EntityDoesNotExistException in " + this.getClass().getName());
-            throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+            throw new EntityDoesNotExistException(id);
         }
         return ret;
     }
@@ -2691,7 +2692,7 @@ public abstract class GDao
             scrum.client.sprint.Sprint entity = sprints.get(id);
             if (entity == null) {
               DEBUG("Sprint :EntityDoesNotExistException in " + this.getClass().getName());
-              throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+              throw new EntityDoesNotExistException(id);
             }
             ret.add(entity);
         }
@@ -2876,7 +2877,7 @@ public abstract class GDao
         scrum.client.sprint.SprintReport ret = sprintReports.get(id);
         if (ret == null) {
             DEBUG("SprintReport :EntityDoesNotExistException in " + this.getClass().getName());
-            throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+            throw new EntityDoesNotExistException(id);
         }
         return ret;
     }
@@ -2887,7 +2888,7 @@ public abstract class GDao
             scrum.client.sprint.SprintReport entity = sprintReports.get(id);
             if (entity == null) {
               DEBUG("SprintReport :EntityDoesNotExistException in " + this.getClass().getName());
-              throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+              throw new EntityDoesNotExistException(id);
             }
             ret.add(entity);
         }
@@ -2999,7 +3000,7 @@ public abstract class GDao
         scrum.client.collaboration.Subject ret = subjects.get(id);
         if (ret == null) {
             DEBUG("Subject :EntityDoesNotExistException in " + this.getClass().getName());
-            throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+            throw new EntityDoesNotExistException(id);
         }
         return ret;
     }
@@ -3010,7 +3011,7 @@ public abstract class GDao
             scrum.client.collaboration.Subject entity = subjects.get(id);
             if (entity == null) {
               DEBUG("Subject :EntityDoesNotExistException in " + this.getClass().getName());
-              throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+              throw new EntityDoesNotExistException(id);
             }
             ret.add(entity);
         }
@@ -3099,7 +3100,7 @@ public abstract class GDao
         scrum.client.pr.Subscription ret = subscriptions.get(id);
         if (ret == null) {
             DEBUG("Subscription :EntityDoesNotExistException in " + this.getClass().getName());
-            throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+            throw new EntityDoesNotExistException(id);
         }
         return ret;
     }
@@ -3110,7 +3111,7 @@ public abstract class GDao
             scrum.client.pr.Subscription entity = subscriptions.get(id);
             if (entity == null) {
               DEBUG("Subscription :EntityDoesNotExistException in " + this.getClass().getName());
-              throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+              throw new EntityDoesNotExistException(id);
             }
             ret.add(entity);
         }
@@ -3182,7 +3183,7 @@ public abstract class GDao
         scrum.client.admin.SystemConfig ret = systemConfigs.get(id);
         if (ret == null) {
             DEBUG("SystemConfig :EntityDoesNotExistException in " + this.getClass().getName());
-            throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+            throw new EntityDoesNotExistException(id);
         }
         return ret;
     }
@@ -3193,7 +3194,7 @@ public abstract class GDao
             scrum.client.admin.SystemConfig entity = systemConfigs.get(id);
             if (entity == null) {
               DEBUG("SystemConfig :EntityDoesNotExistException in " + this.getClass().getName());
-              throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+              throw new EntityDoesNotExistException(id);
             }
             ret.add(entity);
         }
@@ -3482,7 +3483,7 @@ public abstract class GDao
         scrum.client.sprint.Task ret = tasks.get(id);
         if (ret == null) {
             DEBUG("Task :EntityDoesNotExistException in " + this.getClass().getName());
-            throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+            throw new EntityDoesNotExistException(id);
         }
         return ret;
     }
@@ -3493,7 +3494,7 @@ public abstract class GDao
             scrum.client.sprint.Task entity = tasks.get(id);
             if (entity == null) {
               DEBUG("Task :EntityDoesNotExistException in " + this.getClass().getName());
-              throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+              throw new EntityDoesNotExistException(id);
             }
             ret.add(entity);
         }
@@ -3622,7 +3623,7 @@ public abstract class GDao
         scrum.client.admin.User ret = users.get(id);
         if (ret == null) {
             DEBUG("User :EntityDoesNotExistException in " + this.getClass().getName());
-            throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+            throw new EntityDoesNotExistException(id);
         }
         return ret;
     }
@@ -3633,7 +3634,7 @@ public abstract class GDao
             scrum.client.admin.User entity = users.get(id);
             if (entity == null) {
               DEBUG("User :EntityDoesNotExistException in " + this.getClass().getName());
-              throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+              throw new EntityDoesNotExistException(id);
             }
             ret.add(entity);
         }
@@ -3910,7 +3911,7 @@ public abstract class GDao
         scrum.client.collaboration.Wikipage ret = wikipages.get(id);
         if (ret == null) {
             DEBUG("Wikipage :EntityDoesNotExistException in " + this.getClass().getName());
-            throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+            throw new EntityDoesNotExistException(id);
         }
         return ret;
     }
@@ -3921,7 +3922,7 @@ public abstract class GDao
             scrum.client.collaboration.Wikipage entity = wikipages.get(id);
             if (entity == null) {
               DEBUG("Wikipage :EntityDoesNotExistException in " + this.getClass().getName());
-              throw new ilarkesto.gwt.client.EntityDoesNotExistException(id);
+              throw new EntityDoesNotExistException(id);
             }
             ret.add(entity);
         }
@@ -4096,7 +4097,7 @@ public abstract class GDao
         if (type.equals(scrum.client.collaboration.Wikipage.ENTITY_TYPE)) {
             return updateWikipage(data);
         }
-       throw new RuntimeException("Unsupported type: " + type);
+       throw new RuntimeException("updateLocalEntity: Unsupported type: " + type + " data: " + data);
     }
 
     @Override

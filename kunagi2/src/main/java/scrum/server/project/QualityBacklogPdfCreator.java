@@ -27,7 +27,7 @@ public class QualityBacklogPdfCreator extends APdfCreator {
 	}
 
 	@Override
-	protected void build(APdfContainerElement pdf) {
+	public void build(APdfContainerElement pdf) {
 		reportHeader(pdf, "Quality Backlog", project.getLabel());
 
 		List<Quality> qualities = new ArrayList<Quality>(project.getQualitys());
@@ -38,7 +38,7 @@ public class QualityBacklogPdfCreator extends APdfCreator {
 	}
 
 	@Override
-	protected String getFilename() {
+	public String getFilename() {
 		return "qualitybacklog";
 	}
 

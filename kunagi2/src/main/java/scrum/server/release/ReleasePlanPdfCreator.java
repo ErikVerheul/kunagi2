@@ -40,7 +40,7 @@ public class ReleasePlanPdfCreator extends APdfCreator {
      * @param pdf
      */
     @Override
-	protected void build(APdfContainerElement pdf) {
+	public void build(APdfContainerElement pdf) {
 		reportHeader(pdf, "Release plan", project.getLabel());
 
 		List<Release> releases = new ArrayList<Release>(project.getReleases());
@@ -58,7 +58,7 @@ public class ReleasePlanPdfCreator extends APdfCreator {
      * @return
      */
     @Override
-	protected String getFilename() {
+	public String getFilename() {
 		return "releaseplan";
 	}
 

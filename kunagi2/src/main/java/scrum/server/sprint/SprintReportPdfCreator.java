@@ -55,7 +55,7 @@ public class SprintReportPdfCreator extends APdfCreator {
      * @param pdf
      */
     @Override
-	protected void build(APdfContainerElement pdf) {
+	public void build(APdfContainerElement pdf) {
 		reportHeader(pdf, "Sprint Report", sprint.getProject().getLabel());
 
 		SprintReport report = sprint.getSprintReport();
@@ -172,7 +172,7 @@ public class SprintReportPdfCreator extends APdfCreator {
      * @return
      */
     @Override
-	protected String getFilename() {
+	public String getFilename() {
 		return "report-" + sprint.getReference();
 	}
 

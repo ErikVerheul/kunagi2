@@ -17,3 +17,4 @@ web/target
 /shared/test-output/
 /core/error.log
 /core/runtimedata/
+/kunagi2/nbproject/

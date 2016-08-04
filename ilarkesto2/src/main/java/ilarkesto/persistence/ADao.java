@@ -14,6 +14,7 @@
  */
 package ilarkesto.persistence;
 
+import ilarkesto.core.base.EntityDoesNotExistException;
 import ilarkesto.auth.AUser;
 import ilarkesto.auth.AUserDao;
 import static ilarkesto.auth.Auth.isVisible;
@@ -65,6 +66,7 @@ public abstract class ADao<E extends AEntity> extends ADatobManager<E> implement
 
 	@Override
 	public void updateLastModified(E entity) {
+                LOG.debug("Entity updateLastModified:", toStringWithType(entity));
 		entity.updateLastModified();
 	}
 
@@ -135,17 +137,12 @@ public abstract class ADao<E extends AEntity> extends ADatobManager<E> implement
 		if (id == null) {
                         throw new RuntimeException("id must not be null");
                 }
-		E entity = (E) transactionService.getById(id);
+		E entity = (E) transactionService.getById(id);		
 		if (entity == null) {
                         DEBUG("EntityDoesNotExistException thrown in " + this.getClass().getName());
                         throw new EntityDoesNotExistException(id);
                 }
 		return entity;
-	}
-
-	@Deprecated
-	public E getEntityById(String id) {
-		return getById(id);
 	}
 
 	@Override
@@ -209,7 +206,7 @@ public abstract class ADao<E extends AEntity> extends ADatobManager<E> implement
 		try {
 			entity = (E) getEntityClass().newInstance();
 		} catch (InstantiationException | IllegalAccessException ex) {
-			throw new RuntimeException(ex);
+			throw new RuntimeException("newEntityInstance: A new entity could not be constructed", ex);
 		}
 		entity.setLastModified(now());
 		transactionService.registerEntity(entity);

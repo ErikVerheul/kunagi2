@@ -14,8 +14,8 @@
  */
 package scrum.client.collaboration;
 
+import ilarkesto.core.base.EntityDoesNotExistException;
 import ilarkesto.gwt.client.AGwtEntity;
-import ilarkesto.gwt.client.EntityDoesNotExistException;
 import java.util.ArrayList;
 import java.util.List;
 import scrum.client.admin.User;
@@ -61,7 +61,7 @@ public class UsersStatus extends GUsersStatus implements BlockCollapsedHandler, 
      * @return
      */
     public List<User> getOnlineUsers() {
-		List<User> ret = new ArrayList<User>();
+		List<User> ret = new ArrayList<>();
 		for (User user : project.getParticipants()) {
 			if (isOnline(user)) {
                             ret.add(user);
@@ -103,7 +103,7 @@ public class UsersStatus extends GUsersStatus implements BlockCollapsedHandler, 
      */
     public List<AScrumGwtEntity> getSelectedEntities(User user) {
 		List<String> ids = project.getUserConfig(user).getSelectedEntitysIds();
-		List<AScrumGwtEntity> ret = new ArrayList<AScrumGwtEntity>(ids.size());
+		List<AScrumGwtEntity> ret = new ArrayList<>(ids.size());
 		for (String id : ids) {
 			try {
 				AGwtEntity entity = dao.getEntity(id);

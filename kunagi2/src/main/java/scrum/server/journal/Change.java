@@ -30,7 +30,7 @@ import scrum.server.project.Requirement;
  */
 public class Change extends GChange implements Comparable<Change> {
 
-    private static final Log log = Log.get(Change.class);
+    private static final Log LOG = Log.get(Change.class);
 
     @Override
     public boolean isVisibleFor(User user) {
@@ -51,7 +51,7 @@ public class Change extends GChange implements Comparable<Change> {
      * @param other
      */
     public void mergeTo(Change other) {
-        log.info("Merging", this, "to", other);
+        LOG.info("Merging", this, "to", other);
         other.setOldValue(getOldValue());
         if (isCommentSet()) {
             if (other.isCommentSet()) {
@@ -89,6 +89,11 @@ public class Change extends GChange implements Comparable<Change> {
 
     @Override
     public int compareTo(Change other) {
+        //@TODO: make this fix redundant
+        if (other == null) {
+            LOG.debug("compareTo: found a compare with null");
+            return -1;
+        }
         return getDateAndTime().compareTo(other.getDateAndTime());
     }
 
@@ -118,7 +123,7 @@ public class Change extends GChange implements Comparable<Change> {
      * @param changes
      */
     public static void merge(Collection<Change> changes) {
-        List<Change> list = new ArrayList<Change>(changes);
+        List<Change> list = new ArrayList<>(changes);
         Collections.sort(list);
 
         Change previous = null;

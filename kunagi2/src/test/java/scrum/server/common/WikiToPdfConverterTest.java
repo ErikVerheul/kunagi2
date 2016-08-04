@@ -14,15 +14,16 @@
  */
 package scrum.server.common;
 
+import scrum.server.common.*;
 import ilarkesto.integration.itext.PdfBuilder;
+import ilarkesto.junit.AjunitTest;
 import ilarkesto.pdf.AImage;
 import ilarkesto.pdf.AParagraph;
-import ilarkesto.testng.ATest;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import org.testng.annotations.Test;
+import org.junit.Test;
 import scrum.client.wiki.Image;
 import scrum.client.wiki.WikiModel;
 import scrum.client.wiki.WikiParser;
@@ -32,14 +33,14 @@ import scrum.server.project.Project;
  *
  * @author erik
  */
-public class WikiToPdfConverterTest extends ATest {
+public class WikiToPdfConverterTest extends AjunitTest {
 
     /**
      *
      * @throws IOException
      */
     @Test
-	public void test() throws IOException {
+	public void testWikiToPdfConverter() throws IOException {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("= Section 1 =\n");

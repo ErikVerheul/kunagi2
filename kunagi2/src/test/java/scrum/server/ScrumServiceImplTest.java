@@ -21,15 +21,14 @@ import ilarkesto.core.base.KunagiProperties;
 import ilarkesto.core.time.Date;
 import ilarkesto.gwt.client.ErrorWrapper;
 import ilarkesto.persistence.AEntity;
-import ilarkesto.testng.ATest;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
-import scrum.TestUtil;
+import org.junit.BeforeClass;
+import org.junit.Before;
+import org.junit.After;
+import org.junit.Test;
+import junit.scrum.TestUtil;
 import scrum.client.DataTransferObject;
 import scrum.client.admin.SystemMessage;
 import scrum.server.admin.User;
@@ -42,28 +41,37 @@ import scrum.server.project.Project;
 import scrum.server.project.Requirement;
 import scrum.server.release.Release;
 import scrum.server.sprint.Sprint;
+import ilarkesto.junit.AjunitTest;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.fail;
+import org.junit.Ignore;
 
 /**
  *
  * @author erik
  */
-public class ScrumServiceImplTest extends ATest {
+public class ScrumServiceImplTest extends AjunitTest {
 
-    ScrumWebApplication app;
-    ScrumServiceImpl service;
-    WebSession sessionForAdmin;
-    WebSession session;
+    static ScrumWebApplication app;
+    static ScrumServiceImpl service;
+    static WebSession sessionForAdmin;
+    static WebSession session;
     GwtConversation conversationForAdmin;
     GwtConversation conversation;
-    User admin;
-    User duke;
-    Project project;
+    static User admin;
+    static User duke;
+    static Project project;
 
     /**
      *
      */
-    @BeforeTest
-    public void init() {
+    @BeforeClass
+    public static void init() {
         TestUtil.initialize();
         app = TestUtil.getApp();
 
@@ -89,7 +97,7 @@ public class ScrumServiceImplTest extends ATest {
     /**
      *
      */
-    @BeforeMethod
+    @Before
     public void initConversations() {
         session.setUser(duke);
         conversation = (GwtConversation) session.createGwtConversation();
@@ -103,7 +111,7 @@ public class ScrumServiceImplTest extends ATest {
     /**
      *
      */
-    @AfterMethod
+    @After
     public void commit() {
         app.getTransactionService().commit();
     }
@@ -115,9 +123,9 @@ public class ScrumServiceImplTest extends ATest {
     public void createExampleProject() {
         service.onCreateExampleProject(conversation);
         assertConversationWithoutErrors(conversation);
-        assertEquals(conversation.getNextData().getEntities().size(), 1);
+        assertEquals(1, conversation.getNextData().getEntities().size());
         Project local_project = getEntityByType(conversation, Project.class);
-        assertStartsWith(local_project.getLabel(), "Project");
+        assertStartsWith("Project", local_project.getLabel());
         assertTrue(local_project.containsAdmin(duke));
         assertTrue(local_project.containsParticipant(duke));
         assertTrue(local_project.containsProductOwner(duke));
@@ -138,7 +146,7 @@ public class ScrumServiceImplTest extends ATest {
     /**
      *
      */
-    @Test(expectedExceptions = PermissionDeniedException.class)
+    @Test(expected = PermissionDeniedException.class)
     public void updateSystemMessage() {
         SystemMessage systemMessage = new SystemMessage();
         systemMessage.setText("Alert!");
@@ -180,7 +188,7 @@ public class ScrumServiceImplTest extends ATest {
     /**
      *
      */
-    @Test(expectedExceptions = WrongPasswordException.class)
+    @Test(expected = WrongPasswordException.class)
     public void changePasswordFail() {
         duke.setPassword("geheim");
         service.onChangePassword(conversation, "wrong", "supergeheim");
@@ -224,7 +232,7 @@ public class ScrumServiceImplTest extends ATest {
         properties.putValue("email", "duke@kunagi.org");
         service.onChangeProperties(conversation, duke.getId(), properties);
         assertConversationWithoutErrors(conversation);
-        assertEquals(duke.getEmail(), "duke@kunagi.org");
+        assertEquals("duke@kunagi.org", duke.getEmail());
     }
 
     /**
@@ -235,8 +243,8 @@ public class ScrumServiceImplTest extends ATest {
         conversation.setProject(null);
         service.onSelectProject(conversation, project.getId());
         assertConversationWithoutErrors(conversation);
-        assertSame(conversation.getProject(), project);
-        assertSame(duke.getCurrentProject(), project);
+        assertSame(project, conversation.getProject());
+        assertSame(project, duke.getCurrentProject());
     }
 
     /**
@@ -303,32 +311,32 @@ public class ScrumServiceImplTest extends ATest {
      *
      */
     @Test
-	public void requestClosedIssues() {
-		Issue spam = app.getIssueDao().postIssue(project, "spam");
-		Issue bug = app.getIssueDao().postIssue(project, "bug");
-		bug.setAcceptDate(Date.today());
-		bug.setCloseDate(Date.today());
-		service.onRequestClosedIssues(conversation);
-		assertConversationWithoutErrors(conversation);
-		assertContainsEntities(conversation, project.getClosedIssues());
-		assertContainsEntity(conversation, bug);
-		assertNotContainsEntity(conversation, spam);
-	}
+    public void requestClosedIssues() {
+        Issue spam = app.getIssueDao().postIssue(project, "spam");
+        Issue bug = app.getIssueDao().postIssue(project, "bug");
+        bug.setAcceptDate(Date.today());
+        bug.setCloseDate(Date.today());
+        service.onRequestClosedIssues(conversation);
+        assertConversationWithoutErrors(conversation);
+        assertContainsEntities(conversation, project.getClosedIssues());
+        assertContainsEntity(conversation, bug);
+        assertNotContainsEntity(conversation, spam);
+    }
 
     /**
      *
      */
     @Test
-	public void requestReleaseIssues() {
-		Release release = app.getReleaseDao().newEntityInstance();
-		release.setProject(project);
-		Issue bug = app.getIssueDao().postIssue(project, "bug");
-		bug.setAcceptDate(Date.today());
-		bug.addAffectedRelease(release);
-		service.onRequestReleaseIssues(conversation, release.getId());
-		assertConversationWithoutErrors(conversation);
-		assertContainsEntity(conversation, bug);
-	}
+    public void requestReleaseIssues() {
+        Release release = app.getReleaseDao().newEntityInstance();
+        release.setProject(project);
+        Issue bug = app.getIssueDao().postIssue(project, "bug");
+        bug.setAcceptDate(Date.today());
+        bug.addAffectedRelease(release);
+        service.onRequestReleaseIssues(conversation, release.getId());
+        assertConversationWithoutErrors(conversation);
+        assertContainsEntity(conversation, bug);
+    }
 
     /**
      *
@@ -411,9 +419,9 @@ public class ScrumServiceImplTest extends ATest {
         Sprint nextSprint = project.getNextSprint();
         service.onSwitchToNextSprint(conversation);
         assertConversationWithoutErrors(conversation);
-        assertNotSame(project.getCurrentSprint(), currentSprint);
-        assertNotSame(project.getNextSprint(), nextSprint);
-        assertEquals(project.getCurrentSprint(), nextSprint);
+        assertNotSame(currentSprint, project.getCurrentSprint());
+        assertNotSame(nextSprint, project.getNextSprint());
+        assertEquals(nextSprint, project.getCurrentSprint());
     }
 
     // --- helpers ---
@@ -472,12 +480,11 @@ public class ScrumServiceImplTest extends ATest {
 
     private static void assertConversationError(GwtConversation conversation, ErrorWrapper error) {
         List<ErrorWrapper> errors = conversation.getNextData().getErrors();
-        assertTrue(errors != null && errors.contains(error),
-                "Conversation error not found: <" + error + "> in " + StrExtend.format(errors));
+        assertTrue("Conversation error not found: <" + error + "> in " + StrExtend.format(errors), errors != null && errors.contains(error));
     }
 
     private static void assertConversationWithoutErrors(GwtConversation conversation) {
         List<ErrorWrapper> errors = conversation.getNextData().getErrors();
-        assertTrue(errors == null || errors.isEmpty(), "Conversation contains errors: " + StrExtend.format(errors));
+        assertTrue("Conversation contains errors: " + StrExtend.format(errors), errors == null || errors.isEmpty());
     }
 }

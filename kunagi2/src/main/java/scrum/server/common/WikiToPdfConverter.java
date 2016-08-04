@@ -58,7 +58,7 @@ public class WikiToPdfConverter extends APdfCreator {
      * @param parent
      */
     @Override
-	protected void build(APdfContainerElement parent) {
+	public void build(APdfContainerElement parent) {
 		for (AWikiElement element : model.getElements()) {
                     processElement(element, parent);
         }
@@ -262,7 +262,7 @@ public class WikiToPdfConverter extends APdfCreator {
      * @return
      */
     @Override
-	protected String getFilename() {
+	public String getFilename() {
 		return "wiki";
 	}
 

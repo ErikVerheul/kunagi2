@@ -47,7 +47,7 @@ public class ImpedimentListPdfCreator extends APdfCreator {
      * @param pdf
      */
     @Override
-	protected void build(APdfContainerElement pdf) {
+	public void build(APdfContainerElement pdf) {
 		pdf.paragraph().text("Impediments", headerFonts[0]);
 
 		List<Impediment> impediments = new ArrayList<Impediment>(project.getImpediments());
@@ -93,7 +93,7 @@ public class ImpedimentListPdfCreator extends APdfCreator {
      * @return
      */
     @Override
-	protected String getFilename() {
+	public String getFilename() {
 		return "impediments";
 	}
 

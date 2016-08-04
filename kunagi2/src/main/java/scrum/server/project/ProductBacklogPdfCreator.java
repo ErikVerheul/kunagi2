@@ -39,7 +39,7 @@ public class ProductBacklogPdfCreator extends APdfCreator {
      * @param pdf
      */
     @Override
-	protected void build(APdfContainerElement pdf) {
+	public void build(APdfContainerElement pdf) {
 		reportHeader(pdf, "Product Backlog", project.getLabel());
 
 		List<Requirement> requirements = new ArrayList<Requirement>(project.getRequirements());
@@ -57,7 +57,7 @@ public class ProductBacklogPdfCreator extends APdfCreator {
      * @return
      */
     @Override
-	protected String getFilename() {
+	public String getFilename() {
 		return "productbacklog";
 	}
 
