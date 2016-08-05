@@ -20,7 +20,7 @@ import ilarkesto.persistence.AStructure;
 import ilarkesto.auth.AUser;
 import ilarkesto.core.base.EntityDoesNotExistException;
 import ilarkesto.base.StrExtend;
-import ilarkesto.core.base.KunagiProperties;
+
 
 public abstract class GWikipage
             extends AEntity
@@ -36,11 +36,11 @@ public abstract class GWikipage
     }
 
     @Override
-    public void storeProperties(KunagiProperties properties) {
+    public void storeProperties(HashMap<String, Object> properties) {
         super.storeProperties(properties);
-        properties.putValue("projectId", this.projectId);
-        properties.putValue("name", this.name);
-        properties.putValue("text", this.text);
+        properties.put("projectId", this.projectId);
+        properties.put("name", this.name);
+        properties.put("text", this.text);
     }
 
     public int compareTo(Wikipage other) {
@@ -187,8 +187,8 @@ public abstract class GWikipage
         setText((java.lang.String)value);
     }
 
-    public void updateProperties(KunagiProperties properties) {
-        for (Map.Entry<String, Object> entry : properties.getEntrySet()) {
+    public void updateProperties(HashMap<String,Object> properties) {
+        for (Map.Entry<String, Object> entry : properties.entrySet()) {
             String property = entry.getKey();
             if (property.equals("id")) continue;
             Object value = entry.getValue();

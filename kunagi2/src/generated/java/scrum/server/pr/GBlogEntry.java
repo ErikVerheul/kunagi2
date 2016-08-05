@@ -20,7 +20,7 @@ import ilarkesto.persistence.AStructure;
 import ilarkesto.auth.AUser;
 import ilarkesto.core.base.EntityDoesNotExistException;
 import ilarkesto.base.StrExtend;
-import ilarkesto.core.base.KunagiProperties;
+
 
 public abstract class GBlogEntry
             extends AEntity
@@ -36,16 +36,16 @@ public abstract class GBlogEntry
     }
 
     @Override
-    public void storeProperties(KunagiProperties properties) {
+    public void storeProperties(HashMap<String, Object> properties) {
         super.storeProperties(properties);
-        properties.putValue("projectId", this.projectId);
-        properties.putValue("number", this.number);
-        properties.putValue("authorsIds", this.authorsIds);
-        properties.putValue("title", this.title);
-        properties.putValue("text", this.text);
-        properties.putValue("dateAndTime", this.dateAndTime == null ? null : this.dateAndTime.toString());
-        properties.putValue("releasesIds", this.releasesIds);
-        properties.putValue("published", this.published);
+        properties.put("projectId", this.projectId);
+        properties.put("number", this.number);
+        properties.put("authorsIds", this.authorsIds);
+        properties.put("title", this.title);
+        properties.put("text", this.text);
+        properties.put("dateAndTime", this.dateAndTime == null ? null : this.dateAndTime.toString());
+        properties.put("releasesIds", this.releasesIds);
+        properties.put("published", this.published);
     }
 
     public int compareTo(BlogEntry other) {
@@ -468,8 +468,8 @@ public abstract class GBlogEntry
         setPublished((Boolean)value);
     }
 
-    public void updateProperties(KunagiProperties properties) {
-        for (Map.Entry entry : properties.getEntrySet()) {
+    public void updateProperties(HashMap<String,Object> properties) {
+        for (Map.Entry<String, Object> entry : properties.entrySet()) {
             String property = (String) entry.getKey();
             if (property.equals("id")) continue;
             Object value = entry.getValue();

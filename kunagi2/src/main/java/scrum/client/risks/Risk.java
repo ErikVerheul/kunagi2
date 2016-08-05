@@ -15,12 +15,12 @@
 package scrum.client.risks;
 
 import com.google.gwt.user.client.ui.Widget;
-import ilarkesto.core.base.KunagiProperties;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.Gwt;
 import ilarkesto.gwt.client.HyperlinkWidget;
 import ilarkesto.gwt.client.editor.AFieldModel;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import scrum.client.ScrumGwt;
 import scrum.client.admin.Auth;
@@ -41,7 +41,7 @@ public class Risk extends GRisk implements Comparable<Risk>, ReferenceSupport, L
         setProject(project);
     }
 
-    public Risk(KunagiProperties data) {
+    public Risk(HashMap<String, Object> data) {
         super(data);
     }
 

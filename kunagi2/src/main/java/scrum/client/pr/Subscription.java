@@ -1,10 +1,9 @@
 package scrum.client.pr;
 
-import ilarkesto.core.base.KunagiProperties;
+import java.util.HashMap;
 
 /**
  *
- * @author erik
  */
 public class Subscription extends GSubscription {
 
@@ -12,7 +11,7 @@ public class Subscription extends GSubscription {
      *
      * @param data
      */
-    public Subscription(KunagiProperties data) {
+    public Subscription(HashMap<String, Object> data) {
 		super(data);
 	}
 }

@@ -20,7 +20,7 @@ import ilarkesto.persistence.AStructure;
 import ilarkesto.auth.AUser;
 import ilarkesto.core.base.EntityDoesNotExistException;
 import ilarkesto.base.StrExtend;
-import ilarkesto.core.base.KunagiProperties;
+
 
 public abstract class GSubscription
             extends AEntity
@@ -36,10 +36,10 @@ public abstract class GSubscription
     }
 
     @Override
-    public void storeProperties(KunagiProperties properties) {
+    public void storeProperties(HashMap<String, Object> properties) {
         super.storeProperties(properties);
-        properties.putValue("subjectId", this.subjectId);
-        properties.putValue("subscribersEmails", this.subscribersEmails);
+        properties.put("subjectId", this.subjectId);
+        properties.put("subscribersEmails", this.subscribersEmails);
     }
 
     public int compareTo(Subscription other) {
@@ -195,8 +195,8 @@ public abstract class GSubscription
         setSubscribersEmails((java.util.Set<java.lang.String>) value);
     }
 
-    public void updateProperties(KunagiProperties properties) {
-        for (Map.Entry<String, Object> entry : properties.getEntrySet()) {
+    public void updateProperties(HashMap<String,Object> properties) {
+        for (Map.Entry<String, Object> entry : properties.entrySet()) {
             String property = entry.getKey();
             if (property.equals("id")) continue;
             Object value = entry.getValue();

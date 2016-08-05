@@ -20,7 +20,7 @@ import ilarkesto.persistence.AStructure;
 import ilarkesto.auth.AUser;
 import ilarkesto.core.base.EntityDoesNotExistException;
 import ilarkesto.base.StrExtend;
-import ilarkesto.core.base.KunagiProperties;
+
 
 public abstract class GChatMessage
             extends AEntity
@@ -36,12 +36,12 @@ public abstract class GChatMessage
     }
 
     @Override
-    public void storeProperties(KunagiProperties properties) {
+    public void storeProperties(HashMap<String, Object> properties) {
         super.storeProperties(properties);
-        properties.putValue("projectId", this.projectId);
-        properties.putValue("authorId", this.authorId);
-        properties.putValue("text", this.text);
-        properties.putValue("dateAndTime", this.dateAndTime == null ? null : this.dateAndTime.toString());
+        properties.put("projectId", this.projectId);
+        properties.put("authorId", this.authorId);
+        properties.put("text", this.text);
+        properties.put("dateAndTime", this.dateAndTime == null ? null : this.dateAndTime.toString());
     }
 
     public int compareTo(ChatMessage other) {
@@ -228,8 +228,8 @@ public abstract class GChatMessage
         setDateAndTime((ilarkesto.core.time.DateAndTime)value);
     }
 
-    public void updateProperties(KunagiProperties properties) {
-        for (Map.Entry<String, Object> entry : properties.getEntrySet()) {
+    public void updateProperties(HashMap<String, Object> properties) {
+        for (Map.Entry<String, Object> entry : properties.entrySet()) {
             String property = entry.getKey();
             if (property.equals("id")) continue;
             Object value = entry.getValue();

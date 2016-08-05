@@ -14,13 +14,13 @@
  */
 package ilarkesto.gwt.client;
 
-import ilarkesto.core.base.KunagiProperties;
 import ilarkesto.core.time.Date;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.core.time.Time;
 import static ilarkesto.core.time.Tm.getCurrentTimeMillis;
 import ilarkesto.gwt.client.editor.AEditorModel;
 import ilarkesto.gwt.client.undo.AUndoOperation;
+import java.util.HashMap;
 
 /**
  * Base class for entities.
@@ -56,8 +56,8 @@ public abstract class AGwtEntity {
      *
      * @param data
      */
-    public AGwtEntity(KunagiProperties data) {
-		this.id = data.getId();
+    public AGwtEntity(HashMap<String, Object> data) {
+		this.id = (String) data.get("id");
 		updateLocalModificationTime();
 	}
         
@@ -118,16 +118,16 @@ public abstract class AGwtEntity {
      *
      * @param properties
      */
-    public void storeProperties(KunagiProperties properties) {
-		properties.putValue("id", getId());
+    public void storeProperties(HashMap<String, Object> properties) {
+		properties.put("id", getId());
 	}
 
     /**
      *
      * @return
      */
-    public KunagiProperties createPropertiesMap() {
-		KunagiProperties properties = new KunagiProperties();
+    public HashMap<String, Object> createPropertiesMap() {
+		HashMap<String, Object> properties = new HashMap<String, Object>();
 		storeProperties(properties);
 		return properties;
 	}

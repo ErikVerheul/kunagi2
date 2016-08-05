@@ -13,7 +13,6 @@
 
 package scrum.client.sprint;
 
-import ilarkesto.core.base.KunagiProperties;
 import java.util.*;
 import static ilarkesto.core.base.Utl.equalObjects;
 import static ilarkesto.core.logging.ClientLog.*;
@@ -40,7 +39,7 @@ public abstract class GSprint
     public GSprint() {
     }
 
-    public GSprint(KunagiProperties data) {
+    public GSprint(HashMap<String, Object> data) {
         super(data);
         updateProperties(data);
     }
@@ -862,47 +861,47 @@ public abstract class GSprint
 
     // --- update properties by map ---
 
-    public void updateProperties(KunagiProperties props) {
-        number  = (Integer) props.getValue("number");
-        projectId = (String) props.getValue("projectId");
-        label  = (java.lang.String) props.getValue("label");
-        goal  = (java.lang.String) props.getValue("goal");
-        String beginAsString = (String) props.getValue("begin");
+    public void updateProperties(HashMap<String, Object> props) {
+        number  = (Integer) props.get("number");
+        projectId = (String) props.get("projectId");
+        label  = (java.lang.String) props.get("label");
+        goal  = (java.lang.String) props.get("goal");
+        String beginAsString = (String) props.get("begin");
         begin  =  beginAsString == null ? null : new ilarkesto.core.time.Date(beginAsString);
-        String endAsString = (String) props.getValue("end");
+        String endAsString = (String) props.get("end");
         end  =  endAsString == null ? null : new ilarkesto.core.time.Date(endAsString);
-        velocity  = (java.lang.Float) props.getValue("velocity");
-        completedRequirementsData  = (java.lang.String) props.getValue("completedRequirementsData");
-        incompletedRequirementsData  = (java.lang.String) props.getValue("incompletedRequirementsData");
-        planningNote  = (java.lang.String) props.getValue("planningNote");
-        reviewNote  = (java.lang.String) props.getValue("reviewNote");
-        retrospectiveNote  = (java.lang.String) props.getValue("retrospectiveNote");
-        requirementsOrderIds  = (java.util.List<java.lang.String>) props.getValue("requirementsOrderIds");
-        productOwnersIds = (Set<String>) props.getValue("productOwnersIds");
-        scrumMastersIds = (Set<String>) props.getValue("scrumMastersIds");
-        teamMembersIds = (Set<String>) props.getValue("teamMembersIds");
+        velocity  = (java.lang.Float) props.get("velocity");
+        completedRequirementsData  = (java.lang.String) props.get("completedRequirementsData");
+        incompletedRequirementsData  = (java.lang.String) props.get("incompletedRequirementsData");
+        planningNote  = (java.lang.String) props.get("planningNote");
+        reviewNote  = (java.lang.String) props.get("reviewNote");
+        retrospectiveNote  = (java.lang.String) props.get("retrospectiveNote");
+        requirementsOrderIds  = (java.util.List<java.lang.String>) props.get("requirementsOrderIds");
+        productOwnersIds = (Set<String>) props.get("productOwnersIds");
+        scrumMastersIds = (Set<String>) props.get("scrumMastersIds");
+        teamMembersIds = (Set<String>) props.get("teamMembersIds");
         updateLocalModificationTime();
     }
 
     @Override
-    public void storeProperties(KunagiProperties properties) {
+    public void storeProperties(HashMap<String, Object> properties) {
         super.storeProperties(properties);
-        properties.putValue("number", this.number);
-        properties.putValue("projectId", this.projectId);
-        properties.putValue("label", this.label);
-        properties.putValue("goal", this.goal);
-        properties.putValue("begin", this.begin == null ? null : this.begin.toString());
-        properties.putValue("end", this.end == null ? null : this.end.toString());
-        properties.putValue("velocity", this.velocity);
-        properties.putValue("completedRequirementsData", this.completedRequirementsData);
-        properties.putValue("incompletedRequirementsData", this.incompletedRequirementsData);
-        properties.putValue("planningNote", this.planningNote);
-        properties.putValue("reviewNote", this.reviewNote);
-        properties.putValue("retrospectiveNote", this.retrospectiveNote);
-        properties.putValue("requirementsOrderIds", this.requirementsOrderIds);
-        properties.putValue("productOwnersIds", this.productOwnersIds);
-        properties.putValue("scrumMastersIds", this.scrumMastersIds);
-        properties.putValue("teamMembersIds", this.teamMembersIds);
+        properties.put("number", this.number);
+        properties.put("projectId", this.projectId);
+        properties.put("label", this.label);
+        properties.put("goal", this.goal);
+        properties.put("begin", this.begin == null ? null : this.begin.toString());
+        properties.put("end", this.end == null ? null : this.end.toString());
+        properties.put("velocity", this.velocity);
+        properties.put("completedRequirementsData", this.completedRequirementsData);
+        properties.put("incompletedRequirementsData", this.incompletedRequirementsData);
+        properties.put("planningNote", this.planningNote);
+        properties.put("reviewNote", this.reviewNote);
+        properties.put("retrospectiveNote", this.retrospectiveNote);
+        properties.put("requirementsOrderIds", this.requirementsOrderIds);
+        properties.put("productOwnersIds", this.productOwnersIds);
+        properties.put("scrumMastersIds", this.scrumMastersIds);
+        properties.put("teamMembersIds", this.teamMembersIds);
     }
 
     public final java.util.List<scrum.client.project.Project> getCurrentSprintProjects() {

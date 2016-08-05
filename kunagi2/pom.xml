@@ -212,6 +212,7 @@
                 <!-- Plugin configuration. There are many available options, see
                 gwt-maven-plugin documentation at codehaus.org -->
                 <configuration>
+                    <extraJvmArgs>-Xmx1024m</extraJvmArgs>
                     <compileSourcesArtifacts>
                         <!-- see https://gwt-maven-plugin.github.io/gwt-maven-plugin/user-guide/library.html -->
                         <artifact>com.allen-sauer.gwt.dnd:gwt-dnd</artifact>

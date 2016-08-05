@@ -14,13 +14,13 @@
  */
 package scrum.client.admin;
 
-import ilarkesto.core.base.KunagiProperties;
 import ilarkesto.core.base.Str;
 import ilarkesto.core.base.Utl;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.editor.AFieldModel;
 import ilarkesto.gwt.client.editor.ATextEditorModel;
 import java.util.Comparator;
+import java.util.HashMap;
 import scrum.client.ScrumGwt;
 import scrum.client.ScrumScopeManager;
 import scrum.client.collaboration.UsersStatus;
@@ -47,7 +47,7 @@ public class User extends GUser implements LabelSupport, Comparable<User> {
      *
      * @param data
      */
-    public User(KunagiProperties data) {
+    public User(HashMap<String, Object> data) {
         super(data);
     }
 

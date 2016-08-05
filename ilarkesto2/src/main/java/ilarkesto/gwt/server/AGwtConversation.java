@@ -17,7 +17,6 @@ package ilarkesto.gwt.server;
 import ilarkesto.base.PermissionDeniedException;
 import static ilarkesto.base.Sys.isDevelopmentMode;
 import static ilarkesto.base.UtlExtend.toStringWithType;
-import ilarkesto.core.base.KunagiProperties;
 import static ilarkesto.core.base.Utl.compare;
 import ilarkesto.core.time.DateAndTime;
 import static ilarkesto.core.time.DateAndTime.now;
@@ -93,7 +92,8 @@ public abstract class AGwtConversation implements Comparable<AGwtConversation> {
 		return true;
 	}
 
-	protected void filterEntityProperties(AEntity entity, KunagiProperties propertiesMap) {}
+	protected void filterEntityProperties(AEntity entity, HashMap<String, Object> propertiesMap) {
+        }
 
 	public synchronized boolean isAvailableOnClient(AEntity entity) {
 		return remoteEntityModificationTimes.containsKey(entity);
@@ -121,7 +121,7 @@ public abstract class AGwtConversation implements Comparable<AGwtConversation> {
 			return;
 		}
 
-		KunagiProperties propertiesMap = entity.createPropertiesMap();
+		HashMap<String, Object> propertiesMap = entity.createPropertiesMap();
 		filterEntityProperties(entity, propertiesMap);
 
 		getNextData().addEntity(propertiesMap);

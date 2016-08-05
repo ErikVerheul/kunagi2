@@ -20,7 +20,7 @@ import ilarkesto.persistence.AStructure;
 import ilarkesto.auth.AUser;
 import ilarkesto.core.base.EntityDoesNotExistException;
 import ilarkesto.base.StrExtend;
-import ilarkesto.core.base.KunagiProperties;
+
 
 public abstract class GProject
             extends AEntity
@@ -36,50 +36,50 @@ public abstract class GProject
     }
 
     @Override
-    public void storeProperties(KunagiProperties properties) {
+    public void storeProperties(HashMap<String, Object> properties) {
         super.storeProperties(properties);
-        properties.putValue("label", this.label);
-        properties.putValue("vision", this.vision);
-        properties.putValue("productLabel", this.productLabel);
-        properties.putValue("shortDescription", this.shortDescription);
-        properties.putValue("description", this.description);
-        properties.putValue("longDescription", this.longDescription);
-        properties.putValue("begin", this.begin == null ? null : this.begin.toString());
-        properties.putValue("end", this.end == null ? null : this.end.toString());
-        properties.putValue("participantsIds", this.participantsIds);
-        properties.putValue("adminsIds", this.adminsIds);
-        properties.putValue("productOwnersIds", this.productOwnersIds);
-        properties.putValue("scrumMastersIds", this.scrumMastersIds);
-        properties.putValue("teamMembersIds", this.teamMembersIds);
-        properties.putValue("currentSprintId", this.currentSprintId);
-        properties.putValue("nextSprintId", this.nextSprintId);
-        properties.putValue("velocity", this.velocity);
-        properties.putValue("requirementsOrderIds", this.requirementsOrderIds);
-        properties.putValue("urgentIssuesOrderIds", this.urgentIssuesOrderIds);
-        properties.putValue("lastSprintNumber", this.lastSprintNumber);
-        properties.putValue("lastTaskNumber", this.lastTaskNumber);
-        properties.putValue("lastRequirementNumber", this.lastRequirementNumber);
-        properties.putValue("lastQualityNumber", this.lastQualityNumber);
-        properties.putValue("lastRiskNumber", this.lastRiskNumber);
-        properties.putValue("lastIssueNumber", this.lastIssueNumber);
-        properties.putValue("lastImpedimentNumber", this.lastImpedimentNumber);
-        properties.putValue("lastFileNumber", this.lastFileNumber);
-        properties.putValue("lastSubjectNumber", this.lastSubjectNumber);
-        properties.putValue("lastEventNumber", this.lastEventNumber);
-        properties.putValue("lastReleaseNumber", this.lastReleaseNumber);
-        properties.putValue("lastBlogEntryNumber", this.lastBlogEntryNumber);
-        properties.putValue("punishmentUnit", this.punishmentUnit);
-        properties.putValue("punishmentFactor", this.punishmentFactor);
-        properties.putValue("homepageDir", this.homepageDir);
-        properties.putValue("homepageUrl", this.homepageUrl);
-        properties.putValue("autoUpdateHomepage", this.autoUpdateHomepage);
-        properties.putValue("releaseScriptPath", this.releaseScriptPath);
-        properties.putValue("supportEmail", this.supportEmail);
-        properties.putValue("issueReplyTemplate", this.issueReplyTemplate);
-        properties.putValue("subscriberNotificationTemplate", this.subscriberNotificationTemplate);
-        properties.putValue("lastOpenedDateAndTime", this.lastOpenedDateAndTime == null ? null : this.lastOpenedDateAndTime.toString());
-        properties.putValue("freeDays", this.freeDays);
-        properties.putValue("releasingInfo", this.releasingInfo);
+        properties.put("label", this.label);
+        properties.put("vision", this.vision);
+        properties.put("productLabel", this.productLabel);
+        properties.put("shortDescription", this.shortDescription);
+        properties.put("description", this.description);
+        properties.put("longDescription", this.longDescription);
+        properties.put("begin", this.begin == null ? null : this.begin.toString());
+        properties.put("end", this.end == null ? null : this.end.toString());
+        properties.put("participantsIds", this.participantsIds);
+        properties.put("adminsIds", this.adminsIds);
+        properties.put("productOwnersIds", this.productOwnersIds);
+        properties.put("scrumMastersIds", this.scrumMastersIds);
+        properties.put("teamMembersIds", this.teamMembersIds);
+        properties.put("currentSprintId", this.currentSprintId);
+        properties.put("nextSprintId", this.nextSprintId);
+        properties.put("velocity", this.velocity);
+        properties.put("requirementsOrderIds", this.requirementsOrderIds);
+        properties.put("urgentIssuesOrderIds", this.urgentIssuesOrderIds);
+        properties.put("lastSprintNumber", this.lastSprintNumber);
+        properties.put("lastTaskNumber", this.lastTaskNumber);
+        properties.put("lastRequirementNumber", this.lastRequirementNumber);
+        properties.put("lastQualityNumber", this.lastQualityNumber);
+        properties.put("lastRiskNumber", this.lastRiskNumber);
+        properties.put("lastIssueNumber", this.lastIssueNumber);
+        properties.put("lastImpedimentNumber", this.lastImpedimentNumber);
+        properties.put("lastFileNumber", this.lastFileNumber);
+        properties.put("lastSubjectNumber", this.lastSubjectNumber);
+        properties.put("lastEventNumber", this.lastEventNumber);
+        properties.put("lastReleaseNumber", this.lastReleaseNumber);
+        properties.put("lastBlogEntryNumber", this.lastBlogEntryNumber);
+        properties.put("punishmentUnit", this.punishmentUnit);
+        properties.put("punishmentFactor", this.punishmentFactor);
+        properties.put("homepageDir", this.homepageDir);
+        properties.put("homepageUrl", this.homepageUrl);
+        properties.put("autoUpdateHomepage", this.autoUpdateHomepage);
+        properties.put("releaseScriptPath", this.releaseScriptPath);
+        properties.put("supportEmail", this.supportEmail);
+        properties.put("issueReplyTemplate", this.issueReplyTemplate);
+        properties.put("subscriberNotificationTemplate", this.subscriberNotificationTemplate);
+        properties.put("lastOpenedDateAndTime", this.lastOpenedDateAndTime == null ? null : this.lastOpenedDateAndTime.toString());
+        properties.put("freeDays", this.freeDays);
+        properties.put("releasingInfo", this.releasingInfo);
     }
 
     public int compareTo(Project other) {
@@ -2008,8 +2008,8 @@ public abstract class GProject
         setReleasingInfo((java.lang.String)value);
     }
 
-    public void updateProperties(KunagiProperties properties) {
-        for (Map.Entry<String, Object> entry : properties.getEntrySet()) {
+    public void updateProperties(HashMap<String,Object> properties) {
+        for (Map.Entry<String, Object> entry : properties.entrySet()) {
             String property = entry.getKey();
             if (property.equals("id")) continue;
             Object value = entry.getValue();

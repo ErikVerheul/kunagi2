@@ -20,7 +20,7 @@ import ilarkesto.persistence.AStructure;
 import ilarkesto.auth.AUser;
 import ilarkesto.core.base.EntityDoesNotExistException;
 import ilarkesto.base.StrExtend;
-import ilarkesto.core.base.KunagiProperties;
+
 
 public abstract class GRequirement
             extends AEntity
@@ -36,25 +36,25 @@ public abstract class GRequirement
     }
 
     @Override
-    public void storeProperties(KunagiProperties properties) {
+    public void storeProperties(HashMap<String, Object> properties) {
         super.storeProperties(properties);
-        properties.putValue("projectId", this.projectId);
-        properties.putValue("sprintId", this.sprintId);
-        properties.putValue("issueId", this.issueId);
-        properties.putValue("number", this.number);
-        properties.putValue("qualitysIds", this.qualitysIds);
-        properties.putValue("label", this.label);
-        properties.putValue("description", this.description);
-        properties.putValue("testDescription", this.testDescription);
-        properties.putValue("estimatedWork", this.estimatedWork);
-        properties.putValue("rejectDate", this.rejectDate == null ? null : this.rejectDate.toString());
-        properties.putValue("closed", this.closed);
-        properties.putValue("dirty", this.dirty);
-        properties.putValue("workEstimationVotingActive", this.workEstimationVotingActive);
-        properties.putValue("workEstimationVotingShowoff", this.workEstimationVotingShowoff);
-        properties.putValue("tasksOrderIds", this.tasksOrderIds);
-        properties.putValue("themes", this.themes);
-        properties.putValue("epicId", this.epicId);
+        properties.put("projectId", this.projectId);
+        properties.put("sprintId", this.sprintId);
+        properties.put("issueId", this.issueId);
+        properties.put("number", this.number);
+        properties.put("qualitysIds", this.qualitysIds);
+        properties.put("label", this.label);
+        properties.put("description", this.description);
+        properties.put("testDescription", this.testDescription);
+        properties.put("estimatedWork", this.estimatedWork);
+        properties.put("rejectDate", this.rejectDate == null ? null : this.rejectDate.toString());
+        properties.put("closed", this.closed);
+        properties.put("dirty", this.dirty);
+        properties.put("workEstimationVotingActive", this.workEstimationVotingActive);
+        properties.put("workEstimationVotingShowoff", this.workEstimationVotingShowoff);
+        properties.put("tasksOrderIds", this.tasksOrderIds);
+        properties.put("themes", this.themes);
+        properties.put("epicId", this.epicId);
     }
 
     public int compareTo(Requirement other) {
@@ -911,8 +911,8 @@ public abstract class GRequirement
         setEpic(value == null ? null : (scrum.server.project.Requirement)requirementDao.getById((String)value));
     }
 
-    public void updateProperties(KunagiProperties properties) {
-        for (Map.Entry<String, Object> entry : properties.getEntrySet()) {
+    public void updateProperties(HashMap<String,Object> properties) {
+        for (Map.Entry<String, Object> entry : properties.entrySet()) {
             String property = entry.getKey();
             if (property.equals("id")) continue;
             Object value = entry.getValue();

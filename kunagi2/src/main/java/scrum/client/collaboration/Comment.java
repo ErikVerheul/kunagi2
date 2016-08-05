@@ -14,11 +14,11 @@
  */
 package scrum.client.collaboration;
 
-import ilarkesto.core.base.KunagiProperties;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.gwt.client.AGwtEntity;
 import java.util.Comparator;
+import java.util.HashMap;
 import scrum.client.admin.User;
 import scrum.client.common.AScrumGwtEntity;
 import scrum.client.project.Project;
@@ -47,7 +47,7 @@ public class Comment extends GComment {
      *
      * @param data
      */
-    public Comment(KunagiProperties data) {
+    public Comment(HashMap<String, Object> data) {
 		super(data);
 	}
 

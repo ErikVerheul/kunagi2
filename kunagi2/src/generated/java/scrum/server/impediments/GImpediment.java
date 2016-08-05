@@ -20,7 +20,7 @@ import ilarkesto.persistence.AStructure;
 import ilarkesto.auth.AUser;
 import ilarkesto.core.base.EntityDoesNotExistException;
 import ilarkesto.base.StrExtend;
-import ilarkesto.core.base.KunagiProperties;
+
 
 public abstract class GImpediment
             extends AEntity
@@ -36,15 +36,15 @@ public abstract class GImpediment
     }
 
     @Override
-    public void storeProperties(KunagiProperties properties) {
+    public void storeProperties(HashMap<String, Object> properties) {
         super.storeProperties(properties);
-        properties.putValue("projectId", this.projectId);
-        properties.putValue("number", this.number);
-        properties.putValue("label", this.label);
-        properties.putValue("date", this.date == null ? null : this.date.toString());
-        properties.putValue("description", this.description);
-        properties.putValue("solution", this.solution);
-        properties.putValue("closed", this.closed);
+        properties.put("projectId", this.projectId);
+        properties.put("number", this.number);
+        properties.put("label", this.label);
+        properties.put("date", this.date == null ? null : this.date.toString());
+        properties.put("description", this.description);
+        properties.put("solution", this.solution);
+        properties.put("closed", this.closed);
     }
 
     public int compareTo(Impediment other) {
@@ -328,8 +328,8 @@ public abstract class GImpediment
         setClosed((Boolean)value);
     }
 
-    public void updateProperties(KunagiProperties properties) {
-        for (Map.Entry<String, Object> entry : properties.getEntrySet()) {
+    public void updateProperties(HashMap<String,Object> properties) {
+        for (Map.Entry<String, Object> entry : properties.entrySet()) {
             String property = entry.getKey();
             if (property.equals("id")) continue;
             Object value = entry.getValue();

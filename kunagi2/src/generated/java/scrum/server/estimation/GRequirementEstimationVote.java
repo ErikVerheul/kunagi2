@@ -20,7 +20,7 @@ import ilarkesto.persistence.AStructure;
 import ilarkesto.auth.AUser;
 import ilarkesto.core.base.EntityDoesNotExistException;
 import ilarkesto.base.StrExtend;
-import ilarkesto.core.base.KunagiProperties;
+
 
 public abstract class GRequirementEstimationVote
             extends AEntity
@@ -36,11 +36,11 @@ public abstract class GRequirementEstimationVote
     }
 
     @Override
-    public void storeProperties(KunagiProperties properties) {
+    public void storeProperties(HashMap<String, Object> properties) {
         super.storeProperties(properties);
-        properties.putValue("requirementId", this.requirementId);
-        properties.putValue("userId", this.userId);
-        properties.putValue("estimatedWork", this.estimatedWork);
+        properties.put("requirementId", this.requirementId);
+        properties.put("userId", this.userId);
+        properties.put("estimatedWork", this.estimatedWork);
     }
 
     public int compareTo(RequirementEstimationVote other) {
@@ -190,8 +190,8 @@ public abstract class GRequirementEstimationVote
         setEstimatedWork((java.lang.Float)value);
     }
 
-    public void updateProperties(KunagiProperties properties) {
-        for (Map.Entry<String, Object> entry : properties.getEntrySet()) {
+    public void updateProperties(HashMap<String,Object> properties) {
+        for (Map.Entry<String, Object> entry : properties.entrySet()) {
             String property = entry.getKey();
             if (property.equals("id")) continue;
             Object value = entry.getValue();

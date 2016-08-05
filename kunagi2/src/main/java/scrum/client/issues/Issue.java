@@ -15,7 +15,6 @@
 package scrum.client.issues;
 
 import com.google.gwt.user.client.ui.Widget;
-import ilarkesto.core.base.KunagiProperties;
 import ilarkesto.core.base.Str;
 import static ilarkesto.core.logging.ClientLog.INFO;
 import ilarkesto.core.time.Date;
@@ -27,6 +26,7 @@ import ilarkesto.gwt.client.editor.AFieldModel;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import scrum.client.ScrumGwt;
 import scrum.client.admin.User;
@@ -90,7 +90,7 @@ public class Issue extends GIssue implements ReferenceSupport, LabelSupport, For
      *
      * @param data
      */
-    public Issue(KunagiProperties data) {
+    public Issue(HashMap<String, Object> data) {
 		super(data);
 	}
 

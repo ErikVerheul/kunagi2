@@ -13,7 +13,6 @@
 
 package scrum.client.journal;
 
-import ilarkesto.core.base.KunagiProperties;
 import java.util.*;
 import static ilarkesto.core.base.Utl.equalObjects;
 import static ilarkesto.core.logging.ClientLog.*;
@@ -32,7 +31,7 @@ public abstract class GProjectEvent
     public GProjectEvent() {
     }
 
-    public GProjectEvent(KunagiProperties data) {
+    public GProjectEvent(HashMap<String, Object> data) {
         super(data);
         updateProperties(data);
     }
@@ -216,22 +215,22 @@ public abstract class GProjectEvent
 
     // --- update properties by map ---
 
-    public void updateProperties(KunagiProperties props) {
-        projectId = (String) props.getValue("projectId");
-        label  = (java.lang.String) props.getValue("label");
-        subjectId = (String) props.getValue("subjectId");
-        String dateAndTimeAsString = (String) props.getValue("dateAndTime");
+    public void updateProperties(HashMap<String, Object> props) {
+        projectId = (String) props.get("projectId");
+        label  = (java.lang.String) props.get("label");
+        subjectId = (String) props.get("subjectId");
+        String dateAndTimeAsString = (String) props.get("dateAndTime");
         dateAndTime  =  dateAndTimeAsString == null ? null : new ilarkesto.core.time.DateAndTime(dateAndTimeAsString);
         updateLocalModificationTime();
     }
 
     @Override
-    public void storeProperties(KunagiProperties properties) {
+    public void storeProperties(HashMap<String, Object> properties) {
         super.storeProperties(properties);
-        properties.putValue("projectId", this.projectId);
-        properties.putValue("label", this.label);
-        properties.putValue("subjectId", this.subjectId);
-        properties.putValue("dateAndTime", this.dateAndTime == null ? null : this.dateAndTime.toString());
+        properties.put("projectId", this.projectId);
+        properties.put("label", this.label);
+        properties.put("subjectId", this.subjectId);
+        properties.put("dateAndTime", this.dateAndTime == null ? null : this.dateAndTime.toString());
     }
 
     @Override

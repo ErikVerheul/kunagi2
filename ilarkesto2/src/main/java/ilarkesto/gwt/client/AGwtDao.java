@@ -15,10 +15,10 @@
 package ilarkesto.gwt.client;
 
 import ilarkesto.core.base.EntityDoesNotExistException;
-import ilarkesto.core.base.KunagiProperties;
 import static ilarkesto.core.logging.ClientLog.DEBUG;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,7 +43,7 @@ public abstract class AGwtDao extends AComponent {
      * @param data
      * @return
      */
-    protected abstract AGwtEntity updateLocalEntity(String type, KunagiProperties data);
+    protected abstract AGwtEntity updateLocalEntity(String type, HashMap<String, Object> data);
 
     /**
      *
@@ -119,8 +119,8 @@ public abstract class AGwtDao extends AComponent {
         List<AGwtEntity> modifiedEntities = null;
         if (data.containsEntities()) {
             modifiedEntities = new ArrayList<>(data.getEntities().size());
-            for (KunagiProperties entityData : data.getEntities()) {
-                AGwtEntity entity = updateLocalEntity(entityData.getType(), entityData);
+            for (HashMap<String, Object> entityData : data.getEntities()) {
+                AGwtEntity entity = updateLocalEntity((String) entityData.get("@type"), entityData);
                 modifiedEntities.add(entity);
             }
         }

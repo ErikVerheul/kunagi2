@@ -14,7 +14,6 @@
  */
 package scrum.client.admin;
 
-import ilarkesto.core.base.KunagiProperties;
 import ilarkesto.core.base.Str;
 import ilarkesto.core.base.Utl;
 import ilarkesto.core.scope.Scope;
@@ -22,6 +21,7 @@ import ilarkesto.core.time.DateAndTime;
 import ilarkesto.core.time.TimePeriod;
 import ilarkesto.gwt.client.editor.AFieldModel;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import scrum.client.common.ThemesContainer;
@@ -44,7 +44,7 @@ public class ProjectUserConfig extends GProjectUserConfig {
      *
      * @param data
      */
-    public ProjectUserConfig(KunagiProperties data) {
+    public ProjectUserConfig(HashMap<String, Object> data) {
 		super(data);
 	}
 

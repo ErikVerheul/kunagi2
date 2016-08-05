@@ -13,7 +13,6 @@
 
 package scrum.client.files;
 
-import ilarkesto.core.base.KunagiProperties;
 import java.util.*;
 import static ilarkesto.core.base.Utl.equalObjects;
 import static ilarkesto.core.logging.ClientLog.*;
@@ -30,7 +29,7 @@ public abstract class GFile
     public GFile() {
     }
 
-    public GFile(KunagiProperties data) {
+    public GFile(HashMap<String, Object> data) {
         super(data);
         updateProperties(data);
     }
@@ -372,26 +371,26 @@ public abstract class GFile
 
     // --- update properties by map ---
 
-    public void updateProperties(KunagiProperties props) {
-        projectId = (String) props.getValue("projectId");
-        filename  = (java.lang.String) props.getValue("filename");
-        String uploadTimeAsString = (String) props.getValue("uploadTime");
+    public void updateProperties(HashMap<String, Object> props) {
+        projectId = (String) props.get("projectId");
+        filename  = (java.lang.String) props.get("filename");
+        String uploadTimeAsString = (String) props.get("uploadTime");
         uploadTime  =  uploadTimeAsString == null ? null : new ilarkesto.core.time.DateAndTime(uploadTimeAsString);
-        label  = (java.lang.String) props.getValue("label");
-        number  = (Integer) props.getValue("number");
-        note  = (java.lang.String) props.getValue("note");
+        label  = (java.lang.String) props.get("label");
+        number  = (Integer) props.get("number");
+        note  = (java.lang.String) props.get("note");
         updateLocalModificationTime();
     }
 
     @Override
-    public void storeProperties(KunagiProperties properties) {
+    public void storeProperties(HashMap<String, Object> properties) {
         super.storeProperties(properties);
-        properties.putValue("projectId", this.projectId);
-        properties.putValue("filename", this.filename);
-        properties.putValue("uploadTime", this.uploadTime == null ? null : this.uploadTime.toString());
-        properties.putValue("label", this.label);
-        properties.putValue("number", this.number);
-        properties.putValue("note", this.note);
+        properties.put("projectId", this.projectId);
+        properties.put("filename", this.filename);
+        properties.put("uploadTime", this.uploadTime == null ? null : this.uploadTime.toString());
+        properties.put("label", this.label);
+        properties.put("number", this.number);
+        properties.put("note", this.note);
     }
 
     @Override

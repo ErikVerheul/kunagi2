@@ -20,7 +20,7 @@ import ilarkesto.persistence.AStructure;
 import ilarkesto.auth.AUser;
 import ilarkesto.core.base.EntityDoesNotExistException;
 import ilarkesto.base.StrExtend;
-import ilarkesto.core.base.KunagiProperties;
+
 
 public abstract class GSimpleEvent
             extends AEntity
@@ -36,17 +36,17 @@ public abstract class GSimpleEvent
     }
 
     @Override
-    public void storeProperties(KunagiProperties properties) {
+    public void storeProperties(HashMap<String, Object> properties) {
         super.storeProperties(properties);
-        properties.putValue("projectId", this.projectId);
-        properties.putValue("label", this.label);
-        properties.putValue("number", this.number);
-        properties.putValue("date", this.date == null ? null : this.date.toString());
-        properties.putValue("time", this.time == null ? null : this.time.toString());
-        properties.putValue("location", this.location);
-        properties.putValue("duration", this.duration);
-        properties.putValue("agenda", this.agenda);
-        properties.putValue("note", this.note);
+        properties.put("projectId", this.projectId);
+        properties.put("label", this.label);
+        properties.put("number", this.number);
+        properties.put("date", this.date == null ? null : this.date.toString());
+        properties.put("time", this.time == null ? null : this.time.toString());
+        properties.put("location", this.location);
+        properties.put("duration", this.duration);
+        properties.put("agenda", this.agenda);
+        properties.put("note", this.note);
     }
 
     public int compareTo(SimpleEvent other) {
@@ -404,8 +404,8 @@ public abstract class GSimpleEvent
         setNote((java.lang.String)value);
     }
 
-    public void updateProperties(KunagiProperties properties) {
-        for (Map.Entry<String, Object> entry : properties.getEntrySet()) {
+    public void updateProperties(HashMap<String, Object> properties) {
+        for (Map.Entry<String, Object> entry : properties.entrySet()) {
             String property = entry.getKey();
             if (property.equals("id")) continue;
             Object value = entry.getValue();

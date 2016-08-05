@@ -1,9 +1,9 @@
 
 package scrum.client.core;
 
-import ilarkesto.core.base.KunagiProperties;
 import static ilarkesto.core.logging.ClientLog.DEBUG;
 import java.io.Serializable;
+import java.util.HashMap;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -64,9 +64,9 @@ public class AServiceCallTest {
 
         private final String entityId;
 
-        private KunagiProperties props = null;
+        private HashMap<String, Object> props = null;
 
-        public AServiceCallImpl(String entityId, KunagiProperties properties) {
+        public AServiceCallImpl(String entityId, HashMap<String, Object> properties) {
             this.entityId = entityId;
             this.props = properties;
         }

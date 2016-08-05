@@ -2,7 +2,7 @@
 package scrum.server;
 
 import ilarkesto.webapp.GwtConversationDoesNotExist;
-import ilarkesto.core.base.KunagiProperties;
+import java.util.HashMap;
 
 @SuppressWarnings("serial")
 public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtServiceImpl implements scrum.client.ScrumService {
@@ -27,9 +27,9 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     public abstract void onTouchLastActivity(GwtConversation conversation);
 
-    public abstract void onChangeProperties(GwtConversation conversation, String entityId, KunagiProperties properties);
+    public abstract void onChangeProperties(GwtConversation conversation, String entityId, HashMap properties);
 
-    public abstract void onCreateEntity(GwtConversation conversation, String type, KunagiProperties properties);
+    public abstract void onCreateEntity(GwtConversation conversation, String type, HashMap properties);
 
     public abstract void onDeleteEntity(GwtConversation conversation, String entityId);
 
@@ -340,7 +340,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
     }
 
     @Override
-    public scrum.client.DataTransferObject changeProperties(int conversationNumber, String entityId, KunagiProperties properties) {
+    public scrum.client.DataTransferObject changeProperties(int conversationNumber, String entityId, HashMap properties) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -366,7 +366,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
     }
 
     @Override
-    public scrum.client.DataTransferObject createEntity(int conversationNumber, String type, KunagiProperties properties) {
+    public scrum.client.DataTransferObject createEntity(int conversationNumber, String type, HashMap properties) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;

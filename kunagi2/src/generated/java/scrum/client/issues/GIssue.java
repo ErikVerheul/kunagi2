@@ -13,7 +13,6 @@
 
 package scrum.client.issues;
 
-import ilarkesto.core.base.KunagiProperties;
 import java.util.*;
 import static ilarkesto.core.base.Utl.equalObjects;
 import static ilarkesto.core.logging.ClientLog.*;
@@ -30,7 +29,7 @@ public abstract class GIssue
     public GIssue() {
     }
 
-    public GIssue(KunagiProperties data) {
+    public GIssue(HashMap<String, Object> data) {
         super(data);
         updateProperties(data);
     }
@@ -1077,62 +1076,62 @@ public abstract class GIssue
 
     // --- update properties by map ---
 
-    public void updateProperties(KunagiProperties props) {
-        projectId = (String) props.getValue("projectId");
-        storyId = (String) props.getValue("storyId");
-        number  = (Integer) props.getValue("number");
-        type  = (java.lang.String) props.getValue("type");
-        String dateAsString = (String) props.getValue("date");
+    public void updateProperties(HashMap<String, Object> props) {
+        projectId = (String) props.get("projectId");
+        storyId = (String) props.get("storyId");
+        number  = (Integer) props.get("number");
+        type  = (java.lang.String) props.get("type");
+        String dateAsString = (String) props.get("date");
         date  =  dateAsString == null ? null : new ilarkesto.core.time.DateAndTime(dateAsString);
-        creatorId = (String) props.getValue("creatorId");
-        label  = (java.lang.String) props.getValue("label");
-        description  = (java.lang.String) props.getValue("description");
-        statement  = (java.lang.String) props.getValue("statement");
-        issuerName  = (java.lang.String) props.getValue("issuerName");
-        issuerEmail  = (java.lang.String) props.getValue("issuerEmail");
-        String acceptDateAsString = (String) props.getValue("acceptDate");
+        creatorId = (String) props.get("creatorId");
+        label  = (java.lang.String) props.get("label");
+        description  = (java.lang.String) props.get("description");
+        statement  = (java.lang.String) props.get("statement");
+        issuerName  = (java.lang.String) props.get("issuerName");
+        issuerEmail  = (java.lang.String) props.get("issuerEmail");
+        String acceptDateAsString = (String) props.get("acceptDate");
         acceptDate  =  acceptDateAsString == null ? null : new ilarkesto.core.time.Date(acceptDateAsString);
-        urgent  = (Boolean) props.getValue("urgent");
-        severity  = (Integer) props.getValue("severity");
-        ownerId = (String) props.getValue("ownerId");
-        String fixDateAsString = (String) props.getValue("fixDate");
+        urgent  = (Boolean) props.get("urgent");
+        severity  = (Integer) props.get("severity");
+        ownerId = (String) props.get("ownerId");
+        String fixDateAsString = (String) props.get("fixDate");
         fixDate  =  fixDateAsString == null ? null : new ilarkesto.core.time.Date(fixDateAsString);
-        String closeDateAsString = (String) props.getValue("closeDate");
+        String closeDateAsString = (String) props.get("closeDate");
         closeDate  =  closeDateAsString == null ? null : new ilarkesto.core.time.Date(closeDateAsString);
-        String suspendedUntilDateAsString = (String) props.getValue("suspendedUntilDate");
+        String suspendedUntilDateAsString = (String) props.get("suspendedUntilDate");
         suspendedUntilDate  =  suspendedUntilDateAsString == null ? null : new ilarkesto.core.time.Date(suspendedUntilDateAsString);
-        affectedReleasesIds = (Set<String>) props.getValue("affectedReleasesIds");
-        fixReleasesIds = (Set<String>) props.getValue("fixReleasesIds");
-        published  = (Boolean) props.getValue("published");
-        themes  = (java.util.List<java.lang.String>) props.getValue("themes");
+        affectedReleasesIds = (Set<String>) props.get("affectedReleasesIds");
+        fixReleasesIds = (Set<String>) props.get("fixReleasesIds");
+        published  = (Boolean) props.get("published");
+        themes  = (java.util.List<java.lang.String>) props.get("themes");
         updateLocalModificationTime();
     }
 
     @Override
-    public void storeProperties(KunagiProperties properties) {
+    public void storeProperties(HashMap<String, Object> properties) {
         super.storeProperties(properties);
-        properties.putValue("projectId", this.projectId);
-        properties.putValue("storyId", this.storyId);
-        properties.putValue("number", this.number);
-        properties.putValue("type", this.type);
-        properties.putValue("date", this.date == null ? null : this.date.toString());
-        properties.putValue("creatorId", this.creatorId);
-        properties.putValue("label", this.label);
-        properties.putValue("description", this.description);
-        properties.putValue("statement", this.statement);
-        properties.putValue("issuerName", this.issuerName);
-        properties.putValue("issuerEmail", this.issuerEmail);
-        properties.putValue("acceptDate", this.acceptDate == null ? null : this.acceptDate.toString());
-        properties.putValue("urgent", this.urgent);
-        properties.putValue("severity", this.severity);
-        properties.putValue("ownerId", this.ownerId);
-        properties.putValue("fixDate", this.fixDate == null ? null : this.fixDate.toString());
-        properties.putValue("closeDate", this.closeDate == null ? null : this.closeDate.toString());
-        properties.putValue("suspendedUntilDate", this.suspendedUntilDate == null ? null : this.suspendedUntilDate.toString());
-        properties.putValue("affectedReleasesIds", this.affectedReleasesIds);
-        properties.putValue("fixReleasesIds", this.fixReleasesIds);
-        properties.putValue("published", this.published);
-        properties.putValue("themes", this.themes);
+        properties.put("projectId", this.projectId);
+        properties.put("storyId", this.storyId);
+        properties.put("number", this.number);
+        properties.put("type", this.type);
+        properties.put("date", this.date == null ? null : this.date.toString());
+        properties.put("creatorId", this.creatorId);
+        properties.put("label", this.label);
+        properties.put("description", this.description);
+        properties.put("statement", this.statement);
+        properties.put("issuerName", this.issuerName);
+        properties.put("issuerEmail", this.issuerEmail);
+        properties.put("acceptDate", this.acceptDate == null ? null : this.acceptDate.toString());
+        properties.put("urgent", this.urgent);
+        properties.put("severity", this.severity);
+        properties.put("ownerId", this.ownerId);
+        properties.put("fixDate", this.fixDate == null ? null : this.fixDate.toString());
+        properties.put("closeDate", this.closeDate == null ? null : this.closeDate.toString());
+        properties.put("suspendedUntilDate", this.suspendedUntilDate == null ? null : this.suspendedUntilDate.toString());
+        properties.put("affectedReleasesIds", this.affectedReleasesIds);
+        properties.put("fixReleasesIds", this.fixReleasesIds);
+        properties.put("published", this.published);
+        properties.put("themes", this.themes);
     }
 
     public final java.util.List<scrum.client.project.Requirement> getRequirements() {

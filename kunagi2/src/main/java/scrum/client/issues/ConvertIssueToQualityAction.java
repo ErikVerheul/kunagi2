@@ -6,7 +6,6 @@ import scrum.client.project.Quality;
 
 /**
  *
- * @author erik
  */
 public class ConvertIssueToQualityAction extends GConvertIssueToQualityAction {
 

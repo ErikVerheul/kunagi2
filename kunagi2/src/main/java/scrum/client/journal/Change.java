@@ -15,7 +15,6 @@
 package scrum.client.journal;
 
 import ilarkesto.core.base.EntityDoesNotExistException;
-import ilarkesto.core.base.KunagiProperties;
 import ilarkesto.core.base.Str;
 import ilarkesto.core.diff.HtmlDiffMarker;
 import ilarkesto.core.diff.TokenDiff;
@@ -23,6 +22,7 @@ import ilarkesto.core.scope.Scope;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.gwt.client.AGwtEntity;
 import java.util.Comparator;
+import java.util.HashMap;
 import scrum.client.ScrumGwt;
 import scrum.client.admin.User;
 import scrum.client.core.RequestEntityServiceCall;
@@ -57,7 +57,7 @@ public class Change extends GChange {
      *
      * @param data
      */
-    public Change(KunagiProperties data) {
+    public Change(HashMap<String, Object> data) {
         super(data);
     }
 

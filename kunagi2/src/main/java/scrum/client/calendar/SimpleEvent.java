@@ -15,12 +15,12 @@
 package scrum.client.calendar;
 
 import com.google.gwt.user.client.ui.Widget;
-import ilarkesto.core.base.KunagiProperties;
 import ilarkesto.core.time.Date;
 import ilarkesto.core.time.Time;
 import ilarkesto.core.time.TimePeriod;
 import ilarkesto.gwt.client.HyperlinkWidget;
 import java.util.Comparator;
+import java.util.HashMap;
 import scrum.client.collaboration.ForumSupport;
 import scrum.client.common.LabelSupport;
 import scrum.client.common.ReferenceSupport;
@@ -53,7 +53,7 @@ public class SimpleEvent extends GSimpleEvent implements ForumSupport, Reference
      *
      * @param data
      */
-    public SimpleEvent(KunagiProperties data) {
+    public SimpleEvent(HashMap<String, Object> data) {
 		super(data);
 	}
 

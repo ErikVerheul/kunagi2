@@ -20,7 +20,7 @@ import ilarkesto.persistence.AStructure;
 import ilarkesto.auth.AUser;
 import ilarkesto.core.base.EntityDoesNotExistException;
 import ilarkesto.base.StrExtend;
-import ilarkesto.core.base.KunagiProperties;
+
 
 public abstract class GSprintReport
             extends AEntity
@@ -36,15 +36,15 @@ public abstract class GSprintReport
     }
 
     @Override
-    public void storeProperties(KunagiProperties properties) {
+    public void storeProperties(HashMap<String, Object> properties) {
         super.storeProperties(properties);
-        properties.putValue("sprintId", this.sprintId);
-        properties.putValue("completedRequirementsIds", this.completedRequirementsIds);
-        properties.putValue("rejectedRequirementsIds", this.rejectedRequirementsIds);
-        properties.putValue("requirementsOrderIds", this.requirementsOrderIds);
-        properties.putValue("closedTasksIds", this.closedTasksIds);
-        properties.putValue("openTasksIds", this.openTasksIds);
-        properties.putValue("burnedWork", this.burnedWork);
+        properties.put("sprintId", this.sprintId);
+        properties.put("completedRequirementsIds", this.completedRequirementsIds);
+        properties.put("rejectedRequirementsIds", this.rejectedRequirementsIds);
+        properties.put("requirementsOrderIds", this.requirementsOrderIds);
+        properties.put("closedTasksIds", this.closedTasksIds);
+        properties.put("openTasksIds", this.openTasksIds);
+        properties.put("burnedWork", this.burnedWork);
     }
 
     public int compareTo(SprintReport other) {
@@ -590,8 +590,8 @@ public abstract class GSprintReport
         setBurnedWork((Integer)value);
     }
 
-    public void updateProperties(KunagiProperties properties) {
-        for (Map.Entry<String, Object> entry : properties.getEntrySet()) {
+    public void updateProperties(HashMap<String,Object> properties) {
+        for (Map.Entry<String, Object> entry : properties.entrySet()) {
             String property = entry.getKey();
             if (property.equals("id")) continue;
             Object value = entry.getValue();

@@ -13,7 +13,6 @@
 
 package scrum.client.collaboration;
 
-import ilarkesto.core.base.KunagiProperties;
 import java.util.*;
 import static ilarkesto.core.base.Utl.equalObjects;
 import static ilarkesto.core.logging.ClientLog.*;
@@ -30,7 +29,7 @@ public abstract class GChatMessage
     public GChatMessage() {
     }
 
-    public GChatMessage(KunagiProperties data) {
+    public GChatMessage(HashMap<String, Object> data) {
         super(data);
         updateProperties(data);
     }
@@ -207,22 +206,22 @@ public abstract class GChatMessage
 
     // --- update properties by map ---
 
-    public void updateProperties(KunagiProperties props) {
-        projectId = (String) props.getValue("projectId");
-        authorId = (String) props.getValue("authorId");
-        text  = (java.lang.String) props.getValue("text");
-        String dateAndTimeAsString = (String) props.getValue("dateAndTime");
+    public void updateProperties(HashMap<String, Object> props) {
+        projectId = (String) props.get("projectId");
+        authorId = (String) props.get("authorId");
+        text  = (java.lang.String) props.get("text");
+        String dateAndTimeAsString = (String) props.get("dateAndTime");
         dateAndTime  =  dateAndTimeAsString == null ? null : new ilarkesto.core.time.DateAndTime(dateAndTimeAsString);
         updateLocalModificationTime();
     }
 
     @Override
-    public void storeProperties(KunagiProperties properties) {
+    public void storeProperties(HashMap<String, Object> properties) {
         super.storeProperties(properties);
-        properties.putValue("projectId", this.projectId);
-        properties.putValue("authorId", this.authorId);
-        properties.putValue("text", this.text);
-        properties.putValue("dateAndTime", this.dateAndTime == null ? null : this.dateAndTime.toString());
+        properties.put("projectId", this.projectId);
+        properties.put("authorId", this.authorId);
+        properties.put("text", this.text);
+        properties.put("dateAndTime", this.dateAndTime == null ? null : this.dateAndTime.toString());
     }
 
 }

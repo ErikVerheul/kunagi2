@@ -13,7 +13,6 @@
 
 package scrum.client.release;
 
-import ilarkesto.core.base.KunagiProperties;
 import java.util.*;
 import static ilarkesto.core.base.Utl.equalObjects;
 import static ilarkesto.core.logging.ClientLog.*;
@@ -30,7 +29,7 @@ public abstract class GRelease
     public GRelease() {
     }
 
-    public GRelease(KunagiProperties data) {
+    public GRelease(HashMap<String, Object> data) {
         super(data);
         updateProperties(data);
     }
@@ -637,38 +636,38 @@ public abstract class GRelease
 
     // --- update properties by map ---
 
-    public void updateProperties(KunagiProperties props) {
-        projectId = (String) props.getValue("projectId");
-        parentReleaseId = (String) props.getValue("parentReleaseId");
-        sprintsIds = (Set<String>) props.getValue("sprintsIds");
-        number  = (Integer) props.getValue("number");
-        label  = (java.lang.String) props.getValue("label");
-        note  = (java.lang.String) props.getValue("note");
-        String releaseDateAsString = (String) props.getValue("releaseDate");
+    public void updateProperties(HashMap<String, Object> props) {
+        projectId = (String) props.get("projectId");
+        parentReleaseId = (String) props.get("parentReleaseId");
+        sprintsIds = (Set<String>) props.get("sprintsIds");
+        number  = (Integer) props.get("number");
+        label  = (java.lang.String) props.get("label");
+        note  = (java.lang.String) props.get("note");
+        String releaseDateAsString = (String) props.get("releaseDate");
         releaseDate  =  releaseDateAsString == null ? null : new ilarkesto.core.time.Date(releaseDateAsString);
-        released  = (Boolean) props.getValue("released");
-        releaseNotes  = (java.lang.String) props.getValue("releaseNotes");
-        scmTag  = (java.lang.String) props.getValue("scmTag");
-        scriptRunning  = (Boolean) props.getValue("scriptRunning");
-        scriptOutput  = (java.lang.String) props.getValue("scriptOutput");
+        released  = (Boolean) props.get("released");
+        releaseNotes  = (java.lang.String) props.get("releaseNotes");
+        scmTag  = (java.lang.String) props.get("scmTag");
+        scriptRunning  = (Boolean) props.get("scriptRunning");
+        scriptOutput  = (java.lang.String) props.get("scriptOutput");
         updateLocalModificationTime();
     }
 
     @Override
-    public void storeProperties(KunagiProperties properties) {
+    public void storeProperties(HashMap<String, Object> properties) {
         super.storeProperties(properties);
-        properties.putValue("projectId", this.projectId);
-        properties.putValue("parentReleaseId", this.parentReleaseId);
-        properties.putValue("sprintsIds", this.sprintsIds);
-        properties.putValue("number", this.number);
-        properties.putValue("label", this.label);
-        properties.putValue("note", this.note);
-        properties.putValue("releaseDate", this.releaseDate == null ? null : this.releaseDate.toString());
-        properties.putValue("released", this.released);
-        properties.putValue("releaseNotes", this.releaseNotes);
-        properties.putValue("scmTag", this.scmTag);
-        properties.putValue("scriptRunning", this.scriptRunning);
-        properties.putValue("scriptOutput", this.scriptOutput);
+        properties.put("projectId", this.projectId);
+        properties.put("parentReleaseId", this.parentReleaseId);
+        properties.put("sprintsIds", this.sprintsIds);
+        properties.put("number", this.number);
+        properties.put("label", this.label);
+        properties.put("note", this.note);
+        properties.put("releaseDate", this.releaseDate == null ? null : this.releaseDate.toString());
+        properties.put("released", this.released);
+        properties.put("releaseNotes", this.releaseNotes);
+        properties.put("scmTag", this.scmTag);
+        properties.put("scriptRunning", this.scriptRunning);
+        properties.put("scriptOutput", this.scriptOutput);
     }
 
     public final java.util.List<scrum.client.release.Release> getReleases() {

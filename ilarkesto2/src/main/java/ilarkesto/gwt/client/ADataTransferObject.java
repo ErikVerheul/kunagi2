@@ -15,7 +15,6 @@
 package ilarkesto.gwt.client;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
-import ilarkesto.core.base.KunagiProperties;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -47,7 +46,7 @@ public abstract class ADataTransferObject implements Serializable, IsSerializabl
 
     private String userId;
     private Set<String> deletedEntities;
-    private HashMap<String, KunagiProperties> entities;
+    private HashMap<String, HashMap<String, Object>> entities;
 
     // dummys required for gwt-serialization
     private int dummyI;
@@ -128,18 +127,18 @@ public abstract class ADataTransferObject implements Serializable, IsSerializabl
      *
      * @param data
      */
-    public final void addEntity(KunagiProperties data) {
+    public final void addEntity(HashMap<String, Object> data) {
         if (entities == null) {
                         entities = new HashMap<>();
         }
-        entities.put(data.getId(), data);
+        entities.put((String) data.get("id"), data);
     }
 
     /**
      *
      * @return
      */
-    public final Collection<KunagiProperties> getEntities() {
+    public final Collection<HashMap<String, Object>> getEntities() {
         return entities.values();
     }
 

@@ -13,7 +13,6 @@
 
 package scrum.client.pr;
 
-import ilarkesto.core.base.KunagiProperties;
 import java.util.*;
 import static ilarkesto.core.base.Utl.equalObjects;
 import static ilarkesto.core.logging.ClientLog.*;
@@ -30,7 +29,7 @@ public abstract class GSubscription
     public GSubscription() {
     }
 
-    public GSubscription(KunagiProperties data) {
+    public GSubscription(HashMap<String, Object> data) {
         super(data);
         updateProperties(data);
     }
@@ -89,17 +88,17 @@ public abstract class GSubscription
 
     // --- update properties by map ---
 
-    public void updateProperties(KunagiProperties props) {
-        subjectId = (String) props.getValue("subjectId");
-        subscribersEmails  = (java.util.Set<java.lang.String>) props.getValue("subscribersEmails");
+    public void updateProperties(HashMap<String, Object> props) {
+        subjectId = (String) props.get("subjectId");
+        subscribersEmails  = (java.util.Set<java.lang.String>) props.get("subscribersEmails");
         updateLocalModificationTime();
     }
 
     @Override
-    public void storeProperties(KunagiProperties properties) {
+    public void storeProperties(HashMap<String, Object> properties) {
         super.storeProperties(properties);
-        properties.putValue("subjectId", this.subjectId);
-        properties.putValue("subscribersEmails", this.subscribersEmails);
+        properties.put("subjectId", this.subjectId);
+        properties.put("subscribersEmails", this.subscribersEmails);
     }
 
 }

@@ -14,11 +14,10 @@
  */
 package scrum.client.admin;
 
-import ilarkesto.core.base.KunagiProperties;
+import java.util.HashMap;
 
 /**
  *
- * @author erik
  */
 public class SystemConfig extends GSystemConfig {
 
@@ -26,7 +25,7 @@ public class SystemConfig extends GSystemConfig {
      *
      * @param data
      */
-    public SystemConfig(KunagiProperties data) {
+    public SystemConfig(HashMap<String, Object> data) {
 		super(data);
 	}
 
