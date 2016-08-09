@@ -15,11 +15,11 @@
 package scrum.server;
 
 import ilarkesto.auth.Auth;
-import ilarkesto.core.base.KunagiProperties;
 import ilarkesto.core.time.TimePeriod;
 import ilarkesto.gwt.server.AGwtConversation;
 import ilarkesto.logging.Log;
 import ilarkesto.persistence.AEntity;
+import java.util.HashMap;
 import scrum.client.DataTransferObject;
 import scrum.client.communication.Pinger;
 import scrum.server.admin.ProjectUserConfig;
@@ -51,7 +51,7 @@ public class GwtConversation extends AGwtConversation {
 	}
 
 	@Override
-	protected void filterEntityProperties(AEntity entity, KunagiProperties propertiesMap) {
+	protected void filterEntityProperties(AEntity entity, HashMap<String, Object> propertiesMap) {
 		super.filterEntityProperties(entity, propertiesMap);
 		User user = getSession().getUser();
 

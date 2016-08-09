@@ -13,12 +13,13 @@
 
 package scrum.server;
 
+import ilarkesto.logging.Log;
 import java.util.*;
 
 public abstract class GScrumWebApplication
             extends ilarkesto.webapp.AWebApplication {
 
-
+private static final Log LOG = Log.get(GScrumWebApplication.class);
     // -----------------------------------------------------------
     // - composites
     // -----------------------------------------------------------
@@ -230,7 +231,9 @@ public abstract class GScrumWebApplication
     public final scrum.server.project.ProjectDao getProjectDao() {
         if (projectDao == null) {
             projectDao = createProjectDao();
+            LOG.debug("getProjectDao: new projectDao is created");
             initializeProjectDao(projectDao);
+            LOG.debug("getProjectDao: new projectDao is initiated");
         }
         return projectDao;
     }

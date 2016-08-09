@@ -14,6 +14,7 @@
  */
 package ilarkesto.persistence;
 
+import ilarkesto.core.base.EntityDoesNotExistException;
 import static ilarkesto.core.logging.ClientLog.DEBUG;
 import ilarkesto.core.time.Date;
 import ilarkesto.core.time.DateAndTime;

@@ -18,9 +18,9 @@ import ilarkesto.persistence.ADatob;
 import ilarkesto.persistence.AEntity;
 import ilarkesto.persistence.AStructure;
 import ilarkesto.auth.AUser;
-import ilarkesto.persistence.EntityDoesNotExistException;
+import ilarkesto.core.base.EntityDoesNotExistException;
 import ilarkesto.base.StrExtend;
-import ilarkesto.core.base.KunagiProperties;
+
 
 public abstract class GProjectUserConfig
             extends AEntity
@@ -36,25 +36,25 @@ public abstract class GProjectUserConfig
     }
 
     @Override
-    public void storeProperties(KunagiProperties properties) {
+    public void storeProperties(HashMap<String, Object> properties) {
         super.storeProperties(properties);
-        properties.putValue("projectId", this.projectId);
-        properties.putValue("userId", this.userId);
-        properties.putValue("color", this.color);
-        properties.putValue("receiveEmailsOnProjectEvents", this.receiveEmailsOnProjectEvents);
-        properties.putValue("misconducts", this.misconducts);
-        properties.putValue("richtextAutosaveText", this.richtextAutosaveText);
-        properties.putValue("richtextAutosaveField", this.richtextAutosaveField);
-        properties.putValue("selectedEntitysIds", this.selectedEntitysIds);
-        properties.putValue("online", this.online);
-        properties.putValue("lastActivityDateAndTime", this.lastActivityDateAndTime == null ? null : this.lastActivityDateAndTime.toString());
-        properties.putValue("pblFilterThemes", this.pblFilterThemes);
-        properties.putValue("pblFilterQualitysIds", this.pblFilterQualitysIds);
-        properties.putValue("pblFilterDateFrom", this.pblFilterDateFrom == null ? null : this.pblFilterDateFrom.toString());
-        properties.putValue("pblFilterDateTo", this.pblFilterDateTo == null ? null : this.pblFilterDateTo.toString());
-        properties.putValue("pblFilterEstimationFrom", this.pblFilterEstimationFrom);
-        properties.putValue("pblFilterEstimationTo", this.pblFilterEstimationTo);
-        properties.putValue("pblFilterText", this.pblFilterText);
+        properties.put("projectId", this.projectId);
+        properties.put("userId", this.userId);
+        properties.put("color", this.color);
+        properties.put("receiveEmailsOnProjectEvents", this.receiveEmailsOnProjectEvents);
+        properties.put("misconducts", this.misconducts);
+        properties.put("richtextAutosaveText", this.richtextAutosaveText);
+        properties.put("richtextAutosaveField", this.richtextAutosaveField);
+        properties.put("selectedEntitysIds", this.selectedEntitysIds);
+        properties.put("online", this.online);
+        properties.put("lastActivityDateAndTime", this.lastActivityDateAndTime == null ? null : this.lastActivityDateAndTime.toString());
+        properties.put("pblFilterThemes", this.pblFilterThemes);
+        properties.put("pblFilterQualitysIds", this.pblFilterQualitysIds);
+        properties.put("pblFilterDateFrom", this.pblFilterDateFrom == null ? null : this.pblFilterDateFrom.toString());
+        properties.put("pblFilterDateTo", this.pblFilterDateTo == null ? null : this.pblFilterDateTo.toString());
+        properties.put("pblFilterEstimationFrom", this.pblFilterEstimationFrom);
+        properties.put("pblFilterEstimationTo", this.pblFilterEstimationTo);
+        properties.put("pblFilterText", this.pblFilterText);
     }
 
     public int compareTo(ProjectUserConfig other) {
@@ -851,8 +851,8 @@ public abstract class GProjectUserConfig
         setPblFilterText((java.lang.String)value);
     }
 
-    public void updateProperties(KunagiProperties properties) {
-        for (Map.Entry<String, Object> entry : properties.getEntrySet()) {
+    public void updateProperties(HashMap<String, Object> props) {
+        for (Map.Entry<String, Object> entry : props.entrySet()) {
             String property = entry.getKey();
             if (property.equals("id")) continue;
             Object value = entry.getValue();

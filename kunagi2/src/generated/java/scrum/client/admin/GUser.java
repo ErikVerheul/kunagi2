@@ -13,7 +13,6 @@
 
 package scrum.client.admin;
 
-import ilarkesto.core.base.KunagiProperties;
 import java.util.*;
 import static ilarkesto.core.base.Utl.equalObjects;
 import static ilarkesto.core.logging.ClientLog.*;
@@ -30,7 +29,7 @@ public abstract class GUser
     public GUser() {
     }
 
-    public GUser(KunagiProperties data) {
+    public GUser(HashMap<String, Object> data) {
         super(data);
         updateProperties(data);
     }
@@ -1514,71 +1513,71 @@ public abstract class GUser
 
     // --- update properties by map ---
 
-    public void updateProperties(KunagiProperties props) {
-        name  = (java.lang.String) props.getValue("name");
-        publicName  = (java.lang.String) props.getValue("publicName");
-        fullName  = (java.lang.String) props.getValue("fullName");
-        admin  = (Boolean) props.getValue("admin");
-        emailVerified  = (Boolean) props.getValue("emailVerified");
-        email  = (java.lang.String) props.getValue("email");
-        currentProjectId = (String) props.getValue("currentProjectId");
-        color  = (java.lang.String) props.getValue("color");
-        String lastLoginDateAndTimeAsString = (String) props.getValue("lastLoginDateAndTime");
+    public void updateProperties(HashMap<String, Object> props) {
+        name  = (java.lang.String) props.get("name");
+        publicName  = (java.lang.String) props.get("publicName");
+        fullName  = (java.lang.String) props.get("fullName");
+        admin  = (Boolean) props.get("admin");
+        emailVerified  = (Boolean) props.get("emailVerified");
+        email  = (java.lang.String) props.get("email");
+        currentProjectId = (String) props.get("currentProjectId");
+        color  = (java.lang.String) props.get("color");
+        String lastLoginDateAndTimeAsString = (String) props.get("lastLoginDateAndTime");
         lastLoginDateAndTime  =  lastLoginDateAndTimeAsString == null ? null : new ilarkesto.core.time.DateAndTime(lastLoginDateAndTimeAsString);
-        String registrationDateAndTimeAsString = (String) props.getValue("registrationDateAndTime");
+        String registrationDateAndTimeAsString = (String) props.get("registrationDateAndTime");
         registrationDateAndTime  =  registrationDateAndTimeAsString == null ? null : new ilarkesto.core.time.DateAndTime(registrationDateAndTimeAsString);
-        disabled  = (Boolean) props.getValue("disabled");
-        hideUserGuideBlog  = (Boolean) props.getValue("hideUserGuideBlog");
-        hideUserGuideCalendar  = (Boolean) props.getValue("hideUserGuideCalendar");
-        hideUserGuideFiles  = (Boolean) props.getValue("hideUserGuideFiles");
-        hideUserGuideForum  = (Boolean) props.getValue("hideUserGuideForum");
-        hideUserGuideImpediments  = (Boolean) props.getValue("hideUserGuideImpediments");
-        hideUserGuideIssues  = (Boolean) props.getValue("hideUserGuideIssues");
-        hideUserGuideJournal  = (Boolean) props.getValue("hideUserGuideJournal");
-        hideUserGuideNextSprint  = (Boolean) props.getValue("hideUserGuideNextSprint");
-        hideUserGuideProductBacklog  = (Boolean) props.getValue("hideUserGuideProductBacklog");
-        hideUserGuideCourtroom  = (Boolean) props.getValue("hideUserGuideCourtroom");
-        hideUserGuideQualityBacklog  = (Boolean) props.getValue("hideUserGuideQualityBacklog");
-        hideUserGuideReleases  = (Boolean) props.getValue("hideUserGuideReleases");
-        hideUserGuideRisks  = (Boolean) props.getValue("hideUserGuideRisks");
-        hideUserGuideSprintBacklog  = (Boolean) props.getValue("hideUserGuideSprintBacklog");
-        hideUserGuideWhiteboard  = (Boolean) props.getValue("hideUserGuideWhiteboard");
-        loginToken  = (java.lang.String) props.getValue("loginToken");
-        openId  = (java.lang.String) props.getValue("openId");
+        disabled  = (Boolean) props.get("disabled");
+        hideUserGuideBlog  = (Boolean) props.get("hideUserGuideBlog");
+        hideUserGuideCalendar  = (Boolean) props.get("hideUserGuideCalendar");
+        hideUserGuideFiles  = (Boolean) props.get("hideUserGuideFiles");
+        hideUserGuideForum  = (Boolean) props.get("hideUserGuideForum");
+        hideUserGuideImpediments  = (Boolean) props.get("hideUserGuideImpediments");
+        hideUserGuideIssues  = (Boolean) props.get("hideUserGuideIssues");
+        hideUserGuideJournal  = (Boolean) props.get("hideUserGuideJournal");
+        hideUserGuideNextSprint  = (Boolean) props.get("hideUserGuideNextSprint");
+        hideUserGuideProductBacklog  = (Boolean) props.get("hideUserGuideProductBacklog");
+        hideUserGuideCourtroom  = (Boolean) props.get("hideUserGuideCourtroom");
+        hideUserGuideQualityBacklog  = (Boolean) props.get("hideUserGuideQualityBacklog");
+        hideUserGuideReleases  = (Boolean) props.get("hideUserGuideReleases");
+        hideUserGuideRisks  = (Boolean) props.get("hideUserGuideRisks");
+        hideUserGuideSprintBacklog  = (Boolean) props.get("hideUserGuideSprintBacklog");
+        hideUserGuideWhiteboard  = (Boolean) props.get("hideUserGuideWhiteboard");
+        loginToken  = (java.lang.String) props.get("loginToken");
+        openId  = (java.lang.String) props.get("openId");
         updateLocalModificationTime();
     }
 
     @Override
-    public void storeProperties(KunagiProperties properties) {
+    public void storeProperties(HashMap<String, Object> properties) {
         super.storeProperties(properties);
-        properties.putValue("name", this.name);
-        properties.putValue("publicName", this.publicName);
-        properties.putValue("fullName", this.fullName);
-        properties.putValue("admin", this.admin);
-        properties.putValue("emailVerified", this.emailVerified);
-        properties.putValue("email", this.email);
-        properties.putValue("currentProjectId", this.currentProjectId);
-        properties.putValue("color", this.color);
-        properties.putValue("lastLoginDateAndTime", this.lastLoginDateAndTime == null ? null : this.lastLoginDateAndTime.toString());
-        properties.putValue("registrationDateAndTime", this.registrationDateAndTime == null ? null : this.registrationDateAndTime.toString());
-        properties.putValue("disabled", this.disabled);
-        properties.putValue("hideUserGuideBlog", this.hideUserGuideBlog);
-        properties.putValue("hideUserGuideCalendar", this.hideUserGuideCalendar);
-        properties.putValue("hideUserGuideFiles", this.hideUserGuideFiles);
-        properties.putValue("hideUserGuideForum", this.hideUserGuideForum);
-        properties.putValue("hideUserGuideImpediments", this.hideUserGuideImpediments);
-        properties.putValue("hideUserGuideIssues", this.hideUserGuideIssues);
-        properties.putValue("hideUserGuideJournal", this.hideUserGuideJournal);
-        properties.putValue("hideUserGuideNextSprint", this.hideUserGuideNextSprint);
-        properties.putValue("hideUserGuideProductBacklog", this.hideUserGuideProductBacklog);
-        properties.putValue("hideUserGuideCourtroom", this.hideUserGuideCourtroom);
-        properties.putValue("hideUserGuideQualityBacklog", this.hideUserGuideQualityBacklog);
-        properties.putValue("hideUserGuideReleases", this.hideUserGuideReleases);
-        properties.putValue("hideUserGuideRisks", this.hideUserGuideRisks);
-        properties.putValue("hideUserGuideSprintBacklog", this.hideUserGuideSprintBacklog);
-        properties.putValue("hideUserGuideWhiteboard", this.hideUserGuideWhiteboard);
-        properties.putValue("loginToken", this.loginToken);
-        properties.putValue("openId", this.openId);
+        properties.put("name", this.name);
+        properties.put("publicName", this.publicName);
+        properties.put("fullName", this.fullName);
+        properties.put("admin", this.admin);
+        properties.put("emailVerified", this.emailVerified);
+        properties.put("email", this.email);
+        properties.put("currentProjectId", this.currentProjectId);
+        properties.put("color", this.color);
+        properties.put("lastLoginDateAndTime", this.lastLoginDateAndTime == null ? null : this.lastLoginDateAndTime.toString());
+        properties.put("registrationDateAndTime", this.registrationDateAndTime == null ? null : this.registrationDateAndTime.toString());
+        properties.put("disabled", this.disabled);
+        properties.put("hideUserGuideBlog", this.hideUserGuideBlog);
+        properties.put("hideUserGuideCalendar", this.hideUserGuideCalendar);
+        properties.put("hideUserGuideFiles", this.hideUserGuideFiles);
+        properties.put("hideUserGuideForum", this.hideUserGuideForum);
+        properties.put("hideUserGuideImpediments", this.hideUserGuideImpediments);
+        properties.put("hideUserGuideIssues", this.hideUserGuideIssues);
+        properties.put("hideUserGuideJournal", this.hideUserGuideJournal);
+        properties.put("hideUserGuideNextSprint", this.hideUserGuideNextSprint);
+        properties.put("hideUserGuideProductBacklog", this.hideUserGuideProductBacklog);
+        properties.put("hideUserGuideCourtroom", this.hideUserGuideCourtroom);
+        properties.put("hideUserGuideQualityBacklog", this.hideUserGuideQualityBacklog);
+        properties.put("hideUserGuideReleases", this.hideUserGuideReleases);
+        properties.put("hideUserGuideRisks", this.hideUserGuideRisks);
+        properties.put("hideUserGuideSprintBacklog", this.hideUserGuideSprintBacklog);
+        properties.put("hideUserGuideWhiteboard", this.hideUserGuideWhiteboard);
+        properties.put("loginToken", this.loginToken);
+        properties.put("openId", this.openId);
     }
 
     public final java.util.List<scrum.client.project.Project> getProjects() {

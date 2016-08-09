@@ -16,11 +16,11 @@ package ilarkesto.persistence;
 
 import ilarkesto.auth.AUserDao;
 import ilarkesto.base.OverrideExpectedException;
-import ilarkesto.core.base.KunagiProperties;
 import ilarkesto.core.base.Str;
 import ilarkesto.search.Searchable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -57,7 +57,7 @@ public abstract class ADatob implements Searchable {
      *
      * @param properties
      */
-    public abstract void updateProperties(KunagiProperties properties);
+    public abstract void updateProperties(HashMap<String, Object> properties);
 
     /**
      *
@@ -126,18 +126,18 @@ public abstract class ADatob implements Searchable {
      *
      * @return
      */
-    public final KunagiProperties createPropertiesMap() {
-        KunagiProperties properties = new KunagiProperties();
-        storeProperties(properties);
-        return properties;
+    public final HashMap<String, Object> createPropertiesMap() {
+        HashMap<String, Object> props = new HashMap<>();
+        storeProperties(props);
+        return props;
     }
 
     /**
      *
-     * @param properties
+     * @param props
      */
-    protected void storeProperties(KunagiProperties properties) {
-        properties.putValue("@type", Str.getSimpleName(getClass()));
+    protected void storeProperties(HashMap<String, Object> props) {
+        props.put("@type", Str.getSimpleName(getClass()));
     }
 
     /**

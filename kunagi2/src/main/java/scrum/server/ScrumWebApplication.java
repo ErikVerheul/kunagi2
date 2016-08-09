@@ -473,7 +473,7 @@ public class ScrumWebApplication extends GScrumWebApplication {
      * @return
      */
     public Set<GwtConversation> getConversationsByProject(Project project, GwtConversation exception) {
-		Set<GwtConversation> ret = new HashSet<GwtConversation>();
+		Set<GwtConversation> ret = new HashSet<>();
                 for (Object element : getGwtConversations()) {
 			if (element == exception) {
                 continue;
@@ -492,7 +492,7 @@ public class ScrumWebApplication extends GScrumWebApplication {
      * @return
      */
     public Set<User> getConversationUsersByProject(Project project) {
-		Set<User> ret = new HashSet<User>();
+		Set<User> ret = new HashSet<>();
 		for (GwtConversation conversation : getConversationsByProject(project, null)) {
 			User user = conversation.getSession().getUser();
 			if (user != null) {

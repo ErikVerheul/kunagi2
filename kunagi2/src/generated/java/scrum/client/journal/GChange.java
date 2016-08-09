@@ -13,7 +13,6 @@
 
 package scrum.client.journal;
 
-import ilarkesto.core.base.KunagiProperties;
 import java.util.*;
 import static ilarkesto.core.base.Utl.equalObjects;
 import static ilarkesto.core.logging.ClientLog.*;
@@ -30,7 +29,7 @@ public abstract class GChange
     public GChange() {
     }
 
-    public GChange(KunagiProperties data) {
+    public GChange(HashMap<String, Object> data) {
         super(data);
         updateProperties(data);
     }
@@ -366,28 +365,28 @@ public abstract class GChange
 
     // --- update properties by map ---
 
-    public void updateProperties(KunagiProperties props) {
-        parentId = (String) props.getValue("parentId");
-        userId = (String) props.getValue("userId");
-        String dateAndTimeAsString = (String) props.getValue("dateAndTime");
+    public void updateProperties(HashMap<String, Object> props) {
+        parentId = (String) props.get("parentId");
+        userId = (String) props.get("userId");
+        String dateAndTimeAsString = (String) props.get("dateAndTime");
         dateAndTime  =  dateAndTimeAsString == null ? null : new ilarkesto.core.time.DateAndTime(dateAndTimeAsString);
-        key  = (java.lang.String) props.getValue("key");
-        oldValue  = (java.lang.String) props.getValue("oldValue");
-        newValue  = (java.lang.String) props.getValue("newValue");
-        comment  = (java.lang.String) props.getValue("comment");
+        key  = (java.lang.String) props.get("key");
+        oldValue  = (java.lang.String) props.get("oldValue");
+        newValue  = (java.lang.String) props.get("newValue");
+        comment  = (java.lang.String) props.get("comment");
         updateLocalModificationTime();
     }
 
     @Override
-    public void storeProperties(KunagiProperties properties) {
+    public void storeProperties(HashMap<String, Object> properties) {
         super.storeProperties(properties);
-        properties.putValue("parentId", this.parentId);
-        properties.putValue("userId", this.userId);
-        properties.putValue("dateAndTime", this.dateAndTime == null ? null : this.dateAndTime.toString());
-        properties.putValue("key", this.key);
-        properties.putValue("oldValue", this.oldValue);
-        properties.putValue("newValue", this.newValue);
-        properties.putValue("comment", this.comment);
+        properties.put("parentId", this.parentId);
+        properties.put("userId", this.userId);
+        properties.put("dateAndTime", this.dateAndTime == null ? null : this.dateAndTime.toString());
+        properties.put("key", this.key);
+        properties.put("oldValue", this.oldValue);
+        properties.put("newValue", this.newValue);
+        properties.put("comment", this.comment);
     }
 
 }

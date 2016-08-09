@@ -18,9 +18,9 @@ import ilarkesto.persistence.ADatob;
 import ilarkesto.persistence.AEntity;
 import ilarkesto.persistence.AStructure;
 import ilarkesto.auth.AUser;
-import ilarkesto.persistence.EntityDoesNotExistException;
+import ilarkesto.core.base.EntityDoesNotExistException;
 import ilarkesto.base.StrExtend;
-import ilarkesto.core.base.KunagiProperties;
+
 
 public abstract class GRisk
             extends AEntity
@@ -36,16 +36,16 @@ public abstract class GRisk
     }
 
     @Override
-    public void storeProperties(KunagiProperties properties) {
+    public void storeProperties(HashMap<String, Object> properties) {
         super.storeProperties(properties);
-        properties.putValue("projectId", this.projectId);
-        properties.putValue("number", this.number);
-        properties.putValue("label", this.label);
-        properties.putValue("description", this.description);
-        properties.putValue("probabilityMitigation", this.probabilityMitigation);
-        properties.putValue("impactMitigation", this.impactMitigation);
-        properties.putValue("probability", this.probability);
-        properties.putValue("impact", this.impact);
+        properties.put("projectId", this.projectId);
+        properties.put("number", this.number);
+        properties.put("label", this.label);
+        properties.put("description", this.description);
+        properties.put("probabilityMitigation", this.probabilityMitigation);
+        properties.put("impactMitigation", this.impactMitigation);
+        properties.put("probability", this.probability);
+        properties.put("impact", this.impact);
     }
 
     public int compareTo(Risk other) {
@@ -356,8 +356,8 @@ public abstract class GRisk
         setImpact((Integer)value);
     }
 
-    public void updateProperties(KunagiProperties properties) {
-        for (Map.Entry<String, Object> entry : properties.getEntrySet()) {
+    public void updateProperties(HashMap<String,Object> properties) {
+        for (Map.Entry<String, Object> entry : properties.entrySet()) {
             String property = entry.getKey();
             if (property.equals("id")) continue;
             Object value = entry.getValue();

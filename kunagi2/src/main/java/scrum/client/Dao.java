@@ -15,12 +15,11 @@
 package scrum.client;
 
 import com.google.gwt.user.client.Timer;
-import ilarkesto.core.base.KunagiProperties;
+import ilarkesto.core.base.EntityDoesNotExistException;
 import static ilarkesto.core.logging.ClientLog.DEBUG;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.gwt.client.ADataTransferObject;
 import ilarkesto.gwt.client.AGwtEntity;
-import ilarkesto.gwt.client.EntityDoesNotExistException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -240,9 +239,9 @@ public class Dao extends GDao {
      * @return
      */
     @Override
-    protected ProjectUserConfig updateProjectUserConfig(KunagiProperties data) {
+    protected ProjectUserConfig updateProjectUserConfig(HashMap<String, Object> data) {
         List<String> previouslySelectedIds = new ArrayList<>();
-        ProjectUserConfig config = projectUserConfigs.get((String) data.getId()); // TODO: fix parent to avoid casting
+        ProjectUserConfig config = projectUserConfigs.get((String) data.get("id")); // TODO: fix parent to avoid casting
         if (config != null) {
             previouslySelectedIds.addAll(config.getSelectedEntitysIds());
         }
@@ -298,15 +297,15 @@ public class Dao extends GDao {
 
     private static class EntityChangeCache extends Timer {
 
-        private Map<String, KunagiProperties> entityProperties = new HashMap<>(3);
+        private Map<String, HashMap<String, Object>> entityProperties = new HashMap<>(3);
 
         public void put(String entityId, String property, Object value) {
-            KunagiProperties props = entityProperties.get(entityId);
+            HashMap<String, Object> props = entityProperties.get(entityId);
             if (props == null) {
-                props = new KunagiProperties();
+                props = new HashMap<String, Object>();
                 entityProperties.put(entityId, props);
             }
-            props.putValue(property, value);
+            props.put(property, value);
             schedule(1000);
         }
 
@@ -322,7 +321,7 @@ public class Dao extends GDao {
                 }
             }
 
-            for (Map.Entry<String, KunagiProperties> entry : entityProperties.entrySet()) {
+            for (Map.Entry<String, HashMap<String, Object>> entry : entityProperties.entrySet()) {
                 new ChangePropertiesServiceCall(entry.getKey(), entry.getValue()).execute();
             }
 

@@ -18,9 +18,9 @@ import ilarkesto.persistence.ADatob;
 import ilarkesto.persistence.AEntity;
 import ilarkesto.persistence.AStructure;
 import ilarkesto.auth.AUser;
-import ilarkesto.persistence.EntityDoesNotExistException;
+import ilarkesto.core.base.EntityDoesNotExistException;
 import ilarkesto.base.StrExtend;
-import ilarkesto.core.base.KunagiProperties;
+
 
 public abstract class GTask
             extends AEntity
@@ -36,17 +36,17 @@ public abstract class GTask
     }
 
     @Override
-    public void storeProperties(KunagiProperties properties) {
+    public void storeProperties(HashMap<String, Object> properties) {
         super.storeProperties(properties);
-        properties.putValue("requirementId", this.requirementId);
-        properties.putValue("number", this.number);
-        properties.putValue("label", this.label);
-        properties.putValue("description", this.description);
-        properties.putValue("remainingWork", this.remainingWork);
-        properties.putValue("burnedWork", this.burnedWork);
-        properties.putValue("ownerId", this.ownerId);
-        properties.putValue("impedimentId", this.impedimentId);
-        properties.putValue("closedInPastSprintId", this.closedInPastSprintId);
+        properties.put("requirementId", this.requirementId);
+        properties.put("number", this.number);
+        properties.put("label", this.label);
+        properties.put("description", this.description);
+        properties.put("remainingWork", this.remainingWork);
+        properties.put("burnedWork", this.burnedWork);
+        properties.put("ownerId", this.ownerId);
+        properties.put("impedimentId", this.impedimentId);
+        properties.put("closedInPastSprintId", this.closedInPastSprintId);
     }
 
     public int compareTo(Task other) {
@@ -443,8 +443,8 @@ public abstract class GTask
         setClosedInPastSprint(value == null ? null : (scrum.server.sprint.Sprint)sprintDao.getById((String)value));
     }
 
-    public void updateProperties(KunagiProperties properties) {
-        for (Map.Entry<String, Object> entry : properties.getEntrySet()) {
+    public void updateProperties(HashMap<String,Object> properties) {
+        for (Map.Entry<String, Object> entry : properties.entrySet()) {
             String property = entry.getKey();
             if (property.equals("id")) continue;
             Object value = entry.getValue();

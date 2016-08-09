@@ -18,9 +18,9 @@ import ilarkesto.persistence.ADatob;
 import ilarkesto.persistence.AEntity;
 import ilarkesto.persistence.AStructure;
 import ilarkesto.auth.AUser;
-import ilarkesto.persistence.EntityDoesNotExistException;
+import ilarkesto.core.base.EntityDoesNotExistException;
 import ilarkesto.base.StrExtend;
-import ilarkesto.core.base.KunagiProperties;
+
 
 public abstract class GSystemConfig
             extends AEntity
@@ -36,37 +36,37 @@ public abstract class GSystemConfig
     }
 
     @Override
-    public void storeProperties(KunagiProperties properties) {
+    public void storeProperties(HashMap<String, Object> properties) {
         super.storeProperties(properties);
-        properties.putValue("url", this.url);
-        properties.putValue("adminEmail", this.adminEmail);
-        properties.putValue("googleAnalyticsId", this.googleAnalyticsId);
-        properties.putValue("smtpServer", this.smtpServer);
-        properties.putValue("smtpPort", this.smtpPort);
-        properties.putValue("smtpTls", this.smtpTls);
-        properties.putValue("smtpUser", this.smtpUser);
-        properties.putValue("smtpPassword", this.smtpPassword);
-        properties.putValue("smtpFrom", this.smtpFrom);
-        properties.putValue("instanceName", this.instanceName);
-        properties.putValue("loginPageLogoUrl", this.loginPageLogoUrl);
-        properties.putValue("loginPageMessage", this.loginPageMessage);
-        properties.putValue("registerPageMessage", this.registerPageMessage);
-        properties.putValue("aboutPageMessage", this.aboutPageMessage);
-        properties.putValue("userEmailMandatory", this.userEmailMandatory);
-        properties.putValue("registrationDisabled", this.registrationDisabled);
-        properties.putValue("projectCreationDisabled", this.projectCreationDisabled);
-        properties.putValue("defaultUserPassword", this.defaultUserPassword);
-        properties.putValue("openIdDisabled", this.openIdDisabled);
-        properties.putValue("openIdDomains", this.openIdDomains);
-        properties.putValue("versionCheckEnabled", this.versionCheckEnabled);
-        properties.putValue("ldapEnabled", this.ldapEnabled);
-        properties.putValue("ldapUrl", this.ldapUrl);
-        properties.putValue("ldapUser", this.ldapUser);
-        properties.putValue("ldapPassword", this.ldapPassword);
-        properties.putValue("ldapBaseDn", this.ldapBaseDn);
-        properties.putValue("ldapUserFilterRegex", this.ldapUserFilterRegex);
-        properties.putValue("maxFileSize", this.maxFileSize);
-        properties.putValue("subscriptionKeySeed", this.subscriptionKeySeed);
+        properties.put("url", this.url);
+        properties.put("adminEmail", this.adminEmail);
+        properties.put("googleAnalyticsId", this.googleAnalyticsId);
+        properties.put("smtpServer", this.smtpServer);
+        properties.put("smtpPort", this.smtpPort);
+        properties.put("smtpTls", this.smtpTls);
+        properties.put("smtpUser", this.smtpUser);
+        properties.put("smtpPassword", this.smtpPassword);
+        properties.put("smtpFrom", this.smtpFrom);
+        properties.put("instanceName", this.instanceName);
+        properties.put("loginPageLogoUrl", this.loginPageLogoUrl);
+        properties.put("loginPageMessage", this.loginPageMessage);
+        properties.put("registerPageMessage", this.registerPageMessage);
+        properties.put("aboutPageMessage", this.aboutPageMessage);
+        properties.put("userEmailMandatory", this.userEmailMandatory);
+        properties.put("registrationDisabled", this.registrationDisabled);
+        properties.put("projectCreationDisabled", this.projectCreationDisabled);
+        properties.put("defaultUserPassword", this.defaultUserPassword);
+        properties.put("openIdDisabled", this.openIdDisabled);
+        properties.put("openIdDomains", this.openIdDomains);
+        properties.put("versionCheckEnabled", this.versionCheckEnabled);
+        properties.put("ldapEnabled", this.ldapEnabled);
+        properties.put("ldapUrl", this.ldapUrl);
+        properties.put("ldapUser", this.ldapUser);
+        properties.put("ldapPassword", this.ldapPassword);
+        properties.put("ldapBaseDn", this.ldapBaseDn);
+        properties.put("ldapUserFilterRegex", this.ldapUserFilterRegex);
+        properties.put("maxFileSize", this.maxFileSize);
+        properties.put("subscriptionKeySeed", this.subscriptionKeySeed);
     }
 
     public int compareTo(SystemConfig other) {
@@ -1077,8 +1077,8 @@ public abstract class GSystemConfig
         setSubscriptionKeySeed((java.lang.String)value);
     }
 
-    public void updateProperties(KunagiProperties properties) {
-        for (Map.Entry<String, Object> entry : properties.getEntrySet()) {
+    public void updateProperties(HashMap <String, Object>props) {
+        for (Map.Entry<String, Object> entry : props.entrySet()) {
             String property = entry.getKey();
             if (property.equals("id")) continue;
             Object value = entry.getValue();

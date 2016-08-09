@@ -18,9 +18,9 @@ import ilarkesto.persistence.ADatob;
 import ilarkesto.persistence.AEntity;
 import ilarkesto.persistence.AStructure;
 import ilarkesto.auth.AUser;
-import ilarkesto.persistence.EntityDoesNotExistException;
+import ilarkesto.core.base.EntityDoesNotExistException;
 import ilarkesto.base.StrExtend;
-import ilarkesto.core.base.KunagiProperties;
+
 
 public abstract class GComment
             extends AEntity
@@ -36,16 +36,16 @@ public abstract class GComment
     }
 
     @Override
-    public void storeProperties(KunagiProperties properties) {
+    public void storeProperties(HashMap<String, Object> properties) {
         super.storeProperties(properties);
-        properties.putValue("parentId", this.parentId);
-        properties.putValue("authorId", this.authorId);
-        properties.putValue("published", this.published);
-        properties.putValue("authorName", this.authorName);
-        properties.putValue("authorEmail", this.authorEmail);
-        properties.putValue("authorNameVisible", this.authorNameVisible);
-        properties.putValue("text", this.text);
-        properties.putValue("dateAndTime", this.dateAndTime == null ? null : this.dateAndTime.toString());
+        properties.put("parentId", this.parentId);
+        properties.put("authorId", this.authorId);
+        properties.put("published", this.published);
+        properties.put("authorName", this.authorName);
+        properties.put("authorEmail", this.authorEmail);
+        properties.put("authorNameVisible", this.authorNameVisible);
+        properties.put("text", this.text);
+        properties.put("dateAndTime", this.dateAndTime == null ? null : this.dateAndTime.toString());
     }
 
     public int compareTo(Comment other) {
@@ -375,8 +375,8 @@ public abstract class GComment
         setDateAndTime((ilarkesto.core.time.DateAndTime)value);
     }
 
-    public void updateProperties(KunagiProperties properties) {
-        for (Map.Entry<String, Object> entry : properties.getEntrySet()) {
+    public void updateProperties(HashMap<String, Object> properties) {
+        for (Map.Entry<String, Object> entry : properties.entrySet()) {
             String property = entry.getKey();
             if (property.equals("id")) continue;
             Object value = entry.getValue();

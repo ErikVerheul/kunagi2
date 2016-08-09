@@ -19,7 +19,6 @@ import scrum.server.project.Requirement;
 
 /**
  *
- * @author erik
  */
 public class SprintHistoryHelperExtend extends scrum.client.sprint.SprintHistoryHelper {
 
@@ -29,32 +28,32 @@ public class SprintHistoryHelperExtend extends scrum.client.sprint.SprintHistory
      * @return
      */
     public static String encodeRequirementsAndTasks(Collection<Requirement> requirements) {
-		StringBuilder sb = new StringBuilder();
-		sb.append(PREFIX).append(VERSION).append("\n");
-		for (Requirement req : requirements) {
-			sb.append(encodeRequirement(req)).append("\n");
-			for (Task task : req.getTasksInSprint()) {
-				sb.append(encodeTask(task)).append("\n");
-			}
-		}
-		return sb.toString();
-	}
+        StringBuilder sb = new StringBuilder();
+        sb.append(PREFIX).append(VERSION).append("\n");
+        for (Requirement req : requirements) {
+            sb.append(encodeRequirement(req)).append("\n");
+            for (Task task : req.getTasksInSprint()) {
+                sb.append(encodeTask(task)).append("\n");
+            }
+        }
+        return sb.toString();
+    }
 
-	static String encodeRequirement(Requirement req) {
-		StringBuilder sb = new StringBuilder();
-		sb.append(req.getReference()).append(SEPARATOR);
-		sb.append(req.getEstimatedWorkAsString()).append(SEPARATOR);
-		sb.append(req.getLabel());
-		return sb.toString();
-	}
+    public static String encodeRequirement(Requirement req) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(req.getReference()).append(SEPARATOR);
+        sb.append(req.getEstimatedWorkAsString()).append(SEPARATOR);
+        sb.append(req.getLabel());
+        return sb.toString();
+    }
 
-	static String encodeTask(Task tsk) {
-		StringBuilder sb = new StringBuilder();
-		sb.append(tsk.getReference()).append(SEPARATOR);
-		sb.append(tsk.getBurnedWork()).append(SEPARATOR);
-		sb.append(tsk.getRemainingWork()).append(SEPARATOR);
-		sb.append(tsk.getLabel());
-		return sb.toString();
-	}
+    public static String encodeTask(Task tsk) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(tsk.getReference()).append(SEPARATOR);
+        sb.append(tsk.getBurnedWork()).append(SEPARATOR);
+        sb.append(tsk.getRemainingWork()).append(SEPARATOR);
+        sb.append(tsk.getLabel());
+        return sb.toString();
+    }
 
 }

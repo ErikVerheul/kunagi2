@@ -15,7 +15,6 @@
 package scrum.client.project;
 
 import com.google.gwt.user.client.ui.Widget;
-import ilarkesto.core.base.KunagiProperties;
 import ilarkesto.core.base.Str;
 import ilarkesto.core.base.Utl;
 import static ilarkesto.core.logging.ClientLog.ERROR;
@@ -32,6 +31,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -96,7 +96,7 @@ public class Project extends GProject implements ForumSupport {
      *
      * @param data
      */
-    public Project(KunagiProperties data) {
+    public Project(HashMap<String, Object> data) {
 		super(data);
 	}
 

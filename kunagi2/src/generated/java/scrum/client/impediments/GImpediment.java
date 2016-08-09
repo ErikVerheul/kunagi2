@@ -13,7 +13,6 @@
 
 package scrum.client.impediments;
 
-import ilarkesto.core.base.KunagiProperties;
 import java.util.*;
 import static ilarkesto.core.base.Utl.equalObjects;
 import static ilarkesto.core.logging.ClientLog.*;
@@ -30,7 +29,7 @@ public abstract class GImpediment
     public GImpediment() {
     }
 
-    public GImpediment(KunagiProperties data) {
+    public GImpediment(HashMap<String, Object> data) {
         super(data);
         updateProperties(data);
     }
@@ -419,28 +418,28 @@ public abstract class GImpediment
 
     // --- update properties by map ---
 
-    public void updateProperties(KunagiProperties props) {
-        projectId = (String) props.getValue("projectId");
-        number  = (Integer) props.getValue("number");
-        label  = (java.lang.String) props.getValue("label");
-        String dateAsString = (String) props.getValue("date");
+    public void updateProperties(HashMap<String, Object> props) {
+        projectId = (String) props.get("projectId");
+        number  = (Integer) props.get("number");
+        label  = (java.lang.String) props.get("label");
+        String dateAsString = (String) props.get("date");
         date  =  dateAsString == null ? null : new ilarkesto.core.time.Date(dateAsString);
-        description  = (java.lang.String) props.getValue("description");
-        solution  = (java.lang.String) props.getValue("solution");
-        closed  = (Boolean) props.getValue("closed");
+        description  = (java.lang.String) props.get("description");
+        solution  = (java.lang.String) props.get("solution");
+        closed  = (Boolean) props.get("closed");
         updateLocalModificationTime();
     }
 
     @Override
-    public void storeProperties(KunagiProperties properties) {
+    public void storeProperties(HashMap<String, Object> properties) {
         super.storeProperties(properties);
-        properties.putValue("projectId", this.projectId);
-        properties.putValue("number", this.number);
-        properties.putValue("label", this.label);
-        properties.putValue("date", this.date == null ? null : this.date.toString());
-        properties.putValue("description", this.description);
-        properties.putValue("solution", this.solution);
-        properties.putValue("closed", this.closed);
+        properties.put("projectId", this.projectId);
+        properties.put("number", this.number);
+        properties.put("label", this.label);
+        properties.put("date", this.date == null ? null : this.date.toString());
+        properties.put("description", this.description);
+        properties.put("solution", this.solution);
+        properties.put("closed", this.closed);
     }
 
     public final java.util.List<scrum.client.sprint.Task> getTasks() {

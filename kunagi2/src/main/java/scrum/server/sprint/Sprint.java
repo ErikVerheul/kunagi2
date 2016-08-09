@@ -41,55 +41,52 @@ import scrum.server.release.Release;
  */
 public class Sprint extends GSprint implements Numbered {
 
-	private static final Log log = Log.get(Sprint.class);
+    private static final Log LOG = Log.get(Sprint.class);
 
-	// --- dependencies ---
-
-	private static transient ChangeDao changeDao;
+    // --- dependencies ---
+    private static transient ChangeDao changeDao;
 
     /**
      *
      * @param changeDao
      */
     public static void setChangeDao(ChangeDao changeDao) {
-		Sprint.changeDao = changeDao;
-	}
+        Sprint.changeDao = changeDao;
+    }
 
-	// --- ---
-
+    // --- ---
     /**
      *
      * @return
      */
-    
-	public List<Requirement> getClosedRequirementsAsList() {
-		return UtlExtend.sort(getClosedRequirements(), getRequirementsOrderComparator());
-	}
+    public List<Requirement> getClosedRequirementsAsList() {
+        return UtlExtend.sort(getClosedRequirements(), getRequirementsOrderComparator());
+    }
 
     /**
      *
      * @return
      */
     public Set<Requirement> getClosedRequirements() {
-		Set<Requirement> requirements = getRequirements();
-		Iterator<Requirement> iterator = requirements.iterator();
-		while (iterator.hasNext()) {
-			Requirement requirement = iterator.next();
-			if (!requirement.isClosed()) {
-                            iterator.remove();
+        Set<Requirement> requirements = getRequirements();
+        Iterator<Requirement> iterator = requirements.iterator();
+        while (iterator.hasNext()) {
+            Requirement requirement = iterator.next();
+            if (!requirement.isClosed()) {
+                iterator.remove();
             }
-		}
-		return requirements;
-	}
+        }
+        return requirements;
+    }
 
     /**
      *
      * @return
      */
     public Release getNextRelease() {
-		List<Release> releases = new ArrayList<Release>(getReleases());
-		return releases.isEmpty() ? null : UtlExtend.getElement(releases, 0);
-	}
+        List<Release> releases = new ArrayList<>(getReleases());
+        return releases.isEmpty() ? null : UtlExtend.getElement(releases, 0);
+    }
 
     /**
      *
@@ -97,15 +94,15 @@ public class Sprint extends GSprint implements Numbered {
      * @param user
      */
     public void pullRequirement(Requirement requirement, User user) {
-		requirement.setSprint(this);
-		for (Task task : requirement.getTasksInSprint()) {
-			task.reset();
-		}
-		moveToBottom(requirement);
-		getDaySnapshot(Date.today()).updateWithCurrentSprint();
+        requirement.setSprint(this);
+        for (Task task : requirement.getTasksInSprint()) {
+            task.reset();
+        }
+        moveToBottom(requirement);
+        getDaySnapshot(Date.today()).updateWithCurrentSprint();
 
-		changeDao.postChange(requirement, user, "sprintId", null, getId());
-	}
+        changeDao.postChange(requirement, user, "sprintId", null, getId());
+    }
 
     /**
      *
@@ -113,189 +110,189 @@ public class Sprint extends GSprint implements Numbered {
      * @param user
      */
     public void kickRequirement(Requirement requirement, User user) {
-		int burned = 0;
-		for (Task task : requirement.getTasksInSprint()) {
-			burned += task.getBurnedWork();
-			task.reset();
-		}
+        int burned = 0;
+        for (Task task : requirement.getTasksInSprint()) {
+            burned += task.getBurnedWork();
+            task.reset();
+        }
 
-		requirement.setClosed(false);
-		requirement.setSprint(null);
-		requirement.setDirty(burned > 0);
-		requirement.getProject().moveRequirementToTop(requirement);
-		SprintDaySnapshot daySnapshot = getDaySnapshot(Date.today());
-		daySnapshot.addBurnedWorkFromDeleted(burned);
-		daySnapshot.updateWithCurrentSprint();
+        requirement.setClosed(false);
+        requirement.setSprint(null);
+        requirement.setDirty(burned > 0);
+        requirement.getProject().moveRequirementToTop(requirement);
+        SprintDaySnapshot daySnapshot = getDaySnapshot(Date.today());
+        daySnapshot.addBurnedWorkFromDeleted(burned);
+        daySnapshot.updateWithCurrentSprint();
 
-		changeDao.postChange(requirement, user, "sprintId", getId(), null);
-	}
+        changeDao.postChange(requirement, user, "sprintId", getId(), null);
+    }
 
     /**
      *
      * @param requirement
      */
     public void moveToBottom(Requirement requirement) {
-		List<String> orderIds = getRequirementsOrderIds();
-		orderIds.remove(requirement.getId());
-		orderIds.add(requirement.getId());
-		setRequirementsOrderIds(orderIds);
-	}
+        List<String> orderIds = getRequirementsOrderIds();
+        orderIds.remove(requirement.getId());
+        orderIds.add(requirement.getId());
+        setRequirementsOrderIds(orderIds);
+    }
 
     /**
      *
      */
     public void close() {
-		SprintReport report = sprintReportDao.postSprintReport(this);
-		report.setRequirementsOrderIds(getRequirementsOrderIds());
-		report.setBurnedWork(getBurnedWork());
+        SprintReport report = sprintReportDao.postSprintReport(this);
+        report.setRequirementsOrderIds(getRequirementsOrderIds());
+        report.setBurnedWork(getBurnedWork());
 
-		float velocity = 0;
-		StringBuilder releaseNotes = new StringBuilder();
-		releaseNotes.append("'''Stories from ").append(getReferenceAndLabel()).append("'''\n\n");
-		Collection<Requirement> completedRequirements = new ArrayList<Requirement>();
-		Collection<Requirement> incompletedRequirements = new ArrayList<Requirement>();
-		List<Requirement> requirements = new ArrayList<Requirement>(getRequirements());
-		Collections.sort(requirements, getRequirementsOrderComparator());
-		for (Requirement requirement : requirements) {
-			releaseNotes.append("* ").append(requirement.isClosed() ? "" : "(UNFINISHED) ")
-					.append(requirement.getReferenceAndLabel()).append("\n");
-			for (Task task : requirement.getTasksInSprint()) {
-				if (task.isClosed()) {
-					report.addClosedTask(task);
-				} else {
-					report.addOpenTask(task);
-				}
-			}
-			if (requirement.isClosed()) {
-				completedRequirements.add(requirement);
-				changeDao
-						.postChange(requirement, null, Change.REQ_COMPLETED_IN_SPRINT, requirement.getLabel(), getId());
-			} else {
-				getProject().addRequirementsOrderId(incompletedRequirements.size(), requirement.getId());
-				incompletedRequirements.add(requirement);
-				changeDao.postChange(requirement, null, Change.REQ_REJECTED_IN_SPRINT, requirement.getLabel(), getId());
-			}
-		}
-
-		report.setCompletedRequirements(completedRequirements);
-		report.setRejectedRequirements(incompletedRequirements);
-
-		setCompletedRequirementsData(SprintHistoryHelperExtend.encodeRequirementsAndTasks(completedRequirements));
-		setIncompletedRequirementsData(SprintHistoryHelperExtend.encodeRequirementsAndTasks(incompletedRequirements));
-
-		for (Requirement requirement : requirements) {
-			List<Task> tasks = new ArrayList<Task>(requirement.getTasksInSprint());
-			if (requirement.isClosed()) {
-				Float work = requirement.getEstimatedWork();
-				if (work != null) {
-                                    velocity += work;
+        float velocity = 0;
+        StringBuilder releaseNotes = new StringBuilder();
+        releaseNotes.append("'''Stories from ").append(getReferenceAndLabel()).append("'''\n\n");
+        Collection<Requirement> completedRequirements = new ArrayList<>();
+        Collection<Requirement> incompletedRequirements = new ArrayList<>();
+        List<Requirement> requirements = new ArrayList<>(getRequirements());
+        Collections.sort(requirements, getRequirementsOrderComparator());
+        for (Requirement requirement : requirements) {
+            releaseNotes.append("* ").append(requirement.isClosed() ? "" : "(UNFINISHED) ")
+                    .append(requirement.getReferenceAndLabel()).append("\n");
+            for (Task task : requirement.getTasksInSprint()) {
+                if (task.isClosed()) {
+                    report.addClosedTask(task);
+                } else {
+                    report.addOpenTask(task);
                 }
-			} else {
-				for (Task task : tasks) {
-					if (task.isClosed()) {
-						task.setClosedInPastSprint(this);
-					} else {
-						task.reset();
-					}
-				}
-			}
-			requirement.setSprint(null);
-		}
-
-		Set<Issue> fixedIssues = getFixedIssues();
-		if (!fixedIssues.isEmpty()) {
-			releaseNotes.append("'''\nFixed bugs'''\n\n");
-			for (Issue issue : fixedIssues) {
-				releaseNotes.append("* ").append(issue.getReferenceAndLabel()).append("\n");
-			}
-		}
-
-		for (Release release : getReleases()) {
-			StringBuilder sb = new StringBuilder();
-			if (release.isReleaseNotesSet()) {
-				sb.append(release.getReleaseNotes());
-				sb.append("\n\n");
-			}
-			sb.append(releaseNotes.toString());
-			release.setReleaseNotes(sb.toString());
-		}
-		setVelocity(velocity);
-		Project project = getProject();
-		setProductOwners(project.getProductOwners());
-		setScrumMasters(project.getScrumMasters());
-		setTeamMembers(project.getTeamMembers());
-		int roundedVelocity = Math.round(velocity);
-                if (roundedVelocity > 0) {
-                    project.setVelocity(roundedVelocity);
+            }
+            if (requirement.isClosed()) {
+                completedRequirements.add(requirement);
+                changeDao
+                        .postChange(requirement, null, Change.REQ_COMPLETED_IN_SPRINT, requirement.getLabel(), getId());
+            } else {
+                getProject().addRequirementsOrderId(incompletedRequirements.size(), requirement.getId());
+                incompletedRequirements.add(requirement);
+                changeDao.postChange(requirement, null, Change.REQ_REJECTED_IN_SPRINT, requirement.getLabel(), getId());
+            }
         }
-	}
+
+        report.setCompletedRequirements(completedRequirements);
+        report.setRejectedRequirements(incompletedRequirements);
+
+        setCompletedRequirementsData(SprintHistoryHelperExtend.encodeRequirementsAndTasks(completedRequirements));
+        setIncompletedRequirementsData(SprintHistoryHelperExtend.encodeRequirementsAndTasks(incompletedRequirements));
+
+        for (Requirement requirement : requirements) {
+            List<Task> tasks = new ArrayList<>(requirement.getTasksInSprint());
+            if (requirement.isClosed()) {
+                Float work = requirement.getEstimatedWork();
+                if (work != null) {
+                    velocity += work;
+                }
+            } else {
+                for (Task task : tasks) {
+                    if (task.isClosed()) {
+                        task.setClosedInPastSprint(this);
+                    } else {
+                        task.reset();
+                    }
+                }
+            }
+            requirement.setSprint(null);
+        }
+
+        Set<Issue> fixedIssues = getFixedIssues();
+        if (!fixedIssues.isEmpty()) {
+            releaseNotes.append("'''\nFixed bugs'''\n\n");
+            for (Issue issue : fixedIssues) {
+                releaseNotes.append("* ").append(issue.getReferenceAndLabel()).append("\n");
+            }
+        }
+
+        for (Release release : getReleases()) {
+            StringBuilder sb = new StringBuilder();
+            if (release.isReleaseNotesSet()) {
+                sb.append(release.getReleaseNotes());
+                sb.append("\n\n");
+            }
+            sb.append(releaseNotes.toString());
+            release.setReleaseNotes(sb.toString());
+        }
+        setVelocity(velocity);
+        Project project = getProject();
+        setProductOwners(project.getProductOwners());
+        setScrumMasters(project.getScrumMasters());
+        setTeamMembers(project.getTeamMembers());
+        int roundedVelocity = Math.round(velocity);
+        if (roundedVelocity > 0) {
+            project.setVelocity(roundedVelocity);
+        }
+    }
 
     /**
      *
      * @return
      */
     public Set<Issue> getFixedIssues() {
-		Set<Issue> fixedIssues = new HashSet<Issue>();
-		for (Release release : getReleases()) {
-                    for (Issue issue : release.getFixIssues()) {
-                        if (issue.isFixed()) {
+        Set<Issue> fixedIssues = new HashSet<>();
+        for (Release release : getReleases()) {
+            for (Issue issue : release.getFixIssues()) {
+                if (issue.isFixed()) {
                     fixedIssues.add(issue);
                 }
-			}
-		}
-		return fixedIssues;
-	}
+            }
+        }
+        return fixedIssues;
+    }
 
     /**
      *
      * @return
      */
     public String getProductOwnersAsString() {
-		return StrExtend.concat(User.getNames(getProductOwners()), ", ");
-	}
+        return StrExtend.concat(User.getNames(getProductOwners()), ", ");
+    }
 
     /**
      *
      * @return
      */
     public String getScrumMastersAsString() {
-		return StrExtend.concat(User.getNames(getScrumMasters()), ", ");
-	}
+        return StrExtend.concat(User.getNames(getScrumMasters()), ", ");
+    }
 
     /**
      *
      * @return
      */
     public String getTeamMembersAsString() {
-		return StrExtend.concat(User.getNames(getTeamMembers()), ", ");
-	}
+        return StrExtend.concat(User.getNames(getTeamMembers()), ", ");
+    }
 
     /**
      *
      * @return
      */
     public List<SprintDaySnapshot> getDaySnapshots() {
-		return sprintDaySnapshotDao.getSprintDaySnapshots(this);
-	}
+        return sprintDaySnapshotDao.getSprintDaySnapshots(this);
+    }
 
     /**
      *
      * @return
      */
     public Set<SprintDaySnapshot> getExistingDaySnapshots() {
-		return sprintDaySnapshotDao.getSprintDaySnapshotsBySprint(this);
-	}
+        return sprintDaySnapshotDao.getSprintDaySnapshotsBySprint(this);
+    }
 
     /**
      *
      * @return
      */
     public Integer getLengthInDays() {
-		if (!isBeginSet() || !isEndSet()) {
+        if (!isBeginSet() || !isEndSet()) {
             return null;
         }
-		return getBegin().getPeriodTo(getEnd()).toDays();
-	}
+        return getBegin().getPeriodTo(getEnd()).toDays();
+    }
 
     /**
      *
@@ -303,43 +300,41 @@ public class Sprint extends GSprint implements Numbered {
      * @return
      */
     public SprintDaySnapshot getDaySnapshot(Date date) {
-		return sprintDaySnapshotDao.getSprintDaySnapshot(this, date, true);
-	}
+        return sprintDaySnapshotDao.getSprintDaySnapshot(this, date, true);
+    }
 
     /**
      *
      * @return
      */
     public int getRemainingWork() {
-		int sum = 0;
-                for (Task task : getTasks()) {
-                    Integer effort = task.getRemainingWork();
-			if (effort != null) {
+        int sum = 0;
+        for (Task task : getTasks()) {
+            Integer effort = task.getRemainingWork();
                 sum += effort;
-            }
-		}
-		return sum;
-	}
+        }
+        return sum;
+    }
 
     /**
      *
      * @return
      */
     public int getBurnedWork() {
-		int sum = 0;
-		for (Task task : getTasks()) {
-			sum += task.getBurnedWork();
-		}
-		return sum;
-	}
+        int sum = 0;
+        for (Task task : getTasks()) {
+            sum += task.getBurnedWork();
+        }
+        return sum;
+    }
 
     /**
      *
      * @return
      */
     public Set<Task> getTasks() {
-		return taskDao.getTasksBySprint(this);
-	}
+        return taskDao.getTasksBySprint(this);
+    }
 
     /**
      *
@@ -348,112 +343,111 @@ public class Sprint extends GSprint implements Numbered {
     public String getReference() {
         return scrum.client.sprint.Sprint.REFERENCE_PREFIX + getNumber();
     }
-    
+
     /**
      *
      */
     @Override
-	public void updateNumber() {
-		if (getNumber() == 0) {
+    public void updateNumber() {
+        if (getNumber() == 0) {
             setNumber(getProject().generateSprintNumber());
         }
-	}
+    }
 
-	@Override
-	public void ensureIntegrity() {
-		super.ensureIntegrity();
-                updateNumber();
-                
-                Project project = getProject();
-                
-                if (project.isCurrentSprint(this)) {
-			if (!isBeginSet()) {
-                            setBegin(Date.today());
+    @Override
+    public void ensureIntegrity() {
+        super.ensureIntegrity();
+        updateNumber();
+
+        Project project = getProject();
+
+        if (project.isCurrentSprint(this)) {
+            if (!isBeginSet()) {
+                setBegin(Date.today());
             }
-			if (!isEndSet()) {
+            if (!isEndSet()) {
                 setEnd(getBegin().addDays(14));
             }
 
-			// auto stretch sprint
-			if (getEnd().isYesterday()) {
+            // auto stretch sprint
+            if (getEnd().isYesterday()) {
                 setEnd(Date.today());
-                        }
-                        
-                        updateNextSprintDates();
-		}
+            }
 
-                if (project.isNextSprint(this)) {
-			// auto move next sprint
-			if (isBeginSet() && getBegin().isPast()) {
-                            int len = 0;
-                            if (isEndSet()) {
+            updateNextSprintDates();
+        }
+
+        if (project.isNextSprint(this)) {
+            // auto move next sprint
+            if (isBeginSet() && getBegin().isPast()) {
+                int len = 0;
+                if (isEndSet()) {
                     len = getLengthInDays();
                 }
-				setBegin(Date.today());
-				if (len > 0) {
+                setBegin(Date.today());
+                if (len > 0) {
                     setEnd(Date.inDays(len));
                 }
-			}
-		}
+            }
+        }
 
-		if (isBeginSet() && isEndSet() && getBegin().isAfter(getEnd())) {
+        if (isBeginSet() && isEndSet() && getBegin().isAfter(getEnd())) {
             setEnd(getBegin());
         }
 
-		// delete when not current and end date older than 4 weeks
-                // if (isEndSet() && !getProject().isCurrentSprint(this) && getEnd().isPast()
-		// && getEnd().getPeriodToNow().toWeeks() > 4) {
-                // LOG.info("Deleting sprint, which ended on", getEnd(), "->", toString());
-		// getDao().deleteEntity(this);
-                // }
-                
-        }
-        
+        // delete when not current and end date older than 4 weeks
+        // if (isEndSet() && !getProject().isCurrentSprint(this) && getEnd().isPast()
+        // && getEnd().getPeriodToNow().toWeeks() > 4) {
+        // LOG.info("Deleting sprint, which ended on", getEnd(), "->", toString());
+        // getDao().deleteEntity(this);
+        // }
+    }
+
     /**
      *
      */
     public void updateNextSprintDates() {
-		Project project = getProject();
-		if (!project.isCurrentSprint(this)) {
+        Project project = getProject();
+        if (!project.isCurrentSprint(this)) {
             return;
         }
 
-		Sprint nextSprint = project.getNextSprint();
-		if (nextSprint == null) {
+        Sprint nextSprint = project.getNextSprint();
+        if (nextSprint == null) {
             return;
         }
 
-		Date nextBegin = nextSprint.getBegin();
-		if (nextBegin == null) {
+        Date nextBegin = nextSprint.getBegin();
+        if (nextBegin == null) {
             return;
         }
 
-		if (getEnd().isAfter(nextBegin)) {
-			Integer length = nextSprint.getLengthInDays();
-			nextSprint.setBegin(getEnd());
-			if (length != null) {
-				nextSprint.setEnd(nextSprint.getBegin().addDays(length));
-			}
-		}
-	}
+        if (getEnd().isAfter(nextBegin)) {
+            Integer length = nextSprint.getLengthInDays();
+            nextSprint.setBegin(getEnd());
+            if (length != null) {
+                nextSprint.setEnd(nextSprint.getBegin().addDays(length));
+            }
+        }
+    }
 
-	@Override
-	public boolean isVisibleFor(User user) {
-		return getProject().isVisibleFor(user);
-	}
+    @Override
+    public boolean isVisibleFor(User user) {
+        return getProject().isVisibleFor(user);
+    }
 
     /**
      *
      * @return
      */
     public String getReferenceAndLabel() {
-		return getReference() + " " + getLabel();
-	}
+        return getReference() + " " + getLabel();
+    }
 
-	@Override
-	public String toString() {
-		return getReferenceAndLabel();
-	}
+    @Override
+    public String toString() {
+        return getReferenceAndLabel();
+    }
 
     /**
      *
@@ -461,42 +455,42 @@ public class Sprint extends GSprint implements Numbered {
      * @param end
      */
     public void burndownTasksRandomly(Date begin, Date end) {
-		int days = getBegin().getPeriodTo(getEnd()).toDays();
-		days -= (days / 7) * 2;
-                int defaultWorkPerDay = getRemainingWork() / days;
+        int days = getBegin().getPeriodTo(getEnd()).toDays();
+        days -= (days / 7) * 2;
+        int defaultWorkPerDay = getRemainingWork() / days;
 
-		getDaySnapshot(begin).updateWithCurrentSprint();
-		begin = begin.nextDay();
-		while (begin.isBefore(end)) {
-			if (!begin.getWeekday().isWeekend()) {
-				int toBurn = UtlExtend.randomInt(0, defaultWorkPerDay + (defaultWorkPerDay * 2));
-				int totalRemaining = getRemainingWork();
-				for (Task task : getTasks()) {
-					if (toBurn == 0) {
+        getDaySnapshot(begin).updateWithCurrentSprint();
+        begin = begin.nextDay();
+        while (begin.isBefore(end)) {
+            if (!begin.getWeekday().isWeekend()) {
+                int toBurn = UtlExtend.randomInt(0, defaultWorkPerDay + (defaultWorkPerDay * 2));
+                int totalRemaining = getRemainingWork();
+                for (Task task : getTasks()) {
+                    if (toBurn == 0) {
                         break;
                     }
-					int remaining = task.getRemainingWork();
-					int burn = Math.min(toBurn, remaining);
-					remaining -= burn;
-					toBurn -= burn;
-					task.setBurnedWork(task.getBurnedWork() + burn);
-					if (UtlExtend.randomInt(1, 10) == 1) {
-						remaining += UtlExtend.randomInt(-defaultWorkPerDay * 2, defaultWorkPerDay * 3);
-					}
-					if (totalRemaining == 0) {
-                                            remaining += UtlExtend.randomInt(defaultWorkPerDay * 3, defaultWorkPerDay * 5);
-                                            totalRemaining = remaining;
-                                        }
-                                        task.setRemainingWork(remaining);
-                                }
-                        }
-                        getDaySnapshot(begin).updateWithCurrentSprint();
-                        begin = begin.nextDay();
+                    int remaining = task.getRemainingWork();
+                    int burn = Math.min(toBurn, remaining);
+                    remaining -= burn;
+                    toBurn -= burn;
+                    task.setBurnedWork(task.getBurnedWork() + burn);
+                    if (UtlExtend.randomInt(1, 10) == 1) {
+                        remaining += UtlExtend.randomInt(-defaultWorkPerDay * 2, defaultWorkPerDay * 3);
+                    }
+                    if (totalRemaining == 0) {
+                        remaining += UtlExtend.randomInt(defaultWorkPerDay * 3, defaultWorkPerDay * 5);
+                        totalRemaining = remaining;
+                    }
+                    task.setRemainingWork(remaining);
                 }
+            }
+            getDaySnapshot(begin).updateWithCurrentSprint();
+            begin = begin.nextDay();
+        }
     }
-    
+
     private transient Comparator<Requirement> requirementsOrderComparator;
-    
+
     /**
      *
      * @return
@@ -505,37 +499,37 @@ public class Sprint extends GSprint implements Numbered {
         if (requirementsOrderComparator == null) {
             requirementsOrderComparator = new Comparator<Requirement>() {
 
-			@Override
-			public int compare(Requirement a, Requirement b) {
-				List<String> order = getRequirementsOrderIds();
-				int additional = order.size();
-				int ia = order.indexOf(a.getId());
-				if (ia < 0) {
-					ia = additional;
-					additional++;
-				}
-				int ib = order.indexOf(b.getId());
-				if (ib < 0) {
-					ib = additional;
-					additional++;
-				}
-				return ia - ib;
-			}
-		};
+                @Override
+                public int compare(Requirement a, Requirement b) {
+                    List<String> order = getRequirementsOrderIds();
+                    int additional = order.size();
+                    int ia = order.indexOf(a.getId());
+                    if (ia < 0) {
+                        ia = additional;
+                        additional++;
+                    }
+                    int ib = order.indexOf(b.getId());
+                    if (ib < 0) {
+                        ib = additional;
+                        additional++;
+                    }
+                    return ia - ib;
+                }
+            };
         }
-		return requirementsOrderComparator;
-	}
+        return requirementsOrderComparator;
+    }
 
     /**
      *
      */
     public static final Comparator<Sprint> END_DATE_COMPARATOR = new Comparator<Sprint>() {
 
-		@Override
-		public int compare(Sprint a, Sprint b) {
-			return UtlExtend.compare(a.getEnd(), b.getEnd());
-		}
+        @Override
+        public int compare(Sprint a, Sprint b) {
+            return UtlExtend.compare(a.getEnd(), b.getEnd());
+        }
 
-	};
+    };
 
 }

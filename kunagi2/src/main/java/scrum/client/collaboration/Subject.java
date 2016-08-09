@@ -15,8 +15,8 @@
 package scrum.client.collaboration;
 
 import com.google.gwt.user.client.ui.Widget;
-import ilarkesto.core.base.KunagiProperties;
 import ilarkesto.gwt.client.TableBuilder;
+import java.util.HashMap;
 import scrum.client.ScrumGwt;
 import scrum.client.project.Project;
 
@@ -28,7 +28,7 @@ public class Subject extends GSubject implements ForumSupport {
 		setProject(project);
 	}
 
-	public Subject(KunagiProperties data) {
+	public Subject(HashMap<String, Object> data) {
 		super(data);
 	}
 

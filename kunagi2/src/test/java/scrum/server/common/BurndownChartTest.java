@@ -14,25 +14,26 @@
  */
 package scrum.server.common;
 
+import scrum.server.common.*;
 import ilarkesto.base.Sys;
 import ilarkesto.core.time.Date;
 import ilarkesto.io.IO;
-import ilarkesto.testng.ATest;
+import ilarkesto.junit.AjunitTest;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Test;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import scrum.client.common.WeekdaySelector;
 import scrum.server.sprint.SprintDaySnapshot;
 
-public class BurndownChartTest extends ATest {
+public class BurndownChartTest extends AjunitTest {
 
-	@BeforeSuite
-	public void init() {
+	@BeforeClass
+	public static void init() {
 		Sys.setHeadless(true);
 	}
 

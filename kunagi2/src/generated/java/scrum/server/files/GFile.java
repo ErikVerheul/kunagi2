@@ -18,9 +18,9 @@ import ilarkesto.persistence.ADatob;
 import ilarkesto.persistence.AEntity;
 import ilarkesto.persistence.AStructure;
 import ilarkesto.auth.AUser;
-import ilarkesto.persistence.EntityDoesNotExistException;
+import ilarkesto.core.base.EntityDoesNotExistException;
 import ilarkesto.base.StrExtend;
-import ilarkesto.core.base.KunagiProperties;
+
 
 public abstract class GFile
             extends AEntity
@@ -36,14 +36,14 @@ public abstract class GFile
     }
 
     @Override
-    public void storeProperties(KunagiProperties properties) {
+    public void storeProperties(HashMap<String, Object> properties) {
         super.storeProperties(properties);
-        properties.putValue("projectId", this.projectId);
-        properties.putValue("filename", this.filename);
-        properties.putValue("uploadTime", this.uploadTime == null ? null : this.uploadTime.toString());
-        properties.putValue("label", this.label);
-        properties.putValue("number", this.number);
-        properties.putValue("note", this.note);
+        properties.put("projectId", this.projectId);
+        properties.put("filename", this.filename);
+        properties.put("uploadTime", this.uploadTime == null ? null : this.uploadTime.toString());
+        properties.put("label", this.label);
+        properties.put("number", this.number);
+        properties.put("note", this.note);
     }
 
     public int compareTo(File other) {
@@ -293,8 +293,8 @@ public abstract class GFile
         setNote((java.lang.String)value);
     }
 
-    public void updateProperties(KunagiProperties properties) {
-        for (Map.Entry<String, Object> entry : properties.getEntrySet()) {
+    public void updateProperties(HashMap<String,Object> properties) {
+        for (Map.Entry<String, Object> entry : properties.entrySet()) {
             String property = (String) entry.getKey();
             if (property.equals("id")) continue;
             Object value = entry.getValue();

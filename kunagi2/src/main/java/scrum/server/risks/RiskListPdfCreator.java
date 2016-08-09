@@ -41,7 +41,7 @@ public class RiskListPdfCreator extends APdfCreator {
      * @param pdf
      */
     @Override
-	protected void build(APdfContainerElement pdf) {
+	public void build(APdfContainerElement pdf) {
 		pdf.paragraph().text("Risks", headerFonts[0]);
 
 		List<Risk> risks = new ArrayList<Risk>(project.getRisks());
@@ -68,7 +68,7 @@ public class RiskListPdfCreator extends APdfCreator {
      * @return
      */
     @Override
-	protected String getFilename() {
+	public String getFilename() {
 		return "risks";
 	}
 

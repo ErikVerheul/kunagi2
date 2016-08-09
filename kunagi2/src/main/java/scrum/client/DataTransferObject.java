@@ -21,7 +21,7 @@ import scrum.client.admin.SystemMessage;
 
 public class DataTransferObject extends ADataTransferObject implements Serializable, IsSerializable {
 
-	public ApplicationInfo applicationInfo;
-	public SystemMessage systemMessage;
-
-}
+    public ApplicationInfo applicationInfo;
+    public SystemMessage systemMessage;
+    
+    }

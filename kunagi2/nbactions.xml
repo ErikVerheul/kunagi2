@@ -9,6 +9,8 @@
                 <goal>clean</goal>
                 <goal>install</goal>
                 
+                
+                
             </goals>
         </action>
         <action>
@@ -21,5 +23,29 @@
             <activatedProfiles>
                 <activatedProfile>ScrumModeller</activatedProfile>
             </activatedProfiles>
+        </action>
+        <action>
+            <actionName>test</actionName>
+            <packagings>
+                <packaging>*</packaging>
+            </packagings>
+            <goals>
+                <goal>test</goal>
+                <goal>-X</goal>
+            </goals>
+        </action>
+        <action>
+            <actionName>test.single</actionName>
+            <packagings>
+                <packaging>*</packaging>
+            </packagings>
+            <goals>
+                <goal>test-compile</goal>
+                <goal>surefire:test</goal>
+                <goal>-e</goal>
+            </goals>
+            <properties>
+                <test>${packageClassName}</test>
+            </properties>
         </action>
     </actions>

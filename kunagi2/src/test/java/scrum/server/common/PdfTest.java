@@ -14,16 +14,18 @@
  */
 package scrum.server.common;
 
+import scrum.server.common.*;
 import ilarkesto.base.StrExtend;
 import ilarkesto.base.UtlExtend;
 import ilarkesto.core.time.Date;
 import ilarkesto.integration.itext.PdfBuilder;
+import ilarkesto.junit.AjunitTest;
 import ilarkesto.logging.Log;
-import ilarkesto.testng.ATest;
 import java.io.File;
 import java.util.Arrays;
-import org.testng.annotations.Test;
-import scrum.TestUtil;
+import junit.scrum.TestUtil;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import scrum.server.calendar.CalendarPdfCreator;
 import scrum.server.collaboration.Wikipage;
 import scrum.server.collaboration.WikipagePdfCreator;
@@ -48,229 +50,240 @@ import scrum.server.sprint.Task;
  *
  * @author erik
  */
-public class PdfTest extends ATest {
-    
+public class PdfTest extends AjunitTest {
+
     private static final Log LOG = Log.get(PdfTest.class);
 
-    /**
-     *
-     */
-    @Test
-	public void calendar() {
-		Project project = TestUtil.createProject(TestUtil.getDuke());
-
-		TestUtil.createSimpleEvent(project, 0);
-		TestUtil.createSimpleEvent(project, 10);
-		TestUtil.createSimpleEvent(project, 20);
-
-		createPdf(new CalendarPdfCreator(project, Date.today(), Date.inDays(30)));
-	}
+    static Project project;
 
     /**
      *
      */
-    @Test
-	public void riskList() {
-		Project project = TestUtil.createProject();
-
-		TestUtil.createRisk(project, 1);
-		TestUtil.createRisk(project, 2);
-		TestUtil.createRisk(project, 3);
-		TestUtil.createRisk(project, 4);
-		TestUtil.createRisk(project, 5);
-
-		createPdf(new RiskListPdfCreator(project));
-	}
+    @BeforeClass
+    public static void initglobal() {
+        TestUtil.initialize();
+        TestUtil.getApp().getSystemConfig().setUrl("http://localhost/kunagi");
+        project = TestUtil.createProject(TestUtil.getDuke());
+    }
 
     /**
      *
      */
     @Test
-	public void impedimentList() {
-		Project project = TestUtil.createProject();
+    public void calendar() {
+        Project projectLocal = TestUtil.createProject(TestUtil.getDuke());
 
-		TestUtil.createImpediment(project, 1);
-		TestUtil.createImpediment(project, 2);
+        TestUtil.createSimpleEvent(projectLocal, 0);
+        TestUtil.createSimpleEvent(projectLocal, 10);
+        TestUtil.createSimpleEvent(projectLocal, 20);
 
-		Impediment imp3 = TestUtil.createImpediment(project, 3);
-		imp3.setSolution(StrExtend.generateRandomParagraphs(2));
-
-		Impediment imp4 = TestUtil.createImpediment(project, 4);
-		Requirement req1 = TestUtil.createRequirement(project, 1);
-		TestUtil.createTask(req1, 1, 3, 0).setImpediment(imp4);
-		TestUtil.createTask(req1, 2, 1, 0).setImpediment(imp4);
-
-		TestUtil.createImpediment(project, 5);
-
-		createPdf(new ImpedimentListPdfCreator(project));
-	}
+        createPdf(new CalendarPdfCreator(projectLocal, Date.today(), Date.inDays(30)));
+    }
 
     /**
      *
      */
     @Test
-	public void sprintBacklog() {
-		Project project = TestUtil.createProject();
+    public void riskList() {
+        Project projectLocal = TestUtil.createProject();
 
-		Sprint sprint = TestUtil.createSprint(project, Date.today());
-		project.setCurrentSprint(sprint);
+        TestUtil.createRisk(projectLocal, 1);
+        TestUtil.createRisk(projectLocal, 2);
+        TestUtil.createRisk(projectLocal, 3);
+        TestUtil.createRisk(projectLocal, 4);
+        TestUtil.createRisk(projectLocal, 5);
 
-		Requirement req1 = TestUtil.createRequirement(project, 1);
-		req1.setEstimatedWork(3f);
-		req1.setDirty(false);
-		TestUtil.createTasks(req1, UtlExtend.randomInt(1, 10));
-		req1.setSprint(sprint);
-
-		Requirement req2 = TestUtil.createRequirement(project, 2);
-		req2.setEstimatedWork(0.5f);
-		req2.setDirty(false);
-		TestUtil.createTasks(req1, UtlExtend.randomInt(0, 2));
-		TestUtil.createTask(req2, 666, 1, 0).setImpediment(TestUtil.createImpediment(project, 666));
-		req2.setSprint(sprint);
-
-		createPdf(new SprintBacklogPdfCreator(project));
-	}
+        createPdf(new RiskListPdfCreator(projectLocal));
+    }
 
     /**
      *
      */
     @Test
-	public void productBacklog() {
-		Project project = TestUtil.createProject();
+    public void impedimentList() {
+        Project ProjectLocal = TestUtil.createProject();
 
-		TestUtil.createRequirement(project, 1).setEstimatedWork(3f);
-		TestUtil.createRequirement(project, 2);
+        TestUtil.createImpediment(ProjectLocal, 1);
+        TestUtil.createImpediment(ProjectLocal, 2);
 
-		createPdf(new ProductBacklogPdfCreator(project));
-	}
+        Impediment imp3 = TestUtil.createImpediment(ProjectLocal, 3);
+        imp3.setSolution(StrExtend.generateRandomParagraphs(2));
 
-    /**
-     *
-     */
-    @Test
-	public void qualityBacklog() {
-		Project project = TestUtil.createProject();
+        Impediment imp4 = TestUtil.createImpediment(ProjectLocal, 4);
+        Requirement req1 = TestUtil.createRequirement(ProjectLocal, 1);
+        TestUtil.createTask(req1, 1, 3, 0).setImpediment(imp4);
+        TestUtil.createTask(req1, 2, 1, 0).setImpediment(imp4);
 
-		TestUtil.createQuality(project, 1);
-		TestUtil.createQuality(project, 2);
-		TestUtil.createQuality(project, 3);
+        TestUtil.createImpediment(ProjectLocal, 5);
 
-		createPdf(new QualityBacklogPdfCreator(project));
-	}
+        createPdf(new ImpedimentListPdfCreator(ProjectLocal));
+    }
 
     /**
      *
      */
     @Test
-	public void bugList() {
-		Project project = TestUtil.createProject();
+    public void sprintBacklog() {
+        Project project = TestUtil.createProject();
 
-		TestUtil.createBug(project, 1);
-		TestUtil.createBug(project, 2).setOwner(TestUtil.getDuke());
+        Sprint sprint = TestUtil.createSprint(project, Date.today());
+        project.setCurrentSprint(sprint);
 
-		Issue bug3 = TestUtil.createBug(project, 3);
-		bug3.setOwner(TestUtil.getDuke());
-		bug3.setFixDate(Date.beforeDays(2));
+        Requirement req1 = TestUtil.createRequirement(project, 1);
+        req1.setEstimatedWork(3f);
+        req1.setDirty(false);
+        TestUtil.createTasks(req1, UtlExtend.randomInt(1, 10));
+        req1.setSprint(sprint);
 
-		createPdf(new BugListPdfCreator(project));
-	}
+        Requirement req2 = TestUtil.createRequirement(project, 2);
+        req2.setEstimatedWork(0.5f);
+        req2.setDirty(false);
+        TestUtil.createTasks(req1, UtlExtend.randomInt(0, 2));
+        TestUtil.createTask(req2, 666, 1, 0).setImpediment(TestUtil.createImpediment(project, 666));
+        req2.setSprint(sprint);
 
-    /**
-     *
-     */
-    @Test
-	public void ideaList() {
-		Project project = TestUtil.createProject();
-
-		TestUtil.createIssue(project, 1).setAcceptDate(Date.today());
-		TestUtil.createIssue(project, 2).setAcceptDate(Date.today());
-		TestUtil.createIssue(project, 3).setAcceptDate(Date.today());
-
-		createPdf(new IdeaListPdfCreator(project));
-	}
+        createPdf(new SprintBacklogPdfCreator(project));
+    }
 
     /**
      *
      */
     @Test
-	public void releasePlan() {
-		Project project = TestUtil.createProject();
+    public void productBacklog() {
+        Project projectLocal = TestUtil.createProject();
 
-		TestUtil.createRelease(project, 1);
-		TestUtil.createRelease(project, 2);
-		TestUtil.createRelease(project, 3);
+        TestUtil.createRequirement(projectLocal, 1).setEstimatedWork(3f);
+        TestUtil.createRequirement(projectLocal, 2);
 
-		createPdf(new ReleasePlanPdfCreator(project));
-	}
-
-    /**
-     *
-     */
-    @Test
-	public void releaseHistory() {
-		Project project = TestUtil.createProject();
-
-		TestUtil.createRelease(project, 1).setReleased(true);
-		TestUtil.createRelease(project, 2).setReleased(true);
-		TestUtil.createRelease(project, 3).setReleased(true);
-
-		createPdf(new ReleaseHistoryPdfCreator(project));
-	}
+        createPdf(new ProductBacklogPdfCreator(projectLocal));
+    }
 
     /**
      *
      */
     @Test
-	public void sprintReport() {
-		Project project = TestUtil.createProject();
-		project.addProductOwners(Arrays.asList(TestUtil.createUser("Cartman")));
-		project.addScrumMasters(Arrays.asList(TestUtil.createUser("Homer")));
-		project.addTeamMembers(Arrays.asList(TestUtil.createUser("Alfred"), TestUtil.createUser("Duke")));
+    public void qualityBacklog() {
+        Project projectLocal = TestUtil.createProject();
 
-		Sprint sprint = new Sprint();
-		sprint.setProject(project);
-		sprint.setEnd(Date.beforeDays(3));
-		sprint.setBegin(sprint.getEnd().addDays(-30));
-		sprint.setLabel("Productivity Boost Sprint ä ü ö ß Mirosław");
-		sprint.setGoal(StrExtend.generateRandomSentence(3, 15));
-		sprint.setPlanningNote(StrExtend.generateRandomParagraphs(2));
-		sprint.setReviewNote(StrExtend.generateRandomParagraphs(2));
-		sprint.setRetrospectiveNote(StrExtend.generateRandomParagraphs(2));
-		sprint.setVelocity(666f);
+        TestUtil.createQuality(projectLocal, 1);
+        TestUtil.createQuality(projectLocal, 2);
+        TestUtil.createQuality(projectLocal, 3);
 
-		Requirement req1 = TestUtil.createRequirement(sprint, 1, 0.5f);
-		Task tsk1 = TestUtil.createTask(req1, 1, 0, 1);
-		tsk1.setDescription(StrExtend.generateRandomParagraphs(3));
-		req1.setClosed(true);
-
-//		Requirement req2 = TestUtil.createRequirement(sprint, 2, 1f);
-
-		Requirement req3 = TestUtil.createRequirement(sprint, 3, 5f);
-		TestUtil.createTask(req3, 2, 1, 1);
-		TestUtil.createTask(req3, 3, 2, 2);
-
-		sprint.close();
-
-		createPdf(new SprintReportPdfCreator(sprint));
-	}
+        createPdf(new QualityBacklogPdfCreator(projectLocal));
+    }
 
     /**
      *
      */
     @Test
-	public void wikipage() {
-		Wikipage wikipage = new Wikipage();
-		wikipage.setName("wikipage");
-		wikipage.setText("= Test Wiki Page =\n\nTest wiki page.\nTest wiki page. Test wiki page. Test wiki page. Test wiki page. Test wiki page. Test wiki page. Test wiki page. Test wiki page. Test wiki page. ");
-		createPdf(new WikipagePdfCreator(wikipage));
-	}
+    public void bugList() {
+        Project projectLocal = TestUtil.createProject();
 
-	private void createPdf(APdfCreator creator) {
-		PdfBuilder pdf = new PdfBuilder();
-		creator.build(pdf);
-		File file = new File(OUTPUT_DIR + "/" + creator.getFilename() + ".pdf");
-		LOG.debug("Writing PDF:", file);
-		pdf.write(file);
-	}
+        TestUtil.createBug(projectLocal, 1);
+        TestUtil.createBug(projectLocal, 2).setOwner(TestUtil.getDuke());
+
+        Issue bug3 = TestUtil.createBug(projectLocal, 3);
+        bug3.setOwner(TestUtil.getDuke());
+        bug3.setFixDate(Date.beforeDays(2));
+
+        createPdf(new BugListPdfCreator(projectLocal));
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void ideaList() {
+        Project projectLocal = TestUtil.createProject();
+
+        TestUtil.createIssue(projectLocal, 1).setAcceptDate(Date.today());
+        TestUtil.createIssue(projectLocal, 2).setAcceptDate(Date.today());
+        TestUtil.createIssue(projectLocal, 3).setAcceptDate(Date.today());
+
+        createPdf(new IdeaListPdfCreator(projectLocal));
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void releasePlan() {
+        Project projectLocal = TestUtil.createProject();
+
+        TestUtil.createRelease(projectLocal, 1);
+        TestUtil.createRelease(projectLocal, 2);
+        TestUtil.createRelease(projectLocal, 3);
+
+        createPdf(new ReleasePlanPdfCreator(projectLocal));
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void releaseHistory() {
+        Project projectLocal = TestUtil.createProject();
+
+        TestUtil.createRelease(projectLocal, 1).setReleased(true);
+        TestUtil.createRelease(projectLocal, 2).setReleased(true);
+        TestUtil.createRelease(projectLocal, 3).setReleased(true);
+
+        createPdf(new ReleaseHistoryPdfCreator(projectLocal));
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void sprintReport() {
+        Project projectLocal = TestUtil.createProject();
+        projectLocal.addProductOwners(Arrays.asList(TestUtil.createUser("Cartman")));
+        projectLocal.addScrumMasters(Arrays.asList(TestUtil.createUser("Homer")));
+        projectLocal.addTeamMembers(Arrays.asList(TestUtil.createUser("Alfred"), TestUtil.createUser("Duke")));
+
+        Sprint sprint = new Sprint();
+        sprint.setProject(projectLocal);
+        sprint.setEnd(Date.beforeDays(3));
+        sprint.setBegin(sprint.getEnd().addDays(-30));
+        sprint.setLabel("Productivity Boost Sprint ä ü ö ß Mirosław");
+        sprint.setGoal(StrExtend.generateRandomSentence(3, 15));
+        sprint.setPlanningNote(StrExtend.generateRandomParagraphs(2));
+        sprint.setReviewNote(StrExtend.generateRandomParagraphs(2));
+        sprint.setRetrospectiveNote(StrExtend.generateRandomParagraphs(2));
+        sprint.setVelocity(666f);
+
+        Requirement req1 = TestUtil.createRequirement(sprint, 1, 0.5f);
+        Task tsk1 = TestUtil.createTask(req1, 1, 0, 1);
+        tsk1.setDescription(StrExtend.generateRandomParagraphs(3));
+        req1.setClosed(true);
+
+        Requirement req2 = TestUtil.createRequirement(sprint, 2, 1f);
+        Requirement req3 = TestUtil.createRequirement(sprint, 3, 5f);
+        TestUtil.createTask(req2, 2, 1, 1);
+        TestUtil.createTask(req3, 3, 2, 2);
+
+        sprint.close();
+
+        createPdf(new SprintReportPdfCreator(sprint));
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void wikipage() {
+        Wikipage wikipage = new Wikipage();
+        wikipage.setName("wikipage");
+        wikipage.setText("= Test Wiki Page =\n\nTest wiki page.\nTest wiki page. Test wiki page. Test wiki page. Test wiki page. Test wiki page. Test wiki page. Test wiki page. Test wiki page. Test wiki page. ");
+        createPdf(new WikipagePdfCreator(wikipage));
+    }
+
+    private void createPdf(APdfCreator creator) {
+        PdfBuilder pdf = new PdfBuilder();
+        creator.build(pdf);
+        File file = new File(OUTPUT_DIR + "/" + creator.getFilename() + ".pdf");
+        LOG.debug("Writing PDF:", file);
+        pdf.write(file);
+    }
 
 }

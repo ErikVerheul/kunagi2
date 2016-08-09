@@ -16,10 +16,10 @@ package ilarkesto.persistence;
 
 import ilarkesto.auth.AUser;
 import ilarkesto.base.Iconized;
-import ilarkesto.core.base.KunagiProperties;
 import ilarkesto.core.time.DateAndTime;
 import static ilarkesto.core.time.DateAndTime.now;
 import ilarkesto.id.Identifiable;
+import java.util.HashMap;
 import static java.util.UUID.randomUUID;
 
 /**
@@ -182,9 +182,9 @@ public abstract class AEntity extends ADatob implements Identifiable, Iconized {
      * @param properties
      */
     @Override
-    protected void storeProperties(KunagiProperties properties) {
-        properties.putValue("id", getId());
-        properties.putValue("@type", getDao().getEntityName());
+    protected void storeProperties(HashMap<String, Object> properties) {
+        properties.put("id", getId());
+        properties.put("@type", getDao().getEntityName());
     }
 
     @Override

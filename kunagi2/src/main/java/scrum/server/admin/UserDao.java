@@ -28,7 +28,7 @@ import scrum.server.ScrumWebApplication;
  */
 public class UserDao extends GUserDao {
 
-	private static final Log log = Log.get(UserDao.class);
+	private static final Log LOG = Log.get(UserDao.class);
 
 	@Override
 	public User postUser(String name, String password) {
@@ -49,7 +49,7 @@ public class UserDao extends GUserDao {
 		user.setPassword(password);
 		user.tryUpdateByGravatar();
 		saveEntity(user);
-		log.info("User created:", user);
+		LOG.info("postUser: User created:", user);
 		return user;
 	}
 
@@ -116,7 +116,7 @@ public class UserDao extends GUserDao {
 		user.setPassword(StrExtend.generatePassword(10));
 		user.tryUpdateByGravatar();
 		saveEntity(user);
-		log.info("User created:", user);
+		LOG.info("postUserWithOpenId: User created:", user);
 		return user;
 	}
 

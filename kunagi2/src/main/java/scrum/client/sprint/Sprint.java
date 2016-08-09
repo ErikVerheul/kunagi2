@@ -16,7 +16,6 @@ package scrum.client.sprint;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.Widget;
-import ilarkesto.core.base.KunagiProperties;
 import ilarkesto.core.base.Utl;
 import ilarkesto.core.scope.Scope;
 import ilarkesto.core.time.Date;
@@ -27,6 +26,7 @@ import ilarkesto.gwt.client.editor.ATextEditorModel;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import scrum.client.ScrumGwt;
 import scrum.client.admin.Auth;
@@ -71,7 +71,7 @@ public class Sprint extends GSprint implements ForumSupport, ReferenceSupport, L
      *
      * @param data
      */
-    public Sprint(KunagiProperties data) {
+    public Sprint(HashMap<String, Object> data) {
 		super(data);
 	}
 

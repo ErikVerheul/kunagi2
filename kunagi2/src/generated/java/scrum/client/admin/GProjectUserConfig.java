@@ -13,7 +13,6 @@
 
 package scrum.client.admin;
 
-import ilarkesto.core.base.KunagiProperties;
 import java.util.*;
 import static ilarkesto.core.base.Utl.equalObjects;
 import static ilarkesto.core.logging.ClientLog.*;
@@ -32,7 +31,7 @@ public abstract class GProjectUserConfig
     public GProjectUserConfig() {
     }
 
-    public GProjectUserConfig(KunagiProperties data) {
+    public GProjectUserConfig(HashMap<String, Object> data) {
         super(data);
         updateProperties(data);
     }
@@ -818,50 +817,50 @@ public abstract class GProjectUserConfig
 
     // --- update properties by map ---
 
-    public void updateProperties(KunagiProperties props) {
-        projectId = (String) props.getValue("projectId");
-        userId = (String) props.getValue("userId");
-        color  = (java.lang.String) props.getValue("color");
-        receiveEmailsOnProjectEvents  = (Boolean) props.getValue("receiveEmailsOnProjectEvents");
-        misconducts  = (Integer) props.getValue("misconducts");
-        richtextAutosaveText  = (java.lang.String) props.getValue("richtextAutosaveText");
-        richtextAutosaveField  = (java.lang.String) props.getValue("richtextAutosaveField");
-        selectedEntitysIds  = (java.util.List<java.lang.String>) props.getValue("selectedEntitysIds");
-        online  = (Boolean) props.getValue("online");
-        String lastActivityDateAndTimeAsString = (String) props.getValue("lastActivityDateAndTime");
+    public void updateProperties(HashMap<String, Object> props) {
+        projectId = (String) props.get("projectId");
+        userId = (String) props.get("userId");
+        color  = (java.lang.String) props.get("color");
+        receiveEmailsOnProjectEvents  = (Boolean) props.get("receiveEmailsOnProjectEvents");
+        misconducts  = (Integer) props.get("misconducts");
+        richtextAutosaveText  = (java.lang.String) props.get("richtextAutosaveText");
+        richtextAutosaveField  = (java.lang.String) props.get("richtextAutosaveField");
+        selectedEntitysIds  = (java.util.List<java.lang.String>) props.get("selectedEntitysIds");
+        online  = (Boolean) props.get("online");
+        String lastActivityDateAndTimeAsString = (String) props.get("lastActivityDateAndTime");
         lastActivityDateAndTime  =  lastActivityDateAndTimeAsString == null ? null : new ilarkesto.core.time.DateAndTime(lastActivityDateAndTimeAsString);
-        pblFilterThemes  = (java.util.List<java.lang.String>) props.getValue("pblFilterThemes");
-        pblFilterQualitysIds = (Set<String>) props.getValue("pblFilterQualitysIds");
-        String pblFilterDateFromAsString = (String) props.getValue("pblFilterDateFrom");
+        pblFilterThemes  = (java.util.List<java.lang.String>) props.get("pblFilterThemes");
+        pblFilterQualitysIds = (Set<String>) props.get("pblFilterQualitysIds");
+        String pblFilterDateFromAsString = (String) props.get("pblFilterDateFrom");
         pblFilterDateFrom  =  pblFilterDateFromAsString == null ? null : new ilarkesto.core.time.Date(pblFilterDateFromAsString);
-        String pblFilterDateToAsString = (String) props.getValue("pblFilterDateTo");
+        String pblFilterDateToAsString = (String) props.get("pblFilterDateTo");
         pblFilterDateTo  =  pblFilterDateToAsString == null ? null : new ilarkesto.core.time.Date(pblFilterDateToAsString);
-        pblFilterEstimationFrom  = (java.lang.Float) props.getValue("pblFilterEstimationFrom");
-        pblFilterEstimationTo  = (java.lang.Float) props.getValue("pblFilterEstimationTo");
-        pblFilterText  = (java.lang.String) props.getValue("pblFilterText");
+        pblFilterEstimationFrom  = (java.lang.Float) props.get("pblFilterEstimationFrom");
+        pblFilterEstimationTo  = (java.lang.Float) props.get("pblFilterEstimationTo");
+        pblFilterText  = (java.lang.String) props.get("pblFilterText");
         updateLocalModificationTime();
     }
 
     @Override
-    public void storeProperties(KunagiProperties properties) {
+    public void storeProperties(HashMap<String, Object> properties) {
         super.storeProperties(properties);
-        properties.putValue("projectId", this.projectId);
-        properties.putValue("userId", this.userId);
-        properties.putValue("color", this.color);
-        properties.putValue("receiveEmailsOnProjectEvents", this.receiveEmailsOnProjectEvents);
-        properties.putValue("misconducts", this.misconducts);
-        properties.putValue("richtextAutosaveText", this.richtextAutosaveText);
-        properties.putValue("richtextAutosaveField", this.richtextAutosaveField);
-        properties.putValue("selectedEntitysIds", this.selectedEntitysIds);
-        properties.putValue("online", this.online);
-        properties.putValue("lastActivityDateAndTime", this.lastActivityDateAndTime == null ? null : this.lastActivityDateAndTime.toString());
-        properties.putValue("pblFilterThemes", this.pblFilterThemes);
-        properties.putValue("pblFilterQualitysIds", this.pblFilterQualitysIds);
-        properties.putValue("pblFilterDateFrom", this.pblFilterDateFrom == null ? null : this.pblFilterDateFrom.toString());
-        properties.putValue("pblFilterDateTo", this.pblFilterDateTo == null ? null : this.pblFilterDateTo.toString());
-        properties.putValue("pblFilterEstimationFrom", this.pblFilterEstimationFrom);
-        properties.putValue("pblFilterEstimationTo", this.pblFilterEstimationTo);
-        properties.putValue("pblFilterText", this.pblFilterText);
+        properties.put("projectId", this.projectId);
+        properties.put("userId", this.userId);
+        properties.put("color", this.color);
+        properties.put("receiveEmailsOnProjectEvents", this.receiveEmailsOnProjectEvents);
+        properties.put("misconducts", this.misconducts);
+        properties.put("richtextAutosaveText", this.richtextAutosaveText);
+        properties.put("richtextAutosaveField", this.richtextAutosaveField);
+        properties.put("selectedEntitysIds", this.selectedEntitysIds);
+        properties.put("online", this.online);
+        properties.put("lastActivityDateAndTime", this.lastActivityDateAndTime == null ? null : this.lastActivityDateAndTime.toString());
+        properties.put("pblFilterThemes", this.pblFilterThemes);
+        properties.put("pblFilterQualitysIds", this.pblFilterQualitysIds);
+        properties.put("pblFilterDateFrom", this.pblFilterDateFrom == null ? null : this.pblFilterDateFrom.toString());
+        properties.put("pblFilterDateTo", this.pblFilterDateTo == null ? null : this.pblFilterDateTo.toString());
+        properties.put("pblFilterEstimationFrom", this.pblFilterEstimationFrom);
+        properties.put("pblFilterEstimationTo", this.pblFilterEstimationTo);
+        properties.put("pblFilterText", this.pblFilterText);
     }
 
 }

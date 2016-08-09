@@ -13,7 +13,6 @@
 
 package scrum.client.collaboration;
 
-import ilarkesto.core.base.KunagiProperties;
 import java.util.*;
 import static ilarkesto.core.base.Utl.equalObjects;
 import static ilarkesto.core.logging.ClientLog.*;
@@ -30,7 +29,7 @@ public abstract class GSubject
     public GSubject() {
     }
 
-    public GSubject(KunagiProperties data) {
+    public GSubject(HashMap<String, Object> data) {
         super(data);
         updateProperties(data);
     }
@@ -252,21 +251,21 @@ public abstract class GSubject
 
     // --- update properties by map ---
 
-    public void updateProperties(KunagiProperties props) {
-        projectId = (String) props.getValue("projectId");
-        label  = (java.lang.String) props.getValue("label");
-        text  = (java.lang.String) props.getValue("text");
-        number  = (Integer) props.getValue("number");
+    public void updateProperties(HashMap<String, Object> props) {
+        projectId = (String) props.get("projectId");
+        label  = (java.lang.String) props.get("label");
+        text  = (java.lang.String) props.get("text");
+        number  = (Integer) props.get("number");
         updateLocalModificationTime();
     }
 
     @Override
-    public void storeProperties(KunagiProperties properties) {
+    public void storeProperties(HashMap<String, Object> properties) {
         super.storeProperties(properties);
-        properties.putValue("projectId", this.projectId);
-        properties.putValue("label", this.label);
-        properties.putValue("text", this.text);
-        properties.putValue("number", this.number);
+        properties.put("projectId", this.projectId);
+        properties.put("label", this.label);
+        properties.put("text", this.text);
+        properties.put("number", this.number);
     }
 
     @Override

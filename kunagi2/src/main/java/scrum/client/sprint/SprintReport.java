@@ -1,6 +1,6 @@
 package scrum.client.sprint;
 
-import ilarkesto.core.base.KunagiProperties;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -19,7 +19,7 @@ public class SprintReport extends GSprintReport {
      *
      * @param data
      */
-    public SprintReport(KunagiProperties data) {
+    public SprintReport(HashMap<String, Object> data) {
 		super(data);
 	}
 

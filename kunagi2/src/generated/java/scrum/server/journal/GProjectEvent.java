@@ -18,9 +18,9 @@ import ilarkesto.persistence.ADatob;
 import ilarkesto.persistence.AEntity;
 import ilarkesto.persistence.AStructure;
 import ilarkesto.auth.AUser;
-import ilarkesto.persistence.EntityDoesNotExistException;
+import ilarkesto.core.base.EntityDoesNotExistException;
 import ilarkesto.base.StrExtend;
-import ilarkesto.core.base.KunagiProperties;
+
 
 public abstract class GProjectEvent
             extends AEntity
@@ -36,12 +36,12 @@ public abstract class GProjectEvent
     }
 
     @Override
-    public void storeProperties(KunagiProperties properties) {
+    public void storeProperties(HashMap<String, Object> properties) {
         super.storeProperties(properties);
-        properties.putValue("projectId", this.projectId);
-        properties.putValue("label", this.label);
-        properties.putValue("subjectId", this.subjectId);
-        properties.putValue("dateAndTime", this.dateAndTime == null ? null : this.dateAndTime.toString());
+        properties.put("projectId", this.projectId);
+        properties.put("label", this.label);
+        properties.put("subjectId", this.subjectId);
+        properties.put("dateAndTime", this.dateAndTime == null ? null : this.dateAndTime.toString());
     }
 
     public int compareTo(ProjectEvent other) {
@@ -239,8 +239,8 @@ public abstract class GProjectEvent
         setDateAndTime((ilarkesto.core.time.DateAndTime)value);
     }
 
-    public void updateProperties(KunagiProperties properties) {
-        for (Map.Entry<String, Object> entry : properties.getEntrySet()) {
+    public void updateProperties(HashMap<String,Object> properties) {
+        for (Map.Entry<String, Object> entry : properties.entrySet()) {
             String property = entry.getKey();
             if (property.equals("id")) continue;
             Object value = entry.getValue();

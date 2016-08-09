@@ -18,9 +18,9 @@ import ilarkesto.persistence.ADatob;
 import ilarkesto.persistence.AEntity;
 import ilarkesto.persistence.AStructure;
 import ilarkesto.auth.AUser;
-import ilarkesto.persistence.EntityDoesNotExistException;
+import ilarkesto.core.base.EntityDoesNotExistException;
 import ilarkesto.base.StrExtend;
-import ilarkesto.core.base.KunagiProperties;
+
 
 public abstract class GRelease
             extends AEntity
@@ -36,20 +36,20 @@ public abstract class GRelease
     }
 
     @Override
-    public void storeProperties(KunagiProperties properties) {
+    public void storeProperties(HashMap<String, Object> properties) {
         super.storeProperties(properties);
-        properties.putValue("projectId", this.projectId);
-        properties.putValue("parentReleaseId", this.parentReleaseId);
-        properties.putValue("sprintsIds", this.sprintsIds);
-        properties.putValue("number", this.number);
-        properties.putValue("label", this.label);
-        properties.putValue("note", this.note);
-        properties.putValue("releaseDate", this.releaseDate == null ? null : this.releaseDate.toString());
-        properties.putValue("released", this.released);
-        properties.putValue("releaseNotes", this.releaseNotes);
-        properties.putValue("scmTag", this.scmTag);
-        properties.putValue("scriptRunning", this.scriptRunning);
-        properties.putValue("scriptOutput", this.scriptOutput);
+        properties.put("projectId", this.projectId);
+        properties.put("parentReleaseId", this.parentReleaseId);
+        properties.put("sprintsIds", this.sprintsIds);
+        properties.put("number", this.number);
+        properties.put("label", this.label);
+        properties.put("note", this.note);
+        properties.put("releaseDate", this.releaseDate == null ? null : this.releaseDate.toString());
+        properties.put("released", this.released);
+        properties.put("releaseNotes", this.releaseNotes);
+        properties.put("scmTag", this.scmTag);
+        properties.put("scriptRunning", this.scriptRunning);
+        properties.put("scriptOutput", this.scriptOutput);
     }
 
     public int compareTo(Release other) {
@@ -590,8 +590,8 @@ public abstract class GRelease
         setScriptOutput((java.lang.String)value);
     }
 
-    public void updateProperties(KunagiProperties properties) {
-        for (Map.Entry<String, Object> entry : properties.getEntrySet()) {
+    public void updateProperties(HashMap<String,Object> properties) {
+        for (Map.Entry<String, Object> entry : properties.entrySet()) {
             String property = entry.getKey();
             if (property.equals("id")) continue;
             Object value = entry.getValue();

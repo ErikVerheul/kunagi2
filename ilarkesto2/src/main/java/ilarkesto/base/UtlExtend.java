@@ -204,7 +204,7 @@ public class UtlExtend extends ilarkesto.core.base.Utl {
      * @return
      */
     public static String toStringWithType(Object o) {
-		return o == null ? "?: null" : o.getClass().getSimpleName() + ": " + toString(o);
+		return null == o ? "?: null" : o.getClass().getSimpleName() + ": " + toString(o);
 	}
 
     /**

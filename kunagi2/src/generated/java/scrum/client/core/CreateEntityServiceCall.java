@@ -2,15 +2,15 @@
 
 package scrum.client.core;
 
-import ilarkesto.core.base.KunagiProperties;
+import java.util.HashMap;
 
 public class CreateEntityServiceCall extends scrum.client.core.AServiceCall {
 
     private String type;
 
-    private KunagiProperties properties;
+    private HashMap<String, Object> properties;
 
-    public  CreateEntityServiceCall(String type, KunagiProperties properties) {
+    public  CreateEntityServiceCall(String type, HashMap<String, Object> properties) {
         this.type = type;
         this.properties = properties;
     }

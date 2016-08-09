@@ -1,17 +1,17 @@
 // // ----------> GENERATED FILE - DON'T TOUCH! <----------
 package scrum.client.core;
 
-import ilarkesto.core.base.KunagiProperties;
 import static ilarkesto.core.logging.ClientLog.DEBUG;
 import java.io.Serializable;
+import java.util.HashMap;
 
 public class ChangePropertiesServiceCall extends scrum.client.core.AServiceCall {
 
     private final String entityId;
 
-    private KunagiProperties props = null;
+    private HashMap<String, Object> props = null;
 
-    public ChangePropertiesServiceCall(String entityId, KunagiProperties properties) {
+    public ChangePropertiesServiceCall(String entityId, HashMap<String, Object> properties) {
         this.entityId = entityId;
         this.props = properties;      
     }

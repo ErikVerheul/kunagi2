@@ -16,12 +16,12 @@ package ilarkesto.mda.legacy.generator;
 
 import static ilarkesto.base.StrExtend.lowercaseFirstLetter;
 import static ilarkesto.base.StrExtend.uppercaseFirstLetter;
+import ilarkesto.core.base.EntityDoesNotExistException;
 import ilarkesto.core.time.Date;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.core.time.Time;
 import ilarkesto.gwt.client.AGwtDao;
 import ilarkesto.gwt.client.AGwtEntity;
-import ilarkesto.gwt.client.EntityDoesNotExistException;
 import ilarkesto.mda.legacy.model.ApplicationModel;
 import ilarkesto.mda.legacy.model.EntityModel;
 import ilarkesto.mda.legacy.model.PropertyModel;

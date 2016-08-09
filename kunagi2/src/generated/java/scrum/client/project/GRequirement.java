@@ -13,7 +13,6 @@
 
 package scrum.client.project;
 
-import ilarkesto.core.base.KunagiProperties;
 import java.util.*;
 import static ilarkesto.core.base.Utl.equalObjects;
 import static ilarkesto.core.logging.ClientLog.*;
@@ -32,7 +31,7 @@ public abstract class GRequirement
     public GRequirement() {
     }
 
-    public GRequirement(KunagiProperties data) {
+    public GRequirement(HashMap<String, Object> data) {
         super(data);
         updateProperties(data);
     }
@@ -786,48 +785,48 @@ public abstract class GRequirement
 
     // --- update properties by map ---
 
-    public void updateProperties(KunagiProperties props) {
-        projectId = (String) props.getValue("projectId");
-        sprintId = (String) props.getValue("sprintId");
-        issueId = (String) props.getValue("issueId");
-        number  = (Integer) props.getValue("number");
-        qualitysIds = (Set<String>) props.getValue("qualitysIds");
-        label  = (java.lang.String) props.getValue("label");
-        description  = (java.lang.String) props.getValue("description");
-        testDescription  = (java.lang.String) props.getValue("testDescription");
-        estimatedWork  = (java.lang.Float) props.getValue("estimatedWork");
-        String rejectDateAsString = (String) props.getValue("rejectDate");
+    public void updateProperties(HashMap<String, Object> props) {
+        projectId = (String) props.get("projectId");
+        sprintId = (String) props.get("sprintId");
+        issueId = (String) props.get("issueId");
+        number  = (Integer) props.get("number");
+        qualitysIds = (Set<String>) props.get("qualitysIds");
+        label  = (java.lang.String) props.get("label");
+        description  = (java.lang.String) props.get("description");
+        testDescription  = (java.lang.String) props.get("testDescription");
+        estimatedWork  = (java.lang.Float) props.get("estimatedWork");
+        String rejectDateAsString = (String) props.get("rejectDate");
         rejectDate  =  rejectDateAsString == null ? null : new ilarkesto.core.time.Date(rejectDateAsString);
-        closed  = (Boolean) props.getValue("closed");
-        dirty  = (Boolean) props.getValue("dirty");
-        workEstimationVotingActive  = (Boolean) props.getValue("workEstimationVotingActive");
-        workEstimationVotingShowoff  = (Boolean) props.getValue("workEstimationVotingShowoff");
-        tasksOrderIds  = (java.util.List<java.lang.String>) props.getValue("tasksOrderIds");
-        themes  = (java.util.List<java.lang.String>) props.getValue("themes");
-        epicId = (String) props.getValue("epicId");
+        closed  = (Boolean) props.get("closed");
+        dirty  = (Boolean) props.get("dirty");
+        workEstimationVotingActive  = (Boolean) props.get("workEstimationVotingActive");
+        workEstimationVotingShowoff  = (Boolean) props.get("workEstimationVotingShowoff");
+        tasksOrderIds  = (java.util.List<java.lang.String>) props.get("tasksOrderIds");
+        themes  = (java.util.List<java.lang.String>) props.get("themes");
+        epicId = (String) props.get("epicId");
         updateLocalModificationTime();
     }
 
     @Override
-    public void storeProperties(KunagiProperties properties) {
+    public void storeProperties(HashMap<String, Object> properties) {
         super.storeProperties(properties);
-        properties.putValue("projectId", this.projectId);
-        properties.putValue("sprintId", this.sprintId);
-        properties.putValue("issueId", this.issueId);
-        properties.putValue("number", this.number);
-        properties.putValue("qualitysIds", this.qualitysIds);
-        properties.putValue("label", this.label);
-        properties.putValue("description", this.description);
-        properties.putValue("testDescription", this.testDescription);
-        properties.putValue("estimatedWork", this.estimatedWork);
-        properties.putValue("rejectDate", this.rejectDate == null ? null : this.rejectDate.toString());
-        properties.putValue("closed", this.closed);
-        properties.putValue("dirty", this.dirty);
-        properties.putValue("workEstimationVotingActive", this.workEstimationVotingActive);
-        properties.putValue("workEstimationVotingShowoff", this.workEstimationVotingShowoff);
-        properties.putValue("tasksOrderIds", this.tasksOrderIds);
-        properties.putValue("themes", this.themes);
-        properties.putValue("epicId", this.epicId);
+        properties.put("projectId", this.projectId);
+        properties.put("sprintId", this.sprintId);
+        properties.put("issueId", this.issueId);
+        properties.put("number", this.number);
+        properties.put("qualitysIds", this.qualitysIds);
+        properties.put("label", this.label);
+        properties.put("description", this.description);
+        properties.put("testDescription", this.testDescription);
+        properties.put("estimatedWork", this.estimatedWork);
+        properties.put("rejectDate", this.rejectDate == null ? null : this.rejectDate.toString());
+        properties.put("closed", this.closed);
+        properties.put("dirty", this.dirty);
+        properties.put("workEstimationVotingActive", this.workEstimationVotingActive);
+        properties.put("workEstimationVotingShowoff", this.workEstimationVotingShowoff);
+        properties.put("tasksOrderIds", this.tasksOrderIds);
+        properties.put("themes", this.themes);
+        properties.put("epicId", this.epicId);
     }
 
     public final java.util.List<scrum.client.issues.Issue> getIssues() {

@@ -27,6 +27,10 @@ public class ProjectDao extends GProjectDao {
 	public Project newEntityInstance() {
 		Project project = super.newEntityInstance();
 		project.setLastOpenedDateAndTime(DateAndTime.now());
+                LOG.debug("newEntityInstance: A new project is created.");
+                if (null == project) {
+                    LOG.debug("newEntityInstance: However the project == null.");
+                }
 		return project;
 	}
 
@@ -60,6 +64,7 @@ public class ProjectDao extends GProjectDao {
 	// --- test data ---
 
 	public Project postExampleProject(User owner, User po, User sm) {
+                LOG.debug("postExampleProject: A new example project will be created.");
 		Project project = postProject(owner);
 		project.setBegin(Date.today().addMonths(-2));
 		project.setEnd(Date.today().addMonths(5));

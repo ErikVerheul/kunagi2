@@ -18,76 +18,34 @@ package ilarkesto.testng;
 import java.util.Collection;
 import org.testng.Assert;
 
-/**
- *
- * @author erik
- */
 public class ATest extends Assert {
 
-    /**
-     *
-     */
-    public static final String OUTPUT_DIR = "target/test-output";
+	public static final String OUTPUT_DIR = "test-output";
+	public static final String INPUT_DIR = "test-input";
 
-    /**
-     *
-     */
-    public static final String INPUT_DIR = "test-input";
-
-    /**
-     *
-     * @param a
-     * @param b
-     */
-    public static void assertNotEquals(Object a, Object b) {
+	public static void assertNotEquals(Object a, Object b) {
 		assertFalse(a.equals(b), "Objects expected not to be equal: <" + a + "> and <" + b + ">");
 	}
 
-    /**
-     *
-     * @param collection
-     * @param expectedSize
-     */
-    public static void assertSize(Collection collection, int expectedSize) {
+	public static void assertSize(Collection collection, int expectedSize) {
 		assertNotNull(collection, "Collection expected to be not null");
 		assertEquals(collection.size(), expectedSize, "Collection size expected to be <" + expectedSize + ">, but is <"
 				+ collection.size() + ">: <" + collection + ">");
 	}
 
-    /**
-     *
-     * @param <T>
-     * @param string
-     * @param substring
-     */
-    public static <T> void assertContains(String string, String substring) {
+	public static <T> void assertContains(String string, String substring) {
 		assertTrue(string.contains(substring), "<" + string + "> expected to contain <" + substring + ">");
 	}
 
-    /**
-     *
-     * @param <T>
-     * @param collection
-     * @param element
-     */
-    public static <T> void assertContains(Collection<T> collection, T element) {
+	public static <T> void assertContains(Collection<T> collection, T element) {
 		assertTrue(collection.contains(element), "Collection expected to contain <" + element + ">");
 	}
 
-    /**
-     *
-     * @param collection
-     */
-    public static void assertNotEmpty(Collection collection) {
+	public static void assertNotEmpty(Collection collection) {
 		assertFalse(collection.isEmpty(), "Collection expected to be not empty, but it is");
 	}
 
-    /**
-     *
-     * @param actual
-     * @param expectedPrefix
-     */
-    public static void assertStartsWith(String actual, String expectedPrefix) {
+	public static void assertStartsWith(String actual, String expectedPrefix) {
 		assertTrue(actual.startsWith(expectedPrefix), "<" + actual + "> expected to start with <" + expectedPrefix
 				+ "> |");
 	}

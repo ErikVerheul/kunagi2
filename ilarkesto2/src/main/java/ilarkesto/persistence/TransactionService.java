@@ -24,7 +24,7 @@ import java.util.Set;
 
 public class TransactionService implements IdentifiableResolver<AEntity> {
 
-	private static final Log log = Log.get(TransactionService.class);
+	private static final Log LOG = Log.get(TransactionService.class);
 
 	@In
 	private EntityStore entityStore;
@@ -50,7 +50,7 @@ public class TransactionService implements IdentifiableResolver<AEntity> {
 		if (t == null) {
                         return;
                 }
-		log.debug("Cancelling transaction:", t);
+		LOG.debug("Cancelling transaction:", t);
 		threadLocalTransaction.set(null);
 	}
 
@@ -61,7 +61,7 @@ public class TransactionService implements IdentifiableResolver<AEntity> {
                                 return null;
                         }
 			t = new Transaction(entityStore);
-			log.debug("Transaction created: " + t);
+			LOG.debug("Transaction created: " + t);
 			threadLocalTransaction.set(t);
 		}
 		return t;
@@ -84,11 +84,15 @@ public class TransactionService implements IdentifiableResolver<AEntity> {
 	@Override
 	public AEntity getById(String id) {
 		Transaction transaction = getCurrentTransaction(false);
+                AEntity result;
 		if (transaction == null) {
-			return entityStore.getById(id);
+			result = entityStore.getById(id);
 		} else {
-			return transaction.getById(id);
+			result = transaction.getById(id);
 		}
+                
+                if (result == null) LOG.debug("TransactonService.getById returns null for id = ", id);
+                return result;
 	}
 
 	public AEntity getEntity(Predicate<Class> typeFilter, Predicate<AEntity> entityFilter) {

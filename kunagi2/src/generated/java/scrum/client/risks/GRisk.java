@@ -13,7 +13,6 @@
 
 package scrum.client.risks;
 
-import ilarkesto.core.base.KunagiProperties;
 import java.util.*;
 import static ilarkesto.core.base.Utl.equalObjects;
 import static ilarkesto.core.logging.ClientLog.*;
@@ -32,7 +31,7 @@ public abstract class GRisk
     public GRisk() {
     }
 
-    public GRisk(KunagiProperties data) {
+    public GRisk(HashMap<String, Object> data) {
         super(data);
         updateProperties(data);
     }
@@ -497,29 +496,29 @@ public abstract class GRisk
 
     // --- update properties by map ---
 
-    public void updateProperties(KunagiProperties props) {
-        projectId = (String) props.getValue("projectId");
-        number  = (Integer) props.getValue("number");
-        label  = (java.lang.String) props.getValue("label");
-        description  = (java.lang.String) props.getValue("description");
-        probabilityMitigation  = (java.lang.String) props.getValue("probabilityMitigation");
-        impactMitigation  = (java.lang.String) props.getValue("impactMitigation");
-        probability  = (Integer) props.getValue("probability");
-        impact  = (Integer) props.getValue("impact");
+    public void updateProperties(HashMap<String, Object> props) {
+        projectId = (String) props.get("projectId");
+        number  = (Integer) props.get("number");
+        label  = (java.lang.String) props.get("label");
+        description  = (java.lang.String) props.get("description");
+        probabilityMitigation  = (java.lang.String) props.get("probabilityMitigation");
+        impactMitigation  = (java.lang.String) props.get("impactMitigation");
+        probability  = (Integer) props.get("probability");
+        impact  = (Integer) props.get("impact");
         updateLocalModificationTime();
     }
 
     @Override
-    public void storeProperties(KunagiProperties properties) {
+    public void storeProperties(HashMap<String, Object> properties) {
         super.storeProperties(properties);
-        properties.putValue("projectId", this.projectId);
-        properties.putValue("number", this.number);
-        properties.putValue("label", this.label);
-        properties.putValue("description", this.description);
-        properties.putValue("probabilityMitigation", this.probabilityMitigation);
-        properties.putValue("impactMitigation", this.impactMitigation);
-        properties.putValue("probability", this.probability);
-        properties.putValue("impact", this.impact);
+        properties.put("projectId", this.projectId);
+        properties.put("number", this.number);
+        properties.put("label", this.label);
+        properties.put("description", this.description);
+        properties.put("probabilityMitigation", this.probabilityMitigation);
+        properties.put("impactMitigation", this.impactMitigation);
+        properties.put("probability", this.probability);
+        properties.put("impact", this.impact);
     }
 
     @Override
