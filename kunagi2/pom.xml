@@ -221,7 +221,7 @@
                         <artefact>org.hibernate:hibernate-validator</artefact>
                     </compileSourcesArtifacts>
                     <style>DETAILED</style>               
-                    <logLevel>TRACE</logLevel>
+                    <!--logLevel>TRACE</logLevel-->
                 </configuration>
             </plugin>
         </plugins>
