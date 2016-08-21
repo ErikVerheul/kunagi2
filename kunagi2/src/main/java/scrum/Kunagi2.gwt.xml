@@ -47,5 +47,11 @@
             <when-property-is name="user.agent" value="opera" />
         </any>
     </replace-with>
+    <!-- see http://www.gwtproject.org/doc/latest/DevGuideValidation.html -->
+    <inherits name="org.hibernate.validator.HibernateValidator" />
+    <replace-with
+        class="com.google.gwt.sample.validation.client.SampleValidatorFactory">
+        <when-type-is class="javax.validation.ValidatorFactory" />
+    </replace-with>
 
 </module>
