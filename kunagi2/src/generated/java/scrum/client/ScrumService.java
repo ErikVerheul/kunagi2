@@ -28,9 +28,9 @@ public interface ScrumService extends com.google.gwt.user.client.rpc.RemoteServi
 
     scrum.client.DataTransferObject touchLastActivity(int conversationNumber);
 
-    scrum.client.DataTransferObject changeProperties(int conversationNumber, String entityId, HashMap properties);
+    scrum.client.DataTransferObject changeProperties(int conversationNumber, String entityId, HashMap<String, Object> properties);
 
-    scrum.client.DataTransferObject createEntity(int conversationNumber, String type, HashMap properties);
+    scrum.client.DataTransferObject createEntity(int conversationNumber, String type, HashMap<String, Object> properties);
 
     scrum.client.DataTransferObject deleteEntity(int conversationNumber, String entityId);
 
