@@ -81,7 +81,7 @@ public class DatobGenerator<D extends DatobModel> extends ABeanGenerator<D> {
 		}
 
 		ln();
-		ln("    public void updateProperties(Map<?, ?> properties) {");
+		ln("    public void updateProperties(Map<String, Object> properties) {");
 		ln("        for (Map.Entry entry : properties.entrySet()) {");
 		ln("            String property = (String) entry.getKey();");
 		ln("            if (property.equals(\"id\")) continue;");
