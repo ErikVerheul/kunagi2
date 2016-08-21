@@ -23,12 +23,12 @@ import java.io.Serializable;
  */
 public class ApplicationInfo implements Serializable, IsSerializable {
 
-	private String name;
-	private String release;
-	private String build;
-	private boolean defaultAdminPassword;
-	private String currentRelease;
-	private String dataPath;
+    private String name;
+    private String release;
+    private String build;
+    private boolean defaultAdminPassword;
+    private String currentRelease;
+    private String dataPath;
 
     /**
      *
@@ -40,93 +40,94 @@ public class ApplicationInfo implements Serializable, IsSerializable {
      * @param dataPath
      */
     public ApplicationInfo(String name, String release, String build, boolean defaultAdminPassword,
-			String currentRelease, String dataPath) {
-		this.name = name;
-		this.release = release;
-		this.build = build;
-		this.defaultAdminPassword = defaultAdminPassword;
-		this.currentRelease = currentRelease;
-		this.dataPath = dataPath;
-	}
+            String currentRelease, String dataPath) {
+        this.name = name;
+        this.release = release;
+        this.build = build;
+        this.defaultAdminPassword = defaultAdminPassword;
+        this.currentRelease = currentRelease;
+        this.dataPath = dataPath;
+    }
 
     /**
      *
      */
-    protected ApplicationInfo() {}
+    protected ApplicationInfo() {
+    }
 
     /**
      *
      * @return
      */
     public boolean isNewReleaseAvailable() {
-		if (currentRelease == null) {
-                    return false;
+        if (currentRelease == null) {
+            return false;
         }
-		if (release.startsWith("dev")) {
-                    return false;
+        if (release.startsWith("dev")) {
+            return false;
         }
-		return !currentRelease.equals(release);
-	}
+        return !currentRelease.equals(release);
+    }
 
     /**
      *
      * @return
      */
     public boolean isDefaultAdminPassword() {
-		return defaultAdminPassword;
-	}
+        return defaultAdminPassword;
+    }
 
     /**
      *
      * @return
      */
     public String getRelease() {
-		return release;
-	}
+        return release;
+    }
 
     /**
      *
      * @return
      */
     public String getCurrentRelease() {
-		return currentRelease;
-	}
+        return currentRelease;
+    }
 
     /**
      *
      * @return
      */
     public String getBuild() {
-		return build;
-	}
+        return build;
+    }
 
     /**
      *
      * @return
      */
     public boolean isProductionStage() {
-		return !release.startsWith("dev[");
-	}
+        return !release.startsWith("dev[");
+    }
 
     /**
      *
      * @return
      */
     public String getVersionDescription() {
-		return name + " " + release + " | Build " + build;
-	}
+        return name + " " + release + " | Build " + build;
+    }
 
     /**
      *
      * @return
      */
     public String getDataPath() {
-		return dataPath;
-	}
+        return dataPath;
+    }
 
-	@Override
-	public String toString() {
-		return getVersionDescription();
-	}
+    @Override
+    public String toString() {
+        return getVersionDescription();
+    }
 
 }

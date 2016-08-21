@@ -59,17 +59,16 @@
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-user</artifactId>
-        </dependency>
-        <dependency> 
-            <groupId>javax.validation</groupId> 
-            <artifactId>validation-api</artifactId> 
-            <scope>runtime</scope> 
         </dependency> 
         <dependency>
-            <!-- not sure this is needed -->
-            <groupId>org.json</groupId> 
-            <artifactId>json</artifactId> 
-            <version>20160212</version> 
+            <groupId>javax.validation</groupId> 
+            <artifactId>validation-api</artifactId> 
+        </dependency>      
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>5.2.2.Final</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -218,9 +217,11 @@
                         <artifact>com.allen-sauer.gwt.dnd:gwt-dnd</artifact>
                         <artifact>nl.verheulconsultants.kunagi2:ilarkesto2</artifact>
                         <artefact>com.googlecode.gwtupload:gwtupload</artefact>
+                        <artefact>javax.validation:validation-api</artefact>
+                        <artefact>org.hibernate:hibernate-validator</artefact>
                     </compileSourcesArtifacts>
-                    <style>DETAILED</style>                    
-                    
+                    <style>DETAILED</style>               
+                    <logLevel>TRACE</logLevel>
                 </configuration>
             </plugin>
         </plugins>

@@ -8,6 +8,7 @@
             <goals>
                 <goal>clean</goal>
                 <goal>install</goal>
+                <goal>-e</goal>
                 
                 
                 
