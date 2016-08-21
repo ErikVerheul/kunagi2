@@ -22,6 +22,7 @@ public class Json {
      * @return
      */
     public static String valueToString(Object value, int indentation) {
+                int indent = indentation;
 		if (value == null) {
                         return "null";
                 }
@@ -31,8 +32,8 @@ public class Json {
 		if (value instanceof Iterable) {
 			StringBuilder sb = new StringBuilder();
 			sb.append('[');
-			if (indentation >= 0) {
-                                indentation++;
+			if (indent >= 0) {
+                                indent++;
                         }
 			Iterable list = (Iterable) value;
 			boolean first = true;
@@ -42,19 +43,19 @@ public class Json {
 				} else {
 					sb.append(',');
 				}
-				sb.append(valueToString(element, indentation));
+				sb.append(valueToString(element, indent));
 			}
 			sb.append(']');
-			if (indentation >= 0) {
-                                indentation--;
+			if (indent >= 0) {
+                                indent--;
                         }
 			return sb.toString();
 		}
 		if (value instanceof JsonObject) {
-                        return ((JsonObject) value).toString(indentation);
+                        return ((JsonObject) value).toString(indent);
                 }
 		if (value instanceof JsonWrapper) {
-                        return ((JsonWrapper) value).getJson().toString(indentation);
+                        return ((JsonWrapper) value).getJson().toString(indent);
                 }
 		return value.toString();
 	}
