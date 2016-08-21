@@ -38,3 +38,4 @@ web/target
 /core/error.log
 /core/runtimedata/
 /kunagi2/runtimedata/error.log
+/kunagi2/runtimedata/.lock
