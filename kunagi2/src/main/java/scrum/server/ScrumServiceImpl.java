@@ -358,7 +358,7 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
      * @param properties
      */
     @Override
-    public void onCreateEntity(GwtConversation conversation, String type, HashMap<String, Object> properties) {
+    public void onCreateEntity(GwtConversation conversation, String type, HashMap properties) {
         String id = (String) properties.get("id");
         if (id == null) {
             throw new NullPointerException("id == null");
@@ -522,7 +522,7 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
      * @param properties
      */
     @Override
-    public void onChangeProperties(GwtConversation conversation, String entityId, HashMap<String, Object> properties) {
+    public void onChangeProperties(GwtConversation conversation, String entityId, HashMap properties) {
         AEntity entity = getDaoService().getEntityById(entityId);
         User currentUser = conversation.getSession().getUser();
         if (!Auth.isEditable(entity, currentUser)) {
@@ -611,7 +611,7 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         sendToClients(conversation, entity);
     }
 
-    private void onSprintChanged(GwtConversation conversation, Sprint sprint, HashMap<String, Object> properties) {
+    private void onSprintChanged(GwtConversation conversation, Sprint sprint, HashMap properties) {
         Project project = sprint.getProject();
         if (project.isCurrentSprint(sprint)) {
             sprint.updateNextSprintDates();
@@ -619,13 +619,13 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         }
     }
 
-    private void onSystemConfigChanged(GwtConversation conversation, SystemConfig config, HashMap<String, Object> properties) {
+    private void onSystemConfigChanged(GwtConversation conversation, SystemConfig config, HashMap properties) {
         if (properties.containsKey("url")) {
             webApplication.getConfig().setUrl(config.getUrl());
         }
     }
 
-    private void onCommentChanged(GwtConversation conversation, Comment comment, HashMap<String, Object> properties) {
+    private void onCommentChanged(GwtConversation conversation, Comment comment, HashMap properties) {
         conversation.getProject().updateHomepage(comment.getParent(), false);
         if (comment.isPublished() && properties.containsKey("published")) {
             subscriptionService.notifySubscribers(comment.getParent(),
@@ -633,7 +633,7 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         }
     }
 
-    private void onBlogEntryChanged(GwtConversation conversation, BlogEntry blogEntry, HashMap<String, Object> properties) {
+    private void onBlogEntryChanged(GwtConversation conversation, BlogEntry blogEntry, HashMap properties) {
         User currentUser = conversation.getSession().getUser();
 
         if (properties.containsKey("text")) {
@@ -649,11 +649,11 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         }
     }
 
-    private void onWikipageChanged(GwtConversation conversation, Wikipage wikipage, HashMap<String, Object> properties) {
+    private void onWikipageChanged(GwtConversation conversation, Wikipage wikipage, HashMap properties) {
         LOG.warn("onWikipageChanged should not be called and does nothing,takes too long and blocks all clients! ");
     }
 
-    private void onIssueChanged(GwtConversation conversation, Issue issue, HashMap<String, Object> properties) {
+    private void onIssueChanged(GwtConversation conversation, Issue issue, HashMap properties) {
         User currentUser = conversation.getSession().getUser();
 
         if (properties.containsKey("closeDate")) {
@@ -709,7 +709,7 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         issue.getProject().updateHomepage(issue, false);
     }
 
-    private void onImpedimentChanged(GwtConversation conversation, Impediment impediment, HashMap<String, Object> properties) {
+    private void onImpedimentChanged(GwtConversation conversation, Impediment impediment, HashMap properties) {
         User currentUser = conversation.getSession().getUser();
         if (properties.containsKey("closed")) {
             if (impediment.isClosed()) {
@@ -723,7 +723,7 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         }
     }
 
-    private void onRequirementChanged(GwtConversation conversation, Requirement requirement, HashMap<String, Object> properties,
+    private void onRequirementChanged(GwtConversation conversation, Requirement requirement, HashMap properties,
             Sprint previousRequirementSprint) {
         Project currentProject = conversation.getProject();
         Sprint sprint = requirement.getSprint();
@@ -775,7 +775,7 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         requirement.getProject().getCurrentSprintSnapshot().update();
     }
 
-    private void onTaskChanged(GwtConversation conversation, Task task, HashMap<String, Object> properties) {
+    private void onTaskChanged(GwtConversation conversation, Task task, HashMap properties) {
         // update sprint day snapshot after change
         conversation.getProject().getCurrentSprint().getDaySnapshot(DateExtend.today()).updateWithCurrentSprint();
         Requirement requirement = task.getRequirement();
@@ -1210,7 +1210,7 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         return (scrum.client.DataTransferObject) conversation.popNextData();
     }
 
-    private void postChangeIfChanged(GwtConversation conversation, AEntity entity, HashMap<String, Object> properties, User user,
+    private void postChangeIfChanged(GwtConversation conversation, AEntity entity, HashMap properties, User user,
             String property) {
         if (properties.containsKey(property)) {
             Object oldValue = Reflect.getProperty(entity, property);
