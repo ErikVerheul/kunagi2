@@ -53,7 +53,6 @@ public abstract class ADataTransferObject implements Serializable, IsSerializabl
     private Integer dummyInteger;
     private float dummyF;
     private Float dummyFloat;
-//    private KunagiProperties dummyProps;
 
     /**
      *
@@ -69,7 +68,7 @@ public abstract class ADataTransferObject implements Serializable, IsSerializabl
      */
     public void addError(ErrorWrapper error) {
         if (errors == null) {
-            errors = new ArrayList<ErrorWrapper>(1);
+            errors = new ArrayList<>(1);
         }
         errors.add(error);
     }
