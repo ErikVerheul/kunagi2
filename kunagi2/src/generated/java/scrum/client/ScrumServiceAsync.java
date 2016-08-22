@@ -30,7 +30,7 @@ public interface ScrumServiceAsync {
 
     void changeProperties(int conversationNumber, String entityId, HashMap properties, com.google.gwt.user.client.rpc.AsyncCallback<scrum.client.DataTransferObject> callback);
 
-    void createEntity(int conversationNumber, String type, HashMap properties, com.google.gwt.user.client.rpc.AsyncCallback<scrum.client.DataTransferObject> callback);
+    void createEntity(int conversationNumber, String type, HashMap<String, Object> properties, com.google.gwt.user.client.rpc.AsyncCallback<scrum.client.DataTransferObject> callback);
 
     void deleteEntity(int conversationNumber, String entityId, com.google.gwt.user.client.rpc.AsyncCallback<scrum.client.DataTransferObject> callback);
 
