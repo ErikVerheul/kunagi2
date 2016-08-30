@@ -26,7 +26,7 @@ import scrum.client.workspace.PagePanel;
 
 /**
  *
- * @author erik
+ *
  */
 public class ProjectOverviewWidget extends AScrumWidget {
 

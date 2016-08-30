@@ -16,7 +16,7 @@ package scrum.client.dnd;
 
 /**
  *
- * @author erik
+ *
  * @param <O>
  */
 public interface BlockListDropAction<O> {

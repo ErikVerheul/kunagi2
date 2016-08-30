@@ -20,7 +20,7 @@ import scrum.client.sprint.Sprint;
 
 /**
  *
- * @author erik
+ *
  */
 public class RemoveRequirementFromSprintAction extends GRemoveRequirementFromSprintAction {
 

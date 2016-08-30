@@ -25,7 +25,7 @@ import java.nio.channels.OverlappingFileLockException;
 
 /**
  *
- * @author erik
+ *
  */
 public class ExclusiveFileLock {
 

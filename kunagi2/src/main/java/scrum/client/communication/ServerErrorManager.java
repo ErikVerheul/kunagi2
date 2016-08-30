@@ -21,7 +21,7 @@ import java.util.List;
 
 /**
  *
- * @author erik
+ *
  */
 public class ServerErrorManager extends GServerErrorManager implements ServerDataReceivedHandler {
 

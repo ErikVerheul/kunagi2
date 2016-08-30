@@ -16,7 +16,7 @@ package scrum.client.wiki;
 
 /**
  *
- * @author erik
+ *
  */
 public class Link extends AWikiElement {
 

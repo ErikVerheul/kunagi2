@@ -19,7 +19,7 @@ import static ilarkesto.gwt.client.Gwt.createDiv;
 
 /**
  *
- * @author erik
+ *
  */
 public class ToolbarWidget extends AWidget {
 

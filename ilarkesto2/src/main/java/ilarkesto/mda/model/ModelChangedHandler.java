@@ -16,7 +16,7 @@ package ilarkesto.mda.model;
 
 /**
  *
- * @author erik
+ *
  */
 public interface ModelChangedHandler {
 

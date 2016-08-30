@@ -16,7 +16,7 @@ package ilarkesto.core.menu;
 
 /**
  *
- * @author erik
+ *
  * @param <I>
  */
 public interface Submenu<I extends MenuItem> extends MenuItem {

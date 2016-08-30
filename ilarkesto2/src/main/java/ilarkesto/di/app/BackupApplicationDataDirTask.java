@@ -19,7 +19,7 @@ import static ilarkesto.di.app.AApplication.get;
 
 /**
  *
- * @author erik
+ *
  */
 public class BackupApplicationDataDirTask extends ATask {
 

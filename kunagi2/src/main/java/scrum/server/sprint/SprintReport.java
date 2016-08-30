@@ -12,7 +12,7 @@ import scrum.server.project.Requirement;
 
 /**
  *
- * @author erik
+ *
  */
 public class SprintReport extends GSprintReport {
 

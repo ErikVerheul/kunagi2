@@ -26,7 +26,7 @@ import scrum.server.release.Release;
 
 /**
  *
- * @author erik
+ *
  */
 public class Issue extends GIssue implements Numbered, ReferenceSupport, LabelSupport {
 

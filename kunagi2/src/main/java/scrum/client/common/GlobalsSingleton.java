@@ -5,7 +5,7 @@ package scrum.client.common;
  * applying the Double Checked Locking pattern as described by Mark Grand in his
  * book Patterns in Java Volume 2.
  *
- * @author erik
+ *
  */
 public class GlobalsSingleton {
 

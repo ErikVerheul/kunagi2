@@ -18,7 +18,7 @@ import static ilarkesto.core.diff.LongestCommonSubsequenceString.execute;
 
 /**
  *
- * @author erik
+ *
  */
 public class CharDiff {
 

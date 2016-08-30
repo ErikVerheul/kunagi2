@@ -30,7 +30,7 @@ import scrum.client.tasks.WhiteboardWidget;
 
 /**
  *
- * @author erik
+ *
  */
 public class ScrumNavigatorWidget extends NavigatorWidget<Object> {
 

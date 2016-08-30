@@ -74,7 +74,7 @@ import scrum.server.sprint.Task;
 
 /**
  *
- * @author erik
+ *
  */
 public class ScrumServiceImpl extends GScrumServiceImpl {
 

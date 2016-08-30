@@ -16,7 +16,7 @@ package ilarkesto.mda.legacy.model;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class ACollectionPropertyModel extends PropertyModel {
 

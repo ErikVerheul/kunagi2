@@ -16,7 +16,7 @@ package ilarkesto.cli;
 
 /**
  *
- * @author erik
+ *
  */
 public class NoSuchCommandException extends Exception {
 

@@ -60,7 +60,7 @@ import scrum.client.sprint.Task;
 
 /**
  *
- * @author erik
+ *
  */
 public class Project extends GProject implements ForumSupport {
 

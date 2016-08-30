@@ -25,7 +25,7 @@ import java.util.List;
 
 /**
  *
- * @author erik
+ *
  */
 public class DropdownMenuButtonWidget extends AWidget {
 

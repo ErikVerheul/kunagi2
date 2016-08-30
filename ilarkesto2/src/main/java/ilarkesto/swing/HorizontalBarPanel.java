@@ -29,7 +29,7 @@ import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER;
 
 /**
  *
- * @author erik
+ *
  */
 public class HorizontalBarPanel extends JPanel {
 

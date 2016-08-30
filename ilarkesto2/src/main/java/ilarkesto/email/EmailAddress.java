@@ -23,7 +23,7 @@ import java.util.StringTokenizer;
 
 /**
  *
- * @author erik
+ *
  */
 public final class EmailAddress {
 

@@ -18,7 +18,7 @@ import ilarkesto.mda.legacy.model.EntityModel;
 
 /**
  *
- * @author erik
+ *
  */
 public class DaoTepmplateGenerator extends ABeanGenerator<EntityModel> {
 

@@ -25,7 +25,7 @@ import org.apache.velocity.runtime.log.LogChute;
 
 /**
  *
- * @author erik
+ *
  */
 public class VelocityLogging implements LogChute {
 

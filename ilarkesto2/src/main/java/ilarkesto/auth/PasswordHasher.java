@@ -22,7 +22,7 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  *
- * @author erik
+ *
  */
 public class PasswordHasher {
 

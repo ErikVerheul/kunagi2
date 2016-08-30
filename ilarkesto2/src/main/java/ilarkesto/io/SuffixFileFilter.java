@@ -19,7 +19,7 @@ import java.io.FileFilter;
 
 /**
  *
- * @author erik
+ *
  */
 public class SuffixFileFilter implements FileFilter {
 

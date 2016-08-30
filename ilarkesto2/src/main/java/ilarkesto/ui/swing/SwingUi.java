@@ -40,19 +40,16 @@ import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
- * @author erik
  */
 public class SwingUi extends AUi {
 
-	private JFrame frame;
+    private JFrame frame;
 
-	// --- dependencies ---
-
+    // --- dependencies ---
     /**
      *
      */
-    
-	protected ASwingApplicationConfig config;
+    protected ASwingApplicationConfig config;
 
     /**
      *
@@ -64,127 +61,126 @@ public class SwingUi extends AUi {
      * @param application
      */
     public void setApplication(ASwingApplication application) {
-		this.application = application;
-	}
+        this.application = application;
+    }
 
     /**
      *
      * @param config
      */
     public void setConfig(ASwingApplicationConfig config) {
-		this.config = config;
-	}
+        this.config = config;
+    }
 
-	// --- ---
-
+    // --- ---
     /**
      *
      * @return
      */
-    
-	@Override
-	protected Class<? extends AView> getEntityView() {
-		return null;
-	}
+    @Override
+    protected Class<? extends AView> getEntityView() {
+        return null;
+    }
 
     /**
      *
      * @param view
      */
     @Override
-	public void showView(Class<? extends AView> view) {
-	// TODO: SwingView
-	}
+    public void showView(Class<? extends AView> view) {
+        // TODO: SwingView
+    }
 
     /**
      *
      * @param view
      */
     @Override
-	protected void showDialog(Class<? extends AView> view) {
-		showView(view); // TODO
-	}
+    protected void showDialog(Class<? extends AView> view) {
+        showView(view); // TODO
+    }
 
     /**
      *
      * @param viewId
      */
     @Override
-	protected void showView(String viewId) {
-		Component component = getJavaComponent(viewId);
+    protected void showView(String viewId) {
+        Component component = getJavaComponent(viewId);
+        showView(component);
+    }
 
-		showView(component);
-	}
-
-	private void showView(Component component) {
-		JFrame frame = getFrame();
-		frame.add(component);
-		frame.pack();
-		frame.setMinimumSize(frame.getPreferredSize());
-		center(frame);
-		if (!frame.isVisible()) {
-                        frame.setVisible(true);
-                }
-	}
+    private void showView(Component component) {
+        JFrame frameLocal = getFrame();
+        frameLocal.add(component);
+        frameLocal.pack();
+        frameLocal.setMinimumSize(frameLocal.getPreferredSize());
+        center(frameLocal);
+        if (!frameLocal.isVisible()) {
+            frameLocal.setVisible(true);
+        }
+    }
 
     /**
      *
      * @param url
      */
     @Override
-	public void showWebPage(Url url) {
-		throw new RuntimeException("Not implemented yet");
-	}
+    public void showWebPage(Url url) {
+        throw new RuntimeException("Not implemented yet");
+    }
 
     /**
      *
      * @param viewId
      */
     @Override
-	protected void showDialog(String viewId) {
-		throw new RuntimeException("Not implemented yet");
-	}
+    protected void showDialog(String viewId) {
+        throw new RuntimeException("Not implemented yet");
+    }
 
     /**
      *
      * @return
      */
     @Override
-	public boolean isViewSet() {
-		return frame != null;
-	}
+    public boolean isViewSet() {
+        return frame != null;
+    }
 
-	private Component getJavaComponent(String id) {
-		Object view = getProperty(application, id);
-		if (view == null) {
-                        throw new RuntimeException("Component does not exist: " + id);
-                }
-		Component javaComponent = null;
-		if (view instanceof Component) {
-			javaComponent = (Component) view;
-		} else if (view instanceof AComponent) {
-			AComponent c = (AComponent) view;
-			model.autowire(c);
-			javaComponent = c.getJavaComponent();
-		}
+    private Component getJavaComponent(String id) {
+        Object view = getProperty(application, id);
+        if (view == null) {
+            throw new RuntimeException("Component does not exist: " + id);
+        }
+        Component javaComponent = null;
+        if (view instanceof Component) {
+            javaComponent = (Component) view;
+        } else if (view instanceof AComponent) {
+            AComponent c = (AComponent) view;
+            model.autowire(c);
+            javaComponent = c.getJavaComponent();
+        }
 
-		if (javaComponent == null) { throw new RuntimeException("Unsupported component type: "
-				+ view.getClass().getName()); }
-		return javaComponent;
-	}
+        if (javaComponent == null) {
+            throw new RuntimeException("Unsupported component type: "
+                    + view.getClass().getName());
+        }
+        return javaComponent;
+    }
 
     /**
      *
      * @return
      */
     public JFrame getFrame() {
-		if (frame == null) {
-			frame = new JFrame();
-			frame.addWindowListener(application.getShutdownWindowListener());
-			frame.setTitle(application.getApplicationLabel());
-		}
-		return frame;
-	}
+        if (frame == null) {
+            frame = new JFrame();
+            frame.addWindowListener(application.getShutdownWindowListener());
+            frame.setTitle(application.getApplicationLabel());
+        }
+        return frame;
+    }
 
     /**
      *
@@ -194,24 +190,24 @@ public class SwingUi extends AUi {
      * @param adapter
      */
     public void showDirSelectionDialog(File dir, String title, String description, final ADialogAdapter<File> adapter) {
-		final DirSelectionComponent component = new DirSelectionComponent();
-		component.setUi(this);
-		component.setSelectedDir(dir);
-		showDialog(component.getJavaComponent(), title, description, localizer.string("dirSelection.ok"), localizer
-				.string("dirSelection.ok.hint"), null, new ADialogAdapter() {
+        final DirSelectionComponent component = new DirSelectionComponent();
+        component.setUi(this);
+        component.setSelectedDir(dir);
+        showDialog(component.getJavaComponent(), title, description, localizer.string("dirSelection.ok"), localizer
+                .string("dirSelection.ok.hint"), null, new ADialogAdapter() {
 
-			@Override
-			public void onSubmit(Object payload) {
-				adapter.onSubmit(component.getSelectedDir());
-			}
+            @Override
+            public void onSubmit(Object payload) {
+                adapter.onSubmit(component.getSelectedDir());
+            }
 
-			@Override
-			public void onAbort() {
-				super.onAbort();
-			}
+            @Override
+            public void onAbort() {
+                super.onAbort();
+            }
 
-		});
-	}
+        });
+    }
 
     /**
      *
@@ -219,32 +215,32 @@ public class SwingUi extends AUi {
      * @param adapter
      */
     public void showLoginDialog(final String id, final ADialogAdapter<LoginData> adapter) {
-		LoginData initialLoginData = config.getLoginData(id);
-		final LoginComponent loginComponent = new LoginComponent();
-		loginComponent.setUi(this);
-		loginComponent.setInitialLoginData(initialLoginData);
-		String description = localizer.string("login." + id + ".description");
-		showDialog(loginComponent.getJavaComponent(), localizer.string("login." + id + ".title"), description,
-			localizer.string("login.okLabel"), localizer.string("login.okHint"), "password", new ADialogAdapter() {
+        LoginData initialLoginData = config.getLoginData(id);
+        final LoginComponent loginComponent = new LoginComponent();
+        loginComponent.setUi(this);
+        loginComponent.setInitialLoginData(initialLoginData);
+        String description = localizer.string("login." + id + ".description");
+        showDialog(loginComponent.getJavaComponent(), localizer.string("login." + id + ".title"), description,
+                localizer.string("login.okLabel"), localizer.string("login.okHint"), "password", new ADialogAdapter() {
 
-				@Override
-				public void onSubmit(Object payload) {
-					LoginData loginData = loginComponent.getLoginData();
-					if (loginData.isSavePassword()) {
-						config.setLoginData(id, loginData);
-					} else {
-						config.removeLoginData(id);
-					}
-					adapter.onSubmit(loginData);
-				}
+            @Override
+            public void onSubmit(Object payload) {
+                LoginData loginData = loginComponent.getLoginData();
+                if (loginData.isSavePassword()) {
+                    config.setLoginData(id, loginData);
+                } else {
+                    config.removeLoginData(id);
+                }
+                adapter.onSubmit(loginData);
+            }
 
-				@Override
-				public void onAbort() {
-					adapter.onAbort();
-				}
+            @Override
+            public void onAbort() {
+                adapter.onAbort();
+            }
 
-			});
-	}
+        });
+    }
 
     /**
      *
@@ -258,30 +254,30 @@ public class SwingUi extends AUi {
      * @param adapter
      */
     public <C extends Component> void showDialog(final C javaComponent, String title, String description,
-			String okLabel, String okHint, String icon128, final ADialogAdapter<C> adapter) {
-		SwingDialog dialog = new SwingDialog();
-		dialog.setUi(this);
-		dialog.setComponent(javaComponent);
-		dialog.setTitle(title);
-		dialog.setDescription(description);
-		dialog.setOkLabel(okLabel);
-		dialog.setOkHint(okHint);
-		dialog.setParentComponent(getParentComponent());
-		dialog.setIcon128(icon128);
-		dialog.showDialog(new ADialogAdapter() {
+            String okLabel, String okHint, String icon128, final ADialogAdapter<C> adapter) {
+        SwingDialog dialog = new SwingDialog();
+        dialog.setUi(this);
+        dialog.setComponent(javaComponent);
+        dialog.setTitle(title);
+        dialog.setDescription(description);
+        dialog.setOkLabel(okLabel);
+        dialog.setOkHint(okHint);
+        dialog.setParentComponent(getParentComponent());
+        dialog.setIcon128(icon128);
+        dialog.showDialog(new ADialogAdapter() {
 
-			@Override
-			public void onSubmit(Object payload) {
-				adapter.onSubmit(javaComponent);
-			}
+            @Override
+            public void onSubmit(Object payload) {
+                adapter.onSubmit(javaComponent);
+            }
 
-			@Override
-			public void onAbort() {
-				adapter.onAbort();
-			}
+            @Override
+            public void onAbort() {
+                adapter.onAbort();
+            }
 
-		});
-	}
+        });
+    }
 
     /**
      *
@@ -289,33 +285,33 @@ public class SwingUi extends AUi {
      * @return
      */
     public final FormButton showFormDialog(Form form) {
-		return FormDialog.showDialog(getWindow(getParentComponent()), form);
-	}
+        return FormDialog.showDialog(getWindow(getParentComponent()), form);
+    }
 
     /**
      *
      * @param ex
      */
     public final void showErrorDialog(Exception ex) {
-		ExceptionPanel.showDialog(getParentComponent(), ex, localizer.string("dialog.error.title"));
-	}
+        ExceptionPanel.showDialog(getParentComponent(), ex, localizer.string("dialog.error.title"));
+    }
 
     /**
      *
      * @param message
      */
     public final void showErrorDialog(String message) {
-		showMessageDialog(getParentComponent(), createMessageComponent(message), localizer
-				.string("dialog.error.title"), ERROR_MESSAGE);
-	}
+        showMessageDialog(getParentComponent(), createMessageComponent(message), localizer
+                .string("dialog.error.title"), ERROR_MESSAGE);
+    }
 
     /**
      *
      * @param message
      */
     public final void showInfoDialog(String message) {
-		showMessageDialog(getParentComponent(), message);
-	}
+        showMessageDialog(getParentComponent(), message);
+    }
 
     /**
      *
@@ -323,9 +319,9 @@ public class SwingUi extends AUi {
      * @return
      */
     public final boolean showConfirmDialog(String message) {
-		return OK_OPTION == JOptionPane.showConfirmDialog(getParentComponent(), message, localizer
-				.string("dialog.confirm.title"), OK_CANCEL_OPTION);
-	}
+        return OK_OPTION == JOptionPane.showConfirmDialog(getParentComponent(), message, localizer
+                .string("dialog.confirm.title"), OK_CANCEL_OPTION);
+    }
 
     /**
      *
@@ -333,16 +329,16 @@ public class SwingUi extends AUi {
      * @return
      */
     public final boolean showYesNoDialog(String message) {
-		return YES_OPTION == JOptionPane.showConfirmDialog(getParentComponent(), message, localizer
-				.string("dialog.yesno.title"), YES_NO_OPTION);
-	}
+        return YES_OPTION == JOptionPane.showConfirmDialog(getParentComponent(), message, localizer
+                .string("dialog.yesno.title"), YES_NO_OPTION);
+    }
 
     /**
      *
      * @return
      */
     public Component getParentComponent() {
-		return frame;
-	}
+        return frame;
+    }
 
 }

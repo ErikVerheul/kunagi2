@@ -18,7 +18,7 @@ import edu.umd.cs.findbugs.annotations.SuppressWarnings;
 
 /**
  *
- * @author erik
+ *
  */
 public class ServerDataEvent {
 

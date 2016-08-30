@@ -19,7 +19,7 @@ import java.util.Comparator;
 
 /**
  *
- * @author erik
+ *
  */
 public class ToStringComparator implements Comparator {
 

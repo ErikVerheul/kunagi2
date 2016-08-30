@@ -42,7 +42,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author erik
+ *
  */
 public class NodeListPanel extends JPanel {
 

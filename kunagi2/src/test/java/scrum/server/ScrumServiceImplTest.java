@@ -53,7 +53,7 @@ import org.junit.Ignore;
 
 /**
  *
- * @author erik
+ *
  */
 public class ScrumServiceImplTest extends AjunitTest {
 

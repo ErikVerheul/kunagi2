@@ -18,7 +18,7 @@ import scrum.client.admin.User;
 
 /**
  *
- * @author erik
+ *
  */
 public interface UserHighlightSupport {
 

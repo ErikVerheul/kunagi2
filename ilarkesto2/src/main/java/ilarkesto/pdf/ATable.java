@@ -19,7 +19,7 @@ import edu.umd.cs.findbugs.annotations.SuppressWarnings;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class ATable extends APdfElement {
 

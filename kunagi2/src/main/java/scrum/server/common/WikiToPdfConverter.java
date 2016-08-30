@@ -31,7 +31,7 @@ import scrum.client.wiki.WikiParser;
 
 /**
  *
- * @author erik
+ *
  */
 public class WikiToPdfConverter extends APdfCreator {
 

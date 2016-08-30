@@ -26,7 +26,7 @@ import scrum.server.WebSession;
 
 /**
  *
- * @author erik
+ *
  */
 public class StartServlet extends AKunagiServlet {
 

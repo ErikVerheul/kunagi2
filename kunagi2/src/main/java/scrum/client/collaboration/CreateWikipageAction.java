@@ -16,7 +16,7 @@ package scrum.client.collaboration;
 
 /**
  *
- * @author erik
+ *
  */
 public class CreateWikipageAction extends GCreateWikipageAction {
 

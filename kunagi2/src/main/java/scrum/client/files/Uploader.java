@@ -19,7 +19,7 @@ import static ilarkesto.core.logging.ClientLog.DEBUG;
 
 /**
  *
- * @author erik
+ *
  */
 public class Uploader extends GUploader implements FileUploadedHandler {
 

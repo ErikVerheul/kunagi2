@@ -48,7 +48,7 @@ import scrum.server.sprint.Task;
 
 /**
  *
- * @author erik
+ *
  */
 public class PdfTest extends AjunitTest {
 

@@ -25,7 +25,7 @@ import ilarkesto.gwt.client.editor.ABooleanEditorModel;
 
 /**
  *
- * @author erik
+ *
  */
 public class UserGuideWidget extends AScrumWidget {
 

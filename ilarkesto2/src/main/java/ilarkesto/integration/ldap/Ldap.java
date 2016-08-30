@@ -38,7 +38,7 @@ import javax.naming.directory.SearchResult;
 
 /**
  *
- * @author erik
+ *
  */
 public class Ldap {
 

@@ -32,7 +32,7 @@ import org.apache.commons.fileupload.FileItem;
 
 /**
  *
- * @author erik
+ *
  * @param <T>
  */
 public class MultiItemFormField<T> extends AFormField {

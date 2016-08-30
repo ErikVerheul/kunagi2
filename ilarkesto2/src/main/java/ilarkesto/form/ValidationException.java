@@ -16,7 +16,7 @@ package ilarkesto.form;
 
 /**
  *
- * @author erik
+ *
  */
 public class ValidationException extends Exception {
 

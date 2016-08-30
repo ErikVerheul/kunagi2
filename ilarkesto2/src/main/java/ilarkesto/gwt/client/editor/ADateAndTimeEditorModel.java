@@ -18,7 +18,7 @@ import ilarkesto.core.time.DateAndTime;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class ADateAndTimeEditorModel extends AEditorModel<DateAndTime> {
 

@@ -16,7 +16,7 @@ package ilarkesto.mda.swingeditor;
 
 /**
  *
- * @author erik
+ *
  */
 public interface NodeSelectionChangedHandler {
 

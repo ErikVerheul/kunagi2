@@ -16,7 +16,7 @@ package ilarkesto.async;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class AAsyncWorker implements AsyncWorker {
 

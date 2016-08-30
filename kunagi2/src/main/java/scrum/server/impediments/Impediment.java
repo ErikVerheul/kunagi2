@@ -23,7 +23,7 @@ import scrum.server.common.Numbered;
 
 /**
  *
- * @author erik
+ *
  */
 public class Impediment extends GImpediment implements Numbered, ReferenceSupport, LabelSupport, Comparable<Impediment> {
 

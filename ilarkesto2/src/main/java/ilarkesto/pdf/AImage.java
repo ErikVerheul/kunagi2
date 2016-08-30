@@ -21,7 +21,7 @@ import java.io.File;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class AImage extends AParagraphElement {
 

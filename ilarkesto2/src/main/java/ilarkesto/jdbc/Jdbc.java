@@ -25,7 +25,7 @@ import java.sql.Statement;
 
 /**
  *
- * @author erik
+ *
  */
 public class Jdbc {
 

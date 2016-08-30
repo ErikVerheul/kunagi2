@@ -18,7 +18,7 @@ import scrum.server.admin.User;
 
 /**
  *
- * @author erik
+ *
  */
 public class Wikipage extends GWikipage {
 

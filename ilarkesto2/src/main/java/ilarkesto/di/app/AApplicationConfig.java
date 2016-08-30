@@ -18,7 +18,7 @@ import ilarkesto.properties.APropertiesStore;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class AApplicationConfig {
 

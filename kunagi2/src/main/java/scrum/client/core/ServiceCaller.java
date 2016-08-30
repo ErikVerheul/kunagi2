@@ -34,7 +34,7 @@ import scrum.client.communication.ServerDataReceivedEvent;
 
 /**
  *
- * @author erik
+ *
  */
 public class ServiceCaller extends GServiceCaller {
 

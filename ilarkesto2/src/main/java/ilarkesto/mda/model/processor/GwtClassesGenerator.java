@@ -33,7 +33,7 @@ import ilarkesto.mda.model.NodeTypes;
 
 /**
  *
- * @author erik
+ *
  */
 public class GwtClassesGenerator implements ModelProcessor, NodeTypes {
 

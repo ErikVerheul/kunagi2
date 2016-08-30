@@ -20,7 +20,7 @@ import scrum.server.common.AKunagiServlet;
 
 /**
  *
- * @author erik
+ *
  */
 public class LoginServlet extends AKunagiServlet {
 

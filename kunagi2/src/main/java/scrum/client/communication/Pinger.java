@@ -30,7 +30,7 @@ import scrum.client.workspace.BlockExpandedHandler;
 
 /**
  *
- * @author erik
+ *
  */
 public class Pinger extends GPinger implements ServerDataReceivedHandler, BlockExpandedHandler, BlockCollapsedHandler,
 		ApplicationStartedHandler {

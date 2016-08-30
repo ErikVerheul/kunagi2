@@ -35,7 +35,7 @@ import scrum.client.common.AScrumWidget;
 
 /**
  *
- * @author erik
+ *
  */
 public class CommentsWidget extends AScrumWidget {
 

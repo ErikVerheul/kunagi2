@@ -16,7 +16,7 @@ package ilarkesto.gwt.client;
 
 /**
  *
- * @author erik
+ *
  * @param <O>
  */
 public interface Initializer<O> {

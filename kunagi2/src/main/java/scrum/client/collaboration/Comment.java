@@ -25,7 +25,7 @@ import scrum.client.project.Project;
 
 /**
  *
- * @author erik
+ *
  */
 public class Comment extends GComment {
 

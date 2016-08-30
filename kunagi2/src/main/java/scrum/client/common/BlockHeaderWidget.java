@@ -31,7 +31,7 @@ import java.util.Collection;
 
 /**
  *
- * @author erik
+ *
  */
 public class BlockHeaderWidget extends AWidget {
 

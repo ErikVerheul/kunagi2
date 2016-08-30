@@ -19,7 +19,7 @@ import ilarkesto.mda.legacy.model.ParameterModel;
 
 /**
  *
- * @author erik
+ *
  */
 public class GwtActionTemplateGenerator extends AClassGenerator {
 

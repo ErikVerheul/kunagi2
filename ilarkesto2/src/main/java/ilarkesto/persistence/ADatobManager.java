@@ -16,7 +16,7 @@ package ilarkesto.persistence;
 
 /**
  *
- * @author erik
+ *
  * @param <D>
  */
 public abstract class ADatobManager<D extends ADatob> {

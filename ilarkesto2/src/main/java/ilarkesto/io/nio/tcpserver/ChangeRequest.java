@@ -18,7 +18,7 @@ import java.nio.channels.SocketChannel;
 
 /**
  *
- * @author erik
+ *
  */
 public class ChangeRequest {
 

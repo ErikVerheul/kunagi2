@@ -16,7 +16,7 @@ package ilarkesto.scope;
 
 /**
  *
- * @author erik
+ *
  */
 public class ComponentInstantiationFailedException extends RuntimeException {
 

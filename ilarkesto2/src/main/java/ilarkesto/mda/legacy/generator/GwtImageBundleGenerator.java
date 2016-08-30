@@ -24,7 +24,7 @@ import java.util.Set;
 
 /**
  *
- * @author erik
+ *
  */
 public class GwtImageBundleGenerator extends AClassGenerator {
 

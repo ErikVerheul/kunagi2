@@ -19,7 +19,7 @@ import static com.itextpdf.text.BaseColor.BLACK;
 
 /**
  *
- * @author erik
+ *
  */
 public final class FontStyle {
 

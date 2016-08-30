@@ -18,7 +18,7 @@ import java.util.Collection;
 
 /**
  *
- * @author erik
+ *
  * @param <E>
  */
 public interface MultiItem<E> {

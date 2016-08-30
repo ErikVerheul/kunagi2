@@ -19,7 +19,7 @@ import scrum.client.common.TooltipBuilder;
 
 /**
  *
- * @author erik
+ *
  */
 public class PublishBlogEntryAction extends GPublishBlogEntryAction {
 

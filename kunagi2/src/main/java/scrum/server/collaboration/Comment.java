@@ -21,7 +21,7 @@ import scrum.server.admin.User;
 
 /**
  *
- * @author erik
+ *
  */
 public class Comment extends GComment implements Comparable<Comment> {
 

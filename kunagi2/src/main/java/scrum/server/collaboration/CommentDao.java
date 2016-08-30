@@ -24,7 +24,7 @@ import java.util.Set;
 
 /**
  *
- * @author erik
+ *
  */
 public class CommentDao extends GCommentDao {
 

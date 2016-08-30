@@ -19,7 +19,7 @@ import scrum.server.project.Project;
 
 /**
  *
- * @author erik
+ *
  */
 public class ChatMessageDao extends GChatMessageDao {
 

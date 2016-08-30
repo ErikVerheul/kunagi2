@@ -21,7 +21,7 @@ import static java.util.UUID.randomUUID;
 
 /**
  *
- * @author erik
+ *
  */
 public class Node implements Comparable<Node> {
 

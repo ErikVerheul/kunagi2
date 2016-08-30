@@ -25,7 +25,7 @@ import java.util.Iterator;
 
 /**
  *
- * @author erik
+ *
  */
 public class FloatingFlowPanel extends Composite implements HasWidgets {
 

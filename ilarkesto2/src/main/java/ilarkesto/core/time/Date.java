@@ -28,7 +28,7 @@ import java.util.List;
 
 /**
  *
- * @author erik
+ *
  */
 @SuppressWarnings("SE_NO_SERIALVERSIONID")
 public class Date implements Comparable<Date>, Serializable {

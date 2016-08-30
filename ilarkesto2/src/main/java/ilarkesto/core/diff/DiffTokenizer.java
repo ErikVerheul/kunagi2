@@ -18,7 +18,7 @@ import java.util.List;
 
 /**
  *
- * @author erik
+ *
  */
 public interface DiffTokenizer {
 

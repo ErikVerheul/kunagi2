@@ -25,7 +25,7 @@ import java.util.Iterator;
 
 /**
  *
- * @author erik
+ *
  */
 public class PagePanel extends Composite implements HasWidgets {
 

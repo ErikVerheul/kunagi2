@@ -30,7 +30,7 @@ import java.util.Set;
 
 /**
  *
- * @author erik
+ *
  * @param <B>
  */
 public abstract class ABeanGenerator<B extends BeanModel> extends AClassGenerator {

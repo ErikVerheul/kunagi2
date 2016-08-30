@@ -20,7 +20,7 @@ import scrum.client.workspace.UsersWorkspaceWidgets;
 
 /**
  *
- * @author erik
+ *
  */
 public class CreateProjectAction extends GCreateProjectAction {
 

@@ -24,7 +24,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author erik
+ *
  */
 public class LoginComponent extends AComponent {
 

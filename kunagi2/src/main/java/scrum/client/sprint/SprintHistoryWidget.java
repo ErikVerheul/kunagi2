@@ -15,7 +15,7 @@ import scrum.client.workspace.PagePanel;
 
 /**
  *
- * @author erik
+ *
  */
 public class SprintHistoryWidget extends AScrumWidget {
 

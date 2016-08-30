@@ -26,7 +26,7 @@ import java.util.Set;
 
 /**
  *
- * @author erik
+ *
  * @param <S>
  */
 public class HttpServer<S> {

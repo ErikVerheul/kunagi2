@@ -23,7 +23,7 @@ import scrum.client.common.BlockListWidget;
 
 /**
  *
- * @author erik
+ *
  */
 public class BlockListDropController implements DropController {
 

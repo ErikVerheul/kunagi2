@@ -8,7 +8,7 @@ import scrum.client.workspace.ProjectWorkspaceWidgets;
 
 /**
  *
- * @author erik
+ *
  */
 public class CreateTaskImpedimentAction extends GCreateTaskImpedimentAction {
 

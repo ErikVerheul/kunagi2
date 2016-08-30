@@ -33,7 +33,7 @@ import java.util.Set;
 
 /**
  *
- * @author erik
+ *
  */
 public class GwtDaoGenerator extends AClassGenerator {
 

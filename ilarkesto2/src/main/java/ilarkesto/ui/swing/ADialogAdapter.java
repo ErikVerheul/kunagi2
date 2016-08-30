@@ -16,7 +16,7 @@ package ilarkesto.ui.swing;
 
 /**
  *
- * @author erik
+ *
  * @param <P>
  */
 public abstract class ADialogAdapter<P> {

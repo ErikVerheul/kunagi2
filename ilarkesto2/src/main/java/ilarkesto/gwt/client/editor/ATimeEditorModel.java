@@ -18,7 +18,7 @@ import ilarkesto.core.time.Time;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class ATimeEditorModel extends AEditorModel<Time> {
 

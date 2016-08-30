@@ -19,7 +19,7 @@ import static java.lang.System.out;
 
 /**
  *
- * @author erik
+ *
  */
 public class GwtLogRecordHandler implements LogRecordHandler {
 

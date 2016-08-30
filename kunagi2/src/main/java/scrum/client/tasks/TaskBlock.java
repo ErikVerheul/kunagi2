@@ -35,7 +35,7 @@ import scrum.client.sprint.UnclaimTaskAction;
 
 /**
  *
- * @author erik
+ *
  */
 public class TaskBlock extends ABlockWidget<Task> implements TrashSupport {
 

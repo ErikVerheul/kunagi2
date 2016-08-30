@@ -32,40 +32,39 @@ import java.util.Set;
 
 /**
  *
- * @author erik
  */
 public class DaoService implements IdentifiableResolver<AEntity> {
 
-	private final Map<Class, ADao> daos = new HashMap<>();
+    private final Map<Class, ADao> daos = new HashMap<>();
 
     /**
      *
      */
     public void ensureIntegrity() {
-		if (!initialized) {
-                        throw new RuntimeException("Not initiialized!");
-                }
-		for (ADao dao : daos.values()) {
-			dao.ensureIntegrity();
-		}
-	}
+        if (!initialized) {
+            throw new RuntimeException("Not initiialized!");
+        }
+        for (ADao dao : daos.values()) {
+            dao.ensureIntegrity();
+        }
+    }
 
     /**
      *
      * @return
      */
     public Collection<ADao> getDaos() {
-		return daos.values();
-	}
+        return daos.values();
+    }
 
     /**
      *
      * @param dao
      */
     public void addDao(ADao dao) {
-		daos.put(dao.getEntityClass(), dao);
-		entityStore.load(dao.getEntityClass(), dao.getEntityName());
-	}
+        daos.put(dao.getEntityClass(), dao);
+        entityStore.load(dao.getEntityClass(), dao.getEntityName());
+    }
 
     /**
      *
@@ -73,13 +72,13 @@ public class DaoService implements IdentifiableResolver<AEntity> {
      * @return
      */
     public ADao getDaoByName(String entityName) {
-		for (ADao manager : daos.values()) {
-			if (manager.getEntityName().equals(entityName)) {
-                                return manager;
-                        }
-		}
-		throw new RuntimeException("Dao does not exist: entityName=" + entityName);
-	}
+        for (ADao manager : daos.values()) {
+            if (manager.getEntityName().equals(entityName)) {
+                return manager;
+            }
+        }
+        throw new RuntimeException("Dao does not exist: entityName=" + entityName);
+    }
 
     /**
      *
@@ -87,8 +86,8 @@ public class DaoService implements IdentifiableResolver<AEntity> {
      * @return
      */
     public ADao getDao(AEntity entity) {
-		return getDaoByClass(entity.getClass());
-	}
+        return getDaoByClass(entity.getClass());
+    }
 
     /**
      *
@@ -96,12 +95,12 @@ public class DaoService implements IdentifiableResolver<AEntity> {
      * @return
      */
     public ADao getDaoByClass(Class entityClass) {
-		ADao dao = daos.get(entityClass);
-		if (dao == null) {
-                        throw new RuntimeException("Dao does not exist: " + entityClass);
-                }
-		return dao;
-	}
+        ADao dao = daos.get(entityClass);
+        if (dao == null) {
+            throw new RuntimeException("Dao does not exist: " + entityClass);
+        }
+        return dao;
+    }
 
     /**
      *
@@ -109,9 +108,9 @@ public class DaoService implements IdentifiableResolver<AEntity> {
      * @return
      */
     @Override
-	public AEntity getById(String id) {
-		return getEntityById(id);
-	}
+    public AEntity getById(String id) {
+        return getEntityById(id);
+    }
 
     /**
      *
@@ -119,24 +118,24 @@ public class DaoService implements IdentifiableResolver<AEntity> {
      * @return
      */
     public AEntity getEntityById(final String id) {
-		if (id == null) {
-                        throw new IllegalArgumentException("id == null");
-                }
-		AEntity entity = transactionService.getEntity(null, new Predicate<AEntity>() {
+        if (id == null) {
+            throw new IllegalArgumentException("id == null");
+        }
+        AEntity entity = transactionService.getEntity(null, new Predicate<AEntity>() {
 
-			@Override
-			public boolean test(AEntity e) {
-				return id.equals(e.getId());
-			}
+            @Override
+            public boolean test(AEntity e) {
+                return id.equals(e.getId());
+            }
 
-		});
+        });
 
-		if (entity == null) {
-                        DEBUG("EntityDoesNotExistException thrown in " + this.getClass().getName());
-                        throw new EntityDoesNotExistException(id);
-                }
-		return entity;
-	}
+        if (entity == null) {
+            DEBUG("EntityDoesNotExistException thrown in " + this.getClass().getName());
+            throw new EntityDoesNotExistException(id);
+        }
+        return entity;
+    }
 
     /**
      *
@@ -144,19 +143,19 @@ public class DaoService implements IdentifiableResolver<AEntity> {
      * @return
      */
     public boolean containsEntityWithId(final String id) {
-		if (id == null) {
-                        throw new IllegalArgumentException("id == null");
-                }
-		AEntity entity = transactionService.getEntity(null, new Predicate<AEntity>() {
+        if (id == null) {
+            throw new IllegalArgumentException("id == null");
+        }
+        AEntity entity = transactionService.getEntity(null, new Predicate<AEntity>() {
 
-			@Override
-			public boolean test(AEntity e) {
-				return id.equals(e.getId());
-			}
+            @Override
+            public boolean test(AEntity e) {
+                return id.equals(e.getId());
+            }
 
-		});
-		return entity != null;
-	}
+        });
+        return entity != null;
+    }
 
     /**
      *
@@ -164,9 +163,9 @@ public class DaoService implements IdentifiableResolver<AEntity> {
      * @return
      */
     @Override
-	public List<AEntity> getByIds(Collection<String> ids) {
-		return getEntitiesByIds(ids);
-	}
+    public List<AEntity> getByIds(Collection<String> ids) {
+        return getEntitiesByIds(ids);
+    }
 
     /**
      *
@@ -174,8 +173,8 @@ public class DaoService implements IdentifiableResolver<AEntity> {
      * @return
      */
     public Set<AEntity> getByIdsAsSet(Collection<String> ids) {
-		return new HashSet<>(getByIds(ids));
-	}
+        return new HashSet<>(getByIds(ids));
+    }
 
     /**
      *
@@ -183,126 +182,124 @@ public class DaoService implements IdentifiableResolver<AEntity> {
      * @return
      */
     public List<AEntity> getEntitiesByIds(final Collection<String> ids) {
-		List<AEntity> ret = new ArrayList<>(ids.size());
-		for (String id : ids) {
-                        ret.add(transactionService.getById(id));
-                }
-		return ret;
-	}
+        List<AEntity> ret = new ArrayList<>(ids.size());
+        for (String id : ids) {
+            ret.add(transactionService.getById(id));
+        }
+        return ret;
+    }
 
-	// --- listeners ---
-
-	private List<DaoListener> listeners;
+    // --- listeners ---
+    private List<DaoListener> listeners;
 
     /**
      *
      * @param listener
      */
     public void addListener(DaoListener listener) {
-		if (listeners == null) {
-                        listeners = new ArrayList<>();
-                }
-		listeners.add(listener);
-	}
+        if (listeners == null) {
+            listeners = new ArrayList<>();
+        }
+        listeners.add(listener);
+    }
 
     /**
      *
      * @param listener
      */
     public void removeListener(DaoListener listener) {
-		if (listeners == null) {
-                        return;
-                }
-		listeners.remove(listener);
-	}
+        if (listeners == null) {
+            return;
+        }
+        listeners.remove(listener);
+    }
 
     /**
      *
      * @param entity
      */
     public void fireEntitySaved(AEntity entity) {
-		if (listeners == null) {
-                        return;
-                }
-		EntityEvent event = new EntityEvent(this, entity);
-		for (DaoListener listener : listeners) {
-                        listener.entitySaved(event);
-                }
-	}
+        if (listeners == null) {
+            return;
+        }
+        EntityEvent event = new EntityEvent(this, entity);
+        for (DaoListener listener : listeners) {
+            listener.entitySaved(event);
+        }
+    }
 
     /**
      *
      * @param entity
      */
     public void fireEntityDeleted(AEntity entity) {
-		if (listeners == null) {
-                        return;
-                }
-		EntityEvent event = new EntityEvent(this, entity);
-		for (DaoListener listener : listeners) {
-                        listener.entityDeleted(event);
-                }
-	}
+        if (listeners == null) {
+            return;
+        }
+        EntityEvent event = new EntityEvent(this, entity);
+        for (DaoListener listener : listeners) {
+            listener.entityDeleted(event);
+        }
+    }
 
-	// --- dependencies ---
-
-	private volatile boolean initialized;
+    // --- dependencies ---
+    private volatile boolean initialized;
 
     /**
      *
      * @param context
      */
     public synchronized final void initialize(Context context) {
-		if (initialized) {
-                        throw new RuntimeException("Already initialized!");
-                }
+        if (initialized) {
+            throw new RuntimeException("Already initialized!");
+        }
 
-		for (ADao dao : context.getBeansByType(ADao.class)) {
-			if (dao.getEntityClass() == null) {
-                                continue;
-                        }
-			Map<String, Class> aliases = dao.getAliases();
-			for (Map.Entry<String, Class> entry : aliases.entrySet()) {
-				entityStore.setAlias(entry.getKey(), entry.getValue());
+        for (ADao dao : context.getBeansByType(ADao.class)) {
+            if (dao.getEntityClass() == null) {
+                continue;
+            }
+            Map<String, Class> aliases = dao.getAliases();
+            for (Map.Entry<String, Class> entry : aliases.entrySet()) {
+                entityStore.setAlias(entry.getKey(), entry.getValue());
 
-				// TODO clean up this mess
-				String subpackageAndClass = entry.getValue().getName().substring(12);
-				entityStore.setAlias("org.organizanto.app.domain." + subpackageAndClass, entry.getValue());
-			}
-		}
-		entityStore.setAlias("ilarkesto.base.time.Date", Date.class);
-		entityStore.setAlias("ilarkesto.base.time.Time", Time.class);
-		entityStore.setAlias("ilarkesto.base.time.DateAndTime", DateAndTime.class);
+                // TODO clean up this mess
+                String subpackageAndClass = entry.getValue().getName().substring(12);
+                entityStore.setAlias("org.organizanto.app.domain." + subpackageAndClass, entry.getValue());
+            }
+        }
+        entityStore.setAlias("ilarkesto.base.time.Date", Date.class);
+        entityStore.setAlias("ilarkesto.base.time.Time", Time.class);
+        entityStore.setAlias("ilarkesto.base.time.DateAndTime", DateAndTime.class);
 
-		for (ADao dao : context.getBeansByType(ADao.class)) {
-			if (dao.getEntityClass() == null) {
-                                continue;
-                        }
-			dao.initialize(context);
-			addDao(dao);
-		}
+        for (ADao dao : context.getBeansByType(ADao.class)) {
+            if (dao.getEntityClass() == null) {
+                continue;
+            }
+            dao.initialize(context);
+            addDao(dao);
+        }
 
-		initialized = true;
-	}
+        initialized = true;
+    }
 
-	private EntityStore entityStore;
+    private EntityStore entityStore;
 
     /**
      *
      * @param entityStore
      */
     public void setEntityStore(EntityStore entityStore) {
-		this.entityStore = entityStore;
-	}
+        this.entityStore = entityStore;
+    }
 
-	private TransactionService transactionService;
+    private TransactionService transactionService;
 
     /**
      *
      * @param transactionService
      */
     public void setTransactionService(TransactionService transactionService) {
-		this.transactionService = transactionService;
-	}
+        this.transactionService = transactionService;
+    }
 
 }

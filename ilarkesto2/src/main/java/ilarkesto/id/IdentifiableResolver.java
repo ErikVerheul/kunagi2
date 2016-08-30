@@ -19,7 +19,7 @@ import java.util.List;
 
 /**
  *
- * @author erik
+ *
  * @param <T>
  */
 public interface IdentifiableResolver<T extends Identifiable> {

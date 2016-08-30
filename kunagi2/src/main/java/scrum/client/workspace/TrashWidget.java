@@ -27,7 +27,7 @@ import scrum.client.img.Img;
 
 /**
  *
- * @author erik
+ *
  */
 public class TrashWidget extends AScrumWidget {
 

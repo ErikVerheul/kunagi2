@@ -16,7 +16,7 @@ package ilarkesto.gwt.client;
 
 /**
  *
- * @author erik
+ *
  */
 public interface Predicate {
 

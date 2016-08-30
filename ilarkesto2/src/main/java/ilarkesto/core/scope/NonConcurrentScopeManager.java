@@ -19,7 +19,7 @@ import static ilarkesto.core.logging.ClientLog.INFO;
 
 /**
  *
- * @author erik
+ *
  */
 public class NonConcurrentScopeManager extends ScopeManager {
 

@@ -18,7 +18,7 @@ import ilarkesto.gwt.client.AIntegerViewEditWidget;
 
 /**
  *
- * @author erik
+ *
  */
 public class IntegerEditorWidget extends AIntegerViewEditWidget {
 

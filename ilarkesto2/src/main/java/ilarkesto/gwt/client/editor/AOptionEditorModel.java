@@ -18,7 +18,7 @@ import java.util.List;
 
 /**
  *
- * @author erik
+ *
  * @param <T>
  */
 public abstract class AOptionEditorModel<T> extends AEditorModel<T> {

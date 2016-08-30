@@ -31,7 +31,7 @@ import scrum.server.pr.EmailSender;
 
 /**
  *
- * @author erik
+ *
  */
 public class User extends GUser {
 

@@ -32,7 +32,7 @@ import scrum.client.project.Project;
 
 /**
  *
- * @author erik
+ *
  */
 public class ProjectBlock extends ABlockWidget<Project> {
 

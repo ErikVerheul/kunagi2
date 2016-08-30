@@ -24,7 +24,7 @@ import scrum.client.common.AScrumWidget;
 
 /**
  *
- * @author erik
+ *
  */
 public class LockInfoWidget extends AScrumWidget {
 

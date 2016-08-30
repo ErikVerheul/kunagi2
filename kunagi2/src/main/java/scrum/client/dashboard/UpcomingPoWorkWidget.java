@@ -26,7 +26,7 @@ import scrum.client.sprint.Sprint;
 
 /**
  *
- * @author erik
+ *
  */
 public class UpcomingPoWorkWidget extends AScrumWidget {
 

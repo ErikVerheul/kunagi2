@@ -26,7 +26,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author erik
+ *
  */
 public class TcpConnection {
 

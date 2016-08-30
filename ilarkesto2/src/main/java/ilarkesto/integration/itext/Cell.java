@@ -28,7 +28,7 @@ import java.util.Collection;
 
 /**
  *
- * @author erik
+ *
  */
 public class Cell extends ACell implements ItextElement {
 

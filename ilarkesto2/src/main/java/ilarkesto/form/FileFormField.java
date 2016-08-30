@@ -21,7 +21,7 @@ import org.apache.commons.fileupload.FileItem;
 
 /**
  *
- * @author erik
+ *
  */
 public class FileFormField extends AFormField {
 

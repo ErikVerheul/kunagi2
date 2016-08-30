@@ -16,7 +16,7 @@ package scrum.client.common;
 
 /**
  *
- * @author erik
+ *
  * @param <G>
  */
 public interface ElementPredicate<G> {

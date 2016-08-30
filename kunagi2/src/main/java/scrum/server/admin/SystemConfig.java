@@ -20,7 +20,7 @@ import scrum.server.ScrumWebApplication;
 
 /**
  *
- * @author erik
+ *
  */
 public class SystemConfig extends GSystemConfig {
 

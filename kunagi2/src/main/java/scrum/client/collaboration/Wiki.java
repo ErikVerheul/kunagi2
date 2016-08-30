@@ -36,7 +36,7 @@ import scrum.client.wiki.WikiParser;
 
 /**
  *
- * @author erik
+ *
  */
 public class Wiki extends GWiki implements RichtextFormater {
 

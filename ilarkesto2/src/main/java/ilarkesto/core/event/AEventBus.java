@@ -19,7 +19,7 @@ import java.util.Collection;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class AEventBus implements EventBus {
 

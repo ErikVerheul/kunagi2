@@ -2,7 +2,7 @@ package ilarkesto.core.time;
 
 /**
  *
- * @author erik
+ *
  */
 public class TmLocalizerDe extends TmLocalizer {
 

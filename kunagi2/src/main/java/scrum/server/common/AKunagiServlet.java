@@ -39,7 +39,7 @@ import scrum.server.project.Project;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class AKunagiServlet extends AServlet<ScrumWebApplication, WebSession> {
 

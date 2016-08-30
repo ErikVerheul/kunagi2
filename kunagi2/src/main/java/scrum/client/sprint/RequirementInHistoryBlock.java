@@ -31,7 +31,7 @@ import scrum.client.project.RequirementWidget;
 
 /**
  *
- * @author erik
+ *
  */
 public class RequirementInHistoryBlock extends ABlockWidget<Requirement> {
 

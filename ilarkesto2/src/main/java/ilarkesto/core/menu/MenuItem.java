@@ -16,7 +16,7 @@ package ilarkesto.core.menu;
 
 /**
  *
- * @author erik
+ *
  */
 public interface MenuItem {
 

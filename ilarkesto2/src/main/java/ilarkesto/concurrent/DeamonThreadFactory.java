@@ -18,7 +18,7 @@ import java.util.concurrent.ThreadFactory;
 
 /**
  *
- * @author erik
+ *
  */
 public class DeamonThreadFactory implements ThreadFactory {
 

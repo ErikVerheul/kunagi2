@@ -20,7 +20,7 @@ import scrum.client.sprint.Task;
 
 /**
  *
- * @author erik
+ *
  */
 public interface TaskBlockContainer {
 

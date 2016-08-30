@@ -29,7 +29,7 @@ import scrum.client.project.Project;
 
 /**
  *
- * @author erik
+ *
  */
 public class SimpleEvent extends GSimpleEvent implements ForumSupport, ReferenceSupport, LabelSupport {
 

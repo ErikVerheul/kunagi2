@@ -49,7 +49,7 @@ import scrum.server.sprint.SprintDaySnapshot;
 
 /**
  *
- * @author erik
+ *
  */
 public class BurndownChart {
 

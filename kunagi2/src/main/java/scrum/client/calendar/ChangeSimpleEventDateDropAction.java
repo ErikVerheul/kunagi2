@@ -20,7 +20,7 @@ import scrum.client.workspace.VisibleDataChangedEvent;
 
 /**
  *
- * @author erik
+ *
  */
 public class ChangeSimpleEventDateDropAction implements BlockListDropAction<SimpleEvent> {
 

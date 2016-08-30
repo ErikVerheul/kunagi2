@@ -19,7 +19,7 @@ import java.util.Comparator;
 
 /**
  *
- * @author erik
+ *
  * @param <E>
  */
 public class LastModifiedEntityComparator<E extends AEntity> implements Comparator<E> {

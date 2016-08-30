@@ -20,7 +20,7 @@ import static ilarkesto.core.scope.Scope.get;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class AEvent implements Event {
 

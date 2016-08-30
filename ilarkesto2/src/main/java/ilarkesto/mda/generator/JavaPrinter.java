@@ -27,7 +27,7 @@ import java.util.List;
 
 /**
  *
- * @author erik
+ *
  */
 public class JavaPrinter {
 

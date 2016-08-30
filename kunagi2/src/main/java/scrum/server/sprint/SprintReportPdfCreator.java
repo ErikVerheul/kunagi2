@@ -35,7 +35,7 @@ import scrum.server.project.Requirement;
 
 /**
  *
- * @author erik
+ *
  */
 public class SprintReportPdfCreator extends APdfCreator {
 

@@ -20,7 +20,7 @@ import com.google.gwt.user.client.ui.SimplePanel;
 
 /**
  *
- * @author erik
+ *
  */
 public class BlockDndMarkerWidget extends Composite {
 

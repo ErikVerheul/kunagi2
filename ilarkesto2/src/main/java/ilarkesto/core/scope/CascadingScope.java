@@ -25,7 +25,7 @@ import java.util.Map;
 
 /**
  *
- * @author erik
+ *
  */
 public class CascadingScope extends Scope {
 

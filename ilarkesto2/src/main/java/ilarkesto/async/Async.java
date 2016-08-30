@@ -16,7 +16,7 @@ package ilarkesto.async;
 
 /**
  *
- * @author erik
+ *
  */
 public class Async {
 

@@ -45,7 +45,7 @@ import scrum.client.tasks.WhiteboardWidget;
 
 /**
  *
- * @author erik
+ *
  */
 public class Sprint extends GSprint implements ForumSupport, ReferenceSupport, LabelSupport {
 

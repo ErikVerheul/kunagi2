@@ -21,7 +21,7 @@ import org.junit.Test;
 
 /**
  *
- * @author erik
+ *
  */
 public class WikiTest extends AjunitTest {
     

@@ -23,7 +23,7 @@ import scrum.client.project.Project;
 
 /**
  *
- * @author erik
+ *
  */
 public class ChatMessage extends GChatMessage implements Comparable<ChatMessage> {
 

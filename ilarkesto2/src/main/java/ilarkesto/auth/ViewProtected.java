@@ -16,7 +16,7 @@ package ilarkesto.auth;
 
 /**
  *
- * @author erik
+ *
  * @param <U>
  */
 public interface ViewProtected<U extends AUser> {

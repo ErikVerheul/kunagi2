@@ -30,7 +30,7 @@ import org.jdom2.output.XMLOutputter;
 
 /**
  *
- * @author erik
+ *
  */
 public class ScrumEntityfilePreparator implements EntityfilePreparator {
 

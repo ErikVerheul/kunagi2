@@ -20,7 +20,7 @@ import static java.util.Collections.emptyList;
 
 /**
  *
- * @author erik
+ *
  * @param <E>
  */
 public abstract class ACollectionTask<E> extends ATask {

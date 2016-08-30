@@ -38,7 +38,7 @@ import scrum.client.release.Release;
 
 /**
  *
- * @author erik
+ *
  */
 public class IssueWidget extends AScrumWidget {
 

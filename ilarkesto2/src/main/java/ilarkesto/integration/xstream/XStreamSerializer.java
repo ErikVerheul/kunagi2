@@ -30,7 +30,7 @@ import java.io.Writer;
 
 /**
  *
- * @author erik
+ *
  */
 public class XStreamSerializer extends Serializer {
 

@@ -18,7 +18,7 @@ import ilarkesto.fp.Function;
 
 /**
  *
- * @author erik
+ *
  * @param <R>
  */
 public abstract class ACallback<R> implements Callback<R> {

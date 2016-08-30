@@ -18,7 +18,7 @@ import java.lang.Thread.UncaughtExceptionHandler;
 
 /**
  *
- * @author erik
+ *
  */
 public class LoggingUncaughtExceptionHandler implements UncaughtExceptionHandler {
 

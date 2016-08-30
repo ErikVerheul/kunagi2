@@ -18,7 +18,7 @@ import static ilarkesto.core.base.Str.getSimpleName;
 
 /**
  *
- * @author erik
+ *
  * @param <T>
  */
 public abstract class AFieldModel<T> {

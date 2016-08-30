@@ -25,7 +25,7 @@ import java.util.Map;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class ADropdownViewEditWidget extends AViewEditWidget {
 

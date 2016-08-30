@@ -21,7 +21,7 @@ import java.lang.annotation.Target;
 
 /**
  *
- * @author erik
+ *
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)

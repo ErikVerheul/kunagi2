@@ -29,7 +29,7 @@ import scrum.client.project.Project;
 
 /**
  *
- * @author erik
+ *
  */
 public class UsersStatusWidget extends AScrumWidget {
 

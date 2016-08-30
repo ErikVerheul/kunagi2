@@ -19,7 +19,7 @@ import scrum.client.estimation.ActivateRequirementEstimationVotingServiceCall;
 
 /**
  *
- * @author erik
+ *
  */
 public class StartRequirementEstimationVotingAction extends GStartRequirementEstimationVotingAction {
 

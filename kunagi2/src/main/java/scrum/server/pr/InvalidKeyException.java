@@ -16,7 +16,7 @@ package scrum.server.pr;
 
 /**
  *
- * @author erik
+ *
  */
 public class InvalidKeyException extends Exception {
 

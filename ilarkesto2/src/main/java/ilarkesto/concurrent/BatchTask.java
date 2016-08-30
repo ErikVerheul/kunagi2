@@ -19,7 +19,7 @@ import java.util.List;
 
 /**
  *
- * @author erik
+ *
  */
 public final class BatchTask extends ATask {
 

@@ -20,7 +20,7 @@ import scrum.client.common.GlobalsSingleton;
 
 /**
  *
- * @author erik
+ *
  */
 public class ScrumDragController extends PickupDragController {
 

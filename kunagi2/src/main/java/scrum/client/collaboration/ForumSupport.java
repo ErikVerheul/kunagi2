@@ -24,7 +24,7 @@ import scrum.client.common.ReferenceSupport;
 
 /**
  *
- * @author erik
+ *
  */
 public interface ForumSupport extends LabelSupport, ReferenceSupport {
 

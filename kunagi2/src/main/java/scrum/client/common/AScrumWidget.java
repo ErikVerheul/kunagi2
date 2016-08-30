@@ -28,7 +28,7 @@ import scrum.client.workspace.Ui;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class AScrumWidget extends AWidget {
 

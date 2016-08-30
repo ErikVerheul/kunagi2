@@ -7,7 +7,7 @@ import scrum.client.admin.User;
 
 /**
  *
- * @author erik
+ *
  */
 public class Chat extends GChat {
 

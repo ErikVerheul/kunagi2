@@ -24,7 +24,7 @@ import scrum.client.workspace.PagePanel;
 
 /**
  *
- * @author erik
+ *
  */
 public class QualityBacklogWidget extends AScrumWidget {
 

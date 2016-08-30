@@ -30,7 +30,7 @@ import scrum.client.sprint.Task;
 
 /**
  *
- * @author erik
+ *
  */
 public class UserStatusDetailsWidget extends AScrumWidget {
 

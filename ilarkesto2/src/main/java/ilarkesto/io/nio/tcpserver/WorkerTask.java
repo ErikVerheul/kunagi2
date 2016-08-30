@@ -21,7 +21,7 @@ import java.util.List;
 
 /**
  *
- * @author erik
+ *
  */
 public class WorkerTask extends ALoopTask {
 

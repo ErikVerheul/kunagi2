@@ -21,7 +21,7 @@ import scrum.client.common.ReferenceSupport;
 
 /**
  *
- * @author erik
+ *
  */
 public class KunagiUtl {
 

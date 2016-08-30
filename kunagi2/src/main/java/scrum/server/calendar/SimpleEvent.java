@@ -21,7 +21,7 @@ import scrum.server.common.Numbered;
 
 /**
  *
- * @author erik
+ *
  */
 public class SimpleEvent extends GSimpleEvent implements Numbered, Comparable<SimpleEvent> {
 

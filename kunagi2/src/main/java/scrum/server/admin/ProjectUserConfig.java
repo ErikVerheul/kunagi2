@@ -18,7 +18,7 @@ import ilarkesto.core.time.DateAndTime;
 
 /**
  *
- * @author erik
+ *
  */
 public class ProjectUserConfig extends GProjectUserConfig {
 

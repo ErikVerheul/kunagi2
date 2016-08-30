@@ -16,7 +16,7 @@ package ilarkesto.async;
 
 /**
  *
- * @author erik
+ *
  * @param <R>
  */
 public interface Callback<R> {

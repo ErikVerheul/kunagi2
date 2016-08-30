@@ -18,7 +18,7 @@ import static ilarkesto.core.logging.ClientLog.DEBUG;
 
 /**
  *
- * @author erik
+ *
  */
 public class StaticMenuItem implements MenuItem {
 

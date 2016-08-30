@@ -21,7 +21,7 @@ import scrum.client.common.AScrumWidget;
 
 /**
  *
- * @author erik
+ *
  */
 public class MonthSelectorListWidget extends AScrumWidget {
 

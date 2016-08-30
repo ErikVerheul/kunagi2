@@ -26,7 +26,7 @@ import static ilarkesto.gwt.client.Gwt.update;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class AAction implements Command, ClickHandler {
 

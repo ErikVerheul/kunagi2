@@ -6,7 +6,7 @@ import scrum.client.common.TooltipBuilder;
 
 /**
  *
- * @author erik
+ *
  */
 public class ClaimTaskAction extends GClaimTaskAction {
 

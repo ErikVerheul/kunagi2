@@ -25,7 +25,7 @@ import java.util.Properties;
 
 /**
  *
- * @author erik
+ *
  */
 public class KunagiRootConfig {
 

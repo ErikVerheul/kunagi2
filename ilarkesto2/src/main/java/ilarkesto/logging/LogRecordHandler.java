@@ -16,7 +16,7 @@ package ilarkesto.logging;
 
 /**
  *
- * @author erik
+ *
  */
 public interface LogRecordHandler {
 

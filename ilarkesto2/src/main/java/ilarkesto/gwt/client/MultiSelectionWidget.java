@@ -29,7 +29,7 @@ import java.util.Map;
 
 /**
  *
- * @author erik
+ *
  * @param <I>
  */
 public class MultiSelectionWidget<I extends Object> extends AWidget {

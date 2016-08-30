@@ -18,7 +18,7 @@ import scrum.client.common.ElementPredicate;
 
 /**
  *
- * @author erik
+ *
  * @param <G>
  */
 public abstract class ListPredicate<G> implements ElementPredicate<G> {

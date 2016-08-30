@@ -16,7 +16,7 @@ package ilarkesto.core.scope;
 
 /**
  *
- * @author erik
+ *
  * @param <C>
  */
 public interface ComponentReflector<C> {

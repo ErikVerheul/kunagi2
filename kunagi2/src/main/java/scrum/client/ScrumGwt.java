@@ -37,7 +37,7 @@ import scrum.client.workspace.Navigator;
 
 /**
  *
- * @author erik
+ *
  */
 public class ScrumGwt extends Gwt {
 

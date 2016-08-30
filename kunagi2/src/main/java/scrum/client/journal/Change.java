@@ -34,7 +34,7 @@ import scrum.client.risks.RiskComputer;
 
 /**
  *
- * @author erik
+ *
  */
 public class Change extends GChange {
 

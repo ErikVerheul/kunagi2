@@ -35,7 +35,7 @@ import scrum.client.collaboration.ForumSupport;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class AScrumGwtEntity extends AGwtEntity implements ToHtmlSupport, HtmlLabelSupport {
 

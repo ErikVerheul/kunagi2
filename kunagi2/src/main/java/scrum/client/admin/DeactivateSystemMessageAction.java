@@ -18,7 +18,7 @@ import ilarkesto.core.scope.Scope;
 
 /**
  *
- * @author erik
+ *
  */
 public class DeactivateSystemMessageAction extends GCreateUserAction {
 

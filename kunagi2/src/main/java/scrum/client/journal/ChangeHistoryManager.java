@@ -21,7 +21,7 @@ import scrum.client.common.AScrumGwtEntity;
 
 /**
  *
- * @author erik
+ *
  */
 public class ChangeHistoryManager extends GChangeHistoryManager {
 

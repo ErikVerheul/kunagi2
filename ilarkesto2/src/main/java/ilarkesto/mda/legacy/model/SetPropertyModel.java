@@ -19,7 +19,7 @@ import java.util.Set;
 
 /**
  *
- * @author erik
+ *
  */
 public class SetPropertyModel extends ACollectionPropertyModel {
 

@@ -18,7 +18,7 @@ import ilarkesto.ui.web.CssRenderer;
 
 /**
  *
- * @author erik
+ *
  */
 public interface CssBuilder {
 

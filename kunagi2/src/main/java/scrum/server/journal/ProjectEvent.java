@@ -20,7 +20,7 @@ import scrum.server.collaboration.ChatMessageDao;
 
 /**
  *
- * @author erik
+ *
  */
 public class ProjectEvent extends GProjectEvent implements Comparable<ProjectEvent> {
 

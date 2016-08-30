@@ -31,7 +31,7 @@ import scrum.client.workspace.Ui;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class AScrumAction extends AAction {
 

@@ -4,7 +4,7 @@ import junit.framework.TestCase;
 
 /**
  *
- * @author erik
+ *
  */
 public class IOTest extends TestCase {
 

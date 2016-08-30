@@ -6,7 +6,7 @@ import scrum.server.admin.User;
 
 /**
  *
- * @author erik
+ *
  */
 public class Subscription extends GSubscription {
 

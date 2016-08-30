@@ -18,7 +18,7 @@ import ilarkesto.mda.legacy.model.BeanModel;
 
 /**
  *
- * @author erik
+ *
  * @param <E>
  */
 public class BeanTemplateGenerator<E extends BeanModel> extends ABeanGenerator<E> {

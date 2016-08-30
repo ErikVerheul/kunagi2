@@ -23,7 +23,7 @@ import java.util.Collection;
 
 /**
  *
- * @author erik
+ *
  */
 public class DeleteOldProjectsTask extends ACollectionTask<Project> {
 

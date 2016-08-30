@@ -21,7 +21,7 @@ import ilarkesto.mda.model.NodeTypes;
 
 /**
  *
- * @author erik
+ *
  */
 public class GwtTextBundleGenerator extends AJavaClassGenerator implements NodeTypes {
 

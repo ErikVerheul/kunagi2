@@ -31,7 +31,7 @@ import static java.util.logging.Logger.getLogger;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class JavaLogging {
 

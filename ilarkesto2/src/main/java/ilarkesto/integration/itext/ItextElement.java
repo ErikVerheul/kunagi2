@@ -18,7 +18,7 @@ import com.itextpdf.text.Element;
 
 /**
  *
- * @author erik
+ *
  */
 public interface ItextElement {
 

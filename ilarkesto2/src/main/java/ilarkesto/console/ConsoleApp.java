@@ -37,7 +37,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author erik
+ *
  */
 public class ConsoleApp {
 

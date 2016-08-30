@@ -19,7 +19,7 @@ import ilarkesto.mda.model.Node;
 
 /**
  *
- * @author erik
+ *
  */
 public class NodeSelectionChangedEvent extends AEvent {
 

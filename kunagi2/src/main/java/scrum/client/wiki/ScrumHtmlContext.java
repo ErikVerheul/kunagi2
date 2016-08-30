@@ -23,7 +23,7 @@ import scrum.client.workspace.Navigator;
 
 /**
  *
- * @author erik
+ *
  */
 public class ScrumHtmlContext implements HtmlContext {
 

@@ -21,7 +21,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author erik
+ *
  */
 public class SelectAllListener implements FocusListener {
 

@@ -18,7 +18,7 @@ import static java.lang.Integer.MAX_VALUE;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class AIntegerEditorModel extends AEditorModel<Integer> {
 

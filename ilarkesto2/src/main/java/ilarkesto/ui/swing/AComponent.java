@@ -42,7 +42,7 @@ import javax.swing.table.TableColumnModel;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class AComponent {
 

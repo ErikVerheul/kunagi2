@@ -19,7 +19,7 @@ import java.util.List;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class AFormField implements FormField {
 

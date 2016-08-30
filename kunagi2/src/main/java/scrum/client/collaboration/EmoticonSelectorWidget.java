@@ -30,7 +30,7 @@ import scrum.client.workspace.VisibleDataChangedEvent;
 
 /**
  *
- * @author erik
+ *
  */
 public class EmoticonSelectorWidget extends AScrumWidget {
 

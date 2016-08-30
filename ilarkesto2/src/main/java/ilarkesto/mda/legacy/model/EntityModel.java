@@ -20,7 +20,7 @@ import java.util.List;
 
 /**
  *
- * @author erik
+ *
  */
 public final class EntityModel extends DatobModel {
 

@@ -30,7 +30,7 @@ import scrum.server.common.KunagiUtl;
 
 /**
  *
- * @author erik
+ *
  */
 public class SubscribeServlet extends AKunagiServlet {
 

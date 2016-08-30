@@ -31,7 +31,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author erik
+ *
  */
 public class FileField extends JPanel {
 

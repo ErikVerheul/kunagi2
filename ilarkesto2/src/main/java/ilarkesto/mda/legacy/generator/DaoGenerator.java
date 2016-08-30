@@ -32,7 +32,7 @@ import java.util.Set;
 
 /**
  *
- * @author erik
+ *
  */
 public class DaoGenerator extends ABeanGenerator<EntityModel> {
 

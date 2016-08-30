@@ -16,7 +16,7 @@ package ilarkesto.form;
 
 /**
  *
- * @author erik
+ *
  */
 public interface FormPlugin {
 

@@ -5,7 +5,7 @@ import ilarkesto.core.base.Str;
 
 /**
  *
- * @author erik
+ *
  */
 public class TestLdapAction extends GTestLdapAction {
 

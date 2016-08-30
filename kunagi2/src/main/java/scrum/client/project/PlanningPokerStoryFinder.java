@@ -10,7 +10,7 @@ import scrum.client.ScrumGwt;
 
 /**
  *
- * @author erik
+ *
  */
 public class PlanningPokerStoryFinder {
 

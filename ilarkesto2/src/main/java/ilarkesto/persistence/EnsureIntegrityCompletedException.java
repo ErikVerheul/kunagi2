@@ -16,7 +16,7 @@ package ilarkesto.persistence;
 
 /**
  *
- * @author erik
+ *
  */
 public class EnsureIntegrityCompletedException extends RuntimeException {
 

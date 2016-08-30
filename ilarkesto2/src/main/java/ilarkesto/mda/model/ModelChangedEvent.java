@@ -18,7 +18,7 @@ import ilarkesto.core.event.AEvent;
 
 /**
  *
- * @author erik
+ *
  */
 public class ModelChangedEvent extends AEvent {
 

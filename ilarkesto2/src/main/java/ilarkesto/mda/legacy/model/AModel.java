@@ -16,7 +16,7 @@ package ilarkesto.mda.legacy.model;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class AModel implements Comparable<AModel> {
 

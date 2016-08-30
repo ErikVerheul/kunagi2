@@ -24,7 +24,7 @@ import java.util.Map;
 
 /**
  *
- * @author erik
+ *
  * @param <T>
  */
 public class DropdownEditorWidget<T> extends ADropdownViewEditWidget {

@@ -34,7 +34,7 @@ import java.util.List;
 
 /**
  *
- * @author erik
+ *
  */
 public class ScrumModelApplication extends AGeneratorApplication {
 

@@ -16,7 +16,7 @@ package ilarkesto.core.diff;
 
 /**
  *
- * @author erik
+ *
  */
 public interface DiffMarker {
 

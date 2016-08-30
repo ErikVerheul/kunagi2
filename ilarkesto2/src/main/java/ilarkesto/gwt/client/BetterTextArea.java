@@ -22,7 +22,7 @@ import com.google.gwt.user.client.ui.TextArea;
 
 /**
  *
- * @author erik
+ *
  */
 public class BetterTextArea extends TextArea {
 

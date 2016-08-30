@@ -18,7 +18,7 @@ import java.io.PrintStream;
 
 /**
  *
- * @author erik
+ *
  */
 public class PrintStreamLogRecordHandler implements LogRecordHandler {
 

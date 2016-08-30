@@ -18,7 +18,7 @@ import java.io.File;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class APdfContainerElement extends APdfElement {
 

@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author erik
+ *
  * @param <A>
  * @param <S>
  */

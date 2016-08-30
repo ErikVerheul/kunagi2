@@ -20,7 +20,7 @@ import java.util.Collection;
 
 /**
  *
- * @author erik
+ *
  */
 public class AjunitTest {
 

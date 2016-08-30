@@ -34,7 +34,7 @@ import static java.util.Locale.GERMANY;
 
 /**
  *
- * @author erik
+ *
  */
 @SuppressWarnings("SE_NO_SERIALVERSIONID")
 public final class DateExtend extends ilarkesto.core.time.Date {

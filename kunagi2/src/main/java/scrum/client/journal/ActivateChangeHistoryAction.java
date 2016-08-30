@@ -21,7 +21,7 @@ import scrum.client.workspace.ProjectWorkspaceWidgets;
 
 /**
  *
- * @author erik
+ *
  */
 public class ActivateChangeHistoryAction extends AScrumAction {
 

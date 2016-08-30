@@ -19,7 +19,7 @@ import ilarkesto.core.time.Time;
 
 /**
  *
- * @author erik
+ *
  */
 public class TimeConverter extends AbstractSingleValueConverter {
 

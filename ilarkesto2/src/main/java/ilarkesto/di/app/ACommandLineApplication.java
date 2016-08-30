@@ -21,7 +21,7 @@ import static java.lang.System.exit;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class ACommandLineApplication extends AApplication {
 

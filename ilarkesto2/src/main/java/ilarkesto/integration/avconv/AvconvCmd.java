@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
 
 /**
  *
- * @author erik
+ *
  */
 public class AvconvCmd {
 

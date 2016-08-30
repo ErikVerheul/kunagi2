@@ -19,7 +19,7 @@ import ilarkesto.form.ValidationException;
 
 /**
  *
- * @author erik
+ *
  */
 public class SuffixValidator implements Validator {
 

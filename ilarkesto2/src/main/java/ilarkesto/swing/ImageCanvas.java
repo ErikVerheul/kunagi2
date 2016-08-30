@@ -30,7 +30,7 @@ import java.io.File;
 
 /**
  *
- * @author erik
+ *
  */
 public class ImageCanvas extends Component {
 

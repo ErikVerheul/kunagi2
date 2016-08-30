@@ -21,7 +21,7 @@ import java.util.Comparator;
 
 /**
  *
- * @author erik
+ *
  */
 public class NodeByIndexComparator implements Comparator<Node>, NodeTypes {
 

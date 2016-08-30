@@ -22,7 +22,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author erik
+ *
  */
 public class SystemMessage implements Serializable, IsSerializable {
 

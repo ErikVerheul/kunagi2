@@ -20,7 +20,7 @@ import ilarkesto.properties.APropertiesStore;
 
 /**
  *
- * @author erik
+ *
  */
 public class ASwingApplicationConfig extends AApplicationConfig {
 

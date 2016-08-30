@@ -18,7 +18,7 @@ import java.util.List;
 
 /**
  *
- * @author erik
+ *
  * @param <I>
  */
 public interface Menu<I extends MenuItem> {

@@ -19,7 +19,7 @@ import ilarkesto.persistence.AEntity;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class AUser extends AEntity {
         

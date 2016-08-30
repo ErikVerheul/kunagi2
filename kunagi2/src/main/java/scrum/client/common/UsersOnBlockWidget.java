@@ -24,7 +24,7 @@ import scrum.client.admin.User;
 
 /**
  *
- * @author erik
+ *
  */
 public class UsersOnBlockWidget extends AScrumWidget {
 

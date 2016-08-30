@@ -33,7 +33,7 @@ import scrum.client.common.BlockListWidget;
 
 /**
  *
- * @author erik
+ *
  */
 public class DayListWidget extends AScrumWidget {
 

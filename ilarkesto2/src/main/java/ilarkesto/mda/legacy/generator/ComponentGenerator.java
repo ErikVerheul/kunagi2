@@ -18,7 +18,7 @@ import ilarkesto.mda.legacy.model.ComponentModel;
 
 /**
  *
- * @author erik
+ *
  * @param <B>
  */
 public class ComponentGenerator<B extends ComponentModel> extends ABeanGenerator<B> {

@@ -54,7 +54,7 @@ import scrum.client.workspace.VisibleDataChangedEvent;
 
 /**
  *
- * @author erik
+ *
  */
 public class Dao extends GDao {
 

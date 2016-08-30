@@ -31,7 +31,7 @@ import scrum.client.sprint.Sprint;
 
 /**
  *
- * @author erik
+ *
  */
 public class RequirementBlock extends ABlockWidget<Requirement> implements TrashSupport {
 

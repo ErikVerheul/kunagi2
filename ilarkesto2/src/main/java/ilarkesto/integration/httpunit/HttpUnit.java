@@ -34,7 +34,7 @@ import org.xml.sax.SAXException;
 
 /**
  *
- * @author erik
+ *
  */
 public class HttpUnit {
 

@@ -27,7 +27,7 @@ import org.apache.log4j.spi.LoggingEvent;
 
 /**
  *
- * @author erik
+ *
  */
 public class Log4jLogging {
 

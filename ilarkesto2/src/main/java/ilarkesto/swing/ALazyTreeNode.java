@@ -20,7 +20,7 @@ import javax.swing.tree.TreeNode;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class ALazyTreeNode extends DefaultMutableTreeNode {
 

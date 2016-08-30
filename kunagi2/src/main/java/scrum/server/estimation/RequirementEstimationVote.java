@@ -20,7 +20,7 @@ import scrum.server.project.Requirement;
 
 /**
  *
- * @author erik
+ *
  */
 public class RequirementEstimationVote extends GRequirementEstimationVote {
 

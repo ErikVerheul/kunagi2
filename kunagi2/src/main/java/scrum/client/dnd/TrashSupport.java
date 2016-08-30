@@ -18,7 +18,7 @@ import scrum.client.common.AScrumAction;
 
 /**
  *
- * @author erik
+ *
  */
 public interface TrashSupport {
 

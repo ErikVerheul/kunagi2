@@ -19,7 +19,7 @@ import scrum.server.admin.User;
 
 /**
  *
- * @author erik
+ *
  */
 public class ChatMessage extends GChatMessage {
 

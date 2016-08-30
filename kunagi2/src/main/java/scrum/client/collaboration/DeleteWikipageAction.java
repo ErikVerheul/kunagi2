@@ -18,7 +18,7 @@ import ilarkesto.gwt.client.Gwt;
 
 /**
  *
- * @author erik
+ *
  */
 public class DeleteWikipageAction extends GDeleteWikipageAction {
 

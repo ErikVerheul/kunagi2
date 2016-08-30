@@ -20,7 +20,7 @@ import ilarkesto.pdf.APdfElement;
 
 /**
  *
- * @author erik
+ *
  */
 public class PageBreak extends APageBreak implements ItextElement {
 

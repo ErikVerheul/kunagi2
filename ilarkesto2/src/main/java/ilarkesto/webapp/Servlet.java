@@ -44,7 +44,7 @@ import static javax.servlet.http.HttpServletResponse.SC_NOT_MODIFIED;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class Servlet {
 

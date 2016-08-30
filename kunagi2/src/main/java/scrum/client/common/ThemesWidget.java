@@ -33,7 +33,7 @@ import scrum.client.ScrumGwt;
 
 /**
  *
- * @author erik
+ *
  */
 public class ThemesWidget extends AMultiSelectionViewEditWidget<String> {
 

@@ -16,7 +16,7 @@ package ilarkesto.tools.cheatsheet;
 
 /**
  *
- * @author erik
+ *
  */
 public class Cheat {
 

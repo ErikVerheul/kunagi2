@@ -16,7 +16,7 @@ package scrum.server.common;
 
 /**
  *
- * @author erik
+ *
  */
 public interface Numbered {
 

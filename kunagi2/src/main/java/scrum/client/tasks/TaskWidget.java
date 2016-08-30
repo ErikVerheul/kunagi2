@@ -32,7 +32,7 @@ import scrum.client.sprint.Task;
 
 /**
  *
- * @author erik
+ *
  */
 public class TaskWidget extends AScrumWidget {
 

@@ -20,7 +20,7 @@ import static ilarkesto.gwt.client.Gwt.formatHours;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class ATextWidget extends AWidget {
 

@@ -18,7 +18,7 @@ import ilarkesto.logging.Log;
 
 /**
  *
- * @author erik
+ *
  */
 public class Model implements NodeTypes {
 

@@ -32,7 +32,7 @@ import java.util.Set;
 
 /**
  *
- * @author erik
+ *
  * @param <T>
  */
 public final class MultiOptionAction<T> extends AAction {

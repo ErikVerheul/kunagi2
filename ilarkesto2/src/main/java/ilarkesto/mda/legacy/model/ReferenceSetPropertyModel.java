@@ -19,8 +19,8 @@ package ilarkesto.mda.legacy.model;
  */
 public class ReferenceSetPropertyModel extends SetPropertyModel {
 
-	private final EntityModel referencedEntity;
-	private BackReferenceModel backReference;
+    private final EntityModel referencedEntity;
+    private BackReferenceModel backReference;
 
     /**
      *
@@ -29,9 +29,9 @@ public class ReferenceSetPropertyModel extends SetPropertyModel {
      * @param referencedEntity
      */
     public ReferenceSetPropertyModel(BeanModel entityModel, String name, EntityModel referencedEntity) {
-		super(entityModel, name, true, false, referencedEntity.getBeanClass());
-		this.referencedEntity = referencedEntity;
-	}
+        super(entityModel, name, true, false, referencedEntity.getBeanClass());
+        this.referencedEntity = referencedEntity;
+    }
 
     /**
      *
@@ -39,21 +39,21 @@ public class ReferenceSetPropertyModel extends SetPropertyModel {
      * @return
      */
     public ReferenceSetPropertyModel createBackReference(String name) {
-		if (!getBean().isEntity()) {
-                        return this;
-                }
-		backReference = new BackReferenceModel(name, this);
-		referencedEntity.addBackReference(backReference);
-		return this;
-	}
+        if (!getBean().isEntity()) {
+            return this;
+        }
+        backReference = new BackReferenceModel(name, this);
+        referencedEntity.addBackReference(backReference);
+        return this;
+    }
 
     /**
      *
      * @return
      */
     public EntityModel getReferencedEntity() {
-		return referencedEntity;
-	}
+        return referencedEntity;
+    }
 
     /**
      *
@@ -61,8 +61,8 @@ public class ReferenceSetPropertyModel extends SetPropertyModel {
      * @return
      */
     public ReferenceSetPropertyModel setBackReferenceName(String name) {
-		backReference.setName(name);
-		return this;
-	}
+        backReference.setName(name);
+        return this;
+    }
 
 }

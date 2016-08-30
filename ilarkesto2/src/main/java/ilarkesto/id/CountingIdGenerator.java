@@ -16,7 +16,7 @@ package ilarkesto.id;
 
 /**
  *
- * @author erik
+ *
  */
 public class CountingIdGenerator implements IdGenerator {
 

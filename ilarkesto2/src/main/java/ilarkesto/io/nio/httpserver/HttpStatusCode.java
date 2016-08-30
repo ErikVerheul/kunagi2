@@ -16,7 +16,7 @@ package ilarkesto.io.nio.httpserver;
 
 /**
  *
- * @author erik
+ *
  */
 public enum HttpStatusCode {
 

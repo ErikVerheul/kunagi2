@@ -6,7 +6,7 @@ import scrum.client.project.Requirement;
 
 /**
  *
- * @author erik
+ *
  */
 public class PullNextRequirementAction extends GPullNextRequirementAction {
 

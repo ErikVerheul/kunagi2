@@ -16,7 +16,7 @@ package ilarkesto.integration.links;
 
 /**
  *
- * @author erik
+ *
  */
 public class ImageLinkConverter implements LinkConverter {
 

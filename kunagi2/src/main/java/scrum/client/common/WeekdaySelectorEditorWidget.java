@@ -19,7 +19,7 @@ import ilarkesto.gwt.client.editor.AEditorModel;
 
 /**
  *
- * @author erik
+ *
  */
 public class WeekdaySelectorEditorWidget extends AMultiSelectionViewEditWidget<Integer> {
 

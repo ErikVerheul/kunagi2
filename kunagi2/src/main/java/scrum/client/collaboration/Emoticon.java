@@ -25,7 +25,7 @@ import scrum.client.common.AScrumGwtEntity;
 
 /**
  *
- * @author erik
+ *
  */
 public class Emoticon extends GEmoticon {
 

@@ -16,7 +16,7 @@ package ilarkesto;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class Servers {
 

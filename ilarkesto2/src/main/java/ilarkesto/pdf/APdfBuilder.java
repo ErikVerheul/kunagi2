@@ -16,7 +16,7 @@ package ilarkesto.pdf;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class APdfBuilder extends APdfContainerElement {
 

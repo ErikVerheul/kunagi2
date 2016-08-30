@@ -16,7 +16,7 @@ package ilarkesto.pdf;
 
 /**
  *
- * @author erik
+ *
  */
 public class TextChunk extends AParagraphElement {
 

@@ -16,13 +16,12 @@ package ilarkesto.mda.legacy.model;
 
 /**
  *
- * @author erik
  */
 public class ReferencePropertyModel extends SimplePropertyModel {
 
-	private final EntityModel referencedEntity;
-	private boolean master;
-	private BackReferenceModel backReference;
+    private final EntityModel referencedEntity;
+    private boolean master;
+    private BackReferenceModel backReference;
 
     /**
      *
@@ -31,18 +30,18 @@ public class ReferencePropertyModel extends SimplePropertyModel {
      * @param referencedEntity
      */
     public ReferencePropertyModel(BeanModel entityModel, String name, EntityModel referencedEntity) {
-		super(entityModel, name, true, false, referencedEntity.getPackageName() + "." + referencedEntity.getName());
-		this.referencedEntity = referencedEntity;
-	}
+        super(entityModel, name, true, false, referencedEntity.getPackageName() + "." + referencedEntity.getName());
+        this.referencedEntity = referencedEntity;
+    }
 
     /**
      *
      * @return
      */
     @Override
-	public EntityModel getReferencedEntity() {
-		return referencedEntity;
-	}
+    public EntityModel getReferencedEntity() {
+        return referencedEntity;
+    }
 
     /**
      *
@@ -50,13 +49,13 @@ public class ReferencePropertyModel extends SimplePropertyModel {
      * @return
      */
     public ReferencePropertyModel createBackReference(String name) {
-		if (!getBean().isEntity()) {
-                        return this;
-                }
-		backReference = new BackReferenceModel(name, this);
-		referencedEntity.addBackReference(backReference);
-		return this;
-	}
+        if (!getBean().isEntity()) {
+            return this;
+        }
+        backReference = new BackReferenceModel(name, this);
+        referencedEntity.addBackReference(backReference);
+        return this;
+    }
 
     /**
      *
@@ -64,9 +63,9 @@ public class ReferencePropertyModel extends SimplePropertyModel {
      * @return
      */
     public ReferencePropertyModel setBackReferenceName(String name) {
-		backReference.setName(name);
-		return this;
-	}
+        backReference.setName(name);
+        return this;
+    }
 
     /**
      *
@@ -74,20 +73,20 @@ public class ReferencePropertyModel extends SimplePropertyModel {
      * @return
      */
     public ReferencePropertyModel setMaster(boolean master) {
-		if (master && (!isReference() || isCollection())) {
-                        throw new RuntimeException("Only a simple reference property can be a master");
-                }
-		this.master = master;
-		setMandatory(master);
-		return this;
-	}
+        if (master && (!isReference() || isCollection())) {
+            throw new RuntimeException("Only a simple reference property can be a master");
+        }
+        this.master = master;
+        setMandatory(master);
+        return this;
+    }
 
     /**
      *
      * @return
      */
     public boolean isMaster() {
-		return master;
-	}
+        return master;
+    }
 
 }

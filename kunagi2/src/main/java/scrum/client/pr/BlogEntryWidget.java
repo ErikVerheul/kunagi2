@@ -28,7 +28,7 @@ import scrum.client.journal.ChangeHistoryWidget;
 
 /**
  *
- * @author erik
+ *
  */
 public class BlogEntryWidget extends AScrumWidget {
 

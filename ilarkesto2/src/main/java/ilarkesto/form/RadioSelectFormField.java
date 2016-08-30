@@ -24,7 +24,7 @@ import org.apache.commons.fileupload.FileItem;
 
 /**
  *
- * @author erik
+ *
  * @param <T>
  */
 public final class RadioSelectFormField<T> extends AFormField {

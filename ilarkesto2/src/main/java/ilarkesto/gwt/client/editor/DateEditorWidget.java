@@ -25,7 +25,7 @@ import ilarkesto.gwt.client.AViewEditWidget;
 
 /**
  *
- * @author erik
+ *
  */
 public class DateEditorWidget extends AViewEditWidget {
 

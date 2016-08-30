@@ -16,7 +16,7 @@ package scrum.client.project;
 
 /**
  *
- * @author erik
+ *
  */
 public class RejectRequirementAction extends GRejectRequirementAction {
 

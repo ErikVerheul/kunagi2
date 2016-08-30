@@ -25,7 +25,7 @@ import java.text.ParseException;
 
 /**
  *
- * @author erik
+ *
  */
 public class DateParser {
 

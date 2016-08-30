@@ -19,7 +19,7 @@ import ilarkesto.base.Money;
 
 /**
  *
- * @author erik
+ *
  */
 public class MoneyConverter extends AbstractSingleValueConverter {
 

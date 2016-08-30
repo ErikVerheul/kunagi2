@@ -23,7 +23,7 @@ import scrum.client.common.AScrumGwtEntity;
 
 /**
  *
- * @author erik
+ *
  */
 public class Search extends GSearch implements SearchResultsChangedHandler {
 

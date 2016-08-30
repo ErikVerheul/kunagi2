@@ -28,7 +28,7 @@ import scrum.client.common.ThemesContainer;
 
 /**
  *
- * @author erik
+ *
  */
 public class ProjectUserConfig extends GProjectUserConfig {
 

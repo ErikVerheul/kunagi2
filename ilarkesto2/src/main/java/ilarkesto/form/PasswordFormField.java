@@ -16,7 +16,7 @@ package ilarkesto.form;
 
 /**
  *
- * @author erik
+ *
  */
 public class PasswordFormField extends TextFormField  {
 

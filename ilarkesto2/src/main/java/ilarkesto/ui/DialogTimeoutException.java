@@ -16,7 +16,7 @@ package ilarkesto.ui;
 
 /**
  *
- * @author erik
+ *
  */
 public class DialogTimeoutException extends RuntimeException {
 

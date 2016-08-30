@@ -24,7 +24,7 @@ import java.util.List;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class AJsonWrapper implements JsonWrapper {
 

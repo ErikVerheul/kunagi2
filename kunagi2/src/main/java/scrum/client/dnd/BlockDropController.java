@@ -28,7 +28,7 @@ import scrum.client.project.Requirement;
 
 /**
  *
- * @author erik
+ *
  */
 public class BlockDropController implements DropController {
 

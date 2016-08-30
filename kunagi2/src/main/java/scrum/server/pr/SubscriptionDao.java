@@ -4,7 +4,7 @@ import ilarkesto.persistence.AEntity;
 
 /**
  *
- * @author erik
+ *
  */
 public class SubscriptionDao extends GSubscriptionDao {
 

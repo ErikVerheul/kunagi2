@@ -20,7 +20,7 @@ import ilarkesto.persistence.TransactionService;
 
 /**
  *
- * @author erik
+ *
  */
 public class DestroyTimeoutedSessionsTask extends ATask {
 

@@ -19,7 +19,7 @@ import static ilarkesto.core.time.DateAndTime.now;
 
 /**
  *
- * @author erik
+ *
  */
 public class UserMessage {
 

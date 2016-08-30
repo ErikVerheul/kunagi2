@@ -16,7 +16,7 @@ package ilarkesto.auth;
 
 /**
  *
- * @author erik
+ *
  * @param <U>
  */
 public interface DeleteProtected<U extends AUser> {

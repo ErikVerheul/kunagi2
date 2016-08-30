@@ -16,7 +16,7 @@ package ilarkesto.fp;
 
 /**
  *
- * @author erik
+ *
  * @param <T>
  */
 public abstract class Procedure<T> implements Function<T, T> {

@@ -48,7 +48,7 @@ import scrum.client.workspace.UsersWorkspaceWidgets;
 
 /**
  *
- * @author erik
+ *
  */
 public class ScrumScopeManager {
 

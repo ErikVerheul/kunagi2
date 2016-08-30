@@ -11,7 +11,7 @@ import junit.framework.TestCase;
 
 /**
  *
- * @author erik
+ *
  */
 public class FPTest extends TestCase {
 

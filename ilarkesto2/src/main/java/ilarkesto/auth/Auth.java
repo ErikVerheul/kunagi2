@@ -16,7 +16,7 @@ package ilarkesto.auth;
 
 /**
  *
- * @author erik
+ *
  */
 public class Auth {
 

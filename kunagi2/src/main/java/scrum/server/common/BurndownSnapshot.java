@@ -18,7 +18,7 @@ import ilarkesto.core.time.Date;
 
 /**
  *
- * @author erik
+ *
  */
 public interface BurndownSnapshot {
 

@@ -22,7 +22,7 @@ import scrum.server.project.Project;
 
 /**
  *
- * @author erik
+ *
  */
 public class Task extends GTask implements Numbered, ReferenceSupport, LabelSupport {
 

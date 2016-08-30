@@ -21,7 +21,7 @@ import javax.swing.ImageIcon;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class AAction extends AbstractAction {
 

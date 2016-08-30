@@ -28,7 +28,7 @@ import scrum.client.workspace.BlockExpandedHandler;
 
 /**
  *
- * @author erik
+ *
  */
 public class UsersStatus extends GUsersStatus implements BlockCollapsedHandler, BlockExpandedHandler {
 

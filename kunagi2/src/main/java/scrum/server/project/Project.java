@@ -61,7 +61,7 @@ import scrum.server.sprint.TaskDao;
 
 /**
  *
- * @author erik
+ *
  */
 public class Project extends GProject {
 

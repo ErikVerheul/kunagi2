@@ -23,7 +23,7 @@ import ilarkesto.scope.ReflectionComponentReflector;
 
 /**
  *
- * @author erik
+ *
  */
 public class Starter {
 

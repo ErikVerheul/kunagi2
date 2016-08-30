@@ -19,7 +19,7 @@ import static ilarkesto.logging.Log.get;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class ALoopTask extends ATask {
 

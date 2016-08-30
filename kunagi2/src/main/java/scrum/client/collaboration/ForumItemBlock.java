@@ -23,7 +23,7 @@ import scrum.client.dnd.TrashSupport;
 
 /**
  *
- * @author erik
+ *
  */
 public class ForumItemBlock extends ABlockWidget<ForumSupport> implements TrashSupport {
 

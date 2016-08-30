@@ -19,7 +19,7 @@ import ilarkesto.webapp.RequestWrapper;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class AJsonApi {
 

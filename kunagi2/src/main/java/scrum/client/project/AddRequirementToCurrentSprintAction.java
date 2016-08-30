@@ -19,7 +19,7 @@ import scrum.client.sprint.PullStoryToSprintServiceCall;
 
 /**
  *
- * @author erik
+ *
  */
 public class AddRequirementToCurrentSprintAction extends GAddRequirementToCurrentSprintAction {
 

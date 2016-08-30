@@ -16,7 +16,7 @@ package ilarkesto.search;
 
 /**
  *
- * @author erik
+ *
  */
 public interface Searchable {
 

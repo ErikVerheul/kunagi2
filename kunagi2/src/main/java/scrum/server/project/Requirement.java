@@ -33,7 +33,7 @@ import scrum.server.sprint.Task;
 
 /**
  *
- * @author erik
+ *
  */
 public class Requirement extends GRequirement implements Numbered, ReferenceSupport, LabelSupport {
 

@@ -23,7 +23,7 @@ import scrum.client.project.Project;
 
 /**
  *
- * @author erik
+ *
  */
 public class AScrumComponent extends AComponent {
 

@@ -49,7 +49,7 @@ import scrum.client.workspace.WorkspaceWidget;
 
 /**
  *
- * @author erik
+ *
  */
 public class ScrumGwtApplication extends GScrumGwtApplication {
 

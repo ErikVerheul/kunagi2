@@ -25,7 +25,7 @@ import static ilarkesto.core.time.Tm.getCurrentTimeMillis;
 
 /**
  *
- * @author erik
+ *
  */
 public class CodemirrorEditorWidget extends AWidget {
 

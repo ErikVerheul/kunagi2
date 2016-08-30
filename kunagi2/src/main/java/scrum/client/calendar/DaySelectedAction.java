@@ -20,7 +20,7 @@ import scrum.client.common.AScrumAction;
 
 /**
  *
- * @author erik
+ *
  */
 public class DaySelectedAction extends AScrumAction {
 

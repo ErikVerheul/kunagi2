@@ -19,7 +19,7 @@ import java.util.Map;
 
 /**
  *
- * @author erik
+ *
  */
 public class PerConnectionDataHandler implements DataHandler {
 

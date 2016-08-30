@@ -18,7 +18,7 @@ import scrum.client.tasks.WhiteboardWidget;
 
 /**
  *
- * @author erik
+ *
  */
 public class Task extends GTask implements ReferenceSupport, LabelSupport, ForumSupport {
 

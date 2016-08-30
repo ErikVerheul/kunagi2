@@ -5,7 +5,7 @@ import scrum.client.common.TooltipBuilder;
 
 /**
  *
- * @author erik
+ *
  */
 public class DeleteRiskAction extends GDeleteRiskAction {
 

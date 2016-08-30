@@ -23,7 +23,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author erik
+ *
  * @param <E>
  */
 @SuppressWarnings("EI_EXPOSE_REP")

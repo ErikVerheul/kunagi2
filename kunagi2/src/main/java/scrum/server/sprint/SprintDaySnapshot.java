@@ -20,7 +20,7 @@ import scrum.server.project.Project;
 
 /**
  *
- * @author erik
+ *
  */
 public class SprintDaySnapshot extends GSprintDaySnapshot implements BurndownSnapshot {
 

@@ -24,7 +24,7 @@ import java.net.SocketTimeoutException;
 
 /**
  *
- * @author erik
+ *
  */
 public class ServerSocketTask extends ATask {
 

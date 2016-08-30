@@ -18,7 +18,7 @@ import ilarkesto.base.PermissionDeniedException;
 
 /**
  *
- * @author erik
+ *
  */
 public class LoginRequiredException extends PermissionDeniedException {
 

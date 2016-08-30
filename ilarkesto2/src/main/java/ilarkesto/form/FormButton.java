@@ -18,7 +18,7 @@ import static ilarkesto.form.Form.ABORT_BUTTON_NAME;
 
 /**
  *
- * @author erik
+ *
  */
 public class FormButton  {
 

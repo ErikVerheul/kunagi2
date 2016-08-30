@@ -18,7 +18,7 @@ import ilarkesto.webapp.RequestWrapper;
 
 /**
  *
- * @author erik
+ *
  */
 public interface JsonApiFactory {
 

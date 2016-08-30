@@ -16,7 +16,7 @@ package ilarkesto.persistence;
 
 /**
  *
- * @author erik
+ *
  * @param <E>
  */
 public interface DaoListener<E extends AEntity> {

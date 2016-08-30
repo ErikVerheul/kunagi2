@@ -44,7 +44,7 @@ import java.util.Set;
 
 /**
  *
- * @author erik
+ *
  */
 public class GwtEntityGenerator extends ABeanGenerator<EntityModel> {
 

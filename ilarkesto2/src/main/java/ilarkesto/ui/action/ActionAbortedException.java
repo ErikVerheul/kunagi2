@@ -16,7 +16,7 @@ package ilarkesto.ui.action;
 
 /**
  *
- * @author erik
+ *
  */
 public class ActionAbortedException extends RuntimeException {
 

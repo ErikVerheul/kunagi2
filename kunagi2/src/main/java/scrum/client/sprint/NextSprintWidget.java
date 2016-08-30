@@ -27,7 +27,7 @@ import scrum.client.workspace.PagePanel;
 
 /**
  *
- * @author erik
+ *
  */
 public class NextSprintWidget extends AScrumWidget {
 

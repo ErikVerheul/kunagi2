@@ -16,7 +16,7 @@ package ilarkesto.di;
 
 /**
  *
- * @author erik
+ *
  */
 public class BeanDoesNotExisException extends RuntimeException {
 

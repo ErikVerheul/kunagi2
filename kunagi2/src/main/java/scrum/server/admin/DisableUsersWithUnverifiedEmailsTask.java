@@ -21,7 +21,7 @@ import java.util.Collection;
 
 /**
  *
- * @author erik
+ *
  */
 public class DisableUsersWithUnverifiedEmailsTask extends ACollectionTask<User> {
 

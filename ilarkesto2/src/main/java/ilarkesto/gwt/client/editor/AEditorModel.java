@@ -18,7 +18,7 @@ import ilarkesto.core.base.Utl;
 
 /**
  *
- * @author erik
+ *
  * @param <T>
  */
 public abstract class AEditorModel<T> extends AFieldModel<T> {

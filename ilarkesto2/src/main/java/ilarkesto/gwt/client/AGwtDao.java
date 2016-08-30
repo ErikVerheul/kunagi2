@@ -24,7 +24,7 @@ import java.util.Map;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class AGwtDao extends AComponent {
 

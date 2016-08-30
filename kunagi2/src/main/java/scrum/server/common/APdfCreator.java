@@ -37,7 +37,7 @@ import scrum.server.sprint.Task;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class APdfCreator {
 

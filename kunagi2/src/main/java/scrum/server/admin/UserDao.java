@@ -24,7 +24,7 @@ import scrum.server.ScrumWebApplication;
 
 /**
  *
- * @author erik
+ *
  */
 public class UserDao extends GUserDao {
 

@@ -18,7 +18,7 @@ import ilarkesto.persistence.ADao;
 
 /**
  *
- * @author erik
+ *
  * @param <U>
  */
 public abstract class AUserDao<U extends AUser> extends ADao<U> {

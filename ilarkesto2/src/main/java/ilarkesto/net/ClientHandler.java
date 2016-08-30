@@ -19,7 +19,7 @@ import java.net.Socket;
 
 /**
  *
- * @author erik
+ *
  */
 public interface ClientHandler {
 

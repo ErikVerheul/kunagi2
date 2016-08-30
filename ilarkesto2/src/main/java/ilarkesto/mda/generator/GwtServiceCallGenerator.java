@@ -25,7 +25,7 @@ import java.util.List;
 
 /**
  *
- * @author erik
+ *
  */
 public class GwtServiceCallGenerator extends AJavaClassGenerator implements NodeTypes {
 

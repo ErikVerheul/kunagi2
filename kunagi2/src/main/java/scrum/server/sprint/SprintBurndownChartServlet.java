@@ -24,7 +24,7 @@ import scrum.server.common.AKunagiServlet;
 
 /**
  *
- * @author erik
+ *
  */
 public class SprintBurndownChartServlet extends AKunagiServlet {
 

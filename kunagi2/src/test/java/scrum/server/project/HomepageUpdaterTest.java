@@ -30,7 +30,7 @@ import scrum.server.sprint.Sprint;
 
 /**
  *
- * @author erik
+ *
  */
 public class HomepageUpdaterTest extends AjunitTest {
 

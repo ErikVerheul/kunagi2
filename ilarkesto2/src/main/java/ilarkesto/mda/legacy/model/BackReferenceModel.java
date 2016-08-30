@@ -19,7 +19,7 @@ package ilarkesto.mda.legacy.model;
  */
 public class BackReferenceModel extends AModel {
 
-	private PropertyModel reference;
+    private PropertyModel reference;
 
     /**
      *
@@ -27,16 +27,16 @@ public class BackReferenceModel extends AModel {
      * @param reference
      */
     public BackReferenceModel(String name, PropertyModel reference) {
-		super(name);
-		this.reference = reference;
-	}
+        super(name);
+        this.reference = reference;
+    }
 
     /**
      *
      * @return
      */
     public PropertyModel getReference() {
-		return reference;
-	}
+        return reference;
+    }
 
 }

@@ -23,7 +23,7 @@ import static java.lang.System.out;
 
 /**
  *
- * @author erik
+ *
  */
 public class CommandApplication extends ACommandLineApplication {
 

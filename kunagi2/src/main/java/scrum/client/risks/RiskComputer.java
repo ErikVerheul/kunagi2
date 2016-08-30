@@ -18,7 +18,7 @@ import ilarkesto.gwt.client.LabelProvider;
 
 /**
  *
- * @author erik
+ *
  */
 public class RiskComputer {
 

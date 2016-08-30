@@ -51,7 +51,7 @@ import scrum.server.sprint.Sprint;
 
 /**
  *
- * @author erik
+ *
  */
 public class HomepageUpdater {
 

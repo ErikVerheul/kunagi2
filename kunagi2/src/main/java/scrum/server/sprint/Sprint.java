@@ -37,7 +37,7 @@ import scrum.server.release.Release;
 
 /**
  *
- * @author erik
+ *
  */
 public class Sprint extends GSprint implements Numbered {
 

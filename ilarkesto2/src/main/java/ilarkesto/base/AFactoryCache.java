@@ -16,7 +16,7 @@ package ilarkesto.base;
 
 /**
  *
- * @author erik
+ *
  * @param <K>
  * @param <V>
  */

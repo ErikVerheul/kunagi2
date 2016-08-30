@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 /**
  *
- * @author erik
+ *
  */
 public class JavaPrinterTest extends TestCase {
 

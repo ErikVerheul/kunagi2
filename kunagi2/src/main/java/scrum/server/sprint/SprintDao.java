@@ -26,7 +26,7 @@ import scrum.server.project.RequirementDao;
 
 /**
  *
- * @author erik
+ *
  */
 public class SprintDao extends GSprintDao {
 

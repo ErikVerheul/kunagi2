@@ -16,7 +16,7 @@ package scrum.client.admin;
 
 /**
  *
- * @author erik
+ *
  * @deprecated
  */
 @Deprecated

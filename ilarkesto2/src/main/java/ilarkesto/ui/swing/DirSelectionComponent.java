@@ -25,7 +25,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 
 /**
  *
- * @author erik
+ *
  */
 public class DirSelectionComponent extends AComponent {
 

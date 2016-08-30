@@ -11,7 +11,7 @@ import org.junit.BeforeClass;
 
 /**
  *
- * @author Erik-local
+ *-local
  */
 public class AServiceCallTest {
 

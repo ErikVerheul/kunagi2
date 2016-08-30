@@ -18,7 +18,7 @@ import com.itextpdf.text.BaseColor;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class ACell extends APdfContainerElement {
 

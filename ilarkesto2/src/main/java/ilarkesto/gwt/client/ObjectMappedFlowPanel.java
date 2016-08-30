@@ -28,7 +28,7 @@ import java.util.Map;
 
 /**
  *
- * @author erik
+ *
  * @param <O>
  * @param <W>
  */

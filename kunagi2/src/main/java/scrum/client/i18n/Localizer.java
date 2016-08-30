@@ -16,7 +16,7 @@ package scrum.client.i18n;
 
 /**
  *
- * @author erik
+ *
  */
 public class Localizer extends GLocalizer {
 

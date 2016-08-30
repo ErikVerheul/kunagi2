@@ -14,7 +14,7 @@ import scrum.client.admin.UserListWidget;
 
 /**
  *
- * @author erik
+ *
  */
 public class UsersWorkspaceWidgets extends GUsersWorkspaceWidgets {
 

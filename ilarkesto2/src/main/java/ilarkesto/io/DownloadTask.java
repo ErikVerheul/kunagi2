@@ -20,7 +20,7 @@ import static ilarkesto.io.IO.downloadUrlToFile;
 
 /**
  *
- * @author erik
+ *
  */
 public class DownloadTask extends ATask {
 

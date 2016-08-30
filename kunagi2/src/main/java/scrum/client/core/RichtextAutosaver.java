@@ -23,7 +23,7 @@ import scrum.client.admin.ProjectUserConfig;
 
 /**
  *
- * @author erik
+ *
  */
 public class RichtextAutosaver extends GRichtextAutosaver implements ApplicationStartedHandler {
 

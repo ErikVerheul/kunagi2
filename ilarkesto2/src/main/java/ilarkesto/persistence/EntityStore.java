@@ -21,7 +21,7 @@ import java.util.Set;
 
 /**
  *
- * @author erik
+ *
  */
 public interface EntityStore extends IdentifiableResolver<AEntity> {
 

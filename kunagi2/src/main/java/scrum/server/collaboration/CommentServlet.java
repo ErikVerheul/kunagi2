@@ -38,7 +38,7 @@ import scrum.server.project.ProjectDao;
 
 /**
  *
- * @author erik
+ *
  */
 public class CommentServlet extends AKunagiServlet {
 

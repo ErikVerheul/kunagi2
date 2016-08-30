@@ -20,7 +20,7 @@ import ilarkesto.form.validator.Validator;
 
 /**
  *
- * @author erik
+ *
  */
 public class InputAction extends AAction {
 

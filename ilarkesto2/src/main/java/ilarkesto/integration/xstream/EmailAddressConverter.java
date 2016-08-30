@@ -19,7 +19,7 @@ import ilarkesto.email.EmailAddress;
 
 /**
  *
- * @author erik
+ *
  */
 public class EmailAddressConverter extends AbstractSingleValueConverter {
 

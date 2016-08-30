@@ -28,7 +28,7 @@ import javax.swing.event.ListSelectionListener;
 
 /**
  *
- * @author erik
+ *
  * @param <T>
  */
 public abstract class ATablePanel<T> extends JPanel {

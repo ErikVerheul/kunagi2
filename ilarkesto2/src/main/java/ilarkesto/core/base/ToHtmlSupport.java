@@ -16,7 +16,7 @@ package ilarkesto.core.base;
 
 /**
  *
- * @author erik
+ *
  */
 public interface ToHtmlSupport {
 

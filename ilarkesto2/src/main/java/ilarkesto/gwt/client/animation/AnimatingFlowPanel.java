@@ -23,7 +23,7 @@ import java.util.Iterator;
 
 /**
  *
- * @author erik
+ *
  * @param <W>
  */
 public class AnimatingFlowPanel<W extends Widget> extends Composite implements HasWidgets {

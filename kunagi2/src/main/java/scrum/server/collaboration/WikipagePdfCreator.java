@@ -21,7 +21,7 @@ import scrum.server.common.WikiToPdfConverter;
 
 /**
  *
- * @author erik
+ *
  */
 public class WikipagePdfCreator extends APdfCreator {
 

@@ -16,7 +16,7 @@ package ilarkesto.auth;
 
 /**
  *
- * @author erik
+ *
  * @param <U>
  */
 public class AuthenticationService<U extends AUser> {

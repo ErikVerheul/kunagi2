@@ -36,7 +36,7 @@ import java.util.Set;
 
 /**
  *
- * @author erik
+ *
  */
 public class EntityGenerator extends DatobGenerator<EntityModel> {
 

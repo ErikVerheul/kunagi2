@@ -30,7 +30,7 @@ import scrum.client.workspace.Navigator;
 
 /**
  *
- * @author erik
+ *
  */
 public class SearchInputWidget extends AScrumWidget {
 

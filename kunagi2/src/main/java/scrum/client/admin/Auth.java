@@ -22,7 +22,7 @@ import scrum.client.communication.ServerDataReceivedHandler;
 
 /**
  *
- * @author erik
+ *
  */
 public class Auth extends GAuth implements ServerDataReceivedHandler {
 

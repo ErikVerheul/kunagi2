@@ -19,7 +19,7 @@ import ilarkesto.mda.model.NodeTypes;
 
 /**
  *
- * @author erik
+ *
  */
 public class GwtComponentBaseGenerator extends AJavaClassGenerator implements NodeTypes {
 

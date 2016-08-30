@@ -70,9 +70,7 @@ public abstract class BeanModel extends AModel {
     /**
      *
      * @return
-     * @deprecated
      */
-    @Deprecated
     public boolean isEntity() {
         return false;
     }
@@ -80,9 +78,7 @@ public abstract class BeanModel extends AModel {
     /**
      *
      * @return
-     * @deprecated
      */
-    @Deprecated
     public boolean isValueObject() {
         return false;
     }

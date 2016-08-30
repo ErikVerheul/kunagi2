@@ -25,7 +25,7 @@ import static org.mortbay.log.Log.warn;
 
 /**
  *
- * @author erik
+ *
  */
 public class UploadFormField extends AFormField {
 

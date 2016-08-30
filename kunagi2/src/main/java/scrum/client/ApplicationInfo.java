@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author erik
+ *
  */
 public class ApplicationInfo implements Serializable, IsSerializable {
 

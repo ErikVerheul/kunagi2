@@ -18,7 +18,7 @@ import static ilarkesto.base.StrExtend.lowercaseFirstLetter;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class PropertyModel {
 

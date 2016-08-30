@@ -3,7 +3,7 @@ package scrum.client.issues;
 
 /**
  *
- * @author erik
+ *
  */
 public class RejectFixIssueAction extends GRejectFixIssueAction {
 

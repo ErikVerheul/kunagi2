@@ -48,7 +48,7 @@ import scrum.client.tasks.WhiteboardWidget;
 
 /**
  *
- * @author erik
+ *
  */
 public class Requirement extends GRequirement implements ReferenceSupport, LabelSupport, ForumSupport, ThemesContainer {
 

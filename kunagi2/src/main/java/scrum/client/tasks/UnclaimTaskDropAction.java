@@ -24,7 +24,7 @@ import scrum.client.workspace.VisibleDataChangedEvent;
 
 /**
  *
- * @author erik
+ *
  */
 public class UnclaimTaskDropAction implements BlockListDropAction<Task> {
 

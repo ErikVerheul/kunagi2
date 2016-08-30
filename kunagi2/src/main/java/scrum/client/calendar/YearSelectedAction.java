@@ -19,7 +19,7 @@ import scrum.client.common.AScrumAction;
 
 /**
  *
- * @author erik
+ *
  */
 public class YearSelectedAction extends AScrumAction {
 

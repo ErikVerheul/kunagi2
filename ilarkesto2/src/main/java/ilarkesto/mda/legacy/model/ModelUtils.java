@@ -18,7 +18,7 @@ import ilarkesto.persistence.AEntity;
 
 /**
  *
- * @author erik
+ *
  */
 public class ModelUtils {
 

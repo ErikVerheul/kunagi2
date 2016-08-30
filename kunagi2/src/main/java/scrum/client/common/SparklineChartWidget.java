@@ -23,7 +23,7 @@ import java.util.List;
 
 /**
  *
- * @author erik
+ *
  */
 public class SparklineChartWidget extends AWidget {
 

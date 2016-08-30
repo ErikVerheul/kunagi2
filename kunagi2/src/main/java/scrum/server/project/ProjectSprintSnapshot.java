@@ -20,7 +20,7 @@ import scrum.server.common.BurndownSnapshot;
 
 /**
  *
- * @author erik
+ *
  */
 public class ProjectSprintSnapshot extends GProjectSprintSnapshot implements Comparable<ProjectSprintSnapshot>,
         BurndownSnapshot {

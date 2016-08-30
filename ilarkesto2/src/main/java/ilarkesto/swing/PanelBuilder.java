@@ -45,7 +45,7 @@ import javax.swing.border.TitledBorder;
 
 /**
  *
- * @author erik
+ *
  */
 public class PanelBuilder {
 

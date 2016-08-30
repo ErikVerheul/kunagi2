@@ -30,7 +30,7 @@ import scrum.client.issues.Issue;
 
 /**
  *
- * @author erik
+ *
  */
 public class Quality extends GQuality implements ReferenceSupport, LabelSupport, ForumSupport, Comparable<Quality> {
 

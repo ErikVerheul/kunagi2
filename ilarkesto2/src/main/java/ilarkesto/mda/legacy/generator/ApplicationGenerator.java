@@ -20,7 +20,7 @@ import ilarkesto.webapp.AWebApplication;
 
 /**
  *
- * @author erik
+ *
  */
 public class ApplicationGenerator extends ABeanGenerator<ApplicationModel> {
 

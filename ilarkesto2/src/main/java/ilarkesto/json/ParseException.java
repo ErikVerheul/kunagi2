@@ -2,7 +2,7 @@ package ilarkesto.json;
 
 /**
  *
- * @author erik
+ *
  */
 public class ParseException extends RuntimeException {
 

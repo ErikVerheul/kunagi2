@@ -18,7 +18,7 @@ import java.lang.reflect.InvocationTargetException;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class AStructure extends ADatob {
 

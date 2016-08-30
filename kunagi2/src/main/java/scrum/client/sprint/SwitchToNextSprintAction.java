@@ -11,7 +11,7 @@ import scrum.client.workspace.Ui;
 
 /**
  *
- * @author erik
+ *
  */
 public class SwitchToNextSprintAction extends GSwitchToNextSprintAction {
 

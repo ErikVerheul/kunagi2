@@ -23,7 +23,7 @@ import scrum.client.journal.ProjectEvent;
 
 /**
  *
- * @author erik
+ *
  */
 public class PublishSimpleEventAction extends GPublishSimpleEventAction {
 

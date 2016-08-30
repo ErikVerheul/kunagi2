@@ -4,7 +4,7 @@ import java.util.Properties;
 
 /**
  *
- * @author erik
+ *
  */
 public class PropertiesLoginDataProvider implements LoginDataProvider {
 

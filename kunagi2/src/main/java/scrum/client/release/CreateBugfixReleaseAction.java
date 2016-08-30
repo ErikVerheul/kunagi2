@@ -7,7 +7,7 @@ import scrum.client.workspace.ProjectWorkspaceWidgets;
 
 /**
  *
- * @author erik
+ *
  */
 public class CreateBugfixReleaseAction extends GCreateBugfixReleaseAction {
 

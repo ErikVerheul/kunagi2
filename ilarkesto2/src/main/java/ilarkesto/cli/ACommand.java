@@ -22,7 +22,7 @@ import java.util.Collection;
 
 /**
  *
- * @author erik
+ *
  * @param <A>
  */
 public abstract class ACommand<A extends Arguments> {

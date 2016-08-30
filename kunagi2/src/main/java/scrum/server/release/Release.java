@@ -34,7 +34,7 @@ import scrum.server.sprint.SprintReport;
 
 /**
  *
- * @author erik
+ *
  */
 public class Release extends GRelease implements Numbered, ReferenceSupport {
 

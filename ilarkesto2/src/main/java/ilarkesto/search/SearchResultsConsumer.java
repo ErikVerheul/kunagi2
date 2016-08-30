@@ -20,7 +20,7 @@ import java.util.Set;
 
 /**
  *
- * @author erik
+ *
  */
 public interface SearchResultsConsumer {
 

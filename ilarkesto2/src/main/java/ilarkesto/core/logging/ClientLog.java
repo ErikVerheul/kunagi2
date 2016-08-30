@@ -2,13 +2,13 @@ package ilarkesto.core.logging;
 
 /**
  *
- * @author erik
+ *
  */
 import com.allen_sauer.gwt.log.client.Log;
 
 /**
  *
- * @author erik
+ *
  */
 public class ClientLog {
 

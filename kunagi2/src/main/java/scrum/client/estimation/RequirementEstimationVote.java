@@ -18,7 +18,7 @@ import java.util.HashMap;
 
 /**
  *
- * @author erik
+ *
  */
 public class RequirementEstimationVote extends GRequirementEstimationVote {
 

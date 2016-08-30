@@ -30,7 +30,7 @@ import ilarkesto.gwt.client.AViewEditWidget;
 
 /**
  *
- * @author erik
+ *
  */
 public class DateAndTimeEditorWidget extends AViewEditWidget {
 

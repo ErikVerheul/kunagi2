@@ -36,7 +36,7 @@ import java.util.Collection;
 
 /**
  *
- * @author erik
+ *
  */
 public class PdfBuilder extends APdfBuilder {
         private static FileOutputStream outStream;

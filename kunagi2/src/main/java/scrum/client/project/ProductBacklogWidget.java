@@ -36,7 +36,7 @@ import scrum.client.workspace.PagePanel;
 
 /**
  *
- * @author erik
+ *
  */
 public class ProductBacklogWidget extends AScrumWidget {
 

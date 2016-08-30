@@ -23,7 +23,7 @@ import scrum.client.common.AScrumWidget;
 
 /**
  *
- * @author erik
+ *
  */
 public class EstimationBarWidget extends AScrumWidget {
 

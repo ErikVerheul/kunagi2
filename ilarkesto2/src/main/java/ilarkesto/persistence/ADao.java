@@ -43,314 +43,306 @@ import java.util.Map;
 import java.util.Set;
 
 public abstract class ADao<E extends AEntity> extends ADatobManager<E> implements IdentifiableResolver<E>, Searcher,
-		DaoListener<E>, Iconized {
+        DaoListener<E>, Iconized {
 
-	private static final Log LOG = Log.get(ADao.class);
+    private static final Log LOG = Log.get(ADao.class);
 
-	private Predicate<Class> entityTypeFilter;
-	private String icon;
+    private Predicate<Class> entityTypeFilter;
+    private String icon;
 
-	// --- ---
+    // --- ---
+    @Override
+    public void onDatobModified(E entity, String comment) {
+        // don's save new entities
+        boolean persistent = isPersistent(entity);
+        if (!persistent) {
+            return;
+        }
 
-	@Override
-	public void onDatobModified(E entity, String comment) {
-		// don's save new entities
-		boolean persistent = isPersistent(entity);
-		if (!persistent) {
-                        return;
+        LOG.info("Entity modified:", toStringWithType(entity), "->", comment);
+        saveEntity(entity);
+    }
+
+    @Override
+    public void updateLastModified(E entity) {
+        LOG.debug("Entity updateLastModified:", toStringWithType(entity));
+        entity.updateLastModified();
+    }
+
+    @Override
+    public void onMissingMaster(E entity) {
+        deleteEntity(entity);
+        throw new EnsureIntegrityCompletedException();
+    }
+
+    // --- basic ---
+    public abstract String getEntityName();
+
+    public abstract Class getEntityClass();
+
+    public Map<String, Class> getAliases() {
+        return emptyMap();
+    }
+
+    private boolean isPersistent(E entity) {
+        return transactionService.isPersistent(entity.getId());
+    }
+
+    public final Predicate<Class> getEntityTypeFilter() {
+        if (entityTypeFilter == null) {
+            entityTypeFilter = new Predicate<Class>() {
+
+                @Override
+                public boolean test(Class parameter) {
+                    return parameter.isAssignableFrom(getEntityClass());
                 }
 
-		LOG.info("Entity modified:", toStringWithType(entity), "->", comment);
-		saveEntity(entity);
-	}
+            };
+        }
+        return entityTypeFilter;
+    }
 
-	@Override
-	public void updateLastModified(E entity) {
-                LOG.debug("Entity updateLastModified:", toStringWithType(entity));
-		entity.updateLastModified();
-	}
+    @Override
+    public String getIcon() {
+        if (icon == null) {
+            icon = (String) Reflect.getFieldValue(getEntityClass(), "ICON");
+            if (icon == null) {
+                icon = getEntityName();
+            }
+        }
+        return icon;
+    }
 
-	@Override
-	public void onMissingMaster(E entity) {
-		deleteEntity(entity);
-		throw new EnsureIntegrityCompletedException();
-	}
+    public int getEntitiesCount(Predicate<E> predicate) {
+        return transactionService.getEntitiesCount(getEntityTypeFilter(), (Predicate<AEntity>) predicate);
+    }
 
-	// --- basic ---
+    public E getEntity(Predicate<E> predicate) {
+        return (E) transactionService.getEntity(getEntityTypeFilter(), (Predicate<AEntity>) predicate);
+    }
 
-	public abstract String getEntityName();
+    public final Set<E> getEntities(Predicate<E> filter) {
+        // long start = System.currentTimeMillis();
+        Set<E> result = (Set<E>) transactionService.getEntities(getEntityTypeFilter(), (Predicate<AEntity>) filter);
+        // long time = System.currentTimeMillis() - start;
+        // if (time > 2000) throw new RuntimeException("getEntities took too
+        // long. fix it!");
+        return result;
+    }
 
-	public abstract Class getEntityClass();
+    @Override
+    public E getById(String id) {
+        if (id == null) {
+            throw new RuntimeException("id must not be null");
+        }
+        E entity = (E) transactionService.getById(id);
+        if (entity == null) {
+            DEBUG("EntityDoesNotExistException thrown in " + this.getClass().getName());
+            throw new EntityDoesNotExistException(id);
+        }
+        return entity;
+    }
 
-	public Map<String, Class> getAliases() {
-		return emptyMap();
-	}
+    @Override
+    public List<E> getByIds(Collection<String> entitiesIds) {
+        Set<String> ids = new HashSet<>(entitiesIds);
+        List<E> result = (List<E>) transactionService.getByIds(entitiesIds);
+        if (result.size() != ids.size()) {
+            result = new ArrayList<>();
+            for (String id : ids) {
+                E entity = (E) transactionService.getById(id);
+                result.add(entity);
+            }
+        }
+        return result;
+    }
 
-	private boolean isPersistent(E entity) {
-		return transactionService.isPersistent(entity.getId());
-	}
+    public Set<E> getByIdsAsSet(Collection<String> entitiesIds) {
+        return new HashSet<>(getByIds(entitiesIds));
+    }
 
-	public final Predicate<Class> getEntityTypeFilter() {
-		if (entityTypeFilter == null) {
-			entityTypeFilter = new Predicate<Class>() {
+    public Set<E> getEntitiesVisibleForUser(final AUser user) {
+        return getEntities(new Predicate<E>() {
 
-				@Override
-				public boolean test(Class parameter) {
-					return parameter.isAssignableFrom(getEntityClass());
-				}
+            @Override
+            public boolean test(E e) {
+                return isVisible(e, user);
+            }
 
-			};
-		}
-		return entityTypeFilter;
-	}
+        });
+    }
 
-	@Override
-	public String getIcon() {
-		if (icon == null) {
-			icon = (String) Reflect.getFieldValue(getEntityClass(), "ICON");
-			if (icon == null) {
-                                icon = getEntityName();
-                        }
-		}
-		return icon;
-	}
+    public Set<E> getEntities() {
+        return (Set<E>) transactionService.getEntities(getEntityTypeFilter(), null);
+    }
 
-	public int getEntitiesCount(Predicate<E> predicate) {
-		return transactionService.getEntitiesCount(getEntityTypeFilter(), (Predicate<AEntity>) predicate);
-	}
+    public void deleteEntity(E entity) {
+        transactionService.deleteEntity(entity);
+        daoService.fireEntityDeleted(entity);
+    }
 
-	public E getEntity(Predicate<E> predicate) {
-		return (E) transactionService.getEntity(getEntityTypeFilter(), (Predicate<AEntity>) predicate);
-	}
+    public void saveEntity(E entity) {
+        transactionService.saveEntity(entity);
+        daoService.fireEntitySaved(entity);
+    }
 
-	public final Set<E> getEntities(Predicate<E> filter) {
-		// long start = System.currentTimeMillis();
-		Set<E> result = (Set<E>) transactionService.getEntities(getEntityTypeFilter(), (Predicate<AEntity>) filter);
-		// long time = System.currentTimeMillis() - start;
-		// if (time > 2000) throw new RuntimeException("getEntities took too
-		// long. fix it!");
-		return result;
-	}
+    public E newEntityInstance(AUser user) {
+        E entity = newEntityInstance();
+        if (entity instanceof Ownable) {
+            ((Ownable) entity).setOwner(user);
+        }
+        return entity;
+    }
 
-	@Override
-	public E getById(String id) {
-		if (id == null) {
-                        throw new RuntimeException("id must not be null");
-                }
-		E entity = (E) transactionService.getById(id);		
-		if (entity == null) {
-                        DEBUG("EntityDoesNotExistException thrown in " + this.getClass().getName());
-                        throw new EntityDoesNotExistException(id);
-                }
-		return entity;
-	}
+    public E newEntityInstance() {
+        E entity;
+        try {
+            entity = (E) getEntityClass().newInstance();
+        } catch (InstantiationException | IllegalAccessException ex) {
+            throw new RuntimeException("newEntityInstance: A new entity could not be constructed", ex);
+        }
+        entity.setLastModified(now());
+        transactionService.registerEntity(entity);
+        return entity;
+    }
 
-	@Override
-	public List<E> getByIds(Collection<String> entitiesIds) {
-		Set<String> ids = new HashSet<>(entitiesIds);
-		List<E> result = (List<E>) transactionService.getByIds(entitiesIds);
-		if (result.size() != ids.size()) {
-			result = new ArrayList<>();
-			for (String id : ids) {
-				E entity = (E) transactionService.getById(id);
-				result.add(entity);
-			}
-		}
-		return result;
-	}
+    public E newEntityInstance(String id) {
+        E entity = newEntityInstance();
+        entity.setId(id);
+        return entity;
+    }
 
-	public Set<E> getByIdsAsSet(Collection<String> entitiesIds) {
-		return new HashSet<>(getByIds(entitiesIds));
-	}
+    public void ensureIntegrity() {
+        if (!initialized) {
+            throw new RuntimeException("Not initialized!");
+        }
+        Class clazz = getEntityClass();
+        LOG.info("Ensuring integrity:", clazz.getSimpleName());
+        for (E entity : getEntities()) {
+            try {
+                entity.ensureIntegrity();
+            } catch (EnsureIntegrityCompletedException ex) {
+            } catch (Exception ex) {
+                throw new RuntimeException("Ensuring integrity for " + clazz.getSimpleName() + ":" + entity.getId()
+                        + " failed.", ex);
+            }
+        }
+    }
 
-	@Deprecated
-	public List<E> getEntitiesByIds(Collection<String> entitiesIds) {
-		return getByIds(entitiesIds);
-	}
+    @Override
+    public void entityDeleted(EntityEvent event) {
+        AEntity entity = event.getEntity();
+        for (AEntity e : getEntities()) {
+            try {
+                e.repairDeadReferences(entity.getId());
+            } catch (EnsureIntegrityCompletedException ex) {
+            }
+        }
+    }
 
-	public Set<E> getEntitiesVisibleForUser(final AUser user) {
-		return getEntities(new Predicate<E>() {
+    @Override
+    public void entitySaved(EntityEvent event) {
+    }
 
-			@Override
-			public boolean test(E e) {
-				return isVisible(e, user);
-			}
+    @Override
+    public void feed(final SearchResultsConsumer searchBox) {
+        if (!Searchable.class.isAssignableFrom(getEntityClass())) {
+            return;
+        }
 
-		});
-	}
+        for (AEntity entity : getEntities(new Predicate<E>() {
 
-	public Set<E> getEntities() {
-		return (Set<E>) transactionService.getEntities(getEntityTypeFilter(), null);
-	}
+            @Override
+            public boolean test(E e) {
+                return e != null && isVisible(e, searchBox.getSearcher())
+                        && matchesKeys(e, searchBox.getKeys());
+            }
 
-	public void deleteEntity(E entity) {
-		transactionService.deleteEntity(entity);
-		daoService.fireEntityDeleted(entity);
-	}
+        })) {
+            searchBox.addEntity(entity);
+        }
 
-	public void saveEntity(E entity) {
-		transactionService.saveEntity(entity);
-		daoService.fireEntitySaved(entity);
-	}
+    }
 
-	public E newEntityInstance(AUser user) {
-		E entity = newEntityInstance();
-		if (entity instanceof Ownable) {
-                        ((Ownable) entity).setOwner(user);
-                }
-		return entity;
-	}
+    protected final TransactionService getTransactionService() {
+        return transactionService;
+    }
 
-	public E newEntityInstance() {
-		E entity;
-		try {
-			entity = (E) getEntityClass().newInstance();
-		} catch (InstantiationException | IllegalAccessException ex) {
-			throw new RuntimeException("newEntityInstance: A new entity could not be constructed", ex);
-		}
-		entity.setLastModified(now());
-		transactionService.registerEntity(entity);
-		return entity;
-	}
+    // ---
+    protected Set<Class> getValueObjectClasses() {
+        return emptySet();
+    }
 
-	public E newEntityInstance(String id) {
-		E entity = newEntityInstance();
-		entity.setId(id);
-		return entity;
-	}
+    @Override
+    public String toString() {
+        String entityName = getEntityName();
+        if (entityName == null) {
+            return "?Dao";
+        }
+        return getClass().getName();
+    }
 
-	public void ensureIntegrity() {
-		if (!initialized) {
-                        throw new RuntimeException("Not initialized!");
-                }
-		Class clazz = getEntityClass();
-		LOG.info("Ensuring integrity:", clazz.getSimpleName());
-		for (E entity : getEntities()) {
-			try {
-				entity.ensureIntegrity();
-			} catch (EnsureIntegrityCompletedException ex) {
-			} catch (Exception ex) {
-				throw new RuntimeException("Ensuring integrity for " + clazz.getSimpleName() + ":" + entity.getId()
-						+ " failed.", ex);
-			}
-		}
-	}
+    // --------------------
+    // --- dependencies ---
+    // --------------------
+    private volatile boolean initialized;
 
-	@Override
-	public void entityDeleted(EntityEvent event) {
-		AEntity entity = event.getEntity();
-		for (AEntity e : getEntities()) {
-			try {
-				e.repairDeadReferences(entity.getId());
-			} catch (EnsureIntegrityCompletedException ex) {
-			}
-		}
-	}
+    public synchronized final void initialize(Context context) {
+        if (initialized) {
+            throw new RuntimeException("Already initialized!");
+        }
 
-	@Override
-	public void entitySaved(EntityEvent event) {}
+        Class entityClass = getEntityClass();
+        context.autowireClass(entityClass);
+        for (Class c : getValueObjectClasses()) {
+            context.autowireClass(c);
+        }
+        Field daoField;
+        try {
+            daoField = entityClass.getDeclaredField("dao");
+            boolean accessible = daoField.isAccessible();
+            if (!accessible) {
+                daoField.setAccessible(true);
+            }
+            try {
+                daoField.set(null, this);
+            } catch (IllegalArgumentException | IllegalAccessException ex) {
+                throw new RuntimeException(ex);
+            } catch (NullPointerException ex) {
+                throw new RuntimeException("Setting dao field failed. Is it static?", ex);
+            }
+            if (!accessible) {
+                daoField.setAccessible(false);
+            }
+        } catch (SecurityException ex) {
+            throw new RuntimeException(ex);
+        } catch (NoSuchFieldException ex) {
+            // nop
+        }
 
-	@Override
-	public void feed(final SearchResultsConsumer searchBox) {
-		if (!Searchable.class.isAssignableFrom(getEntityClass())) {
-                        return;
-                }
+        initialized = true;
+    }
 
-		for (AEntity entity : getEntities(new Predicate<E>() {
+    private DaoService daoService;
 
-			@Override
-			public boolean test(E e) {
-				return e != null && isVisible(e, searchBox.getSearcher())
-						&& matchesKeys(e, searchBox.getKeys());
-			}
+    public final void setDaoService(DaoService daoService) {
+        this.daoService = daoService;
+    }
 
-		})) {
-			searchBox.addEntity(entity);
-		}
+    public final DaoService getDaoService() {
+        return daoService;
+    }
 
-	}
+    private TransactionService transactionService;
 
-	protected final TransactionService getTransactionService() {
-		return transactionService;
-	}
+    public final void setTransactionService(TransactionService transactionService) {
+        this.transactionService = transactionService;
+    }
 
-	// ---
+    protected AUserDao userDao;
 
-	protected Set<Class> getValueObjectClasses() {
-		return emptySet();
-	}
-
-	@Override
-	public String toString() {
-		String entityName = getEntityName();
-		if (entityName == null) {
-                        return "?Dao";
-                }
-		return getClass().getName();
-	}
-
-	// --------------------
-	// --- dependencies ---
-	// --------------------
-
-	private volatile boolean initialized;
-
-	public synchronized final void initialize(Context context) {
-		if (initialized) {
-                        throw new RuntimeException("Already initialized!");
-                }
-
-		Class entityClass = getEntityClass();
-		context.autowireClass(entityClass);
-		for (Class c : getValueObjectClasses()) {
-                        context.autowireClass(c);
-                }
-		Field daoField;
-		try {
-			daoField = entityClass.getDeclaredField("dao");
-			boolean accessible = daoField.isAccessible();
-			if (!accessible) {
-                                daoField.setAccessible(true);
-                        }
-			try {
-				daoField.set(null, this);
-			} catch (IllegalArgumentException | IllegalAccessException ex) {
-				throw new RuntimeException(ex);
-			} catch (NullPointerException ex) {
-				throw new RuntimeException("Setting dao field failed. Is it static?", ex);
-			}
-			if (!accessible) {
-                                daoField.setAccessible(false);
-                        }
-		} catch (SecurityException ex) {
-			throw new RuntimeException(ex);
-		} catch (NoSuchFieldException ex) {
-			// nop
-		}
-
-		initialized = true;
-	}
-
-	private DaoService daoService;
-
-	public final void setDaoService(DaoService daoService) {
-		this.daoService = daoService;
-	}
-
-	public final DaoService getDaoService() {
-		return daoService;
-	}
-
-	private TransactionService transactionService;
-
-	public final void setTransactionService(TransactionService transactionService) {
-		this.transactionService = transactionService;
-	}
-
-	protected AUserDao userDao;
-
-	public final void setUserDao(AUserDao userDao) {
-		this.userDao = userDao;
-	}
+    public final void setUserDao(AUserDao userDao) {
+        this.userDao = userDao;
+    }
 
 }

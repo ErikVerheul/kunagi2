@@ -18,7 +18,7 @@ import ilarkesto.core.base.Utl;
 
 /**
  *
- * @author erik
+ *
  */
 public enum Weekday {
 

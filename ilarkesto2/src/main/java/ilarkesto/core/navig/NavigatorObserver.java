@@ -16,7 +16,7 @@ package ilarkesto.core.navig;
 
 /**
  *
- * @author erik
+ *
  */
 public interface NavigatorObserver {
 

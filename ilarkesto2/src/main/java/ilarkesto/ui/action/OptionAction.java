@@ -25,7 +25,7 @@ import java.util.Collection;
 
 /**
  *
- * @author erik
+ *
  * @param <T>
  */
 public final class OptionAction<T> extends AAction {

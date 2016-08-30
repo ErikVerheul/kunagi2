@@ -22,7 +22,7 @@ import scrum.server.common.Numbered;
 
 /**
  *
- * @author erik
+ *
  */
 public class Quality extends GQuality implements Numbered, ReferenceSupport, LabelSupport, Comparable<Quality> {
 

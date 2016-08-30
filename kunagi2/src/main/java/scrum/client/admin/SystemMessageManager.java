@@ -25,7 +25,7 @@ import scrum.client.workspace.VisibleDataChangedEvent;
 
 /**
  *
- * @author erik
+ *
  */
 public class SystemMessageManager extends GSystemMessageManager implements ServerDataReceivedHandler {
 

@@ -40,7 +40,7 @@ import scrum.client.project.Requirement;
 
 /**
  *
- * @author erik
+ *
  */
 public class Issue extends GIssue implements ReferenceSupport, LabelSupport, ForumSupport, ThemesContainer {
 

@@ -22,7 +22,7 @@ import scrum.client.workspace.ProjectWorkspaceWidgets;
 
 /**
  *
- * @author erik
+ *
  */
 public class UploadFileAction extends AScrumAction {
 

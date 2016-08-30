@@ -18,7 +18,7 @@ import ilarkesto.json.JsonObject;
 
 /**
  *
- * @author erik
+ *
  */
 public interface DocumentFilter {
 

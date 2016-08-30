@@ -37,7 +37,7 @@ import scrum.client.workspace.history.HistoryTokenObserver;
 
 /**
  *
- * @author erik
+ *
  */
 public class Navigator extends GNavigator implements BlockExpandedHandler, ApplicationStartedHandler,
 		HistoryTokenObserver {

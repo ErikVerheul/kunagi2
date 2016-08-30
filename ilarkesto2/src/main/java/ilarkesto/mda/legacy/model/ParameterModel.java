@@ -16,7 +16,7 @@ package ilarkesto.mda.legacy.model;
 
 /**
  *
- * @author erik
+ *
  */
 public class ParameterModel extends AModel {
 

@@ -19,7 +19,7 @@ import ilarkesto.core.time.TimePeriod;
 
 /**
  *
- * @author erik
+ *
  */
 public class TimePeriodConverter extends AbstractSingleValueConverter {
 

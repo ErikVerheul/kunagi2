@@ -16,7 +16,7 @@ package ilarkesto.integration.links;
 
 /**
  *
- * @author erik
+ *
  */
 public interface LinkConverter {
 

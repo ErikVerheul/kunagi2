@@ -21,7 +21,7 @@ import scrum.client.sprint.Sprint;
 
 /**
  *
- * @author erik
+ *
  */
 public class Calendar extends GCalendar {
 

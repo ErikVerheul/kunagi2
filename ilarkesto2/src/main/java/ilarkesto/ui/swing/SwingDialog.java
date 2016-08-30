@@ -40,7 +40,7 @@ import javax.swing.border.EmptyBorder;
 
 /**
  *
- * @author erik
+ *
  */
 public class SwingDialog {
 

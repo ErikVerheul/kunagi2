@@ -19,7 +19,7 @@ import com.google.gwt.user.client.ui.Widget;
 
 /**
  *
- * @author erik
+ *
  */
 public class HyperlinkWidget extends AWidget {
 

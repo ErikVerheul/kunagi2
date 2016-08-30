@@ -37,7 +37,7 @@ import scrum.server.sprint.SprintReportPdfCreator;
 
 /**
  *
- * @author erik
+ *
  */
 public class PdfServlet extends AKunagiServlet {
 

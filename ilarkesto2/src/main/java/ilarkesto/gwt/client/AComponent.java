@@ -18,7 +18,7 @@ import static ilarkesto.gwt.client.Gwt.getSimpleName;
 
 /**
  *
- * @author erik
+ *
  */
 public class AComponent {
 

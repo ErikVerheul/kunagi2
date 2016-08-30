@@ -22,13 +22,12 @@ import java.util.Set;
 
 /**
  *
- * @author erik
  */
 public class DatobModel extends BeanModel {
 
-	private Set<PropertyModel> properties = new LinkedHashSet<>();
-	private boolean searchable;
-	private boolean gwtSupport;
+    private Set<PropertyModel> properties = new LinkedHashSet<>();
+    private boolean searchable;
+    private boolean gwtSupport;
 
     /**
      *
@@ -36,65 +35,65 @@ public class DatobModel extends BeanModel {
      * @param packageName
      */
     public DatobModel(String name, String packageName) {
-		super(name, packageName);
-	}
+        super(name, packageName);
+    }
 
     /**
      *
      * @return
      */
     @Override
-	public boolean isValueObject() {
-		return true;
-	}
+    public boolean isValueObject() {
+        return true;
+    }
 
     /**
      *
      * @return
      */
     public boolean isGwtSupport() {
-		return gwtSupport;
-	}
+        return gwtSupport;
+    }
 
     /**
      *
      * @param gwtSupport
      */
     public void setGwtSupport(boolean gwtSupport) {
-		this.gwtSupport = gwtSupport;
-	}
+        this.gwtSupport = gwtSupport;
+    }
 
     /**
      *
      * @param searchable
      */
     public void setSearchable(boolean searchable) {
-		this.searchable = searchable;
-	}
+        this.searchable = searchable;
+    }
 
     /**
      *
      * @return
      */
     public final boolean isSearchable() {
-		if (searchable) {
-                        return true;
-                }
-		for (PropertyModel p : getProperties()) {
-			if (p.isSearchable()) {
-                                return true;
-                        }
-		}
-		return false;
-	}
+        if (searchable) {
+            return true;
+        }
+        for (PropertyModel p : getProperties()) {
+            if (p.isSearchable()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     /**
      *
      * @return
      */
     public final Set<PropertyModel> getProperties() {
-		return properties;
-	}
+        return properties;
+    }
 
     /**
      *
@@ -102,10 +101,10 @@ public class DatobModel extends BeanModel {
      * @return
      */
     public StringPropertyModel addStringProperty(String name) {
-		StringPropertyModel propertyModel = new StringPropertyModel(this, name);
-		properties.add(propertyModel);
-		return propertyModel;
-	}
+        StringPropertyModel propertyModel = new StringPropertyModel(this, name);
+        properties.add(propertyModel);
+        return propertyModel;
+    }
 
     /**
      *
@@ -113,10 +112,10 @@ public class DatobModel extends BeanModel {
      * @return
      */
     public IntegerPropertyModel addIntegerProperty(String name) {
-		IntegerPropertyModel propertyModel = new IntegerPropertyModel(this, name);
-		properties.add(propertyModel);
-		return propertyModel;
-	}
+        IntegerPropertyModel propertyModel = new IntegerPropertyModel(this, name);
+        properties.add(propertyModel);
+        return propertyModel;
+    }
 
     /**
      *
@@ -125,10 +124,10 @@ public class DatobModel extends BeanModel {
      * @return
      */
     public SimplePropertyModel addProperty(String name, Class type) {
-		SimplePropertyModel propertyModel = new SimplePropertyModel(this, name, false, false, type.getName());
-		properties.add(propertyModel);
-		return propertyModel;
-	}
+        SimplePropertyModel propertyModel = new SimplePropertyModel(this, name, false, false, type.getName());
+        properties.add(propertyModel);
+        return propertyModel;
+    }
 
     /**
      *
@@ -137,10 +136,10 @@ public class DatobModel extends BeanModel {
      * @return
      */
     public ListPropertyModel addListProperty(String name, Class type) {
-		ListPropertyModel propertyModel = new ListPropertyModel(this, name, false, type);
-		properties.add(propertyModel);
-		return propertyModel;
-	}
+        ListPropertyModel propertyModel = new ListPropertyModel(this, name, false, type);
+        properties.add(propertyModel);
+        return propertyModel;
+    }
 
     /**
      *
@@ -149,10 +148,10 @@ public class DatobModel extends BeanModel {
      * @return
      */
     public SetPropertyModel addSetProperty(String name, Class type) {
-		SetPropertyModel propertyModel = new SetPropertyModel(this, name, false, type);
-		properties.add(propertyModel);
-		return propertyModel;
-	}
+        SetPropertyModel propertyModel = new SetPropertyModel(this, name, false, type);
+        properties.add(propertyModel);
+        return propertyModel;
+    }
 
     /**
      *
@@ -161,13 +160,13 @@ public class DatobModel extends BeanModel {
      * @return
      */
     public SetPropertyModel addSetProperty(String name, BeanModel type) {
-		boolean valueObject = type.isValueObject();
-		SetPropertyModel propertyModel = new SetPropertyModel(this, name, false, valueObject, type.getPackageName()
-				+ "." + type.getName());
-		propertyModel.setSearchable(true);
-		properties.add(propertyModel);
-		return propertyModel;
-	}
+        boolean valueObject = type.isValueObject();
+        SetPropertyModel propertyModel = new SetPropertyModel(this, name, false, valueObject, type.getPackageName()
+                + "." + type.getName());
+        propertyModel.setSearchable(true);
+        properties.add(propertyModel);
+        return propertyModel;
+    }
 
     /**
      *
@@ -176,18 +175,18 @@ public class DatobModel extends BeanModel {
      * @return
      */
     public ReferencePropertyModel addReference(String name, EntityModel type) {
-		String className = type.getPackageName() + "." + type.getName();
-		ReferencePropertyModel propertyModel = new ReferencePropertyModel(this, name, type);
-		propertyModel.setAbstract(type.isAbstract());
-		properties.add(propertyModel);
-		if (!"User".equals(type.getName()) && !AEntity.class.getName().equals(className) && !type.isAbstract()
-				&& !type.equals(this)) {
-                        addDependency("addReference", type.getPackageName() + "." + type.getName() + "Dao",
-                                StrExtend.lowercaseFirstLetter((type.getName())) + "Dao");
-                }
-		propertyModel.createBackReference(lowercaseFirstLetter(getName()));
-		return propertyModel;
-	}
+        String className = type.getPackageName() + "." + type.getName();
+        ReferencePropertyModel propertyModel = new ReferencePropertyModel(this, name, type);
+        propertyModel.setAbstract(type.isAbstract());
+        properties.add(propertyModel);
+        if (!"User".equals(type.getName()) && !AEntity.class.getName().equals(className) && !type.isAbstract()
+                && !type.equals(this)) {
+            addDependency("addReference", type.getPackageName() + "." + type.getName() + "Dao",
+                    StrExtend.lowercaseFirstLetter((type.getName())) + "Dao");
+        }
+        propertyModel.createBackReference(lowercaseFirstLetter(getName()));
+        return propertyModel;
+    }
 
     /**
      *
@@ -196,17 +195,17 @@ public class DatobModel extends BeanModel {
      * @return
      */
     public ReferenceSetPropertyModel addSetReference(String name, EntityModel type) {
-		String className = type.getPackageName() + "." + type.getName();
-		ReferenceSetPropertyModel propertyModel = new ReferenceSetPropertyModel(this, name, type);
-		propertyModel.setAbstract(type.isAbstract());
-		properties.add(propertyModel);
-		if (!"User".equals(type.getName()) && !AEntity.class.getName().equals(className)) {
-                        addDependency("addSetReference", type.getPackageName() + "." + type.getName() + "Dao",
-                                lowercaseFirstLetter((type.getName())) + "Dao");
-                }
-		propertyModel.createBackReference(lowercaseFirstLetter(getName()));
-		return propertyModel;
-	}
+        String className = type.getPackageName() + "." + type.getName();
+        ReferenceSetPropertyModel propertyModel = new ReferenceSetPropertyModel(this, name, type);
+        propertyModel.setAbstract(type.isAbstract());
+        properties.add(propertyModel);
+        if (!"User".equals(type.getName()) && !AEntity.class.getName().equals(className)) {
+            addDependency("addSetReference", type.getPackageName() + "." + type.getName() + "Dao",
+                    lowercaseFirstLetter((type.getName())) + "Dao");
+        }
+        propertyModel.createBackReference(lowercaseFirstLetter(getName()));
+        return propertyModel;
+    }
 
     /**
      *
@@ -215,14 +214,14 @@ public class DatobModel extends BeanModel {
      * @return
      */
     public ListPropertyModel addListReference(String name, BeanModel type) {
-		String className = type.getPackageName() + "." + type.getName();
-		ListPropertyModel propertyModel = new ListPropertyModel(this, name, true, false, className);
-		propertyModel.setAbstract(type.isAbstract());
-		properties.add(propertyModel);
-		if (!"User".equals(type.getName()) && !AEntity.class.getName().equals(className)) {
-                        addDependency("addListReference", type.getPackageName() + "." + type.getName() + "Dao",
-                                lowercaseFirstLetter((type.getName())) + "Dao");
-                }
-		return propertyModel;
-	}
+        String className = type.getPackageName() + "." + type.getName();
+        ListPropertyModel propertyModel = new ListPropertyModel(this, name, true, false, className);
+        propertyModel.setAbstract(type.isAbstract());
+        properties.add(propertyModel);
+        if (!"User".equals(type.getName()) && !AEntity.class.getName().equals(className)) {
+            addDependency("addListReference", type.getPackageName() + "." + type.getName() + "Dao",
+                    lowercaseFirstLetter((type.getName())) + "Dao");
+        }
+        return propertyModel;
+    }
 }

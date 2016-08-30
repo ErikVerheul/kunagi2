@@ -16,7 +16,7 @@ package scrum.server.collaboration;
 
 /**
  *
- * @author erik
+ *
  */
 public class EmoticonDao
             extends GEmoticonDao {

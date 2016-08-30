@@ -16,7 +16,7 @@ package ilarkesto.form;
 
 /**
  *
- * @author erik
+ *
  * @param <F>
  */
 public interface FormFieldChangeListener<F extends FormField> {

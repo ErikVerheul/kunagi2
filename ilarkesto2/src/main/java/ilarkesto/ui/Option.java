@@ -18,7 +18,7 @@ import ilarkesto.base.StringProvider;
 
 /**
  *
- * @author erik
+ *
  * @param <T>
  */
 public final class Option<T> {

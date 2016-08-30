@@ -18,7 +18,7 @@ import ilarkesto.core.base.Str;
 
 /**
  *
- * @author erik
+ *
  */
 public class EntityReference extends AWikiElement {
 

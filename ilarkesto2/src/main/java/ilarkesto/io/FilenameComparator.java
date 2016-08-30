@@ -20,7 +20,7 @@ import java.util.Comparator;
 
 /**
  *
- * @author erik
+ *
  */
 public class FilenameComparator implements Comparator<File>, Serializable {
 

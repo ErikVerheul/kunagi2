@@ -16,7 +16,7 @@ package ilarkesto.core.scope;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class ScopeManager {
 

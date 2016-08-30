@@ -23,7 +23,6 @@ import static com.google.gwt.user.client.DOM.appendChild;
 import static com.google.gwt.user.client.DOM.createAnchor;
 import static com.google.gwt.user.client.DOM.createDiv;
 import static com.google.gwt.user.client.DOM.eventGetType;
-import static com.google.gwt.user.client.DOM.eventPreventDefault;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.Event;
 import static com.google.gwt.user.client.Event.ONCLICK;
@@ -33,74 +32,74 @@ import com.google.gwt.user.client.ui.impl.HyperlinkImpl;
 
 /**
  *
- * @author erik
+ *
  */
 public class HyperlinkWithoutHistory extends Widget implements HasHTML, HasClickHandlers {
 
-	private static HyperlinkImpl impl = GWT.create(HyperlinkImpl.class);
+    private static HyperlinkImpl impl = GWT.create(HyperlinkImpl.class);
 
-	private final Element anchorElem = createAnchor();
+    private final Element anchorElem = createAnchor();
 
     /**
      *
      */
     public HyperlinkWithoutHistory() {
-		this(createDiv());
-	}
+        this(createDiv());
+    }
 
     /**
      *
      * @param elem
      */
     protected HyperlinkWithoutHistory(Element elem) {
-		if (elem == null) {
-			setElement(anchorElem);
-		} else {
-			setElement(elem);
-			appendChild(getElement(), anchorElem);
-		}
+        if (elem == null) {
+            setElement(anchorElem);
+        } else {
+            setElement(elem);
+            appendChild(getElement(), anchorElem);
+        }
 
-		sinkEvents(ONCLICK);
-		setStyleName("gwt-Hyperlink");
-	}
+        sinkEvents(ONCLICK);
+        setStyleName("gwt-Hyperlink");
+    }
 
-	@Override
-	@Deprecated
-	public HandlerRegistration addClickHandler(ClickHandler handler) {
-		return addHandler(handler, getType());
-	}
+    @Override
+    @Deprecated
+    public HandlerRegistration addClickHandler(ClickHandler handler) {
+        return addHandler(handler, getType());
+    }
 
-	@Override
-	public String getHTML() {
-            return anchorElem.getInnerHTML();
-	}
+    @Override
+    public String getHTML() {
+        return anchorElem.getInnerHTML();
+    }
 
-	@Override
-	public String getText() {
-		return anchorElem.getInnerText();
-	}
+    @Override
+    public String getText() {
+        return anchorElem.getInnerText();
+    }
 
-	@Override
-	public void onBrowserEvent(Event event) {
-		super.onBrowserEvent(event);
-		if (eventGetType(event) == ONCLICK && impl.handleAsClick(event)) {
-			eventPreventDefault(event);
-		}
-	}
+    @Override
+    public void onBrowserEvent(Event event) {
+        super.onBrowserEvent(event);
+        if (eventGetType(event) == ONCLICK && impl.handleAsClick(event)) {
+            event.preventDefault();
+        }
+    }
 
-	@Override
-	public void setHTML(String html) {
-                anchorElem.setInnerHTML(html);
-	}
+    @Override
+    public void setHTML(String html) {
+        anchorElem.setInnerHTML(html);
+    }
 
-	@Override
-	public void setText(String text) {
-            anchorElem.setInnerText(text);
-	}
+    @Override
+    public void setText(String text) {
+        anchorElem.setInnerText(text);
+    }
 
-	@Override
-	protected void onEnsureDebugId(String baseID) {
-		ensureDebugId(anchorElem, "", baseID);
-		ensureDebugId(getElement(), baseID, "wrapper");
-	}
+    @Override
+    protected void onEnsureDebugId(String baseID) {
+        ensureDebugId(anchorElem, "", baseID);
+        ensureDebugId(getElement(), baseID, "wrapper");
+    }
 }

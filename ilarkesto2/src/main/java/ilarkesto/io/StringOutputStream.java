@@ -18,7 +18,7 @@ import java.io.OutputStream;
 
 /**
  *
- * @author erik
+ *
  */
 public class StringOutputStream extends OutputStream {
 

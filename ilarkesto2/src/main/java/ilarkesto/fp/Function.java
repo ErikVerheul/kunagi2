@@ -16,7 +16,7 @@ package ilarkesto.fp;
 
 /**
  *
- * @author erik
+ *
  * @param <T>
  * @param <R>
  */

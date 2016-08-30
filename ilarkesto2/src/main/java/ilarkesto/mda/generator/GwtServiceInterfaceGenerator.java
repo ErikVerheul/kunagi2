@@ -22,7 +22,7 @@ import java.util.List;
 
 /**
  *
- * @author erik
+ *
  */
 public class GwtServiceInterfaceGenerator extends AJavaClassGenerator implements NodeTypes {
 

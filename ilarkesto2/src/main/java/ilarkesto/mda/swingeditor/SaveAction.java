@@ -21,7 +21,7 @@ import javax.swing.AbstractAction;
 
 /**
  *
- * @author erik
+ *
  */
 public class SaveAction extends AbstractAction {
 

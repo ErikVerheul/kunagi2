@@ -9,7 +9,7 @@ import java.util.Map;
 
 /**
  *
- * @author erik
+ *
  */
 public class JsonObject {
 

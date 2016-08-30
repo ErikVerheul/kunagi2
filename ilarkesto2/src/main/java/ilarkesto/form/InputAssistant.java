@@ -18,7 +18,7 @@ import java.util.Set;
 
 /**
  *
- * @author erik
+ *
  * @param <T>
  */
 public interface InputAssistant<T> {

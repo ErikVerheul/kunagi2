@@ -22,7 +22,7 @@ import scrum.server.common.APdfCreator;
 
 /**
  *
- * @author erik
+ *
  */
 public class ProductBacklogPdfCreator extends APdfCreator {
 

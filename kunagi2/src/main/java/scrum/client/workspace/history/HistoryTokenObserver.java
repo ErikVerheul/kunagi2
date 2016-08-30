@@ -16,7 +16,7 @@ package scrum.client.workspace.history;
 
 /**
  *
- * @author erik
+ *
  */
 public interface HistoryTokenObserver {
 

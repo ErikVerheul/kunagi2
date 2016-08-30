@@ -32,7 +32,7 @@ import scrum.client.search.Search;
 
 /**
  *
- * @author erik
+ *
  */
 public class ProductBacklogFilterWidget extends AScrumWidget {
 

@@ -16,7 +16,7 @@ package scrum.client.pr;
 
 /**
  *
- * @author erik
+ *
  */
 public class UnpublishBlogEntryAction extends GUnpublishBlogEntryAction {
 

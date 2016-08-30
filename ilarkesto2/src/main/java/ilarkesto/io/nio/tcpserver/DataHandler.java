@@ -16,7 +16,7 @@ package ilarkesto.io.nio.tcpserver;
 
 /**
  *
- * @author erik
+ *
  */
 public interface DataHandler {
 

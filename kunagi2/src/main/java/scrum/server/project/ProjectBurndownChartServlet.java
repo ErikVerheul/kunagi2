@@ -24,7 +24,7 @@ import scrum.client.project.ProjectOverviewWidget;
 
 /**
  *
- * @author erik
+ *
  */
 public class ProjectBurndownChartServlet extends HttpServlet {
 

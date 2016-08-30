@@ -16,7 +16,7 @@ package ilarkesto.gwt.client.editor;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class AFloatEditorModel extends AEditorModel<Float> {
 

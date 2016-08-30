@@ -21,7 +21,7 @@ import java.io.OutputStream;
 
 /**
  *
- * @author erik
+ *
  */
 public abstract class Serializer {
 

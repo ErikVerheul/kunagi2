@@ -16,7 +16,7 @@ package ilarkesto.base;
 
 /**
  *
- * @author erik
+ *
  * @param <T>
  */
 public interface StringProvider<T> {

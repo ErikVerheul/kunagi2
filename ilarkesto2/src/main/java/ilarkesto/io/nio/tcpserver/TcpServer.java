@@ -20,7 +20,7 @@ import ilarkesto.concurrent.TaskManager;
 
 /**
  *
- * @author erik
+ *
  */
 public class TcpServer {
 

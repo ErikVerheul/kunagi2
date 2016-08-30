@@ -28,7 +28,7 @@ import scrum.client.journal.ActivateChangeHistoryAction;
 
 /**
  *
- * @author erik
+ *
  */
 public class IssueBlock extends ABlockWidget<Issue> implements TrashSupport {
 

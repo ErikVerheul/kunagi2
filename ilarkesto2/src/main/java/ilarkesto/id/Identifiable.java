@@ -16,7 +16,7 @@ package ilarkesto.id;
 
 /**
  *
- * @author erik
+ *
  */
 public interface Identifiable {
 

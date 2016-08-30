@@ -23,7 +23,7 @@ import static ilarkesto.core.time.Tm.WEEK;
 
 /**
  *
- * @author erik
+ *
  */
 public final class TimePeriodExtend extends ilarkesto.core.time.TimePeriod {
 

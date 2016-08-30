@@ -21,7 +21,7 @@ import scrum.server.project.Project;
 
 /**
  *
- * @author erik
+ *
  */
 public interface PdfContext {
 

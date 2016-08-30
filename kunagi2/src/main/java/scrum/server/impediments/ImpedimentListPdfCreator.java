@@ -30,7 +30,7 @@ import scrum.server.sprint.Task;
 
 /**
  *
- * @author erik
+ *
  */
 public class ImpedimentListPdfCreator extends APdfCreator {
 

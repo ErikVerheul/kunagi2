@@ -19,7 +19,7 @@ import scrum.client.common.AScrumGwtEntity;
 
 /**
  *
- * @author erik
+ *
  */
 public class SetEmoticonAction extends AScrumAction {
 

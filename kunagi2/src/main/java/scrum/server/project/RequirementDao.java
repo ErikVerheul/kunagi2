@@ -19,7 +19,7 @@ import scrum.server.issues.Issue;
 
 /**
  *
- * @author erik
+ *
  */
 public class RequirementDao extends GRequirementDao {
 

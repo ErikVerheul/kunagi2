@@ -20,7 +20,7 @@ import static ilarkesto.gwt.client.Gwt.update;
 
 /**
  *
- * @author erik
+ *
  */
 public class UndoAction extends AAction {
 

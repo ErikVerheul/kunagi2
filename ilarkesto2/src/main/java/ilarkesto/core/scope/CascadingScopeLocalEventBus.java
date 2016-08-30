@@ -19,7 +19,7 @@ import java.util.Collection;
 
 /**
  *
- * @author erik
+ *
  */
 public class CascadingScopeLocalEventBus extends AEventBus {
 

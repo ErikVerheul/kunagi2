@@ -5,7 +5,7 @@ import scrum.server.WebSession;
 
 /**
  *
- * @author erik
+ *
  */
 public class SpamChecker {
 

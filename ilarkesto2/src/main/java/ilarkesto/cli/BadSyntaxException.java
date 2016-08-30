@@ -17,7 +17,7 @@ package ilarkesto.cli;
 
 /**
  *
- * @author erik
+ *
  */
 public class BadSyntaxException extends CommandExecutionFailedException {
 
