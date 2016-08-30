@@ -32,7 +32,7 @@ import org.testng.annotations.Test;
 
 /**
  *
- * @author erik
+ *
  */
 public class TimePeriodTest extends ATest {
 

@@ -20,7 +20,7 @@ import org.testng.annotations.Test;
 
 /**
  *
- * @author erik
+ *
  */
 public class TimeTest extends ATest {
 

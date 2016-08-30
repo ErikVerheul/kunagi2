@@ -24,7 +24,7 @@ import org.testng.annotations.Test;
 
 /**
  *
- * @author erik
+ *
  */
 public class DateTest extends ATest {
 

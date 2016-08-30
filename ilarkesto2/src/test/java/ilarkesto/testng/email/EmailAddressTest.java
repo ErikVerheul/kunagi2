@@ -21,7 +21,7 @@ import org.testng.annotations.Test;
 
 /**
  *
- * @author erik
+ *
  */
 public class EmailAddressTest extends ATest {
 
