@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 /**
  *
- * @author erik
+ *
  */
 public class DateTest2 extends Assert {
 
