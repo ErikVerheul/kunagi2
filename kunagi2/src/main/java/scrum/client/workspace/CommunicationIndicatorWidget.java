@@ -32,87 +32,84 @@ import scrum.client.test.ScrumStatusWidget;
 
 /**
  *
- * @author erik
  */
 public class CommunicationIndicatorWidget extends AScrumWidget {
 
-	private ServiceCaller serviceCaller;
-	private Pinger pinger;
+    private ServiceCaller serviceCaller;
+    private Pinger pinger;
 
-	private FocusPanel focusPanel;
-	private Label status;
-	private Style statusStyle;
+    private FocusPanel focusPanel;
+    private Label status;
+    private Style statusStyle;
 
-	private long onTime;
+    private long onTime;
 
-	@Override
-	protected Widget onInitialization() {
-		serviceCaller = Scope.get().getComponent(ServiceCaller.class);
-		serviceCaller.setStatusWidget(this);
-		pinger = Scope.get().getComponent(Pinger.class);
+    @Override
+    protected Widget onInitialization() {
+        serviceCaller = Scope.get().getComponent(ServiceCaller.class);
+        serviceCaller.setStatusWidget(this);
+        pinger = Scope.get().getComponent(Pinger.class);
 
-		status = new Label();
-		status.setStyleName("StatusWidget");
-		statusStyle = status.getElement().getStyle();
+        status = new Label();
+        status.setStyleName("StatusWidget");
+        statusStyle = status.getElement().getStyle();
 
-		focusPanel = new FocusPanel(status);
-		focusPanel.addClickHandler(new StatusClickHandler());
+        focusPanel = new FocusPanel(status);
+        focusPanel.addClickHandler(new StatusClickHandler());
 
-		new Timer() {
+        new Timer() {
 
-			@Override
-			public void run() {
-				if (onTime > 0) {
-					long onDuration = Tm.getCurrentTimeMillis() - onTime;
-					if (onDuration > 3000) {
-						statusStyle.setBackgroundColor("#f00");
-						status.setTitle("Waiting for server response since " + (onDuration / 1000) + " seconds...");
-						return;
-					}
-				}
-				status.setTitle(pinger.getAvaragePingTimeMessage());
-			}
-		}.scheduleRepeating(1000);
-
-		return focusPanel;
-	}
-
-	@Override
-	protected void onUpdate() {
-		List<AServiceCall> calls = serviceCaller.getActiveServiceCalls();
-		if (calls.isEmpty()) {
-			if (isOn()) {
-                            switchOff();
+            @Override
+            public void run() {
+                if (onTime > 0) {
+                    long onDuration = Tm.getCurrentTimeMillis() - onTime;
+                    if (onDuration > 3000) {
+                        statusStyle.setBackgroundColor("#f00");
+                        status.setTitle("Waiting for server response since " + (onDuration / 1000) + " seconds...");
+                        return;
+                    }
+                }
+                status.setTitle(pinger.getAvaragePingTimeMessage());
             }
-		} else {
-			if (!isOn()) {
-                            switchOn();
+        }.scheduleRepeating(1000);
+
+        return focusPanel;
+    }
+
+    @Override
+    protected void onUpdate() {
+        List<AServiceCall> calls = serviceCaller.getActiveServiceCalls();
+        if (calls.isEmpty()) {
+            if (isOn()) {
+                switchOff();
             }
-		}
-	}
+        } else if (!isOn()) {
+            switchOn();
+        }
+    }
 
-	private void switchOn() {
-		onTime = Tm.getCurrentTimeMillis();
-		statusStyle.setBackgroundColor("#aa6");
-	}
+    private void switchOn() {
+        onTime = Tm.getCurrentTimeMillis();
+        statusStyle.setBackgroundColor("#aa6");
+    }
 
-	private void switchOff() {
-		onTime = 0;
-		statusStyle.setBackgroundColor("#666");
-	}
+    private void switchOff() {
+        onTime = 0;
+        statusStyle.setBackgroundColor("#666");
+    }
 
-	private boolean isOn() {
-		return onTime > 0;
-	}
+    private boolean isOn() {
+        return onTime > 0;
+    }
 
-	class StatusClickHandler implements ClickHandler {
+    class StatusClickHandler implements ClickHandler {
 
-		@Override
-		public void onClick(ClickEvent event) {
-			Scope.get().getComponent(Ui.class).getWorkspace().getWorkarea().show(new ScrumStatusWidget());
-			focusPanel.setFocus(false);
-		}
+        @Override
+        public void onClick(ClickEvent event) {
+            Scope.get().getComponent(Ui.class).getWorkspace().getWorkarea().show(new ScrumStatusWidget());
+            focusPanel.setFocus(false);
+        }
 
-	}
+    }
 
 }

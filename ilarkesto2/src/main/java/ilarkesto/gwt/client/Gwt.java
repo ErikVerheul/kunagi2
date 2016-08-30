@@ -18,9 +18,7 @@ import static com.google.gwt.core.client.GWT.getModuleBaseURL;
 import static com.google.gwt.core.client.GWT.isProdMode;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.DOM;
-import static com.google.gwt.user.client.DOM.getInnerHTML;
-import static com.google.gwt.user.client.DOM.setInnerText;
-import com.google.gwt.user.client.Element;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.FlowPanel;
@@ -53,7 +51,6 @@ import java.util.Set;
 
 /**
  *
- * @author erik
  */
 public class Gwt {
 
@@ -239,20 +236,7 @@ public class Gwt {
         widget.addMouseListener(listener);
         return html;
     }
-
-    /**
-     *
-     * @param <W>
-     * @param widget
-     * @param tooltipWidget
-     * @return
-     */
-    public static <W extends Widget> W addTooltip(SourcesMouseEvents widget, W tooltipWidget) {
-        TooltipListener listener = new TooltipListener(tooltipWidget);
-        widget.addMouseListener(listener);
-        return tooltipWidget;
-    }
-
+    
     /**
      *
      * @param message
@@ -279,8 +263,8 @@ public class Gwt {
      */
     public static String escapeHtml(String maybeHtml) {
         final Element div = DOM.createDiv();
-        setInnerText(div, maybeHtml);
-        return getInnerHTML(div);
+        div.setInnerText(maybeHtml);
+        return div.getInnerHTML();
     }
 
     /**
@@ -657,13 +641,11 @@ public class Gwt {
         for (Widget widget : widgets) {
             if (first) {
                 first = false;
-            } else {
-                if (spacing > 0) {
-                    Widget spacer = createEmptyDiv("HorizontalPanel-spacer");
-                    panel.add(spacer);
-                    panel.setCellWidth(spacer, spacing + "px");
+            } else if (spacing > 0) {
+                Widget spacer = createEmptyDiv("HorizontalPanel-spacer");
+                panel.add(spacer);
+                panel.setCellWidth(spacer, spacing + "px");
 
-                }
             }
             panel.add(widget);
         }
@@ -788,8 +770,7 @@ public class Gwt {
      *
      * @param posY
      */
-    public static native void scrollTo(int posY)
-    /*-{	   
+    public static native void scrollTo(int posY) /*-{	   
      }-*/;
 
     /**

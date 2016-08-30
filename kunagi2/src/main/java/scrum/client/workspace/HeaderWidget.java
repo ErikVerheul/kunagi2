@@ -39,147 +39,146 @@ import scrum.client.undo.Undo;
 
 /**
  *
- * @author erik
  */
 public class HeaderWidget extends AScrumWidget {
 
-	private SimplePanel wrapper;
-	private Label title;
-	private UndoButtonWidget undoButton;
-	private DropdownMenuButtonWidget switchProjectButton;
-	private SearchInputWidget search;
-	private CommunicationIndicatorWidget status;
+    private SimplePanel wrapper;
+    private Label title;
+    private UndoButtonWidget undoButton;
+    private DropdownMenuButtonWidget switchProjectButton;
+    private SearchInputWidget search;
+    private CommunicationIndicatorWidget status;
 
-	@Override
-	protected Widget onInitialization() {
+    @Override
+    protected Widget onInitialization() {
 
-		title = new Label("");
-		title.setStyleName("HeaderWidget-title");
+        title = new Label("");
+        title.setStyleName("HeaderWidget-title");
 
-		status = new CommunicationIndicatorWidget();
+        status = new CommunicationIndicatorWidget();
 
-		undoButton = new UndoButtonWidget();
+        undoButton = new UndoButtonWidget();
 
-		switchProjectButton = new DropdownMenuButtonWidget();
-		switchProjectButton.setLabel("Switch Project");
+        switchProjectButton = new DropdownMenuButtonWidget();
+        switchProjectButton.setLabel("Switch Project");
 
-		search = new SearchInputWidget();
+        search = new SearchInputWidget();
 
-		wrapper = Gwt.createDiv("HeaderWidget", title);
-		return wrapper;
-	}
+        wrapper = Gwt.createDiv("HeaderWidget", title);
+        return wrapper;
+    }
 
-	private HTML createLinksHtml() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("<a href='http://kunagi.org/support.html' target='_blank'>Support/Feedback</a>");
-		if (getAuth().isUserLoggedIn() && getCurrentUser().isAdmin()) {
-                    sb.append(" <a href='admin.html' target='_blank'>Administration/Monitoring</a>");
+    private HTML createLinksHtml() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("<a href='http://kunagi.org/support.html' target='_blank'>Support/Feedback</a>");
+        if (getAuth().isUserLoggedIn() && getCurrentUser().isAdmin()) {
+            sb.append(" <a href='admin.html' target='_blank'>Administration/Monitoring</a>");
         }
-		return new HTML(sb.toString());
-	}
+        return new HTML(sb.toString());
+    }
 
-	@Override
-	protected void onUpdate() {
-		boolean projectOpen = ScrumScopeManager.isProjectScope();
+    @Override
+    protected void onUpdate() {
+        boolean projectOpen = ScrumScopeManager.isProjectScope();
 
-		undoButton.setUndoManager(null);
-		Widget upgrade = null;
+        undoButton.setUndoManager(null);
+        Widget upgrade = null;
 
-		ApplicationInfo applicationInfo = getApp().getApplicationInfo();
-		if (applicationInfo != null) {
-			title.setTitle(applicationInfo.getVersionDescription());
-			if (applicationInfo.isNewReleaseAvailable()) {
-				upgrade = createUpgrade(applicationInfo);
-			}
-		}
+        ApplicationInfo applicationInfo = getApp().getApplicationInfo();
+        if (applicationInfo != null) {
+            title.setTitle(applicationInfo.getVersionDescription());
+            if (applicationInfo.isNewReleaseAvailable()) {
+                upgrade = createUpgrade(applicationInfo);
+            }
+        }
 
-		if (projectOpen) {
-			switchProjectButton.clear();
-			switchProjectButton.addAction("ProjectSelectorLink", new AScrumAction() {
+        if (projectOpen) {
+            switchProjectButton.clear();
+            switchProjectButton.addAction("ProjectSelectorLink", new AScrumAction() {
 
-				@Override
-				public String getLabel() {
-					return "Project Selector";
-				}
-
-				@Override
-				protected void onExecute() {
-					getNavigator().gotoProjectSelector();
-				}
-
-			});
-			switchProjectButton.addSeparator();
-			List<Project> projects = getDao().getProjects();
-			Collections.sort(projects, Project.LAST_OPENED_COMPARATOR);
-			for (Project p : projects) {
-				if (p == getCurrentProject()) {
-                                    continue;
+                @Override
+                public String getLabel() {
+                    return "Project Selector";
                 }
-				switchProjectButton.addAction("QuickLinks", new ChangeProjectAction(p));
-			}
-		}
 
-		TableBuilder tb = new TableBuilder();
-		tb.setCellPadding(2);
-		tb.setColumnWidths("70px", "30px", "200px", "", "", "60px", "100px", "150px", "50px");
-		Widget searchWidget = projectOpen ? search : Gwt.createEmptyDiv();
-		Widget undoWidget = projectOpen ? undoButton : Gwt.createEmptyDiv();
-		// Widget changeProjectWidget = projectOpen ? new HyperlinkWidget(new ChangeProjectAction()) : Gwt
-		// .createEmptyDiv();
-		Widget changeProjectWidget = projectOpen ? switchProjectButton : Gwt.createEmptyDiv();
-		tb.add(createLogo(), status, upgrade, searchWidget, createLinksHtml(), undoWidget, changeProjectWidget,
-			createCurrentUserWidget(), new HyperlinkWidget(new LogoutAction()));
-		wrapper.setWidget(tb.createTable());
+                @Override
+                protected void onExecute() {
+                    getNavigator().gotoProjectSelector();
+                }
 
-		super.onUpdate();
-	}
-
-	private Widget createCurrentUserWidget() {
-		boolean loggedIn = getAuth().isUserLoggedIn();
-                if (!loggedIn) {
-                    return Gwt.createEmptyDiv();
+            });
+            switchProjectButton.addSeparator();
+            List<Project> projects = getDao().getProjects();
+            Collections.sort(projects, Project.LAST_OPENED_COMPARATOR);
+            for (Project p : projects) {
+                if (p == getCurrentProject()) {
+                    continue;
+                }
+                switchProjectButton.addAction("QuickLinks", new ChangeProjectAction(p));
+            }
         }
 
-		ProjectWorkspaceWidgets widgets = Scope.get().getComponent(ProjectWorkspaceWidgets.class);
-                if (!ScrumScopeManager.isProjectScope()) {
-                    return new Label(createCurrentUserText());
+        TableBuilder tb = new TableBuilder();
+        tb.setCellPadding(2);
+        tb.setColumnWidths("70px", "30px", "200px", "", "", "60px", "100px", "150px", "50px");
+        Widget searchWidget = projectOpen ? search : Gwt.createEmptyDiv();
+        Widget undoWidget = projectOpen ? undoButton : Gwt.createEmptyDiv();
+        // Widget changeProjectWidget = projectOpen ? new HyperlinkWidget(new ChangeProjectAction()) : Gwt
+        // .createEmptyDiv();
+        Widget changeProjectWidget = projectOpen ? switchProjectButton : Gwt.createEmptyDiv();
+        tb.add(createLogo(), status, upgrade, searchWidget, createLinksHtml(), undoWidget, changeProjectWidget,
+                createCurrentUserWidget(), new HyperlinkWidget(new LogoutAction()));
+        wrapper.setWidget(tb.createTable());
+
+        super.onUpdate();
+    }
+
+    private Widget createCurrentUserWidget() {
+        boolean loggedIn = getAuth().isUserLoggedIn();
+        if (!loggedIn) {
+            return Gwt.createEmptyDiv();
         }
 
-		ScrumNavigatorWidget.SwitchAction action = widgets.getSidebar().getNavigator()
-				.createSwitchAction(widgets.getProjectUserConfig());
-		action.setLabel(createCurrentUserText());
-		return new HyperlinkWidget(action);
-	}
+        ProjectWorkspaceWidgets widgets = Scope.get().getComponent(ProjectWorkspaceWidgets.class);
+        if (!ScrumScopeManager.isProjectScope()) {
+            return new Label(createCurrentUserText());
+        }
 
-	private String createCurrentUserText() {
-		boolean loggedIn = getAuth().isUserLoggedIn();
-		StringBuilder text = new StringBuilder();
-		if (loggedIn) {
-			text.append(getCurrentUser().getName());
-			if (ScrumScopeManager.isProjectScope()) {
-				text.append(getCurrentProject().getUsersRolesAsString(getCurrentUser(), " (", ")"));
-				text.append(" @ " + getCurrentProject().getLabel());
-				undoButton.setUndoManager(Scope.get().getComponent(Undo.class).getManager());
-			}
-		}
-		return text.toString();
-	}
+        ScrumNavigatorWidget.SwitchAction action = widgets.getSidebar().getNavigator()
+                .createSwitchAction(widgets.getProjectUserConfig());
+        action.setLabel(createCurrentUserText());
+        return new HyperlinkWidget(action);
+    }
 
-	private Widget createLogo() {
-		SimplePanel div = Gwt.createDiv("HeaderWidget-logo", Img.bundle.logo25().createImage());
-                ApplicationInfo applicationInfo = getApp().getApplicationInfo();
-                if (applicationInfo != null) {
+    private String createCurrentUserText() {
+        boolean loggedIn = getAuth().isUserLoggedIn();
+        StringBuilder text = new StringBuilder();
+        if (loggedIn) {
+            text.append(getCurrentUser().getName());
+            if (ScrumScopeManager.isProjectScope()) {
+                text.append(getCurrentProject().getUsersRolesAsString(getCurrentUser(), " (", ")"));
+                text.append(" @ ").append(getCurrentProject().getLabel());
+                undoButton.setUndoManager(Scope.get().getComponent(Undo.class).getManager());
+            }
+        }
+        return text.toString();
+    }
+
+    private Widget createLogo() {
+        SimplePanel div = Gwt.createDiv("HeaderWidget-logo", Img.bundle.logo25().createImage());
+        ApplicationInfo applicationInfo = getApp().getApplicationInfo();
+        if (applicationInfo != null) {
             div.setTitle(applicationInfo.getVersionDescription());
         }
-		return div;
-	}
+        return div;
+    }
 
-	private Widget createUpgrade(ApplicationInfo ai) {
-		String info = "You are using Kunagi release " + ai.getRelease() + " while release " + ai.getCurrentRelease()
-				+ " is available.";
-		return new HTML(
-				"<a href=\"http://kunagi.org/download.html\" target=\"_blank\"><img src=\"newReleaseAvailable.png\" alt=\"Upgrade\" width=\"16px\" height=\"16px\" title=\""
-						+ info + "\" style=\"margin-top: 2px;\"></a>");
-	}
+    private Widget createUpgrade(ApplicationInfo ai) {
+        String info = "You are using Kunagi release " + ai.getRelease() + " while release " + ai.getCurrentRelease()
+                + " is available.";
+        return new HTML(
+                "<a href=\"http://kunagi.org/download.html\" target=\"_blank\"><img src=\"newReleaseAvailable.png\" alt=\"Upgrade\" width=\"16px\" height=\"16px\" title=\""
+                + info + "\" style=\"margin-top: 2px;\"></a>");
+    }
 
 }

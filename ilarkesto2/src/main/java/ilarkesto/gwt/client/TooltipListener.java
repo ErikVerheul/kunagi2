@@ -21,43 +21,43 @@ import static ilarkesto.core.base.Str.isBlank;
 
 public class TooltipListener extends MouseListenerAdapter {
 
-	private TooltipPopup tooltip;
-	private Widget content;
-	private int offsetX = 10;
-	private int offsetY = 35;
+    private TooltipPopup tooltip;
+    private final Widget content;
+    private final int offsetX = 10;
+    private final int offsetY = 35;
 
-	public TooltipListener(Widget tooltipContent) {
-		this.content = tooltipContent;
-	}
+    public TooltipListener(Widget tooltipContent) {
+        this.content = tooltipContent;
+    }
 
-	private boolean isContentBlank() {
-		return content == null || (content instanceof HTML && isBlank(((HTML) content).getHTML()));
-	}
+    private boolean isContentBlank() {
+        return content == null || (content instanceof HTML && isBlank(((HTML) content).getHTML()));
+    }
 
-	@Override
-	public void onMouseEnter(Widget sender) {
-		if (isContentBlank()) {
-                        return;
-                }
-		if (tooltip != null) {
-                        tooltip.hide();
-                }
-		tooltip = new TooltipPopup(sender, offsetX, offsetY, content, false);
-		tooltip.show();
-	}
+    @Override
+    public void onMouseEnter(Widget sender) {
+        if (isContentBlank()) {
+            return;
+        }
+        if (tooltip != null) {
+            tooltip.hide();
+        }
+        tooltip = new TooltipPopup(sender, offsetX, offsetY, content, false);
+        tooltip.show();
+    }
 
-	@Override
-	public void onMouseLeave(Widget sender) {
-		if (tooltip != null) {
-                        tooltip.hide();
-                }
-	}
+    @Override
+    public void onMouseLeave(Widget sender) {
+        if (tooltip != null) {
+            tooltip.hide();
+        }
+    }
 
-	@Override
-	public void onMouseMove(Widget sender, int x, int y) {
-		if (tooltip != null && tooltip.isActive()) {
-			tooltip.hide();
-		}
-	}
+    @Override
+    public void onMouseMove(Widget sender, int x, int y) {
+        if (tooltip != null && tooltip.isActive()) {
+            tooltip.hide();
+        }
+    }
 
 }

@@ -41,224 +41,223 @@ import scrum.client.workspace.Ui;
 
 /**
  *
- * @author erik
  */
 public class ScrumStatusWidget extends AScrumWidget {
 
-	private Dao dao;
-	private ServiceCaller serviceCaller;
+    private Dao dao;
+    private ServiceCaller serviceCaller;
 
-	private SimplePanel entityCountWrapper;
-	private SimplePanel stateInformationWrapper;
+    private SimplePanel entityCountWrapper;
+    private SimplePanel stateInformationWrapper;
 
-	@Override
-	protected Widget onInitialization() {
-		dao = Scope.get().getComponent(Dao.class);
-		ScrumGwtApplication app = (ScrumGwtApplication) Scope.get().getComponent("app");
-		serviceCaller = Scope.get().getComponent(ServiceCaller.class);
+    @Override
+    protected Widget onInitialization() {
+        dao = Scope.get().getComponent(Dao.class);
+        ScrumGwtApplication app = (ScrumGwtApplication) Scope.get().getComponent("app");
+        serviceCaller = Scope.get().getComponent(ServiceCaller.class);
 
-		entityCountWrapper = new SimplePanel();
-		stateInformationWrapper = new SimplePanel();
+        entityCountWrapper = new SimplePanel();
+        stateInformationWrapper = new SimplePanel();
 
-		PagePanel page = new PagePanel();
-		page.addHeader("Entities");
-		page.addSection(entityCountWrapper);
+        PagePanel page = new PagePanel();
+        page.addHeader("Entities");
+        page.addSection(entityCountWrapper);
 
-		page.addHeader("State information");
-		page.addSection(stateInformationWrapper);
+        page.addHeader("State information");
+        page.addSection(stateInformationWrapper);
 
-		if (!app.getApplicationInfo().isProductionStage()) {
-			page.addHeader("Generators");
-			page.addSection(createGenerators());
-		}
+        if (!app.getApplicationInfo().isProductionStage()) {
+            page.addHeader("Generators");
+            page.addSection(createGenerators());
+        }
 
-		return page;
-	}
+        return page;
+    }
 
-	private Widget createGenerators() {
-		TableBuilder tb = new TableBuilder();
-		tb.setWidth(null);
-		tb.setCellPadding(5);
-		tb.addRow(new ButtonWidget(new ToggleListAnimationsAction()));
-		tb.addRow(new ButtonWidget(new ThrowExceptionAction()));
-		tb.addRow(new ButtonWidget(new ThrowServerExceptionAction()));
-		tb.addRow(new ButtonWidget(new ShowWidgetsTesterAction()));
-		tb.addRow(new ButtonWidget(new GenerateRequirementsAction()));
-		tb.addRow(new ButtonWidget(new GenerateIssuesAction()));
-		tb.addRow(new ButtonWidget(new GenerateTasksAction()));
-		tb.addRow(new ButtonWidget(new GenerateCommentsAction()));
-		return tb.createTable();
-	}
+    private Widget createGenerators() {
+        TableBuilder tb = new TableBuilder();
+        tb.setWidth(null);
+        tb.setCellPadding(5);
+        tb.addRow(new ButtonWidget(new ToggleListAnimationsAction()));
+        tb.addRow(new ButtonWidget(new ThrowExceptionAction()));
+        tb.addRow(new ButtonWidget(new ThrowServerExceptionAction()));
+        tb.addRow(new ButtonWidget(new ShowWidgetsTesterAction()));
+        tb.addRow(new ButtonWidget(new GenerateRequirementsAction()));
+        tb.addRow(new ButtonWidget(new GenerateIssuesAction()));
+        tb.addRow(new ButtonWidget(new GenerateTasksAction()));
+        tb.addRow(new ButtonWidget(new GenerateCommentsAction()));
+        return tb.createTable();
+    }
 
-	@Override
-	protected void onUpdate() {
-		TableBuilder tb = new TableBuilder();
-		tb.setWidth(null);
-		tb.setCellSpacing(5);
-		for (Map.Entry<String, Integer> entry : dao.getEntityCounts().entrySet()) {
-			tb.addRow(Gwt.createFieldLabel(entry.getKey()), new Label(String.valueOf(entry.getValue())));
-		}
-		entityCountWrapper.setWidget(tb.createTable());
-		stateInformationWrapper.setWidget(createStateInformation());
-		super.onUpdate();
-	}
+    @Override
+    protected void onUpdate() {
+        TableBuilder tb = new TableBuilder();
+        tb.setWidth(null);
+        tb.setCellSpacing(5);
+        for (Map.Entry<String, Integer> entry : dao.getEntityCounts().entrySet()) {
+            tb.addRow(Gwt.createFieldLabel(entry.getKey()), new Label(String.valueOf(entry.getValue())));
+        }
+        entityCountWrapper.setWidget(tb.createTable());
+        stateInformationWrapper.setWidget(createStateInformation());
+        super.onUpdate();
+    }
 
-	private Widget createStateInformation() {
-		TableBuilder tb = ScrumGwt.createFieldTable();
-		tb.addFieldRow("activeServiceCallCount",
-			new Label(String.valueOf(Str.concat(serviceCaller.getActiveServiceCalls(), ", "))));
-		tb.addFieldRow("conversationNumber", new Label(String.valueOf(serviceCaller.getConversationNumber())));
-		tb.addFieldRow("entityIdBase", new Label(dao.getEntityIdBase()));
-		tb.addFieldRow("entityIdCounter", new Label(String.valueOf(dao.getEntityIdCounter())));
-		return tb.createTable();
-	}
+    private Widget createStateInformation() {
+        TableBuilder tb = ScrumGwt.createFieldTable();
+        tb.addFieldRow("activeServiceCallCount",
+                new Label(String.valueOf(Str.concat(serviceCaller.getActiveServiceCalls(), ", "))));
+        tb.addFieldRow("conversationNumber", new Label(String.valueOf(serviceCaller.getConversationNumber())));
+        tb.addFieldRow("entityIdBase", new Label(dao.getEntityIdBase()));
+        tb.addFieldRow("entityIdCounter", new Label(String.valueOf(dao.getEntityIdCounter())));
+        return tb.createTable();
+    }
 
-	static class ToggleListAnimationsAction extends AScrumAction {
+    static class ToggleListAnimationsAction extends AScrumAction {
 
-		@Override
-		public String getLabel() {
-			return AnimatingFlowPanel.animationsDisabled ? "Enable list animations" : "Disable list animations";
-		}
+        @Override
+        public String getLabel() {
+            return AnimatingFlowPanel.animationsDisabled ? "Enable list animations" : "Disable list animations";
+        }
 
-		@Override
-		protected void onExecute() {
-			AnimatingFlowPanel.animationsDisabled = !AnimatingFlowPanel.animationsDisabled;
-		}
-	}
+        @Override
+        protected void onExecute() {
+            AnimatingFlowPanel.animationsDisabled = !AnimatingFlowPanel.animationsDisabled;
+        }
+    }
 
-	static class ThrowExceptionAction extends AScrumAction {
+    static class ThrowExceptionAction extends AScrumAction {
 
-		@Override
-		public String getLabel() {
-			return "Throw Client Exception";
-		}
+        @Override
+        public String getLabel() {
+            return "Throw Client Exception";
+        }
 
-		@Override
-		protected void onExecute() {
-			throw new RuntimeException("User initiated exception.<br>:-D");
-		}
-	}
+        @Override
+        protected void onExecute() {
+            throw new RuntimeException("User initiated exception.<br>:-D");
+        }
+    }
 
-	static class ThrowServerExceptionAction extends AScrumAction {
+    static class ThrowServerExceptionAction extends AScrumAction {
 
-		@Override
-		public String getLabel() {
-			return "Throw Server Exception";
-		}
+        @Override
+        public String getLabel() {
+            return "Throw Server Exception";
+        }
 
-		@Override
-		protected void onExecute() {
-			new DeleteEntityServiceCall("bad-entity-id").execute();
-		}
-	}
+        @Override
+        protected void onExecute() {
+            new DeleteEntityServiceCall("bad-entity-id").execute();
+        }
+    }
 
-	static class ShowWidgetsTesterAction extends AScrumAction {
+    static class ShowWidgetsTesterAction extends AScrumAction {
 
-		@Override
-		public String getLabel() {
-			return "Show widgets tester";
-		}
+        @Override
+        public String getLabel() {
+            return "Show widgets tester";
+        }
 
-		@Override
-		protected void onExecute() {
-			Scope.get().getComponent(Ui.class).getWorkspace().getWorkarea().show(new WidgetsTesterWidget());
-		}
+        @Override
+        protected void onExecute() {
+            Scope.get().getComponent(Ui.class).getWorkspace().getWorkarea().show(new WidgetsTesterWidget());
+        }
 
-	}
+    }
 
-	class GenerateCommentsAction extends AScrumAction {
+    class GenerateCommentsAction extends AScrumAction {
 
-		@Override
-		public String getLabel() {
-			return "Generate Comments";
-		}
+        @Override
+        public String getLabel() {
+            return "Generate Comments";
+        }
 
-		@Override
-		protected void onExecute() {
-			DateAndTime time = DateAndTime.now();
-			Requirement req = getCurrentProject().getCurrentSprint().getRequirements().get(0);
-			for (int i = 0; i < COUNT; i++) {
-				Comment comment = new Comment(req, getCurrentUser(), time + " " + longText());
-				dao.createComment(comment);
-			}
-		}
+        @Override
+        protected void onExecute() {
+            DateAndTime time = DateAndTime.now();
+            Requirement req = getCurrentProject().getCurrentSprint().getRequirements().get(0);
+            for (int i = 0; i < COUNT; i++) {
+                Comment comment = new Comment(req, getCurrentUser(), time + " " + longText());
+                dao.createComment(comment);
+            }
+        }
 
-	}
+    }
 
-	class GenerateTasksAction extends AScrumAction {
+    class GenerateTasksAction extends AScrumAction {
 
-		@Override
-		public String getLabel() {
-			return "Generate Tasks";
-		}
+        @Override
+        public String getLabel() {
+            return "Generate Tasks";
+        }
 
-		@Override
-		protected void onExecute() {
-			DateAndTime time = DateAndTime.now();
-			Requirement req = getCurrentProject().getCurrentSprint().getRequirements().get(0);
-			for (int i = 0; i < COUNT; i++) {
-				Task task = new Task(req);
-				task.setLabel("Generated Task " + time + " - #" + i);
-				task.setDescription(longText());
-				dao.createTask(task);
-			}
-		}
+        @Override
+        protected void onExecute() {
+            DateAndTime time = DateAndTime.now();
+            Requirement req = getCurrentProject().getCurrentSprint().getRequirements().get(0);
+            for (int i = 0; i < COUNT; i++) {
+                Task task = new Task(req);
+                task.setLabel("Generated Task " + time + " - #" + i);
+                task.setDescription(longText());
+                dao.createTask(task);
+            }
+        }
 
-	}
+    }
 
-	class GenerateIssuesAction extends AScrumAction {
+    class GenerateIssuesAction extends AScrumAction {
 
-		@Override
-		public String getLabel() {
-			return "Generate Issues";
-		}
+        @Override
+        public String getLabel() {
+            return "Generate Issues";
+        }
 
-		@Override
-		protected void onExecute() {
-			DateAndTime time = DateAndTime.now();
-			for (int i = 0; i < COUNT; i++) {
-				Issue issue = new Issue(getCurrentProject());
-				issue.setLabel("Generated Issue " + time + " - #" + i);
-				issue.setDescription(longText());
-				dao.createIssue(issue);
-			}
-		}
+        @Override
+        protected void onExecute() {
+            DateAndTime time = DateAndTime.now();
+            for (int i = 0; i < COUNT; i++) {
+                Issue issue = new Issue(getCurrentProject());
+                issue.setLabel("Generated Issue " + time + " - #" + i);
+                issue.setDescription(longText());
+                dao.createIssue(issue);
+            }
+        }
 
-	}
+    }
 
-	class GenerateRequirementsAction extends AScrumAction {
+    class GenerateRequirementsAction extends AScrumAction {
 
-		@Override
-		public String getLabel() {
-			return "Generate Stories";
-		}
+        @Override
+        public String getLabel() {
+            return "Generate Stories";
+        }
 
-		@Override
-		protected void onExecute() {
-			DateAndTime time = DateAndTime.now();
-			for (int i = 0; i < COUNT; i++) {
-				final Requirement req = new Requirement(getCurrentProject());
-				req.setLabel("Generated Story " + time + " - #" + i);
-				req.setDescription(longText());
-				req.setTestDescription(longText());
-				dao.createRequirement(req);
-			}
-		}
+        @Override
+        protected void onExecute() {
+            DateAndTime time = DateAndTime.now();
+            for (int i = 0; i < COUNT; i++) {
+                final Requirement req = new Requirement(getCurrentProject());
+                req.setLabel("Generated Story " + time + " - #" + i);
+                req.setDescription(longText());
+                req.setTestDescription(longText());
+                dao.createRequirement(req);
+            }
+        }
 
-	}
+    }
 
-	private static String longText() {
-		return text(10);
-	}
+    private static String longText() {
+        return text(10);
+    }
 
-	private static String text(int lines) {
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < lines; i++) {
-			sb.append("This is stupid text. You should not waste your time to read it. There is nothing valuable to find.\n");
-		}
-		return sb.toString();
-	}
+    private static String text(int lines) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < lines; i++) {
+            sb.append("This is stupid text. You should not waste your time to read it. There is nothing valuable to find.\n");
+        }
+        return sb.toString();
+    }
 
-	private static final int COUNT = 10;
+    private static final int COUNT = 10;
 
 }

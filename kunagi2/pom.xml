@@ -34,6 +34,12 @@
             <groupId>nl.verheulconsultants.kunagi2</groupId>
             <artifactId>ilarkesto2</artifactId>
             <version>${project.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.testng</groupId>
+                    <artifactId>testng</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.allen-sauer.gwt.dnd</groupId>
@@ -221,7 +227,7 @@
                         <artefact>org.hibernate:hibernate-validator</artefact>
                     </compileSourcesArtifacts>
                     <style>DETAILED</style>               
-                    <logLevel>TRACE</logLevel>
+                    <!--logLevel>TRACE</logLevel-->
                 </configuration>
             </plugin>
         </plugins>

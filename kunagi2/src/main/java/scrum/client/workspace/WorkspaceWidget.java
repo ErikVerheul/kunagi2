@@ -14,8 +14,9 @@
  */
 package scrum.client.workspace;
 
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -30,92 +31,92 @@ import scrum.client.common.AScrumWidget;
 
 public class WorkspaceWidget extends AScrumWidget {
 
-	public static final int HEADER_HEIGHT = 25;
+    public static final int HEADER_HEIGHT = 25;
 
-	private LockWidget locker;
-	private LockInfoWidget lockInfo;
-	private SwitcherWidget sidebar;
-	private SwitcherWidget workarea = new SwitcherWidget(false);
+    private LockWidget locker;
+    private LockInfoWidget lockInfo;
+    private SwitcherWidget sidebar;
+    private SwitcherWidget workarea = new SwitcherWidget(false);
 
-	@Override
-	protected Widget onInitialization() {
+    @Override
+    protected Widget onInitialization() {
 
-		lockInfo = new LockInfoWidget();
+        lockInfo = new LockInfoWidget();
 
-		HeaderWidget header = new HeaderWidget();
-		SimplePanel workspaceHeader = Gwt.createDiv("Workspace-header", header);
+        HeaderWidget header = new HeaderWidget();
+        SimplePanel workspaceHeader = Gwt.createDiv("Workspace-header", header);
 
-		sidebar = new SwitcherWidget(false);
-		sidebar.addStyleName("Workspace-sidebar");
+        sidebar = new SwitcherWidget(false);
+        sidebar.addStyleName("Workspace-sidebar");
 
-		workarea.addStyleName("Workspace-workarea");
+        workarea.addStyleName("Workspace-workarea");
 
-		HorizontalPanel workspaceBody = Gwt.createHorizontalPanel(10, sidebar, workarea);
-		workspaceBody.setCellWidth(sidebar, "200px");
+        HorizontalPanel workspaceBody = Gwt.createHorizontalPanel(10, sidebar, workarea);
+        workspaceBody.setCellWidth(sidebar, "200px");
 
-		FlowPanel workspace = Gwt.createFlowPanel(workspaceHeader, workspaceBody);
-		workspace.setStyleName("Workspace");
+        FlowPanel workspace = Gwt.createFlowPanel(workspaceHeader, workspaceBody);
+        workspace.setStyleName("Workspace");
 
-		locker = new LockWidget(workspace);
+        locker = new LockWidget(workspace);
 
-		return locker;
-	}
+        return locker;
+    }
 
-	@Override
-	protected void onUpdate() {
-		DEBUG("Updating UI");
-		super.onUpdate();
-	}
+    @Override
+    protected void onUpdate() {
+        DEBUG("Updating UI");
+        super.onUpdate();
+    }
 
-	public void abort(String messageHtml) {
-		lockInfo.showBug(messageHtml);
-		locker.lock(lockInfo);
-	}
+    public void abort(String messageHtml) {
+        lockInfo.showBug(messageHtml);
+        locker.lock(lockInfo);
+    }
 
-	public void lock(String message) {
-		initialize();
-		lockInfo.showWait(message);
-		locker.lock(lockInfo);
-	}
+    public void lock(String message) {
+        initialize();
+        lockInfo.showWait(message);
+        locker.lock(lockInfo);
+    }
 
-	public void lock(Widget widget) {
-		initialize();
-		locker.lock(widget);
-	}
+    public void lock(Widget widget) {
+        initialize();
+        locker.lock(widget);
+    }
 
-	public void unlock() {
-		locker.unlock();
-	}
+    public void unlock() {
+        locker.unlock();
+    }
 
-	public void showError(String message) {
-		final DialogBox db = new DialogBox();
-		db.setSize("200", "150");
-		db.setPopupPosition(100, 100);
+    public void showError(String message) {
+        final DialogBox db = new DialogBox();
+        db.setSize("200", "150");
+        db.setPopupPosition(100, 100);
 
-		FlowPanel panel = new FlowPanel();
-		Label text = new Label(message);
-		panel.add(text);
+        FlowPanel panel = new FlowPanel();
+        Label text = new Label(message);
+        panel.add(text);
 
-		Button close = new Button("close");
-		close.addClickListener(new ClickListener() {
+        Button close = new Button("close");
+        close.addClickHandler(new ClickHandler() {
 
-			@Override
-			public void onClick(Widget sender) {
-				db.hide();
-			}
-		});
-		panel.add(close);
+            @Override
+            public void onClick(ClickEvent sender) {
+                db.hide();
+            }
+        });
+        panel.add(close);
 
-		db.add(panel);
-		db.show();
-	}
+        db.add(panel);
+        db.show();
+    }
 
-	public SwitcherWidget getWorkarea() {
-		return workarea;
-	}
+    public SwitcherWidget getWorkarea() {
+        return workarea;
+    }
 
-	public SwitcherWidget getSidebar() {
-		return sidebar;
-	}
+    public SwitcherWidget getSidebar() {
+        return sidebar;
+    }
 
 }

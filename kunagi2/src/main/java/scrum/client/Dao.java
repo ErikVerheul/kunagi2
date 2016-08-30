@@ -302,7 +302,7 @@ public class Dao extends GDao {
         public void put(String entityId, String property, Object value) {
             HashMap<String, Object> props = entityProperties.get(entityId);
             if (props == null) {
-                props = new HashMap<String, Object>();
+                props = new HashMap<>();
                 entityProperties.put(entityId, props);
             }
             props.put(property, value);

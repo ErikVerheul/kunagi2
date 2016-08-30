@@ -19,63 +19,61 @@ import static com.google.gwt.dom.client.AnchorElement.as;
 import static com.google.gwt.user.client.DOM.appendChild;
 import static com.google.gwt.user.client.DOM.createAnchor;
 import static com.google.gwt.user.client.DOM.createDiv;
-import com.google.gwt.user.client.Element;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.FocusWidget;
 import com.google.gwt.user.client.ui.Image;
 
 public class ImageAnchor extends FocusWidget {
 
-	private AnchorElement a;
+    private AnchorElement a;
 
-	public ImageAnchor(Image image, String text, boolean spacerBetweenImageAndText) {
-		if (image == null && text == null) {
-                        throw new IllegalArgumentException("image or text must be not null");
-                }
+    public ImageAnchor(Image image, String text, boolean spacerBetweenImageAndText) {
+        if (image == null && text == null) {
+            throw new IllegalArgumentException("image or text must be not null");
+        }
 
-		a = as(createAnchor());
-		setElement(a);
-		setStyleName("ImageAnchor");
+        a = as(createAnchor());
+        setElement(a);
+        setStyleName("ImageAnchor");
 
-		// a.setHref("javascript:");
+        // a.setHref("javascript:");
+        if (image != null) {
+            Element img = image.getElement();
+            appendChild(getElement(), img);
+        }
 
-		if (image != null) {
-			Element img = image.getElement();
-			appendChild(getElement(), img);
-		}
+        // if (spacerBetweenImageAndText && image != null && text != null) {
+        // Element span = DOM.createSpan();
+        // span.setInnerHTML("&nbsp;");
+        // DOM.appendChild(getElement(), span);
+        // }
+        if (text != null) {
+            Element div = createDiv();
+            div.setClassName("text");
+            div.setInnerText(text);
+            appendChild(getElement(), div);
+        }
 
-		// if (spacerBetweenImageAndText && image != null && text != null) {
-		// Element span = DOM.createSpan();
-		// span.setInnerHTML("&nbsp;");
-		// DOM.appendChild(getElement(), span);
-		// }
+        if (image != null) {
+            Element clear = createDiv();
+            clear.setClassName("floatClear");
+            appendChild(getElement(), clear);
+        }
+    }
 
-		if (text != null) {
-			Element div = createDiv();
-			div.setClassName("text");
-			div.setInnerText(text);
-			appendChild(getElement(), div);
-		}
+    public ImageAnchor(Image image, String text) {
+        this(image, text, true);
+    }
 
-		if (image != null) {
-			Element clear = createDiv();
-			clear.setClassName("floatClear");
-			appendChild(getElement(), clear);
-		}
-	}
+    public ImageAnchor(Image image) {
+        this(image, null, false);
+    }
 
-	public ImageAnchor(Image image, String text) {
-		this(image, text, true);
-	}
+    public void setTooltip(String text) {
+        a.setTitle(text);
+    }
 
-	public ImageAnchor(Image image) {
-		this(image, null, false);
-	}
-
-	public void setTooltip(String text) {
-		a.setTitle(text);
-	}
-
-	public void setHref(String href) {
-		a.setHref(href);
-	}
+    public void setHref(String href) {
+        a.setHref(href);
+    }
 }

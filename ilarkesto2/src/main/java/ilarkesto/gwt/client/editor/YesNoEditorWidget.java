@@ -16,7 +16,8 @@ package ilarkesto.gwt.client.editor;
 
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
-import com.google.gwt.user.client.ui.FocusListener;
+import com.google.gwt.event.dom.client.FocusEvent;
+import com.google.gwt.event.dom.client.FocusHandler;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
@@ -24,117 +25,111 @@ import ilarkesto.gwt.client.AViewEditWidget;
 
 /**
  *
- * @author erik
  */
 public class YesNoEditorWidget extends AViewEditWidget {
 
-	private final ABooleanEditorModel model;
-	private Label viewer;
-	private ListBox editor;
+    private final ABooleanEditorModel model;
+    private Label viewer;
+    private ListBox editor;
 
     /**
      *
      * @param model
      */
     public YesNoEditorWidget(ABooleanEditorModel model) {
-		super();
-		this.model = model;
-	}
+        super();
+        this.model = model;
+    }
 
     /**
      *
      */
     @Override
-	protected void onViewerUpdate() {
-		viewer.setText(model.isTrue() ? "yes" : "no");
-	}
+    protected void onViewerUpdate() {
+        viewer.setText(model.isTrue() ? "yes" : "no");
+    }
 
     /**
      *
      */
     @Override
-	protected void onEditorUpdate() {
-		editor.setSelectedIndex(model.isTrue() ? 0 : 1);
-	}
+    protected void onEditorUpdate() {
+        editor.setSelectedIndex(model.isTrue() ? 0 : 1);
+    }
 
     /**
      *
      */
     @Override
-	protected void onEditorSubmit() {
-		model.setValue((editor.getSelectedIndex() == 0));
-	}
-
-    /**
-     *
-     * @return
-     */
-    @Override
-	protected final Widget onViewerInitialization() {
-		viewer = new Label();
-		return viewer;
-	}
+    protected void onEditorSubmit() {
+        model.setValue((editor.getSelectedIndex() == 0));
+    }
 
     /**
      *
      * @return
      */
     @Override
-	protected final Widget onEditorInitialization() {
-		editor = new ListBox();
-		editor.addChangeHandler(new EditorChangeListener());
-		editor.addFocusListener(new EditorFocusListener());
-		editor.setVisibleItemCount(2);
-		editor.addItem("yes", "true");
-		editor.addItem("no", "false");
-		return editor;
-	}
+    protected final Widget onViewerInitialization() {
+        viewer = new Label();
+        return viewer;
+    }
 
     /**
      *
      * @return
      */
     @Override
-	public boolean isEditable() {
-		return model.isEditable();
-	}
+    protected final Widget onEditorInitialization() {
+        editor = new ListBox();
+        editor.addChangeHandler(new EditorChangeListener());
+        editor.addFocusHandler(new EditorFocusHandler());
+        editor.setVisibleItemCount(2);
+        editor.addItem("yes", "true");
+        editor.addItem("no", "false");
+        return editor;
+    }
 
     /**
      *
      * @return
      */
     @Override
-	public String getTooltip() {
-		return model.getTooltip();
-	}
+    public boolean isEditable() {
+        return model.isEditable();
+    }
 
     /**
      *
      * @return
      */
     @Override
-	public String getId() {
-		return model.getId();
-	}
+    public String getTooltip() {
+        return model.getTooltip();
+    }
 
-	private class EditorChangeListener implements ChangeHandler {
+    /**
+     *
+     * @return
+     */
+    @Override
+    public String getId() {
+        return model.getId();
+    }
 
-		@Override
-		public void onChange(ChangeEvent event) {
-			submitEditor();
-		}
+    private class EditorChangeListener implements ChangeHandler {
 
-	}
+        @Override
+        public void onChange(ChangeEvent event) {
+            submitEditor();
+        }
 
-	private class EditorFocusListener implements FocusListener {
+    }
 
-                @Override
-		public void onFocus(Widget sender) {}
+    private class EditorFocusHandler implements FocusHandler {
 
-                @Override
-		public void onLostFocus(Widget sender) {
-			submitEditor();
-		}
-
-	}
+        @Override
+        public void onFocus(FocusEvent event) {
+        }
+    }
 }

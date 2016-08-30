@@ -21,48 +21,47 @@ import static ilarkesto.gwt.client.Gwt.addTooltipHtml;
 
 /**
  *
- * @author erik
  */
 public class ButtonWidget extends AWidget {
 
-	private Button button;
-	private AAction action;
-	private HTML tooltip;
+    private Button button;
+    private AAction action;
+    private HTML tooltip;
 
     /**
      *
      * @param action
      */
     public ButtonWidget(AAction action) {
-		this.action = action;
-	}
+        this.action = action;
+    }
 
     /**
      *
      * @return
      */
     @Override
-	protected Widget onInitialization() {
-		setStyleName("ButtonWidget");
-		button = new Button(action.getLabel(), action);
+    protected Widget onInitialization() {
+        setStyleName("ButtonWidget");
+        button = new Button(action.getLabel(), action);
 		tooltip = addTooltipHtml(button, "");
-		return button;
-	}
+        return button;
+    }
 
     /**
      *
      */
     @Override
-	protected void onUpdate() {
-		button.getElement().setId("button_" + action.getId());
-		button.setText(action.getLabel());
-		button.setEnabled(action.isPermitted() && action.isExecutable());
-		tooltip.setHTML(action.getTooltipAsHtml());
-	}
+    protected void onUpdate() {
+        button.getElement().setId("button_" + action.getId());
+        button.setText(action.getLabel());
+        button.setEnabled(action.isPermitted() && action.isExecutable());
+        tooltip.setHTML(action.getTooltipAsHtml());
+    }
 
-	@Override
-	public String toString() {
-		return "ButtonWidget(" + action + ")";
-	}
+    @Override
+    public String toString() {
+        return "ButtonWidget(" + action + ")";
+    }
 
 }

@@ -15,7 +15,7 @@
 package ilarkesto.gwt.client;
 
 import static com.google.gwt.core.client.GWT.isScript;
-import com.google.gwt.user.client.Element;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -24,7 +24,6 @@ import static ilarkesto.gwt.client.Gwt.createBugMarker;
 
 /**
  *
- * @author erik
  */
 public abstract class AWidget extends Composite implements Updatable {
 

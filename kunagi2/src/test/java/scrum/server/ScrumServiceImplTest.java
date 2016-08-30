@@ -228,7 +228,7 @@ public class ScrumServiceImplTest extends AjunitTest {
     @Test
     public void changeProperties() {
         duke.setEmail("support@kunagi.org");
-        HashMap<String, Object> properties = new HashMap<String, Object>();
+        HashMap<String, Object> properties = new HashMap<>();
         properties.put("email", "duke@kunagi.org");
         service.onChangeProperties(conversation, duke.getId(), properties);
         assertConversationWithoutErrors(conversation);

@@ -14,11 +14,12 @@
  */
 package ilarkesto.gwt.client.editor;
 
+import com.google.gwt.event.dom.client.FocusEvent;
+import com.google.gwt.event.dom.client.FocusHandler;
 import static com.google.gwt.event.dom.client.KeyCodes.KEY_ENTER;
 import static com.google.gwt.event.dom.client.KeyCodes.KEY_ESCAPE;
 import com.google.gwt.event.dom.client.KeyDownEvent;
 import com.google.gwt.event.dom.client.KeyDownHandler;
-import com.google.gwt.user.client.ui.FocusListener;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
@@ -88,7 +89,7 @@ public class DateAndTimeEditorWidget extends AViewEditWidget {
     @Override
 	protected final Widget onEditorInitialization() {
 		editor = new TextBox();
-		editor.addFocusListener(new EditorFocusListener());
+		editor.addFocusHandler(new EditorFocusHandler());
 		editor.addKeyDownHandler(new EditorKeyboardListener());
 		return editor;
 	}
@@ -169,15 +170,10 @@ public class DateAndTimeEditorWidget extends AViewEditWidget {
 		}
 	}
 
-	private class EditorFocusListener implements FocusListener {
+	private class EditorFocusHandler implements FocusHandler {
 
-		@Override
-		public void onFocus(Widget sender) {}
-
-		@Override
-		public void onLostFocus(Widget sender) {
-			submitEditor();
-		}
-
-	}
+        @Override
+        public void onFocus(FocusEvent event) {
+        }
+    }
 }

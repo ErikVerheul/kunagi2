@@ -21,7 +21,8 @@ import static com.google.gwt.event.dom.client.KeyCodes.KEY_ESCAPE;
 import static com.google.gwt.event.dom.client.KeyCodes.KEY_TAB;
 import com.google.gwt.event.dom.client.KeyDownEvent;
 import com.google.gwt.event.dom.client.KeyDownHandler;
-import com.google.gwt.user.client.ui.FocusListener;
+import com.google.gwt.event.dom.client.FocusEvent;
+import com.google.gwt.event.dom.client.FocusHandler;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.SimplePanel;
@@ -84,7 +85,7 @@ public abstract class AIntegerViewEditWidget extends AViewEditWidget {
 		editor = new TextBox();
 		editor.setMaxLength(10);
 		editor.setWidth("50px");
-		editor.addFocusListener(new EditorFocusListener());
+		editor.addFocusHandler(new EditorFocusHandler());
 		editor.addKeyDownHandler(new EditorKeyboardListener());
 		return editor;
 	}
@@ -206,17 +207,11 @@ public abstract class AIntegerViewEditWidget extends AViewEditWidget {
 		}
 	}
 
-	private class EditorFocusListener implements FocusListener {
-
+	private class EditorFocusHandler implements FocusHandler {
 		@Override
-		public void onFocus(Widget sender) {}
-
-		@Override
-		public void onLostFocus(Widget sender) {
-			submitEditor();
-		}
-
-	}
+		public void onFocus(FocusEvent event) {
+                }		
+        }
 
 	private class MinusAction extends AAction {
 

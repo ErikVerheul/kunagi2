@@ -28,6 +28,7 @@ public interface ScrumServiceAsync {
 
     void touchLastActivity(int conversationNumber, com.google.gwt.user.client.rpc.AsyncCallback<scrum.client.DataTransferObject> callback);
 
+    //TODO: try to type properties at a later GWT version
     void changeProperties(int conversationNumber, String entityId, HashMap properties, com.google.gwt.user.client.rpc.AsyncCallback<scrum.client.DataTransferObject> callback);
 
     void createEntity(int conversationNumber, String type, HashMap<String, Object> properties, com.google.gwt.user.client.rpc.AsyncCallback<scrum.client.DataTransferObject> callback);

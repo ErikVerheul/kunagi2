@@ -14,10 +14,10 @@
  */
 package ilarkesto.gwt.client;
 
+import com.google.gwt.event.dom.client.FocusHandler;
 import com.google.gwt.event.dom.client.KeyDownHandler;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.FlexTable;
-import com.google.gwt.user.client.ui.FocusListener;
 import com.google.gwt.user.client.ui.FocusPanel;
 import com.google.gwt.user.client.ui.Widget;
 import java.util.ArrayList;
@@ -145,11 +145,11 @@ public class MultiSelectionWidget<I extends Object> extends AWidget {
 
     /**
      *
-     * @param focusListener
+     * @param focushandler
      */
-    public void addFocusListener(FocusListener focusListener) {
+    public void addFocusHandler(FocusHandler focushandler) {
 		initialize();
-		panel.addFocusListener(focusListener);
+		panel.addFocusHandler(focushandler);
 	}
 
     /**

@@ -60,7 +60,7 @@ public class TimeEditorWidget extends AViewEditWidget {
 	@Override
 	protected final Widget onEditorInitialization() {
 		editor = new TextBox();
-		editor.addFocusListener(new SubmitEditorFocusListener());
+		editor.addFocusHandler(new SubmitEditorFocusHandler());
 		editor.addKeyDownHandler(new EditorKeyboardListener());
 		return editor;
 	}

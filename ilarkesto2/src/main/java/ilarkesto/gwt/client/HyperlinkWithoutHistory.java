@@ -24,11 +24,7 @@ import static com.google.gwt.user.client.DOM.createAnchor;
 import static com.google.gwt.user.client.DOM.createDiv;
 import static com.google.gwt.user.client.DOM.eventGetType;
 import static com.google.gwt.user.client.DOM.eventPreventDefault;
-import static com.google.gwt.user.client.DOM.getInnerHTML;
-import static com.google.gwt.user.client.DOM.getInnerText;
-import static com.google.gwt.user.client.DOM.setInnerHTML;
-import static com.google.gwt.user.client.DOM.setInnerText;
-import com.google.gwt.user.client.Element;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.Event;
 import static com.google.gwt.user.client.Event.ONCLICK;
 import com.google.gwt.user.client.ui.HasHTML;
@@ -76,12 +72,12 @@ public class HyperlinkWithoutHistory extends Widget implements HasHTML, HasClick
 
 	@Override
 	public String getHTML() {
-		return getInnerHTML(anchorElem);
+            return anchorElem.getInnerHTML();
 	}
 
 	@Override
 	public String getText() {
-		return getInnerText(anchorElem);
+		return anchorElem.getInnerText();
 	}
 
 	@Override
@@ -94,12 +90,12 @@ public class HyperlinkWithoutHistory extends Widget implements HasHTML, HasClick
 
 	@Override
 	public void setHTML(String html) {
-		setInnerHTML(anchorElem, html);
+                anchorElem.setInnerHTML(html);
 	}
 
 	@Override
 	public void setText(String text) {
-		setInnerText(anchorElem, text);
+            anchorElem.setInnerText(text);
 	}
 
 	@Override

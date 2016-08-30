@@ -16,7 +16,6 @@ package ilarkesto.mda.legacy.model;
 
 /**
  *
- * @author erik
  */
 public class BackReferenceModel extends AModel {
 

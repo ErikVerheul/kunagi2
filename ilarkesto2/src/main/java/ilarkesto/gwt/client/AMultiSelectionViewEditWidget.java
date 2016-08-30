@@ -14,9 +14,10 @@
  */
 package ilarkesto.gwt.client;
 
+import com.google.gwt.event.dom.client.FocusEvent;
+import com.google.gwt.event.dom.client.FocusHandler;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.FlowPanel;
-import com.google.gwt.user.client.ui.FocusListener;
 import com.google.gwt.user.client.ui.FocusPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Widget;
@@ -28,128 +29,123 @@ import java.util.List;
 
 public abstract class AMultiSelectionViewEditWidget<I extends Object> extends AViewEditWidget {
 
-	private HTML viewer;
-	private MultiSelectionWidget<I> editor;
+    private HTML viewer;
+    private MultiSelectionWidget<I> editor;
 
-	@Override
-	protected final Widget onViewerInitialization() {
-		viewer = new HTML();
-		return viewer;
-	}
+    @Override
+    protected final Widget onViewerInitialization() {
+        viewer = new HTML();
+        return viewer;
+    }
 
-	@Override
-	protected final Widget onEditorInitialization() {
-		editor = new MultiSelectionWidget<I>() {
+    @Override
+    protected final Widget onEditorInitialization() {
+        editor = new MultiSelectionWidget<I>() {
 
-			@Override
-			protected CheckBox createCheckbox(I item) {
-				return new CheckBox(toHtml(item), true);
-			}
-		};
-		editor.addKeyDownHandler(new CancelKeyHandler());
+            @Override
+            protected CheckBox createCheckbox(I item) {
+                return new CheckBox(toHtml(item), true);
+            }
+        };
+        editor.addKeyDownHandler(new CancelKeyHandler());
 
-		ToolbarWidget toolbar = new ToolbarWidget();
-		toolbar.addButton(new AAction() {
+        ToolbarWidget toolbar = new ToolbarWidget();
+        toolbar.addButton(new AAction() {
 
-			@Override
-			public String getLabel() {
-				return "Apply";
-			}
+            @Override
+            public String getLabel() {
+                return "Apply";
+            }
 
-			@Override
-			protected void onExecute() {
-				submitEditor();
-			}
-		});
-		toolbar.addButton(new AAction() {
+            @Override
+            protected void onExecute() {
+                submitEditor();
+            }
+        });
+        toolbar.addButton(new AAction() {
 
-			@Override
-			public String getLabel() {
-				return "Cancel";
-			}
+            @Override
+            public String getLabel() {
+                return "Cancel";
+            }
 
-			@Override
-			protected void onExecute() {
-				cancelEditor();
-			}
-		});
+            @Override
+            protected void onExecute() {
+                cancelEditor();
+            }
+        });
 
-		FlowPanel container = new FlowPanel();
-		container.add(editor);
-		Widget w = getExtendedEditorContent();
-		if (w != null) {
-                        container.add(w);
-                }
-		container.add(toolbar);
+        FlowPanel container = new FlowPanel();
+        container.add(editor);
+        Widget w = getExtendedEditorContent();
+        if (w != null) {
+            container.add(w);
+        }
+        container.add(toolbar);
 
-		FocusPanel focusPanel = new FocusPanel(container);
-		focusPanel.addFocusListener(new EditorFocusListener());
+        FocusPanel focusPanel = new FocusPanel(container);
+        focusPanel.addFocusHandler(new EditorFocusHandler());
 
-		return focusPanel;
-	}
+        return focusPanel;
+    }
 
-	protected Widget getExtendedEditorContent() {
-		return null;
-	}
+    protected Widget getExtendedEditorContent() {
+        return null;
+    }
 
-	protected String toHtml(I item) {
-		if (item == null) {
-                        return null;
-                }
-		if (item instanceof ToHtmlSupport) {
-                        return ((ToHtmlSupport) item).toHtml();
-                }
-		return Str.toHtml(item.toString());
-	}
+    protected String toHtml(I item) {
+        if (item == null) {
+            return null;
+        }
+        if (item instanceof ToHtmlSupport) {
+            return ((ToHtmlSupport) item).toHtml();
+        }
+        return Str.toHtml(item.toString());
+    }
 
-	public final void setViewerItems(Collection items, String separatorHtml) {
-		StringBuilder sb = new StringBuilder();
-		boolean first = true;
-		for (Object item : items) {
-			if (first) {
-				first = false;
-			} else {
-				sb.append(separatorHtml);
-			}
-			sb.append(Str.toHtml(item.toString()));
-		}
-		viewer.setHTML(sb.toString());
-	}
+    public final void setViewerItems(Collection items, String separatorHtml) {
+        StringBuilder sb = new StringBuilder();
+        boolean first = true;
+        for (Object item : items) {
+            if (first) {
+                first = false;
+            } else {
+                sb.append(separatorHtml);
+            }
+            sb.append(Str.toHtml(item.toString()));
+        }
+        viewer.setHTML(sb.toString());
+    }
 
-	public final void setViewerItemsAsHtml(Collection<? extends ToHtmlSupport> items) {
-		if (items.isEmpty()) {
-			viewer.setText(".");
-			return;
-		}
-		viewer.setHTML(concatToHtml(items, "<br>"));
-	}
+    public final void setViewerItemsAsHtml(Collection<? extends ToHtmlSupport> items) {
+        if (items.isEmpty()) {
+            viewer.setText(".");
+            return;
+        }
+        viewer.setHTML(concatToHtml(items, "<br>"));
+    }
 
-	public void setEditorItems(Collection<I> items) {
-		editor.setItems(items);
-		editor.setFocus(true);
-	}
+    public void setEditorItems(Collection<I> items) {
+        editor.setItems(items);
+        editor.setFocus(true);
+    }
 
-	public void setEditorSelectedItems(Collection<I> items) {
-		editor.setSelected(items);
-	}
+    public void setEditorSelectedItems(Collection<I> items) {
+        editor.setSelected(items);
+    }
 
-	public List<I> getEditorSelectedItems() {
-		return editor.getSelected();
-	}
+    public List<I> getEditorSelectedItems() {
+        return editor.getSelected();
+    }
 
-	protected MultiSelectionWidget<I> getEditor() {
-		return editor;
-	}
+    protected MultiSelectionWidget<I> getEditor() {
+        return editor;
+    }
 
-	private class EditorFocusListener implements FocusListener {
+    private class EditorFocusHandler implements FocusHandler {
 
-		@Override
-		public void onFocus(Widget sender) {}
-
-		@Override
-		public void onLostFocus(Widget sender) {
-			// submitEditor();
-		}
-
-	}
+        @Override
+        public void onFocus(FocusEvent event) {
+        }
+    }
 }

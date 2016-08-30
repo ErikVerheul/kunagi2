@@ -14,11 +14,12 @@
  */
 package ilarkesto.gwt.client;
 
+import com.google.gwt.event.dom.client.FocusEvent;
+import com.google.gwt.event.dom.client.FocusHandler;
 import static com.google.gwt.event.dom.client.KeyCodes.KEY_ENTER;
 import static com.google.gwt.event.dom.client.KeyCodes.KEY_ESCAPE;
 import com.google.gwt.event.dom.client.KeyDownEvent;
 import com.google.gwt.event.dom.client.KeyDownHandler;
-import com.google.gwt.user.client.ui.FocusListener;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
@@ -32,89 +33,84 @@ import ilarkesto.core.time.Time;
  */
 public abstract class ATimeViewEditWidget extends AViewEditWidget {
 
-	private Label viewer;
-	private TextBox editor;
+    private Label viewer;
+    private TextBox editor;
 
     /**
      *
      * @return
      */
     @Override
-	protected final Widget onViewerInitialization() {
-		viewer = new Label();
-		return viewer;
-	}
+    protected final Widget onViewerInitialization() {
+        viewer = new Label();
+        return viewer;
+    }
 
     /**
      *
      * @return
      */
     @Override
-	protected final Widget onEditorInitialization() {
-		editor = new TextBox();
-		editor.addFocusListener(new EditorFocusListener());
-		editor.addKeyDownHandler(new EditorKeyboardListener());
-		return editor;
-	}
+    protected final Widget onEditorInitialization() {
+        editor = new TextBox();
+        editor.addFocusHandler(new EditorFocusHandler());
+        editor.addKeyDownHandler(new EditorKeyboardListener());
+        return editor;
+    }
 
     /**
      *
      * @param value
      */
     public final void setViewerValue(Time value) {
-		viewer.setText(value == null ? "." : value.toString());
-	}
+        viewer.setText(value == null ? "." : value.toString());
+    }
 
     /**
      *
      * @param value
      */
     public final void setEditorValue(Time value) {
-		editor.setText(value == null ? null : value.toString());
-		editor.setSelectionRange(0, editor.getText().length());
-		editor.setFocus(true);
-	}
+        editor.setText(value == null ? null : value.toString());
+        editor.setSelectionRange(0, editor.getText().length());
+        editor.setFocus(true);
+    }
 
     /**
      *
      * @return
      */
     public final Time getEditorValue() {
-		String s = editor.getText();
-		if (isBlank(s)) {
-                        return null;
-                }
-		try {
-			return new Time(s);
-		} catch (Exception ex) {
-			DEBUG("Parsing time '" + s + "' failed: ", ex);
-			return null;
-		}
-	}
+        String s = editor.getText();
+        if (isBlank(s)) {
+            return null;
+        }
+        try {
+            return new Time(s);
+        } catch (Exception ex) {
+            DEBUG("Parsing time '" + s + "' failed: ", ex);
+            return null;
+        }
+    }
 
-	private class EditorKeyboardListener implements KeyDownHandler {
+    private class EditorKeyboardListener implements KeyDownHandler {
 
-		@Override
-		public void onKeyDown(KeyDownEvent event) {
-			int keyCode = event.getNativeKeyCode();
+        @Override
+        public void onKeyDown(KeyDownEvent event) {
+            int keyCode = event.getNativeKeyCode();
 
-			if (keyCode == KEY_ENTER) {
-				submitEditor();
-			} else if (keyCode == KEY_ESCAPE) {
-				cancelEditor();
-			}
-		}
-	}
+            if (keyCode == KEY_ENTER) {
+                submitEditor();
+            } else if (keyCode == KEY_ESCAPE) {
+                cancelEditor();
+            }
+        }
+    }
 
-	private class EditorFocusListener implements FocusListener {
+    private class EditorFocusHandler implements FocusHandler {
 
-		@Override
-		public void onFocus(Widget sender) {}
-
-		@Override
-		public void onLostFocus(Widget sender) {
-			submitEditor();
-		}
-
-	}
+        @Override
+        public void onFocus(FocusEvent event) {
+        }
+    }
 }

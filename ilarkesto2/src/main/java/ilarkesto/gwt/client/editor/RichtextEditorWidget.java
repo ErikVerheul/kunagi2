@@ -21,7 +21,6 @@ import com.google.gwt.event.dom.client.KeyDownEvent;
 import com.google.gwt.event.dom.client.KeyDownHandler;
 import com.google.gwt.user.client.ui.AttachDetachException;
 import com.google.gwt.user.client.ui.FlowPanel;
-import com.google.gwt.user.client.ui.FocusListener;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.SimplePanel;
@@ -41,326 +40,322 @@ import ilarkesto.gwt.client.ToolbarWidget;
 
 /**
  *
- * @author erik
  */
 public class RichtextEditorWidget extends AViewEditWidget {
 
-	private HTML viewer;
-	private SimplePanel editorWrapper;
-	private CodemirrorEditorWidget editor;
-	private String editorHeight = "300px";
-	private ToolbarWidget editorToolbar;
-	private String applyButtonLabel;
-	private boolean autosave = true;
+    private HTML viewer;
+    private SimplePanel editorWrapper;
+    private CodemirrorEditorWidget editor;
+    private String editorHeight = "300px";
+    private ToolbarWidget editorToolbar;
+    private String applyButtonLabel;
+    private boolean autosave = true;
 
-	private ATextEditorModel model;
-	private ToolbarWidget bottomToolbar;
+    private ATextEditorModel model;
+    private ToolbarWidget bottomToolbar;
 
     /**
      *
      * @param model
      */
     public RichtextEditorWidget(ATextEditorModel model) {
-		super();
-		this.model = model;
-	}
+        super();
+        this.model = model;
+    }
 
     /**
      *
      */
     @Override
-	protected void onUpdate() {
-		if (editor != null && editor.isBurned()) {
-			editor = null;
-			closeEditor();
-			return;
-		}
-		super.onUpdate();
-	}
+    protected void onUpdate() {
+        if (editor != null && editor.isBurned()) {
+            editor = null;
+            closeEditor();
+            return;
+        }
+        super.onUpdate();
+    }
 
     /**
      *
      */
     @Override
-	protected void onViewerUpdate() {
-		setViewerText(model.getValue());
-	}
+    protected void onViewerUpdate() {
+        setViewerText(model.getValue());
+    }
 
     /**
      *
      */
     @Override
-	protected void onEditorUpdate() {
-		if (editor != null && editor.isBurned()) {
-                        editor = null;
-                }
-		if (editor == null) {
-			editor = new CodemirrorEditorWidget();
-			// editor.setObserver(new CodemirrorEditorWidget.Observer() {
-			//
-			// @Override
-			// public void onCodemirrorDetach() {
-			// editorWrapper.setWidget(null);
-			// editor = null;
-			// switchToViewMode(false);
-			// }
-			// });
-			// editor.addFocusListener(new EditorFocusListener());
-			editor.addKeyDownHandler(new EditorKeyboardListener());
-			editor.ensureDebugId("richtext-id");
-			editor.setStyleName("ARichtextViewEditWidget-editor");
-			// editor.setWidth("97%");
-			if (editorHeight != null) {
-                                editor.setHeight(editorHeight);
-                        }
-			editor.initialize();
+    protected void onEditorUpdate() {
+        if (editor != null && editor.isBurned()) {
+            editor = null;
+        }
+        if (editor == null) {
+            editor = new CodemirrorEditorWidget();
+            // editor.setObserver(new CodemirrorEditorWidget.Observer() {
+            //
+            // @Override
+            // public void onCodemirrorDetach() {
+            // editorWrapper.setWidget(null);
+            // editor = null;
+            // switchToViewMode(false);
+            // }
+            // });
+            // editor.addFocusListener(new EditorFocusListener());
+            editor.addKeyDownHandler(new EditorKeyboardListener());
+            editor.ensureDebugId("richtext-id");
+            editor.setStyleName("ARichtextViewEditWidget-editor");
+            // editor.setWidth("97%");
+            if (editorHeight != null) {
+                editor.setHeight(editorHeight);
+            }
+            editor.initialize();
 
-			String text = model.getValue();
-			String template = model.getTemplate();
-			if (template != null && isBlank(text)) {
-                                text = template;
-                        }
-			editor.setText(text);
-			editorWrapper.setWidget(editor);
-		}
-		editor.focus();
-		editor.update();
-		bottomToolbar.update();
-	}
-
-    /**
-     *
-     */
-    @Override
-	protected void focusEditor() {
-		if (editor != null) {
-                        editor.focus();
-                }
-	}
+            String text = model.getValue();
+            String template = model.getTemplate();
+            if (template != null && isBlank(text)) {
+                text = template;
+            }
+            editor.setText(text);
+            editorWrapper.setWidget(editor);
+        }
+        editor.focus();
+        editor.update();
+        bottomToolbar.update();
+    }
 
     /**
      *
      */
     @Override
-	protected void onEditorSubmit() {
-		String value = getEditorText();
-		// TODO check lenght
-		// TODO check format/syntax
-		model.changeValue(value);
-	}
+    protected void focusEditor() {
+        if (editor != null) {
+            editor.focus();
+        }
+    }
+
+    /**
+     *
+     */
+    @Override
+    protected void onEditorSubmit() {
+        String value = getEditorText();
+        // TODO check lenght
+        // TODO check format/syntax
+        model.changeValue(value);
+    }
 
     /**
      *
      * @return
      */
     @Override
-	protected final Widget onViewerInitialization() {
-		viewer = new HTML();
-		viewer.setStyleName("ARichtextViewEditWidget-viewer");
-		return viewer;
-	}
+    protected final Widget onViewerInitialization() {
+        viewer = new HTML();
+        viewer.setStyleName("ARichtextViewEditWidget-viewer");
+        return viewer;
+    }
 
     /**
      *
      * @param toolbar
      */
     protected void armToolbar(ToolbarWidget toolbar) {
-		String syntaxInfoHtml = getSyntaxInfo();
-		if (syntaxInfoHtml != null) {
-			Label syntaxInfo = new Label("Syntax Info");
-			syntaxInfo.getElement().getStyle().setMargin(5, PX);
-			addTooltipHtml(syntaxInfo, syntaxInfoHtml);
-			toolbar.add(syntaxInfo);
-		}
-	}
+        String syntaxInfoHtml = getSyntaxInfo();
+        if (syntaxInfoHtml != null) {
+            Label syntaxInfo = new Label("Syntax Info");
+            syntaxInfo.getElement().getStyle().setMargin(5, PX);
+            addTooltipHtml(syntaxInfo, syntaxInfoHtml);
+            toolbar.add(syntaxInfo);
+        }
+    }
 
     /**
      *
      * @param applyButtonLabel
      */
     public void setApplyButtonLabel(String applyButtonLabel) {
-		this.applyButtonLabel = applyButtonLabel;
-	}
+        this.applyButtonLabel = applyButtonLabel;
+    }
 
     /**
      *
      * @param autosave
      */
     public void setAutosave(boolean autosave) {
-		this.autosave = autosave;
-	}
+        this.autosave = autosave;
+    }
 
     /**
      *
      * @return
      */
     public boolean isAutosave() {
-		return autosave;
-	}
+        return autosave;
+    }
 
     /**
      *
      * @return
      */
     @Override
-	protected final Widget onEditorInitialization() {
-		editorWrapper = new SimplePanel();
+    protected final Widget onEditorInitialization() {
+        editorWrapper = new SimplePanel();
 
-		editorToolbar = new ToolbarWidget();
-		armToolbar(editorToolbar);
+        editorToolbar = new ToolbarWidget();
+        armToolbar(editorToolbar);
 
-		bottomToolbar = new ToolbarWidget();
-		bottomToolbar.addButton(new AAction() {
+        bottomToolbar = new ToolbarWidget();
+        bottomToolbar.addButton(new AAction() {
 
-			@Override
-			public String getLabel() {
-				String label = applyButtonLabel;
-				if (isBlank(label)) {
-                                        label = autosave ? "Finish" : "Apply";
-                                }
-				return label;
-			}
+            @Override
+            public String getLabel() {
+                String label = applyButtonLabel;
+                if (isBlank(label)) {
+                    label = autosave ? "Finish" : "Apply";
+                }
+                return label;
+            }
 
-			@Override
-			protected void onExecute() {
-				submitEditor();
-			}
-		});
-		if (!autosave) {
-			bottomToolbar.addButton(new AAction() {
+            @Override
+            protected void onExecute() {
+                submitEditor();
+            }
+        });
+        if (!autosave) {
+            bottomToolbar.addButton(new AAction() {
 
-				@Override
-				public String getLabel() {
-					return "Cancel";
-				}
-
-				@Override
-				protected void onExecute() {
-					cancelEditor();
-				}
-			});
-		}
-
-		// toolbar.add(Gwt
-		// .createHyperlink("http://en.wikipedia.org/wiki/Wikipedia:Cheatsheet", "Syntax Cheatsheet", true));
-
-		FlowPanel editorPanel = new FlowPanel();
-		editorPanel.setStyleName("AEditableTextareaWidget-editorPanel");
-		if (!editorToolbar.isEmpty()) {
-                        editorPanel.add(editorToolbar.update());
+                @Override
+                public String getLabel() {
+                    return "Cancel";
                 }
 
-		editorPanel.add(editorWrapper);
-		editorPanel.add(bottomToolbar.update());
-
-		Initializer<RichtextEditorWidget> initializer = getRichtextEditorEditInitializer();
-		if (initializer != null) {
-                        initializer.initialize(this);
+                @Override
+                protected void onExecute() {
+                    cancelEditor();
                 }
+            });
+        }
 
-		return editorPanel;
-	}
+        // toolbar.add(Gwt
+        // .createHyperlink("http://en.wikipedia.org/wiki/Wikipedia:Cheatsheet", "Syntax Cheatsheet", true));
+        FlowPanel editorPanel = new FlowPanel();
+        editorPanel.setStyleName("AEditableTextareaWidget-editorPanel");
+        if (!editorToolbar.isEmpty()) {
+            editorPanel.add(editorToolbar.update());
+        }
+
+        editorPanel.add(editorWrapper);
+        editorPanel.add(bottomToolbar.update());
+
+        Initializer<RichtextEditorWidget> initializer = getRichtextEditorEditInitializer();
+        if (initializer != null) {
+            initializer.initialize(this);
+        }
+
+        return editorPanel;
+    }
 
     /**
      *
      */
     @Override
-	protected void onEditorClose() {
-		super.onEditorClose();
-		editor = null;
-		try {
-			editorWrapper.clear();
-		} catch (AttachDetachException ex) {
-			ERROR(ex);
-		}
-	}
+    protected void onEditorClose() {
+        super.onEditorClose();
+        editor = null;
+        try {
+            editorWrapper.clear();
+        } catch (AttachDetachException ex) {
+            ERROR(ex);
+        }
+    }
 
     /**
      *
      * @return
      */
     public ToolbarWidget getEditorToolbar() {
-		return editorToolbar;
-	}
+        return editorToolbar;
+    }
 
     /**
      *
      * @return
      */
     public CodemirrorEditorWidget getEditor() {
-		return editor;
-	}
+        return editor;
+    }
 
     /**
      *
      * @param text
      */
     public final void setViewerText(String text) {
-		if (isBlank(text)) {
-			viewer.setHTML(".");
-			return;
-		}
-		String html = getRichtextFormater().richtextToHtml(text);
-		viewer.setHTML(html);
-	}
+        if (isBlank(text)) {
+            viewer.setHTML(".");
+            return;
+        }
+        String html = getRichtextFormater().richtextToHtml(text);
+        viewer.setHTML(html);
+    }
 
-	// public final void setViewerHtml(String html) {
-	// if (Str.isBlank(html)) html = ".";
-	// viewer.setHTML(html);
-	// }
-
+    // public final void setViewerHtml(String html) {
+    // if (Str.isBlank(html)) html = ".";
+    // viewer.setHTML(html);
+    // }
     /**
      *
      */
-    
-	@Override
-	protected void closeEditor() {
-		if (autosave) {
-			submitEditor();
-		} else {
-			super.closeEditor();
-		}
-	}
+    @Override
+    protected void closeEditor() {
+        if (autosave) {
+            submitEditor();
+        } else {
+            super.closeEditor();
+        }
+    }
 
     /**
      *
      * @return
      */
     public final String getEditorText() {
-		if (editor == null) {
-                        return null;
-                }
-		String text = editor.getText();
-		if (isBlank(text)) {
-                        return null;
-                }
-		return text;
-	}
+        if (editor == null) {
+            return null;
+        }
+        String text = editor.getText();
+        if (isBlank(text)) {
+            return null;
+        }
+        return text;
+    }
 
     /**
      *
      * @return
      */
     @Override
-	public boolean isEditable() {
-		return model.isEditable();
-	}
+    public boolean isEditable() {
+        return model.isEditable();
+    }
 
     /**
      *
      * @return
      */
     protected String getSyntaxInfo() {
-		return getDefaultRichtextSyntaxInfo();
-	}
+        return getDefaultRichtextSyntaxInfo();
+    }
 
     /**
      *
      * @return
      */
     protected RichtextFormater getRichtextFormater() {
-		return getDefaultRichtextFormater();
-	}
+        return getDefaultRichtextFormater();
+    }
 
     /**
      *
@@ -368,67 +363,55 @@ public class RichtextEditorWidget extends AViewEditWidget {
      * @return
      */
     public RichtextEditorWidget setEditorHeight(int pixels) {
-		editorHeight = pixels + "px";
-		return this;
-	}
+        editorHeight = pixels + "px";
+        return this;
+    }
 
     /**
      *
      * @return
      */
     @Override
-	public String getTooltip() {
-		return model.getTooltip();
-	}
+    public String getTooltip() {
+        return model.getTooltip();
+    }
 
     /**
      *
      * @return
      */
     @Override
-	public String getId() {
-		return model.getId();
-	}
+    public String getId() {
+        return model.getId();
+    }
 
     /**
      *
      * @return
      */
     public ATextEditorModel getModel() {
-		return model;
-	}
+        return model;
+    }
 
-	private class EditorFocusListener implements FocusListener {
+    private class EditorKeyboardListener implements KeyDownHandler {
 
-		@Override
-		public void onFocus(Widget sender) {}
+        @Override
+        public void onKeyDown(KeyDownEvent event) {
+            int keyCode = event.getNativeKeyCode();
 
-		@Override
-		public void onLostFocus(Widget sender) {
-			submitEditor();
-		}
+            if (keyCode == KEY_ESCAPE) {
+                cancelEditor();
+                event.stopPropagation();
+            }
 
-	}
+            if (event.isControlKeyDown()) {
+                if (keyCode == KEY_ENTER || keyCode == 10) {
+                    submitEditor();
+                    event.stopPropagation();
+                }
+            }
+        }
 
-	private class EditorKeyboardListener implements KeyDownHandler {
-
-		@Override
-		public void onKeyDown(KeyDownEvent event) {
-			int keyCode = event.getNativeKeyCode();
-
-			if (keyCode == KEY_ESCAPE) {
-				cancelEditor();
-				event.stopPropagation();
-			}
-
-			if (event.isControlKeyDown()) {
-				if (keyCode == KEY_ENTER || keyCode == 10) {
-					submitEditor();
-					event.stopPropagation();
-				}
-			}
-		}
-
-	}
+    }
 
 }

@@ -24,7 +24,6 @@ import static java.util.UUID.randomUUID;
 
 /**
  *
- * @author erik
  */
 public abstract class AEntity extends ADatob implements Identifiable, Iconized {
 
