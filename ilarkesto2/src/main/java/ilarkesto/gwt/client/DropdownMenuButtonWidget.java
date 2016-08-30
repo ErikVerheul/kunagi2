@@ -54,7 +54,7 @@ public class DropdownMenuButtonWidget extends AWidget {
                         title = "<div style='float: left; margin-top: 4px;'>" + label + "</div> " + title;
                 }
 		menuBar.addItem(title, true, menu);
-		menuBar.setPopupPosition(com.google.gwt.user.client.ui.MenuBar.PopupPosition.LEFT);
+//		menuBar.setPopupPosition(com.google.gwt.user.client.ui.MenuBar.PopupPosition.LEFT);
 
 		Widget wrapper = row(false, 0, menuBar);
 		return wrapper;
