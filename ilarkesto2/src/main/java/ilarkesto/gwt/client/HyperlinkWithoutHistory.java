@@ -24,6 +24,7 @@ import static com.google.gwt.user.client.DOM.createAnchor;
 import static com.google.gwt.user.client.DOM.createDiv;
 import static com.google.gwt.user.client.DOM.eventGetType;
 import com.google.gwt.dom.client.Element;
+import static com.google.gwt.user.client.DOM.eventPreventDefault;
 import com.google.gwt.user.client.Event;
 import static com.google.gwt.user.client.Event.ONCLICK;
 import com.google.gwt.user.client.ui.HasHTML;
@@ -83,7 +84,7 @@ public class HyperlinkWithoutHistory extends Widget implements HasHTML, HasClick
     public void onBrowserEvent(Event event) {
         super.onBrowserEvent(event);
         if (eventGetType(event) == ONCLICK && impl.handleAsClick(event)) {
-            event.preventDefault();
+			eventPreventDefault(event);
         }
     }
 
