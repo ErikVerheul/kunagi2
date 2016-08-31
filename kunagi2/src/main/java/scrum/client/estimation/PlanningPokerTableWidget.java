@@ -22,7 +22,6 @@ import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
-import static ilarkesto.core.logging.ClientLog.DEBUG;
 import ilarkesto.gwt.client.Gwt;
 import ilarkesto.gwt.client.HyperlinkWidget;
 import ilarkesto.gwt.client.TableBuilder;
@@ -46,229 +45,228 @@ import scrum.client.workspace.VisibleDataChangedEvent;
  */
 public class PlanningPokerTableWidget extends AScrumWidget {
 
-	private Requirement requirement;
+    private final Requirement requirement;
 
-	private SimplePanel cardSlotsWrapper;
-	private SimplePanel handCardsWrapper;
-	private SimplePanel actionsWrapper;
-	private SimplePanel estimationHelpDisplay;
+    private SimplePanel cardSlotsWrapper;
+    private SimplePanel handCardsWrapper;
+    private SimplePanel actionsWrapper;
+    private SimplePanel estimationHelpDisplay;
 
     /**
      *
      * @param requirement
      */
     public PlanningPokerTableWidget(Requirement requirement) {
-		super();
-		this.requirement = requirement;
-	}
+        super();
+        this.requirement = requirement;
+    }
 
-	@Override
-	protected Widget onInitialization() {
-		cardSlotsWrapper = new SimplePanel();
-		handCardsWrapper = new SimplePanel();
-		actionsWrapper = new SimplePanel();
-		estimationHelpDisplay = new SimplePanel();
-		estimationHelpDisplay.getElement().getStyle().setProperty("minHeight", "90px");
+    @Override
+    protected Widget onInitialization() {
+        cardSlotsWrapper = new SimplePanel();
+        handCardsWrapper = new SimplePanel();
+        actionsWrapper = new SimplePanel();
+        estimationHelpDisplay = new SimplePanel();
+        estimationHelpDisplay.getElement().getStyle().setProperty("minHeight", "90px");
 
-		FlowPanel pokerTable = new FlowPanel();
-		pokerTable.setStyleName("PlanningPokerWidget-table");
-		pokerTable.add(createTableBranding());
-		pokerTable.add(cardSlotsWrapper);
-		if (getCurrentProject().isTeamMember(getCurrentUser())) {
-			pokerTable.add(Gwt.createSpacer(1, 20));
-			pokerTable.add(handCardsWrapper);
-		}
-		pokerTable.add(Gwt.createSpacer(1, 20));
-		pokerTable.add(actionsWrapper);
-		pokerTable.add(Gwt.createSpacer(1, 20));
-		pokerTable.add(estimationHelpDisplay);
+        FlowPanel pokerTable = new FlowPanel();
+        pokerTable.setStyleName("PlanningPokerWidget-table");
+        pokerTable.add(createTableBranding());
+        pokerTable.add(cardSlotsWrapper);
+        if (getCurrentProject().isTeamMember(getCurrentUser())) {
+            pokerTable.add(Gwt.createSpacer(1, 20));
+            pokerTable.add(handCardsWrapper);
+        }
+        pokerTable.add(Gwt.createSpacer(1, 20));
+        pokerTable.add(actionsWrapper);
+        pokerTable.add(Gwt.createSpacer(1, 20));
+        pokerTable.add(estimationHelpDisplay);
 
-		SimplePanel pokerTableBorder = Gwt.createDiv("PlanningPokerWidget-table-border", pokerTable);
+        SimplePanel pokerTableBorder = Gwt.createDiv("PlanningPokerWidget-table-border", pokerTable);
 
-		return pokerTableBorder;
-	}
+        return pokerTableBorder;
+    }
 
-	@Override
-	protected void onUpdate() {
-		cardSlotsWrapper.setWidget(createCardSlots());
-		handCardsWrapper.setWidget(createHandCards());
-		actionsWrapper.setWidget(createActions());
-		super.onUpdate();
-	}
+    @Override
+    protected void onUpdate() {
+        cardSlotsWrapper.setWidget(createCardSlots());
+        handCardsWrapper.setWidget(createHandCards());
+        actionsWrapper.setWidget(createActions());
+        super.onUpdate();
+    }
 
-	private Widget createActions() {
-		ResetRequirementEstimationVotingAction reset = new ResetRequirementEstimationVotingAction(requirement);
-		RequirementEstimationVotingShowoffAction showoff = new RequirementEstimationVotingShowoffAction(requirement);
-		CloseRequirementEstimationVotingAction close = new CloseRequirementEstimationVotingAction(requirement);
+    private Widget createActions() {
+        ResetRequirementEstimationVotingAction reset = new ResetRequirementEstimationVotingAction(requirement);
+        RequirementEstimationVotingShowoffAction showoff = new RequirementEstimationVotingShowoffAction(requirement);
+        CloseRequirementEstimationVotingAction close = new CloseRequirementEstimationVotingAction(requirement);
 
-		TableBuilder tb = new TableBuilder();
-		tb.setColumnWidths("33%", "33%", "33%");
-		tb.add(new HyperlinkWidget(showoff));
-		tb.add(new HyperlinkWidget(reset));
-		tb.add(new HyperlinkWidget(close));
-		return tb.createTable();
-	}
+        TableBuilder tb = new TableBuilder();
+        tb.setColumnWidths("33%", "33%", "33%");
+        tb.add(new HyperlinkWidget(showoff));
+        tb.add(new HyperlinkWidget(reset));
+        tb.add(new HyperlinkWidget(close));
+        return tb.createTable();
+    }
 
-	private Widget createHandCards() {
-		final Project project = getCurrentProject();
-		RequirementEstimationVote vote = requirement.getEstimationVote(getCurrentUser());
-		Float voteValue = vote == null ? null : vote.getEstimatedWork();
-		boolean showoff = requirement.isWorkEstimationVotingShowoff();
+    private Widget createHandCards() {
+        final Project project = getCurrentProject();
+        RequirementEstimationVote vote = requirement.getEstimationVote(getCurrentUser());
+        Float voteValue = vote == null ? null : vote.getEstimatedWork();
+        boolean showoff = requirement.isWorkEstimationVotingShowoff();
 
-		TableBuilder tb = new TableBuilder();
-		tb.setWidth(null);
+        TableBuilder tb = new TableBuilder();
+        tb.setWidth(null);
 
-		// ?-card
-		PlanningPokerCardWidget qCard = null;
-		if (!showoff && (voteValue == null || -1 != voteValue)) {
-			qCard = new PlanningPokerCardWidget(-1, true, new SetEstimationClickHandler(-1),
-					"Put this card on the table.");
-		}
-		tb.add(new PlanningPokerCardSlotWidget("No idea", qCard));
-		tb.add(Gwt.createSpacer(5, 1));
+        // ?-card
+        PlanningPokerCardWidget qCard = null;
+        if (!showoff && (voteValue == null || -1 != voteValue)) {
+            qCard = new PlanningPokerCardWidget(-1, true, new SetEstimationClickHandler(-1),
+                    "Put this card on the table.");
+        }
+        tb.add(new PlanningPokerCardSlotWidget("No idea", qCard));
+        tb.add(Gwt.createSpacer(5, 1));
 
-		// value cards
-		for (String value : Requirement.getWorkEstimationValues()) {
-			if (value.length() == 0) {
-                            continue;
+        // value cards
+        for (String value : Requirement.getWorkEstimationValues()) {
+            if (value.length() == 0) {
+                continue;
             }
-			final float estimation = Float.parseFloat(value);
-			PlanningPokerCardWidget card = null;
-			if (!showoff && (voteValue == null || estimation != voteValue)) {
-				card = new PlanningPokerCardWidget(estimation, true, new SetEstimationClickHandler(estimation),
-						"Put this card on the table.");
-				card.setMouseOverHandler(new MouseOverHandler() {
+            final float estimation = Float.parseFloat(value);
+            PlanningPokerCardWidget card = null;
+            if (!showoff && (voteValue == null || estimation != voteValue)) {
+                card = new PlanningPokerCardWidget(estimation, true, new SetEstimationClickHandler(estimation),
+                        "Put this card on the table.");
+                card.setMouseOverHandler(new MouseOverHandler() {
 
-					@Override
-					public void onMouseOver(MouseOverEvent event) {
-						estimationHelpDisplay.setWidget(createEstimationHelp(estimation));
-					}
-				});
-			}
-			tb.add(new PlanningPokerCardSlotWidget(value + " " + project.getEffortUnit(), card));
-			tb.add(Gwt.createSpacer(5, 1));
-		}
-
-		return tb.createTable();
-	}
-
-	private Widget createEstimationHelp(float estimation) {
-		PlanningPokerStoryFinder finder = new PlanningPokerStoryFinder(requirement);
-		List<Set<Requirement>> results = finder.getByEstimation(estimation);
-
-		if (!results.isEmpty()) {
-			StringBuilder sb = new StringBuilder();
-			sb.append("<div class='PlanningPokerTableWidget-estimationHelp'>");
-			sb.append("<span>");
-			sb.append("Other stuff estimated with ")
-					.append(ScrumGwt.getEstimationAsString(estimation, requirement.getProject().getEffortUnit()))
-					.append(":");
-			sb.append("</span>");
-
-			sb.append("<ul>");
-			for (Set<Requirement> stories : results) {
-				sb.append("<li>");
-				Iterator<Requirement> it = stories.iterator();
-				while (it.hasNext()) {
-					Requirement some = it.next();
-					if (Math.abs(some.getEstimatedWork() - estimation / 2) < 0.0000001) {
-						sb.append("<strong>twice as much as</strong> ");
-					} else if (Math.abs(some.getEstimatedWork() - estimation * 2) < 0.0000001) {
-						sb.append("<strong>half as much as</strong> ");
-					}
-					sb.append(some.toHtml());
-					if (some.getEstimatedWork() != estimation) {
-						sb.append(" (").append(some.getEstimatedWorkWithUnit()).append(")");
-					}
-					if (it.hasNext()) {
-                                            sb.append(" <strong>and</strong> ");
+                    @Override
+                    public void onMouseOver(MouseOverEvent event) {
+                        estimationHelpDisplay.setWidget(createEstimationHelp(estimation));
                     }
-				}
-				sb.append("</li>");
-			}
-			sb.append("</ul></div>");
-			return new HTML(sb.toString());
-		}
-		return new HTML();
-	}
+                });
+            }
+            tb.add(new PlanningPokerCardSlotWidget(value + " " + project.getEffortUnit(), card));
+            tb.add(Gwt.createSpacer(5, 1));
+        }
 
-	private Widget createCardSlots() {
-		TableBuilder tb = new TableBuilder();
-		tb.setWidth(null);
-		for (User user : getCurrentProject().getTeamMembers()) {
-			boolean currentUser = user == getCurrentUser();
-			RequirementEstimationVote vote = requirement.getEstimationVote(user);
-			Float estimation = vote == null ? null : vote.getEstimatedWork();
-			DEBUG("Estimation:", user.getName(), "->", estimation);
+        return tb.createTable();
+    }
 
-			Widget card;
-			if (estimation == null) {
-				card = null;
-			} else {
-				ClickHandler clickHandler = null;
-				String clickTooltip = null;
-				if (requirement.isWorkEstimationVotingShowoff()) {
-					clickHandler = new SelectEstimationClickHandler(estimation);
-					clickTooltip = "Use this card as the estimation for this Story. Planning Poker will be closed.";
-				} else if (currentUser) {
-					clickHandler = new RemoveEstimationClickHandler();
-					clickTooltip = "Remove this card from table.";
-				}
-				boolean visible = requirement.isWorkEstimationVotingShowoff();
-				card = new PlanningPokerCardWidget(estimation, visible, clickHandler, clickTooltip);
-			}
+    private Widget createEstimationHelp(float estimation) {
+        PlanningPokerStoryFinder finder = new PlanningPokerStoryFinder(requirement);
+        List<Set<Requirement>> results = finder.getByEstimation(estimation);
 
-			tb.add(new PlanningPokerCardSlotWidget(user.getName(), card));
-			tb.add(Gwt.createSpacer(5, 1));
-		}
-		return tb.createTable();
-	}
+        if (!results.isEmpty()) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("<div class='PlanningPokerTableWidget-estimationHelp'>");
+            sb.append("<span>");
+            sb.append("Other stuff estimated with ")
+                    .append(ScrumGwt.getEstimationAsString(estimation, requirement.getProject().getEffortUnit()))
+                    .append(":");
+            sb.append("</span>");
 
-	private Widget createTableBranding() {
-		return Gwt.createDiv("PlanningPokerWidget-table-branding", "Planning Poker");
-	}
+            sb.append("<ul>");
+            for (Set<Requirement> stories : results) {
+                sb.append("<li>");
+                Iterator<Requirement> it = stories.iterator();
+                while (it.hasNext()) {
+                    Requirement some = it.next();
+                    if (Math.abs(some.getEstimatedWork() - estimation / 2) < 0.0000001) {
+                        sb.append("<strong>twice as much as</strong> ");
+                    } else if (Math.abs(some.getEstimatedWork() - estimation * 2) < 0.0000001) {
+                        sb.append("<strong>half as much as</strong> ");
+                    }
+                    sb.append(some.toHtml());
+                    if (some.getEstimatedWork() != estimation) {
+                        sb.append(" (").append(some.getEstimatedWorkWithUnit()).append(")");
+                    }
+                    if (it.hasNext()) {
+                        sb.append(" <strong>and</strong> ");
+                    }
+                }
+                sb.append("</li>");
+            }
+            sb.append("</ul></div>");
+            return new HTML(sb.toString());
+        }
+        return new HTML();
+    }
 
-	private class SelectEstimationClickHandler implements ClickHandler {
+    private Widget createCardSlots() {
+        TableBuilder tb = new TableBuilder();
+        tb.setWidth(null);
+        for (User user : getCurrentProject().getTeamMembers()) {
+            boolean currentUser = user == getCurrentUser();
+            RequirementEstimationVote vote = requirement.getEstimationVote(user);
+            Float estimation = vote == null ? null : vote.getEstimatedWork();
 
-		private float estimation;
+            Widget card;
+            if (estimation == null) {
+                card = null;
+            } else {
+                ClickHandler clickHandler = null;
+                String clickTooltip = null;
+                if (requirement.isWorkEstimationVotingShowoff()) {
+                    clickHandler = new SelectEstimationClickHandler(estimation);
+                    clickTooltip = "Use this card as the estimation for this Story. Planning Poker will be closed.";
+                } else if (currentUser) {
+                    clickHandler = new RemoveEstimationClickHandler();
+                    clickTooltip = "Remove this card from table.";
+                }
+                boolean visible = requirement.isWorkEstimationVotingShowoff();
+                card = new PlanningPokerCardWidget(estimation, visible, clickHandler, clickTooltip);
+            }
 
-		public SelectEstimationClickHandler(float estimation) {
-			super();
-			this.estimation = estimation;
-		}
+            tb.add(new PlanningPokerCardSlotWidget(user.getName(), card));
+            tb.add(Gwt.createSpacer(5, 1));
+        }
+        return tb.createTable();
+    }
 
-		@Override
-		public void onClick(ClickEvent event) {
-			if (estimation >= 0) {
-				requirement.setEstimatedWork(estimation);
-				requirement.deactivateWorkEstimationVoting();
-				new VisibleDataChangedEvent().fireInCurrentScope();
-			}
-		}
-	}
+    private Widget createTableBranding() {
+        return Gwt.createDiv("PlanningPokerWidget-table-branding", "Planning Poker");
+    }
 
-	private class SetEstimationClickHandler implements ClickHandler {
+    private class SelectEstimationClickHandler implements ClickHandler {
 
-		private float estimation;
+        private final float estimation;
 
-		public SetEstimationClickHandler(float estimation) {
-			super();
-			this.estimation = estimation;
-		}
+        public SelectEstimationClickHandler(float estimation) {
+            super();
+            this.estimation = estimation;
+        }
 
-		@Override
-		public void onClick(ClickEvent event) {
-			requirement.setVote(estimation);
-			new VisibleDataChangedEvent().fireInCurrentScope();
-		}
-	}
+        @Override
+        public void onClick(ClickEvent event) {
+            if (estimation >= 0) {
+                requirement.setEstimatedWork(estimation);
+                requirement.deactivateWorkEstimationVoting();
+                new VisibleDataChangedEvent().fireInCurrentScope();
+            }
+        }
+    }
 
-	private class RemoveEstimationClickHandler implements ClickHandler {
+    private class SetEstimationClickHandler implements ClickHandler {
 
-		@Override
-		public void onClick(ClickEvent event) {
-			requirement.setVote(null);
-			new VisibleDataChangedEvent().fireInCurrentScope();
-		}
-	}
+        private final float estimation;
+
+        public SetEstimationClickHandler(float estimation) {
+            super();
+            this.estimation = estimation;
+        }
+
+        @Override
+        public void onClick(ClickEvent event) {
+            requirement.setVote(estimation);
+            new VisibleDataChangedEvent().fireInCurrentScope();
+        }
+    }
+
+    private class RemoveEstimationClickHandler implements ClickHandler {
+
+        @Override
+        public void onClick(ClickEvent event) {
+            requirement.setVote(null);
+            new VisibleDataChangedEvent().fireInCurrentScope();
+        }
+    }
 }
