@@ -16,6 +16,7 @@ package scrum.client.estimation;
 
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
+import static ilarkesto.core.logging.ClientLog.DEBUG;
 import scrum.client.common.AScrumWidget;
 import scrum.client.project.Requirement;
 
@@ -25,36 +26,37 @@ import scrum.client.project.Requirement;
  */
 public class PlanningPokerWidget extends AScrumWidget {
 
-	private Requirement requirement;
-	private SimplePanel wrapper;
-	private PlanningPokerTableWidget table;
+    private final Requirement requirement;
+    private SimplePanel wrapper;
+    private PlanningPokerTableWidget table;
 
     /**
      *
      * @param requirement
      */
     public PlanningPokerWidget(Requirement requirement) {
-		super();
-		this.requirement = requirement;
-	}
+        super();
+        this.requirement = requirement;
+    }
 
-	@Override
-	protected Widget onInitialization() {
-		wrapper = new SimplePanel();
-		return wrapper;
-	}
+    @Override
+    protected Widget onInitialization() {
+        wrapper = new SimplePanel();
+        return wrapper;
+    }
 
-	@Override
-	protected void onUpdate() {
-		if (requirement.isWorkEstimationVotingActive()) {
-			if (table == null) {
-                            table = new PlanningPokerTableWidget(requirement);
+    @Override
+    protected void onUpdate() {
+        DEBUG("PlanningPokerWidget.onUpdate() for requirement:" + requirement);
+        if (requirement.isWorkEstimationVotingActive()) {
+            if (table == null) {
+                table = new PlanningPokerTableWidget(requirement);
             }
-			wrapper.setWidget(table);
-		} else {
-			wrapper.setWidget(null);
-		}
-		super.onUpdate();
-	}
+            wrapper.setWidget(table);
+        } else {
+            wrapper.setWidget(null);
+        }
+        super.onUpdate();
+    }
 
 }

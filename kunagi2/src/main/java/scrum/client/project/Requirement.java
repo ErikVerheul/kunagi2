@@ -56,58 +56,58 @@ public class Requirement extends GRequirement implements ReferenceSupport, Label
      *
      */
     public static final String REFERENCE_PREFIX = "sto";
-	private static final String[] WORK_ESTIMATION_VALUES = new String[] { "", "0", "0.5", "1", "2", "3", "5", "8", "13", "20", "40", "100" };
-	private static final Float[] WORK_ESTIMATION_FLOAT_VALUES = new Float[] { 0.5f, 0f, 1f, 2f, 3f, 5f, 8f, 13f, 20f, 40f, 100f };
+    private static final String[] WORK_ESTIMATION_VALUES = new String[]{"", "0", "0.5", "1", "2", "3", "5", "8", "13", "20", "40", "100"};
+    private static final Float[] WORK_ESTIMATION_FLOAT_VALUES = new Float[]{0.5f, 0f, 1f, 2f, 3f, 5f, 8f, 13f, 20f, 40f, 100f};
 
-	private transient EstimationBar estimationBar;
-	private transient AFieldModel<String> taskStatusLabelModel;
-	private transient AFieldModel<String> themesAsStringModel;
-	private transient AFieldModel<String> estimatedWorkWithUnitModel;
-        
+    private transient EstimationBar estimationBar;
+    private transient AFieldModel<String> taskStatusLabelModel;
+    private transient AFieldModel<String> themesAsStringModel;
+    private transient AFieldModel<String> estimatedWorkWithUnitModel;
+
     /**
      *
      * @return
      */
     public static String[] getWorkEstimationValues() {
-            return makeCopy(WORK_ESTIMATION_VALUES);
-        }
-        
+        return makeCopy(WORK_ESTIMATION_VALUES);
+    }
+
     /**
      *
      * @return
      */
     public static Float[] getWorkEstimationFloatValues() {
-            return makeCopy(WORK_ESTIMATION_FLOAT_VALUES);
-        }
+        return makeCopy(WORK_ESTIMATION_FLOAT_VALUES);
+    }
 
     /**
      *
      * @param project
      */
     public Requirement(Project project) {
-		setProject(project);
-		setDirty(true);
-	}
+        setProject(project);
+        setDirty(true);
+    }
 
     /**
      *
      * @param data
      */
     public Requirement(HashMap<String, Object> data) {
-		super(data);
-	}
-        
-        private static String[] makeCopy(String[] orig) {
-            String[] copy = new String[orig.length];
-            System.arraycopy(orig, 0, copy, 0, orig.length);
-            return copy;
-        }
-        
-        private static Float[] makeCopy(Float[] orig) {
-            Float[] copy = new Float[orig.length];
-            System.arraycopy(orig, 0, copy, 0, orig.length);
-            return copy;
-        }
+        super(data);
+    }
+
+    private static String[] makeCopy(String[] orig) {
+        String[] copy = new String[orig.length];
+        System.arraycopy(orig, 0, copy, 0, orig.length);
+        return copy;
+    }
+
+    private static Float[] makeCopy(Float[] orig) {
+        Float[] copy = new Float[orig.length];
+        System.arraycopy(orig, 0, copy, 0, orig.length);
+        return copy;
+    }
 
     /**
      *
@@ -115,53 +115,53 @@ public class Requirement extends GRequirement implements ReferenceSupport, Label
      * @return
      */
     public String getHistoryLabel(final Sprint sprint) {
-		List<Change> changes = getDao().getChangesByParent(Requirement.this);
-		for (Change change : changes) {
-			String key = change.getKey();
-			if (!change.isNewValue(sprint.getId())) {
-                            continue;
+        List<Change> changes = getDao().getChangesByParent(Requirement.this);
+        for (Change change : changes) {
+            String key = change.getKey();
+            if (!change.isNewValue(sprint.getId())) {
+                continue;
             }
-			if (Change.REQ_COMPLETED_IN_SPRINT.equals(key) || Change.REQ_REJECTED_IN_SPRINT.equals(key)) {
-                            return change.getOldValue();
+            if (Change.REQ_COMPLETED_IN_SPRINT.equals(key) || Change.REQ_REJECTED_IN_SPRINT.equals(key)) {
+                return change.getOldValue();
             }
-		}
-		return getLabel();
-	}
+        }
+        return getLabel();
+    }
 
     /**
      *
      * @return
      */
     public boolean isBlocked() {
-		return getImpediment() != null;
-	}
+        return getImpediment() != null;
+    }
 
     /**
      *
      * @return
      */
     public Impediment getImpediment() {
-		for (Task task : getTasksInSprint()) {
-                    if (task.isBlocked()) {
-                        return task.getImpediment();
+        for (Task task : getTasksInSprint()) {
+            if (task.isBlocked()) {
+                return task.getImpediment();
             }
-		}
-		return null;
-	}
+        }
+        return null;
+    }
 
     /**
      *
      * @return
      */
     public Set<Impediment> getImpediments() {
-		Set<Impediment> impediments = new HashSet<Impediment>();
-                for (Task task : getTasksInSprint()) {
-                    if (task.isBlocked()) {
-                        impediments.add(task.getImpediment());
+        Set<Impediment> impediments = new HashSet<Impediment>();
+        for (Task task : getTasksInSprint()) {
+            if (task.isBlocked()) {
+                impediments.add(task.getImpediment());
             }
-		}
-		return impediments;
-	}
+        }
+        return impediments;
+    }
 
     /**
      *
@@ -169,75 +169,75 @@ public class Requirement extends GRequirement implements ReferenceSupport, Label
      */
     public void addTheme(String theme) {
         List<String> themes = getThemes();
-		if (!themes.contains(theme)) {
+        if (!themes.contains(theme)) {
             themes.add(theme);
         }
-		setThemes(themes);
-	}
+        setThemes(themes);
+    }
 
     /**
      *
      * @return
      */
     @Override
-	public List<String> getAvailableThemes() {
-		return getProject().getThemes();
-	}
+    public List<String> getAvailableThemes() {
+        return getProject().getThemes();
+    }
 
     /**
      *
      * @return
      */
     @Override
-	public boolean isThemesEditable() {
-		return getLabelModel().isEditable();
-	}
+    public boolean isThemesEditable() {
+        return getLabelModel().isEditable();
+    }
 
     /**
      *
      * @return
      */
     @Override
-	public boolean isThemesCreatable() {
-		return ScrumGwt.isCurrentUserProductOwner();
-	}
+    public boolean isThemesCreatable() {
+        return ScrumGwt.isCurrentUserProductOwner();
+    }
 
     /**
      *
      * @return
      */
     public List<Requirement> getRelatedRequirements() {
-		List<Requirement> ret = getProject().getRequirementsByThemes(getThemes());
-		ret.remove(this);
-		return ret;
-	}
+        List<Requirement> ret = getProject().getRequirementsByThemes(getThemes());
+        ret.remove(this);
+        return ret;
+    }
 
     /**
      *
      * @return
      */
     public List<Issue> getRelatedIssues() {
-		return getProject().getIssuesByThemes(getThemes());
-	}
+        return getProject().getIssuesByThemes(getThemes());
+    }
 
     /**
      *
      */
     public void removeFromSprint() {
-		setSprint(null);
-		for (Task task : getTasksInSprint()) {
-			task.setOwner(null);
-			task.setBurnedWork(0);
-		}
-	}
+        setSprint(null);
+        for (Task task : getTasksInSprint()) {
+            task.setOwner(null);
+            task.setBurnedWork(0);
+        }
+    }
 
     /**
      *
      * @return
      */
     public List<Task> getTasksInSprint() {
-		return getTasksInSprint(getProject().getCurrentSprint());
-	}
+        return getTasksInSprint(getProject().getCurrentSprint());
+    }
 
     /**
      *
@@ -245,27 +245,27 @@ public class Requirement extends GRequirement implements ReferenceSupport, Label
      * @return
      */
     public List<Task> getTasksInSprint(Sprint sprint) {
-		List<Task> tasks = getTasks();
-		Iterator<Task> iterator = tasks.iterator();
-		while (iterator.hasNext()) {
-                    Task task = iterator.next();
-                    if (task.isClosedInPastSprintSet() || !sprint.equals(task.getSprint())) {
+        List<Task> tasks = getTasks();
+        Iterator<Task> iterator = tasks.iterator();
+        while (iterator.hasNext()) {
+            Task task = iterator.next();
+            if (task.isClosedInPastSprintSet() || !sprint.equals(task.getSprint())) {
                 iterator.remove();
             }
-		}
-                return tasks;
+        }
+        return tasks;
     }
-    
+
     /**
      *
      * @return
      */
     public boolean isDecidable() {
-		if (getRejectDate() != null) {
-                    return false;
-                }
-		return isTasksClosed();
-	}
+        if (getRejectDate() != null) {
+            return false;
+        }
+        return isTasksClosed();
+    }
 
     /**
      *
@@ -275,65 +275,65 @@ public class Requirement extends GRequirement implements ReferenceSupport, Label
         if (isClosed()) {
             return false;
         }
-		if (!isTasksClosed()) {
+        if (!isTasksClosed()) {
             return false;
         }
-		if (!isInCurrentSprint()) {
+        if (!isInCurrentSprint()) {
             return false;
         }
-		return getRejectDate() != null;
-	}
+        return getRejectDate() != null;
+    }
 
     /**
      *
      */
     public void reject() {
-		setRejectDate(Date.today());
-	}
+        setRejectDate(Date.today());
+    }
 
     /**
      *
      */
     public void fix() {
-		setRejectDate(null);
-	}
+        setRejectDate(null);
+    }
 
     /**
      *
      * @return
      */
     public String getEstimatedWorkAsString() {
-		return ScrumGwt.getEstimationAsString(getEstimatedWork());
-	}
+        return ScrumGwt.getEstimationAsString(getEstimatedWork());
+    }
 
     /**
      *
      * @return
      */
     public String getEstimatedWorkWithUnit() {
-		return ScrumGwt.getEstimationAsString(getEstimatedWork(), getProject().getEffortUnit());
-	}
+        return ScrumGwt.getEstimationAsString(getEstimatedWork(), getProject().getEffortUnit());
+    }
 
     /**
      *
      * @return
      */
     public List<RequirementEstimationVote> getEstimationVotes() {
-		return getDao().getRequirementEstimationVotesByRequirement(this);
-	}
+        return getDao().getRequirementEstimationVotesByRequirement(this);
+    }
 
     /**
      *
      * @return
      */
     public boolean containsWorkEstimationVotes() {
-		for (RequirementEstimationVote vote : getEstimationVotes()) {
-			if (vote.getEstimatedWork() != null) {
+        for (RequirementEstimationVote vote : getEstimationVotes()) {
+            if (vote.getEstimatedWork() != null) {
                 return true;
             }
-		}
-		return false;
-	}
+        }
+        return false;
+    }
 
     /**
      *
@@ -341,13 +341,13 @@ public class Requirement extends GRequirement implements ReferenceSupport, Label
      * @return
      */
     public RequirementEstimationVote getEstimationVote(User user) {
-		for (RequirementEstimationVote vote : getEstimationVotes()) {
-			if (vote.isUser(user)) {
+        for (RequirementEstimationVote vote : getEstimationVotes()) {
+            if (vote.isUser(user)) {
                 return vote;
             }
-		}
-		return null;
-	}
+        }
+        return null;
+    }
 
     /**
      *
@@ -355,15 +355,15 @@ public class Requirement extends GRequirement implements ReferenceSupport, Label
      */
     public void setVote(Float estimatedWork) {
         RequirementEstimationVote vote = getEstimationVote(Scope.get().getComponent(Auth.class).getUser());
-		if (vote == null) {
-                    throw new IllegalStateException("vote == null");
+        if (vote == null) {
+            throw new IllegalStateException("vote == null");
         }
-		vote.setEstimatedWork(estimatedWork);
-		if (estimatedWork != null && isWorkEstimationVotingComplete()) {
+        vote.setEstimatedWork(estimatedWork);
+        if (estimatedWork != null && isWorkEstimationVotingComplete()) {
             activateWorkEstimationVotingShowoff();
         }
-		updateLocalModificationTime();
-	}
+        updateLocalModificationTime();
+    }
 
     /**
      *
@@ -371,27 +371,27 @@ public class Requirement extends GRequirement implements ReferenceSupport, Label
      */
     public boolean isWorkEstimationVotingComplete() {
         for (User user : getProject().getTeamMembers()) {
-			RequirementEstimationVote vote = getEstimationVote(user);
-			if (vote == null || vote.getEstimatedWork() == null) {
+            RequirementEstimationVote vote = getEstimationVote(user);
+            if (vote == null || vote.getEstimatedWork() == null) {
                 return false;
             }
-		}
-		return true;
-	}
+        }
+        return true;
+    }
 
     /**
      *
      */
     public void deactivateWorkEstimationVoting() {
-		setWorkEstimationVotingActive(false);
-	}
+        setWorkEstimationVotingActive(false);
+    }
 
     /**
      *
      */
     public void activateWorkEstimationVotingShowoff() {
-		setWorkEstimationVotingShowoff(true);
-	}
+        setWorkEstimationVotingShowoff(true);
+    }
 
     /**
      *
@@ -400,38 +400,38 @@ public class Requirement extends GRequirement implements ReferenceSupport, Label
     public String getTaskStatusLabel() {
         List<Task> tasks = getTasksInSprint();
         int burned = Task.sumBurnedWork(tasks);
-		int remaining = Task.sumRemainingWork(getTasksInSprint());
-		if (remaining == 0) {
+        int remaining = Task.sumRemainingWork(getTasksInSprint());
+        if (remaining == 0) {
             return tasks.isEmpty() ? "no tasks planned yet" : "100% completed, " + burned + " hrs burned";
         }
-		int burnedPercent = Gwt.percent(burned + remaining, burned);
-		return burnedPercent + "% completed, " + remaining + " hrs left";
-	}
+        int burnedPercent = Gwt.percent(burned + remaining, burned);
+        return burnedPercent + "% completed, " + remaining + " hrs left";
+    }
 
     /**
      *
      * @param estimationBar
      */
     public void setEstimationBar(EstimationBar estimationBar) {
-		this.estimationBar = estimationBar;
-		updateLocalModificationTime();
-	}
+        this.estimationBar = estimationBar;
+        updateLocalModificationTime();
+    }
 
     /**
      *
      * @return
      */
     public EstimationBar getEstimationBar() {
-		return estimationBar;
-	}
+        return estimationBar;
+    }
 
     /**
      *
      * @return
      */
     public boolean isValidForSprint() {
-		return isEstimatedWorkValid();
-	}
+        return isEstimatedWorkValid();
+    }
 
     /**
      *
@@ -440,153 +440,157 @@ public class Requirement extends GRequirement implements ReferenceSupport, Label
     public boolean isEstimatedWorkValid() {
         return !isDirty() && getEstimatedWork() != null;
     }
-    
+
     /**
      *
      * @return
      */
     public String getLongLabel() {
         StringBuilder sb = new StringBuilder();
-		sb.append(getLabel());
-		if (!isEstimatedWorkValid()) {
+        sb.append(getLabel());
+        if (!isEstimatedWorkValid()) {
             sb.append(" [requires estimation]");
         }
-		if (isInCurrentSprint()) {
+        if (isInCurrentSprint()) {
             sb.append(" [In Sprint]");
         }
-		return sb.toString();
-	}
+        return sb.toString();
+    }
 
     /**
      *
      * @return
      */
     public boolean isInCurrentSprint() {
-		return isSprintSet() && getProject().isCurrentSprint(getSprint());
-	}
+        return isSprintSet() && getProject().isCurrentSprint(getSprint());
+    }
 
     /**
      *
      * @return
      */
     public String getReferenceAndLabel() {
-		return getReference() + " " + getLabel();
-	}
+        return getReference() + " " + getLabel();
+    }
 
     /**
      *
      * @return
      */
     @Override
-	public String getReference() {
-		return REFERENCE_PREFIX + getNumber();
-	}
+    public String getReference() {
+        return REFERENCE_PREFIX + getNumber();
+    }
 
-	/**
-	 * No tasks created yet.
-     * @return 
-	 */
-	public boolean isPlanned() {
-            return !getTasksInSprint().isEmpty();
-	}
+    /**
+     * No tasks created yet.
+     *
+     * @return
+     */
+    public boolean isPlanned() {
+        return !getTasksInSprint().isEmpty();
+    }
 
-	/**
-	 * All tasks are done. Not closed yet.
-         * @return 
-	 */
-	public boolean isTasksClosed() {
-		Collection<Task> tasks = getTasksInSprint();
-		if (tasks.isEmpty()) {
+    /**
+     * All tasks are done. Not closed yet.
+     *
+     * @return
+     */
+    public boolean isTasksClosed() {
+        Collection<Task> tasks = getTasksInSprint();
+        if (tasks.isEmpty()) {
             return false;
         }
-		for (Task task : tasks) {
-			if (!task.isClosed()) {
+        for (Task task : tasks) {
+            if (!task.isClosed()) {
                 return false;
-                        }
-                }
-                return true;
+            }
         }
-        
-        /**
-         * Summary to show in the product backlog.
-     * @return 
-	 */
-        public String getProductBacklogSummary() {
-            String summary = isDirty() ? "[dirty] " : "[not dirty] ";
-            if (isClosed()) {
-                return summary += "Closed.";
+        return true;
+    }
+
+    /**
+     * Summary to show in the product backlog.
+     *
+     * @return
+     */
+    public String getProductBacklogSummary() {
+        String summary = isDirty() ? "[dirty] " : "[not dirty] ";
+        if (isClosed()) {
+            return summary += "Closed.";
         }
-		if (isTasksClosed()) {
+        if (isTasksClosed()) {
             return summary += "Done. Test required.";
         }
-		if (getEstimatedWork() == null) {
+        if (getEstimatedWork() == null) {
             return summary += "No effort estimated.";
         }
-		if (!isSprintSet()) {
-                    return summary += getEstimatedWorkWithUnit() + " to do. No sprint assigned.";
-                }
-                Sprint sprint = getSprint();
-                return summary += getEstimatedWorkWithUnit() + " to do in sprint " + sprint.getLabel() + ".";
-	}
+        if (!isSprintSet()) {
+            return summary += getEstimatedWorkWithUnit() + " to do. No sprint assigned.";
+        }
+        Sprint sprint = getSprint();
+        return summary += getEstimatedWorkWithUnit() + " to do in sprint " + sprint.getLabel() + ".";
+    }
 
-	/**
-	 * Summary to show in the sprint backlog.
-     * @return 
-	 */
-	public String getSprintBacklogSummary() {
-		if (isClosed()) {
+    /**
+     * Summary to show in the sprint backlog.
+     *
+     * @return
+     */
+    public String getSprintBacklogSummary() {
+        if (isClosed()) {
             return "Closed.";
         }
-		if (!isPlanned()) {
+        if (!isPlanned()) {
             return "Not planned yet.";
         }
-		if (isTasksClosed()) {
+        if (isTasksClosed()) {
             return "Done. Test required.";
         }
-		int taskCount = 0;
-		int openTaskCount = 0;
-		int effort = 0;
-		for (Task task : getTasksInSprint()) {
-			taskCount++;
-			if (!task.isClosed()) {
-				openTaskCount++;
-				effort += task.getRemainingWork();
-			}
-		}
-		return openTaskCount + " of " + taskCount + " Tasks open. About " + effort + " hours to do.";
-	}
+        int taskCount = 0;
+        int openTaskCount = 0;
+        int effort = 0;
+        for (Task task : getTasksInSprint()) {
+            taskCount++;
+            if (!task.isClosed()) {
+                openTaskCount++;
+                effort += task.getRemainingWork();
+            }
+        }
+        return openTaskCount + " of " + taskCount + " Tasks open. About " + effort + " hours to do.";
+    }
 
     /**
      *
      * @return
      */
     public int getBurnedWorkInClosedTasks() {
-		return Task.sumBurnedWork(getClosedTasks());
-	}
+        return Task.sumBurnedWork(getClosedTasks());
+    }
 
     /**
      *
      * @return
      */
     public int getBurnedWork() {
-		return Task.sumBurnedWork(getTasksInSprint());
-	}
+        return Task.sumBurnedWork(getTasksInSprint());
+    }
 
     /**
      *
      * @return
      */
     public int getBurnedWorkInClaimedTasks() {
-		return Task.sumBurnedWork(getClaimedTasks());
-	}
+        return Task.sumBurnedWork(getClaimedTasks());
+    }
 
     /**
      *
      * @return
      */
     public int getRemainingWorkInClaimedTasks() {
-		return Task.sumRemainingWork(getClaimedTasks());
-	}
+        return Task.sumRemainingWork(getClaimedTasks());
+    }
 
     /**
      *
@@ -594,29 +598,29 @@ public class Requirement extends GRequirement implements ReferenceSupport, Label
      */
     public int getRemainingWorkInUnclaimedTasks() {
         return Task.sumRemainingWork(getUnclaimedTasks());
-	}
+    }
 
     /**
      *
      * @return
      */
     public int getRemainingWork() {
-		return Task.sumRemainingWork(getTasksInSprint());
-	}
+        return Task.sumRemainingWork(getTasksInSprint());
+    }
 
     /**
      *
      * @return
      */
     public List<Task> getClaimedTasks() {
-		List<Task> ret = new ArrayList<Task>();
-                for (Task task : getTasksInSprint()) {
-                    if (task.isOwnerSet() && !task.isClosed()) {
+        List<Task> ret = new ArrayList<Task>();
+        for (Task task : getTasksInSprint()) {
+            if (task.isOwnerSet() && !task.isClosed()) {
                 ret.add(task);
             }
-		}
-		return ret;
-	}
+        }
+        return ret;
+    }
 
     /**
      *
@@ -625,42 +629,42 @@ public class Requirement extends GRequirement implements ReferenceSupport, Label
      */
     public List<Task> getClaimedTasks(User owner) {
         List<Task> ret = new ArrayList<Task>();
-		for (Task task : getTasksInSprint()) {
-			if (task.isOwner(owner) && !task.isClosed()) {
+        for (Task task : getTasksInSprint()) {
+            if (task.isOwner(owner) && !task.isClosed()) {
                 ret.add(task);
             }
-		}
-		return ret;
-	}
+        }
+        return ret;
+    }
 
     /**
      *
      * @return
      */
     public List<Task> getClosedTasks() {
-		List<Task> ret = new ArrayList<Task>();
-		for (Task task : getTasksInSprint()) {
-			if (task.isClosed()) {
+        List<Task> ret = new ArrayList<Task>();
+        for (Task task : getTasksInSprint()) {
+            if (task.isClosed()) {
                 ret.add(task);
             }
-		}
-		return ret;
-	}
+        }
+        return ret;
+    }
 
     /**
      *
      * @return
      */
     public List<Task> getUnclaimedTasks() {
-		List<Task> ret = new ArrayList<Task>();
-                for (Task task : getTasksInSprint()) {
-			if (task.isClosed() || task.isOwnerSet()) {
+        List<Task> ret = new ArrayList<Task>();
+        for (Task task : getTasksInSprint()) {
+            if (task.isClosed() || task.isOwnerSet()) {
                 continue;
             }
-			ret.add(task);
-		}
-		return ret;
-	}
+            ret.add(task);
+        }
+        return ret;
+    }
 
     /**
      *
@@ -668,14 +672,14 @@ public class Requirement extends GRequirement implements ReferenceSupport, Label
      * @return
      */
     public List<Task> getTasksBlockedBy(Impediment impediment) {
-		List<Task> ret = new ArrayList<Task>();
-		for (Task task : getTasksInSprint()) {
-			if (task.isImpediment(impediment)) {
+        List<Task> ret = new ArrayList<Task>();
+        for (Task task : getTasksInSprint()) {
+            if (task.isImpediment(impediment)) {
                 ret.add(task);
             }
-		}
-		return ret;
-	}
+        }
+        return ret;
+    }
 
     /**
      *
@@ -683,72 +687,72 @@ public class Requirement extends GRequirement implements ReferenceSupport, Label
      * @return
      */
     public static int sumBurnedWork(Iterable<Requirement> requirements) {
-		int sum = 0;
-		for (Requirement requirement : requirements) {
-                    sum += requirement.getBurnedWork();
-		}
-		return sum;
-	}
+        int sum = 0;
+        for (Requirement requirement : requirements) {
+            sum += requirement.getBurnedWork();
+        }
+        return sum;
+    }
 
     /**
      *
      * @return
      */
     public Task createNewTask() {
-		Task task = new Task(this);
-		getDao().createTask(task);
-		updateTasksOrder();
-		return task;
-	}
+        Task task = new Task(this);
+        getDao().createTask(task);
+        updateTasksOrder();
+        return task;
+    }
 
     /**
      *
      * @param task
      */
     public void deleteTask(Task task) {
-		getDao().deleteTask(task);
-	}
+        getDao().deleteTask(task);
+    }
 
     /**
      *
      * @return
      */
     @Override
-	public boolean isEditable() {
-		if (isClosed()) {
+    public boolean isEditable() {
+        if (isClosed()) {
             return false;
         }
-		if (isInCurrentSprint()) {
+        if (isInCurrentSprint()) {
             return false;
         }
-		return getProject().isProductOwner(Scope.get().getComponent(Auth.class).getUser());
-	}
+        return getProject().isProductOwner(Scope.get().getComponent(Auth.class).getUser());
+    }
 
-	@Override
-	public String toHtml() {
-		return ScrumGwt.toHtml(this, getLabel());
-	}
+    @Override
+    public String toHtml() {
+        return ScrumGwt.toHtml(this, getLabel());
+    }
 
-	@Override
-	public String toString() {
-		return getReferenceAndLabel();
-	}
+    @Override
+    public String toString() {
+        return getReferenceAndLabel();
+    }
 
     /**
      *
      * @return
      */
     @Override
-	public Widget createForumItemWidget() {
-		return new HyperlinkWidget(new ShowEntityAction(isInCurrentSprint() ? WhiteboardWidget.class
-				: ProductBacklogWidget.class, this, getLabel()));
-	}
+    public Widget createForumItemWidget() {
+        return new HyperlinkWidget(new ShowEntityAction(isInCurrentSprint() ? WhiteboardWidget.class
+                : ProductBacklogWidget.class, this, getLabel()));
+    }
 
-	private void updateTasksOrder() {
-		List<Task> tasks = getTasksInSprint();
-		Collections.sort(tasks, getTasksOrderComparator());
-		updateTasksOrder(tasks);
-	}
+    private void updateTasksOrder() {
+        List<Task> tasks = getTasksInSprint();
+        Collections.sort(tasks, getTasksOrderComparator());
+        updateTasksOrder(tasks);
+    }
 
     /**
      *
@@ -757,7 +761,7 @@ public class Requirement extends GRequirement implements ReferenceSupport, Label
     public void updateTasksOrder(List<Task> tasks) {
         setTasksOrderIds(Gwt.getIdsAsList(tasks));
     }
-    
+
     /**
      *
      * @return
@@ -765,14 +769,14 @@ public class Requirement extends GRequirement implements ReferenceSupport, Label
     public String getThemesAsString() {
         return Str.concat(getThemes(), ", ");
     }
-    
+
     /**
      *
      * @return
      */
     public Comparator<Task> getTasksOrderComparator() {
-		return getSprint().getTasksOrderComparator();
-	}
+        return getSprint().getTasksOrderComparator();
+    }
 
     /**
      *
@@ -782,15 +786,15 @@ public class Requirement extends GRequirement implements ReferenceSupport, Label
         if (estimatedWorkWithUnitModel == null) {
             estimatedWorkWithUnitModel = new AFieldModel<String>() {
 
-			@Override
-			public String getValue() {
-				return getEstimatedWorkWithUnit();
-			}
-		};
+                @Override
+                public String getValue() {
+                    return getEstimatedWorkWithUnit();
+                }
+            };
         }
         return estimatedWorkWithUnitModel;
     }
-    
+
     /**
      *
      * @return
@@ -799,31 +803,31 @@ public class Requirement extends GRequirement implements ReferenceSupport, Label
         if (taskStatusLabelModel == null) {
             taskStatusLabelModel = new AFieldModel<String>() {
 
-			@Override
-			public String getValue() {
-				return getTaskStatusLabel();
-			}
-		};
+                @Override
+                public String getValue() {
+                    return getTaskStatusLabel();
+                }
+            };
         }
-		return taskStatusLabelModel;
-	}
+        return taskStatusLabelModel;
+    }
 
     /**
      *
      * @return
      */
     public AFieldModel<String> getThemesAsStringModel() {
-		if (themesAsStringModel == null) {
+        if (themesAsStringModel == null) {
             themesAsStringModel = new AFieldModel<String>() {
 
-			@Override
-			public String getValue() {
-				return getThemesAsString();
-			}
-		};
+                @Override
+                public String getValue() {
+                    return getThemesAsString();
+                }
+            };
         }
-		return themesAsStringModel;
-	}
+        return themesAsStringModel;
+    }
 
     /**
      *
@@ -831,13 +835,13 @@ public class Requirement extends GRequirement implements ReferenceSupport, Label
      * @return
      */
     public AFieldModel<String> getHistoryLabelModel(final Sprint sprint) {
-		return new AFieldModel<String>() {
+        return new AFieldModel<String>() {
 
-			@Override
-			public String getValue() {
-				return getHistoryLabel(sprint);
-			}
-		};
-	}
+            @Override
+            public String getValue() {
+                return getHistoryLabel(sprint);
+            }
+        };
+    }
 
 }

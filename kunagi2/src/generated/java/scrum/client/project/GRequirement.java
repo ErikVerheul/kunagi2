@@ -857,5 +857,9 @@ public abstract class GRequirement
         if (matchesKey(getTestDescription(), key)) return true;
         return false;
     }
+    
+    public String toString() {
+        return "Id, description =" + getId() + ", " + description;
+    }
 
 }

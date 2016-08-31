@@ -21,6 +21,7 @@ import com.google.gwt.user.client.ui.Image;
 import static ilarkesto.core.base.Str.getSimpleName;
 import static ilarkesto.core.base.Str.toHtml;
 import static ilarkesto.core.logging.ClientLog.DEBUG;
+import static ilarkesto.core.logging.ClientLog.WARN;
 import static ilarkesto.gwt.client.Gwt.getRootWidget;
 import static ilarkesto.gwt.client.Gwt.update;
 
@@ -41,84 +42,86 @@ public abstract class AAction implements Command, ClickHandler {
      */
     protected abstract void onExecute();
 
-	@Override
-	public final void execute() {
-		DEBUG("Executing action: " + this);
-		if (!isExecutable()) {
-                        throw new RuntimeException("Action not executable: " + this);
-                }
-		if (!isPermitted()) {
-                        throw new RuntimeException("Action not permitted: " + this);
-                }
-		onExecute();
-		update(getRootWidget());
-	}
+    @Override
+    public final void execute() {
+        DEBUG("Executing action: " + this);
+        if (!isExecutable()) {
+            WARN("Action not executable: " + this);
+            return;
+        }
+        if (!isPermitted()) {
+            WARN("Action not permitted: " + this);
+            return;
+        }
+        onExecute();
+        update(getRootWidget());
+    }
 
     /**
      *
      * @return
      */
     public String getTargetHistoryToken() {
-		return null;
-	}
+        return null;
+    }
 
-	@Override
-	public void onClick(ClickEvent event) {
-		event.stopPropagation();
-		execute();
-	}
+    @Override
+    public void onClick(ClickEvent event) {
+        event.stopPropagation();
+        execute();
+    }
 
     /**
      *
      * @return
      */
     public Image getIcon() {
-		return null;
-	}
+        return null;
+    }
 
     /**
      *
      * @return
      */
     public boolean isExecutable() {
-		return true;
-	}
+        return true;
+    }
 
     /**
      *
      * @return
      */
     public boolean isPermitted() {
-		return true;
-	}
+        return true;
+    }
 
     /**
      *
      * @return
      */
     public String getTooltip() {
-		return null;
-	}
+        return null;
+    }
 
     /**
      *
      * @return
      */
     public String getTooltipAsHtml() {
-		return toHtml(getTooltip());
-	}
+        return toHtml(getTooltip());
+    }
 
     /**
      *
      * @return
      */
     public String getId() {
-		return getSimpleName(getClass()).replace('$', '_');
-	}
+        return getSimpleName(getClass()).replace('$', '_');
+    }
 
-	@Override
-	public String toString() {
-		return getSimpleName(getClass());
-	}
+    @Override
+    public String toString() {
+        return getSimpleName(getClass());
+    }
 
 }

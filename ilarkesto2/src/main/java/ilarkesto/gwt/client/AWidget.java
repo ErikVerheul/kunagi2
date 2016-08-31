@@ -27,9 +27,9 @@ import static ilarkesto.gwt.client.Gwt.createBugMarker;
  */
 public abstract class AWidget extends Composite implements Updatable {
 
-	private boolean initializing;
-	private boolean initialized;
-	private final Wrapper wrapper;
+    private boolean initializing;
+    private boolean initialized;
+    private final Wrapper wrapper;
 
     /**
      *
@@ -41,138 +41,138 @@ public abstract class AWidget extends Composite implements Updatable {
      *
      */
     public AWidget() {
-		wrapper = new Wrapper();
-		if (!isScript()) {
-                        wrapper.setContent(createBugMarker(getClass().getName() + " is not initialized. -> call update()"));
-                }
-		initWidget(wrapper);
-	}
+        wrapper = new Wrapper();
+        if (!isScript()) {
+            wrapper.setContent(createBugMarker(getClass().getName() + " is not initialized. -> call update()"));
+        }
+        initWidget(wrapper);
+    }
 
     /**
      *
      * @return
      */
     protected boolean isResetRequired() {
-		return false;
-	}
+        return false;
+    }
 
     /**
      *
      */
     protected void onUpdate() {
-		Element element = wrapper.getElement();
-		String newId = getId();
-		if (!element.getId().equals(newId)) {
-                        element.setId(newId);
-                }
-		Gwt.update(wrapper.getWidget());
-	}
+        Element element = wrapper.getElement();
+        String newId = getId();
+        if (!element.getId().equals(newId)) {
+            element.setId(newId);
+        }
+        Gwt.update(wrapper.getWidget());
+    }
 
-	/**
-	 * Initializes the widget if not already initialized.
-	 */
-	public final void initialize() {
+    /**
+     * Initializes the widget if not already initialized.
+     */
+    public final void initialize() {
 
-		// check if already initialized
-		if (initialized) {
-                        return;
-                }
+        // check if already initialized
+        if (initialized) {
+            return;
+        }
 
-		// check if initializing and prevent endless loop
-		if (initializing) {
-                        throw new RuntimeException("Widget already initializing: " + toString());
-                }
-		initializing = true;
+        // check if initializing and prevent endless loop
+        if (initializing) {
+            throw new RuntimeException("Widget already initializing: " + toString());
+        }
+        initializing = true;
 
-		// GwtLogger.DEBUG("Initializing widget: " + toString());
-		Widget content = onInitialization();
-		wrapper.setContent(content);
-		wrapper.getElement().setId(getId());
+        // GwtLogger.DEBUG("Initializing widget: " + toString());
+        Widget content = onInitialization();
+        wrapper.setContent(content);
+        wrapper.getElement().setId(getId());
 
-		initialized = true;
-		initializing = false;
+        initialized = true;
+        initializing = false;
 
-	}
+    }
 
     /**
      *
      */
     public final void reset() {
-		initialized = false;
-	}
+        initialized = false;
+    }
 
     /**
      *
      * @param widget
      */
     protected void replaceContent(Widget widget) {
-		initialize();
-		wrapper.setContent(widget);
-	}
+        initialize();
+        wrapper.setContent(widget);
+    }
 
     /**
      *
      * @return
      */
     @Override
-	public final AWidget update() {
-		if (isResetRequired()) {
-                        reset();
-                }
-		initialize();
-		if (!isUpdateRequired()) {
-                        return this;
-                }
-		onUpdate();
-		return this;
-	}
+    public final AWidget update() {
+        if (isResetRequired()) {
+            reset();
+        }
+        initialize();
+        if (!isUpdateRequired()) {
+            return this;
+        }
+        onUpdate();
+        return this;
+    }
 
     /**
      *
      * @return
      */
     protected boolean isUpdateRequired() {
-		return true;
-	}
+        return true;
+    }
 
     /**
      *
      * @return
      */
     public final boolean isInitialized() {
-		return initialized;
-	}
+        return initialized;
+    }
 
     /**
      *
      */
     protected final void setHeight100() {
-		wrapper.setStyleName("AWidget-height100");
-	}
+        wrapper.setStyleName("AWidget-height100");
+    }
 
     /**
      *
      * @return
      */
     public String getId() {
-		return Str.getSimpleName(getClass()).replace('$', '_');
-	}
+        return Str.getSimpleName(getClass()).replace('$', '_');
+    }
 
-	@Override
-	public String toString() {
-		return Gwt.getSimpleName(getClass());
-	}
+    @Override
+    public String toString() {
+        return Gwt.getSimpleName(getClass());
+    }
 
-	@Override
-	public void setStyleName(String style) {
-		wrapper.setStyleName(style);
-	}
+    @Override
+    public void setStyleName(String style) {
+        wrapper.setStyleName(style);
+    }
 
-        private static class Wrapper extends SimplePanel {
+    private static class Wrapper extends SimplePanel {
 
-                public void setContent(Widget content) {
-                        setWidget(content);
-                }
+        public void setContent(Widget content) {
+            setWidget(content);
         }
+    }
 
 }
