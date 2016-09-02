@@ -27,7 +27,7 @@ import ilarkesto.webapp.RequestWrapper;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletConfig;
-import scrum.client.ApplicationInfo;
+import ilarkesto.gwt.client.ApplicationInfo;
 import scrum.client.ScrumGwtApplication;
 import scrum.server.KunagiRootConfig;
 import scrum.server.ScrumWebApplication;

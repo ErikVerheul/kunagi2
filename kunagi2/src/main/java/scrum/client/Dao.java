@@ -18,7 +18,7 @@ import com.google.gwt.user.client.Timer;
 import ilarkesto.core.base.EntityDoesNotExistException;
 import static ilarkesto.core.logging.ClientLog.DEBUG;
 import ilarkesto.core.scope.Scope;
-import ilarkesto.gwt.client.ADataTransferObject;
+import ilarkesto.gwt.client.DataTransferObject;
 import ilarkesto.gwt.client.AGwtEntity;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -209,7 +209,7 @@ public class Dao extends GDao {
     }
 
     @Override
-    public void handleDataFromServer(ADataTransferObject data) {
+    public void handleDataFromServer(DataTransferObject data) {
         super.handleDataFromServer(data);
         if (data.containsEntities() || data.containsDeletedEntities()) {
             new VisibleDataChangedEvent().fireInCurrentScope();

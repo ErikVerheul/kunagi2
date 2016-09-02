@@ -6,7 +6,7 @@ import ilarkesto.core.scope.Scope;
 import ilarkesto.core.service.ServiceCall;
 import ilarkesto.gwt.client.ErrorWrapper;
 import java.util.List;
-import scrum.client.DataTransferObject;
+import ilarkesto.gwt.client.DataTransferObject;
 
 public abstract class AServiceCall implements ServiceCall {
 

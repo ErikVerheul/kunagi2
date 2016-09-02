@@ -36,8 +36,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import scrum.client.DataTransferObject;
-import scrum.client.admin.SystemMessage;
+import ilarkesto.gwt.client.DataTransferObject;
+import ilarkesto.gwt.client.SystemMessage;
 import scrum.server.admin.ProjectUserConfig;
 import scrum.server.admin.SystemConfig;
 import scrum.server.admin.User;
@@ -1207,7 +1207,7 @@ public class ScrumServiceImpl extends GScrumServiceImpl {
         } catch (GwtConversationDoesNotExist ex) {
             throw new RuntimeException("This exception should never occur as a new coversation is created.");
         }
-        return (scrum.client.DataTransferObject) conversation.popNextData();
+        return (DataTransferObject) conversation.popNextData();
     }
 
     private void postChangeIfChanged(GwtConversation conversation, AEntity entity, HashMap<String, Object> properties, User user,

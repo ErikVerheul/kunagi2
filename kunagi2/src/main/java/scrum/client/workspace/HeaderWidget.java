@@ -26,7 +26,7 @@ import ilarkesto.gwt.client.TableBuilder;
 import ilarkesto.gwt.client.undo.UndoButtonWidget;
 import java.util.Collections;
 import java.util.List;
-import scrum.client.ApplicationInfo;
+import ilarkesto.gwt.client.ApplicationInfo;
 import scrum.client.ScrumScopeManager;
 import scrum.client.admin.LogoutAction;
 import scrum.client.common.AScrumAction;

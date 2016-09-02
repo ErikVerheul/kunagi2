@@ -14,6 +14,7 @@
  */
 package scrum.client;
 
+import ilarkesto.gwt.client.ApplicationInfo;
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;

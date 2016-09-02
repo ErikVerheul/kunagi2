@@ -20,7 +20,7 @@ import ilarkesto.gwt.server.AGwtConversation;
 import ilarkesto.logging.Log;
 import ilarkesto.persistence.AEntity;
 import java.util.HashMap;
-import scrum.client.DataTransferObject;
+import ilarkesto.gwt.client.DataTransferObject;
 import scrum.client.communication.Pinger;
 import scrum.server.admin.ProjectUserConfig;
 import scrum.server.admin.SystemConfig;

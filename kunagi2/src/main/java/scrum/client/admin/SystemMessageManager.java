@@ -14,11 +14,12 @@
  */
 package scrum.client.admin;
 
+import ilarkesto.gwt.client.SystemMessage;
 import static ilarkesto.core.logging.ClientLog.INFO;
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.gwt.client.editor.ADateAndTimeEditorModel;
 import ilarkesto.gwt.client.editor.ATextEditorModel;
-import scrum.client.DataTransferObject;
+import ilarkesto.gwt.client.DataTransferObject;
 import scrum.client.communication.ServerDataReceivedEvent;
 import scrum.client.communication.ServerDataReceivedHandler;
 import scrum.client.workspace.VisibleDataChangedEvent;

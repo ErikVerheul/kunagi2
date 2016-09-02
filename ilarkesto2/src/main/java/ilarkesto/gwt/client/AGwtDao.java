@@ -111,7 +111,7 @@ public abstract class AGwtDao extends AComponent {
      *
      * @param data
      */
-    public void handleDataFromServer(ADataTransferObject data) {
+    public void handleDataFromServer(DataTransferObject data) {
         if (data.entityIdBase != null) {
             entityIdBase = data.entityIdBase;
             DEBUG("entityIdBase received:", data.entityIdBase);

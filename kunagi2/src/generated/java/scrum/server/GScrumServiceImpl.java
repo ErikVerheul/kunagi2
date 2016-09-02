@@ -1,6 +1,7 @@
 // // ----------> GENERATED FILE - DON'T TOUCH! <----------
 package scrum.server;
 
+import ilarkesto.gwt.client.DataTransferObject;
 import ilarkesto.webapp.GwtConversationDoesNotExist;
 import java.util.HashMap;
 
@@ -17,7 +18,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
 
     public abstract void onTestLdap(GwtConversation conversation);
 
-    public abstract void onUpdateSystemMessage(GwtConversation conversation, scrum.client.admin.SystemMessage systemMessage);
+    public abstract void onUpdateSystemMessage(GwtConversation conversation, ilarkesto.gwt.client.SystemMessage systemMessage);
 
     public abstract void onRequestComments(GwtConversation conversation, String parentId);
 
@@ -80,7 +81,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
     public abstract void onSwitchToNextSprint(GwtConversation conversation);
 
     @Override
-    public scrum.client.DataTransferObject changePassword(int conversationNumber, String newPassword, String oldPassword) {
+    public DataTransferObject changePassword(int conversationNumber, String newPassword, String oldPassword) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -88,7 +89,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -101,12 +102,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "ChangePassword", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject logout(int conversationNumber) {
+    public DataTransferObject logout(int conversationNumber) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -114,7 +115,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -127,12 +128,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "Logout", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject resetPassword(int conversationNumber, String userId) {
+    public DataTransferObject resetPassword(int conversationNumber, String userId) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -140,7 +141,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -153,12 +154,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "ResetPassword", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject sendTestEmail(int conversationNumber) {
+    public DataTransferObject sendTestEmail(int conversationNumber) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -166,7 +167,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -179,12 +180,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "SendTestEmail", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject testLdap(int conversationNumber) {
+    public DataTransferObject testLdap(int conversationNumber) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -192,7 +193,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -205,12 +206,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "TestLdap", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject updateSystemMessage(int conversationNumber, scrum.client.admin.SystemMessage systemMessage) {
+    public DataTransferObject updateSystemMessage(int conversationNumber, ilarkesto.gwt.client.SystemMessage systemMessage) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -218,7 +219,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -231,12 +232,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "UpdateSystemMessage", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject requestComments(int conversationNumber, String parentId) {
+    public DataTransferObject requestComments(int conversationNumber, String parentId) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -244,7 +245,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -257,12 +258,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "RequestComments", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject requestForum(int conversationNumber, boolean all) {
+    public DataTransferObject requestForum(int conversationNumber, boolean all) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -270,7 +271,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -283,12 +284,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "RequestForum", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject ping(int conversationNumber) {
+    public DataTransferObject ping(int conversationNumber) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -296,7 +297,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -309,12 +310,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "Ping", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject touchLastActivity(int conversationNumber) {
+    public DataTransferObject touchLastActivity(int conversationNumber) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -322,7 +323,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -335,12 +336,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "TouchLastActivity", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject changeProperties(int conversationNumber, String entityId, HashMap properties) {
+    public DataTransferObject changeProperties(int conversationNumber, String entityId, HashMap properties) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -348,7 +349,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -361,12 +362,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "ChangeProperties", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject createEntity(int conversationNumber, String type, HashMap<String, Object> properties) {
+    public DataTransferObject createEntity(int conversationNumber, String type, HashMap<String, Object> properties) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -374,7 +375,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -387,12 +388,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "CreateEntity", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject deleteEntity(int conversationNumber, String entityId) {
+    public DataTransferObject deleteEntity(int conversationNumber, String entityId) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -400,7 +401,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -413,12 +414,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "DeleteEntity", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject requestEntity(int conversationNumber, String entityId) {
+    public DataTransferObject requestEntity(int conversationNumber, String entityId) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -426,7 +427,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -439,12 +440,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "RequestEntity", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject requestEntityByReference(int conversationNumber, String reference) {
+    public DataTransferObject requestEntityByReference(int conversationNumber, String reference) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -452,7 +453,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -465,12 +466,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "RequestEntityByReference", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject sleep(int conversationNumber, long millis) {
+    public DataTransferObject sleep(int conversationNumber, long millis) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -478,7 +479,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -491,12 +492,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "Sleep", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject activateRequirementEstimationVoting(int conversationNumber, String requirementId) {
+    public DataTransferObject activateRequirementEstimationVoting(int conversationNumber, String requirementId) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -504,7 +505,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -517,12 +518,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "ActivateRequirementEstimationVoting", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject requestRequirementEstimationVotes(int conversationNumber, String requirementId) {
+    public DataTransferObject requestRequirementEstimationVotes(int conversationNumber, String requirementId) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -530,7 +531,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -543,12 +544,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "RequestRequirementEstimationVotes", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject requestImpediments(int conversationNumber) {
+    public DataTransferObject requestImpediments(int conversationNumber) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -556,7 +557,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -569,12 +570,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "RequestImpediments", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject convertIssueToStory(int conversationNumber, String issueId) {
+    public DataTransferObject convertIssueToStory(int conversationNumber, String issueId) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -582,7 +583,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -595,12 +596,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "ConvertIssueToStory", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject requestAcceptedIssues(int conversationNumber) {
+    public DataTransferObject requestAcceptedIssues(int conversationNumber) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -608,7 +609,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -621,12 +622,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "RequestAcceptedIssues", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject requestClosedIssues(int conversationNumber) {
+    public DataTransferObject requestClosedIssues(int conversationNumber) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -634,7 +635,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -647,12 +648,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "RequestClosedIssues", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject requestReleaseIssues(int conversationNumber, String releaseId) {
+    public DataTransferObject requestReleaseIssues(int conversationNumber, String releaseId) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -660,7 +661,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -673,12 +674,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "RequestReleaseIssues", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject sendIssueReplyEmail(int conversationNumber, String issueId, String from, String to, String subject, String text) {
+    public DataTransferObject sendIssueReplyEmail(int conversationNumber, String issueId, String from, String to, String subject, String text) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -686,7 +687,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -699,12 +700,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "SendIssueReplyEmail", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject requestChanges(int conversationNumber, String parentId) {
+    public DataTransferObject requestChanges(int conversationNumber, String parentId) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -712,7 +713,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -725,12 +726,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "RequestChanges", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject closeProject(int conversationNumber) {
+    public DataTransferObject closeProject(int conversationNumber) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -738,7 +739,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -751,12 +752,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "CloseProject", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject createExampleProject(int conversationNumber) {
+    public DataTransferObject createExampleProject(int conversationNumber) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -764,7 +765,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -777,12 +778,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "CreateExampleProject", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject selectProject(int conversationNumber, String projectId) {
+    public DataTransferObject selectProject(int conversationNumber, String projectId) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -790,7 +791,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -803,12 +804,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "SelectProject", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject updateProjectHomepage(int conversationNumber) {
+    public DataTransferObject updateProjectHomepage(int conversationNumber) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -816,7 +817,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -829,12 +830,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "UpdateProjectHomepage", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject publishRelease(int conversationNumber, String releaseId) {
+    public DataTransferObject publishRelease(int conversationNumber, String releaseId) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -842,7 +843,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -855,12 +856,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "PublishRelease", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject requestRisks(int conversationNumber) {
+    public DataTransferObject requestRisks(int conversationNumber) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -868,7 +869,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -881,12 +882,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "RequestRisks", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject search(int conversationNumber, String text) {
+    public DataTransferObject search(int conversationNumber, String text) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -894,7 +895,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -907,12 +908,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "Search", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject kickStoryFromSprint(int conversationNumber, String storyId) {
+    public DataTransferObject kickStoryFromSprint(int conversationNumber, String storyId) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -920,7 +921,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -933,12 +934,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "KickStoryFromSprint", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject pullStoryToSprint(int conversationNumber, String storyId) {
+    public DataTransferObject pullStoryToSprint(int conversationNumber, String storyId) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -946,7 +947,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -959,12 +960,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "PullStoryToSprint", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject requestHistory(int conversationNumber) {
+    public DataTransferObject requestHistory(int conversationNumber) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -972,7 +973,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -985,12 +986,12 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "RequestHistory", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 
     @Override
-    public scrum.client.DataTransferObject switchToNextSprint(int conversationNumber) {
+    public DataTransferObject switchToNextSprint(int conversationNumber) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;
@@ -998,7 +999,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
                 conversation = session.getGwtConversation(conversationNumber);
             } catch (GwtConversationDoesNotExist ex) {
                 LOG.info("Getting conversation failed:", conversationNumber);
-                scrum.client.DataTransferObject dto = new scrum.client.DataTransferObject();
+                DataTransferObject dto = new DataTransferObject();
                 dto.addError(new ilarkesto.gwt.client.ErrorWrapper(ex));
                 return dto;
             }
@@ -1011,7 +1012,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
             } catch (Exception ex) {
                 handleServiceMethodException(conversationNumber, "SwitchToNextSprint", ex);
             }
-            return (scrum.client.DataTransferObject) conversation.popNextData();
+            return (DataTransferObject) conversation.popNextData();
         }
     }
 

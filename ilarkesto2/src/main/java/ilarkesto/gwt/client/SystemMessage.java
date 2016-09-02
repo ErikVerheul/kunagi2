@@ -12,7 +12,7 @@
  * You should have received a copy of the GNU General Public License along with this program. If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package scrum.client.admin;
+package ilarkesto.gwt.client;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 import ilarkesto.core.time.DateAndTime;

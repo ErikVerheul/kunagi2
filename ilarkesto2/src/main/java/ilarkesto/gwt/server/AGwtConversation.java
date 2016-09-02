@@ -21,7 +21,7 @@ import static ilarkesto.core.base.Utl.compare;
 import ilarkesto.core.time.DateAndTime;
 import static ilarkesto.core.time.DateAndTime.now;
 import ilarkesto.core.time.TimePeriod;
-import ilarkesto.gwt.client.ADataTransferObject;
+import ilarkesto.gwt.client.DataTransferObject;
 import ilarkesto.logging.Log;
 import ilarkesto.persistence.AEntity;
 import ilarkesto.persistence.TransactionService;
@@ -32,6 +32,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import static java.util.UUID.randomUUID;
+import static ilarkesto.core.base.Utl.compare;
 
 public abstract class AGwtConversation implements Comparable<AGwtConversation> {
 
@@ -43,7 +44,7 @@ public abstract class AGwtConversation implements Comparable<AGwtConversation> {
 	/**
 	 * Data that will be transferred to the client at the next request.
 	 */
-	private ADataTransferObject nextData;
+	private DataTransferObject nextData;
 	private final Object nextDataLock = new Object();
 	private final Map<AEntity, DateAndTime> remoteEntityModificationTimes = new HashMap<>();
 
@@ -51,7 +52,7 @@ public abstract class AGwtConversation implements Comparable<AGwtConversation> {
 	private final int number;
 	private DateAndTime lastTouched;
 
-	protected abstract ADataTransferObject createDataTransferObject();
+	protected abstract DataTransferObject createDataTransferObject();
 
 	public AGwtConversation(AWebSession session, int number) {
 		super();
@@ -138,18 +139,18 @@ public abstract class AGwtConversation implements Comparable<AGwtConversation> {
                 }
 	}
 
-	public final ADataTransferObject popNextData() {
+	public final DataTransferObject popNextData() {
 		if (nextData == null) {
                         return null;
                 }
 		synchronized (nextDataLock) {
-			ADataTransferObject ret = nextData;
+			DataTransferObject ret = nextData;
 			nextData = createDataTransferObject();
 			return ret;
 		}
 	}
 
-	public ADataTransferObject getNextData() {
+	public DataTransferObject getNextData() {
 		return nextData;
 	}
 

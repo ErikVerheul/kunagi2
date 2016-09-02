@@ -15,7 +15,7 @@
 package scrum.client.admin;
 
 import static ilarkesto.core.logging.ClientLog.INFO;
-import scrum.client.DataTransferObject;
+import ilarkesto.gwt.client.DataTransferObject;
 import scrum.client.ScrumScopeManager;
 import scrum.client.communication.ServerDataReceivedEvent;
 import scrum.client.communication.ServerDataReceivedHandler;

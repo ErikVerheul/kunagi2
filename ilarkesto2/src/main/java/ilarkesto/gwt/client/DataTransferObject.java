@@ -26,7 +26,7 @@ import java.util.Set;
 /**
  * This class is for transporting data from the scrum server to the GWT client.
  */
-public abstract class ADataTransferObject implements Serializable, IsSerializable {
+public class DataTransferObject implements Serializable, IsSerializable {
 
     /**
      *
@@ -37,6 +37,8 @@ public abstract class ADataTransferObject implements Serializable, IsSerializabl
      *
      */
     public Boolean developmentMode;
+    public ApplicationInfo applicationInfo;
+    public SystemMessage systemMessage;
     private List<ErrorWrapper> errors;
 
     /**

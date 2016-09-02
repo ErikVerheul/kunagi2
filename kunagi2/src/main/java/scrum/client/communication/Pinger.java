@@ -19,7 +19,7 @@ import static ilarkesto.core.logging.ClientLog.DEBUG;
 import static ilarkesto.core.logging.ClientLog.INFO;
 import ilarkesto.core.time.Tm;
 import java.util.LinkedList;
-import scrum.client.DataTransferObject;
+import ilarkesto.gwt.client.DataTransferObject;
 import scrum.client.core.ApplicationStartedEvent;
 import scrum.client.core.ApplicationStartedHandler;
 import scrum.client.project.Requirement;

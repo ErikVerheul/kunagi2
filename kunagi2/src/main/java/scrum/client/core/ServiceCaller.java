@@ -25,7 +25,7 @@ import ilarkesto.gwt.client.ErrorWrapper;
 import java.util.LinkedList;
 import java.util.List;
 import scrum.client.Dao;
-import scrum.client.DataTransferObject;
+import ilarkesto.gwt.client.DataTransferObject;
 import scrum.client.ScrumGwtApplication;
 import scrum.client.ScrumService;
 import scrum.client.ScrumServiceAsync;

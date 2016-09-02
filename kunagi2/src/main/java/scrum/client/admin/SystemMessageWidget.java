@@ -14,6 +14,7 @@
  */
 package scrum.client.admin;
 
+import ilarkesto.gwt.client.SystemMessage;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.SimplePanel;
