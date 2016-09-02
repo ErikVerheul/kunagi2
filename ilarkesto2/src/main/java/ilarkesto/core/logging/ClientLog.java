@@ -1,8 +1,9 @@
 package ilarkesto.core.logging;
 
 /**
- *
- *
+ * Debug methods supported client side.
+ * 
+ * Warning: all objects must have a toString method.
  */
 import com.allen_sauer.gwt.log.client.Log;
 
