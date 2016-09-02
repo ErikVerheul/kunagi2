@@ -39,6 +39,11 @@ http://maven.apache.org/maven-v4_0_0.xsd">
                 <scope>provided</scope>
             </dependency>
             <dependency>
+                <groupId>com.itextpdf</groupId>
+                <artifactId>itextpdf</artifactId>
+                <version>5.5.9</version>
+            </dependency>
+            <dependency>
                 <groupId>findbugs</groupId>
                 <artifactId>annotations</artifactId>
                 <version>1.0.0</version>
