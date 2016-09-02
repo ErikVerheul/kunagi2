@@ -26,16 +26,15 @@ import java.io.Serializable;
  */
 public class SystemMessage implements Serializable, IsSerializable {
 
-	private boolean active = false;
-
-	private String text;
-
-	private DateAndTime expires;
+    private boolean active = false;
+    private String text;
+    private DateAndTime expires;
 
     /**
      *
      */
-    public SystemMessage() {}
+    public SystemMessage() {
+    }
 
     /**
      *
@@ -44,18 +43,18 @@ public class SystemMessage implements Serializable, IsSerializable {
      * @param active
      */
     public SystemMessage(String text, DateAndTime expires, boolean active) {
-		this.text = text;
-		this.expires = expires;
-		this.active = active;
-	}
+        this.text = text;
+        this.expires = expires;
+        this.active = active;
+    }
 
     /**
      *
      * @param text
      */
     public SystemMessage(String text) {
-		this(text, null, true);
-	}
+        this(text, null, true);
+    }
 
     /**
      *
@@ -63,70 +62,70 @@ public class SystemMessage implements Serializable, IsSerializable {
      * @param expiresInMilliseconds
      */
     public SystemMessage(String text, long expiresInMilliseconds) {
-		this(text, new DateAndTime(Tm.getCurrentTimeMillis() + expiresInMilliseconds), true);
-	}
+        this(text, new DateAndTime(Tm.getCurrentTimeMillis() + expiresInMilliseconds), true);
+    }
 
     /**
      *
      * @return
      */
     public boolean isActive() {
-		return active;
-	}
+        return active;
+    }
 
     /**
      *
      * @param active
      */
     public void setActive(boolean active) {
-		this.active = active;
-	}
+        this.active = active;
+    }
 
     /**
      *
      * @return
      */
     public String getText() {
-		return text;
-	}
+        return text;
+    }
 
     /**
      *
      * @param text
      */
     public void setText(String text) {
-		this.text = text;
-	}
+        this.text = text;
+    }
 
     /**
      *
      * @return
      */
     public DateAndTime getExpires() {
-		return expires;
-	}
+        return expires;
+    }
 
     /**
      *
      * @return
      */
     public String getExpiresAsString() {
-		if (expires == null) {
-                    return null;
+        if (expires == null) {
+            return null;
         }
-		TimePeriod timePeriod = expires.getPeriodFromNow();
-		if (!timePeriod.isPositive()) {
-                    return null;
+        TimePeriod timePeriod = expires.getPeriodFromNow();
+        if (!timePeriod.isPositive()) {
+            return null;
         }
-		return "in " + timePeriod.toShortestString();
-	}
+        return "in " + timePeriod.toShortestString();
+    }
 
     /**
      *
      * @param expires
      */
     public void setExpires(DateAndTime expires) {
-		this.expires = expires;
-	}
+        this.expires = expires;
+    }
 
 }

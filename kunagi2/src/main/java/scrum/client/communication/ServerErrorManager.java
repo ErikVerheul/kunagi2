@@ -25,35 +25,35 @@ import java.util.List;
  */
 public class ServerErrorManager extends GServerErrorManager implements ServerDataReceivedHandler {
 
-	private List<ErrorWrapper> errors = new ArrayList<ErrorWrapper>();
+    private List<ErrorWrapper> errors = new ArrayList<>();
 
     /**
      *
      * @param event
      */
     @Override
-	public void onServerDataReceived(ServerDataReceivedEvent event) {
-		List<ErrorWrapper> serverErrors = event.getData().getErrors();
-		if (serverErrors != null) {
-			errors.addAll(serverErrors);
-			INFO("Errors received:", serverErrors);
-		}
-	}
+    public void onServerDataReceived(ServerDataReceivedEvent event) {
+        List<ErrorWrapper> serverErrors = event.getData().getErrors();
+        if (serverErrors != null) {
+            errors.addAll(serverErrors);
+            INFO("Errors received:", serverErrors);
+        }
+    }
 
     /**
      *
      * @return
      */
     public String popErrorsAsString() {
-		if (errors.isEmpty()) {
-                    return null;
+        if (errors.isEmpty()) {
+            return null;
         }
-		StringBuilder sb = new StringBuilder();
-		for (ErrorWrapper error : errors) {
-			sb.append(error).append("\n");
-		}
-		errors.clear();
-		return sb.toString();
-	}
+        StringBuilder sb = new StringBuilder();
+        for (ErrorWrapper error : errors) {
+            sb.append(error).append("\n");
+        }
+        errors.clear();
+        return sb.toString();
+    }
 
 }
