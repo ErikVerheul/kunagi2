@@ -20,6 +20,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.core.base.Str;
+import static ilarkesto.core.logging.ClientLog.DEBUG;
 import static ilarkesto.gwt.client.Gwt.createBugMarker;
 
 /**
@@ -84,7 +85,7 @@ public abstract class AWidget extends Composite implements Updatable {
         }
         initializing = true;
 
-        // GwtLogger.DEBUG("Initializing widget: " + toString());
+        DEBUG("Initializing widget: " + toString());
         Widget content = onInitialization();
         wrapper.setContent(content);
         wrapper.getElement().setId(getId());

@@ -25,6 +25,7 @@ import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.Widget;
 import ilarkesto.gwt.client.AAction;
+import ilarkesto.gwt.client.AGwtEntity;
 import ilarkesto.gwt.client.ButtonWidget;
 import ilarkesto.gwt.client.DropdownMenuButtonWidget;
 import ilarkesto.gwt.client.FloatingFlowPanel;
@@ -43,7 +44,6 @@ import scrum.client.common.ABlockWidget;
 import scrum.client.common.AScrumAction;
 import scrum.client.common.AScrumWidget;
 import scrum.client.common.BlockHeaderWidget;
-import scrum.client.common.BlockListWidget;
 import scrum.client.common.BlockWidgetFactory;
 import scrum.client.common.TooltipBuilder;
 import scrum.client.img.Img;
@@ -65,7 +65,6 @@ public class WidgetsTesterWidget extends AScrumWidget {
 		testPagePanel();
 		testFloatingFlowPanel();
 		testTextConverter();
-		testBlockList();
 		testFields();
 		testMultiSelection();
 		testNavigator();
@@ -156,14 +155,7 @@ public class WidgetsTesterWidget extends AScrumWidget {
 		addTest("TextConverter", new HTML(html.toString()));
 	}
 
-	private void testBlockList() {
-		final BlockListWidget<String> list = new BlockListWidget<String>(TestBlock.FACTORY);
-		list.setObjects("Element A", "Element B", "Element C", "Element D", "Element E");
-		list.update();
-		addTest("BlockList", list);
-	}
-
-	private static class TestBlock extends ABlockWidget<String> {
+	private static class TestBlock extends ABlockWidget<AGwtEntity> {
 
 		@Override
 		protected void onInitializationHeader(BlockHeaderWidget header) {
@@ -188,7 +180,7 @@ public class WidgetsTesterWidget extends AScrumWidget {
 			return content;
 		}
 
-		public static BlockWidgetFactory<String> FACTORY = new BlockWidgetFactory<String>() {
+		public static BlockWidgetFactory<AGwtEntity> FACTORY = new BlockWidgetFactory<AGwtEntity>() {
 
 			@Override
 			public TestBlock createBlock() {

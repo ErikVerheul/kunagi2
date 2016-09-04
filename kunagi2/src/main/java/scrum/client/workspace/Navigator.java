@@ -175,7 +175,7 @@ public class Navigator extends GNavigator implements BlockExpandedHandler, Appli
 				workspace.showEntityByReference(entityId);
 			} else {
 				if ("Forum".equals(historyToken.getPage())) {
-					ForumSupport entity = (ForumSupport) dao.getEntity(entityId);
+					AGwtEntity entity = (AGwtEntity) dao.getEntity(entityId);
 					workspace.showForum(entity);
 				} else {
 					workspace.showEntityById(entityId);

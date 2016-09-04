@@ -43,6 +43,7 @@ public abstract class AWebSession implements Comparable<AWebSession> {
 
 	public AWebSession(Context parentContext, HttpServletRequest initialRequest) {
 		this.initialRemoteHost = initialRequest == null ? "localhost" : initialRequest.getRemoteHost();
+                LOG.info("AWebSession: initialRemoteHost is set to ", initialRemoteHost);
 
 		sessionStartedTime = now();
 

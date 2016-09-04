@@ -30,9 +30,9 @@ import scrum.server.WebSession;
  */
 public class StartServlet extends AKunagiServlet {
 
-	private static final Log log = Log.get(StartServlet.class);
+    private static final Log LOG = Log.get(StartServlet.class);
 
-	private static boolean first = true;
+    private static boolean first = true;
 
     /**
      *
@@ -40,58 +40,58 @@ public class StartServlet extends AKunagiServlet {
      * @throws IOException
      */
     @Override
-	protected void onRequest(RequestWrapper<WebSession> req) throws IOException {
+    protected void onRequest(RequestWrapper<WebSession> req) throws IOException {
 
-		if (first) {
-			first = false;
-			String requestUrl = req.getUri();
-			requestUrl = StrExtend.removeSuffix(requestUrl, "index.html");
-			if (!systemConfig.isUrlSet()) {
-                            systemConfig.setUrl(requestUrl);
+        if (first) {
+            first = false;
+            String requestUrl = req.getUri();
+            requestUrl = StrExtend.removeSuffix(requestUrl, "index.html");
+            if (!systemConfig.isUrlSet()) {
+                systemConfig.setUrl(requestUrl);
             }
-		}
-
-		if (req.getSession().getUser() == null) {
-			redirectToLogin(req);
-			return;
-		}
-
-		String charset = IO.UTF_8;
-		req.setContentTypeHtml();
-
-		HtmlRenderer html = new HtmlRenderer(req.getWriter(), charset);
-		html.startHTMLstandard();
-
-		String title = "Kunagi2";
-		if (config.isShowRelease()) {
-                    title += " " + applicationInfo.getRelease();
         }
-                if (systemConfig.isInstanceNameSet()) {
-                    title += " @ " + systemConfig.getInstanceName();
+
+        if (req.getSession().getUser() == null) {
+            redirectToLogin(req);
+            return;
         }
-		html.startHEAD(title, "EN");
-		html.META("X-UA-Compatible", "IE=edge");
-		html.LINKfavicon();
-		html.SCRIPTjavascript("scrum.Kunagi2/scrum.Kunagi2.nocache.js", null);
-		html.SCRIPTjavascript("codemirror/js/codemirror.js", null);
-		html.endHEAD();
 
-		html.startBODY();
-		html.comment(applicationInfo.toString());
-                String analyticsId = systemConfig.getGoogleAnalyticsId();
-                if (analyticsId != null) {
-                    html.googleAnalytics(analyticsId);
+        String charset = IO.UTF_8;
+        req.setContentTypeHtml();
+
+        HtmlRenderer html = new HtmlRenderer(req.getWriter(), charset);
+        html.startHTMLstandard();
+
+        String title = "Kunagi2";
+        if (config.isShowRelease()) {
+            title += " " + applicationInfo.getRelease();
         }
-		html.endBODY();
+        if (systemConfig.isInstanceNameSet()) {
+            title += " @ " + systemConfig.getInstanceName();
+        }
+        html.startHEAD(title, "EN");
+        html.META("X-UA-Compatible", "IE=edge");
+        html.LINKfavicon();
+        html.SCRIPTjavascript("scrum.Kunagi2/scrum.Kunagi2.nocache.js", null);
+        html.SCRIPTjavascript("codemirror/js/codemirror.js", null);
+        html.endHEAD();
 
-		html.endHTML();
-		html.flush();
-	}
+        html.startBODY();
+        html.comment(applicationInfo.toString());
+        String analyticsId = systemConfig.getGoogleAnalyticsId();
+        if (analyticsId != null) {
+            html.googleAnalytics(analyticsId);
+        }
+        html.endBODY();
 
-	@Override
-	protected void onPreInit(ServletConfig servletConfig) {
-		super.onPreInit(servletConfig);
-		ScrumWebApplication.get(servletConfig);
-	}
+        html.endHTML();
+        html.flush();
+    }
+
+    @Override
+    protected void onPreInit(ServletConfig servletConfig) {
+        super.onPreInit(servletConfig);
+        ScrumWebApplication.get(servletConfig);
+    }
 
 }

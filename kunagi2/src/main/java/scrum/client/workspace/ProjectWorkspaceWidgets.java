@@ -78,7 +78,7 @@ import scrum.client.tasks.WhiteboardWidget;
  */
 public class ProjectWorkspaceWidgets extends GProjectWorkspaceWidgets implements ProjectDataReceivedHandler {
 
-    private ProjectSidebarWidget sidebar = new ProjectSidebarWidget();
+    private final ProjectSidebarWidget sidebar = new ProjectSidebarWidget();
     private DashboardWidget dashboard;
     private ProjectOverviewWidget projectOverview;
     private WhiteboardWidget whiteboard;
@@ -104,7 +104,7 @@ public class ProjectWorkspaceWidgets extends GProjectWorkspaceWidgets implements
     private SystemMessageManagerWidget systemMessageManager;
     private UserListWidget userList;
 
-    private PageSet pages = new PageSet();
+    private final PageSet pages = new PageSet();
 
     private boolean searchResultsAdded;
 
@@ -179,13 +179,13 @@ public class ProjectWorkspaceWidgets extends GProjectWorkspaceWidgets implements
             pages.addPage(new Page(userList, "User Management", administrationKey));
         }
 
-        ScrumNavigatorWidget navigator = getSidebar().getNavigator();
-        navigator.addItem("Dashboard", dashboard);
-        addNavigatorGroup(navigator, sprintGroupKey, "Sprint");
-        addNavigatorGroup(navigator, productGroupKey, "Product");
-        addNavigatorGroup(navigator, projectGroupKey, "Project");
-        addNavigatorGroup(navigator, collaborationGroupKey, "Collaboration");
-        addNavigatorGroup(navigator, administrationKey, "Administration");
+        ScrumNavigatorWidget navigatorLocal = getSidebar().getNavigator();
+        navigatorLocal.addItem("Dashboard", dashboard);
+        addNavigatorGroup(navigatorLocal, sprintGroupKey, "Sprint");
+        addNavigatorGroup(navigatorLocal, productGroupKey, "Product");
+        addNavigatorGroup(navigatorLocal, projectGroupKey, "Project");
+        addNavigatorGroup(navigatorLocal, collaborationGroupKey, "Collaboration");
+        addNavigatorGroup(navigatorLocal, administrationKey, "Administration");
     }
 
     private void addNavigatorGroup(ScrumNavigatorWidget navigator, String groupKey, String label) {
@@ -622,7 +622,7 @@ public class ProjectWorkspaceWidgets extends GProjectWorkspaceWidgets implements
      *
      * @param entity
      */
-    public void showForum(ForumSupport entity) {
+    public void showForum(AGwtEntity entity) {
         select(forum);
         forum.select(entity);
     }

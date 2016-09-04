@@ -38,274 +38,269 @@ import javax.servlet.http.HttpSession;
 
 public class RequestWrapper<S extends AWebSession> {
 
-	private static final Log log = Log.get(RequestWrapper.class);
+    private static final Log LOG = Log.get(RequestWrapper.class);
 
-	private final HttpServletRequest request;
-	private final HttpServletResponse response;
-	private S session;
-	private boolean responseServed;
+    private final HttpServletRequest request;
+    private final HttpServletResponse response;
+    private S session;
+    private boolean responseServed;
 
-	public RequestWrapper(HttpServletRequest request, HttpServletResponse response) {
-		super();
-		this.request = request;
-		this.response = response;
-	}
+    public RequestWrapper(HttpServletRequest request, HttpServletResponse response) {
+        super();
+        this.request = request;
+        this.response = response;
+    }
 
-	// --- response helpers ---
+    // --- response helpers ---
+    public void serve(File file) {
+        serve(file, true, true);
+    }
 
-	public void serve(File file) {
-		serve(file, true, true);
-	}
+    public void serve(File file, boolean setFilename, boolean enableCaching) {
+        serveFile(file, request, response, setFilename, enableCaching);
+        responseServed = true;
+    }
 
-	public void serve(File file, boolean setFilename, boolean enableCaching) {
-		serveFile(file, request, response, setFilename, enableCaching);
-		responseServed = true;
-	}
+    public void write(PdfBuilder pdf) {
+        try {
+            pdf.write(response.getOutputStream());
+        } catch (IOException ex) {
+            throw new RuntimeException("Writing PDF failed", ex);
+        }
+        responseServed = true;
+    }
 
-	public void write(PdfBuilder pdf) {
-		try {
-			pdf.write(response.getOutputStream());
-		} catch (IOException ex) {
-			throw new RuntimeException("Writing PDF failed", ex);
-		}
-		responseServed = true;
-	}
+    public void write(JsonObject json) {
+        if (isDevelopmentMode()) {
+            write(json.toFormatedString());
+        } else {
+            write(json.toString());
+        }
+        responseServed = true;
+    }
 
-	public void write(JsonObject json) {
-		if (isDevelopmentMode()) {
-			write(json.toFormatedString());
-		} else {
-			write(json.toString());
-		}
-		responseServed = true;
-	}
+    public void write(byte[] data) {
+        try {
+            getOutputStream().write(data);
+        } catch (IOException ex) {
+            throw new RuntimeException("Writing response data failed", ex);
+        }
+        responseServed = true;
+    }
 
-	public void write(byte[] data) {
-		try {
-			getOutputStream().write(data);
-		} catch (IOException ex) {
-			throw new RuntimeException("Writing response data failed", ex);
-		}
-		responseServed = true;
-	}
+    public void write(String s) {
+        try {
+            response.getWriter().print(s);
+        } catch (IOException ex) {
+            throw new RuntimeException("Writing response failed: " + this, ex);
+        }
+        responseServed = true;
+    }
 
-	public void write(String s) {
-		try {
-			response.getWriter().print(s);
-		} catch (IOException ex) {
-			throw new RuntimeException("Writing response failed: " + this, ex);
-		}
-		responseServed = true;
-	}
+    public void setFilename(String filename) {
+        Servlet.setFilename(filename, response);
+    }
 
-	public void setFilename(String filename) {
-		Servlet.setFilename(filename, response);
-	}
+    public void setContentTypeRss() {
+        setContentType("application/rss+xml");
+    }
 
-	public void setContentTypeRss() {
-		setContentType("application/rss+xml");
-	}
+    public void setContentTypeCss() {
+        setContentType("text/css");
+    }
 
-	public void setContentTypeCss() {
-		setContentType("text/css");
-	}
+    public void setContentTypeHtml() {
+        setContentType("text/html");
+    }
 
-	public void setContentTypeHtml() {
-		setContentType("text/html");
-	}
+    public void setContentTypePdf() {
+        setContentType("application/pdf");
+    }
 
-	public void setContentTypePdf() {
-		setContentType("application/pdf");
-	}
+    public void setCookie(String name, String value, int maxAgeInSeconds) {
+        Servlet.setCookie(response, name, value, maxAgeInSeconds);
+    }
 
-	public void setCookie(String name, String value, int maxAgeInSeconds) {
-		Servlet.setCookie(response, name, value, maxAgeInSeconds);
-	}
+    public void setContentType(String type) {
+        response.setContentType(type);
+    }
 
-	public void setContentType(String type) {
-		response.setContentType(type);
-	}
+    public void sendRedirect(String url) {
+        try {
+            response.sendRedirect(url);
+        } catch (IOException ex) {
+            throw new RuntimeException("Redirecting failed", ex);
+        }
+        responseServed = true;
+    }
 
-	public void sendRedirect(String url) {
-		try {
-			response.sendRedirect(url);
-		} catch (IOException ex) {
-			throw new RuntimeException("Redirecting failed", ex);
-		}
-		responseServed = true;
-	}
+    public void sendErrorForbidden() {
+        sendError(SC_FORBIDDEN, null);
+    }
 
-	public void sendErrorForbidden() {
-		sendError(SC_FORBIDDEN, null);
-	}
+    public void sendErrorNotFound() {
+        sendError(SC_NOT_FOUND, null);
+    }
 
-	public void sendErrorNotFound() {
-		sendError(SC_NOT_FOUND, null);
-	}
+    public void sendErrorNoContent() {
+        sendError(SC_NO_CONTENT, null);
+    }
 
-	public void sendErrorNoContent() {
-		sendError(SC_NO_CONTENT, null);
-	}
+    public void sendErrorServiceUnavailable(String message) {
+        sendError(SC_SERVICE_UNAVAILABLE, message);
+    }
 
-	public void sendErrorServiceUnavailable(String message) {
-		sendError(SC_SERVICE_UNAVAILABLE, message);
-	}
+    public void sendErrorInternal(String message) {
+        sendError(SC_INTERNAL_SERVER_ERROR, message);
+    }
 
-	public void sendErrorInternal(String message) {
-		sendError(SC_INTERNAL_SERVER_ERROR, message);
-	}
+    private void sendError(int errorCode, String message) {
+        try {
+            if (isBlank(message)) {
+                response.sendError(errorCode);
+            } else {
+                response.sendError(errorCode, message);
+            }
+        } catch (IOException ex) {
+            LOG.info("Sending error failed:", getUri(), ex);
+        }
+        responseServed = true;
+    }
 
-	private void sendError(int errorCode, String message) {
-		try {
-			if (isBlank(message)) {
-				response.sendError(errorCode);
-			} else {
-				response.sendError(errorCode, message);
-			}
-		} catch (IOException ex) {
-			log.info("Sending error failed:", getUri(), ex);
-		}
-		responseServed = true;
-	}
+    public void preventCaching() {
+        Servlet.preventCaching(response);
+    }
 
-	public void preventCaching() {
-		Servlet.preventCaching(response);
-	}
+    // --- request helpers ---
+    public void setRequestEncoding(String charset) {
+        try {
+            request.setCharacterEncoding(charset);
+        } catch (UnsupportedEncodingException ex) {
+            throw new RuntimeException("Setting request character encoding failed: " + charset, ex);
+        }
+    }
 
-	// --- request helpers ---
+    public String getCookie(String name) {
+        return getCookieValue(request, name);
+    }
 
-	public void setRequestEncoding(String charset) {
-		try {
-			request.setCharacterEncoding(charset);
-		} catch (UnsupportedEncodingException ex) {
-			throw new RuntimeException("Setting request character encoding failed: " + charset, ex);
-		}
-	}
+    public JsonObject readContentToJson() {
+        String s = readContentToString();
+        if (isBlank(s)) {
+            throw new RuntimeException("Illegal request. Missing JSON content.");
+        }
+        return new JsonObject(s);
+    }
 
-	public String getCookie(String name) {
-		return getCookieValue(request, name);
-	}
+    public String readContentToString() {
+        return Servlet.readContentToString(request);
+    }
 
-	public JsonObject readContentToJson() {
-		String s = readContentToString();
-		if (isBlank(s)) {
-                        throw new RuntimeException("Illegal request. Missing JSON content.");
-                }
-		return new JsonObject(s);
-	}
+    public String getUri() {
+        return request.getRequestURI();
+    }
 
-	public String readContentToString() {
-		return Servlet.readContentToString(request);
-	}
+    public String getUriWithoutContext() {
+        return Servlet.getUriWithoutContext(request);
+    }
 
-	public String getUri() {
-		return request.getRequestURI();
-	}
+    public String getUrl() {
+        return request.getRequestURL().toString();
+    }
 
-	public String getUriWithoutContext() {
-		return Servlet.getUriWithoutContext(request);
-	}
+    public String getBaseUrl() {
+        return Servlet.getBaseUrl(request);
+    }
 
-	public String getUrl() {
-		return request.getRequestURL().toString();
-	}
+    public String getRemoteHost() {
+        return request.getRemoteHost();
+    }
 
-	public String getBaseUrl() {
-		return Servlet.getBaseUrl(request);
-	}
+    // --- request parameters ---
+    public Date getDate(String name) {
+        String value = get(name);
+        return value == null ? null : new Date(value);
+    }
 
-	public String getRemoteHost() {
-		return request.getRemoteHost();
-	}
+    public String get(String name) {
+        return request.getParameter(name);
+    }
 
-	// --- request parameters ---
+    public String get(String name, String defaultValue) {
+        String value = get(name);
+        return value == null ? defaultValue : value;
+    }
 
-	public Date getDate(String name) {
-		String value = get(name);
-		return value == null ? null : new Date(value);
-	}
+    public String getMandatory(String name) {
+        String value = get(name);
+        if (value == null) {
+            throw new RuntimeException("Missing mandatory request parameter: " + name);
+        }
+        return value;
+    }
 
-	public String get(String name) {
-		return request.getParameter(name);
-	}
+    // --- session attributes ---
+    public String getSessionAttributeAsString(String name) {
+        return (String) getSessionAttribute(name);
+    }
 
-	public String get(String name, String defaultValue) {
-		String value = get(name);
-		return value == null ? defaultValue : value;
-	}
+    public Object getSessionAttribute(String name) {
+        return getHttpSession().getAttribute(name);
+    }
 
-	public String getMandatory(String name) {
-		String value = get(name);
-		if (value == null) {
-                        throw new RuntimeException("Missing mandatory request parameter: " + name);
-                }
-		return value;
-	}
+    public void setSessionAttribute(String name, Object value) {
+        getHttpSession().setAttribute(name, value);
+    }
 
-	// --- session attributes ---
+    // --- ---
+    public boolean isResponseServed() {
+        return responseServed;
+    }
 
-	public String getSessionAttributeAsString(String name) {
-		return (String) getSessionAttribute(name);
-	}
+    public void setResponseServed(boolean responseServed) {
+        this.responseServed = responseServed;
+    }
 
-	public Object getSessionAttribute(String name) {
-		return getHttpSession().getAttribute(name);
-	}
+    public OutputStream getOutputStream() {
+        responseServed = true;
+        try {
+            return response.getOutputStream();
+        } catch (IOException ex) {
+            throw new RuntimeException("Writing response failed", ex);
+        }
+    }
 
-	public void setSessionAttribute(String name, Object value) {
-		getHttpSession().setAttribute(name, value);
-	}
+    public PrintWriter getWriter() {
+        responseServed = true;
+        try {
+            return response.getWriter();
+        } catch (IOException ex) {
+            throw new RuntimeException("Writing response failed", ex);
+        }
+    }
 
-	// --- ---
+    public HttpSession getHttpSession() {
+        return request.getSession();
+    }
 
-	public boolean isResponseServed() {
-		return responseServed;
-	}
+    public S getSession() {
+        if (session == null) {
+            session = (S) AWebApplication.get().getWebSession(request);
+        }
+        return session;
+    }
 
-	public void setResponseServed(boolean responseServed) {
-		this.responseServed = responseServed;
-	}
+    public HttpServletRequest getHttpRequest() {
+        return request;
+    }
 
-	public OutputStream getOutputStream() {
-		responseServed = true;
-		try {
-			return response.getOutputStream();
-		} catch (IOException ex) {
-			throw new RuntimeException("Writing response failed", ex);
-		}
-	}
+    public HttpServletResponse getHttpResponse() {
+        return response;
+    }
 
-	public PrintWriter getWriter() {
-		responseServed = true;
-		try {
-			return response.getWriter();
-		} catch (IOException ex) {
-			throw new RuntimeException("Writing response failed", ex);
-		}
-	}
-
-	public HttpSession getHttpSession() {
-		return request.getSession();
-	}
-
-	public S getSession() {
-		if (session == null) {
-                        session = (S) AWebApplication.get().getWebSession(request);
-                }
-		return session;
-	}
-
-	public HttpServletRequest getHttpRequest() {
-		return request;
-	}
-
-	public HttpServletResponse getHttpResponse() {
-		return response;
-	}
-
-	@Override
-	public String toString() {
-		return getUriWithoutContext();
-	}
+    @Override
+    public String toString() {
+        return getUriWithoutContext();
+    }
 
 }

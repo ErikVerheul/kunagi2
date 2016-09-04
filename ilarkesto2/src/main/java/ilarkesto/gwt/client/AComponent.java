@@ -22,46 +22,49 @@ import static ilarkesto.gwt.client.Gwt.getSimpleName;
  */
 public class AComponent {
 
-	private boolean initialized;
-	private boolean destroyed;
+    private boolean initialized;
+    private boolean destroyed;
 
     /**
      *
      */
-    public AComponent() {}
+    public AComponent() {
+    }
 
     /**
      *
      */
-    protected void onInitialization() {}
+    protected void onInitialization() {
+    }
 
     /**
      *
      */
-    protected void onDestroy() {}
+    protected void onDestroy() {
+    }
 
     /**
      *
      */
     public final void initialize() {
-		assert !initialized;
-		onInitialization();
-		initialized = true;
-	}
+        assert !initialized;
+        onInitialization();
+        initialized = true;
+    }
 
     /**
      *
      */
     public final void destroy() {
-		assert !destroyed;
-		assert initialized;
-		onDestroy();
-		destroyed = true;
-	}
+        assert !destroyed;
+        assert initialized;
+        onDestroy();
+        destroyed = true;
+    }
 
-	@Override
-	public String toString() {
-		return getSimpleName(getClass());
-	}
+    @Override
+    public String toString() {
+        return getSimpleName(getClass());
+    }
 
 }

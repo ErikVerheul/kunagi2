@@ -34,15 +34,10 @@ public class User extends GUser implements LabelSupport, Comparable<User> {
     /**
      *
      */
-    public static final String INITIAL_NAME = "newuser";
-
-    /**
-     *
-     */
     public User() {
         setName(getNextNewUserName());
     }
-
+    
     /**
      *
      * @param data

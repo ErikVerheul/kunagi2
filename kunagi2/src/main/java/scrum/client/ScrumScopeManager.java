@@ -147,7 +147,7 @@ public class ScrumScopeManager {
         Scope.get().getComponent(Ui.class).lock("Closing project...");
         new CloseProjectServiceCall().execute();
         appScope.getComponent(Dao.class).clearProjectEntities();
-        ObjectMappedFlowPanel.objectHeights.clear();
+        ObjectMappedFlowPanel.OBJECTHEIGHTS.clear();
         projectScope = null;
         scopeManager.setScope(userScope);
     }

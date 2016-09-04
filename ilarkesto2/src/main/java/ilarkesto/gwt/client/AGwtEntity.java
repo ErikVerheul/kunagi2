@@ -27,9 +27,9 @@ import java.util.HashMap;
  */
 public abstract class AGwtEntity {
 
-	private String id;
-	private boolean inCreation;
-	private transient long localModificationTime = -7;
+    private String id;
+    private boolean inCreation;
+    private transient long localModificationTime = -7;
 
     /**
      *
@@ -47,50 +47,50 @@ public abstract class AGwtEntity {
      *
      */
     public AGwtEntity() {
-		setId();
-		inCreation = true;
-		updateLocalModificationTime();
-	}
+        setId();
+        inCreation = true;
+        updateLocalModificationTime();
+    }
 
     /**
      *
      * @param data
      */
     public AGwtEntity(HashMap<String, Object> data) {
-		this.id = (String) data.get("id");
-		updateLocalModificationTime();
-	}
-        
-        private void setId() {
-                this.id = getDao().getNewEntityId();
-        }
+        this.id = (String) data.get("id");
+        updateLocalModificationTime();
+    }
+
+    private void setId() {
+        this.id = getDao().getNewEntityId();
+    }
 
     /**
      *
      * @return
      */
     public long getLocalModificationTime() {
-		return localModificationTime;
-	}
+        return localModificationTime;
+    }
 
     /**
      *
      */
     public final void updateLocalModificationTime() {
-		localModificationTime = getCurrentTimeMillis();
-	}
+        localModificationTime = getCurrentTimeMillis();
+    }
 
     /**
      *
      * @return
      */
     public final String getId() {
-		return id;
-	}
+        return id;
+    }
 
-	void setCreated() {
-		this.inCreation = false;
-	}
+    void setCreated() {
+        this.inCreation = false;
+    }
 
     /**
      *
@@ -98,39 +98,39 @@ public abstract class AGwtEntity {
      * @param value
      */
     protected final void propertyChanged(String property, Object value) {
-		if (inCreation) {
-                        return;
-                }
-		if (value instanceof Date) {
-                        value = value.toString();
-                }
-		if (value instanceof Time) {
-                        value = value.toString();
-                }
-		if (value instanceof DateAndTime) {
-                        value = value.toString();
-                }
-		getDao().entityPropertyChanged(this, property, value);
-		updateLocalModificationTime();
-	}
+        if (inCreation) {
+            return;
+        }
+        if (value instanceof Date) {
+            value = value.toString();
+        }
+        if (value instanceof Time) {
+            value = value.toString();
+        }
+        if (value instanceof DateAndTime) {
+            value = value.toString();
+        }
+        getDao().entityPropertyChanged(this, property, value);
+        updateLocalModificationTime();
+    }
 
     /**
      *
      * @param properties
      */
     public void storeProperties(HashMap<String, Object> properties) {
-		properties.put("id", getId());
-	}
+        properties.put("id", getId());
+    }
 
     /**
      *
      * @return
      */
     public HashMap<String, Object> createPropertiesMap() {
-		HashMap<String, Object> properties = new HashMap<String, Object>();
-		storeProperties(properties);
-		return properties;
-	}
+        HashMap<String, Object> properties = new HashMap<>();
+        storeProperties(properties);
+        return properties;
+    }
 
     /**
      *
@@ -138,45 +138,43 @@ public abstract class AGwtEntity {
      * @return
      */
     public boolean matchesKey(String key) {
-		return false;
-	}
+        return false;
+    }
 
-	@Override
-	public int hashCode() {
-		return id.hashCode();
-	}
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (!(obj instanceof AGwtEntity)) {
-                        return false;
-                }
-		if (this == obj) {
-                        return true;
-                }
-		return id.equals(((AGwtEntity) obj).id);
-	}
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof AGwtEntity)) {
+            return false;
+        }
+        if (this == obj) {
+            return true;
+        }
+        return id.equals(((AGwtEntity) obj).id);
+    }
 
-	@Override
-	public String toString() {
-		return getId();
-	}
+    @Override
+    public String toString() {
+        return getId();
+    }
 
-	// --- helper ---
-
+    // --- helper ---
     /**
      *
      * @param object
      * @param key
      * @return
      */
-    
-	protected static boolean matchesKey(Object object, String key) {
-		if (object == null) {
-                        return false;
-                }
-		return object.toString().toLowerCase().contains(key);
-	}
+    protected static boolean matchesKey(Object object, String key) {
+        if (object == null) {
+            return false;
+        }
+        return object.toString().toLowerCase().contains(key);
+    }
 
     /**
      *
@@ -184,8 +182,8 @@ public abstract class AGwtEntity {
      * @return
      */
     protected final String toString(Integer value) {
-		return value == null ? null : value.toString();
-	}
+        return value == null ? null : value.toString();
+    }
 
     /**
      *
@@ -193,8 +191,8 @@ public abstract class AGwtEntity {
      * @return
      */
     protected final String toString(Boolean value) {
-		return value == null ? null : value.toString();
-	}
+        return value == null ? null : value.toString();
+    }
 
     /**
      *
@@ -202,16 +200,16 @@ public abstract class AGwtEntity {
      * @param oldValue
      */
     protected void addUndo(AEditorModel editorModel, Object oldValue) {
-		Gwt.getUndoManager().add(new EditorModelUndo(editorModel, oldValue));
-	}
+        Gwt.getUndoManager().add(new EditorModelUndo(editorModel, oldValue));
+    }
 
     /**
      *
      */
     protected class EditorModelUndo extends AUndoOperation {
 
-		private final AEditorModel editorModel;
-		private final Object oldValue;
+        private final AEditorModel editorModel;
+        private final Object oldValue;
 
         /**
          *
@@ -219,28 +217,28 @@ public abstract class AGwtEntity {
          * @param oldValue
          */
         public EditorModelUndo(AEditorModel editorModel, Object oldValue) {
-			super();
-			this.editorModel = editorModel;
-			this.oldValue = oldValue;
-		}
+            super();
+            this.editorModel = editorModel;
+            this.oldValue = oldValue;
+        }
 
         /**
          *
          * @return
          */
         @Override
-		public String getLabel() {
-			return "Undo Change on " + AGwtEntity.this.toString();
-		}
+        public String getLabel() {
+            return "Undo Change on " + AGwtEntity.this.toString();
+        }
 
         /**
          *
          */
         @Override
-		protected void onUndo() {
-			editorModel.setValue(oldValue);
-		}
+        protected void onUndo() {
+            editorModel.setValue(oldValue);
+        }
 
-	}
-        
- }
+    }
+
+}

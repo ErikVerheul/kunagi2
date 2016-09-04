@@ -42,195 +42,194 @@ public abstract class AScrumGwtEntity extends AGwtEntity implements ToHtmlSuppor
     /**
      *
      */
-    public AScrumGwtEntity() {}
+    public AScrumGwtEntity() {
+    }
 
     /**
      *
      * @return
      */
     public List<Comment> getComments() {
-		return getDao().getCommentsByParent(this);
-	}
+        return getDao().getCommentsByParent(this);
+    }
 
     /**
      *
      * @return
      */
     public Comment getLatestComment() {
-		Comment latest = null;
-		for (Comment comment : getComments()) {
-			if (latest == null || comment.getDateAndTime().isAfter(latest.getDateAndTime())) {
-                            latest = comment;
+        Comment latest = null;
+        for (Comment comment : getComments()) {
+            if (latest == null || comment.getDateAndTime().isAfter(latest.getDateAndTime())) {
+                latest = comment;
             }
-		}
-		return latest;
-	}
+        }
+        return latest;
+    }
 
     /**
      *
      * @return
      */
     public DateAndTime getLatestCommentDateAndTime() {
-		Comment latest = getLatestComment();
-		return latest == null ? null : latest.getDateAndTime();
-	}
+        Comment latest = getLatestComment();
+        return latest == null ? null : latest.getDateAndTime();
+    }
 
     /**
      *
      * @return
      */
     public List<Emoticon> getEmoticons() {
-		return getDao().getEmoticonsByParent(this);
-	}
+        return getDao().getEmoticonsByParent(this);
+    }
 
     /**
      *
      * @param emotion
      */
     public void setCurrentUserEmoticon(String emotion) {
-		updateLocalModificationTime();
-		boolean delete = Str.isBlank(emotion);
-		Emoticon emoticon = getCurrentUserEmoticon();
-		if (emoticon == null) {
-			if (!delete) {
-				emoticon = new Emoticon(this, emotion);
-				getDao().createEmoticon(emoticon);
-			}
-		} else {
-			if (delete) {
-				getDao().deleteEmoticon(emoticon);
-			} else {
-				emoticon.setEmotion(emotion);
-			}
-		}
-	}
+        updateLocalModificationTime();
+        boolean delete = Str.isBlank(emotion);
+        Emoticon emoticon = getCurrentUserEmoticon();
+        if (emoticon == null) {
+            if (!delete) {
+                emoticon = new Emoticon(this, emotion);
+                getDao().createEmoticon(emoticon);
+            }
+        } else if (delete) {
+            getDao().deleteEmoticon(emoticon);
+        } else {
+            emoticon.setEmotion(emotion);
+        }
+    }
 
     /**
      *
      * @return
      */
     public Emoticon getCurrentUserEmoticon() {
-		User currentUser = Scope.get().getComponent(Auth.class).getUser();
-		for (Emoticon emoticon : getEmoticons()) {
-			if (emoticon.isOwner(currentUser)) {
-                            return emoticon;
+        User currentUser = Scope.get().getComponent(Auth.class).getUser();
+        for (Emoticon emoticon : getEmoticons()) {
+            if (emoticon.isOwner(currentUser)) {
+                return emoticon;
             }
-		}
-		return null;
-	}
+        }
+        return null;
+    }
 
     /**
      *
      * @return
      */
     public AOptionEditorModel<String> getCurrentUserEmotionModel() {
-		return new AOptionEditorModel<String>() {
+        return new AOptionEditorModel<String>() {
 
-			@Override
-			public List<String> getOptions() {
-				List<String> options = new ArrayList<String>(Emoticon.EMOTIONS_LEGACY);
-				options.add(0, "");
-				return options;
-			}
-
-			@Override
-			public void setValue(String value) {
-				setCurrentUserEmoticon(value);
-			}
-
-			@Override
-			public String getValue() {
-				Emoticon emoticon = getCurrentUserEmoticon();
-				return emoticon == null ? null : emoticon.getEmotion();
-			}
-		};
-	}
-
-	@Override
-	public boolean matchesKey(String key) {
-		if (this instanceof ReferenceSupport) {
-                    if (matchesKey(((ReferenceSupport) this).getReference(), key)) {
-                        return true;
+            @Override
+            public List<String> getOptions() {
+                List<String> options = new ArrayList<>(Emoticon.EMOTIONS_LEGACY);
+                options.add(0, "");
+                return options;
             }
-		}
-		return super.matchesKey(key);
-	}
+
+            @Override
+            public void setValue(String value) {
+                setCurrentUserEmoticon(value);
+            }
+
+            @Override
+            public String getValue() {
+                Emoticon emoticon = getCurrentUserEmoticon();
+                return emoticon == null ? null : emoticon.getEmotion();
+            }
+        };
+    }
+
+    @Override
+    public boolean matchesKey(String key) {
+        if (this instanceof ReferenceSupport) {
+            if (matchesKey(((ReferenceSupport) this).getReference(), key)) {
+                return true;
+            }
+        }
+        return super.matchesKey(key);
+    }
 
     /**
      *
      * @param data
      */
     public AScrumGwtEntity(HashMap<String, Object> data) {
-		super(data);
-	}
+        super(data);
+    }
 
-	@Override
-	public String getHtmlLabel() {
-		StringBuilder sb = new StringBuilder();
-		if (this instanceof ReferenceSupport) {
-			sb.append("<span class='reference'>").append(((ReferenceSupport) this).getReference()).append("</span> ");
-		}
-		String label;
-		if (this instanceof ForumSupport) {
-			label = ((ForumSupport) this).getLabel();
-		} else {
-			label = toString();
-		}
-		sb.append(Gwt.escapeHtml(label));
-		return sb.toString();
-	}
+    @Override
+    public String getHtmlLabel() {
+        StringBuilder sb = new StringBuilder();
+        if (this instanceof ReferenceSupport) {
+            sb.append("<span class='reference'>").append(((ReferenceSupport) this).getReference()).append("</span> ");
+        }
+        String label;
+        if (this instanceof ForumSupport) {
+            label = ((ForumSupport) this).getLabel();
+        } else {
+            label = toString();
+        }
+        sb.append(Gwt.escapeHtml(label));
+        return sb.toString();
+    }
 
-	private transient AFieldModel<String> labelModel;
+    private transient AFieldModel<String> labelModel;
 
     /**
      *
      * @return
      */
     public AFieldModel<String> getLabelModel() {
-		if (labelModel == null) {
-			labelModel = new AFieldModel<String>() {
+        if (labelModel == null) {
+            labelModel = new AFieldModel<String>() {
 
-				@Override
-				public String getValue() {
-                                    if (AScrumGwtEntity.this instanceof LabelSupport) {
-                                        return ((LabelSupport) AScrumGwtEntity.this).getLabel();
+                @Override
+                public String getValue() {
+                    if (AScrumGwtEntity.this instanceof LabelSupport) {
+                        return ((LabelSupport) AScrumGwtEntity.this).getLabel();
                     }
-					return toString();
-				}
-			};
-		}
-		return labelModel;
-	}
+                    return toString();
+                }
+            };
+        }
+        return labelModel;
+    }
 
-	private transient AFieldModel<String> lastCommentAgoModel;
+    private transient AFieldModel<String> lastCommentAgoModel;
 
     /**
      *
      * @return
      */
-        public AFieldModel<String> getLastCommentAgoModel() {
-            if (lastCommentAgoModel == null) {
-                lastCommentAgoModel = new AFieldModel<String>() {
-                    
-                    @Override
-                    public String getValue() {
-                        Comment comment = (AScrumGwtEntity.this).getLatestComment();
-                        return comment != null ? comment.getDateAndTime().getPeriodToNow().toShortestString() + " ago by "
-						+ comment.getAuthorName() : null;
-			}
-		};
+    public AFieldModel<String> getLastCommentAgoModel() {
+        if (lastCommentAgoModel == null) {
+            lastCommentAgoModel = new AFieldModel<String>() {
+
+                @Override
+                public String getValue() {
+                    Comment comment = (AScrumGwtEntity.this).getLatestComment();
+                    return comment != null ? comment.getDateAndTime().getPeriodToNow().toShortestString() + " ago by "
+                            + comment.getAuthorName() : null;
+                }
+            };
         }
-		return lastCommentAgoModel;
-	}
+        return lastCommentAgoModel;
+    }
 
-	@Override
-	public String toHtml() {
-		return Gwt.escapeHtml(toString());
-	}
+    @Override
+    public String toHtml() {
+        return Gwt.escapeHtml(toString());
+    }
 
-	@Override
-	protected Dao getDao() {
-		return Dao.get();
-	}
+    @Override
+    protected Dao getDao() {
+        return Dao.get();
+    }
 
 }

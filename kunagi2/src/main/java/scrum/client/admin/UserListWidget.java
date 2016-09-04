@@ -31,22 +31,22 @@ public class UserListWidget extends AScrumWidget {
      */
     public BlockListWidget<User> list;
 
-	@Override
-	protected Widget onInitialization() {
-		list = new BlockListWidget<User>(UserBlock.FACTORY);
-		list.setAutoSorter(User.LAST_LOGIN_COMPARATOR);
+    @Override
+    protected Widget onInitialization() {
+        list = new BlockListWidget<>(UserBlock.FACTORY);
+        list.setAutoSorter(User.LAST_LOGIN_COMPARATOR);
 
-		PagePanel page = new PagePanel();
-		page.addHeader("Users", new ButtonWidget(new CreateUserAction()));
-		page.addSection(list);
-		return page;
-	}
+        PagePanel page = new PagePanel();
+        page.addHeader("Users", new ButtonWidget(new CreateUserAction()));
+        page.addSection(list);
+        return page;
+    }
 
-	@Override
-	protected void onUpdate() {
-		list.setObjects(getDao().getUsers());
-		super.onUpdate();
-	}
+    @Override
+    protected void onUpdate() {
+        list.setObjects(getDao().getUsers());
+        super.onUpdate();
+    }
 
     /**
      *
@@ -54,10 +54,12 @@ public class UserListWidget extends AScrumWidget {
      * @return
      */
     public boolean select(User user) {
-		if (!list.contains(user)) {
-                    update();
-        }
-		return list.showObject(user);
-	}
+// Remove error prone test if user exists; the test is not needed        
+//        if (!list.contains(user)) {
+//            update();
+//        }
+        update();
+        return list.showObject(user);
+    }
 
 }

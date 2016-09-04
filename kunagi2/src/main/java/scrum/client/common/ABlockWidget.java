@@ -30,9 +30,9 @@ import scrum.client.workspace.Navigator;
 /**
  * Base class for a block widget, which can be added to a <code>BlockWidgetList</code>.
  *
+ * @param <O>
  */
-@SuppressWarnings("unchecked")
-public abstract class ABlockWidget<O> extends AScrumWidget {
+public abstract class ABlockWidget<O extends AGwtEntity> extends AScrumWidget {
 
     private O object;
     private boolean extended;
@@ -184,6 +184,7 @@ public abstract class ABlockWidget<O> extends AScrumWidget {
 
     /**
      * Indicates if the block is in extended-mode. This method should be called within the <code>build()</code>-method.
+     * @return 
      */
     public final boolean isExtended() {
         return extended;

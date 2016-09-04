@@ -3578,7 +3578,7 @@ public abstract class GDao
 
     // --- User ---
 
-    protected Map<String, scrum.client.admin.User> users = new HashMap<String, scrum.client.admin.User>();
+    protected Map<String, scrum.client.admin.User> users = new HashMap<>();
 
     public final void clearUsers() {
         DEBUG("Clearing Users");
@@ -3599,6 +3599,7 @@ public abstract class GDao
         entityCreated(user, successAction);
     }
 
+    //ToDo: test if user allready exists, if needed
     public final void createUser(scrum.client.admin.User user) {
         users.put(user.getId(), user);
         entityCreated(user, null);

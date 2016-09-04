@@ -14,12 +14,14 @@
  */
 package scrum.client.common;
 
+import ilarkesto.gwt.client.AGwtEntity;
+
 /**
  *
  *
  * @param <O>
  */
-public interface BlockWidgetFactory<O extends Object> {
+public interface BlockWidgetFactory<O extends AGwtEntity> {
 
     /**
      *

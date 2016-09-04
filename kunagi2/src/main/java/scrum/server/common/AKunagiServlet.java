@@ -44,11 +44,11 @@ import scrum.server.project.Project;
 public abstract class AKunagiServlet extends AServlet<ScrumWebApplication, WebSession> {
 
     /**
-     *
+     * Set the login cookie lifetime to 14 days
      */
-    protected static final int LOGIN_TOKEN_COOKIE_MAXAGE = 1209600; // 14 days
+    protected static final int LOGIN_TOKEN_COOKIE_MAXAGE = 1209600;
 
-	private static final Log log = Log.get(AKunagiServlet.class);
+    private static final Log LOG = Log.get(AKunagiServlet.class);
 
     /**
      *
@@ -77,37 +77,36 @@ public abstract class AKunagiServlet extends AServlet<ScrumWebApplication, WebSe
      */
     protected abstract void onRequest(RequestWrapper<WebSession> req) throws IOException;
 
-	@Override
-	protected void onGet(RequestWrapper<WebSession> req) throws IOException {
-		req.preventCaching();
-		try {
-			onRequest(req);
-		} catch (Exception ex) {
-			log.fatal("GET failed:", getClass().getName(), "->", ex);
-		}
-	}
+    @Override
+    protected void onGet(RequestWrapper<WebSession> req) throws IOException {
+        req.preventCaching();
+        try {
+            onRequest(req);
+        } catch (Exception ex) {
+            LOG.fatal("GET failed:", getClass().getName(), "->", ex);
+        }
+    }
 
-	@Override
-	protected void onPost(RequestWrapper<WebSession> req) throws IOException {
-		req.preventCaching();
-		try {
-			onRequest(req);
-		} catch (Exception ex) {
-			log.fatal("POST failed:", getClass().getName(), "->", ex);
-		}
-	}
+    @Override
+    protected void onPost(RequestWrapper<WebSession> req) throws IOException {
+        req.preventCaching();
+        try {
+            onRequest(req);
+        } catch (Exception ex) {
+            LOG.fatal("POST failed:", getClass().getName(), "->", ex);
+        }
+    }
 
-	@Override
-	protected void onInit(ServletConfig servletConfig) {
-		super.onInit(servletConfig);
-		config = webApplication.getConfig();
-		applicationInfo = webApplication.getApplicationInfo();
-		systemConfig = webApplication.getSystemConfig();
-		userDao = webApplication.getUserDao();
-	}
+    @Override
+    protected void onInit(ServletConfig servletConfig) {
+        super.onInit(servletConfig);
+        config = webApplication.getConfig();
+        applicationInfo = webApplication.getApplicationInfo();
+        systemConfig = webApplication.getSystemConfig();
+        userDao = webApplication.getUserDao();
+    }
 
-	// --- helper ---
-
+    // --- helper ---
     /**
      *
      * @param req
@@ -115,11 +114,10 @@ public abstract class AKunagiServlet extends AServlet<ScrumWebApplication, WebSe
      * @return
      * @throws IOException
      */
-    
-	protected HtmlRenderer createDefaultHtmlWithHeader(RequestWrapper<WebSession> req, String subtitle)
-			throws IOException {
-		return createDefaultHtmlWithHeader(req, subtitle, 0, null);
-	}
+    protected HtmlRenderer createDefaultHtmlWithHeader(RequestWrapper<WebSession> req, String subtitle)
+            throws IOException {
+        return createDefaultHtmlWithHeader(req, subtitle, 0, null);
+    }
 
     /**
      *
@@ -131,28 +129,28 @@ public abstract class AKunagiServlet extends AServlet<ScrumWebApplication, WebSe
      * @throws IOException
      */
     protected HtmlRenderer createDefaultHtmlWithHeader(RequestWrapper<WebSession> req, String subtitle,
-			int refreshSeconds, String refreshUrl) throws IOException {
-		String charset = IO.UTF_8;
-		req.setContentTypeHtml();
-		HtmlRenderer html = new HtmlRenderer(req.getWriter(), charset);
-		html.startHTMLstandard();
-		String title = "Kunagi";
-		if (config.isShowRelease()) {
-                    title += " " + applicationInfo.getRelease();
+            int refreshSeconds, String refreshUrl) throws IOException {
+        String charset = IO.UTF_8;
+        req.setContentTypeHtml();
+        HtmlRenderer html = new HtmlRenderer(req.getWriter(), charset);
+        html.startHTMLstandard();
+        String title = "Kunagi";
+        if (config.isShowRelease()) {
+            title += " " + applicationInfo.getRelease();
         }
-		title += " " + subtitle;
-		if (systemConfig.isInstanceNameSet()) {
-                    title += " @ " + systemConfig.getInstanceName();
+        title += " " + subtitle;
+        if (systemConfig.isInstanceNameSet()) {
+            title += " @ " + systemConfig.getInstanceName();
         }
-		html.startHEAD(title, "EN");
-		html.META("X-UA-Compatible", "IE=edge");
-                if (!StrExtend.isBlank(refreshUrl)) {
-                    html.METArefresh(refreshSeconds, refreshUrl);
+        html.startHEAD(title, "EN");
+        html.META("X-UA-Compatible", "IE=edge");
+        if (!StrExtend.isBlank(refreshUrl)) {
+            html.METArefresh(refreshSeconds, refreshUrl);
         }
-		html.LINKfavicon();
-		html.endHEAD();
-		return html;
-	}
+        html.LINKfavicon();
+        html.endHEAD();
+        return html;
+    }
 
     /**
      *
@@ -160,31 +158,31 @@ public abstract class AKunagiServlet extends AServlet<ScrumWebApplication, WebSe
      * @param logs
      */
     protected void logsTable(HtmlRenderer html, List<LogRecord> logs) {
-		startTABLE(html);
-		headersRow(html, "Level", "Logger", "Message", "Context");
-		for (LogRecord logLocal : logs) {
-			String color = "#666";
-                        if (logLocal.level.isErrorOrWorse()) {
+        startTABLE(html);
+        headersRow(html, "Level", "Logger", "Message", "Context");
+        for (LogRecord logLocal : logs) {
+            String color = "#666";
+            if (logLocal.level.isErrorOrWorse()) {
                 color = "#c00";
-                        }
-                        if (logLocal.level.isWarn()) {
-                            color = "#990";
             }
-			if (logLocal.level.isInfo()) {
+            if (logLocal.level.isWarn()) {
+                color = "#990";
+            }
+            if (logLocal.level.isInfo()) {
                 color = "#000";
             }
-			valuesRowColored(html, color, logLocal.level, logLocal.name, logLocal.getParametersAsString(), logLocal.context);
-		}
-		endTABLE(html);
-	}
+            valuesRowColored(html, color, logLocal.level, logLocal.name, logLocal.getParametersAsString(), logLocal.context);
+        }
+        endTABLE(html);
+    }
 
     /**
      *
      * @param html
      */
     protected void startTABLE(HtmlRenderer html) {
-		html.startTABLE();
-	}
+        html.startTABLE();
+    }
 
     /**
      *
@@ -192,17 +190,17 @@ public abstract class AKunagiServlet extends AServlet<ScrumWebApplication, WebSe
      * @param headers
      */
     protected void headersRow(HtmlRenderer html, String... headers) {
-		html.startTR();
+        html.startTR();
 
-		for (String header : headers) {
-			html.startTH().setStyle(getLabelStyle());
-			html.text(header);
-			html.endTH();
-		}
+        for (String header : headers) {
+            html.startTH().setStyle(getLabelStyle());
+            html.text(header);
+            html.endTH();
+        }
 
-		html.endTR();
-		html.flush();
-	}
+        html.endTR();
+        html.flush();
+    }
 
     /**
      *
@@ -211,17 +209,17 @@ public abstract class AKunagiServlet extends AServlet<ScrumWebApplication, WebSe
      * @param values
      */
     protected void valuesRowColored(HtmlRenderer html, String color, Object... values) {
-		html.startTR();
+        html.startTR();
 
-		for (Object value : values) {
-			html.startTD().setStyle(getValueStyle() + " color: " + color + ";");
-			html.text(value);
-			html.endTD();
-		}
+        for (Object value : values) {
+            html.startTD().setStyle(getValueStyle() + " color: " + color + ";");
+            html.text(value);
+            html.endTD();
+        }
 
-		html.endTR();
-		html.flush();
-	}
+        html.endTR();
+        html.flush();
+    }
 
     /**
      *
@@ -229,17 +227,17 @@ public abstract class AKunagiServlet extends AServlet<ScrumWebApplication, WebSe
      * @param values
      */
     protected void valuesRow(HtmlRenderer html, Object... values) {
-		html.startTR();
+        html.startTR();
 
-		for (Object value : values) {
-			html.startTD().setStyle(getValueStyle());
-			html.text(value);
-			html.endTD();
-		}
+        for (Object value : values) {
+            html.startTD().setStyle(getValueStyle());
+            html.text(value);
+            html.endTD();
+        }
 
-		html.endTR();
-		html.flush();
-	}
+        html.endTR();
+        html.flush();
+    }
 
     /**
      *
@@ -248,28 +246,28 @@ public abstract class AKunagiServlet extends AServlet<ScrumWebApplication, WebSe
      * @param value
      */
     protected void keyValueRow(HtmlRenderer html, String key, Object value) {
-		html.startTR();
+        html.startTR();
 
-		html.startTD().setStyle(getLabelStyle());
-		html.text(key);
-		html.endTD();
+        html.startTD().setStyle(getLabelStyle());
+        html.text(key);
+        html.endTD();
 
-		html.startTD().setStyle(getValueStyle());
-		html.text(value);
-		html.endTD();
+        html.startTD().setStyle(getValueStyle());
+        html.text(value);
+        html.endTD();
 
-		html.endTR();
-		html.flush();
-	}
+        html.endTR();
+        html.flush();
+    }
 
     /**
      *
      * @param html
      */
     protected void endTABLE(HtmlRenderer html) {
-		html.endTABLE();
-		html.flush();
-	}
+        html.endTABLE();
+        html.flush();
+    }
 
     /**
      *
@@ -277,24 +275,24 @@ public abstract class AKunagiServlet extends AServlet<ScrumWebApplication, WebSe
      * @param title
      */
     protected void sectionHeader(HtmlRenderer html, String title) {
-		html.H2(title);
-	}
+        html.H2(title);
+    }
 
-	private String getLabelStyle() {
-		return "color: #999; font-weight: normal; padding: 2px 20px 2px 5px; text-align: left;";
-	}
+    private String getLabelStyle() {
+        return "color: #999; font-weight: normal; padding: 2px 20px 2px 5px; text-align: left;";
+    }
 
-	private String getValueStyle() {
-		return "font-family: mono; padding: 2px 20px 2px 5px;";
-	}
+    private String getValueStyle() {
+        return "font-family: mono; padding: 2px 20px 2px 5px;";
+    }
 
     /**
      *
      * @return
      */
     protected String getDefaultStartPage() {
-		return webApplication.isDevelopmentMode() ? "index.html?gwt.codesvr=127.0.0.1:9997" : "";
-	}
+        return webApplication.isDevelopmentMode() ? "index.html?gwt.codesvr=127.0.0.1:9997" : "";
+    }
 
     /**
      *
@@ -302,16 +300,16 @@ public abstract class AKunagiServlet extends AServlet<ScrumWebApplication, WebSe
      * @param req
      */
     protected void adminLinks(HtmlRenderer html, RequestWrapper<WebSession> req) {
-		html.startP();
-		html.text("[ ");
-		html.A("admin.html", "Admin page");
-		html.text(" ] [ ");
-		html.A("logs.html", "Latest logs");
-		html.text(" ] [ ");
-		html.A(req.getBaseUrl(), "Kunagi");
-		html.text(" ]");
-		html.endP();
-	}
+        html.startP();
+        html.text("[ ");
+        html.A("admin.html", "Admin page");
+        html.text(" ] [ ");
+        html.A("logs.html", "Latest logs");
+        html.text(" ] [ ");
+        html.A(req.getBaseUrl(), "Kunagi");
+        html.text(" ]");
+        html.endP();
+    }
 
     /**
      *
@@ -320,18 +318,18 @@ public abstract class AKunagiServlet extends AServlet<ScrumWebApplication, WebSe
      * @throws IOException
      */
     protected boolean tokenLogin(RequestWrapper<WebSession> req) throws IOException {
-		String loginToken = req.getCookie(ScrumGwtApplication.LOGIN_TOKEN_COOKIE);
-		if (!StrExtend.isBlank(loginToken)) {
-			User user = userDao.getUserByLoginToken(loginToken);
-			if (user != null) {
-				user.setLastLoginDateAndTime(DateAndTime.now());
-				req.getSession().setUser(user);
-				req.setCookie(ScrumGwtApplication.LOGIN_TOKEN_COOKIE, user.getLoginToken(), LOGIN_TOKEN_COOKIE_MAXAGE);
-				return true;
-			}
-		}
-		return false;
-	}
+        String loginToken = req.getCookie(ScrumGwtApplication.LOGIN_TOKEN_COOKIE);
+        if (!StrExtend.isBlank(loginToken)) {
+            User user = userDao.getUserByLoginToken(loginToken);
+            if (user != null) {
+                user.setLastLoginDateAndTime(DateAndTime.now());
+                req.getSession().setUser(user);
+                req.setCookie(ScrumGwtApplication.LOGIN_TOKEN_COOKIE, user.getLoginToken(), LOGIN_TOKEN_COOKIE_MAXAGE);
+                return true;
+            }
+        }
+        return false;
+    }
 
     /**
      *
@@ -344,10 +342,10 @@ public abstract class AKunagiServlet extends AServlet<ScrumWebApplication, WebSe
         if (!StrExtend.isBlank(token)) {
             url += "?historyToken=" + StrExtend.encodeUrlParameter(token);
         }
-		url = webApplication.createUrl(url);
-		log.debug("Redirecting to", url);
-		req.sendRedirect(url);
-	}
+        url = webApplication.createUrl(url);
+        LOG.debug("Redirecting to", url);
+        req.sendRedirect(url);
+    }
 
     /**
      *
@@ -357,8 +355,8 @@ public abstract class AKunagiServlet extends AServlet<ScrumWebApplication, WebSe
      * @return
      */
     public static <E extends AEntity> E getEntityByParameter(RequestWrapper<WebSession> req, Class<E> type) {
-		return getEntityByParameter(req, "entityId", type);
-	}
+        return getEntityByParameter(req, "entityId", type);
+    }
 
     /**
      *
@@ -369,10 +367,10 @@ public abstract class AKunagiServlet extends AServlet<ScrumWebApplication, WebSe
      * @return
      */
     public static <E extends AEntity> E getEntityByParameter(RequestWrapper<WebSession> req, String parameterName,
-			Class<E> type) {
-		String id = req.getMandatory(parameterName);
-		return (E) ScrumWebApplication.get().getDaoService().getById(id);
-	}
+            Class<E> type) {
+        String id = req.getMandatory(parameterName);
+        return (E) ScrumWebApplication.get().getDaoService().getById(id);
+    }
 
     /**
      *
@@ -381,10 +379,10 @@ public abstract class AKunagiServlet extends AServlet<ScrumWebApplication, WebSe
      */
     public static Project getProject(RequestWrapper<WebSession> req) {
         Project project = getEntityByParameter(req, "projectId", Project.class);
-		if (!project.isVisibleFor(req.getSession().getUser())) {
+        if (!project.isVisibleFor(req.getSession().getUser())) {
             throw new PermissionDeniedException();
         }
-		return project;
-	}
+        return project;
+    }
 
 }

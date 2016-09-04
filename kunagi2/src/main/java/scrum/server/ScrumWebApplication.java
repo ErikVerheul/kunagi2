@@ -504,6 +504,11 @@ public class ScrumWebApplication extends GScrumWebApplication {
      */
     @Override
     protected AWebSession createWebSession(HttpServletRequest httpRequest) {
+        if (null != httpRequest) {
+            LOG.debug("createWebSession created a session from URI:", httpRequest.getRequestURI());
+        } else {
+            LOG.debug("createWebSession creates a session from httpRequest == null");
+        }
         WebSession session = new WebSession(context, httpRequest);
         autowire(session);
         return session;

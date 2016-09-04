@@ -30,138 +30,140 @@ import javax.servlet.http.HttpSession;
 
 public abstract class AWebApplication extends AApplication {
 
-	private static final Log LOG = Log.get(AWebApplication.class);
+    private static final Log LOG = Log.get(AWebApplication.class);
 
-	protected abstract void onStartWebApplication();
+    protected abstract void onStartWebApplication();
 
-	protected abstract void onShutdownWebApplication();
+    protected abstract void onShutdownWebApplication();
 
-	protected abstract AWebSession createWebSession(HttpServletRequest httpRequest);
+    protected abstract AWebSession createWebSession(HttpServletRequest httpRequest);
 
-	private final Set<AWebSession> webSessions = new HashSet<>();
+    private final Set<AWebSession> webSessions = new HashSet<>();
 
-	private String applicationName;
+    private String applicationName;
 
-	private JsonApiFactory restApiFactory;
+    private JsonApiFactory restApiFactory;
 
-	@Override
-	protected void onStart() {
-		if (!isDevelopmentMode()) {
-                        setHeadless(true);
+    @Override
+    protected void onStart() {
+        if (!isDevelopmentMode()) {
+            setHeadless(true);
+        }
+        setLogFile(new File(getApplicationDataDir() + "/error.log"));
+        LOG.info("Initializing web application");
+        onStartWebApplication();
+    }
+
+    @Override
+    protected void onShutdown() {
+        onShutdownWebApplication();
+    }
+
+    public final AWebApplication getWebApplication() {
+        return this;
+    }
+
+    public final void setApplicationName(String applicationName) {
+        this.applicationName = applicationName;
+    }
+
+    @Override
+    public String getApplicationName() {
+        if (applicationName != null) {
+            return applicationName;
+        }
+        String name = super.getApplicationName();
+        name = removeSuffix(name, "Web");
+        applicationName = name;
+        return applicationName;
+    }
+
+    private static final String WEB_SESSION_SESSION_ATTRIBUTE = "_webSession";
+
+    public AWebSession getWebSession(HttpServletRequest httpRequest) {
+        if (isShuttingDown()) {
+            return null;
+        }
+        HttpSession httpSession = httpRequest.getSession();
+        AWebSession webSession = (AWebSession) httpSession.getAttribute(WEB_SESSION_SESSION_ATTRIBUTE);
+        if (webSession != null && webSession.isSessionInvalidated()) {
+            webSession = null;
+        }
+        if (webSession == null) {
+            webSession = createWebSession(httpRequest);
+            httpSession.setAttribute(WEB_SESSION_SESSION_ATTRIBUTE, webSession);
+            synchronized (webSessions) {
+                webSessions.add(webSession);
+            }
+        } else {
+            webSession.touch();
+        }
+        return webSession;
+    }
+
+    public final void destroyTimeoutedSessions() {
+        for (AWebSession session : getWebSessions()) {
+            if (session.isTimeouted() || session.isSessionInvalidated()) {
+                LOG.info("Destroying invalid/timeouted session:", session);
+                destroyWebSession(session, null);
+            }
+        }
+    }
+
+    public final void destroyTimeoutedGwtConversations() {
+        for (AGwtConversation conversation : getGwtConversations()) {
+            if (conversation.isTimeouted()) {
+                AWebSession session = conversation.getSession();
+                LOG.info("Destroying invalid/timeouted GwtConversation:", conversation);
+                session.destroyGwtConversation(conversation);
+            }
+        }
+    }
+
+    public final void destroyWebSession(AWebSession webSession, HttpSession httpSession) {
+        synchronized (webSessions) {
+            webSessions.remove(webSession);
+            webSession.destroy();
+            if (httpSession != null) {
+                try {
+                    httpSession.removeAttribute(WEB_SESSION_SESSION_ATTRIBUTE);
+                } catch (Exception t) {
                 }
-		setLogFile(new File(getApplicationDataDir() + "/error.log"));
-		LOG.info("Initializing web application");
-		onStartWebApplication();
-	}
-
-	@Override
-	protected void onShutdown() {
-		onShutdownWebApplication();
-	}
-
-	public final AWebApplication getWebApplication() {
-		return this;
-	}
-
-	public final void setApplicationName(String applicationName) {
-		this.applicationName = applicationName;
-	}
-
-	@Override
-	public String getApplicationName() {
-		if (applicationName != null) {
-                        return applicationName;
+                try {
+                    httpSession.invalidate();
+                } catch (Exception t) {
                 }
-		String name = super.getApplicationName();
-		name = removeSuffix(name, "Web");
-		applicationName = name;
-		return applicationName;
-	}
+            }
+        }
+    }
 
-	private static final String WEB_SESSION_SESSION_ATTRIBUTE = "_webSession";
+    public final Set<AWebSession> getWebSessions() {
+        synchronized (webSessions) {
+            return new HashSet<>(webSessions);
+        }
+    }
 
-	public AWebSession getWebSession(HttpServletRequest httpRequest) {
-		if (isShuttingDown()) {
-                        return null;
-                }
-		HttpSession httpSession = httpRequest.getSession();
-		AWebSession webSession = (AWebSession) httpSession.getAttribute(WEB_SESSION_SESSION_ATTRIBUTE);
-		if (webSession != null && webSession.isSessionInvalidated()) {
-                        webSession = null;
-                }
-		if (webSession == null) {
-			webSession = createWebSession(httpRequest);
-			httpSession.setAttribute(WEB_SESSION_SESSION_ATTRIBUTE, webSession);
-			synchronized (webSessions) {
-				webSessions.add(webSession);
-			}
-		} else {
-			webSession.touch();
-		}
-		return webSession;
-	}
+    public Set<AGwtConversation> getGwtConversations() {
+        Set<AGwtConversation> ret = new HashSet<>();
+        for (AWebSession session : getWebSessions()) {
+            ret.addAll(session.getGwtConversations());
+        }
+        return ret;
+    }
 
-	public final void destroyTimeoutedSessions() {
-		for (AWebSession session : getWebSessions()) {
-			if (session.isTimeouted() || session.isSessionInvalidated()) {
-				LOG.info("Destroying invalid/timeouted session:", session);
-				destroyWebSession(session, null);
-			}
-		}
-	}
+    public JsonApiFactory getRestApiFactory() {
+        if (restApiFactory == null) {
+            restApiFactory = createRestApiFactory();
+        }
+        return restApiFactory;
+    }
 
-	public final void destroyTimeoutedGwtConversations() {
-		for (AGwtConversation conversation : getGwtConversations()) {
-			if (conversation.isTimeouted()) {
-				AWebSession session = conversation.getSession();
-				LOG.info("Destroying invalid/timeouted GwtConversation:", conversation);
-				session.destroyGwtConversation(conversation);
-			}
-		}
-	}
+    protected ReflectionJsonApiFactory createRestApiFactory() {
+        return new ReflectionJsonApiFactory(this);
+    }
 
-	public final void destroyWebSession(AWebSession webSession, HttpSession httpSession) {
-		synchronized (webSessions) {
-			webSessions.remove(webSession);
-			webSession.destroy();
-			if (httpSession != null) {
-				try {
-					httpSession.removeAttribute(WEB_SESSION_SESSION_ATTRIBUTE);
-				} catch (Exception t) {}
-				try {
-					httpSession.invalidate();
-				} catch (Exception t) {}
-			}
-		}
-	}
-
-	public final Set<AWebSession> getWebSessions() {
-		synchronized (webSessions) {
-			return new HashSet<>(webSessions);
-		}
-	}
-
-	public Set<AGwtConversation> getGwtConversations() {
-		Set<AGwtConversation> ret = new HashSet<>();
-		for (AWebSession session : getWebSessions()) {
-			ret.addAll(session.getGwtConversations());
-		}
-		return ret;
-	}
-
-	public JsonApiFactory getRestApiFactory() {
-		if (restApiFactory == null) {
-                        restApiFactory = createRestApiFactory();
-                }
-		return restApiFactory;
-	}
-
-	protected ReflectionJsonApiFactory createRestApiFactory() {
-		return new ReflectionJsonApiFactory(this);
-	}
-
-	public static AWebApplication get() {
-		return (AWebApplication) AApplication.get();
-	}
+    public static AWebApplication get() {
+        return (AWebApplication) AApplication.get();
+    }
 
 }

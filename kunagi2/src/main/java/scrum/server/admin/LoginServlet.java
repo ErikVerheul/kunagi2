@@ -26,7 +26,7 @@ public class LoginServlet extends AKunagiServlet {
 
 	private static final long serialVersionUID = 1;
 
-	private static final Log log = Log.get(LoginServlet.class);
+	private static final Log LOG = Log.get(LoginServlet.class);
 
     /**
      *
@@ -163,14 +163,14 @@ public class LoginServlet extends AKunagiServlet {
 		if (userDao.getUserByName(username) != null) {
 			renderLoginPage(req, username, email, historyToken, "Creating account failed. Name '" + username
 					+ "' is already used.", false, true);
-			log.warn("Registration failed. User name already exists:", username);
+			LOG.warn("Registration failed. User name already exists:", username);
 			return;
 		}
 
 		if (email != null && userDao.getUserByEmail(email) != null) {
 			renderLoginPage(req, username, email, historyToken, "Creating account failed. Email '" + email
 					+ "' is already used.", false, true);
-			log.warn("Registration failed. User email already exists:", email);
+			LOG.warn("Registration failed. User email already exists:", email);
 			return;
 		}
 
@@ -202,7 +202,7 @@ public class LoginServlet extends AKunagiServlet {
 		try {
 			openIdResult = OpenId.getVerificationFromCallback(req.getHttpRequest());
 		} catch (RuntimeException ex) {
-			log.error("OpenID authentication failed.", ex);
+			LOG.error("OpenID authentication failed.", ex);
 			renderLoginPage(req, null, null, historyToken,
 				"OpenID authentication failed: " + StrExtend.format(UtlExtend.getRootCause(ex)), false, false);
 			return;
@@ -229,7 +229,7 @@ public class LoginServlet extends AKunagiServlet {
 			if (!webApplication.getSystemConfig().isOpenIdDomainAllowed(openId)) {
 				renderLoginPage(req, null, null, historyToken, "Registration failed. OpenID domains are limited to: "
 						+ webApplication.getSystemConfig().getOpenIdDomains(), false, false);
-				log.warn("Registration failed. OpenID domains are limited to:", webApplication.getSystemConfig()
+				LOG.warn("Registration failed. OpenID domains are limited to:", webApplication.getSystemConfig()
 						.getOpenIdDomains());
 				return;
 			}
@@ -238,7 +238,7 @@ public class LoginServlet extends AKunagiServlet {
 				if (userDao.getUserByEmail(email) != null) {
 					renderLoginPage(req, null, null, historyToken, "Creating account failed. Email '" + email
 							+ "' is already used.", false, false);
-					log.warn("Registration failed. Email already exists:", email);
+					LOG.warn("Registration failed. Email already exists:", email);
 					return;
 				}
 			}
@@ -255,7 +255,7 @@ public class LoginServlet extends AKunagiServlet {
 			webApplication.triggerRegisterNotification(user, req.getRemoteHost());
 		}
 
-		log.info("User authenticated by OpenID:", openId, "->", user);
+		LOG.info("User authenticated by OpenID:", openId, "->", user);
 
 		if (user.isDisabled()) {
 			renderLoginPage(req, null, null, historyToken, "User is disabled.", false, false);
@@ -296,7 +296,7 @@ public class LoginServlet extends AKunagiServlet {
 			openIdUrl = OpenId.createAuthenticationRequestUrl(openId, returnUrl, req.getHttpSession(), true, false,
 				false, false, true, webApplication.getSystemConfig().isUserEmailMandatory());
 		} catch (RuntimeException ex) {
-			log.error("OpenID authentication failed.", ex);
+			LOG.error("OpenID authentication failed.", ex);
 			renderLoginPage(req, null, null, historyToken,
 				"OpenID authentication failed: " + StrExtend.format(UtlExtend.getRootCause(ex)), false, false);
 			return;
@@ -331,7 +331,7 @@ public class LoginServlet extends AKunagiServlet {
 			} catch (AuthenticationFailedException ex) {
 				authenticated = false;
 			} catch (Exception ex) {
-				log.error("LDAP authentication failed.", ex);
+				LOG.error("LDAP authentication failed.", ex);
 				renderLoginPage(req, username, null, historyToken,
 					"LDAP authentication failed: " + StrExtend.getRootCauseMessage(ex), false, false);
 				return;
@@ -353,7 +353,7 @@ public class LoginServlet extends AKunagiServlet {
 				try {
 					user = userDao.postUser(email, username, StrExtend.generatePassword(23));
 				} catch (Exception ex) {
-					log.warn(ex);
+					LOG.warn(ex);
                                         renderLoginPage(req, username, null, historyToken, "Creating a new user <" + username
 							+ "> with email <" + email + "> failed: " + StrExtend.getRootCauseMessage(ex), false, false);
 					return;

@@ -39,22 +39,22 @@ public interface ForumSupport extends LabelSupport, ReferenceSupport {
      */
     public static final Comparator<ForumSupport> COMPARATOR = new Comparator<ForumSupport>() {
 
-		@Override
-		public int compare(ForumSupport aFs, ForumSupport bFs) {
-			DateAndTime aTime = ((AScrumGwtEntity) aFs).getLatestCommentDateAndTime();
-			DateAndTime bTime = ((AScrumGwtEntity) bFs).getLatestCommentDateAndTime();
-			if (aTime == null && bTime == null) {
-                            return 0;
+        @Override
+        public int compare(ForumSupport aFs, ForumSupport bFs) {
+            DateAndTime aTime = ((AScrumGwtEntity) aFs).getLatestCommentDateAndTime();
+            DateAndTime bTime = ((AScrumGwtEntity) bFs).getLatestCommentDateAndTime();
+            if (aTime == null && bTime == null) {
+                return 0;
             }
-			if (aTime == null) {
-                            return -1;
+            if (aTime == null) {
+                return -1;
             }
-                        if (bTime == null) {
-                            return 1;
+            if (bTime == null) {
+                return 1;
             }
-			return bTime.compareTo(aTime);
-		}
-	};
+            return bTime.compareTo(aTime);
+        }
+    };
 
     /**
      *

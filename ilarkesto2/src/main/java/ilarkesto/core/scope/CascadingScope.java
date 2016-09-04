@@ -43,6 +43,7 @@ public class CascadingScope extends Scope {
 		this.parentScope = parentScope;
 
 		assert name != null;
+                
 		this.name = name;
 
 		this.componentReflector = componentReflector;

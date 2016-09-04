@@ -14,6 +14,7 @@
  */
 package scrum.client.common;
 
+import ilarkesto.gwt.client.AGwtEntity;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,36 +24,36 @@ import java.util.Set;
  */
 public class BlockListSelectionManager {
 
-	private Set<BlockListWidget> lists = new HashSet<BlockListWidget>();
+    private Set<BlockListWidget> lists = new HashSet<>();
 
     /**
      *
      */
     public void clear() {
-		lists.clear();
-	}
+        lists.clear();
+    }
 
     /**
      *
      * @param list
      */
     public void add(BlockListWidget list) {
-		if (list == null) {
-                    return;
+        if (list == null) {
+            return;
         }
-		lists.add(list);
-	}
+        lists.add(list);
+    }
 
     /**
      *
      * @param list
      */
     public void remove(BlockListWidget list) {
-		if (list == null) {
-                    return;
+        if (list == null) {
+            return;
         }
-		lists.remove(list);
-	}
+        lists.remove(list);
+    }
 
     /**
      *
@@ -61,19 +62,19 @@ public class BlockListSelectionManager {
         for (BlockListWidget list : lists) {
             list.collapseAll();
         }
-	}
+    }
 
     /**
      *
-     * @param object
+     * @param gwtEntity
      * @return
      */
-    public boolean select(Object object) {
-		for (BlockListWidget list : lists) {
-                    if (list.contains(object) && list.showObject(object)) {
-                        return true;
+    public boolean select(AGwtEntity gwtEntity) {
+        for (BlockListWidget list : lists) {
+            if (list.contains(gwtEntity) && list.showObject(gwtEntity)) {
+                return true;
             }
-		}
-		return false;
-	}
+        }
+        return false;
+    }
 }
