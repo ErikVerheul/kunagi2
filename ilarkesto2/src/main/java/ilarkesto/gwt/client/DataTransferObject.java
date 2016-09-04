@@ -28,14 +28,8 @@ import java.util.Set;
  */
 public class DataTransferObject implements Serializable, IsSerializable {
 
-    /**
-     *
-     */
+    private static final long serialVersionUID = 1L;
     public String entityIdBase;
-
-    /**
-     *
-     */
     public Boolean developmentMode;
     public ApplicationInfo applicationInfo;
     public SystemMessage systemMessage;
