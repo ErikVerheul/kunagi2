@@ -17,6 +17,7 @@ package ilarkesto.gwt.client;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
+import static ilarkesto.core.logging.ClientLog.ERROR;
 import ilarkesto.gwt.client.animation.AnimatingFlowPanel;
 import ilarkesto.gwt.client.animation.AnimatingFlowPanel.InsertCallback;
 import java.util.ArrayList;
@@ -32,130 +33,130 @@ import java.util.Map;
  * @param <O>
  * @param <W>
  */
-public class ObjectMappedFlowPanel<O extends Object, W extends Widget> extends Composite implements HasWidgets {
+public class ObjectMappedFlowPanel<O extends AGwtEntity, W extends Widget> extends Composite implements HasWidgets {
 
     /**
      *
      */
-    public final static Map<Object, Integer> objectHeights = new HashMap<Object, Integer>();
+    public final static Map<Object, Integer> OBJECTHEIGHTS = new HashMap<>();
 
-	private final AnimatingFlowPanel<W> panel;
-	private final WidgetFactory<O, W> widgetFactory;
-	private MoveObserver<O, W> moveObserver;
+    private final AnimatingFlowPanel<W> panel;
+    private final WidgetFactory<O, W> widgetFactory;
+    private MoveObserver<O, W> moveObserver;
 
-	private final List<O> objectList;
-	private final Map<O, W> widgetMap;
-	private boolean virgin = true;
+    private final List<O> objectList;
+    private final Map<String, W> widgetMap;
+    private boolean virgin = true;
 
     /**
      *
      * @param widgetFactory
      */
     public ObjectMappedFlowPanel(WidgetFactory<O, W> widgetFactory) {
-		this.widgetFactory = widgetFactory;
-		objectList = new ArrayList<O>();
-		widgetMap = new HashMap<O, W>();
-		panel = new AnimatingFlowPanel<W>();
-		initWidget(panel);
-	}
+        this.widgetFactory = widgetFactory;
+        objectList = new ArrayList<>();
+        widgetMap = new HashMap<>();
+        panel = new AnimatingFlowPanel<>();
+        initWidget(panel);
+    }
 
     /**
      *
      * @param newObjects
      */
     public void set(List<O> newObjects) {
-		boolean animationAllowed = !virgin;
-		virgin = false;
-		if (objectList.equals(newObjects)) {
-                        return;
+        boolean animationAllowed = !virgin;
+        virgin = false;
+        if (objectList.equals(newObjects)) {
+            return;
+        }
+
+        // remove old objects
+        List<O> objectsToRemove = getOtherObjects(newObjects);
+        if (!objectsToRemove.isEmpty()) {
+            boolean animate = animationAllowed && objectsToRemove.size() == 1;
+            for (O object : objectsToRemove) {
+                remove(object, animate);
+            }
+        }
+
+        if (objectList.equals(newObjects)) {
+            return;
+        }
+
+        // add new objects
+        List<O> objectsToAdd = new ArrayList<>(newObjects);
+        objectsToAdd.removeAll(objectList);
+        if (!objectsToAdd.isEmpty()) {
+            boolean animate = animationAllowed && objectsToAdd.size() == 1;
+            for (O object : objectsToAdd) {
+                int index = newObjects.indexOf(object);
+                if (index > objectList.size()) {
+                    index = objectList.size();
                 }
+                insert(index, object, animate, null);
+            }
+        }
 
-		// remove old objects
-		List<O> objectsToRemove = getOterObjects(newObjects);
-		if (!objectsToRemove.isEmpty()) {
-			boolean animate = animationAllowed && objectsToRemove.size() == 1;
-			for (O object : objectsToRemove) {
-				remove(object, animate);
-			}
-		}
+        if (objectList.equals(newObjects)) {
+            return;
+        }
 
-		if (objectList.equals(newObjects)) {
-                        return;
-                }
+        // move existing objects
+        int index = 0;
+        for (O object : newObjects) {
+            int currentIndex = objectList.indexOf(object);
+            if (currentIndex != index) {
+                move(index, object, false, null);
+            }
+            index++;
+        }
 
-		// add new objects
-		List<O> objectsToAdd = new ArrayList<O>(newObjects);
-		objectsToAdd.removeAll(objectList);
-		if (!objectsToAdd.isEmpty()) {
-			boolean animate = animationAllowed && objectsToAdd.size() == 1;
-			for (O object : objectsToAdd) {
-				int index = newObjects.indexOf(object);
-				if (index > objectList.size()) {
-					index = objectList.size();
-				}
-				insert(index, object, animate, null);
-			}
-		}
+        assert objectList.equals(newObjects);
+    }
 
-		if (objectList.equals(newObjects)) {
-                        return;
-                }
+    private W insert(int index, O gwtEntity, boolean animate, InsertCallback callback) {
+        assert gwtEntity != null;
+        assert objectList.size() == widgetMap.size();
+        assert !objectList.contains(gwtEntity);
+        assert !widgetMap.containsKey(gwtEntity.getId());
+        assert OBJECTHEIGHTS != null;
+        assert panel != null;
+        W widget = createWidget(gwtEntity);
+        assert widget != null;
+        if (animate) {
+            panel.insertAnimated(index, widget, OBJECTHEIGHTS.get(gwtEntity));
+        } else {
+            panel.insert(index, widget);
+        }
+        W previous = widgetMap.put(gwtEntity.getId(), widget);
+        assert previous == null;
+        objectList.add(index, gwtEntity);
+        assert objectList.contains(gwtEntity);
+        assert widgetMap.containsKey(gwtEntity.getId());
+        assert objectList.size() == widgetMap.size();
+        if (callback != null) {
+            callback.onInserted(index);
+        }
+        return widget;
+    }
 
-		// move existing objects
-		int index = 0;
-		for (O object : newObjects) {
-			int currentIndex = objectList.indexOf(object);
-			if (currentIndex != index) {
-				move(index, object, false, null);
-			}
-			index++;
-		}
-
-		assert objectList.equals(newObjects);
-	}
-
-	private W insert(int index, O object, boolean animate, InsertCallback callback) {
-		assert object != null;
-		assert objectList.size() == widgetMap.size();
-		assert !objectList.contains(object);
-		assert !widgetMap.containsKey(object);
-		assert objectHeights != null;
-		assert panel != null;
-		W widget = createWidget(object);
-		assert widget != null;
-		if (animate) {
-			panel.insertAnimated(index, widget, objectHeights.get(object));
-		} else {
-			panel.insert(index, widget);
-		}
-		W previous = widgetMap.put(object, widget);
-		assert previous == null;
-		objectList.add(index, object);
-		assert objectList.contains(object);
-		assert widgetMap.containsKey(object);
-		assert objectList.size() == widgetMap.size();
-		if (callback != null) {
-                        callback.onInserted(index);
-                }
-		return widget;
-	}
-
-	private W remove(O object, boolean animate) {
-		assert object != null;
-		assert objectList.size() == widgetMap.size();
-		assert objectList.contains(object);
-		assert widgetMap.containsKey(object);
-		W widget = getWidget(object);
-		assert widget != null;
-		boolean removed = panel.remove(widget);
-		assert removed;
-		objectList.remove(object);
-		widgetMap.remove(object);
-		assert !objectList.contains(object);
-		assert !widgetMap.containsKey(object);
-		assert objectList.size() == widgetMap.size();
-		return widget;
-	}
+    private W remove(O gwtEntity, boolean animate) {
+        assert gwtEntity != null;
+        assert objectList.size() == widgetMap.size();
+        assert objectList.contains(gwtEntity);
+        assert widgetMap.containsKey(gwtEntity.getId());
+        W widget = getWidget(gwtEntity);
+        assert widget != null;
+        boolean removed = panel.remove(widget);
+        assert removed;
+        objectList.remove(gwtEntity);
+        widgetMap.remove(gwtEntity.getId());
+        assert !objectList.contains(gwtEntity);
+        assert !widgetMap.containsKey(gwtEntity.getId());
+        assert objectList.size() == widgetMap.size();
+        return widget;
+    }
 
     /**
      *
@@ -166,51 +167,51 @@ public class ObjectMappedFlowPanel<O extends Object, W extends Widget> extends C
      * @return
      */
     public W move(int toIndex, O object, boolean animate, InsertCallback callback) {
-		assert toIndex >= 0 && toIndex <= objectList.size();
-		assert objectList.contains(object);
+        assert toIndex >= 0 && toIndex <= objectList.size();
+        assert objectList.contains(object);
 
-		W oldWidget = remove(object, animate);
-		W newWidget = insert(toIndex, object, animate, callback);
-		if (moveObserver != null) {
-                        moveObserver.moved(object, oldWidget, newWidget);
-                }
+        W oldWidget = remove(object, animate);
+        W newWidget = insert(toIndex, object, animate, callback);
+        if (moveObserver != null) {
+            moveObserver.moved(object, oldWidget, newWidget);
+        }
 
-		assert objectList.size() == widgetMap.size();
-		return newWidget;
-	}
+        assert objectList.size() == widgetMap.size();
+        return newWidget;
+    }
 
-	@Override
-	public void clear() {
-		panel.clear();
-		objectList.clear();
-		widgetMap.clear();
-	}
+    @Override
+    public void clear() {
+        panel.clear();
+        objectList.clear();
+        widgetMap.clear();
+    }
 
-	private List<O> getOterObjects(Collection<O> objects) {
-		List<O> ret = new ArrayList<O>();
-		for (O object : objectList) {
-			if (!objects.contains(object)) {
-                                ret.add(object);
-                        }
-		}
-		return ret;
-	}
+    private List<O> getOtherObjects(Collection<O> objects) {
+        List<O> ret = new ArrayList<>();
+        for (O object : objectList) {
+            if (!objects.contains(object)) {
+                ret.add(object);
+            }
+        }
+        return ret;
+    }
 
     /**
      *
      * @return
      */
     public List<O> getObjects() {
-		return objectList;
-	}
+        return objectList;
+    }
 
     /**
      *
      * @return
      */
     public Collection<W> getWidgets() {
-		return widgetMap.values();
-	}
+        return widgetMap.values();
+    }
 
     /**
      *
@@ -218,8 +219,8 @@ public class ObjectMappedFlowPanel<O extends Object, W extends Widget> extends C
      * @return
      */
     public int indexOfObject(O object) {
-		return objectList.indexOf(object);
-	}
+        return objectList.indexOf(object);
+    }
 
     /**
      *
@@ -227,25 +228,32 @@ public class ObjectMappedFlowPanel<O extends Object, W extends Widget> extends C
      * @return
      */
     public W getWidget(int index) {
-		return getWidget(objectList.get(index));
-	}
+        return getWidget(objectList.get(index));
+    }
 
     /**
      *
-     * @param object
-     * @return
+     * @param gwtEntity
+     * @return the widget or null on error
      */
-    public W getWidget(O object) {
-		assert object != null;
-		W widget = widgetMap.get(object);
-		assert widget != null;
-		return widget;
-	}
+    public W getWidget(O gwtEntity) {
+        if (null == gwtEntity) {
+            ERROR("ObjectMappedFlowPanel: gwtEntity == null");
+            return null;
+        }
+        W widget = widgetMap.get(gwtEntity.getId());
 
-	private W createWidget(O object) {
-		W widget = widgetFactory.createWidget(object);
-		return widget;
-	}
+        if (null == widget) {
+            ERROR("ObjectMappedFlowPanel: widget == null while getting object:", gwtEntity, ", of class:", gwtEntity.getClass());
+            return null;
+        }
+        return widget;
+    }
+
+    private W createWidget(O object) {
+        W widget = widgetFactory.createWidget(object);
+        return widget;
+    }
 
     /**
      *
@@ -253,39 +261,39 @@ public class ObjectMappedFlowPanel<O extends Object, W extends Widget> extends C
      * @return
      */
     public boolean containsObject(O object) {
-		return objectList.contains(object);
-	}
+        return objectList.contains(object);
+    }
 
     /**
      *
      * @return
      */
     public int size() {
-		return objectList.size();
-	}
+        return objectList.size();
+    }
 
-	@Override
-	public Iterator<Widget> iterator() {
-		return panel.iterator();
-	}
+    @Override
+    public Iterator<Widget> iterator() {
+        return panel.iterator();
+    }
 
-	@Override
-	public void add(Widget w) {
-		throw new RuntimeException("Not implemented.");
-	}
+    @Override
+    public void add(Widget w) {
+        throw new RuntimeException("Not implemented.");
+    }
 
-	@Override
-	public boolean remove(Widget w) {
-		return false;
-	}
+    @Override
+    public boolean remove(Widget w) {
+        return false;
+    }
 
     /**
      *
      * @param moveObserver
      */
     public void setMoveObserver(MoveObserver<O, W> moveObserver) {
-		this.moveObserver = moveObserver;
-	}
+        this.moveObserver = moveObserver;
+    }
 
     /**
      *
@@ -301,7 +309,7 @@ public class ObjectMappedFlowPanel<O extends Object, W extends Widget> extends C
          */
         W createWidget(O object);
 
-	}
+    }
 
     /**
      *
@@ -318,6 +326,6 @@ public class ObjectMappedFlowPanel<O extends Object, W extends Widget> extends C
          */
         void moved(O object, W oldWidget, W newWidget);
 
-	}
+    }
 
 }
