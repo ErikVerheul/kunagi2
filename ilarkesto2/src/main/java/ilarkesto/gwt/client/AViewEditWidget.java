@@ -33,6 +33,36 @@ import static ilarkesto.core.logging.ClientLog.ERROR;
 import static ilarkesto.gwt.client.Gwt.addTooltipHtml;
 import static ilarkesto.gwt.client.Gwt.createDiv;
 import static ilarkesto.gwt.client.Gwt.getRootWidget;
+import static ilarkesto.core.base.Utl.getUserMessageStack;
+import static ilarkesto.gwt.client.Gwt.createDiv;
+import static ilarkesto.core.base.Utl.getUserMessageStack;
+import static ilarkesto.gwt.client.Gwt.createDiv;
+import static ilarkesto.core.base.Utl.getUserMessageStack;
+import static ilarkesto.gwt.client.Gwt.createDiv;
+import static ilarkesto.core.base.Utl.getUserMessageStack;
+import static ilarkesto.gwt.client.Gwt.createDiv;
+import static ilarkesto.core.base.Utl.getUserMessageStack;
+import static ilarkesto.gwt.client.Gwt.createDiv;
+import static ilarkesto.core.base.Utl.getUserMessageStack;
+import static ilarkesto.gwt.client.Gwt.createDiv;
+import static ilarkesto.core.base.Utl.getUserMessageStack;
+import static ilarkesto.gwt.client.Gwt.createDiv;
+import static ilarkesto.core.base.Utl.getUserMessageStack;
+import static ilarkesto.gwt.client.Gwt.createDiv;
+import static ilarkesto.core.base.Utl.getUserMessageStack;
+import static ilarkesto.gwt.client.Gwt.createDiv;
+import static ilarkesto.core.base.Utl.getUserMessageStack;
+import static ilarkesto.gwt.client.Gwt.createDiv;
+import static ilarkesto.core.base.Utl.getUserMessageStack;
+import static ilarkesto.gwt.client.Gwt.createDiv;
+import static ilarkesto.core.base.Utl.getUserMessageStack;
+import static ilarkesto.gwt.client.Gwt.createDiv;
+import static ilarkesto.core.base.Utl.getUserMessageStack;
+import static ilarkesto.gwt.client.Gwt.createDiv;
+import static ilarkesto.core.base.Utl.getUserMessageStack;
+import static ilarkesto.gwt.client.Gwt.createDiv;
+import static ilarkesto.core.base.Utl.getUserMessageStack;
+import static ilarkesto.gwt.client.Gwt.createDiv;
 
 /**
  *

@@ -18,51 +18,39 @@ import edu.umd.cs.findbugs.annotations.SuppressWarnings;
 import static ilarkesto.base.UtlExtend.randomChar;
 import static ilarkesto.base.UtlExtend.randomInt;
 import ilarkesto.integration.links.LinkConverter;
+import ilarkesto.logging.Log;
 import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
 import java.io.StringReader;
-import static java.lang.Character.toUpperCase;
-import static java.lang.Integer.parseInt;
-import static java.lang.Integer.valueOf;
-import static java.lang.Math.min;
-import static java.lang.String.valueOf;
 import static java.lang.System.arraycopy;
-import static java.lang.System.currentTimeMillis;
-import static java.lang.System.exit;
-import static java.lang.System.out;
 import java.util.ArrayList;
 import java.util.Collection;
 import static java.util.Collections.emptyList;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
-import static org.mortbay.log.Log.warn;
+import static java.lang.Character.toUpperCase;
+import static java.lang.Integer.valueOf;
+import static java.lang.Math.min;
+import static java.lang.String.valueOf;
 
 /**
  * Utility methods for dealing with text/strings. Cutting, comparing, parsing,
  * modifying.
  */
 public class StrExtend extends ilarkesto.core.base.Str {
+    
+    private static final Log LOG = Log.get(StrExtend.class);
 
-    public static void main(String[] args) {
-        out.println(generateRandomParagraph());
-        exit(0);
-    }
-
-    private static final char[] UNICODE_CHARS = new char[]{ue, UE, oe, OE, ae, AE, sz, EUR};
+    private static final char[] UNICODE_CHARS = new char[]{UESMALL, UE, OESMALL, OE, AESMALL, AE, SZ, EUR};
 
     private static final String[][] ESCAPE_SEQUENCES = {{"\\", "\\\\"}, {"\b", "\\b"}, {"\t", "\\t"},
     {"\n", "\\n"}, {"\f", "\\f"}, {"\r", "\\r"}, {"\"", "\\\""}, {"\'", "\\\'"}};
-
-    private static long lastId;
-
-    private static final Object UIDLOCK = new Object();
 
     public static String getCharsetFromHtml(String html, String defaultCharset) {
         String charset = cutFromTo(html, "charset=", "\"");
@@ -167,7 +155,6 @@ public class StrExtend extends ilarkesto.core.base.Str {
         return generateRandomWord(availableChars, length);
     }
 
-    @SuppressWarnings("ES_COMPARING_PARAMETER_STRING_WITH_EQ")
     public static String generateRandomWord(String charSet1, String charSet2, int length) {
         StringBuilder password = new StringBuilder();
         String charSet = charSet1;
@@ -192,30 +179,6 @@ public class StrExtend extends ilarkesto.core.base.Str {
         return password.toString();
     }
 
-    public static boolean containsDigit(String s) {
-        if (s == null) {
-            return false;
-        }
-        for (int i = 0; i < s.length(); i++) {
-            if (Character.isDigit(s.charAt(i))) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static boolean containsLetter(String s) {
-        if (s == null) {
-            return false;
-        }
-        for (int i = 0; i < s.length(); i++) {
-            if (Character.isLetter(s.charAt(i))) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public static boolean containsNonLetterOrDigit(String s) {
         if (s == null) {
             return false;
@@ -235,41 +198,6 @@ public class StrExtend extends ilarkesto.core.base.Str {
             }
         }
         return false;
-    }
-
-    public static String toHexString(byte[] bytes) {
-        if (bytes == null) {
-            return null;
-        }
-        StringBuilder sb = new StringBuilder();
-        for (byte b : bytes) {
-            sb.append(toHexString(b));
-        }
-        return sb.toString();
-    }
-
-    public static String toHexString(byte b) {
-        int i = b;
-        if (i < 0) {
-            i = 256 + i;
-        }
-        String s = Integer.toHexString(i).toUpperCase();
-        if (s.length() == 1) {
-            s = '0' + s;
-        }
-        return s;
-    }
-
-    public static String toBinaryString(byte b) {
-        int i = b;
-        if (i < 0) {
-            i = 256 + i;
-        }
-        String s = Integer.toBinaryString(i).toUpperCase();
-        if (s.length() == 1) {
-            s = '0' + s;
-        }
-        return s;
     }
 
     public static String formatWithThousandsSeparator(long value, String separator) {
@@ -303,24 +231,6 @@ public class StrExtend extends ilarkesto.core.base.Str {
         return s;
     }
 
-    public static String substringTo(String s, String to) {
-        return substringTo(s, to, 0);
-    }
-
-    public static String substringTo(String s, String to, int fromIndex) {
-        if (s == null) {
-            return null;
-        }
-        if (to == null) {
-            return s;
-        }
-        int idx = s.indexOf(to, fromIndex);
-        if (idx < 0) {
-            return s;
-        }
-        return s.substring(fromIndex, idx);
-    }
-
     public static String removeUnreadableChars(String s) {
         if (s == null) {
             return null;
@@ -349,13 +259,13 @@ public class StrExtend extends ilarkesto.core.base.Str {
     }
 
     public static String replaceUnicodeCharsWithJavaNotation(String s) {
-        s = s.replace(valueOf(ue), "\\u00FC");
+        s = s.replace(valueOf(UESMALL), "\\u00FC");
         s = s.replace(valueOf(UE), "\\u00DC");
-        s = s.replace(valueOf(oe), "\\u00F6");
+        s = s.replace(valueOf(OESMALL), "\\u00F6");
         s = s.replace(valueOf(OE), "\\u00D6");
-        s = s.replace(valueOf(ae), "\\u00E4");
+        s = s.replace(valueOf(AESMALL), "\\u00E4");
         s = s.replace(valueOf(AE), "\\u00C4");
-        s = s.replace(valueOf(sz), "\\u00DF");
+        s = s.replace(valueOf(SZ), "\\u00DF");
         s = s.replace(valueOf(EUR), "\\u0080");
         return s;
     }
@@ -403,7 +313,7 @@ public class StrExtend extends ilarkesto.core.base.Str {
                     result.append("\" target=\"_blank\">");
 
                     String convertedUrl = linkConverter.convert(url, maxWidth);
-                    if (convertedUrl == null ? url == null : convertedUrl.equals(url)) {
+                    if (convertedUrl.equals(url)) {
                         if (url.startsWith("http://")) {
                             url = url.substring(7);
                         }
@@ -750,13 +660,13 @@ public class StrExtend extends ilarkesto.core.base.Str {
         s = s.replace('&', '@');
         s = s.replace('?', '@');
         s = s.replace('=', '_');
-        s = s.replace(valueOf(ae), "ae");
+        s = s.replace(valueOf(AESMALL), "ae");
         s = s.replace(valueOf(AE), "Ae");
-        s = s.replace(valueOf(ue), "ue");
+        s = s.replace(valueOf(UESMALL), "ue");
         s = s.replace(valueOf(UE), "Ue");
-        s = s.replace(valueOf(oe), "oe");
+        s = s.replace(valueOf(OESMALL), "oe");
         s = s.replace(valueOf(OE), "Oe");
-        s = s.replace(valueOf(sz), "ss");
+        s = s.replace(valueOf(SZ), "ss");
         s = s.replace(valueOf(EUR), "EUR");
         return s;
     }
@@ -1003,13 +913,13 @@ public class StrExtend extends ilarkesto.core.base.Str {
 
         s = sb.toString();
         s = s.replace("&nbsp;", " ");
-        s = s.replace("&auml;", valueOf(ae));
-        s = s.replace("&uuml;", valueOf(ue));
-        s = s.replace("&ouml;", valueOf(oe));
+        s = s.replace("&auml;", valueOf(AESMALL));
+        s = s.replace("&uuml;", valueOf(UESMALL));
+        s = s.replace("&ouml;", valueOf(OESMALL));
         s = s.replace("&Auml;", valueOf(AE));
         s = s.replace("&Uuml;", valueOf(UE));
         s = s.replace("&Ouml;", valueOf(OE));
-        s = s.replace("&szlig;", valueOf(sz));
+        s = s.replace("&szlig;", valueOf(SZ));
         s = s.replace("&euro;", valueOf(EUR));
         s = s.replace("&amp;", "&");
         s = s.replace("&quot;", "\"");
@@ -1150,72 +1060,12 @@ public class StrExtend extends ilarkesto.core.base.Str {
         return s;
     }
 
-    public static long generateUID(long idTimeSub) {
-        synchronized (UIDLOCK) {
-            long id = currentTimeMillis() - idTimeSub;
-            while (id <= lastId) {
-                id++;
-            }
-            lastId = id;
-            // LOG.fine("UID generated: "+id);
-            return id;
-        }
-    }
-
-    public static long generateUID() {
-        return generateUID(0);
-    }
-
-    public static boolean isVersion1LowerThenVersion2(String version1, String version2) {
-        if (version1 == null) {
-            return true;
-        }
-        if (version2 == null) {
-            return false;
-        }
-        return parseVersion(version1) < parseVersion(version2);
-    }
-
-    public static long parseVersion(String s) {
-        long v = 0;
-        int factor = 100 * 100 * 100 * 100;
-        StringTokenizer tokenizer = new StringTokenizer(s, ".");
-        while (tokenizer.hasMoreTokens()) {
-            int i = parseInt(tokenizer.nextToken());
-            v += i * factor;
-            factor = factor / 100;
-        }
-        return v;
-    }
-
     public static String[] toLowerCase(String[] value) {
         String[] ret = new String[value.length];
         for (int i = 0; i < value.length; i++) {
             ret[i] = value[i].toLowerCase();
         }
         return ret;
-    }
-
-    public static String toString(String message, String key, Object value) {
-        HashMap<String, Object> map = new HashMap<>();
-        map.put(key, value);
-        return toString(message, map);
-    }
-
-    public static String toString(String message, String key1, Object value1, String key2, Object value2) {
-        HashMap<String, Object> map = new HashMap<>();
-        map.put(key1, value1);
-        map.put(key2, value2);
-        return toString(message, map);
-    }
-
-    public static String toString(String message, String key1, Object value1, String key2, Object value2, String key3,
-            Object value3) {
-        HashMap<String, Object> map = new HashMap<>(); // TODO orderedMap
-        map.put(key1, value1);
-        map.put(key2, value2);
-        map.put(key3, value3);
-        return toString(message, map);
     }
 
     public static String toString(String message, Map<String, Object> map) {
@@ -1244,30 +1094,6 @@ public class StrExtend extends ilarkesto.core.base.Str {
         return getStackTrace(new Exception());
     }
 
-    public static Collection<Object[]> toCollection(Object[] oa) {
-        ArrayList<Object[]> al = new ArrayList<>(oa.length);
-        for (Object oa1 : oa) {
-            al.add(oa);
-        }
-        return al;
-    }
-
-    public static String[] merge(String[][] saa) {
-        LinkedList<String> ll = new LinkedList<>();
-        for (String[] sa : saa) {
-            for (int y = 0; y <= sa.length; y++) {
-                ll.add(sa[y]);
-            }
-        }
-        return toStringArray(ll);
-    }
-
-    // public static String[] subarray(String[] sa, int length) {
-    // StringList sl = new StringList(sa);
-    // while (sl.size() > length)
-    // sl.remove(sl.size() - 1);
-    // return sl.toStringArray();
-    // }
     public static String[] subarray(String[] sa, int beginIndex, int length) {
         String[] result = new String[length];
         arraycopy(sa, beginIndex, result, 0, length);
@@ -1276,81 +1102,6 @@ public class StrExtend extends ilarkesto.core.base.Str {
 
     public static String[] subarray(String[] sa, int beginIndex) {
         return subarray(sa, beginIndex, sa.length - beginIndex);
-    }
-
-    public static String getFirstLineFromHtml(String text, int cutAfterLength, String appendAfterCut) {
-        if (text == null) {
-            return "<empty>";
-        }
-        if (text.startsWith("<html")) {
-            text = cutHtmlAndHeaderAndBody(text);
-            text = removeHtmlTags(text).trim();
-        } else {
-            text = getFirstLine(text);
-        }
-        text = getFirstLine(text, cutAfterLength, appendAfterCut);
-        return text;
-    }
-
-    public static String getLineFromHtml(String text, int line, int cutAfterLength, String appendAfterCut) {
-        if (text == null) {
-            return "<empty>";
-        }
-        if (text.startsWith("<html")) {
-            text = cutHtmlAndHeaderAndBody(text);
-            text = removeHtmlTags(text).trim();
-        }
-        text = getLine(text, line, cutAfterLength, appendAfterCut);
-        return text;
-    }
-
-    public static String getFirstLine(String s) {
-        return getFirstLine(s, Integer.MAX_VALUE, null);
-    }
-
-    public static String getFirstLine(String s, int cutAfterLength, String appendAfterCut) {
-        return getLine(s, 0, cutAfterLength, appendAfterCut);
-    }
-
-    public static String getLine(String s, int index, int cutAfterLength, String appendAfterCut) {
-        if (s == null) {
-            return null;
-        }
-        BufferedReader in = new BufferedReader(new StringReader(s));
-        String ret = null;
-        try {
-            for (int i = 0; i <= index; i++) {
-                ret = in.readLine();
-                if (ret == null) {
-                    return "";
-                }
-            }
-            in.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        if (ret == null) {
-            return "";
-        }
-        if (ret.length() > cutAfterLength) {
-            ret = ret.substring(0, cutAfterLength);
-            if (appendAfterCut != null) {
-                ret += appendAfterCut;
-            }
-        }
-        return ret;
-    }
-
-    public static boolean equalStringArrays(String[] sa1, String[] sa2) {
-        if (sa1.length != sa2.length) {
-            return false;
-        }
-        for (int i = 0; i < sa1.length; i++) {
-            if (!sa1[i].equals(sa2[i])) {
-                return false;
-            }
-        }
-        return true;
     }
 
     public static List<String> tokenizeString(String s) {
@@ -1393,54 +1144,6 @@ public class StrExtend extends ilarkesto.core.base.Str {
         return concat(sa, " ");
     }
 
-    /**
-     * @param s
-     * @return
-     * @deprecated Use <code>toHtml()</code>
-     */
-    @Deprecated
-    public static String replaceForHtml(String s) {
-        return toHtml(s);
-    }
-
-    public static String convertLinksToHtml(String text, String target) {
-        StringBuilder sb = new StringBuilder();
-        int startIdx = 0;
-        int idx;
-        while ((idx = indexOf(text, new String[]{"http://", "www.", "ftp://"}, startIdx)) >= 0) {
-            int end = indexOf(text, new String[]{" ", "\n", ",", ";"}, idx);
-            if (end < 0) {
-                end = text.length();
-            }
-            String link = text.substring(idx, end);
-            sb.append(text.substring(startIdx, idx));
-            sb.append("<A href=\"").append(link).append("\"");
-            if (target != null) {
-                sb.append(" target=\"").append(target).append("\"");
-            }
-            sb.append(">").append(link).append("</A>");
-            startIdx = end;
-        }
-        sb.append(text.substring(startIdx));
-        return sb.toString();
-    }
-
-    public static String insertIfNotExisting(String into, int index, String insert) {
-        StringBuilder sb = new StringBuilder();
-
-        while (into.length() > index) {
-            String sub = into.substring(0, index);
-            sb.append(sub);
-            if (!sub.contains(insert)) {
-                sb.append(insert);
-            }
-            into = into.substring(index);
-        }
-        sb.append(into);
-
-        return sb.toString();
-    }
-
     public static ArrayList<String> splitWordLineToList(String line, int maxlen) {
         ArrayList<String> al = new ArrayList<>();
 
@@ -1464,75 +1167,6 @@ public class StrExtend extends ilarkesto.core.base.Str {
         return text;
     }
 
-    public static String getPrefix(String text, char[] prefixChars) {
-        int len = text.length();
-        StringBuilder sb = new StringBuilder();
-
-        for (int i = 0; i < len; i++) {
-            char c = text.charAt(i);
-            if (contains(prefixChars, c)) {
-                sb.append(c);
-            } else {
-                break;
-            }
-        }
-        return sb.toString();
-    }
-
-    public static boolean contains(char[] list, char element) {
-        for (int i = 0; i < list.length; i++) {
-            if (list[i] == element) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static String parseMailQuotationPrefix(String line) {
-        StringBuilder sb = new StringBuilder();
-        line = line.trim();
-        while (line.startsWith(">") || line.startsWith(" ")) {
-            sb.append(line.charAt(0));
-            line = line.substring(1);
-        }
-        return sb.toString();
-    }
-
-    public static String quote(String text, String prefix) {
-        List<String> lines = toStringList(text);
-        StringBuilder sb = new StringBuilder();
-        int size = lines.size();
-        for (int i = 0; i < size; i++) {
-            sb.append(prefix).append(lines.get(i)).append("\n");
-        }
-        return sb.toString();
-    }
-
-    public static String quoteMail(String text, String prefix, int maxlen) {
-        if (text == null) {
-            return null;
-        }
-        List<String> lines = toStringList(text);
-        StringBuilder sb = new StringBuilder();
-        int size = lines.size();
-        for (int i = 0; i < size; i++) {
-            String line = lines.get(i);
-            int len = line.length();
-            if (len > maxlen - 1) {
-                String lineprefix = parseMailQuotationPrefix(line);
-                int lplen = lineprefix.length();
-                ArrayList<String> al = splitWordLineToList(line.substring(lplen), maxlen - lplen);
-                for (String l : al) {
-                    l = trimRight(l);
-                    sb.append(prefix).append(lineprefix).append(l).append("\n");
-                }
-            } else {
-                sb.append(prefix).append(line).append("\n");
-            }
-        }
-        return sb.toString();
-    }
-
     public static List<String> toStringList(String text) {
         BufferedReader in = new BufferedReader(new StringReader(text));
         List<String> lines = new ArrayList<>();
@@ -1542,7 +1176,7 @@ public class StrExtend extends ilarkesto.core.base.Str {
                 lines.add(line);
             }
         } catch (IOException e) {
-            warn(e);
+            LOG.warn("toStringList: Exception", e);
         }
         return lines;
     }
@@ -1554,14 +1188,4 @@ public class StrExtend extends ilarkesto.core.base.Str {
         return text;
     }
 
-    public static class Char {
-
-        public static final char BACKSPACE = 8;
-
-        public static final char CR = 13;
-
-        public static final char LF = 10;
-    }
-
-    // --- dependencies ---
 }

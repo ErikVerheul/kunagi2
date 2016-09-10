@@ -18,6 +18,36 @@ import static ilarkesto.core.base.Str.fillUpRight;
 import static java.lang.Math.max;
 import java.util.ArrayList;
 import static java.util.Arrays.fill;
+import static java.lang.Math.max;
+import static java.util.Arrays.fill;
+import static java.lang.Math.max;
+import static java.util.Arrays.fill;
+import static java.lang.Math.max;
+import static java.util.Arrays.fill;
+import static java.lang.Math.max;
+import static java.util.Arrays.fill;
+import static java.lang.Math.max;
+import static java.util.Arrays.fill;
+import static java.lang.Math.max;
+import static java.util.Arrays.fill;
+import static java.lang.Math.max;
+import static java.util.Arrays.fill;
+import static java.lang.Math.max;
+import static java.util.Arrays.fill;
+import static java.lang.Math.max;
+import static java.util.Arrays.fill;
+import static java.lang.Math.max;
+import static java.util.Arrays.fill;
+import static java.lang.Math.max;
+import static java.util.Arrays.fill;
+import static java.lang.Math.max;
+import static java.util.Arrays.fill;
+import static java.lang.Math.max;
+import static java.util.Arrays.fill;
+import static java.lang.Math.max;
+import static java.util.Arrays.fill;
+import static java.lang.Math.max;
+import static java.util.Arrays.fill;
 
 public class ConsoleTable {
 

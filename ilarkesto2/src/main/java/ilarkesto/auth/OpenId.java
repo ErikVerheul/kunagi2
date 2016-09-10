@@ -41,6 +41,21 @@ import static org.openid4java.message.ax.FetchRequest.createFetchRequest;
 import org.openid4java.message.ax.FetchResponse;
 import static org.openid4java.util.HttpClientFactory.setProxyProperties;
 import org.openid4java.util.ProxyProperties;
+import static org.openid4java.message.ax.FetchRequest.createFetchRequest;
+import static org.openid4java.message.ax.FetchRequest.createFetchRequest;
+import static org.openid4java.message.ax.FetchRequest.createFetchRequest;
+import static org.openid4java.message.ax.FetchRequest.createFetchRequest;
+import static org.openid4java.message.ax.FetchRequest.createFetchRequest;
+import static org.openid4java.message.ax.FetchRequest.createFetchRequest;
+import static org.openid4java.message.ax.FetchRequest.createFetchRequest;
+import static org.openid4java.message.ax.FetchRequest.createFetchRequest;
+import static org.openid4java.message.ax.FetchRequest.createFetchRequest;
+import static org.openid4java.message.ax.FetchRequest.createFetchRequest;
+import static org.openid4java.message.ax.FetchRequest.createFetchRequest;
+import static org.openid4java.message.ax.FetchRequest.createFetchRequest;
+import static org.openid4java.message.ax.FetchRequest.createFetchRequest;
+import static org.openid4java.message.ax.FetchRequest.createFetchRequest;
+import static org.openid4java.message.ax.FetchRequest.createFetchRequest;
 
 /**
  * http://code.google.com/p/openid4java/

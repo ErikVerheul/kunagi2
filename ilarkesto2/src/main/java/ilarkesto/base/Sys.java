@@ -21,13 +21,13 @@ import static ilarkesto.io.IO.getLocalHostNames;
 import java.awt.GraphicsEnvironment;
 import java.io.File;
 import static java.io.File.listRoots;
-import static java.lang.Integer.parseInt;
 import static java.lang.Runtime.getRuntime;
-import static java.lang.String.valueOf;
-import static java.lang.System.getProperty;
 import static java.lang.Thread.currentThread;
 import static java.util.Arrays.asList;
 import java.util.Collection;
+import static java.lang.Integer.parseInt;
+import static java.lang.String.valueOf;
+import static java.lang.System.getProperty;
 
 /**
  * Utility methods for the java core. System properties access.
@@ -37,14 +37,14 @@ public final class Sys {
 	private static long startupTime;
 	private static File workDir;
 
-	private static final boolean developmentMode = new File("src").exists();
+	private static final boolean DEVELOPMENTMODE = new File("src").exists();
 
     /**
      *
      * @return
      */
     public static boolean isDevelopmentMode() {
-		return developmentMode;
+		return DEVELOPMENTMODE;
 	}
 
     /**

@@ -24,6 +24,36 @@ import static java.lang.System.out;
 import java.security.MessageDigest;
 import static java.security.MessageDigest.getInstance;
 import java.security.NoSuchAlgorithmException;
+import static ilarkesto.io.IO.downloadUrlToString;
+import static java.security.MessageDigest.getInstance;
+import static ilarkesto.io.IO.downloadUrlToString;
+import static java.security.MessageDigest.getInstance;
+import static ilarkesto.io.IO.downloadUrlToString;
+import static java.security.MessageDigest.getInstance;
+import static ilarkesto.io.IO.downloadUrlToString;
+import static java.security.MessageDigest.getInstance;
+import static ilarkesto.io.IO.downloadUrlToString;
+import static java.security.MessageDigest.getInstance;
+import static ilarkesto.io.IO.downloadUrlToString;
+import static java.security.MessageDigest.getInstance;
+import static ilarkesto.io.IO.downloadUrlToString;
+import static java.security.MessageDigest.getInstance;
+import static ilarkesto.io.IO.downloadUrlToString;
+import static java.security.MessageDigest.getInstance;
+import static ilarkesto.io.IO.downloadUrlToString;
+import static java.security.MessageDigest.getInstance;
+import static ilarkesto.io.IO.downloadUrlToString;
+import static java.security.MessageDigest.getInstance;
+import static ilarkesto.io.IO.downloadUrlToString;
+import static java.security.MessageDigest.getInstance;
+import static ilarkesto.io.IO.downloadUrlToString;
+import static java.security.MessageDigest.getInstance;
+import static ilarkesto.io.IO.downloadUrlToString;
+import static java.security.MessageDigest.getInstance;
+import static ilarkesto.io.IO.downloadUrlToString;
+import static java.security.MessageDigest.getInstance;
+import static ilarkesto.io.IO.downloadUrlToString;
+import static java.security.MessageDigest.getInstance;
 
 public class Gravatar {
 

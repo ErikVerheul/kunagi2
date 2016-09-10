@@ -24,6 +24,21 @@ import static org.apache.log4j.Logger.getRootLogger;
 import org.apache.log4j.spi.ErrorHandler;
 import org.apache.log4j.spi.Filter;
 import org.apache.log4j.spi.LoggingEvent;
+import static ilarkesto.logging.Log.get;
+import static ilarkesto.logging.Log.get;
+import static ilarkesto.logging.Log.get;
+import static ilarkesto.logging.Log.get;
+import static ilarkesto.logging.Log.get;
+import static ilarkesto.logging.Log.get;
+import static ilarkesto.logging.Log.get;
+import static ilarkesto.logging.Log.get;
+import static ilarkesto.logging.Log.get;
+import static ilarkesto.logging.Log.get;
+import static ilarkesto.logging.Log.get;
+import static ilarkesto.logging.Log.get;
+import static ilarkesto.logging.Log.get;
+import static ilarkesto.logging.Log.get;
+import static ilarkesto.logging.Log.get;
 
 /**
  *

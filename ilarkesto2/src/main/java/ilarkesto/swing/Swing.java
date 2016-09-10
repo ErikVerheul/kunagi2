@@ -15,7 +15,7 @@
 package ilarkesto.swing;
 
 import ilarkesto.base.StrExtend;
-import static ilarkesto.base.StrExtend.replaceForHtml;
+import static ilarkesto.core.base.Str.toHtml;
 import static ilarkesto.core.logging.ClientLog.DEBUG;
 import static ilarkesto.io.IO.getScaled;
 import static ilarkesto.io.IO.loadImage;
@@ -84,452 +84,543 @@ import javax.swing.UnsupportedLookAndFeelException;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 import static javax.swing.WindowConstants.HIDE_ON_CLOSE;
+import static ilarkesto.io.IO.loadImage;
+import static java.lang.Math.min;
+import static javax.swing.JOptionPane.showConfirmDialog;
+import static javax.swing.UIManager.setLookAndFeel;
+import static ilarkesto.io.IO.loadImage;
+import static java.lang.Math.min;
+import static javax.swing.JOptionPane.showConfirmDialog;
+import static javax.swing.UIManager.setLookAndFeel;
+import static ilarkesto.io.IO.loadImage;
+import static java.lang.Math.min;
+import static javax.swing.JOptionPane.showConfirmDialog;
+import static javax.swing.UIManager.setLookAndFeel;
+import static ilarkesto.io.IO.loadImage;
+import static java.lang.Math.min;
+import static javax.swing.JOptionPane.showConfirmDialog;
+import static javax.swing.UIManager.setLookAndFeel;
+import static ilarkesto.io.IO.loadImage;
+import static java.lang.Math.min;
+import static javax.swing.JOptionPane.showConfirmDialog;
+import static javax.swing.UIManager.setLookAndFeel;
+import static ilarkesto.io.IO.loadImage;
+import static java.lang.Math.min;
+import static javax.swing.JOptionPane.showConfirmDialog;
+import static javax.swing.UIManager.setLookAndFeel;
+import static ilarkesto.io.IO.loadImage;
+import static java.lang.Math.min;
+import static javax.swing.JOptionPane.showConfirmDialog;
+import static javax.swing.UIManager.setLookAndFeel;
+import static ilarkesto.io.IO.loadImage;
+import static java.lang.Math.min;
+import static javax.swing.JOptionPane.showConfirmDialog;
+import static javax.swing.UIManager.setLookAndFeel;
+import static ilarkesto.io.IO.loadImage;
+import static java.lang.Math.min;
+import static javax.swing.JOptionPane.showConfirmDialog;
+import static javax.swing.UIManager.setLookAndFeel;
+import static ilarkesto.io.IO.loadImage;
+import static java.lang.Math.min;
+import static javax.swing.JOptionPane.showConfirmDialog;
+import static javax.swing.UIManager.setLookAndFeel;
+import static ilarkesto.io.IO.loadImage;
+import static java.lang.Math.min;
+import static javax.swing.JOptionPane.showConfirmDialog;
+import static javax.swing.UIManager.setLookAndFeel;
+import static ilarkesto.io.IO.loadImage;
+import static java.lang.Math.min;
+import static javax.swing.JOptionPane.showConfirmDialog;
+import static javax.swing.UIManager.setLookAndFeel;
+import static ilarkesto.io.IO.loadImage;
+import static java.lang.Math.min;
+import static javax.swing.JOptionPane.showConfirmDialog;
+import static javax.swing.UIManager.setLookAndFeel;
+import static ilarkesto.io.IO.loadImage;
+import static java.lang.Math.min;
+import static javax.swing.JOptionPane.showConfirmDialog;
+import static javax.swing.UIManager.setLookAndFeel;
+import static ilarkesto.io.IO.loadImage;
+import static java.lang.Math.min;
+import static javax.swing.JOptionPane.showConfirmDialog;
+import static javax.swing.UIManager.setLookAndFeel;
 
 /**
  * Utility methods for Swing. Dialogs, frames, positioning.
  */
 public class Swing {
 
-	public static void main(String[] args) throws Exception {
-		setDebugEnabled(true);
-		DEBUG((Object[])getInstalledLookAndFeels());
-		setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-		JOptionPane.showMessageDialog(null, createMessageComponent("Nachricht"));
-		showMessageDialog(
-			null,
-			" Geschafft, obwohl der Text so scheiss lang ist.\n Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheissGeschafft, obwohl der Text so scheiss lang ist.\\n Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheissGeschafft, obwohl der Text so scheiss lang ist.\\n Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheissGeschafft, obwohl der Text so scheiss lang ist.\\n Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss");
-	}
+    public static void main(String[] args) throws Exception {
+        setDebugEnabled(true);
+        DEBUG((Object[]) getInstalledLookAndFeels());
+        setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+        JOptionPane.showMessageDialog(null, createMessageComponent("Nachricht"));
+        showMessageDialog(
+                null,
+                " Geschafft, obwohl der Text so scheiss lang ist.\n Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheissGeschafft, obwohl der Text so scheiss lang ist.\\n Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheissGeschafft, obwohl der Text so scheiss lang ist.\\n Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheissGeschafft, obwohl der Text so scheiss lang ist.\\n Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss lang ist. Geschafft, obwohl der Text so scheiss");
+    }
 
-	public static void setSystemLookAndFeel() {
-		try {
-			setLookAndFeel(getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-			throw new RuntimeException(ex);
-		}
-	}
+    public static void setSystemLookAndFeel() {
+        try {
+            setLookAndFeel(getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
 
-	public static Dimension getFractionFromScreen(double xFactor, double yFactor) {
-		Dimension screen = getDefaultToolkit().getScreenSize();
-		return new Dimension((int) (screen.getWidth() * xFactor), (int) (screen.getHeight() * yFactor));
-	}
+    public static Dimension getFractionFromScreen(double xFactor, double yFactor) {
+        Dimension screen = getDefaultToolkit().getScreenSize();
+        return new Dimension((int) (screen.getWidth() * xFactor), (int) (screen.getHeight() * yFactor));
+    }
 
-	public static void invokeInEventDispatchThreadLater(Runnable runnable) {
-		invokeLater(runnable);
-	}
+    public static void invokeInEventDispatchThreadLater(Runnable runnable) {
+        invokeLater(runnable);
+    }
 
-	public static void invokeInEventDispatchThread(Runnable runnable) {
-		if (isEventDispatchThread()) {
-			runnable.run();
-		} else {
-			try {
-				invokeAndWait(runnable);
-			} catch (InterruptedException ex) {
-			} catch (InvocationTargetException ex) {
-				throw new RuntimeException(ex);
-			}
-		}
-	}
+    public static void invokeInEventDispatchThread(Runnable runnable) {
+        if (isEventDispatchThread()) {
+            runnable.run();
+        } else {
+            try {
+                invokeAndWait(runnable);
+            } catch (InterruptedException ex) {
+            } catch (InvocationTargetException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+    }
 
-	public static void assertEventDispatchThread() {
-		if (!isEventDispatchThread()) {
-                        throw new RuntimeException("Thread is not the EventDispatchThread");
+    public static void assertEventDispatchThread() {
+        if (!isEventDispatchThread()) {
+            throw new RuntimeException("Thread is not the EventDispatchThread");
+        }
+    }
+
+    public static boolean isEventDispatchThread() {
+        return isDispatchThread();
+    }
+
+    public static boolean isBlank(JTextField field) {
+        if (field == null) {
+            return true;
+        }
+        return StrExtend.isBlank(field.getText());
+    }
+
+    public static JDialog showModalDialogWithoutBlocking(Component parent, String title, Component content) {
+        final JDialog dialog = new JDialog(getWindow(parent), title);
+        dialog.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        dialog.setModal(true);
+        dialog.setModalityType(DOCUMENT_MODAL);
+        dialog.add(content);
+        dialog.pack();
+        // dialog.setMinimumSize(dialog.getPreferredSize());
+        dialog.setResizable(false);
+        placeBest(dialog, parent);
+        Thread t = new Thread() {
+
+            @Override
+            public void run() {
+                try {
+                    sleep(100);
+                } catch (InterruptedException ex) {
+                    throw new RuntimeException(ex);
                 }
-	}
-
-	public static boolean isEventDispatchThread() {
-		return isDispatchThread();
-	}
-
-	public static boolean isBlank(JTextField field) {
-		if (field == null) {
-                        return true;
+                dialog.setVisible(true);
+                synchronized (dialog) {
+                    dialog.notifyAll();
                 }
-		return StrExtend.isBlank(field.getText());
-	}
-
-	public static JDialog showModalDialogWithoutBlocking(Component parent, String title, Component content) {
-		final JDialog dialog = new JDialog(getWindow(parent), title);
-		dialog.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-		dialog.setModal(true);
-		dialog.setModalityType(DOCUMENT_MODAL);
-		dialog.add(content);
-		dialog.pack();
-		// dialog.setMinimumSize(dialog.getPreferredSize());
-		dialog.setResizable(false);
-		placeBest(dialog, parent);
-		Thread t = new Thread() {
-
-			@Override
-			public void run() {
-				try {
-					sleep(100);
-				} catch (InterruptedException ex) {
-					throw new RuntimeException(ex);
-				}
-				dialog.setVisible(true);
-				synchronized (dialog) {
-					dialog.notifyAll();
-				}
-			}
-		};
-		t.setDaemon(true);
-		t.start();
-		while (!dialog.isVisible()) {
-			synchronized (dialog) {
-				try {
-					dialog.wait(10);
-				} catch (InterruptedException ex) {}
-			}
-		}
-		return dialog;
-	}
-
-	public static void showMessageDialog(Component parent, String message) {
-		JFrame frame = null;
-		if (parent == null) {
-			frame = new JFrame("Nachricht");
-			center(frame);
-			frame.setVisible(true);
-			parent = frame;
-		}
-		JOptionPane.showMessageDialog(parent, createMessageComponent(message));
-		if (frame != null) {
-			frame.dispose();
-		}
-	}
-
-	public static JComponent createMessageComponent(String message) {
-		return createMessageComponent(message, 600, null);
-	}
-
-	public static JComponent createMessageComponent(String message, int preferredWidth, Color color) {
-		if (message != null && !message.startsWith("<html")) {
-                        message = "<html>" + replaceForHtml(message);
+            }
+        };
+        t.setDaemon(true);
+        t.start();
+        while (!dialog.isVisible()) {
+            synchronized (dialog) {
+                try {
+                    dialog.wait(10);
+                } catch (InterruptedException ex) {
                 }
-		JEditorPane editor = new JEditorPane("text/html", message);
-		if (color != null) {
-                        editor.setForeground(color);
-                }
-		editor.setOpaque(false);
-		editor.setEditable(false);
-		int lines = editor.getPreferredSize().width / preferredWidth;
-		if (lines == 0) {
-			return editor;
-		} else {
-			int height = min(editor.getPreferredSize().height + (lines * 25), 300);
-			JScrollPane scroller = new JScrollPane(editor);
-			scroller.setPreferredSize(new Dimension(preferredWidth, height));
-			scroller.setBorder(null);
-			return scroller;
-		}
-	}
+            }
+        }
+        return dialog;
+    }
 
-	public static String showTextEditorDialog(Component parent, String text, String title) {
-		JTextArea textArea = new JTextArea(text, 25, 80);
-		textArea.setFont(new Font(MONOSPACED, PLAIN, 12));
-		JScrollPane scrollPane = new JScrollPane(textArea);
-		scrollPane.setPreferredSize(new Dimension(640, 480));
-		if (OK_OPTION != showConfirmDialog(parent, scrollPane, title, OK_CANCEL_OPTION, QUESTION_MESSAGE, null)) {
-                        return null;
-                }
-		return textArea.getText();
-	}
+    public static void showMessageDialog(Component parent, String message) {
+        JFrame frame = null;
+        if (parent == null) {
+            frame = new JFrame("Nachricht");
+            center(frame);
+            frame.setVisible(true);
+            parent = frame;
+        }
+        JOptionPane.showMessageDialog(parent, createMessageComponent(message));
+        if (frame != null) {
+            frame.dispose();
+        }
+    }
 
-	public static int getWidth(String s, Font font) {
-		JLabel l = new JLabel(s);
-		l.setFont(font);
-		return l.getPreferredSize().width;
-	}
+    public static JComponent createMessageComponent(String message) {
+        return createMessageComponent(message, 600, null);
+    }
 
-	public static JTextField activateSelectAllOnFocusGained(final JTextField field) {
-		field.addFocusListener(new FocusAdapter() {
+    public static JComponent createMessageComponent(String message, int preferredWidth, Color color) {
+        if (message != null && !message.startsWith("<html")) {
+            message = "<html>" + toHtml(message);
+        }
+        JEditorPane editor = new JEditorPane("text/html", message);
+        if (color != null) {
+            editor.setForeground(color);
+        }
+        editor.setOpaque(false);
+        editor.setEditable(false);
+        int lines = editor.getPreferredSize().width / preferredWidth;
+        if (lines == 0) {
+            return editor;
+        } else {
+            int height = min(editor.getPreferredSize().height + (lines * 25), 300);
+            JScrollPane scroller = new JScrollPane(editor);
+            scroller.setPreferredSize(new Dimension(preferredWidth, height));
+            scroller.setBorder(null);
+            return scroller;
+        }
+    }
 
-			@Override
-			public void focusGained(FocusEvent e) {
-				field.selectAll();
-			}
+    public static String showTextEditorDialog(Component parent, String text, String title) {
+        JTextArea textArea = new JTextArea(text, 25, 80);
+        textArea.setFont(new Font(MONOSPACED, PLAIN, 12));
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        scrollPane.setPreferredSize(new Dimension(640, 480));
+        if (OK_OPTION != showConfirmDialog(parent, scrollPane, title, OK_CANCEL_OPTION, QUESTION_MESSAGE, null)) {
+            return null;
+        }
+        return textArea.getText();
+    }
 
-		});
-		return field;
-	}
+    public static int getWidth(String s, Font font) {
+        JLabel l = new JLabel(s);
+        l.setFont(font);
+        return l.getPreferredSize().width;
+    }
 
-	public static JSplitPane createVerticalSplit(Component upper, Component lower, int dividerLocation) {
-		JSplitPane splitPane = new JSplitPane(VERTICAL_SPLIT);
-		splitPane.add(upper);
-		splitPane.add(lower);
-		splitPane.setDividerLocation(dividerLocation);
-		return splitPane;
-	}
+    public static JTextField activateSelectAllOnFocusGained(final JTextField field) {
+        field.addFocusListener(new FocusAdapter() {
 
-	public static JSplitPane createHorizontalSplit(Component left, Component right) {
-		JSplitPane splitPane = new JSplitPane(HORIZONTAL_SPLIT);
-		splitPane.add(left);
-		splitPane.add(right);
-		return splitPane;
-	}
+            @Override
+            public void focusGained(FocusEvent e) {
+                field.selectAll();
+            }
 
-	public static JPanel createPanelForButtonsRight(Action... actions) {
-		JPanel panel = new JPanel(new FlowLayout(RIGHT));
-		for (Action action : actions) {
-			if (action == null) {
-				panel.add(createSpacer(10, 1));
-				continue;
-			}
-			panel.add(new JButton(action));
-		}
-		return panel;
-	}
+        });
+        return field;
+    }
 
-	public static Component createSpacer(int width, int height) {
-		Canvas canvas = new Canvas();
-		canvas.setPreferredSize(new Dimension(width, height));
-		return canvas;
-	}
+    public static JSplitPane createVerticalSplit(Component upper, Component lower, int dividerLocation) {
+        JSplitPane splitPane = new JSplitPane(VERTICAL_SPLIT);
+        splitPane.add(upper);
+        splitPane.add(lower);
+        splitPane.setDividerLocation(dividerLocation);
+        return splitPane;
+    }
 
-	/**
-	 * Takes a screenshot of the default graphics device.
-	 * 
-	 * @param windowToHide If this parameter is provided, the window will be hidden before the screen is
-	 *            captured and then showed again. This causes that the window does not appear on the
-	 *            screenshot.
-	 */
-	public static BufferedImage captureScreen(Window windowToHide) {
-		return captureScreen(getLocalGraphicsEnvironment().getDefaultScreenDevice(), windowToHide);
-	}
+    public static JSplitPane createHorizontalSplit(Component left, Component right) {
+        JSplitPane splitPane = new JSplitPane(HORIZONTAL_SPLIT);
+        splitPane.add(left);
+        splitPane.add(right);
+        return splitPane;
+    }
 
-	/**
-	 * Takes a screenshot of a given device.
-	 * 
-	 * @param screen The graphics device to capture.
-	 * @param windowToHide If this parameter is provided, the window will be hidden before the screen is
-	 *            captured and then showed again. This causes that the window does not appear on the
-	 *            screenshot.
-	 */
-	public static BufferedImage captureScreen(GraphicsDevice screen, Window windowToHide) {
-		DisplayMode mode = screen.getDisplayMode();
-		if (windowToHide != null) {
-                        windowToHide.setVisible(false);
-                }
-		try {
-			return new Robot().createScreenCapture(new Rectangle(mode.getWidth(), mode.getHeight()));
-		} catch (AWTException ex) {
-			throw new RuntimeException(ex);
-		} finally {
-			if (windowToHide != null) {
-                                windowToHide.setVisible(true);
-                        }
-		}
-	}
+    public static JPanel createPanelForButtonsRight(Action... actions) {
+        JPanel panel = new JPanel(new FlowLayout(RIGHT));
+        for (Action action : actions) {
+            if (action == null) {
+                panel.add(createSpacer(10, 1));
+                continue;
+            }
+            panel.add(new JButton(action));
+        }
+        return panel;
+    }
 
-	/**
-	 * Shows a component in a JFrame. The frame will be packed and centered on the screen.
-	 * 
-	 * @param component The Component to show.
-	 * @param title The title of the frame.
-	 * @param icon TODO
-	 * @param exitOnClose Specifies if the Application quits, when the frame is closed.
-	 * @return The packed and visible frame.
-	 */
-	public static JFrame showInJFrame(final Component component, final String title, final Image icon,
-			final boolean exitOnClose) {
-		final JFrame frame = new JFrame(title);
-		if (icon != null) {
-                        frame.setIconImage(icon);
-                }
-		frame.setDefaultCloseOperation(exitOnClose ? EXIT_ON_CLOSE : HIDE_ON_CLOSE);
-		frame.add(component);
-		frame.pack();
-		center(frame);
-		frame.setVisible(true);
-		return frame;
-	}
+    public static Component createSpacer(int width, int height) {
+        Canvas canvas = new Canvas();
+        canvas.setPreferredSize(new Dimension(width, height));
+        return canvas;
+    }
 
-	public static JFrame showInJFrame(Component component, double percentScreenWidth) {
-		component.setPreferredSize(getFractionFromScreen(percentScreenWidth, percentScreenWidth));
-		return showInJFrame(component);
-	}
+    /**
+     * Takes a screenshot of the default graphics device.
+     *
+     * @param windowToHide If this parameter is provided, the window will be
+     * hidden before the screen is captured and then showed again. This causes
+     * that the window does not appear on the screenshot.
+     * @return 
+     */
+    public static BufferedImage captureScreen(Window windowToHide) {
+        return captureScreen(getLocalGraphicsEnvironment().getDefaultScreenDevice(), windowToHide);
+    }
 
-	public static JFrame showInJFrame(Component component) {
-		return showInJFrame(component, component.getClass().getSimpleName(), null, true);
-	}
+    /**
+     * Takes a screenshot of a given device.
+     *
+     * @param screen The graphics device to capture.
+     * @param windowToHide If this parameter is provided, the window will be
+     * hidden before the screen is captured and then showed again. This causes
+     * that the window does not appear on the screenshot.
+     * @return 
+     */
+    public static BufferedImage captureScreen(GraphicsDevice screen, Window windowToHide) {
+        DisplayMode mode = screen.getDisplayMode();
+        if (windowToHide != null) {
+            windowToHide.setVisible(false);
+        }
+        try {
+            return new Robot().createScreenCapture(new Rectangle(mode.getWidth(), mode.getHeight()));
+        } catch (AWTException ex) {
+            throw new RuntimeException(ex);
+        } finally {
+            if (windowToHide != null) {
+                windowToHide.setVisible(true);
+            }
+        }
+    }
 
-	public static Window getWindow(Component component) {
-		if (component == null) {
-                        return null;
-                }
-		if (component instanceof Window) {
-                        return (Window) component;
-                }
-		return windowForComponent(component);
-	}
+    /**
+     * Shows a component in a JFrame. The frame will be packed and centered on
+     * the screen.
+     *
+     * @param component The Component to show.
+     * @param title The title of the frame.
+     * @param icon TODO
+     * @param exitOnClose Specifies if the Application quits, when the frame is
+     * closed.
+     * @return The packed and visible frame.
+     */
+    public static JFrame showInJFrame(final Component component, final String title, final Image icon,
+            final boolean exitOnClose) {
+        final JFrame frame = new JFrame(title);
+        if (icon != null) {
+            frame.setIconImage(icon);
+        }
+        frame.setDefaultCloseOperation(exitOnClose ? EXIT_ON_CLOSE : HIDE_ON_CLOSE);
+        frame.add(component);
+        frame.pack();
+        center(frame);
+        frame.setVisible(true);
+        return frame;
+    }
 
-	/**
-	 * Creates a default modal dialog for a component.
-	 * 
-	 * @param component The component, to show in a dialog.
-	 * @param parent The component, whichs frame to be the parent of the modal dialog.
-	 * @return The created dialog.
-	 */
-	public static JDialog createDialog(Component component, Component parent, String title) {
-		Window window = getWindow(parent);
-		JDialog dialog = new JDialog((Frame) window); // TODO remove cast!
-		dialog.setTitle(title);
-		dialog.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-		dialog.getContentPane().add(component);
-		dialog.setModal(true);
-		dialog.pack();
-		placeBest(dialog, window);
-		return dialog;
-	}
+    public static JFrame showInJFrame(Component component, double percentScreenWidth) {
+        component.setPreferredSize(getFractionFromScreen(percentScreenWidth, percentScreenWidth));
+        return showInJFrame(component);
+    }
 
-	public static JFrame createFrame(Component component, Component parent, String title) {
-		JFrame frame = new JFrame(title);
-		frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		frame.add(component);
-		frame.pack();
-		placeBest(frame, parent);
-		return frame;
-	}
+    public static JFrame showInJFrame(Component component) {
+        return showInJFrame(component, component.getClass().getSimpleName(), null, true);
+    }
 
-	private static Map<String, ImageIcon> icons = new HashMap<>();
+    public static Window getWindow(Component component) {
+        if (component == null) {
+            return null;
+        }
+        if (component instanceof Window) {
+            return (Window) component;
+        }
+        return windowForComponent(component);
+    }
 
-	/**
-	 * Determines and loads a 16x16 icon. The icon hast to be placed in the classpath as the following file:
-	 * <code>img/16/{name}.png</code> The icon will be cached.
-	 * 
-	 * @param name The name of the icon (Filename without extension).
-	 */
-	public static ImageIcon getIcon16(String name) {
-		return getIcon("img/16/" + name + ".png", 16);
-	}
+    /**
+     * Creates a default modal dialog for a component.
+     *
+     * @param component The component, to show in a dialog.
+     * @param parent The component, whichs frame to be the parent of the modal
+     * dialog.
+     * @param title
+     * @return The created dialog.
+     */
+    public static JDialog createDialog(Component component, Component parent, String title) {
+        Window window = getWindow(parent);
+        JDialog dialog = new JDialog((Frame) window); // TODO remove cast!
+        dialog.setTitle(title);
+        dialog.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        dialog.getContentPane().add(component);
+        dialog.setModal(true);
+        dialog.pack();
+        placeBest(dialog, window);
+        return dialog;
+    }
 
-	public static ImageIcon getIcon128(String name) {
-		return getIcon("img/128/" + name + ".png", 128);
-	}
+    public static JFrame createFrame(Component component, Component parent, String title) {
+        JFrame frame = new JFrame(title);
+        frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        frame.add(component);
+        frame.pack();
+        placeBest(frame, parent);
+        return frame;
+    }
 
-	public static ImageIcon getIcon(String path) {
-		return getIcon(path, null);
-	}
+    private static final Map<String, ImageIcon> ICONS = new HashMap<>();
 
-	public static ImageIcon getIcon(String path, Integer size) {
-		if (icons.containsKey(path)) {
-                        return icons.get(path);
-                }
-		ImageIcon result = new ImageIcon(getImage(path, size));
-		icons.put(path, result);
-		return result;
-	}
+    /**
+     * Determines and loads a 16x16 icon. The icon hast to be placed in the
+     * class path as the following file: <code>img/16/{name}.png</code> The icon
+     * will be cached.
+     *
+     * @param name The name of the icon (Filename without extension).
+     * @return
+     */
+    public static ImageIcon getIcon16(String name) {
+        return getIcon("img/16/" + name + ".png", 16);
+    }
 
-	public static int getTrayIconSize() {
-		Dimension dim = getSystemTray().getTrayIconSize();
-		int size = (int) min(dim.getWidth(), dim.getHeight());
-		return size;
-	}
+    public static ImageIcon getIcon128(String name) {
+        return getIcon("img/128/" + name + ".png", 128);
+    }
 
-	public static Image getImage(String path, Integer size) {
-		BufferedImage im = loadImage(path);
-		if (size == null) {
-                        return im;
-                }
-		return getScaled(im, size, size);
-	}
+    public static ImageIcon getIcon(String path) {
+        return getIcon(path, null);
+    }
 
-	public static void addTrayIcon(TrayIcon trayIcon) {
-		try {
-			getSystemTray().add(trayIcon);
-		} catch (AWTException ex) {
-			throw new RuntimeException(ex);
-		}
-	}
+    public static ImageIcon getIcon(String path, Integer size) {
+        if (ICONS.containsKey(path)) {
+            return ICONS.get(path);
+        }
+        ImageIcon result = new ImageIcon(getImage(path, size));
+        ICONS.put(path, result);
+        return result;
+    }
 
-	/**
-	 * Centers a window on the screen.
-	 */
-	public static void center(Window window) {
-		Dimension w = window.getSize();
-		Dimension s = getDefaultToolkit().getScreenSize();
-		window.setLocation((s.width - w.width) / 2, (s.height - w.height) / 2);
-	}
+    public static int getTrayIconSize() {
+        Dimension dim = getSystemTray().getTrayIconSize();
+        int size = (int) min(dim.getWidth(), dim.getHeight());
+        return size;
+    }
 
-	/**
-	 * Places a window at the best (centered) position relative to another window.
-	 */
-	public static void placeBest(Window window, Window parent) {
-		if (parent == null) {
-			center(window);
-			return;
-		}
-		placeBest(window, parent.getLocation(), parent.getSize());
-	}
+    public static Image getImage(String path, Integer size) {
+        BufferedImage im = loadImage(path);
+        if (size == null) {
+            return im;
+        }
+        return getScaled(im, size, size);
+    }
 
-	/**
-	 * Places a window at the best (centered) position relative to another window.
-	 */
-	public static void placeBest(Window window, Component parent) {
-		Window parentWindow = getWindow(parent);
-		if (parentWindow == null) {
-			center(window);
-			return;
-		}
-		placeBest(window, parentWindow.getLocation(), parent.getSize());
-	}
+    public static void addTrayIcon(TrayIcon trayIcon) {
+        try {
+            getSystemTray().add(trayIcon);
+        } catch (AWTException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
 
-	/**
-	 * Places a window at the best (centered) position relative to another window.
-	 */
-	public static void placeBest(Window window, Point parentPosition, Dimension parentSize) {
-		window.setLocation(getBestWindowPosition(window.getSize(), parentPosition, parentSize));
-	}
+    /**
+     * Centers a window on the screen.
+     */
+    public static void center(Window window) {
+        Dimension w = window.getSize();
+        Dimension s = getDefaultToolkit().getScreenSize();
+        window.setLocation((s.width - w.width) / 2, (s.height - w.height) / 2);
+    }
 
-	/**
-	 * Determines the best (centered) position for a window relative to another window.
-	 */
-	public static Point getBestWindowPosition(Dimension dim, Point parentPos, Dimension parentDim) {
-		return getBestWindowPosition(dim, getCenter(parentPos, parentDim));
-	}
+    /**
+     * Places a window at the best (centered) position relative to another
+     * window.
+     */
+    public static void placeBest(Window window, Window parent) {
+        if (parent == null) {
+            center(window);
+            return;
+        }
+        placeBest(window, parent.getLocation(), parent.getSize());
+    }
 
-	/**
-	 * Determines the best (centered) position for a window relative to another window.
-	 */
-	public static Point getBestWindowPosition(Dimension dim, Point parentPos) {
-		int x = parentPos.x - (dim.width / 2);
-		int y = parentPos.y - (dim.height / 2);
-		boolean xOk = false;
-		boolean yOk = false;
-		if (x < 0) {
-			x = 0;
-			xOk = true;
-		}
-		if (y < 0) {
-			y = 0;
-			yOk = true;
-		}
-		if (!xOk) {
-			if (x + dim.width > getDefaultToolkit().getScreenSize().width) {
-				x = getDefaultToolkit().getScreenSize().width - dim.width;
-			}
-		}
-		if (!yOk) {
-			if (y + dim.height > getDefaultToolkit().getScreenSize().height - 20) {
-				y = getDefaultToolkit().getScreenSize().height - dim.height - 20;
-			}
-		}
-		return new Point(x, y);
-	}
+    /**
+     * Places a window at the best (centered) position relative to another
+     * window.
+     * @param window
+     * @param parent
+     */
+    public static void placeBest(Window window, Component parent) {
+        Window parentWindow = getWindow(parent);
+        if (parentWindow == null) {
+            center(window);
+            return;
+        }
+        placeBest(window, parentWindow.getLocation(), parent.getSize());
+    }
 
-	/**
-	 * Determines the center of an window.
-	 */
-	public static Point getCenter(Point parentPos, Dimension parentDim) {
-		return new Point(parentPos.x + (parentDim.width / 2), parentPos.y + (parentDim.height / 2));
-	}
+    /**
+     * Places a window at the best (centered) position relative to another
+     * window.
+     * @param window
+     * @param parentPosition
+     * @param parentSize
+     */
+    public static void placeBest(Window window, Point parentPosition, Dimension parentSize) {
+        window.setLocation(getBestWindowPosition(window.getSize(), parentPosition, parentSize));
+    }
 
-	public static MenuItem createMenuItem(String label, ActionListener actionListener) {
-		MenuItem item = new MenuItem(label);
-		item.addActionListener(actionListener);
-		return item;
-	}
+    /**
+     * Determines the best (centered) position for a window relative to another
+     * window.
+     * @param dim
+     * @param parentPos
+     * @param parentDim
+     * @return 
+     */
+    public static Point getBestWindowPosition(Dimension dim, Point parentPos, Dimension parentDim) {
+        return getBestWindowPosition(dim, getCenter(parentPos, parentDim));
+    }
 
-	private Swing() {}
+    /**
+     * Determines the best (centered) position for a window relative to another
+     * window.
+     * @param dim
+     * @param parentPos
+     * @return 
+     */
+    public static Point getBestWindowPosition(Dimension dim, Point parentPos) {
+        int x = parentPos.x - (dim.width / 2);
+        int y = parentPos.y - (dim.height / 2);
+        boolean xOk = false;
+        boolean yOk = false;
+        if (x < 0) {
+            x = 0;
+            xOk = true;
+        }
+        if (y < 0) {
+            y = 0;
+            yOk = true;
+        }
+        if (!xOk) {
+            if (x + dim.width > getDefaultToolkit().getScreenSize().width) {
+                x = getDefaultToolkit().getScreenSize().width - dim.width;
+            }
+        }
+        if (!yOk) {
+            if (y + dim.height > getDefaultToolkit().getScreenSize().height - 20) {
+                y = getDefaultToolkit().getScreenSize().height - dim.height - 20;
+            }
+        }
+        return new Point(x, y);
+    }
+
+    /**
+     * Determines the center of an window.
+     *
+     * @param parentPos
+     * @param parentDim
+     * @return
+     */
+    public static Point getCenter(Point parentPos, Dimension parentDim) {
+        return new Point(parentPos.x + (parentDim.width / 2), parentPos.y + (parentDim.height / 2));
+    }
+
+    public static MenuItem createMenuItem(String label, ActionListener actionListener) {
+        MenuItem item = new MenuItem(label);
+        item.addActionListener(actionListener);
+        return item;
+    }
+
+    private Swing() {
+    }
 
 }

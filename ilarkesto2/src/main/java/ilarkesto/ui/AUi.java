@@ -30,6 +30,36 @@ import ilarkesto.persistence.AEntity;
 import ilarkesto.ui.action.AAction;
 import ilarkesto.ui.usermessage.UserMessageService;
 import static java.lang.Math.round;
+import static ilarkesto.base.Reflect.getFieldValue;
+import static java.lang.Math.round;
+import static ilarkesto.base.Reflect.getFieldValue;
+import static java.lang.Math.round;
+import static ilarkesto.base.Reflect.getFieldValue;
+import static java.lang.Math.round;
+import static ilarkesto.base.Reflect.getFieldValue;
+import static java.lang.Math.round;
+import static ilarkesto.base.Reflect.getFieldValue;
+import static java.lang.Math.round;
+import static ilarkesto.base.Reflect.getFieldValue;
+import static java.lang.Math.round;
+import static ilarkesto.base.Reflect.getFieldValue;
+import static java.lang.Math.round;
+import static ilarkesto.base.Reflect.getFieldValue;
+import static java.lang.Math.round;
+import static ilarkesto.base.Reflect.getFieldValue;
+import static java.lang.Math.round;
+import static ilarkesto.base.Reflect.getFieldValue;
+import static java.lang.Math.round;
+import static ilarkesto.base.Reflect.getFieldValue;
+import static java.lang.Math.round;
+import static ilarkesto.base.Reflect.getFieldValue;
+import static java.lang.Math.round;
+import static ilarkesto.base.Reflect.getFieldValue;
+import static java.lang.Math.round;
+import static ilarkesto.base.Reflect.getFieldValue;
+import static java.lang.Math.round;
+import static ilarkesto.base.Reflect.getFieldValue;
+import static java.lang.Math.round;
 
 public abstract class AUi {
 

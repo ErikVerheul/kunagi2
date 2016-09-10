@@ -16,8 +16,8 @@ package ilarkesto.locale;
 
 import ilarkesto.base.Cache;
 import ilarkesto.base.StrExtend;
-import static ilarkesto.base.StrExtend.replaceForHtml;
 import static ilarkesto.base.StrExtend.replaceUnicodeCharsWithJavaNotation;
+import static ilarkesto.core.base.Str.toHtml;
 import static ilarkesto.io.IO.UTF_8;
 import static ilarkesto.io.IO.appendLine;
 import static ilarkesto.io.IO.loadProperties;
@@ -30,6 +30,36 @@ import static java.util.Locale.GERMAN;
 import java.util.Properties;
 import javax.swing.JFrame;
 import static javax.swing.JOptionPane.QUESTION_MESSAGE;
+import static javax.swing.JOptionPane.showInputDialog;
+import static ilarkesto.io.IO.loadProperties;
+import static javax.swing.JOptionPane.showInputDialog;
+import static ilarkesto.io.IO.loadProperties;
+import static javax.swing.JOptionPane.showInputDialog;
+import static ilarkesto.io.IO.loadProperties;
+import static javax.swing.JOptionPane.showInputDialog;
+import static ilarkesto.io.IO.loadProperties;
+import static javax.swing.JOptionPane.showInputDialog;
+import static ilarkesto.io.IO.loadProperties;
+import static javax.swing.JOptionPane.showInputDialog;
+import static ilarkesto.io.IO.loadProperties;
+import static javax.swing.JOptionPane.showInputDialog;
+import static ilarkesto.io.IO.loadProperties;
+import static javax.swing.JOptionPane.showInputDialog;
+import static ilarkesto.io.IO.loadProperties;
+import static javax.swing.JOptionPane.showInputDialog;
+import static ilarkesto.io.IO.loadProperties;
+import static javax.swing.JOptionPane.showInputDialog;
+import static ilarkesto.io.IO.loadProperties;
+import static javax.swing.JOptionPane.showInputDialog;
+import static ilarkesto.io.IO.loadProperties;
+import static javax.swing.JOptionPane.showInputDialog;
+import static ilarkesto.io.IO.loadProperties;
+import static javax.swing.JOptionPane.showInputDialog;
+import static ilarkesto.io.IO.loadProperties;
+import static javax.swing.JOptionPane.showInputDialog;
+import static ilarkesto.io.IO.loadProperties;
+import static javax.swing.JOptionPane.showInputDialog;
+import static ilarkesto.io.IO.loadProperties;
 import static javax.swing.JOptionPane.showInputDialog;
 
 public final class LearningLocalizer extends Localizer {
@@ -117,7 +147,7 @@ public final class LearningLocalizer extends Localizer {
 		if (template.startsWith("<html")) {
 			for (int i = 0; i < parameters.length; i++) {
 				if (parameters[i] instanceof String) {
-					parameters[i] = replaceForHtml((String) parameters[i]);
+					parameters[i] = toHtml((String) parameters[i]);
 				}
 			}
 		}

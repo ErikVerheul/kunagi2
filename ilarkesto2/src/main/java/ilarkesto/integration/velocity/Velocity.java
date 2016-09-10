@@ -27,6 +27,36 @@ import java.util.Map;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
+import static ilarkesto.io.IO.copyFile;
+import static ilarkesto.io.IO.createDirectory;
+import static ilarkesto.io.IO.copyFile;
+import static ilarkesto.io.IO.createDirectory;
+import static ilarkesto.io.IO.copyFile;
+import static ilarkesto.io.IO.createDirectory;
+import static ilarkesto.io.IO.copyFile;
+import static ilarkesto.io.IO.createDirectory;
+import static ilarkesto.io.IO.copyFile;
+import static ilarkesto.io.IO.createDirectory;
+import static ilarkesto.io.IO.copyFile;
+import static ilarkesto.io.IO.createDirectory;
+import static ilarkesto.io.IO.copyFile;
+import static ilarkesto.io.IO.createDirectory;
+import static ilarkesto.io.IO.copyFile;
+import static ilarkesto.io.IO.createDirectory;
+import static ilarkesto.io.IO.copyFile;
+import static ilarkesto.io.IO.createDirectory;
+import static ilarkesto.io.IO.copyFile;
+import static ilarkesto.io.IO.createDirectory;
+import static ilarkesto.io.IO.copyFile;
+import static ilarkesto.io.IO.createDirectory;
+import static ilarkesto.io.IO.copyFile;
+import static ilarkesto.io.IO.createDirectory;
+import static ilarkesto.io.IO.copyFile;
+import static ilarkesto.io.IO.createDirectory;
+import static ilarkesto.io.IO.copyFile;
+import static ilarkesto.io.IO.createDirectory;
+import static ilarkesto.io.IO.copyFile;
+import static ilarkesto.io.IO.createDirectory;
 
 public class Velocity {
 

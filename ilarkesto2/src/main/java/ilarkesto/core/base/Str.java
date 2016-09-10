@@ -14,15 +14,14 @@
  */
 package ilarkesto.core.base;
 
-import static ilarkesto.core.base.Utl.toList;
-import static java.lang.Character.isDigit;
-import static java.lang.Character.isLetter;
-import static java.lang.Character.isLetterOrDigit;
-import static java.lang.String.valueOf;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.Map;
 import java.util.Set;
+import static ilarkesto.core.base.Utl.toList;
+import static java.lang.Character.isDigit;
+import static java.lang.Character.isLetter;
+import static java.lang.Character.isLetterOrDigit;
 
 /**
  *
@@ -31,43 +30,15 @@ import java.util.Set;
 public class Str {
 
     /**
-     *
+     * Characters used in Germany
      */
-    public static final char ue = '\u00FC';
-
-    /**
-     *
-     */
+    public static final char UESMALL = '\u00FC';
     public static final char UE = '\u00DC';
-
-    /**
-     *
-     */
-    public static final char oe = '\u00F6';
-
-    /**
-     *
-     */
+    public static final char OESMALL = '\u00F6';
     public static final char OE = '\u00D6';
-
-    /**
-     *
-     */
-    public static final char ae = '\u00E4';
-
-    /**
-     *
-     */
+    public static final char AESMALL = '\u00E4';
     public static final char AE = '\u00C4';
-
-    /**
-     *
-     */
-    public static final char sz = '\u00DF';
-
-    /**
-     *
-     */
+    public static final char SZ = '\u00DF';
     public static final char EUR = '\u0080';
 
     /**
@@ -239,29 +210,6 @@ public class Str {
      * @param delimiter
      * @return
      */
-    public static String concat(Iterable strings, String delimiter) {
-        if (strings == null) {
-            return null;
-        }
-        StringBuilder sb = new StringBuilder();
-        boolean first = true;
-        for (Object s : strings) {
-            if (first) {
-                first = false;
-            } else {
-                sb.append(delimiter);
-            }
-            sb.append(s);
-        }
-        return sb.toString();
-    }
-
-    /**
-     *
-     * @param strings
-     * @param delimiter
-     * @return
-     */
     public static String concat(Collection strings, String delimiter) {
         if (strings == null) {
             return null;
@@ -282,6 +230,8 @@ public class Str {
     /**
      * Removes a suffix from a string, if it exists.
      *
+     * @param s
+     * @param suffixToRemove
      * @return
      */
     public static String removeSuffix(String s, String suffixToRemove) {
@@ -350,7 +300,9 @@ public class Str {
     }
 
     /**
-     *
+     * Convert text to HTML
+     * 
+     * @see http://stackoverflow.com/questions/5134959/convert-plain-text-to-html-text-in-java
      * @param s
      * @return
      */
@@ -358,21 +310,69 @@ public class Str {
         if (s == null) {
             return null;
         }
-        s = s.replace("&", "&amp;");
-        s = s.replace(valueOf(ae), "&auml;");
-        s = s.replace(valueOf(ue), "&uuml;");
-        s = s.replace(valueOf(oe), "&ouml;");
-        s = s.replace(valueOf(AE), "&Auml;");
-        s = s.replace(valueOf(UE), "&Uuml;");
-        s = s.replace(valueOf(OE), "&Ouml;");
-        s = s.replace(valueOf(sz), "&szlig;");
-        s = s.replace(valueOf(EUR), "&euro;");
-        s = s.replace("<", "&lt;");
-        s = s.replace(">", "&gt;");
-        s = s.replace("\"", "&quot;");
-        s = s.replace("\n", "<br>");
+        StringBuilder builder = new StringBuilder();
+        boolean previousWasASpace = false;
+        for (char c : s.toCharArray()) {
+            if (c == ' ') {
+                if (previousWasASpace) {
+                    builder.append("&nbsp;");
+                    previousWasASpace = false;
+                    continue;
+                }
+                previousWasASpace = true;
+            } else {
+                previousWasASpace = false;
+            }
+            switch (c) {
+                case '<':
+                    builder.append("&lt;");
+                    break;
+                case '>':
+                    builder.append("&gt;");
+                    break;
+                case '&':
+                    builder.append("&amp;");
+                    break;
+                case '"':
+                    builder.append("&quot;");
+                    break;
+                case '\n':
+                    builder.append("<br>");
+                    break;
+                case AESMALL:
+                    builder.append("&auml;");
+                    break;
+                case UESMALL:
+                    builder.append("&uuml;");
+                    break;
+                case OESMALL:
+                    builder.append("&ouml;");
+                    break;
+                case AE:
+                    builder.append("&Auml;");
+                    break;
+                case UE:
+                    builder.append("&Uuml;");
+                    break;
+                case OE:
+                    builder.append("&Ouml;");
+                    break;
+                case SZ:
+                    builder.append("&szlig;");
+                    break;
+                case EUR:
+                    builder.append("&euro;");
+                    break;
 
-        return s;
+                // We need Tab support here, because we print StackTraces as HTML
+                case '\t':
+                    builder.append("&nbsp; &nbsp; &nbsp;");
+                    break;
+                default:
+                    builder.append(c);
+            }
+        }
+        return builder.toString();
     }
 
     /**
@@ -485,7 +485,6 @@ public class Str {
         return sb.toString();
     }
 
-    // TODO rename
     /**
      *
      * @param s
@@ -500,7 +499,6 @@ public class Str {
         }
     }
 
-    // TODO rename
     /**
      *
      * @param s
@@ -681,7 +679,7 @@ public class Str {
 
     /**
      * A simple stack trace to String convertor.
-     * 
+     *
      * @param ex
      * @return
      */

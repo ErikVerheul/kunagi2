@@ -32,6 +32,36 @@ import static ilarkesto.core.base.Str.isBlank;
 import static ilarkesto.gwt.client.Gwt.createNbsp;
 import static java.lang.Character.isDigit;
 import static java.lang.Integer.parseInt;
+import static java.lang.Character.isDigit;
+import static java.lang.Integer.parseInt;
+import static java.lang.Character.isDigit;
+import static java.lang.Integer.parseInt;
+import static java.lang.Character.isDigit;
+import static java.lang.Integer.parseInt;
+import static java.lang.Character.isDigit;
+import static java.lang.Integer.parseInt;
+import static java.lang.Character.isDigit;
+import static java.lang.Integer.parseInt;
+import static java.lang.Character.isDigit;
+import static java.lang.Integer.parseInt;
+import static java.lang.Character.isDigit;
+import static java.lang.Integer.parseInt;
+import static java.lang.Character.isDigit;
+import static java.lang.Integer.parseInt;
+import static java.lang.Character.isDigit;
+import static java.lang.Integer.parseInt;
+import static java.lang.Character.isDigit;
+import static java.lang.Integer.parseInt;
+import static java.lang.Character.isDigit;
+import static java.lang.Integer.parseInt;
+import static java.lang.Character.isDigit;
+import static java.lang.Integer.parseInt;
+import static java.lang.Character.isDigit;
+import static java.lang.Integer.parseInt;
+import static java.lang.Character.isDigit;
+import static java.lang.Integer.parseInt;
+import static java.lang.Character.isDigit;
+import static java.lang.Integer.parseInt;
 
 public abstract class AIntegerViewEditWidget extends AViewEditWidget {
 

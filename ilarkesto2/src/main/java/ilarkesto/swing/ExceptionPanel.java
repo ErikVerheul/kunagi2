@@ -36,6 +36,36 @@ import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import static ilarkesto.swing.Swing.createMessageComponent;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static ilarkesto.swing.Swing.createMessageComponent;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static ilarkesto.swing.Swing.createMessageComponent;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static ilarkesto.swing.Swing.createMessageComponent;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static ilarkesto.swing.Swing.createMessageComponent;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static ilarkesto.swing.Swing.createMessageComponent;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static ilarkesto.swing.Swing.createMessageComponent;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static ilarkesto.swing.Swing.createMessageComponent;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static ilarkesto.swing.Swing.createMessageComponent;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static ilarkesto.swing.Swing.createMessageComponent;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static ilarkesto.swing.Swing.createMessageComponent;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static ilarkesto.swing.Swing.createMessageComponent;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static ilarkesto.swing.Swing.createMessageComponent;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static ilarkesto.swing.Swing.createMessageComponent;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static ilarkesto.swing.Swing.createMessageComponent;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 public class ExceptionPanel extends JPanel {
 

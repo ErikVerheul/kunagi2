@@ -14,7 +14,7 @@
  */
 package ilarkesto.swing;
 
-import static ilarkesto.base.StrExtend.replaceForHtml;
+import static ilarkesto.core.base.Str.toHtml;
 import static ilarkesto.swing.Swing.invokeInEventDispatchThreadLater;
 import static ilarkesto.swing.Swing.showInJFrame;
 import java.awt.BorderLayout;
@@ -26,59 +26,89 @@ import java.util.concurrent.LinkedBlockingDeque;
 import javax.swing.JEditorPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import static ilarkesto.swing.Swing.showInJFrame;
+import static java.lang.Thread.sleep;
+import static ilarkesto.swing.Swing.showInJFrame;
+import static java.lang.Thread.sleep;
+import static ilarkesto.swing.Swing.showInJFrame;
+import static java.lang.Thread.sleep;
+import static ilarkesto.swing.Swing.showInJFrame;
+import static java.lang.Thread.sleep;
+import static ilarkesto.swing.Swing.showInJFrame;
+import static java.lang.Thread.sleep;
+import static ilarkesto.swing.Swing.showInJFrame;
+import static java.lang.Thread.sleep;
+import static ilarkesto.swing.Swing.showInJFrame;
+import static java.lang.Thread.sleep;
+import static ilarkesto.swing.Swing.showInJFrame;
+import static java.lang.Thread.sleep;
+import static ilarkesto.swing.Swing.showInJFrame;
+import static java.lang.Thread.sleep;
+import static ilarkesto.swing.Swing.showInJFrame;
+import static java.lang.Thread.sleep;
+import static ilarkesto.swing.Swing.showInJFrame;
+import static java.lang.Thread.sleep;
+import static ilarkesto.swing.Swing.showInJFrame;
+import static java.lang.Thread.sleep;
+import static ilarkesto.swing.Swing.showInJFrame;
+import static java.lang.Thread.sleep;
+import static ilarkesto.swing.Swing.showInJFrame;
+import static java.lang.Thread.sleep;
+import static ilarkesto.swing.Swing.showInJFrame;
+import static java.lang.Thread.sleep;
 
 public class OutputPanel extends JPanel {
 
-	public static void main(String[] args) throws Exception {
-		OutputPanel op = new OutputPanel();
-		showInJFrame(op);
-		op.append("message 1");
-		op.append("message 2");
-		sleep(2000);
-		op.clear();
-		op.append("message 3");
-		op.append("message 4");
-	}
+    public static void main(String[] args) throws Exception {
+        OutputPanel op = new OutputPanel();
+        showInJFrame(op);
+        op.append("message 1");
+        op.append("message 2");
+        sleep(2000);
+        op.clear();
+        op.append("message 3");
+        op.append("message 4");
+    }
 
-	private BlockingQueue<String> strings;
-	private JEditorPane outputPane;
-	private JScrollPane scroller;
+    private final BlockingQueue<String> strings;
+    private final JEditorPane outputPane;
+    private final JScrollPane scroller;
 
-	public OutputPanel() {
-		super(new BorderLayout());
+    public OutputPanel() {
+        super(new BorderLayout());
 
-		strings = new LinkedBlockingDeque<>();
+        strings = new LinkedBlockingDeque<>();
 
-		outputPane = new JEditorPane("text/html", "");
-		outputPane.setEditable(false);
+        outputPane = new JEditorPane("text/html", "");
+        outputPane.setEditable(false);
 
-		scroller = new JScrollPane(outputPane);
-		scroller.setPreferredSize(new Dimension(600, 200));
+        scroller = new JScrollPane(outputPane);
+        scroller.setPreferredSize(new Dimension(600, 200));
 
-		add(scroller, CENTER);
-	}
+        add(scroller, CENTER);
+    }
 
-	public void append(String text) {
-		strings.add("<p>" + replaceForHtml(text) + "</p>");
-		updateOutputPane();
-	}
+    public void append(String text) {
+        strings.add("<p>" + toHtml(text) + "</p>");
+        updateOutputPane();
+    }
 
-	public void clear() {
-		strings.clear();
-		updateOutputPane();
-	}
+    public void clear() {
+        strings.clear();
+        updateOutputPane();
+    }
 
-	private void updateOutputPane() {
-		invokeInEventDispatchThreadLater(new Runnable() {
+    private void updateOutputPane() {
+        invokeInEventDispatchThreadLater(new Runnable() {
 
-			@Override
-			public void run() {
-				StringBuilder sb = new StringBuilder();
-				for (String s : strings) {
-                                        sb.append(s);
-                                }
-				outputPane.setText(sb.toString());
-			}
-		});
-	}
+            @Override
+            public void run() {
+                StringBuilder sb = new StringBuilder();
+                for (String s : strings) {
+                    sb.append(s);
+                }
+                outputPane.setText(sb.toString());
+            }
+        });
+    }
 }

@@ -24,6 +24,21 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import static ilarkesto.core.base.Str.concat;
+import static ilarkesto.core.base.Str.concat;
+import static ilarkesto.core.base.Str.concat;
+import static ilarkesto.core.base.Str.concat;
+import static ilarkesto.core.base.Str.concat;
+import static ilarkesto.core.base.Str.concat;
+import static ilarkesto.core.base.Str.concat;
+import static ilarkesto.core.base.Str.concat;
+import static ilarkesto.core.base.Str.concat;
+import static ilarkesto.core.base.Str.concat;
+import static ilarkesto.core.base.Str.concat;
+import static ilarkesto.core.base.Str.concat;
+import static ilarkesto.core.base.Str.concat;
+import static ilarkesto.core.base.Str.concat;
+import static ilarkesto.core.base.Str.concat;
 
 public class Arguments {
 

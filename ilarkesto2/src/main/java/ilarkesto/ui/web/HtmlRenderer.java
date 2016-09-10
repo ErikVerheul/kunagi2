@@ -15,7 +15,6 @@
 package ilarkesto.ui.web;
 
 import static ilarkesto.base.StrExtend.activateLinksInHtml;
-import static ilarkesto.base.StrExtend.replaceForHtml;
 import ilarkesto.base.Url;
 import static ilarkesto.base.UtlExtend.getRootCause;
 import static ilarkesto.core.base.Str.toHtml;
@@ -31,6 +30,36 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
+import static java.lang.String.valueOf;
+import static ilarkesto.base.StrExtend.activateLinksInHtml;
+import static java.lang.String.valueOf;
+import static ilarkesto.base.StrExtend.activateLinksInHtml;
+import static java.lang.String.valueOf;
+import static ilarkesto.base.StrExtend.activateLinksInHtml;
+import static java.lang.String.valueOf;
+import static ilarkesto.base.StrExtend.activateLinksInHtml;
+import static java.lang.String.valueOf;
+import static ilarkesto.base.StrExtend.activateLinksInHtml;
+import static java.lang.String.valueOf;
+import static ilarkesto.base.StrExtend.activateLinksInHtml;
+import static java.lang.String.valueOf;
+import static ilarkesto.base.StrExtend.activateLinksInHtml;
+import static java.lang.String.valueOf;
+import static ilarkesto.base.StrExtend.activateLinksInHtml;
+import static java.lang.String.valueOf;
+import static ilarkesto.base.StrExtend.activateLinksInHtml;
+import static java.lang.String.valueOf;
+import static ilarkesto.base.StrExtend.activateLinksInHtml;
+import static java.lang.String.valueOf;
+import static ilarkesto.base.StrExtend.activateLinksInHtml;
+import static java.lang.String.valueOf;
+import static ilarkesto.base.StrExtend.activateLinksInHtml;
+import static java.lang.String.valueOf;
+import static ilarkesto.base.StrExtend.activateLinksInHtml;
+import static java.lang.String.valueOf;
+import static ilarkesto.base.StrExtend.activateLinksInHtml;
+import static java.lang.String.valueOf;
+import static ilarkesto.base.StrExtend.activateLinksInHtml;
 import static java.lang.String.valueOf;
 
 public class HtmlRenderer {
@@ -448,7 +477,7 @@ public class HtmlRenderer {
 	private Tag INPUT(String type, String name, String value) {
 		Tag tag = startTag(INPUT, true).set("type", type).set("name", name);
 		if (value != null) {
-                        tag.set("value", replaceForHtml(value));
+                        tag.set("value", toHtml(value));
                 }
 		return tag;
 	}
@@ -975,9 +1004,7 @@ public class HtmlRenderer {
 					out.print(s);
 				}
 			} else {
-				s = replaceForHtml(s);
-				// text = StringEscapeUtils.escapeHtml(text);
-				// text = text.replace("\n", "<BR/>");
+				s = toHtml(s);
 				if (activateLinks) {
                                         s = activateLinksInHtml(s, ALL);
                                 }
