@@ -61,7 +61,7 @@ http://maven.apache.org/maven-v4_0_0.xsd">
             <dependency>
                 <groupId>org.testng</groupId>
                 <artifactId>testng</artifactId>
-                <version>6.8.8</version>
+                <version>6.11</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.velocity</groupId>
