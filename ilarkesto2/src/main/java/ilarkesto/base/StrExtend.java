@@ -231,33 +231,6 @@ public class StrExtend extends ilarkesto.core.base.Str {
         return s;
     }
 
-    public static String removeUnreadableChars(String s) {
-        if (s == null) {
-            return null;
-        }
-        StringBuilder sb = new StringBuilder();
-        int len = s.length();
-        for (int i = 0; i < len; i++) {
-            char c = s.charAt(i);
-            if (isReadable(c)) {
-                sb.append(c);
-            }
-        }
-        return sb.toString();
-    }
-
-    @SuppressWarnings("RpC_REPEATED_CONDITIONAL_TEST")
-    public static boolean isReadable(char c) {
-        if (Character.isLetterOrDigit(c)) {
-            return true;
-        }
-        return c == ' ' || c == '\n' || c == '!' || c == '"' || c == '�' || c == '$' || c == '%' || c == '&' || c == '/'
-                || c == '(' || c == ')' || c == '=' || c == '?' || c == '{' || c == '}' || c == '[' || c == ']'
-                || c == '\\' || c == '*' || c == '+' || c == '~' || c == '#' || c == '\'' || c == '-' || c == '_'
-                || c == '.' || c == ':' || c == ',' || c == ';' || c == '�' || c == '<' || c == '>' || c == '@'
-                || c == EUR || c == '^' || c == '�' || c == '�' || c == '�' || c == '|';
-    }
-
     public static String replaceUnicodeCharsWithJavaNotation(String s) {
         s = s.replace(valueOf(UESMALL), "\\u00FC");
         s = s.replace(valueOf(UE), "\\u00DC");
