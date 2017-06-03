@@ -21,7 +21,20 @@ http://maven.apache.org/maven-v4_0_0.xsd">
         <gwtVersion>2.8.1</gwtVersion>
         <jetty.version>7.6.13.v20130916</jetty.version>
         <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>        
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- SONAR properties-->
+        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+        <sonar.language>java</sonar.language>
+        <sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>              
+        <!-- The Sonar Jacoco Listener for JUnit to extract coverage details per test >
+        <sonar-jacoco-listeners.version>3.2</sonar-jacoco-listeners.version-->
+        <sonar.jacoco.utReportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.utReportPath>        
+        <!-- Tells Sonar where the Jacoco coverage result file is located for Integration Tests -->
+        <sonar.jacoco.itReportPath>${project.basedir}/../target/jacoco-it.exec</sonar.jacoco.itReportPath>
+        <!-- The argLine must be set as a property. See http://docs.sonarqube.org/display/PLUG/Usage+of+JaCoCo+with+Java+Plugin -->
+        <!-- some versions of JDK7/8 causes VerifyError during mock tests: http://code.google.com/p/powermock/issues/detail?id=504-->
+        <!-- -XX:-UseGCOverheadLimit switches the GC overhead limit exceeded check completely off; this is an issue when Sonar processes the huge IT file-->
+        <argLine>-Xmx2048m -XX:-UseGCOverheadLimit -Dfile.encoding=UTF-8 -noverify</argLine>       
     </properties>
 
     <dependencyManagement>
@@ -92,7 +105,29 @@ http://maven.apache.org/maven-v4_0_0.xsd">
                     <!-- [Erik] see http://docs.sonarqube.org/display/SONAR/Analyzing+with+SonarQube+Scanner+for+Maven -->
                     <groupId>org.sonarsource.scanner.maven</groupId>
                     <artifactId>sonar-maven-plugin</artifactId>
-                    <version>3.0.1</version>
+                    <version>3.2</version>
+                    <!-- Prepares a variable, jacoco.agent.arg, that contains the info 
+                to be passed to the JVM hosting the code being tested. -->
+                <executions>
+                    <execution>
+                        <id>agent-for-ut</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                        <configuration>
+                            <destFile>${sonar.jacoco.reportPath}</destFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>agent-for-it</id>
+                        <goals>
+                            <goal>prepare-agent-integration</goal>
+                        </goals>
+                        <configuration>
+                            <destFile>${sonar.jacoco.itReportPath}</destFile>
+                        </configuration>
+                    </execution>
+                </executions>
                 </plugin>
             </plugins>
         </pluginManagement>
