@@ -26,7 +26,6 @@ http://maven.apache.org/maven-v4_0_0.xsd">
         <!-- Sonar see https://stackoverflow.com/questions/13031219/how-to-configure-multi-module-maven-sonar-jacoco-to-give-merged-coverage-rep-->
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-        <sonar.jacoco.reportPaths>${WORKSPACE}/target/jacoco.exec</sonar.jacoco.reportPaths>
         <sonar.language>java</sonar.language>
         <!-- The argLine must be set as a property. See http://docs.sonarqube.org/display/PLUG/Usage+of+JaCoCo+with+Java+Plugin -->
         <!-- some versions of JDK7/8 causes VerifyError during mock tests: http://code.google.com/p/powermock/issues/detail?id=504-->
@@ -142,11 +141,7 @@ http://maven.apache.org/maven-v4_0_0.xsd">
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.9</version>
-                <configuration>
-                    <destFile>${sonar.jacoco.reportPaths}</destFile>
-                    <append>true</append>
-                </configuration>
+                <version>0.7.9</version>               
                 <executions>
                     <execution>
                         <id>agent</id>
