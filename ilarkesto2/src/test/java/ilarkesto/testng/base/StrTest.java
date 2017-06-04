@@ -12,7 +12,7 @@
  * You should have received a copy of the GNU General Public License along with this program. If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package ilarkesto.testng.base;
+package ilarkesto.testNG.base;
 
 import ilarkesto.base.StrExtend;
 import org.testng.Assert;
@@ -28,19 +28,19 @@ public class StrTest extends Assert {
      *
      */
     @Test
-	public void getLeadingSpaces() {
-		assertEquals(StrExtend.getLeadingSpaces("   a"), "   ");
-		assertEquals(StrExtend.getLeadingSpaces("   "), "   ");
-		assertEquals(StrExtend.getLeadingSpaces("a"), "");
-		assertEquals(StrExtend.getLeadingSpaces(""), "");
-	}
+    public void getLeadingSpaces() {
+        assertEquals(StrExtend.getLeadingSpaces("   a"), "   ");
+        assertEquals(StrExtend.getLeadingSpaces("   "), "   ");
+        assertEquals(StrExtend.getLeadingSpaces("a"), "");
+        assertEquals(StrExtend.getLeadingSpaces(""), "");
+    }
 
     /**
      *
      */
     @Test
-	public void cutFromTo() {
-		assertEquals(StrExtend.cutFromTo("Hello <em>world</em>!", "<em>", "</em>"), "world");
-	}
+    public void cutFromTo() {
+        assertEquals(StrExtend.cutFromTo("Hello <em>world</em>!", "<em>", "</em>"), "world");
+    }
 
 }

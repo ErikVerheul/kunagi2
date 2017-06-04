@@ -12,7 +12,7 @@
  * You should have received a copy of the GNU General Public License along with this program. If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package ilarkesto.testng.core.time;
+package ilarkesto.testNG.core.time;
 
 import ilarkesto.core.time.Time;
 import ilarkesto.testng.ATest;

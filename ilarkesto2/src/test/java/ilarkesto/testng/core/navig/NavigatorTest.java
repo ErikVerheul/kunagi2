@@ -12,7 +12,7 @@
  * You should have received a copy of the GNU General Public License along with this program. If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package ilarkesto.testng.core.navig;
+package ilarkesto.testNG.core.navig;
 
 import ilarkesto.core.navig.Navigator;
 import ilarkesto.core.navig.Page;
@@ -29,33 +29,33 @@ public class NavigatorTest extends ATest {
      *
      */
     @Test
-	public void goBack() {
-		Navigator n = new Navigator();
-		Page p = new Page(null);
-		n.goNext(p);
-		n.goBack();
-		assertSame(n.getPage(), n.getRootPage());
-	}
+    public void goBack() {
+        Navigator n = new Navigator();
+        Page p = new Page(null);
+        n.goNext(p);
+        n.goBack();
+        assertSame(n.getPage(), n.getRootPage());
+    }
 
     /**
      *
      */
     @Test
-	public void goNext() {
-		Navigator n = new Navigator();
-		Page p = new Page(null);
-		n.goNext(p);
-		assertSame(n.getPage(), p);
-	}
+    public void goNext() {
+        Navigator n = new Navigator();
+        Page p = new Page(null);
+        n.goNext(p);
+        assertSame(n.getPage(), p);
+    }
 
     /**
      *
      */
     @Test
-	public void goBackToRoot() {
-		Navigator n = new Navigator();
-		n.goBackToRoot();
-		assertSame(n.getPage(), n.getRootPage());
-	}
+    public void goBackToRoot() {
+        Navigator n = new Navigator();
+        n.goBackToRoot();
+        assertSame(n.getPage(), n.getRootPage());
+    }
 
 }

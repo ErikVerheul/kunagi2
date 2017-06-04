@@ -20,7 +20,7 @@ import org.testng.annotations.Test;
 
 /**
  *
- * @author erik
+ *
  */
 public class StrTest extends Assert {
 
@@ -28,19 +28,19 @@ public class StrTest extends Assert {
      *
      */
     @Test
-	public void getLeadingSpaces() {
-		assertEquals(StrExtend.getLeadingSpaces("   a"), "   ");
-		assertEquals(StrExtend.getLeadingSpaces("   "), "   ");
-		assertEquals(StrExtend.getLeadingSpaces("a"), "");
-		assertEquals(StrExtend.getLeadingSpaces(""), "");
-	}
+    public void getLeadingSpaces() {
+        assertEquals(StrExtend.getLeadingSpaces("   a"), "   ");
+        assertEquals(StrExtend.getLeadingSpaces("   "), "   ");
+        assertEquals(StrExtend.getLeadingSpaces("a"), "");
+        assertEquals(StrExtend.getLeadingSpaces(""), "");
+    }
 
     /**
      *
      */
     @Test
-	public void cutFromTo() {
-		assertEquals(StrExtend.cutFromTo("Hello <em>world</em>!", "<em>", "</em>"), "world");
-	}
+    public void cutFromTo() {
+        assertEquals(StrExtend.cutFromTo("Hello <em>world</em>!", "<em>", "</em>"), "world");
+    }
 
 }

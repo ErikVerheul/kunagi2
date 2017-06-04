@@ -12,7 +12,7 @@
  * You should have received a copy of the GNU Affero General Public License along with this program. If not,
  * see <http://www.gnu.org/licenses/>.
  */
-package ilarkesto.testng.core.logging;
+package ilarkesto.testNG.core.logging;
 
 import static ilarkesto.core.time.Tm.getCurrentTimeMillis;
 import static ilarkesto.logging.Log.Level.INFO;
@@ -22,23 +22,23 @@ import org.testng.annotations.Test;
 
 public class LogRecordTest extends ATest {
 
-	@Test
-	public void hash() {
-		LogRecord a = new LogRecord(getCurrentTimeMillis(), "A", INFO, "hello", "logger");
-		LogRecord b = new LogRecord(getCurrentTimeMillis(), "A", INFO, "hello", "logger");
-		LogRecord c = new LogRecord(getCurrentTimeMillis(), "A", INFO, "hello", "world");
-		assertEquals(a.hashCode(), b.hashCode());
-		assertNotEquals(a.hashCode(), c.hashCode());
-	}
+    @Test
+    public void hash() {
+        LogRecord a = new LogRecord(getCurrentTimeMillis(), "A", INFO, "hello", "logger");
+        LogRecord b = new LogRecord(getCurrentTimeMillis(), "A", INFO, "hello", "logger");
+        LogRecord c = new LogRecord(getCurrentTimeMillis(), "A", INFO, "hello", "world");
+        assertEquals(a.hashCode(), b.hashCode());
+        assertNotEquals(a.hashCode(), c.hashCode());
+    }
 
-	@Test
-	public void equals() {
-		LogRecord a = new LogRecord(getCurrentTimeMillis(), "A", INFO, "hello", "logger");
-		LogRecord b = new LogRecord(getCurrentTimeMillis(), "A", INFO, "hello", "logger");
-		LogRecord c = new LogRecord(getCurrentTimeMillis(), "A", INFO, "hello", "world");
-		assertEquals(a, a);
-		assertEquals(a, b);
-		assertNotEquals(a, c);
-	}
+    @Test
+    public void equals() {
+        LogRecord a = new LogRecord(getCurrentTimeMillis(), "A", INFO, "hello", "logger");
+        LogRecord b = new LogRecord(getCurrentTimeMillis(), "A", INFO, "hello", "logger");
+        LogRecord c = new LogRecord(getCurrentTimeMillis(), "A", INFO, "hello", "world");
+        assertEquals(a, a);
+        assertEquals(a, b);
+        assertNotEquals(a, c);
+    }
 
 }

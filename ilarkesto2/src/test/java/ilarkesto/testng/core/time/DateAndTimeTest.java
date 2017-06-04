@@ -12,7 +12,7 @@
  * You should have received a copy of the GNU General Public License along with this program. If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package ilarkesto.testng.core.time;
+package ilarkesto.testNG.core.time;
 
 import ilarkesto.core.time.DateAndTime;
 import ilarkesto.testng.ATest;
@@ -28,26 +28,26 @@ public class DateAndTimeTest extends ATest {
      *
      */
     @Test
-	public void constructionAndToString() {
-		assertEquals(new DateAndTime(2010, 1, 1, 10, 9, 0), new DateAndTime("2010-01-01 10:09"));
-	}
+    public void constructionAndToString() {
+        assertEquals(new DateAndTime(2010, 1, 1, 10, 9, 0), new DateAndTime("2010-01-01 10:09"));
+    }
 
     /**
      *
      */
     @Test
-	public void isAfter() {
-		assertTrue(new DateAndTime(2010, 1, 1, 10, 10, 0).isAfter(new DateAndTime(2010, 1, 1, 10, 9, 0)));
-		assertFalse(new DateAndTime(2010, 1, 1, 10, 10, 0).isAfter(new DateAndTime(2010, 1, 1, 10, 10, 0)));
-	}
+    public void isAfter() {
+        assertTrue(new DateAndTime(2010, 1, 1, 10, 10, 0).isAfter(new DateAndTime(2010, 1, 1, 10, 9, 0)));
+        assertFalse(new DateAndTime(2010, 1, 1, 10, 10, 0).isAfter(new DateAndTime(2010, 1, 1, 10, 10, 0)));
+    }
 
     /**
      *
      */
     @Test
-	public void isBefore() {
-		assertTrue(new DateAndTime(2010, 1, 1, 10, 10, 0).isBefore(new DateAndTime(2010, 1, 1, 10, 11, 0)));
-		assertFalse(new DateAndTime(2010, 1, 1, 10, 10, 0).isBefore(new DateAndTime(2010, 1, 1, 10, 10, 0)));
-	}
+    public void isBefore() {
+        assertTrue(new DateAndTime(2010, 1, 1, 10, 10, 0).isBefore(new DateAndTime(2010, 1, 1, 10, 11, 0)));
+        assertFalse(new DateAndTime(2010, 1, 1, 10, 10, 0).isBefore(new DateAndTime(2010, 1, 1, 10, 10, 0)));
+    }
 
 }
