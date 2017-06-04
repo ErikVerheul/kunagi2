@@ -25,7 +25,7 @@ http://maven.apache.org/maven-v4_0_0.xsd">
         <!-- Sonar see https://stackoverflow.com/questions/13031219/how-to-configure-multi-module-maven-sonar-jacoco-to-give-merged-coverage-rep-->
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-        <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
+        <sonar.jacoco.reportPaths>${WORKSPACE}/target/jacoco.exec</sonar.jacoco.reportPaths>
         <sonar.language>java</sonar.language>      
     </properties>
     
@@ -129,7 +129,7 @@ http://maven.apache.org/maven-v4_0_0.xsd">
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.7.9</version>
                 <configuration>
-                    <destFile>${sonar.jacoco.reportPath}</destFile>
+                    <destFile>${sonar.jacoco.reportPaths}</destFile>
                     <append>true</append>
                 </configuration>
                 <executions>
