@@ -22,11 +22,16 @@ http://maven.apache.org/maven-v4_0_0.xsd">
         <jetty.version>7.6.13.v20130916</jetty.version>
         <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- SONAR properties-->
         <!-- Sonar see https://stackoverflow.com/questions/13031219/how-to-configure-multi-module-maven-sonar-jacoco-to-give-merged-coverage-rep-->
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
         <sonar.jacoco.reportPaths>${WORKSPACE}/target/jacoco.exec</sonar.jacoco.reportPaths>
-        <sonar.language>java</sonar.language>      
+        <sonar.language>java</sonar.language>
+        <!-- The argLine must be set as a property. See http://docs.sonarqube.org/display/PLUG/Usage+of+JaCoCo+with+Java+Plugin -->
+        <!-- some versions of JDK7/8 causes VerifyError during mock tests: http://code.google.com/p/powermock/issues/detail?id=504-->
+        <!-- -XX:-UseGCOverheadLimit switches the GC overhead limit exceeded check completely off; this is an issue when Sonar processes the huge IT file-->
+        <argLine>-Xmx2048m -XX:-UseGCOverheadLimit -Dfile.encoding=UTF-8 -noverify</argLine>     
     </properties>
     
     <dependencyManagement>
@@ -91,6 +96,16 @@ http://maven.apache.org/maven-v4_0_0.xsd">
 
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.20</version>
+                    <!-- Don't put Jacoco argLine config here! -->
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <resources>
             <resource>
                 <filtering>false</filtering>

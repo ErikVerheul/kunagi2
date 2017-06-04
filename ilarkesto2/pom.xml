@@ -34,7 +34,6 @@
                 however the tests are run twice
                 -->
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.20</version>
                 <configuration>
                     <argLine>-Dfile.encoding=UTF-8</argLine>
                     <parallel>methods</parallel>
