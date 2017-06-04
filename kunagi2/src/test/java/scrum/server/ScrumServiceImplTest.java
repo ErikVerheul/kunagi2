@@ -49,7 +49,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.fail;
-import org.junit.Ignore;
 
 /**
  *
@@ -201,7 +200,7 @@ public class ScrumServiceImplTest extends AjunitTest {
      */
     @Test
     public void createEntity() {
-        HashMap<String, Object> properties = new HashMap<String, Object>();
+        HashMap<String, Object> properties = new HashMap<>();
         properties.put("id", UUID.randomUUID().toString());
         properties.put("name", "anonymous");
         service.onCreateEntity(conversation, "user", properties);
@@ -266,7 +265,7 @@ public class ScrumServiceImplTest extends AjunitTest {
         app.getCommentDao().postComment(subject, "hello world", "anonymous", null, true);
         service.onRequestForum(conversation, true);
         assertConversationWithoutErrors(conversation);
-//        assertContainsEntities(conversation, project.getSubjects()); //TODO: {Erik} find out why this test fails
+        assertContainsEntities(conversation, project.getSubjects());
         assertContainsEntities(conversation, project.getLatestComments());
     }
 
@@ -476,11 +475,6 @@ public class ScrumServiceImplTest extends AjunitTest {
         }
         entity.updateProperties(properties);
         return entity;
-    }
-
-    private static void assertConversationError(GwtConversation conversation, ErrorWrapper error) {
-        List<ErrorWrapper> errors = conversation.getNextData().getErrors();
-        assertTrue("Conversation error not found: <" + error + "> in " + StrExtend.format(errors), errors != null && errors.contains(error));
     }
 
     private static void assertConversationWithoutErrors(GwtConversation conversation) {
