@@ -30,72 +30,72 @@ public class WebCrawlerTest extends ATest {
      * @param args
      */
     public static void main(String[] args) {
-		WebCrawler wc = new WebCrawler();
-		// wc.setDefaultEncoding("iso-8859-2");
-		wc.setFilter(new WebCrawler.Filter() {
+        WebCrawler wc = new WebCrawler();
+        // wc.setDefaultEncoding("iso-8859-2");
+        wc.setFilter(new WebCrawler.Filter() {
 
-			@Override
-			public boolean accept(String url) {
-                                // if (url.contains("animalprogress.strefa.pl")) return true;
-                                
-				return url.contains("animalprogress.strefa.pl");
-			}
-		});
-		wc.activateDownloading("/home/witek/inbox/crawler");
-		wc.crawl("http://animalprogress.strefa.pl/index.html");
+            @Override
+            public boolean accept(String url) {
+                // if (url.contains("animalprogress.strefa.pl")) return true;
 
-	}
+                return url.contains("animalprogress.strefa.pl");
+            }
+        });
+        wc.activateDownloading("/home/witek/inbox/crawler");
+        wc.crawl("http://animalprogress.strefa.pl/index.html");
 
-    /**
-     *
-     */
-    @Test
-	public void normalizeUrl() {
-		assertEquals(WebCrawler.normalizeUrl("http://koczewski.de/#a"), "http://koczewski.de/");
-		assertEquals(WebCrawler.normalizeUrl("http://koczewski.de/./index.html"), "http://koczewski.de/index.html");
-		assertEquals(WebCrawler.normalizeUrl("http://koczewski.de/test/../index.html"),
-			"http://koczewski.de/index.html");
-	}
+    }
 
     /**
      *
      */
     @Test
-	public void getBaseUrl() {
-		assertEquals("http://koczewski.de/", WebCrawler.getBaseUrl("http://koczewski.de"));
-		assertEquals("http://koczewski.de/", WebCrawler.getBaseUrl("http://koczewski.de/"));
-		assertEquals("http://koczewski.de/", WebCrawler.getBaseUrl("http://koczewski.de/index.html"));
-		assertEquals("http://koczewski.de/", WebCrawler.getBaseUrl("http://koczewski.de/start"));
-	}
+    public void normalizeUrl() {
+        assertEquals(WebCrawler.normalizeUrl("http://koczewski.de/#a"), "http://koczewski.de/");
+        assertEquals(WebCrawler.normalizeUrl("http://koczewski.de/./index.html"), "http://koczewski.de/index.html");
+        assertEquals(WebCrawler.normalizeUrl("http://koczewski.de/test/../index.html"),
+                "http://koczewski.de/index.html");
+    }
 
     /**
      *
      */
     @Test
-	public void isProbablyHtml() {
-		assertTrue(WebCrawler.isProbablyHtml("http://koczewski.de"));
-		assertTrue(WebCrawler.isProbablyHtml("http://koczewski.de/"));
-		assertTrue(WebCrawler.isProbablyHtml("http://koczewski.de/index.html"));
-		assertTrue(WebCrawler.isProbablyHtml("http://koczewski.de/index.php"));
-		assertTrue(WebCrawler.isProbablyHtml("http://koczewski.de/index.jsp"));
-		assertFalse(WebCrawler.isProbablyHtml("http://koczewski.de/image.png"));
-	}
+    public void getBaseUrl() {
+        assertEquals("http://koczewski.de/", WebCrawler.getBaseUrl("http://koczewski.de"));
+        assertEquals("http://koczewski.de/", WebCrawler.getBaseUrl("http://koczewski.de/"));
+        assertEquals("http://koczewski.de/", WebCrawler.getBaseUrl("http://koczewski.de/index.html"));
+        assertEquals("http://koczewski.de/", WebCrawler.getBaseUrl("http://koczewski.de/start"));
+    }
 
     /**
      *
      */
     @Test
-	public void crawl() {
-		WebCrawler wc = new WebCrawler();
-		wc.crawl(new File("etc/WebCrawler.html").toURI().toString());
-	}
+    public void isProbablyHtml() {
+        assertTrue(WebCrawler.isProbablyHtml("http://koczewski.de"));
+        assertTrue(WebCrawler.isProbablyHtml("http://koczewski.de/"));
+        assertTrue(WebCrawler.isProbablyHtml("http://koczewski.de/index.html"));
+        assertTrue(WebCrawler.isProbablyHtml("http://koczewski.de/index.php"));
+        assertTrue(WebCrawler.isProbablyHtml("http://koczewski.de/index.jsp"));
+        assertFalse(WebCrawler.isProbablyHtml("http://koczewski.de/image.png"));
+    }
 
     /**
      *
      */
     @Test
-	public void download() {
-		WebCrawler.download("http://servisto.de", OUTPUT_DIR + "/webcrawler");
-	}
+    public void crawl() {
+        WebCrawler wc = new WebCrawler();
+        wc.crawl(new File("etc/WebCrawler.html").toURI().toString());
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void download() {
+        WebCrawler.download("http://servisto.de", OUTPUT_DIR + "/webcrawler");
+    }
 
 }

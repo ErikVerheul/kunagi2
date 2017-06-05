@@ -30,22 +30,22 @@ public class UtlTest extends ATest {
      *
      */
     @Test
-	public void equals() {
-		Object[] a = { "hello", "equals" };
-		Object[] b = { "hello", "equals" };
-		Object[] c = { "hello", "world" };
-		assertTrue(Utl.equalObjects(a, b));
-		assertFalse(Utl.equalObjects(a, c));
-	}
+    public void equals() {
+        Object[] a = {"hello", "equals"};
+        Object[] b = {"hello", "equals"};
+        Object[] c = {"hello", "world"};
+        assertTrue(Utl.equalObjects(a, b));
+        assertFalse(Utl.equalObjects(a, c));
+    }
 
     /**
      *
      */
     @Test
-	public void removeDuplicates() {
-		List<String> list = toList("a", "b", "b", "a");
-		Utl.removeDuplicates(list);
-		assertEquals(list, toList("a", "b"));
-	}
+    public void removeDuplicates() {
+        List<String> list = toList("a", "b", "b", "a");
+        Utl.removeDuplicates(list);
+        assertEquals(list, toList("a", "b"));
+    }
 
 }

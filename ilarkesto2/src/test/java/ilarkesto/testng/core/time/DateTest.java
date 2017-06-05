@@ -28,134 +28,134 @@ import org.testng.annotations.Test;
  */
 public class DateTest extends ATest {
 
-	private static final Date BIRTHDAY = new Date(1979, 8, 3);
+    private static final Date BIRTHDAY = new Date(1979, 8, 3);
 
     /**
      *
      */
     @Test
-	public void getWeek() {
-		assertEquals(new Date(2011, 4, 6).getWeek(), 14);
-	}
+    public void getWeek() {
+        assertEquals(new Date(2011, 4, 6).getWeek(), 14);
+    }
 
     /**
      *
      */
     @Test
-	public void getPeriodTo() {
-		assertEquals(new Date(2011, 3, 1).getPeriodTo(new Date(2011, 3, 2)), days(1));
-		assertEquals(new Date(2011, 3, 1).getPeriodTo(new Date(2011, 3, 1)), days(0));
-		assertEquals(new Date(2011, 3, 1).getPeriodTo(new Date(2011, 3, 20)), days(19));
-		assertEquals(new Date(2011, 3, 1).getPeriodTo(new Date(2011, 3, 30)), days(29));
-	}
+    public void getPeriodTo() {
+        assertEquals(new Date(2011, 3, 1).getPeriodTo(new Date(2011, 3, 2)), days(1));
+        assertEquals(new Date(2011, 3, 1).getPeriodTo(new Date(2011, 3, 1)), days(0));
+        assertEquals(new Date(2011, 3, 1).getPeriodTo(new Date(2011, 3, 20)), days(19));
+        assertEquals(new Date(2011, 3, 1).getPeriodTo(new Date(2011, 3, 30)), days(29));
+    }
 
     /**
      *
      */
     @Test
-	public void getWeekday() {
-		assertEquals(BIRTHDAY.getWeekday(), FRIDAY);
-	}
+    public void getWeekday() {
+        assertEquals(BIRTHDAY.getWeekday(), FRIDAY);
+    }
 
     /**
      *
      */
     @Test
-	public void addDays() {
-		assertEquals(BIRTHDAY.addDays(1), new Date(1979, 8, 4));
-		assertEquals(BIRTHDAY.addDays(-1), new Date(1979, 8, 2));
-		assertEquals(BIRTHDAY.addDays(0), BIRTHDAY);
+    public void addDays() {
+        assertEquals(BIRTHDAY.addDays(1), new Date(1979, 8, 4));
+        assertEquals(BIRTHDAY.addDays(-1), new Date(1979, 8, 2));
+        assertEquals(BIRTHDAY.addDays(0), BIRTHDAY);
 
-		assertEquals(new Date(2010, 12, 31).addDays(10), new Date(2011, 1, 10));
+        assertEquals(new Date(2010, 12, 31).addDays(10), new Date(2011, 1, 10));
 
-		assertEquals(new Date(2011, 2, 28).addDays(1), new Date(2011, 3, 1));
-		assertEquals(new Date(2008, 2, 28).addDays(1), new Date(2008, 2, 29));
+        assertEquals(new Date(2011, 2, 28).addDays(1), new Date(2011, 3, 1));
+        assertEquals(new Date(2008, 2, 28).addDays(1), new Date(2008, 2, 29));
 
-		assertEquals(new Date(2011, 3, 1).addDays(28), new Date(2011, 3, 29));
-	}
-
-    /**
-     *
-     */
-    @Test
-	public void addMonths() {
-		assertEquals(BIRTHDAY.addMonths(12), new Date(1980, 8, 3));
-		assertEquals(BIRTHDAY.addMonths(-12), new Date(1978, 8, 3));
-		assertEquals(BIRTHDAY.addMonths(4), new Date(1979, 12, 3));
-
-		assertEquals(new Date(2011, 1, 1).addMonths(-1), new Date(2010, 12, 1));
-		assertEquals(new Date(2011, 1, 31).addMonths(1), new Date(2011, 2, 28));
-	}
+        assertEquals(new Date(2011, 3, 1).addDays(28), new Date(2011, 3, 29));
+    }
 
     /**
      *
      */
     @Test
-	public void addYears() {
-		assertEquals(BIRTHDAY.addYears(10), new Date(1989, 8, 3));
-		assertEquals(BIRTHDAY.addYears(-10), new Date(1969, 8, 3));
+    public void addMonths() {
+        assertEquals(BIRTHDAY.addMonths(12), new Date(1980, 8, 3));
+        assertEquals(BIRTHDAY.addMonths(-12), new Date(1978, 8, 3));
+        assertEquals(BIRTHDAY.addMonths(4), new Date(1979, 12, 3));
 
-		assertEquals(new Date(2012, 2, 29).addYears(1), new Date(2013, 2, 28));
-	}
-
-    /**
-     *
-     */
-    @Test
-	public void addDaysWithCalendar() {
-		Date date = new Date(2010, 1, 1);
-		for (int i = -10000; i < 10000; i++) {
-			assertAddDays(date, i);
-		}
-	}
-
-	private void assertAddDays(Date begin, int days) {
-		GregorianCalendar calendar = new GregorianCalendar();
-		calendar.setTimeInMillis(begin.toMillis());
-		assertEquals(begin, new Date(calendar.getTime()));
-
-		calendar.add(DAY_OF_YEAR, days);
-
-		assertEquals(begin.addDays(days), new Date(calendar.getTime()));
-	}
+        assertEquals(new Date(2011, 1, 1).addMonths(-1), new Date(2010, 12, 1));
+        assertEquals(new Date(2011, 1, 31).addMonths(1), new Date(2011, 2, 28));
+    }
 
     /**
      *
      */
     @Test
-	public void isToday() {
-		assertTrue(new Date().isToday());
-		assertFalse(BIRTHDAY.isToday());
-	}
+    public void addYears() {
+        assertEquals(BIRTHDAY.addYears(10), new Date(1989, 8, 3));
+        assertEquals(BIRTHDAY.addYears(-10), new Date(1969, 8, 3));
+
+        assertEquals(new Date(2012, 2, 29).addYears(1), new Date(2013, 2, 28));
+    }
 
     /**
      *
      */
     @Test
-	public void isBetween() {
-		assertTrue(BIRTHDAY.isBetween(new Date(1979, 8, 2), new Date(1979, 8, 4), true));
+    public void addDaysWithCalendar() {
+        Date date = new Date(2010, 1, 1);
+        for (int i = -10000; i < 10000; i++) {
+            assertAddDays(date, i);
+        }
+    }
 
-		assertTrue(BIRTHDAY.isBetween(new Date(1979, 8, 3), new Date(1979, 8, 3), true));
-		assertFalse(BIRTHDAY.isBetween(new Date(1979, 8, 3), new Date(1979, 8, 3), false));
-	}
+    private void assertAddDays(Date begin, int days) {
+        GregorianCalendar calendar = new GregorianCalendar();
+        calendar.setTimeInMillis(begin.toMillis());
+        assertEquals(begin, new Date(calendar.getTime()));
+
+        calendar.add(DAY_OF_YEAR, days);
+
+        assertEquals(begin.addDays(days), new Date(calendar.getTime()));
+    }
 
     /**
      *
      */
     @Test
-	public void isBefore() {
-		assertTrue(BIRTHDAY.isBefore(new Date(1979, 8, 4)));
-		assertFalse(BIRTHDAY.isBefore(new Date(1979, 8, 2)));
-		assertFalse(BIRTHDAY.isBefore(new Date(1979, 8, 3)));
-	}
+    public void isToday() {
+        assertTrue(new Date().isToday());
+        assertFalse(BIRTHDAY.isToday());
+    }
 
     /**
      *
      */
     @Test
-	public void isAfter() {
-		assertTrue(BIRTHDAY.isAfter(new Date(1979, 8, 2)));
-		assertFalse(BIRTHDAY.isAfter(new Date(1979, 8, 4)));
-		assertFalse(BIRTHDAY.isAfter(new Date(1979, 8, 3)));
-	}
+    public void isBetween() {
+        assertTrue(BIRTHDAY.isBetween(new Date(1979, 8, 2), new Date(1979, 8, 4), true));
+
+        assertTrue(BIRTHDAY.isBetween(new Date(1979, 8, 3), new Date(1979, 8, 3), true));
+        assertFalse(BIRTHDAY.isBetween(new Date(1979, 8, 3), new Date(1979, 8, 3), false));
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void isBefore() {
+        assertTrue(BIRTHDAY.isBefore(new Date(1979, 8, 4)));
+        assertFalse(BIRTHDAY.isBefore(new Date(1979, 8, 2)));
+        assertFalse(BIRTHDAY.isBefore(new Date(1979, 8, 3)));
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void isAfter() {
+        assertTrue(BIRTHDAY.isAfter(new Date(1979, 8, 2)));
+        assertFalse(BIRTHDAY.isAfter(new Date(1979, 8, 4)));
+        assertFalse(BIRTHDAY.isAfter(new Date(1979, 8, 3)));
+    }
 }
