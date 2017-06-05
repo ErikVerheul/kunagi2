@@ -12,7 +12,7 @@
  * You should have received a copy of the GNU General Public License along with this program. If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package ilarkesto.testNG.core.base;
+package ilarkesto.testng.core.base;
 
 import ilarkesto.core.base.Utl;
 import static ilarkesto.core.base.Utl.toList;
@@ -22,7 +22,7 @@ import org.testng.annotations.Test;
 
 /**
  *
- * @author erik
+ *
  */
 public class UtlTest extends ATest {
 
@@ -30,22 +30,22 @@ public class UtlTest extends ATest {
      *
      */
     @Test
-	public void equals() {
-		Object[] a = { "hello", "equals" };
-		Object[] b = { "hello", "equals" };
-		Object[] c = { "hello", "world" };
-		assertTrue(Utl.equalObjects(a, b));
-		assertFalse(Utl.equalObjects(a, c));
-	}
+    public void equals() {
+        Object[] a = {"hello", "equals"};
+        Object[] b = {"hello", "equals"};
+        Object[] c = {"hello", "world"};
+        assertTrue(Utl.equalObjects(a, b));
+        assertFalse(Utl.equalObjects(a, c));
+    }
 
     /**
      *
      */
     @Test
-	public void removeDuplicates() {
-		List<String> list = toList("a", "b", "b", "a");
-		Utl.removeDuplicates(list);
-		assertEquals(list, toList("a", "b"));
-	}
+    public void removeDuplicates() {
+        List<String> list = toList("a", "b", "b", "a");
+        Utl.removeDuplicates(list);
+        assertEquals(list, toList("a", "b"));
+    }
 
 }

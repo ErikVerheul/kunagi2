@@ -12,7 +12,7 @@
  * You should have received a copy of the GNU General Public License along with this program. If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package ilarkesto.testNG.core.time;
+package ilarkesto.testng.core.time;
 
 import ilarkesto.core.time.Time;
 import ilarkesto.testng.ATest;
@@ -20,7 +20,7 @@ import org.testng.annotations.Test;
 
 /**
  *
- * @author erik
+ *
  */
 public class TimeTest extends ATest {
 
@@ -28,28 +28,28 @@ public class TimeTest extends ATest {
      *
      */
     @Test
-	public void constructionAndToString() {
-		assertEquals(new Time(10, 9), new Time("10:09"));
-	}
+    public void constructionAndToString() {
+        assertEquals(new Time(10, 9), new Time("10:09"));
+    }
 
     /**
      *
      */
     @Test
-	public void isAfter() {
-		assertTrue(new Time(10, 10).isAfter(new Time(10, 9)));
-		assertFalse(new Time(10, 10).isAfter(new Time(10, 10)));
-		assertTrue(new Time(10, 10).isAfterOrSame(new Time(10, 10)));
-	}
+    public void isAfter() {
+        assertTrue(new Time(10, 10).isAfter(new Time(10, 9)));
+        assertFalse(new Time(10, 10).isAfter(new Time(10, 10)));
+        assertTrue(new Time(10, 10).isAfterOrSame(new Time(10, 10)));
+    }
 
     /**
      *
      */
     @Test
-	public void isBefore() {
-		assertTrue(new Time(10, 10).isBefore(new Time(10, 11)));
-		assertFalse(new Time(10, 10).isBefore(new Time(10, 10)));
-		assertTrue(new Time(10, 10).isBeforeOrSame(new Time(10, 10)));
-	}
+    public void isBefore() {
+        assertTrue(new Time(10, 10).isBefore(new Time(10, 11)));
+        assertFalse(new Time(10, 10).isBefore(new Time(10, 10)));
+        assertTrue(new Time(10, 10).isBeforeOrSame(new Time(10, 10)));
+    }
 
 }
