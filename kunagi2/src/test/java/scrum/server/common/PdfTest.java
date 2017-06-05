@@ -237,9 +237,9 @@ public class PdfTest extends AjunitTest {
     @Test
     public void sprintReport() {
         Project projectLocal = TestUtil.createProject();
-        projectLocal.addProductOwners(Arrays.asList(TestUtil.createUser("Cartman")));
-        projectLocal.addScrumMasters(Arrays.asList(TestUtil.createUser("Homer")));
-        projectLocal.addTeamMembers(Arrays.asList(TestUtil.createUser("Alfred"), TestUtil.createUser("Duke")));
+//        projectLocal.addProductOwners(Arrays.asList(TestUtil.createUser("Cartman")));
+//        projectLocal.addScrumMasters(Arrays.asList(TestUtil.createUser("Homer")));
+//        projectLocal.addTeamMembers(Arrays.asList(TestUtil.createUser("Alfred"), TestUtil.createUser("Duke")));
 
         Sprint sprint = new Sprint();
         sprint.setProject(projectLocal);

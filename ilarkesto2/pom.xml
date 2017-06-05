@@ -33,7 +33,9 @@
                 see https://solidsoft.wordpress.com/2013/03/12/mixing-testng-and-junit-tests-in-one-maven-module-2013-edition/
                 however the tests are run twice
                 -->
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.20</version>
                 <configuration>
                     <argLine>-Dfile.encoding=UTF-8</argLine>
                     <parallel>methods</parallel>

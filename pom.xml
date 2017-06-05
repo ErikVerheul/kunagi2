@@ -95,16 +95,6 @@ http://maven.apache.org/maven-v4_0_0.xsd">
 
 
     <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.20</version>
-                    <!-- Don't put Jacoco argLine config here! -->
-                </plugin>
-            </plugins>
-        </pluginManagement>
         <resources>
             <resource>
                 <filtering>false</filtering>
