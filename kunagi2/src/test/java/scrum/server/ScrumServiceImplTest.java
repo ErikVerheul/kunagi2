@@ -466,17 +466,6 @@ public class ScrumServiceImplTest extends AjunitTest {
         return null;
     }
 
-    private static <E extends AEntity> E createEntity(Class<E> type, HashMap<String, Object> properties) {
-        E entity;
-        try {
-            entity = type.newInstance();
-        } catch (InstantiationException | IllegalAccessException ex) {
-            throw new RuntimeException(ex);
-        }
-        entity.updateProperties(properties);
-        return entity;
-    }
-
     private static void assertConversationWithoutErrors(GwtConversation conversation) {
         List<ErrorWrapper> errors = conversation.getNextData().getErrors();
         assertTrue("Conversation contains errors: " + StrExtend.format(errors), errors == null || errors.isEmpty());
