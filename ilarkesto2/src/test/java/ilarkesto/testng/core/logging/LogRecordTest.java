@@ -22,23 +22,23 @@ import org.testng.annotations.Test;
 
 public class LogRecordTest extends ATest {
 
-	@Test
-	public void hash() {
-		LogRecord a = new LogRecord(getCurrentTimeMillis(), "A", INFO, "hello", "logger");
-		LogRecord b = new LogRecord(getCurrentTimeMillis(), "A", INFO, "hello", "logger");
-		LogRecord c = new LogRecord(getCurrentTimeMillis(), "A", INFO, "hello", "world");
-		assertEquals(a.hashCode(), b.hashCode());
-		assertNotEquals(a.hashCode(), c.hashCode());
-	}
+    @Test
+    public void hash() {
+        LogRecord a = new LogRecord(getCurrentTimeMillis(), "A", INFO, "hello", "logger");
+        LogRecord b = new LogRecord(getCurrentTimeMillis(), "A", INFO, "hello", "logger");
+        LogRecord c = new LogRecord(getCurrentTimeMillis(), "A", INFO, "hello", "world");
+        assertEquals(a.hashCode(), b.hashCode());
+        assertNotEquals(a.hashCode(), c.hashCode());
+    }
 
-	@Test
-	public void equals() {
-		LogRecord a = new LogRecord(getCurrentTimeMillis(), "A", INFO, "hello", "logger");
-		LogRecord b = new LogRecord(getCurrentTimeMillis(), "A", INFO, "hello", "logger");
-		LogRecord c = new LogRecord(getCurrentTimeMillis(), "A", INFO, "hello", "world");
-		assertEquals(a, a);
-		assertEquals(a, b);
-		assertNotEquals(a, c);
-	}
+    @Test
+    public void equals() {
+        LogRecord a = new LogRecord(getCurrentTimeMillis(), "A", INFO, "hello", "logger");
+        LogRecord b = new LogRecord(getCurrentTimeMillis(), "A", INFO, "hello", "logger");
+        LogRecord c = new LogRecord(getCurrentTimeMillis(), "A", INFO, "hello", "world");
+        assertEquals(a, a);
+        assertEquals(a, b);
+        assertNotEquals(a, c);
+    }
 
 }

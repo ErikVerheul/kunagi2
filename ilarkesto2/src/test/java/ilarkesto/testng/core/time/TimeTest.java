@@ -28,28 +28,28 @@ public class TimeTest extends ATest {
      *
      */
     @Test
-	public void constructionAndToString() {
-		assertEquals(new Time(10, 9), new Time("10:09"));
-	}
+    public void constructionAndToString() {
+        assertEquals(new Time(10, 9), new Time("10:09"));
+    }
 
     /**
      *
      */
     @Test
-	public void isAfter() {
-		assertTrue(new Time(10, 10).isAfter(new Time(10, 9)));
-		assertFalse(new Time(10, 10).isAfter(new Time(10, 10)));
-		assertTrue(new Time(10, 10).isAfterOrSame(new Time(10, 10)));
-	}
+    public void isAfter() {
+        assertTrue(new Time(10, 10).isAfter(new Time(10, 9)));
+        assertFalse(new Time(10, 10).isAfter(new Time(10, 10)));
+        assertTrue(new Time(10, 10).isAfterOrSame(new Time(10, 10)));
+    }
 
     /**
      *
      */
     @Test
-	public void isBefore() {
-		assertTrue(new Time(10, 10).isBefore(new Time(10, 11)));
-		assertFalse(new Time(10, 10).isBefore(new Time(10, 10)));
-		assertTrue(new Time(10, 10).isBeforeOrSame(new Time(10, 10)));
-	}
+    public void isBefore() {
+        assertTrue(new Time(10, 10).isBefore(new Time(10, 11)));
+        assertFalse(new Time(10, 10).isBefore(new Time(10, 10)));
+        assertTrue(new Time(10, 10).isBeforeOrSame(new Time(10, 10)));
+    }
 
 }
