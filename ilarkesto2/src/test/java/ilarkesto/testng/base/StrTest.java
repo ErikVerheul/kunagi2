@@ -12,7 +12,7 @@
  * You should have received a copy of the GNU General Public License along with this program. If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package ilarkesto.testngXXX.base;
+package ilarkesto.testng.base;
 
 import ilarkesto.base.StrExtend;
 import org.testng.Assert;
