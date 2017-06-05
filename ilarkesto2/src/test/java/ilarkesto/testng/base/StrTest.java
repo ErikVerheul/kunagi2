@@ -20,7 +20,7 @@ import org.testng.annotations.Test;
 
 /**
  *
- *
+ * Some simple tests
  */
 public class StrTest extends Assert {
 
