@@ -14,7 +14,6 @@
  */
 package scrum.server.project;
 
-import scrum.server.project.*;
 import ilarkesto.base.StrExtend;
 import ilarkesto.base.UtlExtend;
 import ilarkesto.core.time.Date;
