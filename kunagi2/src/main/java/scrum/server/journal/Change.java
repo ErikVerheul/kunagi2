@@ -90,7 +90,7 @@ public class Change extends GChange implements Comparable<Change> {
     @Override
     public int compareTo(Change other) {
         //@TODO: make this fix redundant
-        if (other == null) {
+        if (null == other) {
             LOG.debug("compareTo: found a compare with null");
             return -1;
         }
