@@ -341,7 +341,7 @@ public abstract class GScrumServiceImpl extends ilarkesto.gwt.server.AGwtService
     }
 
     @Override
-    public DataTransferObject changeProperties(int conversationNumber, String entityId, HashMap properties) {
+    public DataTransferObject changeProperties(int conversationNumber, String entityId, HashMap<String, Object> properties) {
         WebSession session = (WebSession) getSession();
         synchronized (session) {
             GwtConversation conversation = null;

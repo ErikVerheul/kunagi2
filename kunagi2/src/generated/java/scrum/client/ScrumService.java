@@ -30,7 +30,7 @@ public interface ScrumService extends com.google.gwt.user.client.rpc.RemoteServi
     DataTransferObject touchLastActivity(int conversationNumber);
     
     //TODO: try to type properties at a later GWT version
-    DataTransferObject changeProperties(int conversationNumber, String entityId, HashMap properties);
+    DataTransferObject changeProperties(int conversationNumber, String entityId, HashMap<String, Object> properties);
 
     DataTransferObject createEntity(int conversationNumber, String type, HashMap<String, Object> properties);
 

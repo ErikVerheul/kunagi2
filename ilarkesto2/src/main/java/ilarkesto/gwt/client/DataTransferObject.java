@@ -49,6 +49,11 @@ public class DataTransferObject implements Serializable, IsSerializable {
     private Integer dummyInteger;
     private float dummyF;
     private Float dummyFloat;
+    
+    //default constructor needed for GWT serialization
+    public DataTransferObject() {
+        
+    }
 
     /**
      *
