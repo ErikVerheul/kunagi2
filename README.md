@@ -12,7 +12,7 @@ KUNAGI2
     the latest GWT compiler the generated javascript supports recent browser 
     versions.
 
-    author: Erik Verheul, 2016
+    author: Erik Verheul, 2020
 	
 DESCRIPTION
 
@@ -74,7 +74,7 @@ INCLUDED LIBRARIES
     Kunagi2 uses libraries from other projects with different open source
     licenses. The following are included in our package:
 
-    * Google Web Toolkit - Apache License, Version 2.0
+    * Google Web Toolkit - Apache License, Version 2.8.2
     * gwt-dnd - Apache License, Version 2.0
     * gwt-upload - Apache License, Version 2.0
     * iText PDF - GNU Affero General Public License
