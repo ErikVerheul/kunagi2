@@ -10,7 +10,7 @@ http://maven.apache.org/maven-v4_0_0.xsd">
     <name>The Kunagi2 project parent</name>
     <artifactId>kunagi2parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.1.0-SNAPSHOT</version>
+    <version>1.1.1-SNAPSHOT</version>
 
     <modules>
         <module>kunagi2</module>
@@ -18,7 +18,7 @@ http://maven.apache.org/maven-v4_0_0.xsd">
     </modules>
 
     <properties>
-        <gwtVersion>2.8.1</gwtVersion>
+        <gwtVersion>2.8.2</gwtVersion>
         <jetty.version>7.6.13.v20130916</jetty.version>
         <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -157,8 +157,8 @@ http://maven.apache.org/maven-v4_0_0.xsd">
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.5.1</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                     <encoding>UTF-8</encoding>
                     <showWarnings>true</showWarnings>
                     <showDeprecation>true</showDeprecation>
